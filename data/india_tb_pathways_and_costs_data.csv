@@ -1,0 +1,881 @@
+id,Sex,Age,Education,Employment,Alcohol,Smoking,WtinKgs,HtinCms,bmi,Diabetes,Form of TB,Chext Xray,first visit location,first visit cost,second visit location,second visit cost,third visit location,third visit cost,Total Cost,Health sys delay (in days),Treatment initiation delay (in days)
+100202,Male,57,Middle,Working,Yes,Yes,58,165,21.3,0,Ini smear +,,GH,0,,0,,0,0,15,10
+100396,Female,66,No Education,Non - Working,No,No,32,163,12,0,Ini smear -,Positive,Pvt. docto,1500,Pvt. clini,1000,Pvt. hospi,2500,5000,60,4
+100590,Female,45,Missing,Non - Working,No,No,46,150,20.4,0,Ini smear -,Positive,Pvt. docto,2000,Pvt. docto,3000,PHC,0,5000,43,21
+100687,Male,27,Middle,Non - Working,No,No,51,165,18.7,0,Ini smear +,,Pvt. hospi,20000,Pvt. hospi,1500,PHC,0,21500,35,5
+100784,Male,54,Middle,Non - Working,No,No,39,160,15.2,0,Ini smear +,Positive,Pvt. docto,1000,GH,0,,0,1000,14,6
+100978,Male,60,No Education,Working,No,No,43,155,17.9,0,Ini smear +,Positive,Pvt. docto,2000,GH,0,,0,2000,14,10
+101075,Male,28,Primary,Working,No,No,47,165,17.3,0,Ini smear +,,Pvt. docto,1000,Pvt. docto,1000,PHC,0,2000,7,2
+101172,Female,21,Graduate,Non - Working,No,No,31,160,12.1,0,Ini smear +,,GH,0,,0,,0,0,14,3
+101269,Male,34,Middle,Working,No,No,44,165,16.2,0,Ini smear +,Negative,T.Govt,0,,0,,0,0,6,4
+101366,Male,48,Middle,Working,No,No,40,160,15.6,0,Ini smear +,,GH,0,,0,,0,0,10,6
+101560,Male,40,No Education,Working,No,No,58,166,21,0,Ini smear +,,Pvt. docto,750,GH,0,,0,750,14,3
+101657,Male,46,Middle,Working,Yes,Yes,42,165,15.4,0,Ini smear +,,Pvt. docto,5000,GH,0,,0,5000,21,3
+101948,Female,30,Secondary,Working,No,No,38,152,16.4,0,Ini smear +,,Pvt. docto,1000,GH,0,,0,1000,14,6
+102045,Male,38,Primary,Working,No,No,38,160,14.8,0,Ini smear +,,Pvt. docto,800,PHC,0,,0,800,21,3
+102142,Male,27,Secondary,Working,No,No,40,152,17.3,1,Ini smear +,,GH,0,,0,,0,0,14,6
+102433,Male,35,No Education,Working,No,No,45,150,20,0,Ini smear +,,PHC,0,GH,0,,0,0,10,7
+102627,Male,52,Primary,Non - Working,No,No,36,150,16,0,Ini smear +,,Pvt. docto,300,GH,0,,0,300,21,1
+102724,Male,52,Middle,Working,No,No,60,169,21,1,Ini smear +,Negative,Pvt. docto,1000,Pvt. clini,250,GH,0,1250,14,3
+102821,Male,38,Middle,Working,Yes,No,40,162,15.2,0,Ini smear +,,Pvt. docto,800,Pvt. clini,200,GH,0,1000,21,3
+102918,Male,30,Primary,Working,No,No,35,145,16.6,0,Ini smear +,,Pvt. docto,200,Pvt. clini,500,GH,0,700,14,1
+103015,Female,36,Middle,Working,No,No,48,145,22.8,0,Ini smear +,Negative,GH,0,,0,,0,0,3,4
+103209,Male,65,No Education,Non - Working,No,No,48,162,18.3,0,Ini smear +,,Pvt. clini,300,GH,0,,0,300,60,0
+103306,Female,25,Middle,Working,No,No,45,150,20,0,Ini smear -,Positive,Pvt. docto,2000,Pvt. docto,700,GH,0,2700,60,1
+103403,Female,51,No Education,Non - Working,No,No,40,165,14.7,0,Ini smear +,Positive,Pvt. docto,200,GH,0,,0,200,14,7
+103500,Male,65,No Education,Non - Working,No,No,35,162,13.3,0,Ini smear +,,Pvt. docto,200,GH,0,,0,200,21,8
+103694,Male,55,Middle,Working,No,No,46,155,19.1,0,Ini smear +,Negative,Pvt. docto,500,GH,0,,0,500,14,1
+103791,Female,22,Higher Secondary,Non - Working,No,No,32,145,15.2,0,Ini smear +,Negative,Pvt. docto,250,GH,0,,0,250,21,9
+103888,Male,35,Primary,Working,No,No,46,160,18,0,Ini smear +,,Pvt. docto,250,GH,0,,0,250,30,2
+103985,Male,32,Primary,Working,No,No,46,162,17.5,0,Ini smear +,,Pvt. docto,500,Pvt. hospi,1000,GH,0,1500,19,0
+104082,Male,55,Secondary,Working,No,No,52,163,19.6,0,Ini smear +,,Pvt. docto,200,GH,0,,0,200,21,5
+104179,Male,55,Middle,Working,No,No,40,165,14.7,0,Ini smear +,Negative,Pvt. docto,200,GH,0,,0,200,14,5
+104276,Male,38,Primary,Working,No,No,49,165,18,0,Ini smear +,Positive,Pvt. docto,300,GH,0,,0,300,21,4
+104373,Male,55,No Education,Non - Working,No,No,49,165,18,0,Ini smear +,,Pvt. docto,250,GH,0,,0,250,14,2
+108835,Male,55,No Education,Working,No,No,47,160,18.4,0,Ini smear +,,GH,0,,0,,0,0,14,18
+200209,Male,25,Higher Secondary,Working,Yes,No,43,150,19.1,0,Ini smear +,,Pvt. docto,3000,Pvt. hospi,1500,GH,0,4500,9,21
+200306,Male,42,No Education,Working,Yes,No,45,175,14.7,0,Ini smear +,,Pvt. docto,500,Pvt. docto,2000,GH,0,2500,30,
+200403,Female,50,No Education,Non - Working,No,No,35,145,16.6,0,Ini smear -,Positive,GH,0,Pvt. docto,500,,0,500,15,
+200500,Male,54,No Education,Working,Yes,Yes,34,150,15.1,0,Ini smear +,,Pvt. docto,500,Pvt. clini,100,GH,0,600,15,31
+200694,Male,48,No Education,Working,Yes,Yes,35,161,13.5,0,Ini smear +,,Pvt. clini,500,Pvt. clini,300,Pvt. docto,4000,4800,20,5
+200791,Female,55,No Education,Non - Working,No,No,38,150,16.9,0,Ini smear +,,Pvt. docto,850,GH,0,,0,850,30,4
+200888,Male,27,Primary,Working,Yes,No,48,150,21.3,0,Ini smear +,,Pvt. docto,600,T.Pvt,2500,Pvt. hospi,2500,5600,17,9
+201082,Male,57,Middle,Working,Yes,Yes,38,145,18.1,0,Ini smear +,,Pvt. docto,600,GH,0,,0,600,30,7
+201179,Female,20,Higher Secondary,Non - Working,No,No,36,140,18.4,0,Ini smear +,Positive,GH,0,,0,,0,0,14,1
+201276,Female,30,No Education,Working,No,No,34,140,17.3,0,Ini smear +,,Pvt. docto,2500,T.Govt,0,,0,2500,30,8
+201373,Male,52,Primary,Working,Yes,Yes,45,165,16.5,0,Ini smear +,,Pvt. docto,200,GH,0,,0,200,90,4
+201470,Male,40,Middle,Working,Yes,No,62,170,21.5,0,Ini smear +,,Pvt. docto,200,PHC,0,,0,200,30,1
+201761,Male,38,Secondary,Working,Yes,No,57,165,20.9,0,Ini smear +,,Pvt. clini,1000,GH,0,,0,1000,30,36
+201858,Male,70,No Education,Working,Yes,No,34,150,15.1,0,Ini smear -,Positive,GH,500,,0,,0,500,14,1
+202246,Male,27,No Education,Working,No,No,46,155,19.1,0,Ini smear -,,Pvt. hospi,1000,GH,0,,0,1000,15,5
+202343,Female,35,Primary,Working,No,No,35,150,15.6,0,Ini smear +,,GH,0,,0,,0,0,7,5
+202440,Male,24,Secondary,Working,Yes,No,42,150,18.7,0,Missing,Positive,Pvt. docto,750,Pvt. docto,250,GH,0,1000,7,3
+202537,Female,45,No Education,Working,No,No,44,160,17.2,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,7,4
+202634,Male,73,Primary,Working,Yes,Yes,46,150,20.4,0,Ini smear -,,Pvt. docto,500,Pvt. hospi,2000,GH,0,2500,15,3
+202731,Male,60,No Education,Working,Yes,Yes,52,150,23.1,0,Ini smear -,,Pvt. docto,200,Pvt. docto,1200,GH,0,1400,30,4
+202828,Female,30,No Education,Working,No,No,35,150,15.6,0,Ini smear +,,Pvt. hospi,5000,GH,0,,0,5000,13,43
+202925,Male,42,Primary,Working,Yes,No,50,150,22.2,0,Ini smear +,,GH,500,,0,,0,500,30,7
+203022,Female,24,Secondary,Working,No,No,33,140,16.8,0,Ini smear +,,GH,0,,0,,0,0,7,3
+203119,Male,24,Higher Secondary,Working,Yes,Yes,46,165,16.9,0,Ini smear +,,Pvt. hospi,900,Pvt. hospi,1500,GH,0,2400,90,2
+203216,Female,28,Secondary,Working,No,No,46,150,20.4,0,Ini smear +,Positive,Pvt. docto,3000,Pvt. docto,2000,Pvt. hospi,4000,9000,7,23
+203313,Female,40,No Education,Working,No,No,40.5,145,19.3,0,Ini smear +,Positive,Pvt. clini,100,Pvt. hospi,3000,GH,0,3100,15,31
+203410,Male,20,Secondary,Working,No,No,44,160,17.2,0,Ini smear +,Positive,Pvt. clini,500,Pvt. hospi,15000,GH,0,15500,15,6
+203507,Male,38,Middle,Working,Yes,No,33,150,14.7,0,Ini smear +,,Pvt. hospi,1500,T.Govt,0,GH,0,1500,32,32
+203604,Female,22,Middle,Non - Working,No,No,40,155,16.6,0,Ini smear +,,Pvt. hospi,1500,GH,0,,0,1500,7,3
+204089,Female,45,No Education,Working,No,No,49,150,21.8,0,Ini smear +,Negative,Pvt. clini,500,Pvt. docto,200,Pvt. hospi,300,1000,30,21
+204186,Male,26,Primary,Working,Yes,No,45,150,20,0,Ini smear -,Positive,Pvt. hospi,500,Pvt. docto,2000,GH,0,2500,15,8
+204380,Female,21,Middle,Working,No,No,38,145,18.1,0,Ini smear +,,Pvt. clini,500,Pvt. docto,600,GH,0,1100,15,7
+204477,Male,39,No Education,Working,Yes,No,54,150,24,1,Ini smear -,Positive,Pvt. docto,1000,GH,0,,0,1000,20,17
+204574,Male,55,No Education,Working,Yes,Yes,59,150,26.2,0,Ini smear +,,Pvt. clini,500,Pvt. clini,1500,GH,0,2000,25,0
+204671,Male,34,Primary,Working,Yes,No,47,160,18.4,0,Ini smear +,,Pvt. docto,250,GH,0,,0,250,10,10
+204768,Female,24,Middle,Working,No,No,37,140,18.9,0,Ini smear -,Positive,GH,0,Tambram Sanatorium,0,,0,0,27,25
+205059,Male,38,Primary,Working,Yes,Yes,48,175,15.7,0,Ini smear +,,Pvt. docto,1500,GH,0,,0,1500,90,5
+205156,Male,45,Primary,Working,No,No,75,170,26,1,Ini smear -,Positive,Pvt. docto,500,GH,0,,0,500,15,10
+205253,Male,55,No Education,Working,No,No,32,170,11.1,0,Ini smear +,,Pvt. docto,1200,GH,0,,0,1200,16,4
+205350,Male,35,Primary,Working,Yes,Yes,50.3,150,22.4,0,Ini smear +,Positive,Pvt. docto,1000,GH,0,,0,1000,30,5
+205544,Female,19,Secondary,Working,No,No,43,150,19.1,0,Ini smear +,Negative,Pvt. hospi,1300,Pvt. clini,200,GH,0,1500,30,7
+205641,Male,60,Primary,Working,Yes,Yes,48,165,17.6,0,Ini smear +,,Pvt. docto,650,Pvt. hospi,500,GH,0,1150,30,7
+205738,Male,18,Secondary,Working,No,No,45,148,20.5,0,Ini smear +,,Pvt. clini,600,Pvt. hospi,400,GH,0,1000,24,0
+206126,Female,45,No Education,Non - Working,No,No,33,150,14.7,0,Ini smear +,,PHC,0,GH,0,,0,0,17,15
+206223,Male,19,Graduate,Non - Working,No,No,34,150,15.1,0,Ini smear +,,GH,0,,0,,0,0,30,5
+206320,Male,39,Secondary,Working,Yes,Yes,37,160,14.5,0,Ini smear +,,GH,0,,0,,0,0,14,24
+206417,Male,36,Primary,Working,No,Yes,39,160,15.2,0,Ini smear -,Positive,Tambram sanatorium,0,,0,,0,0,30,55
+206611,Male,37,Primary,Working,No,No,48,170,16.6,0,Ini smear +,,Pvt. hospi,500,PHC,0,GH,0,500,23,7
+206708,Male,25,Middle,Working,Yes,No,40,150,17.8,0,Ini smear -,Positive,Tambram sanatorium,0,Pvt. docto,1000,GH,0,1000,18,12
+206805,Male,36,No Education,Working,Yes,No,54,150,24,0,Ini smear +,Negative,Pvt. hospi,1450,Pvt. hospi,4500,,0,5950,14,50
+300119,Female,50,No Education,Working,No,No,43,130,25.4,0,Ini smear +,,Pvt. clini,600,Pvt. hospi,1400,GH,0,2000,15,0
+300313,Male,62,Primary,Working,No,Yes,36,150,16,0,Ini smear +,Positive,PHC,0,Pvt. docto,220,GH,0,220,20,1
+300507,Female,40,No Education,Working,No,Yes,30,140,15.3,0,Ini smear +,,Pvt. clini,500,GH,0,,0,500,13,23
+300604,Female,50,Primary,Working,No,No,42,151,18.4,0,Ini smear -,Positive,PHC,0,GH,0,,0,0,7,2
+300992,Male,52,Middle,Working,Yes,Yes,45,160,17.6,0,Ini smear +,,Pvt. docto,150,Pvt. hospi,400,GH,0,550,10,6
+301380,Male,57,Higher Secondary,Non - Working,No,No,45,161,17.4,0,Ini smear +,Positive,Pvt. clini,400,Pvt. docto,200,GH,0,600,15,4
+301477,Male,67,Higher Secondary,Working,No,No,55,161,21.2,0,Ini smear +,,Pvt. hospi,900,GH,0,,0,900,60,3
+301574,Male,65,No Education,Working,No,No,47,159,18.6,0,Ini smear +,,Pvt. docto,5000,GH,0,,0,5000,25,5
+301671,Male,75,Primary,Working,No,Yes,41,152,17.7,0,Ini smear +,Negative,Pvt. hospi,3000,PHC,0,GH,0,3000,7,2
+301865,Male,60,Primary,Non - Working,No,No,50,165,18.4,0,Ini smear +,Positive,PHC,0,Pvt. docto,2000,GH,0,2000,25,5
+301962,Female,65,No Education,Non - Working,No,No,38,156,15.6,0,Ini smear +,Positive,Pvt. hospi,400,PHC,0,GH,0,400,21,3
+302059,Female,40,No Education,Non - Working,No,No,42,154,17.7,0,Ini smear -,Positive,Tambram sanatorium,0,,0,,0,0,10,23
+302253,Male,30,No Education,Working,No,No,50,150,22.2,0,Ini smear +,,Pvt. clini,1000,GH,0,,0,1000,7,3
+302350,Female,26,No Education,Non - Working,No,No,34,156,14,0,Ini smear +,,GH,0,,0,,0,0,7,2
+302447,Male,65,No Education,Working,No,No,53,170,18.3,0,Ini smear +,,T.Pvt,2000,Pvt. hospi,15000,GH,0,17000,,2
+302544,Female,45,No Education,Non - Working,No,No,37,157,15,0,Ini smear +,,PHC,0,GH,0,,0,0,7,2
+302641,Male,24,Secondary,Working,No,No,45,167,16.1,0,Ini smear +,,GH,0,,0,,0,0,6,4
+302738,Male,38,Primary,Working,No,No,50,160,19.5,0,Ini smear -,Positive,GH,0,,0,,0,0,20,9
+302835,Female,31,Middle,Working,No,No,35,152,15.1,0,Ini smear +,,Pvt. hospi,2500,GH,0,,0,2500,15,2
+302932,Male,57,No Education,Non - Working,No,No,38,158,15.2,0,Ini smear +,Positive,Pvt. hospi,0,,0,,0,0,10,5
+303320,Male,67,No Education,Working,No,No,47,150,20.9,0,Ini smear -,Positive,PHC,0,Pvt. docto,10000,GH,0,10000,60,7
+303417,Male,42,Secondary,Working,Yes,No,59,149,26.6,0,Ini smear +,Positive,Pvt. docto,700,GH,0,,0,700,40,6
+303514,Male,64,Primary,Non - Working,No,No,39,152,16.9,0,Ini smear +,,Pvt. docto,20000,PHC,0,GH,0,20000,210,4
+303611,Male,42,No Education,Working,No,No,52,152,22.5,0,Ini smear +,Positive,PHC,0,Pvt. docto,500,Pvt. hospi,3000,3500,11,8
+303708,Male,36,Secondary,Working,No,No,45,160,17.6,0,Ini smear +,,PHC,0,PHC,0,Tambram Sanatorium,0,0,30,1
+303805,Female,40,Primary,Working,No,No,38,152,16.4,0,Ini smear +,Positive,PHC,0,GH,0,,0,0,20,5
+303902,Male,48,No Education,Working,No,No,48,151,21.1,0,Ini smear +,Positive,Pvt. clini,4000,PHC,0,GH,0,4000,10,1
+304096,Male,44,Secondary,Working,No,No,47.4,164,17.6,1,Ini smear +,Positive,Pvt. docto,6000,GH,0,,0,6000,10,13
+304193,Male,37,No Education,Working,No,No,42,130,24.9,0,Ini smear +,Positive,Pvt. docto,1000,GH,0,,0,1000,10,7
+304290,Male,45,No Education,Working,No,No,42,165,15.4,0,Ini smear +,,Pvt. clini,400,GH,0,,0,400,30,21
+304484,Male,55,Primary,Non - Working,No,No,39.1,162,14.9,0,Ini smear +,Positive,PHC,0,GH,0,,0,0,15,5
+304678,Male,42,Primary,Working,No,Yes,39,165,14.3,0,Ini smear +,,GH,0,,0,,0,0,14,1
+304775,Male,19,Middle,Non - Working,No,No,45,178,14.2,0,Ini smear +,Positive,Pvt. clini,100,GH,0,,0,100,10,0
+304969,Male,45,No Education,Working,No,No,42,156,17.3,0,Ini smear +,Positive,PHC,0,Pvt. hospi,1000,T.Govt,0,1000,15,14
+305066,Male,60,Primary,Non - Working,No,Yes,56,155,23.3,0,Ini smear -,Positive,Pvt. docto,500,PHC,0,GH,0,500,15,0
+305163,Male,45,No Education,Non - Working,No,No,61,162,23.2,0,Ini smear -,,PHC,0,GH,0,,0,0,10,7
+305357,Male,30,No Education,Working,Yes,No,43,175,14,0,Ini smear +,,GH,0,,0,,0,0,14,22
+305454,Male,40,Middle,Working,No,No,61,166,22.1,1,Ini smear +,Negative,Pvt. hospi,2500,GH,0,,0,2500,14,1
+305551,Male,58,Secondary,Working,No,No,48,157,19.5,0,Ini smear -,Positive,Pvt. docto,500,GH,0,,0,500,14,4
+305648,Male,60,Primary,Non - Working,No,No,41.4,158,16.6,0,Ini smear -,Positive,Pvt. docto,1000,Pvt. hospi,2000,PHC,0,3000,15,5
+400126,Male,20,Middle,Working,No,No,35,161,13.5,0,Ini smear +,,GH,0,Pvt. clini,200,Pvt. docto,300,500,28,6
+400223,Male,35,No Education,Working,Yes,Yes,40,165,14.7,0,Ini smear +,Negative,Pvt. clini,1000,Pvt. clini,400,GH,0,1400,30,13
+400320,Male,50,Primary,Working,No,No,40,160,15.6,0,Ini smear +,,GH,600,,0,,0,600,6,1
+400417,Female,25,Primary,Working,No,No,43,159,17,0,Ini smear +,,Pvt. docto,250,GH,0,,0,250,4,3
+400611,Male,55,Primary,Working,No,No,45,157,18.3,1,Ini smear +,,Pvt. docto,1700,Pvt. docto,6000,GH,0,7700,45,1
+400708,Female,42,No Education,Working,No,No,40,150,17.8,1,Ini smear +,,Pvt. docto,3750,Pvt. clini,850,GH,0,4600,4,1
+400805,Male,50,No Education,Working,Yes,Yes,42,161,16.2,0,Ini smear +,,Other,2500,Other,2000,GH,0,4500,365,5
+401484,Male,30,Secondary,Working,Yes,No,43,171,14.7,1,Ini smear +,,Pvt. hospi,15000,GH,0,,0,15000,60,2
+401581,Male,42,Middle,Working,Yes,No,37,166,13.4,0,Ini smear +,,Pvt. clini,800,GH,0,,0,800,14,0
+401678,Male,55,No Education,Working,Yes,Yes,47,168,16.7,0,Ini smear +,,Pvt. clini,2000,Pvt. clini,3000,GH,0,5000,365,4
+401775,Male,47,No Education,Working,No,No,52,171,17.8,0,Ini smear -,Positive,Pvt. clini,3000,GH,0,,0,3000,30,3
+401872,Male,35,Primary,Working,Yes,No,50,172,16.9,0,Ini smear +,Negative,GH,0,,0,,0,0,15,5
+401969,Female,44,No Education,Working,No,No,45,147,20.8,1,Ini smear +,Negative,Pvt. hospi,5000,,0,,0,5000,180,1
+402163,Female,47,No Education,Non - Working,No,No,34,149,15.3,0,Ini smear +,,GH,0,,0,,0,0,7,4
+402357,Male,70,No Education,Non - Working,Yes,No,45,164,16.7,0,Ini smear +,,GH,0,,0,,0,0,3,3
+402454,Female,30,Primary,Working,No,No,36,158,14.4,0,Ini smear +,,GH,0,,0,,0,0,7,7
+402648,Male,67,No Education,Working,Yes,No,60,153,25.6,1,Ini smear +,,GH,0,,0,,0,0,7,4
+402842,Female,22,Higher Secondary,Non - Working,No,No,42,170,14.5,0,Ini smear +,,Pvt. clini,4000,GH,0,,0,4000,31,7
+402939,Male,48,Primary,Non - Working,Yes,No,37,155,15.4,0,Ini smear +,Positive,Pvt. clini,6000,GH,0,,0,6000,18,4
+403036,Male,29,Secondary,Working,No,No,45,159,17.8,0,Ini smear -,Positive,Pvt. hospi,1200,GH,0,,0,1200,7,3
+403133,Male,63,No Education,Non - Working,No,No,47,168,16.7,0,Ini smear -,Positive,Pvt. clini,1500,GH,0,,0,1500,3,12
+403327,Male,52,No Education,Working,Yes,Yes,44,166,16,0,Ini smear +,,Pvt. clini,2300,GH,0,,0,2300,94,1
+403521,Male,38,Higher Secondary,Working,No,No,38,163,14.3,0,Ini smear -,Positive,PHC,0,,0,,0,0,7,22
+403618,Male,40,No Education,Working,No,Yes,51,166,18.5,0,Ini smear +,,Pvt. hospi,200,Pvt. hospi,3300,Pvt. hospi,350,3850,15,0
+403812,Male,44,Secondary,Working,Yes,No,39,153,16.7,0,Ini smear +,,GH,200,,0,,0,200,8,37
+403909,Male,51,No Education,Working,No,No,40,167,14.3,1,Ini smear +,,Pvt. clini,1900,Tambram Sanatorium,0,GH,0,1900,90,4
+404006,Female,19,Middle,Non - Working,No,No,35,150,15.6,0,Ini smear +,,Pvt. hospi,1500,GH,0,,0,1500,14,9
+404103,Male,28,Primary,Working,Yes,Yes,40,153,17.1,0,Ini smear +,,Pvt. hospi,300,GH,0,,0,300,90,6
+404200,Male,42,Primary,Working,Yes,Yes,42,152,18.2,1,Ini smear +,Positive,Pvt. hospi,9500,Pvt. hospi,1700,GH,0,11200,180,5
+404394,Female,22,Higher Secondary,Non - Working,No,No,36,163,13.5,0,Ini smear +,,Pvt. hospi,150,Pvt. hospi,3200,GH,0,3350,14,14
+404491,Male,23,Higher Secondary,Working,No,No,50,175,16.3,0,Ini smear +,,Pvt. docto,170,PHC,0,GH,0,170,5,0
+404588,Male,23,Secondary,Working,No,No,41,164,15.2,0,Ini smear +,,Pvt. clini,650,GH,0,,0,650,15,5
+404685,Male,62,Secondary,Non - Working,No,No,47,167,16.9,1,Ini smear +,,Pvt. clini,500,GH,0,,0,500,14,10
+404879,Male,47,Primary,Working,No,No,50,172,16.9,0,Ini smear +,,PHC,0,Pvt. clini,1500,Pvt. hospi,7000,8500,20,26
+404976,Male,39,Secondary,Working,Yes,No,56,169,19.6,0,Ini smear +,Negative,Pvt. hospi,5000,Pvt. hospi,1000,GH,0,6000,180,9
+405073,Male,55,Primary,Working,No,No,52,166,18.9,0,Ini smear -,Positive,Pvt. docto,1500,PHC,0,,0,1500,21,0
+405170,Male,62,Primary,Working,Yes,No,49,167,17.6,0,Ini smear +,Negative,Pvt. docto,350,Pvt. clini,1200,GH,0,1550,15,0
+405267,Male,34,Secondary,Working,No,No,48,161,18.5,0,Ini smear -,Positive,Pvt. hospi,4000,GH,800,,0,4800,7,14
+405364,Male,45,Primary,Working,Yes,Yes,40,150,17.8,0,Ini smear +,Negative,Pvt. docto,900,GH,0,,0,900,7,1
+405558,Female,45,No Education,Working,No,No,45,155,18.7,0,Ini smear +,,Pvt. docto,2000,GH,0,,0,2000,150,0
+405946,Female,30,No Education,Working,No,No,40.5,143,19.8,0,Ini smear -,Positive,Pvt. docto,10000,GH,0,,0,10000,40,35
+406140,Male,30,Primary,Working,Yes,Yes,50.2,171,17.2,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,6,12
+406237,Male,53,No Education,Working,Yes,Yes,40.5,153,17.3,0,Ini smear -,Positive,Pvt. docto,500,PHC,0,,0,500,14,2
+406528,Male,58,Middle,Non - Working,No,No,58,169,20.3,0,Ini smear +,,GH,0,,0,,0,0,3,3
+406625,Male,30,Middle,Working,No,No,41,165,15.1,0,Ini smear +,,PHC,0,,0,,0,0,7,0
+406722,Male,68,Primary,Working,No,Yes,38,152,16.4,0,Ini smear +,Negative,Pvt. docto,3000,GH,0,,0,3000,7,2
+406819,Male,60,Primary,Non - Working,Yes,Yes,32,167,11.5,0,Ini smear +,,PHC,0,GH,0,,0,0,14,3
+406916,Male,21,Secondary,Working,No,No,51,162,19.4,0,Ini smear +,,PHC,0,,0,,0,0,7,3
+407013,Male,54,Primary,Non - Working,No,No,43,165,15.8,0,Ini smear +,,PHC,0,GH,0,,0,0,7,3
+407110,Male,60,No Education,Non - Working,No,No,43,166,15.6,0,Ini smear +,,Pvt. hospi,1500,PHC,0,,0,1500,7,0
+407207,Female,55,No Education,Non - Working,No,No,42,150,18.7,0,Ini smear +,,GH,0,,0,,0,0,14,9
+407304,Male,50,Primary,Non - Working,No,Yes,69,173,23.1,1,Ini smear +,,Pvt. docto,1000,Pvt. clini,5000,GH,0,6000,30,10
+407401,Female,38,Primary,Non - Working,No,No,45,162,17.1,0,Ini smear +,,GH,0,,0,,0,0,7,0
+407595,Female,45,No Education,Working,Yes,Yes,50,162,19.1,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,7,7
+407789,Male,55,No Education,Working,No,Yes,45,158,18,0,Ini smear -,Positive,GH,0,,0,,0,0,7,7
+407886,Female,60,No Education,Working,No,No,33,156,13.6,0,Ini smear +,,Pvt. hospi,4000,GH,0,,0,4000,14,5
+407983,Male,60,Primary,Working,Yes,Yes,41,162,15.6,0,Ini smear +,,Pvt. hospi,2000,Pvt. hospi,1000,GH,0,3000,14,6
+408080,Male,50,No Education,Working,Yes,No,37,168,13.1,0,Ini smear +,,Pvt. docto,1000,GH,0,,0,1000,7,2
+408177,Male,38,Middle,Working,No,No,52,166,18.9,0,Ini smear -,Positive,Pvt. docto,15000,GH,0,,0,15000,14,1
+408274,Male,49,Secondary,Working,Yes,No,47,162,17.9,0,Ini smear +,,GH,0,,0,,0,0,7,7
+500133,Male,19,Higher Secondary,Non - Working,No,No,36,148,16.4,0,Ini smear +,,Pvt. hospi,10000,GH,0,,0,10000,30,4
+500327,Female,35,Higher Secondary,Working,No,No,45,165,16.5,0,Ini smear +,,GH,0,GH,0,,0,0,7,9
+500424,Female,60,No Education,Working,No,No,50,165,18.4,0,Missing,Positive,Pvt. hospi,500,,0,,0,500,90,1
+500715,Male,65,Primary,Working,Yes,No,49,165,18,0,Ini smear +,,Pvt. docto,1000,GH,0,,0,1000,30,3
+500812,Male,55,Middle,Working,Yes,Yes,40,170,13.8,0,Ini smear +,,PHC,0,GH,0,,0,0,30,4
+500909,Male,60,Middle,Working,Yes,Yes,43,160,16.8,0,Ini smear +,,GH,0,Pvt. clini,800,GH,0,800,11,4
+501006,Female,23,Middle,Working,No,No,68,168,24.1,0,Ini smear -,Positive,Pvt. docto,15000,Pvt. hospi,5000,GH,0,20000,120,0
+501200,Female,19,Secondary,Working,No,No,34,160,13.3,1,Ini smear +,Positive,Pvt. docto,5000,Pvt. hospi,1500,,0,6500,90,7
+501394,Male,40,Primary,Working,Yes,No,38,158,15.2,1,Ini smear -,Positive,Pvt. docto,5000,GH,0,,0,5000,30,6
+501588,Male,55,Middle,Working,Yes,Yes,42,165,15.4,0,Ini smear +,Positive,Pvt. hospi,30000,GH,0,,0,30000,11,4
+501685,Male,38,No Education,Working,Yes,No,40,155,16.6,0,Ini smear +,Positive,Pvt. docto,1000,PHC,0,,0,1000,30,4
+501782,Male,60,Primary,Working,No,Yes,35,160,13.7,0,Ini smear -,Positive,Pvt. docto,1000,Pvt. hospi,3000,,0,4000,90,0
+501976,Female,55,No Education,Working,Yes,No,35,150,15.6,0,Ini smear +,,Pvt. hospi,600,PHC,0,,0,600,60,2
+502170,Male,45,No Education,Working,Yes,Yes,46,155,19.1,0,Ini smear +,Positive,GH,0,,0,,0,0,20,19
+502267,Male,45,No Education,Working,Yes,Yes,46,170,15.9,0,Ini smear +,,Pvt. hospi,2000,GH,0,,0,2000,90,6
+502364,Male,48,Primary,Working,No,No,60,162,22.9,1,Ini smear +,,Pvt. docto,360,GH,0,,0,360,53,2
+502461,Female,28,Secondary,Non - Working,No,No,35,153,15,0,Ini smear +,Negative,Pvt. hospi,10000,T.Govt,0,,0,10000,60,6
+502558,Male,60,No Education,Working,Yes,Yes,51,162,19.4,0,Ini smear +,Negative,Pvt. hospi,500,GH,0,,0,500,3,2
+502655,Male,25,Higher Secondary,Working,Yes,No,40,162,15.2,0,Ini smear +,,Pvt. docto,2000,PHC,0,GH,0,2000,15,2
+502752,Male,56,No Education,Working,No,Yes,50,159,19.8,0,Ini smear -,Positive,Pvt. docto,800,GH,0,,0,800,60,9
+502849,Male,35,Middle,Working,No,No,46,161,17.7,0,Ini smear -,,GH,1000,,0,,0,1000,7,8
+502946,Female,33,Middle,Non - Working,No,No,42,150,18.7,0,Ini smear +,,Pvt. docto,10000,Pvt. docto,3000,GH,0,13000,90,10
+503043,Male,33,Middle,Working,Yes,No,62,160,24.2,0,Ini smear -,,Pvt. clini,2000,Pvt. docto,3000,GH,0,5000,30,1
+503237,Male,33,No Education,Working,Yes,No,45,157,18.3,0,Ini smear +,,Pvt. docto,300,Pvt. hospi,3000,GH,0,3300,30,12
+503431,Male,42,Primary,Working,No,Yes,47,156,19.3,0,Ini smear +,,GH,0,,0,,0,0,30,7
+503722,Female,47,Primary,Working,No,No,69,150,30.7,0,Ini smear -,Positive,GH,0,,0,,0,0,30,16
+503819,Female,47,No Education,Non - Working,No,No,40,140,20.4,0,Ini smear +,Positive,Pvt. docto,2500,GH,0,,0,2500,30,4
+504110,Male,41,Primary,Working,Yes,Yes,35,150,15.6,0,Ini smear +,,Pvt. docto,2500,GH,0,,0,2500,30,3
+504207,Female,50,No Education,Working,No,No,35,154,14.8,1,Ini smear -,,Pvt. docto,1500,GH,1000,,0,2500,20,8
+504595,Female,21,Secondary,Non - Working,No,No,40,160,15.6,0,Ini smear -,,Pvt. docto,5000,GH,0,,0,5000,60,31
+504789,Female,19,Secondary,Working,No,No,39,155,16.2,0,Ini smear +,,Pvt. docto,3000,GH,0,,0,3000,9,12
+504886,Male,30,Higher Secondary,Working,Yes,No,55,165,20.2,0,Ini smear -,Positive,Tambram sanatorium,0,GH,0,,0,0,,6
+504983,Female,40,No Education,Working,No,No,45,145,21.4,0,Ini smear +,,Pvt. docto,5000,GH,0,,0,5000,93,7
+505080,Male,65,No Education,Working,Yes,Yes,67,170,23.2,0,Ini smear -,Positive,Pvt. docto,850,GH,0,,0,850,60,16
+505274,Female,60,No Education,Working,No,No,47,155,19.6,0,Ini smear +,,GH,0,,0,,0,0,5,3
+505371,Male,62,No Education,Non - Working,Yes,Yes,46,155,19.1,0,Ini smear +,,PHC,0,,0,,0,0,60,15
+505468,Male,56,No Education,Working,Yes,Yes,55,166,20,0,Ini smear +,,Pvt. docto,1700,GH,0,,0,1700,19,35
+505565,Male,60,No Education,Working,Yes,Yes,56,170,19.4,0,Ini smear +,,PHC,0,GH,0,,0,0,,5
+505759,Male,43,No Education,Working,Yes,Yes,60,160,23.4,0,Ini smear -,Positive,GH,0,,0,,0,0,10,3
+505856,Female,57,No Education,Working,No,No,45,155,18.7,0,Ini smear -,Positive,Tambram sanatorium,0,GH,0,,0,0,120,11
+506050,Male,65,Middle,Working,No,No,40,170,13.8,0,Ini smear +,,Pvt. hospi,500,Pvt. hospi,0,GH,0,500,60,6
+506341,Female,26,Graduate & Above,Non - Working,No,No,43,163,16.2,0,Ini smear +,,GH,0,Pvt. docto,4000,Pvt. clini,1500,5500,7,2
+506438,Male,35,No Education,Working,Yes,Yes,59,166,21.4,0,Ini smear +,,Pvt. docto,850,PHC,0,,0,850,21,4
+506535,Male,39,Middle,Working,Yes,Yes,42,162,16,1,Ini smear +,,Pvt. docto,2800,Pvt. docto,1000,GH,0,3800,7,0
+506632,Female,38,No Education,Working,No,No,41,150,18.2,0,Ini smear +,,GH,0,,0,,0,0,49,6
+506729,Male,63,Primary,Working,Yes,Yes,37,160,14.5,0,Ini smear +,,Pvt. docto,10000,Pvt. hospi,15000,Pvt. hospi,10000,35000,210,11
+506826,Female,35,Primary,Working,No,No,42,160,16.4,0,Ini smear +,Negative,Pvt. docto,3000,GH,0,,0,3000,240,3
+506923,Male,40,Middle,Working,Yes,No,43,164,16,0,Ini smear -,Positive,Pvt. docto,800,GH,0,,0,800,60,14
+507020,Male,48,Primary,Working,Yes,No,38,168,13.5,0,Ini smear +,,Pvt. docto,2000,GH,0,,0,2000,90,25
+507117,Male,45,No Education,Working,Yes,No,39,165,14.3,0,Ini smear +,,PHC,0,PHC,0,GH,0,0,120,2
+507214,Male,25,Primary,Working,Yes,Yes,41,165,15.1,0,Ini smear +,,Pvt. docto,300,Pvt. docto,450,Pvt. docto,500,1250,14,2
+507311,Male,65,No Education,Working,No,No,40,160,15.6,0,Ini smear -,Positive,Tambram sanatorium,500,,0,,0,500,120,38
+507408,Female,50,No Education,Working,No,No,32,144,15.4,0,Ini smear -,Positive,GH,0,Pvt. hospi,5000,,0,5000,35,20
+507505,Male,31,Middle,Working,Yes,Yes,45,167,16.1,0,Ini smear +,,Pvt. hospi,8000,GH,0,,0,8000,30,0
+507602,Female,40,Primary,Working,No,No,41,152,17.7,0,Ini smear -,Positive,Pvt. docto,200,GH,0,,0,200,14,3
+600140,Male,50,Primary,Working,Yes,Yes,34.5,165,12.7,0,Ini smear +,Positive,Pvt. clini,300,T.Govt,0,,0,300,19,3
+600237,Male,54,Primary,Working,No,No,54.5,170,18.9,0,Ini smear +,,T.Govt,0,GH,0,,0,0,90,8
+600334,Male,40,No Education,Working,No,No,41.5,165,15.2,0,Ini smear +,,Pvt. hospi,100,Tambram Sanatorium,0,,0,100,14,15
+600431,Male,65,No Education,Working,Yes,No,42,165,15.4,0,Ini smear +,,Pvt. docto,50,GH,0,,0,50,7,2
+600528,Male,38,Primary,Working,Yes,No,47,168,16.7,0,Ini smear +,Positive,GH,0,,0,,0,0,7,13
+600625,Male,65,No Education,Working,No,No,57,165,20.9,0,Ini smear +,Positive,Pvt. docto,600,PHC,0,,0,600,91,7
+600722,Male,30,Primary,Working,No,No,40,165,14.7,0,Ini smear +,,Tambram sanatorium,0,GH,0,,0,0,60,2
+600819,Female,47,No Education,Non - Working,No,No,55,155,22.9,1,Ini smear +,Positive,Pvt. docto,600,GH,0,,0,600,30,5
+600916,Male,30,Secondary,Working,No,No,47,165,17.3,1,Ini smear +,,Pvt. clini,700,GH,0,,0,700,30,4
+601013,Male,35,Primary,Working,No,No,57,167,20.4,0,Ini smear -,Positive,Pvt. hospi,1000,Tambram Sanatorium,0,,0,1000,,1
+601110,Male,54,Secondary,Working,Yes,Yes,36,150,16,0,Ini smear +,,GH,0,GH,0,,0,0,20,0
+601304,Male,55,Middle,Working,Yes,No,60,165,22,0,Ini smear +,,GH,0,,0,,0,0,15,1
+601401,Female,24,Graduate,Working,No,No,35,155,14.6,0,Ini smear +,,Pvt. docto,750,Tambram Sanatorium,0,,0,750,30,5
+601595,Female,35,No Education,Working,No,No,31,150,13.8,0,Ini smear +,,Pvt. hospi,350,GH,0,,0,350,30,5
+601692,Male,45,Primary,Working,Yes,Yes,48,160,18.7,0,Ini smear -,Positive,Pvt. docto,300,T.Govt,0,,0,300,30,9
+601789,Male,48,Middle,Working,Yes,Yes,38.1,160,14.9,0,Missing,Positive,Pvt. clini,300,Pvt. hospi,700,PHC,0,1000,30,0
+601983,Male,50,Middle,Working,No,No,59,170,20.4,1,Ini smear +,,Pvt. clini,150,Pvt. hospi,600,PHC,0,750,4,9
+602080,Male,63,Secondary,Working,Yes,Yes,50,155,20.8,1,Ini smear +,Positive,Pvt. hospi,350,Tambram Sanatorium,0,GH,0,350,30,19
+602177,Male,37,Primary,Working,No,Yes,46.3,170,16,0,Ini smear +,,Pvt. docto,200,PHC,0,,0,200,30,4
+602274,Female,32,Secondary,Non - Working,No,No,67.3,155,28,0,Ini smear +,,Pvt. clini,200,GH,0,,0,200,30,2
+602371,Male,45,No Education,Working,Yes,No,46.8,165,17.2,0,Ini smear +,,PHC,0,,0,,0,0,30,13
+602468,Male,60,Primary,Working,No,No,56.8,160,22.2,0,Ini smear -,Positive,Pvt. docto,300,Tambram Sanatorium,0,,0,300,30,6
+602565,Male,40,Middle,Working,Yes,No,51,160,19.9,1,Ini smear +,Positive,T.Govt,0,GH,0,,0,0,30,4
+602662,Male,43,Primary,Working,Yes,Yes,33,155,13.7,0,Ini smear +,,Pvt. docto,200,GH,0,,0,200,7,5
+602759,Male,41,Middle,Working,Yes,Yes,50,155,20.8,1,Ini smear +,Positive,Pvt. hospi,2300,PHC,0,,0,2300,21,3
+602856,Male,40,No Education,Working,Yes,Yes,40,155,16.6,0,Ini smear +,Positive,Pvt. hospi,1200,Tambram Sanatorium,0,,0,1200,21,7
+602953,Female,55,Middle,Working,No,No,40,156,16.4,1,Ini smear +,,Pvt. docto,300,Pvt. hospi,1500,PHC,0,1800,30,20
+603050,Male,65,Primary,Non - Working,Yes,Yes,45,170,15.6,0,Ini smear +,,Pvt. hospi,250,GH,0,,0,250,14,14
+603147,Female,60,Middle,Non - Working,No,No,31,155,12.9,0,Ini smear -,Positive,Pvt. hospi,600,GH,0,,0,600,14,3
+603244,Male,54,Middle,Working,Yes,No,80,160,31.2,0,Ini smear -,Positive,Pvt. hospi,750,GH,0,,0,750,36,110
+603341,Female,20,Secondary,Non - Working,No,No,35,155,14.6,0,Ini smear -,Positive,Pvt. hospi,700,Tambram Sanatorium,0,,0,700,14,2
+603438,Male,55,Primary,Working,Yes,Yes,37,165,13.6,0,Ini smear +,,Pvt. clini,450,GH,0,,0,450,30,9
+603632,Female,47,Primary,Non - Working,No,No,43.3,150,19.2,0,Ini smear -,Positive,Pvt. docto,500,Tambram Sanatorium,0,,0,500,21,13
+603729,Male,45,No Education,Working,Yes,Yes,45,170,15.6,0,Ini smear +,Positive,Pvt. docto,300,GH,0,,0,300,30,59
+603826,Male,25,Higher Secondary,Working,Yes,No,45,165,16.5,0,Ini smear +,,Pvt. hospi,600,GH,0,,0,600,14,1
+603923,Female,55,No Education,Working,No,No,30.4,149,13.7,0,Ini smear +,,Pvt. docto,400,T.Govt,0,,0,400,30,8
+604020,Male,69,No Education,Working,Yes,Yes,46.2,163,17.4,0,Ini smear +,,Pvt. hospi,400,GH,0,,0,400,14,5
+604117,Male,30,Primary,Working,Yes,No,47.4,167,17,0,Ini smear +,Positive,GH,1000,Tambram Sanatorium,0,,0,1000,150,40
+604214,Male,19,Higher Secondary,Working,Yes,Yes,47,170,16.3,0,Ini smear -,Positive,Pvt. hospi,8000,Pvt. docto,300,T.Govt,500,8800,30,7
+604408,Male,45,Secondary,Working,Yes,Yes,52.1,150,23.2,1,Ini smear -,Positive,Pvt. clini,1000,GH,0,T.Govt,0,1000,30,10
+604505,Male,45,Secondary,Working,Yes,No,35.2,150,15.6,1,Ini smear +,,Pvt. hospi,600,Pvt. docto,850,Tambram Sanatorium,0,1450,30,9
+604602,Male,41,Primary,Working,Yes,No,45,173,15,1,Ini smear +,Positive,Pvt. docto,900,GH,0,,0,900,30,1
+604796,Male,62,No Education,Working,Yes,Yes,39.3,159,15.5,0,Ini smear +,Negative,Pvt. clini,750,Pvt. hospi,0,,0,750,30,3
+604990,Female,50,No Education,Non - Working,No,No,34,150,15.1,0,Ini smear +,,Pvt. docto,100,GH,0,,0,100,30,38
+605087,Female,56,Primary,Working,No,No,32,155,13.3,0,Ini smear +,,Pvt. clini,800,GH,0,,0,800,14,2
+605184,Male,26,Middle,Working,Yes,Yes,44,155,18.3,0,Ini smear +,,Pvt. docto,1500,GH,0,,0,1500,14,2
+605281,Male,55,Primary,Working,Yes,Yes,40,165,14.7,0,Ini smear +,,GH,0,,0,,0,0,30,5
+700147,Male,40,Middle,Working,Yes,Yes,43,160,16.8,0,Ini smear +,Positive,GH,0,GH,0,,0,0,3,2
+700244,Male,31,Higher Secondary,Working,Yes,Yes,43,172,14.5,0,Missing,Positive,GH,0,Pvt. hospi,500,,0,500,20,39
+700341,Male,40,Middle,Non - Working,Yes,Yes,55,162,21,1,Ini smear +,,GH,0,,0,,0,0,2,2
+700438,Male,21,Secondary,Non - Working,No,No,37,152,16,0,Ini smear +,,Pvt. docto,500,Pvt. clini,260,Pvt. hospi,2000,2760,3,5
+700535,Male,70,Secondary,Working,Yes,No,37,170,12.8,0,Ini smear +,,Pvt. clini,200,GH,0,,0,200,18,9
+700632,Female,30,Middle,Non - Working,No,No,30,140,15.3,0,Ini smear +,Negative,Tambram sanatorium,0,,0,,0,0,30,27
+700729,Female,45,Primary,Non - Working,No,No,40,150,17.8,1,Ini smear -,Positive,Pvt. clini,200,T.Govt,0,,0,200,15,3
+700826,Male,65,Primary,Working,Yes,Yes,50,160,19.5,0,Ini smear +,,Pvt. hospi,0,GH,0,,0,0,4,7
+700923,Male,48,Middle,Working,Yes,No,50,160,19.5,1,Ini smear +,,Pvt. docto,500,GH,0,,0,500,,1
+701020,Male,63,Primary,Working,No,Yes,74,145,35.2,1,Ini smear +,,GH,0,T.Govt,0,,0,0,26,6
+701311,Male,65,No Education,Working,Yes,No,51,166,18.5,0,Ini smear +,,GH,0,T.Govt,0,,0,0,3,5
+701408,Male,43,No Education,Working,Yes,No,52,165,19.1,1,Ini smear +,,GH,0,,0,,0,0,5,6
+701796,Male,70,Primary,Working,Yes,Yes,40,157,16.2,0,Ini smear +,,GH,0,,0,,0,0,6,5
+701893,Male,55,Secondary,Working,No,Yes,50,165,18.4,0,Ini smear +,,Pvt. hospi,1700,T.Govt,0,,0,1700,14,4
+701990,Male,55,No Education,Working,Yes,No,52,165,19.1,0,Ini smear +,,GH,0,,0,,0,0,30,5
+702087,Male,38,Middle,Working,No,No,34,145,16.2,0,Ini smear +,,Pvt. docto,400,GH,0,,0,400,7,10
+702184,Male,59,Missing,Working,Yes,Yes,50,165,18.4,0,Ini smear +,,GH,0,,0,,0,0,,1
+702378,Female,30,Primary,Non - Working,No,Yes,32,145,15.2,0,Ini smear +,,Pvt. docto,300,PHC,0,GH,0,300,21,7
+702572,Male,38,Higher Secondary,Working,Yes,No,63,160,24.6,1,Ini smear +,,PHC,0,GH,0,,0,0,10,9
+702669,Male,48,Secondary,Working,No,No,49,160,19.1,1,Ini smear +,,Pvt. hospi,1200,PHC,0,,0,1200,30,2
+702960,Male,38,No Education,Working,No,Yes,47,165,17.3,0,Ini smear +,,Pvt. docto,250,T.Govt,0,,0,250,,4
+703057,Female,26,Middle,Working,No,No,33,155,13.7,0,Ini smear +,,Pvt. docto,300,T.Govt,0,,0,300,22,6
+703348,Male,20,Graduate & Above,Working,No,No,48,168,17,0,Ini smear +,,Pvt. docto,0,Pvt. hospi,1000,PHC,0,1000,7,3
+703542,Male,52,Middle,Working,No,Yes,69,160,27,1,Ini smear -,Positive,Pvt. docto,0,T.Govt,0,,0,0,11,7
+703639,Female,48,No Education,Working,No,No,50,148,22.8,1,Ini smear +,,Pvt. docto,800,GH,0,,0,800,7,1
+703736,Male,60,Primary,Working,Yes,Yes,44,165,16.2,0,Ini smear +,,Pvt. docto,250,T.Govt,0,,0,250,14,4
+703833,Male,34,Middle,Working,Yes,No,59,165,21.7,1,Ini smear +,,Pvt. docto,500,Pvt. hospi,400,T.Govt,0,900,30,2
+703930,Female,36,No Education,Working,No,No,37,148,16.9,0,Ini smear +,,Pvt. clini,200,PHC,0,T.Govt,0,200,90,6
+704027,Female,30,No Education,Non - Working,No,No,39,160,15.2,0,Ini smear +,,Pvt. docto,0,GH,0,,0,0,30,8
+704124,Male,64,No Education,Working,No,Yes,43,165,15.8,0,Ini smear +,,GH,0,GH,0,,0,0,45,3
+704221,Female,65,No Education,Working,No,No,40,159,15.8,0,Ini smear +,,T.Govt,0,GH,0,,0,0,10,8
+704415,Male,65,No Education,Working,No,No,55,166,20,1,Ini smear +,,Pvt. hospi,500,PHC,0,,0,500,7,1
+704512,Male,62,Primary,Working,Yes,No,49,168,17.4,1,Ini smear +,,Pvt. docto,0,GH,0,,0,0,30,3
+704706,Female,45,Secondary,Working,No,No,40,147,18.5,1,Ini smear -,Positive,Pvt. docto,360,Pvt. hospi,2500,PHC,0,2860,9,9
+704900,Female,35,No Education,Working,No,No,36,145,17.1,0,Ini smear +,,Pvt. hospi,600,T.Govt,0,,0,600,8,1
+705094,Female,20,Secondary,Working,No,No,35,160,13.7,0,Ini smear +,,Pvt. docto,0,T.Govt,0,,0,0,6,3
+705191,Male,52,Secondary,Working,No,Yes,37,162,14.1,0,Ini smear +,,Pvt. docto,100,Pvt. hospi,800,PHC,0,900,30,4
+705288,Male,50,No Education,Working,Yes,Yes,41.3,162,15.7,0,Ini smear +,Negative,Pvt. docto,100,GH,0,,0,100,30,1
+705385,Male,57,Middle,Working,Yes,Yes,43,165,15.8,0,Ini smear +,,Pvt. docto,750,PHC,0,,0,750,30,8
+705482,Male,47,No Education,Working,Yes,Yes,45,168,15.9,0,Ini smear +,,Pvt. docto,100,Pvt. clini,650,PHC,0,750,30,5
+705579,Female,30,Primary,Working,No,No,43,161,16.6,0,Ini smear +,Positive,Pvt. docto,500,Pvt. hospi,650,GH,0,1150,21,4
+705676,Male,63,No Education,Non - Working,Yes,No,54.8,165,20.1,0,Ini smear -,Positive,Pvt. hospi,600,T.Govt,0,,0,600,30,6
+705773,Male,57,Middle,Working,No,Yes,52.8,159,20.9,1,Ini smear +,Negative,Pvt. clini,260,GH,0,,0,260,30,3
+705870,Male,45,Primary,Working,No,Yes,47.3,154,19.9,0,Ini smear -,Positive,Pvt. hospi,250,GH,0,,0,250,60,7
+705967,Male,51,Middle,Working,No,No,57.2,157,23.2,1,Ini smear +,Negative,Pvt. docto,520,GH,0,,0,520,30,2
+706064,Female,57,No Education,Non - Working,No,No,38.4,162,14.6,0,Ini smear +,,Pvt. docto,350,Tambram Sanatorium,0,,0,350,45,11
+706161,Female,55,No Education,Non - Working,No,No,33.3,144,16.1,0,Ini smear -,Positive,Pvt. docto,450,Tambram Sanatorium,0,,0,450,60,9
+706258,Female,28,Secondary,Non - Working,No,No,49,155,20.4,1,Ini smear +,Positive,Pvt. hospi,400,T.Pvt,250,,0,650,30,3
+706355,Male,48,Primary,Working,No,Yes,37,165,13.6,0,Ini smear -,Positive,Pvt. docto,180,GH,0,,0,180,45,2
+706452,Male,67,Middle,Non - Working,No,No,46.6,169,16.3,0,Ini smear -,Positive,PHC,0,GH,0,,0,0,35,18
+706549,Female,35,No Education,Working,No,No,40.6,154,17.1,0,Ini smear -,Positive,Pvt. docto,320,GH,0,,0,320,60,3
+706646,Female,25,No Education,Non - Working,No,No,34.6,155,14.4,0,Ini smear -,Positive,Pvt. docto,250,T.Govt,0,,0,250,60,10
+706743,Female,50,No Education,Working,No,No,46.3,163,17.4,0,Ini smear +,,Pvt. clini,150,GH,0,,0,150,30,1
+706937,Female,23,Middle,Non - Working,No,No,42.2,153,18,0,Ini smear +,,Pvt. clini,150,Pvt. docto,320,Pvt. hospi,1800,2270,60,4
+707034,Male,65,Primary,Non - Working,Yes,Yes,38.5,156,15.8,0,Ini smear +,,Pvt. clini,200,Pvt. hospi,450,T.Pvt,240,890,30,12
+707131,Female,20,Secondary,Working,No,No,39.2,152,17,0,Ini smear +,,Pvt. docto,450,Pvt. hospi,200,GH,0,650,30,6
+707228,Male,18,Higher Secondary,Non - Working,No,No,45.7,165,16.8,0,Ini smear +,Negative,Pvt. clini,200,Pvt. docto,500,GH,0,700,60,5
+707325,Male,69,Primary,Non - Working,No,Yes,55.4,161,21.4,1,Missing,Positive,Pvt. docto,150,Pvt. clini,320,GH,0,470,30,13
+707422,Male,65,No Education,Non - Working,No,Yes,45.4,163,17.1,0,Ini smear -,Positive,Pvt. clini,280,Pvt. docto,150,GH,0,430,30,1
+707519,Male,44,Middle,Working,Yes,No,34.2,157,13.9,0,Ini smear +,,GH,0,,0,,0,0,30,10
+707616,Female,35,Middle,Working,No,No,34.8,151,15.3,1,Ini smear +,,Pvt. docto,960,GH,0,,0,960,30,5
+707810,Female,55,Primary,Non - Working,No,No,40.9,158,16.4,0,Ini smear -,Positive,Pvt. docto,850,GH,0,,0,850,30,3
+707907,Male,45,Secondary,Working,Yes,Yes,39.1,158,15.7,0,Ini smear +,,Pvt. docto,850,T.Govt,0,,0,850,30,1
+708004,Male,32,Primary,Working,Yes,Yes,35.8,160,14,0,Ini smear +,,GH,0,,0,,0,0,30,1
+708101,Female,62,No Education,Non - Working,No,No,33.2,145,15.8,1,Ini smear -,Positive,Pvt. hospi,750,T.Govt,0,,0,750,30,4
+708295,Male,60,Primary,Working,Yes,Yes,45,167,16.1,1,Ini smear +,,Pvt. docto,150,GH,0,,0,150,30,2
+708489,Male,60,Primary,Working,No,No,51,160,19.9,1,Ini smear +,,Pvt. clini,100,Pvt. hospi,9000,,0,9100,30,3
+708586,Female,25,Secondary,Working,No,No,40,155,16.6,0,Ini smear +,,Pvt. clini,170,Pvt. hospi,3500,,0,3670,30,3
+800154,Male,63,No Education,Non - Working,No,No,65,163,24.5,1,Ini smear +,,T.Pvt,500,PHC,0,,0,500,11,22
+800348,Male,72,No Education,Non - Working,No,No,52,168,18.4,0,Ini smear +,Positive,Pvt. hospi,2500,PHC,0,,0,2500,6,15
+800445,Female,34,Higher Secondary,Non - Working,No,No,50,165,18.4,0,Ini smear +,,Pvt. clini,750,Tambram Sanatorium,0,,0,750,12,20
+800542,Male,65,Primary,Working,No,No,35,160,13.7,0,Ini smear +,Positive,Pvt. clini,400,GH,0,,0,400,120,4
+800639,Male,65,Primary,Working,Yes,Yes,50,165,18.4,0,Ini smear +,Positive,Pvt. hospi,300,Tambram Sanatorium,0,GH,0,300,26,13
+800736,Male,67,Primary,Non - Working,No,No,55,165,20.2,0,Ini smear -,Positive,Pvt. hospi,250,T.Govt,0,,0,250,8,30
+800833,Male,44,Middle,Working,Yes,Yes,54,172,18.3,0,Ini smear +,Negative,T.Govt,0,,0,,0,0,5,10
+800930,Male,71,Primary,Non - Working,No,No,50,165,18.4,0,Ini smear +,,T.Govt,0,,0,,0,0,7,11
+801221,Male,46,No Education,Working,No,No,52,165,19.1,0,Ini smear +,Positive,GH,0,,0,,0,0,7,20
+801415,Male,55,Middle,Non - Working,Yes,No,40,165,14.7,0,Ini smear +,Positive,Pvt. docto,750,PHC,0,,0,750,7,10
+801512,Female,40,No Education,Working,No,No,46,168,16.3,0,Ini smear +,,GH,0,,0,,0,0,7,3
+801609,Female,49,No Education,Working,No,No,34,165,12.5,0,Ini smear +,Positive,Pvt. docto,350,GH,0,GH,0,350,21,8
+801706,Male,44,Primary,Non - Working,No,Yes,44,168,15.6,0,Ini smear -,Positive,T.Govt,0,,0,,0,0,6,16
+801803,Female,45,No Education,Working,No,No,43,160,16.8,0,Ini smear -,Positive,T.Govt,0,,0,,0,0,7,8
+802094,Male,52,Primary,Working,Yes,Yes,47,165,17.3,0,Ini smear +,,T.Govt,0,,0,,0,0,6,5
+802191,Male,43,Secondary,Working,Yes,Yes,42,165,15.4,1,Ini smear +,,Pvt. hospi,300,PHC,0,,0,300,7,5
+802288,Male,25,Middle,Non - Working,No,No,45,167,16.1,0,Ini smear +,Positive,Pvt. docto,450,T.Govt,0,,0,450,5,9
+802676,Male,42,Middle,Working,Yes,Yes,55,168,19.5,0,Ini smear +,Positive,Tambram sanatorium,0,,0,,0,0,6,15
+802773,Male,53,Primary,Working,Yes,Yes,38,165,14,0,Ini smear +,,Pvt. hospi,750,Tambram Sanatorium,0,,0,750,7,10
+802870,Male,60,Primary,Non - Working,Yes,Yes,39,165,14.3,0,Ini smear +,Positive,Pvt. docto,800,T.Govt,0,,0,800,6,8
+802967,Male,42,Middle,Working,Yes,Yes,49,165,18,0,Ini smear +,,GH,0,,0,,0,0,42,4
+803161,Male,60,Higher Secondary,Working,Yes,Yes,60,170,20.8,0,Ini smear +,,GH,0,,0,,0,0,3,12
+803355,Male,55,Middle,Non - Working,Yes,Yes,49,163,18.4,1,Ini smear +,Positive,Pvt. docto,250,T.Pvt,750,T.Govt,0,1000,4,4
+803452,Male,35,No Education,Working,No,No,48,165,17.6,1,Ini smear -,Positive,Pvt. hospi,450,Tambram Sanatorium,0,,0,450,7,7
+803549,Male,55,Primary,Non - Working,Yes,Yes,45,168,15.9,0,Ini smear +,,Pvt. clini,0,PHC,0,,0,0,7,2
+803646,Male,48,No Education,Working,Yes,Yes,63,168,22.3,0,Ini smear +,,Pvt. clini,0,Tambram Sanatorium,0,,0,0,20,4
+803743,Male,50,No Education,Working,No,No,58.2,168,20.6,0,Ini smear -,Positive,Pvt. clini,250,T.Govt,0,,0,250,9,4
+803840,Male,42,No Education,Working,Yes,Yes,42,170,14.5,0,Ini smear +,,Pvt. docto,80,PHC,0,,0,80,14,2
+803937,Male,41,Secondary,Working,No,Yes,50,168,17.7,0,Ini smear +,,Pvt. docto,600,T.Pvt,1000,PHC,0,1600,21,4
+804034,Male,60,Middle,Working,No,No,34,166,12.3,0,Ini smear +,,Pvt. clini,340,T.Govt,0,,0,340,7,3
+804131,Male,69,Secondary,Non - Working,No,No,38,162,14.5,0,Ini smear +,Negative,Pvt. clini,350,T.Govt,0,,0,350,14,5
+804228,Female,60,No Education,Working,No,No,41,160,16,0,Ini smear -,Positive,Pvt. clini,0,Pvt. hospi,450,PHC,0,450,15,13
+804325,Male,65,No Education,Non - Working,No,No,37,163,13.9,0,Ini smear +,,PHC,0,GH,0,,0,0,14,2
+804422,Male,38,Primary,Working,Yes,Yes,40,156,16.4,1,Ini smear +,,Pvt. clini,0,PHC,0,,0,0,14,3
+804519,Female,55,No Education,Working,No,No,51,159,20.2,1,Ini smear +,,Pvt. clini,0,PHC,0,,0,0,20,5
+804713,Male,59,Secondary,Non - Working,No,No,54,168,19.1,1,Ini smear +,,Pvt. hospi,360,T.Govt,0,,0,360,9,7
+804810,Male,49,Primary,Working,Yes,Yes,40,168,14.2,0,Ini smear -,Positive,GH,0,T.Govt,500,,0,500,31,34
+805004,Male,57,Middle,Non - Working,Yes,No,58,167,20.8,1,Ini smear +,,Pvt. clini,300,T.Govt,0,,0,300,7,11
+805101,Female,21,Secondary,Working,No,No,31,166,11.2,0,Ini smear +,Positive,Pvt. docto,600,GH,0,,0,600,20,5
+805295,Male,49,Middle,Working,No,No,42,169,14.7,1,Missing,Positive,Pvt. clini,0,Pvt. hospi,850,PHC,0,850,19,4
+805489,Male,54,No Education,Non - Working,No,No,50,163,18.8,0,Ini smear +,,Pvt. docto,750,T.Govt,0,,0,750,33,2
+805586,Male,32,Middle,Working,No,No,53,170,18.3,0,Ini smear -,Positive,Pvt. clini,350,T.Govt,0,,0,350,3,4
+805683,Male,42,Middle,Working,No,No,69,169,24.2,1,Ini smear -,Positive,Pvt. clini,300,Pvt. hospi,750,GH,0,1050,9,3
+805780,Male,57,Secondary,Working,No,No,48,165,17.6,0,Ini smear +,,Pvt. clini,250,PHC,0,,0,250,4,5
+805877,Male,49,Primary,Working,No,No,50,160,19.5,1,Ini smear +,,Pvt. docto,150,Pvt. hospi,400,PHC,0,550,21,3
+805974,Female,30,Graduate,Working,Yes,No,43,168,15.2,0,Ini smear -,Positive,Pvt. clini,150,Tambram Sanatorium,0,,0,150,26,11
+806071,Male,67,No Education,Non - Working,Yes,No,39,163,14.7,0,Ini smear +,Negative,Pvt. clini,100,GH,500,,0,600,8,6
+806168,Male,65,Primary,Non - Working,Yes,Yes,37,163,13.9,0,Ini smear -,Positive,Pvt. clini,150,GH,0,,0,150,30,15
+806265,Female,19,Graduate,Working,No,No,48,166,17.4,0,Ini smear +,,Pvt. clini,1200,Pvt. clini,550,PHC,0,1750,14,4
+806362,Female,37,Middle,Working,No,No,42,147,19.4,0,Ini smear -,Positive,T.Govt,0,Pvt. hospi,880,PHC,0,880,9,2
+806556,Male,56,No Education,Working,Yes,Yes,36,168,12.8,0,Ini smear +,Positive,Pvt. hospi,350,Tambram Sanatorium,0,,0,350,17,2
+806653,Male,57,Middle,Working,Yes,Yes,44,159,17.4,0,Ini smear +,,PHC,0,,0,,0,0,7,15
+806750,Male,21,Secondary,Working,Yes,Yes,54,169,18.9,0,Ini smear -,Positive,GH,0,,0,,0,0,7,5
+806944,Male,27,Primary,Working,Yes,No,40.7,169,14.3,1,Ini smear +,Positive,Pvt. docto,700,Tambram Sanatorium,0,,0,700,15,1
+807041,Male,30,Secondary,Working,Yes,Yes,60,159,23.7,0,Ini smear +,,Pvt. clini,150,GH,0,,0,150,7,2
+807138,Male,29,Middle,Working,No,No,39.8,156,16.4,0,Ini smear +,,Pvt. clini,150,Pvt. clini,80,PHC,0,230,5,7
+807235,Male,20,Middle,Working,No,No,49,168,17.4,0,Ini smear +,,GH,0,GH,0,,0,0,18,8
+807332,Male,60,No Education,Working,Yes,Yes,45,168,15.9,0,Ini smear -,Positive,Pvt. docto,550,T.Govt,0,,0,550,6,6
+807429,Male,64,Primary,Working,Yes,Yes,43,163,16.2,1,Ini smear -,Positive,Pvt. docto,350,GH,0,,0,350,7,3
+807526,Male,67,Primary,Non - Working,Yes,Yes,49,155,20.4,0,Ini smear +,,Pvt. docto,450,PHC,0,,0,450,30,5
+807623,Male,58,Primary,Non - Working,Yes,Yes,37,163,13.9,1,Ini smear +,Positive,Pvt. clini,350,GH,500,,0,850,11,1
+807720,Male,60,Middle,Working,Yes,Yes,64,164,23.8,1,Ini smear -,Positive,GH,500,T.Govt,0,,0,500,17,24
+807817,Male,55,No Education,Working,Yes,Yes,31,167,11.1,0,Ini smear +,,T.Govt,0,GH,0,,0,0,30,4
+808011,Male,50,Secondary,Working,No,No,62.2,165,22.8,1,Ini smear +,,Pvt. clini,450,Pvt. hospi,900,Pvt. hospi,1500,2850,66,3
+808108,Male,68,No Education,Non - Working,Yes,Yes,34.6,148,15.8,0,Ini smear +,,PHC,0,GH,0,,0,0,30,18
+808205,Male,45,No Education,Working,Yes,No,41,163,15.4,1,Ini smear +,Negative,Pvt. clini,450,PHC,0,GH,0,450,30,4
+808302,Female,30,No Education,Working,No,No,34,163,12.8,0,Ini smear +,,Pvt. clini,150,Pvt. hospi,350,T.Govt,0,500,8,11
+808496,Male,40,Primary,Working,No,No,43,162,16.4,1,Ini smear +,,Pvt. clini,350,Pvt. hospi,600,Tambram Sanatorium,0,950,25,12
+808593,Male,36,Primary,Working,Yes,Yes,47.1,160,18.4,0,Ini smear +,,Pvt. hospi,750,PHC,0,,0,750,6,4
+808690,Male,35,Secondary,Working,Yes,No,55,168,19.5,1,Ini smear +,,Pvt. clini,240,Tambram Sanatorium,0,,0,240,30,8
+808787,Male,47,Middle,Working,Yes,No,46.5,168,16.5,0,Ini smear +,,Pvt. clini,500,GH,0,,0,500,30,3
+808884,Male,41,Middle,Working,Yes,No,35,168,12.4,0,Ini smear +,Positive,GH,0,T.Govt,0,,0,0,30,0
+808981,Male,49,Primary,Working,No,No,45,169,15.8,0,Ini smear +,Negative,Pvt. docto,320,GH,0,,0,320,30,10
+809078,Male,48,Middle,Working,Yes,No,47,159,18.6,1,Ini smear +,,T.Govt,500,Pvt. docto,100,GH,0,600,18,1
+809175,Male,31,Higher Secondary,Working,Yes,No,58.4,165,21.5,1,Ini smear +,,Pvt. docto,4000,PHC,0,,0,4000,30,3
+809272,Male,52,Primary,Working,Yes,Yes,48.1,167,17.2,0,Ini smear +,,Pvt. hospi,200,T.Govt,0,,0,200,30,5
+809369,Male,63,Primary,Working,Yes,Yes,32,154,13.5,0,Ini smear +,,Pvt. docto,4000,GH,0,,0,4000,30,1
+900258,Female,55,Middle,Non - Working,No,No,38,151,16.7,0,Ini smear +,,GH,0,,0,,0,0,6,4
+900355,Male,57,Middle,Working,No,No,45,168,15.9,0,Ini smear +,,PHC,0,GH,0,,0,0,60,6
+900452,Male,38,Primary,Working,No,No,52,168,18.4,0,Ini smear +,,GH,0,,0,,0,0,14,0
+900549,Female,58,No Education,Non - Working,No,No,39,155,16.2,1,Ini smear +,,PHC,0,GH,0,,0,0,4,4
+900646,Male,51,Secondary,Working,Yes,No,41,160,16,0,Ini smear +,,GH,0,,0,,0,0,3,4
+900743,Male,50,No Education,Working,No,No,43,158,17.2,0,Ini smear +,,PHC,0,GH,0,,0,0,30,1
+900840,Male,61,Primary,Working,No,No,53,165,19.5,0,Ini smear +,,Pvt. clini,200,GH,0,,0,200,62,1
+900937,Male,65,No Education,Non - Working,No,No,44,165,16.2,0,Missing,Positive,Pvt. docto,50,GH,0,,0,50,21,5
+901034,Male,35,Secondary,Working,No,No,58,160,22.7,0,Ini smear +,,Pvt. docto,150,GH,0,,0,150,21,10
+901131,Male,39,Secondary,Working,No,No,42,158,16.8,0,Ini smear +,,GH,0,,0,,0,0,2,13
+901228,Male,52,Primary,Non - Working,No,No,38,164,14.1,0,Ini smear +,,GH,0,,0,,0,0,10,4
+901422,Male,37,Middle,Working,No,Yes,35,165,12.9,0,Ini smear +,,Pvt. clini,1300,T.Govt,0,,0,1300,8,6
+901519,Male,38,Middle,Working,No,No,41,165,15.1,0,Ini smear +,,GH,0,,0,,0,0,2,3
+901713,Female,55,Primary,Non - Working,No,No,38,154,16,0,Ini smear +,,Pvt. docto,120,GH,0,,0,120,90,6
+901810,Male,60,Primary,Non - Working,No,No,40,170,13.8,0,Ini smear +,,Pvt. docto,550,Pvt. hospi,1350,PHC,0,1900,6,0
+901907,Male,34,Primary,Working,No,No,47,168,16.7,0,Ini smear +,,GH,0,,0,,0,0,5,2
+902004,Female,38,Primary,Non - Working,No,No,47,137,25,0,Ini smear +,,T.Govt,0,,0,,0,0,30,4
+902101,Male,65,Middle,Working,No,No,58,156,23.8,0,Ini smear +,,PHC,0,GH,0,,0,0,3,12
+902295,Male,23,Higher Secondary,Non - Working,Yes,Yes,47,171,16.1,0,Ini smear +,,GH,0,,0,,0,0,3,6
+902392,Female,40,Middle,Working,No,No,41,160,16,0,Ini smear +,,GH,0,Tambram Sanatorium,150,,0,150,5,7
+902683,Male,56,Middle,Non - Working,No,No,40,155,16.6,0,Ini smear +,,Pvt. docto,0,T.Govt,0,,0,0,21,5
+902780,Male,21,Secondary,Working,No,No,44,155,18.3,0,Ini smear +,Negative,GH,0,,0,,0,0,3,6
+902877,Male,57,Secondary,Non - Working,No,No,33,155,13.7,0,Ini smear +,,Pvt. hospi,250,T.Govt,0,,0,250,5,5
+902974,Male,33,Primary,Working,No,No,40,160,15.6,0,Missing,Positive,GH,0,,0,,0,0,5,6
+903071,Male,23,Graduate,Working,No,No,45,145,21.4,0,Ini smear +,,Pvt. hospi,300,GH,0,,0,300,21,1
+903168,Male,50,Middle,Non - Working,No,No,41,154,17.3,0,Ini smear +,,Pvt. docto,0,T.Govt,0,,0,0,7,3
+903265,Male,53,Middle,Working,No,Yes,38,164,14.1,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,15,10
+903362,Male,60,Primary,Non - Working,No,No,48,168,17,0,Ini smear -,Positive,Tambram sanatorium,0,,0,,0,0,14,15
+903459,Male,51,Primary,Working,No,Yes,42,155,17.5,0,Ini smear +,,Pvt. docto,100,GH,0,,0,100,21,2
+903556,Male,66,Secondary,Working,No,No,40,165,14.7,0,Ini smear -,Positive,Pvt. docto,50,Tambram Sanatorium,0,,0,50,4,11
+903653,Female,45,Middle,Non - Working,No,No,50,158,20,0,Ini smear -,Positive,T.Govt,500,,0,,0,500,3,16
+903750,Male,35,No Education,Working,No,No,47,158,18.8,0,Ini smear +,,PHC,0,GH,0,,0,0,10,9
+903847,Male,49,Middle,Working,No,No,48,166,17.4,0,Ini smear +,,PHC,0,GH,0,,0,0,11,4
+903944,Male,23,Primary,Non - Working,No,No,38,148,17.3,0,Ini smear +,,Pvt. clini,900,GH,0,,0,900,6,6
+904041,Male,68,Middle,Working,No,No,46,174,15.2,0,Ini smear +,,PHC,0,,0,,0,0,3,9
+904138,Female,28,Secondary,Non - Working,No,No,43,157,17.4,0,Ini smear -,Positive,PHC,0,GH,0,,0,0,5,5
+904235,Male,40,Middle,Non - Working,No,No,46,169,16.1,0,Ini smear +,Positive,Pvt. hospi,150,T.Govt,0,,0,150,7,4
+904332,Male,36,Primary,Working,No,No,46,160,18,0,Ini smear +,,GH,0,,0,,0,0,15,4
+904429,Male,55,No Education,Working,No,Yes,44.7,147,20.7,0,Ini smear +,,GH,0,,0,,0,0,15,4
+904526,Male,38,Middle,Working,Yes,Yes,45,170,15.6,0,Ini smear +,,PHC,0,PHC,0,,0,0,4,7
+904623,Male,21,Secondary,Working,No,Yes,39,164.5,14.4,0,Ini smear +,,PHC,0,Tambram Sanatorium,0,,0,0,5,2
+904720,Male,18,Higher Secondary,Non - Working,No,No,43,176,13.9,0,Ini smear +,,GH,0,T.Pvt,5000,GH,0,5000,9,2
+904817,Male,60,Secondary,Working,No,Yes,36,157,14.6,0,Ini smear +,,PHC,0,,0,,0,0,10,21
+904914,Male,52,Middle,Working,No,Yes,43,166,15.6,0,Ini smear -,Positive,PHC,0,Pvt. hospi,200,,0,200,15,3
+905011,Male,58,Middle,Working,No,No,58,166,21,1,Ini smear +,,GH,0,Pvt. hospi,4500,PHC,0,4500,30,14
+905108,Male,58,Middle,Non - Working,Yes,Yes,36.2,156,14.9,0,Ini smear +,,GH,0,,0,,0,0,14,0
+905205,Male,60,No Education,Working,Yes,Yes,44,164,16.4,1,Ini smear -,Positive,GH,0,,0,,0,0,14,6
+905302,Male,50,Middle,Working,Yes,Yes,62,170,21.5,0,Ini smear +,,Pvt. docto,200,GH,0,,0,200,6,2
+905496,Male,50,No Education,Working,Yes,Yes,41,168,14.5,0,Ini smear +,,Pvt. clini,800,PHC,0,,0,800,7,20
+905593,Male,26,Secondary,Working,Yes,No,46,172,15.5,0,Ini smear +,,Pvt. docto,500,Pvt. hospi,1300,GH,0,1800,90,7
+905787,Female,38,Middle,Working,No,No,42,155,17.5,0,Ini smear +,Negative,GH,0,Pvt. hospi,1000,,0,1000,30,10
+905884,Male,25,Middle,Working,Yes,No,38.2,162,14.6,0,Ini smear +,,Pvt. docto,8000,GH,0,,0,8000,90,1
+1000265,Male,59,Middle,Working,Yes,Yes,47,168,16.7,0,Ini smear +,Positive,Pvt. hospi,0,GH,0,T.Govt,0,0,30,2
+1000362,Female,40,Primary,Working,No,No,32,135,17.6,0,Ini smear -,Positive,Pvt. docto,300,Pvt. docto,0,Tambram Sanatorium,0,300,90,11
+1000459,Male,67,Primary,Working,Yes,Yes,56,165,20.6,0,Ini smear -,Positive,GH,0,GH,0,,0,0,60,4
+1000556,Female,38,Primary,Working,No,No,39,160,15.2,0,Ini smear +,,Pvt. docto,400,GH,0,,0,400,30,3
+1000653,Male,41,Primary,Working,No,No,50,162,19.1,1,Ini smear +,Negative,Pvt. docto,100,Pvt. hospi,450,GH,0,550,60,1
+1000944,Male,50,Primary,Working,No,No,48,152,20.8,1,Ini smear +,,Pvt. docto,0,GH,0,,0,0,30,7
+1001041,Male,55,Primary,Non - Working,No,No,39,152,16.9,0,Ini smear +,Negative,GH,0,,0,,0,0,4,1
+1001138,Male,48,Secondary,Working,No,No,42,165,15.4,1,Ini smear +,,Pvt. docto,150,GH,0,,0,150,14,13
+1001235,Female,65,No Education,Working,No,No,35,152,15.1,0,Ini smear +,Negative,Pvt. clini,500,PHC,0,GH,0,500,30,5
+1001332,Male,57,Middle,Working,No,No,42,149,18.9,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,4,8
+1001526,Male,70,Primary,Non - Working,No,No,35,150,15.6,0,Ini smear +,Positive,GH,0,Pvt. docto,50,PHC,0,50,30,4
+1001623,Male,37,Secondary,Working,No,No,36,158,14.4,1,Ini smear +,Positive,Pvt. hospi,5000,GH,0,,0,5000,20,2
+1001720,Male,51,Primary,Working,No,No,35,145,16.6,1,Ini smear +,Negative,GH,0,,0,,0,0,30,1
+1001817,Male,47,Secondary,Working,Yes,No,55,165,20.2,1,Ini smear +,Negative,Pvt. docto,1000,,0,,0,1000,15,16
+1001914,Male,58,Primary,Working,No,No,40,155,16.6,0,Ini smear +,Positive,Pvt. docto,100,GH,0,,0,100,30,2
+1002011,Female,45,No Education,Non - Working,No,No,48,152,20.8,0,Ini smear +,Negative,Pvt. docto,0,Tambram Sanatorium,0,,0,0,90,16
+1002108,Male,60,Secondary,Working,No,No,58,170,20.1,1,Ini smear +,Negative,Tambram sanatorium,0,,0,,0,0,30,15
+1002205,Male,59,Primary,Working,No,No,73,166,26.5,1,Ini smear +,,Pvt. docto,900,GH,0,,0,900,30,2
+1002302,Male,65,No Education,Non - Working,No,Yes,58,172,19.6,0,Ini smear +,,Pvt. docto,0,GH,0,,0,0,60,5
+1002496,Male,59,Secondary,Working,No,No,47,163,17.7,0,Ini smear +,,Pvt. docto,700,PHC,0,,0,700,60,13
+1002593,Male,45,No Education,Non - Working,No,No,47,166,17.1,0,Ini smear +,,Pvt. clini,0,GH,0,,0,0,20,2
+1002690,Male,27,Middle,Working,No,No,67,155,27.9,0,Ini smear +,Negative,Pvt. clini,600,GH,0,,0,600,30,3
+1002787,Male,54,Secondary,Working,No,No,51,152,22.1,1,Ini smear +,Negative,Pvt. clini,0,Pvt. hospi,650,PHC,0,650,30,3
+1002884,Male,60,Middle,Working,No,No,45,167,16.1,0,Ini smear +,Negative,GH,0,Pvt. hospi,300,PHC,0,300,30,3
+1002981,Male,45,Primary,Working,No,No,59,165,21.7,1,Ini smear +,,Pvt. clini,300,PHC,0,,0,300,60,7
+1003078,Male,33,Secondary,Working,Yes,No,50,165,18.4,0,Ini smear -,Positive,Pvt. docto,0,T.Govt,0,,0,0,30,9
+1003175,Male,37,No Education,Working,Yes,No,40,170,13.8,0,Ini smear +,Negative,Pvt. docto,120,GH,0,,0,120,30,3
+1003272,Male,25,Graduate & Above,Working,No,No,38,175,12.4,0,Ini smear +,,Pvt. clini,300,GH,0,,0,300,15,4
+1003369,Female,21,Higher Secondary,Working,No,No,32,145,15.2,0,Ini smear -,Positive,Pvt. hospi,3000,GH,0,,0,3000,30,14
+1003466,Male,65,Middle,Working,No,Yes,36,162,13.7,0,Ini smear +,,Pvt. docto,300,GH,0,,0,300,20,1
+1003563,Male,65,Primary,Working,Yes,Yes,55,170,19,1,Ini smear +,,Pvt. docto,500,GH,0,,0,500,20,2
+1003757,Male,44,Middle,Working,No,No,70,166,25.4,0,Ini smear -,Positive,Other,2000,GH,0,,0,2000,30,14
+1003854,Male,54,No Education,Non - Working,No,No,62,170,21.5,1,Ini smear +,,Pvt. hospi,100,T.Govt,0,,0,100,4,20
+1003951,Male,55,Primary,Working,No,No,36,162,13.7,0,Ini smear +,Negative,GH,0,Pvt. docto,500,GH,0,500,30,6
+1004048,Female,45,No Education,Working,Yes,No,45,137,24,0,Ini smear +,Negative,Pvt. hospi,700,GH,0,,0,700,20,7
+1004145,Female,38,No Education,Non - Working,No,No,40,155,16.6,0,Ini smear +,,Pvt. clini,100,GH,0,,0,100,20,3
+1004242,Male,35,Secondary,Working,No,No,38,165,14,0,Ini smear -,Positive,GH,0,Tambram Sanatorium,0,,0,0,20,5
+1004339,Male,49,Middle,Working,No,No,49,157,19.9,1,Ini smear +,,Pvt. clini,500,T.Govt,0,,0,500,30,5
+1004436,Female,48,Primary,Non - Working,No,No,44.4,139,23,1,Ini smear +,,Pvt. docto,300,Pvt. clini,250,GH,0,550,30,4
+1004533,Female,20,Primary,Non - Working,No,No,45,159,17.8,0,Ini smear +,,GH,0,T.Govt,0,,0,0,30,6
+1004630,Male,22,Secondary,Working,No,Yes,39.5,155,16.4,0,Ini smear +,Negative,Pvt. docto,500,T.Govt,0,,0,500,30,2
+1004727,Male,67,Secondary,Non - Working,No,Yes,50.9,167,18.3,1,Ini smear +,Negative,Pvt. clini,500,Tambram Sanatorium,0,,0,500,30,3
+1004824,Male,40,No Education,Working,Yes,No,33,165,12.1,0,Ini smear +,,GH,0,,0,,0,0,30,6
+1004921,Male,30,Secondary,Working,Yes,Yes,36.2,153,15.5,0,Ini smear +,,PHC,0,,0,,0,0,30,4
+1005018,Female,21,Higher Secondary,Non - Working,No,No,41.2,151,18.1,0,Ini smear +,Positive,Pvt. hospi,250,T.Govt,0,,0,250,30,4
+1005115,Male,30,Middle,Working,Yes,No,76.5,168,27.1,0,Ini smear +,,Pvt. clini,120,PHC,0,,0,120,30,1
+1005212,Male,38,Primary,Working,Yes,Yes,41,170,14.2,0,Ini smear +,,Pvt. clini,250,GH,0,,0,250,30,1
+1005309,Female,52,Primary,Non - Working,No,No,32,151,14,0,Ini smear +,Negative,Pvt. docto,400,GH,0,,0,400,30,5
+1005406,Male,53,Secondary,Working,Yes,No,62.4,163,23.5,1,Ini smear +,,Pvt. docto,500,T.Pvt,2500,,0,3000,30,7
+1005600,Male,63,Middle,Working,Yes,No,57,163,21.5,1,Ini smear +,Positive,Pvt. docto,2000,Pvt. hospi,3000,,0,5000,30,7
+1005794,Female,20,Higher Secondary,Non - Working,No,No,32,152,13.9,0,Ini smear +,,Pvt. docto,1000,Pvt. clini,120,Pvt. hospi,3000,4120,30,17
+1005891,Male,65,Primary,Working,Yes,Yes,48,155,20,0,Ini smear -,Positive,Pvt. docto,700,Tambram Sanatorium,0,,0,700,30,9
+1005988,Male,32,Middle,Working,Yes,Yes,34.3,152,14.8,0,Ini smear +,,GH,0,,0,,0,0,30,5
+1006085,Male,40,Secondary,Working,Yes,Yes,40,165,14.7,0,Ini smear +,,GH,0,,0,,0,0,60,3
+1006182,Male,26,Primary,Working,Yes,No,32.3,169,11.3,0,Ini smear +,,Pvt. hospi,2500,,0,,0,2500,90,41
+1006279,Male,56,Secondary,Working,No,No,55.1,170,19.1,0,Missing,Positive,Pvt. docto,50,GH,0,,0,50,30,5
+1006570,Female,45,No Education,Non - Working,No,No,45,150,20,0,Ini smear +,Positive,Pvt. docto,350,GH,0,,0,350,30,13
+1006667,Male,66,Secondary,Non - Working,Yes,No,50,166,18.1,1,Ini smear +,,Pvt. clini,250,GH,0,,0,250,5,3
+1006764,Male,60,Primary,Working,Yes,No,43,159,17,0,Ini smear +,,GH,0,,0,,0,0,7,3
+1006958,Male,69,Middle,Working,No,Yes,40,158,16,0,Ini smear +,,Pvt. hospi,650,GH,0,,0,650,30,2
+1100175,Male,43,Middle,Working,Yes,Yes,49.7,162,18.9,0,Ini smear +,,Pvt. hospi,7000,PHC,0,GH,0,7000,7,98
+1100272,Female,40,No Education,Working,No,No,53.7,156,22.1,0,Ini smear +,,Pvt. docto,3000,GH,0,,0,3000,21,4
+1100466,Male,62,Primary,Working,Yes,Yes,42.1,157,17.1,0,Ini smear +,,GH,0,,0,,0,0,5,1
+1100563,Male,68,No Education,Working,Yes,Yes,45.1,159,17.8,1,Ini smear +,,GH,0,,0,,0,0,9,8
+1100660,Female,60,No Education,Working,No,No,49,158,19.6,0,Ini smear +,,Pvt. docto,1000,GH,0,,0,1000,14,6
+1100757,Male,55,Primary,Working,Yes,Yes,48,168,17,0,Ini smear +,,GH,0,,0,,0,0,1,2
+1100854,Male,56,Middle,Working,Yes,Yes,45.6,165,16.7,0,Ini smear -,Positive,GH,0,,0,,0,0,8,6
+1100951,Male,45,Middle,Working,Yes,Yes,37.6,162,14.3,0,Ini smear +,,GH,0,,0,,0,0,1,3
+1101048,Female,65,No Education,Working,No,No,33.2,158,13.3,0,Ini smear +,,Tambram sanatorium,0,GH,0,,0,0,14,8
+1101145,Male,52,No Education,Working,Yes,Yes,45.6,165,16.7,0,Ini smear +,,GH,0,,0,,0,0,42,3
+1101242,Female,38,Primary,Working,No,No,42,163,15.8,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,90,9
+1101339,Male,69,No Education,Working,Yes,Yes,40.9,167,14.7,0,Ini smear +,,Pvt. clini,200,GH,0,,0,200,15,2
+1101533,Male,65,No Education,Working,Yes,Yes,45,167,16.1,0,Ini smear -,,Pvt. hospi,800,Tambram Sanatorium,0,,0,800,40,36
+1101630,Male,51,Middle,Working,Yes,No,66,169,23.1,1,Ini smear +,,Pvt. hospi,1500,Pvt. hospi,1700,GH,0,3200,64,5
+1101824,Male,45,No Education,Working,Yes,No,45,168,15.9,0,Ini smear +,,GH,0,Other,0,Tambram Sanatorium,0,0,60,11
+1102018,Male,38,No Education,Working,Yes,Yes,45,165,16.5,0,Ini smear +,,Pvt. clini,700,GH,0,,0,700,30,4
+1102115,Male,48,No Education,Working,Yes,Yes,48,177,15.3,0,Ini smear +,,GH,0,,0,,0,0,30,9
+1102309,Male,55,No Education,Working,Yes,Yes,35,158,14,0,Ini smear +,,GH,0,,0,,0,0,60,8
+1102406,Female,25,Primary,Non - Working,No,No,32,156,13.1,0,Ini smear -,,Pvt. hospi,850,Pvt. hospi,500,PHC,0,1350,120,18
+1102503,Male,50,No Education,Working,Yes,Yes,34,154,14.3,0,Ini smear +,Positive,Pvt. clini,800,Pvt. docto,300,Tambram Sanatorium,0,1100,90,15
+1102600,Male,60,No Education,Working,Yes,No,40,157,16.2,0,Ini smear -,Positive,GH,0,Tambram Sanatorium,0,,0,0,90,26
+1102988,Male,60,Primary,Working,Yes,Yes,48,165,17.6,0,Ini smear +,,Pvt. docto,500,Tambram Sanatorium,0,,0,500,30,8
+1103085,Male,57,Primary,Working,Yes,No,48,165,17.6,1,Ini smear +,,Pvt. hospi,400,GH,0,,0,400,120,14
+1103182,Male,57,Primary,Working,Yes,Yes,59,163,22.2,1,Ini smear +,,Pvt. docto,600,GH,0,,0,600,45,3
+1103279,Female,43,Primary,Non - Working,No,No,47,162,17.9,1,Ini smear +,,Pvt. hospi,500,GH,0,,0,500,60,5
+1103376,Male,24,Middle,Working,Yes,No,47,163,17.7,0,Ini smear +,,Pvt. docto,750,GH,0,,0,750,30,6
+1103473,Male,52,Secondary,Working,No,No,35,164,13,0,Ini smear -,,Pvt. clini,500,Tambram Sanatorium,0,,0,500,90,55
+1103570,Female,48,Primary,Working,No,No,36,163,13.5,0,Ini smear -,,PHC,0,Tambram Sanatorium,0,GH,0,0,60,25
+1103667,Female,20,Higher Secondary,Working,No,No,34,157,13.8,0,Ini smear -,Positive,Pvt. clini,1000,Pvt. docto,2000,Pvt. hospi,1000,4000,120,5
+1103958,Male,47,No Education,Working,Yes,Yes,50,165,18.4,0,Ini smear -,,GH,0,Pvt. docto,4000,Pvt. hospi,2500,6500,90,10
+1104055,Male,28,Secondary,Working,No,No,48,165,17.6,1,Ini smear +,,Pvt. clini,1000,GH,0,,0,1000,51,2
+1104249,Male,60,Primary,Working,Yes,Yes,58,168,20.5,0,Ini smear -,Positive,Tambram sanatorium,0,,0,,0,0,30,17
+1104346,Male,28,Middle,Working,No,No,55,162,21,0,Ini smear -,Positive,GH,0,GH,0,,0,0,150,21
+1104443,Male,48,Middle,Working,No,No,60,174,19.8,1,Ini smear +,,GH,0,Tambram Sanatorium,0,,0,0,12,6
+1104540,Male,60,No Education,Working,No,No,40,161,15.4,0,Ini smear +,,Pvt. hospi,300,Pvt. hospi,200,Tambram Sanatorium,0,500,7,65
+1104637,Male,50,No Education,Working,No,No,44,168,15.6,1,Ini smear -,Positive,Pvt. clini,2000,Tambram Sanatorium,0,,0,2000,11,10
+1104734,Male,38,Middle,Working,No,No,44,166,16,0,Missing,Positive,Tambram sanatorium,0,,0,,0,0,5,5
+1104928,Female,55,No Education,Non - Working,No,No,47,172,15.9,0,Ini smear +,,Pvt. clini,1500,GH,0,,0,1500,10,7
+1105025,Male,53,Middle,Working,Yes,No,44,170,15.2,0,Ini smear +,,Pvt. clini,200,Tambram Sanatorium,0,,0,200,11,11
+1105122,Male,58,No Education,Working,No,No,47.3,165,17.4,0,Ini smear +,,PHC,0,Tambram Sanatorium,0,,0,0,28,11
+1105219,Male,52,Middle,Working,No,No,46,164,17.1,0,Ini smear -,Positive,Pvt. docto,1000,GH,0,,0,1000,17,24
+1105316,Male,60,Primary,Working,No,No,53,160,20.7,0,Ini smear +,,Pvt. docto,800,GH,0,,0,800,13,20
+1105413,Male,34,Primary,Working,Yes,No,43,164,16,0,Ini smear +,,Pvt. hospi,250,Pvt. clini,800,Tambram Sanatorium,0,1050,30,11
+1105510,Female,19,Higher Secondary,Non - Working,No,No,35.8,159,14.2,0,Ini smear +,,Pvt. clini,1000,Pvt. clini,800,GH,0,1800,8,7
+1105607,Male,60,Primary,Working,Yes,Yes,39.6,161,15.3,0,Ini smear +,,Pvt. docto,1000,GH,0,,0,1000,9,40
+1105704,Male,55,No Education,Working,No,Yes,40.6,164,15.1,0,Ini smear +,,Pvt. clini,500,Tambram Sanatorium,0,,0,500,30,5
+1105801,Male,39,Secondary,Working,No,Yes,42.9,166,15.6,0,Ini smear +,,PHC,0,GH,0,,0,0,31,6
+1105995,Male,55,No Education,Working,No,Yes,43.9,163,16.5,1,Ini smear -,Positive,Pvt. clini,800,Tambram Sanatorium,0,,0,800,15,15
+1106189,Male,25,Secondary,Working,No,Yes,40.3,162,15.4,0,Ini smear +,,Pvt. docto,1000,PHC,0,,0,1000,3,9
+1106383,Male,65,Middle,Working,No,No,51,180,15.7,0,Ini smear +,,Pvt. clini,4000,Pvt. hospi,200,PHC,0,4200,30,8
+1106480,Male,65,No Education,Working,No,No,45,165,16.5,0,Ini smear +,,Pvt. clini,200,PHC,0,,0,200,14,9
+1106577,Male,25,Higher Secondary,Working,No,No,42.6,169,14.9,0,Ini smear -,Positive,Pvt. hospi,6000,Tambram Sanatorium,0,,0,6000,14,3
+1106868,Female,40,Primary,Working,No,No,48,160.5,18.6,1,Ini smear +,,Pvt. clini,1000,Pvt. hospi,1200,GH,0,2200,365,6
+1106965,Male,60,Middle,Working,Yes,Yes,36.7,157.5,14.8,0,Ini smear +,,Pvt. hospi,350,Pvt. clini,240,Pvt. hospi,7000,7590,30,1
+1107062,Male,63,Secondary,Working,No,No,45.8,162.5,17.3,0,Ini smear +,,Pvt. hospi,400,GH,0,,0,400,7,4
+1107159,Male,65,No Education,Non - Working,Yes,Yes,37.3,163,14,0,Ini smear +,,Pvt. clini,800,GH,0,,0,800,180,4
+1107256,Male,40,Middle,Working,Yes,Yes,34.5,159,13.6,0,Ini smear -,Positive,PHC,0,GH,0,Tambram Sanatorium,0,0,17,16
+1107353,Male,50,Secondary,Working,No,No,49,159,19.4,1,Ini smear +,,GH,0,Tambram Sanatorium,0,,0,0,23,15
+1107450,Male,45,No Education,Working,Yes,Yes,40.5,157,16.4,0,Ini smear +,Positive,PHC,0,Tambram Sanatorium,0,,0,0,16,11
+1107644,Male,65,Secondary,Working,No,No,39,168,13.8,0,Ini smear +,,PHC,0,Tambram Sanatorium,0,,0,0,28,9
+1107741,Male,35,Primary,Working,Yes,No,49,159,19.4,0,Ini smear +,,Pvt. clini,650,Tambram Sanatorium,0,,0,650,8,11
+1107838,Male,62,Primary,Non - Working,No,No,44.5,173,14.9,0,Ini smear -,Positive,Pvt. docto,750,Tambram Sanatorium,0,,0,750,35,58
+1107935,Male,52,Middle,Working,Yes,Yes,33.1,162,12.6,1,Missing,Positive,GH,0,Pvt. hospi,3000,Tambram Sanatorium,0,3000,45,18
+1108032,Male,45,Primary,Working,Yes,Yes,45.6,172,15.4,0,Ini smear +,,GH,0,,0,,0,0,120,7
+1108129,Male,59,Higher Secondary,Working,No,No,36,167,12.9,1,Ini smear +,,GH,0,,0,,0,0,30,2
+1200182,Male,51,Primary,Working,Yes,No,55,162,21,1,Ini smear +,Negative,PHC,0,Pvt. clini,0,Pvt. hospi,700,700,17,8
+1200279,Male,45,Middle,Working,No,No,45,176,14.5,1,Ini smear +,Negative,Pvt. clini,500,Pvt. hospi,7000,GH,0,7500,28,5
+1200376,Male,47,Middle,Working,No,No,52,164,19.3,0,Ini smear +,,Pvt. hospi,6000,Tambram Sanatorium,0,,0,6000,31,35
+1200473,Male,75,Middle,Working,Yes,Yes,55,152,23.8,0,Ini smear -,Positive,Pvt. clini,120,Tambram Sanatorium,0,,0,120,12,28
+1200570,Male,66,Primary,Working,Yes,Yes,45,153,19.2,0,Ini smear +,,Pvt. clini,3000,Pvt. hospi,5000,,0,8000,60,13
+1200764,Male,47,Middle,Working,No,No,49,172,16.6,0,Ini smear +,Negative,GH,0,Pvt. hospi,2000,,0,2000,30,3
+1200958,Male,40,No Education,Working,Yes,Yes,36,167,12.9,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,30,13
+1201055,Male,38,Middle,Working,No,No,42,162,16,0,Ini smear -,Positive,Pvt. hospi,1700,Tambram Sanatorium,0,,0,1700,30,9
+1201249,Male,60,No Education,Working,Yes,No,40,168,14.2,0,Ini smear +,,Pvt. clini,150,GH,0,,0,150,30,3
+1201346,Male,54,Secondary,Working,No,No,50,158,20,1,Ini smear +,,Pvt. hospi,1000,Pvt. clini,2000,GH,0,3000,36,8
+1201443,Male,56,Middle,Working,Yes,Yes,57,159,22.5,1,Ini smear +,,Pvt. clini,1000,Pvt. hospi,5000,GH,0,6000,60,7
+1201540,Male,49,Primary,Working,Yes,Yes,37,157,15,0,Ini smear +,,PHC,0,,0,,0,0,21,21
+1201637,Male,60,No Education,Working,No,No,38,167,13.6,0,Ini smear -,Positive,Pvt. clini,200,Pvt. hospi,500,PHC,0,700,15,11
+1201734,Male,65,No Education,Working,No,Yes,38,160,14.8,0,Ini smear -,Positive,Pvt. clini,200,Pvt. hospi,600,PHC,0,800,8,17
+1201831,Male,47,Primary,Working,No,No,46,156,18.9,0,Ini smear +,,GH,0,,0,,0,0,30,45
+1201928,Male,55,Primary,Working,No,No,43,166,15.6,0,Ini smear -,Positive,GH,0,GH,0,,0,0,30,16
+1202025,Male,56,Primary,Working,Yes,Yes,40,146,18.8,0,Ini smear +,,Pvt. clini,1000,Pvt. hospi,900,PHC,0,1900,30,7
+1202122,Male,48,Primary,Working,Yes,Yes,36,151,15.8,0,Ini smear +,,Pvt. hospi,500,GH,0,,0,500,30,1
+1202316,Male,60,Middle,Working,Yes,Yes,46,158,18.4,0,Ini smear -,Positive,Pvt. hospi,1000,PHC,0,,0,1000,60,14
+1202413,Male,48,Middle,Working,No,Yes,48,148,21.9,1,Ini smear -,Positive,Pvt. clini,2000,Tambram Sanatorium,0,,0,2000,60,17
+1202510,Female,49,Primary,Non - Working,No,No,49,148,22.4,0,Ini smear -,Positive,Tambram sanatorium,0,GH,0,,0,0,33,10
+1202607,Male,62,Secondary,Working,Yes,Yes,40,162,15.2,0,Ini smear +,,Pvt. clini,2000,PHC,0,,0,2000,60,53
+1202704,Female,21,Graduate,Non - Working,No,No,39,156,16,0,Ini smear -,Positive,Pvt. hospi,1000,Pvt. clini,2000,Tambram Sanatorium,0,3000,31,17
+1202801,Male,58,Middle,Working,Yes,Yes,35,157,14.2,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,60,11
+1202995,Male,55,Primary,Working,Yes,Yes,44,165,16.2,0,Ini smear +,,GH,0,,0,,0,0,30,3
+1203092,Male,56,Missing,Working,No,No,38,154,16,0,Ini smear +,Positive,PHC,0,,0,,0,0,7,4
+1203189,Male,59,Graduate,Working,No,No,53,170,18.3,0,Ini smear -,Positive,Pvt. hospi,500,PHC,0,GH,0,500,31,2
+1203286,Female,35,Middle,Working,No,No,40,171,13.7,0,Ini smear +,Negative,Tambram sanatorium,0,,0,,0,0,7,5
+1203383,Female,45,No Education,Working,No,No,35,147,16.2,1,Ini smear +,Negative,Tambram sanatorium,0,,0,,0,0,30,28
+1203577,Male,68,No Education,Working,Yes,Yes,42,171,14.4,0,Ini smear +,,PHC,0,PHC,0,GH,0,0,14,5
+1203674,Male,40,Secondary,Working,No,Yes,68,167,24.4,0,Ini smear -,Positive,GH,0,,0,,0,0,1,6
+1203771,Male,63,Primary,Working,Yes,Yes,35,161,13.5,0,Ini smear +,Negative,Pvt. docto,4000,PHC,0,GH,0,4000,2,3
+1203868,Female,40,No Education,Working,No,No,45.2,141,22.7,1,Ini smear +,,PHC,0,,0,,0,0,10,8
+1203965,Male,45,Middle,Working,No,No,39,164,14.5,1,Ini smear +,,PHC,0,GH,0,,0,0,3,3
+1204062,Male,45,Primary,Working,No,No,36,160,14.1,0,Ini smear +,,GH,0,,0,,0,0,1,12
+1204159,Male,50,Middle,Working,No,No,46,149,20.7,1,Ini smear +,,GH,0,Pvt. hospi,1000,,0,1000,12,12
+1204256,Male,20,Higher Secondary,Working,No,No,40,160,15.6,0,Ini smear +,,PHC,0,GH,0,,0,0,3,2
+1204450,Male,60,No Education,Working,Yes,No,35.4,157,14.4,0,Ini smear +,,GH,0,,0,,0,0,10,17
+1204644,Male,65,Secondary,Working,No,No,69,142,34.2,1,Ini smear -,Positive,Pvt. docto,1600,Tambram Sanatorium,0,,0,1600,180,19
+1204741,Male,60,Middle,Working,Yes,No,60,162,22.9,0,Missing,Positive,Other,50,Pvt. docto,1000,Pvt. hospi,3000,4050,14,14
+1204838,Female,27,Middle,Working,No,No,42,143,20.5,0,Ini smear +,,Pvt. docto,30000,Pvt. docto,1500,Pvt. hospi,6500,38000,180,7
+1204935,Female,65,No Education,Working,No,No,38,143,18.6,0,Ini smear +,,PHC,0,,0,,0,0,21,0
+1205032,Male,50,No Education,Non - Working,No,No,40,148,18.3,0,Ini smear +,,Pvt. clini,2000,PHC,0,,0,2000,365,14
+1205129,Male,53,Middle,Working,Yes,Yes,46,155,19.1,1,Ini smear +,,Pvt. docto,40,Pvt. clini,800,Tambram Sanatorium,0,840,30,7
+1205226,Male,55,No Education,Working,Yes,Yes,46,170,15.9,0,Ini smear +,,Pvt. clini,300,PHC,0,,0,300,7,2
+1205323,Male,47,Primary,Working,No,No,64,161,24.7,0,Ini smear -,Positive,Pvt. docto,700,Pvt. clini,300,GH,0,1000,3,4
+1205420,Male,57,Secondary,Working,No,No,46.9,156,19.3,1,Ini smear +,,Pvt. clini,4000,GH,0,,0,4000,14,0
+1205517,Male,40,Middle,Working,Yes,No,38.5,154,16.2,0,Ini smear -,Positive,PHC,0,,0,,0,0,21,35
+1205614,Male,50,Middle,Working,Yes,No,40.5,162,15.4,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,7,18
+1205711,Male,67,Primary,Working,No,No,56,162,21.3,1,Ini smear -,Positive,Pvt. clini,300,Pvt. clini,1000,Pvt. hospi,17000,18300,30,26
+1205808,Female,60,No Education,Non - Working,No,No,40,152,17.3,0,Ini smear -,Positive,Pvt. clini,1000,Pvt. clini,500,Pvt. docto,15000,16500,30,9
+1205905,Male,66,Secondary,Working,No,No,42.3,159,16.7,0,Ini smear +,,Pvt. hospi,35000,,0,,0,35000,7,6
+1206196,Male,55,Primary,Working,No,No,38,163,14.3,0,Ini smear +,,Pvt. docto,1500,Pvt. hospi,6000,,0,7500,7,5
+1206390,Female,60,No Education,Working,No,No,55.2,163,20.8,0,Ini smear +,Positive,Pvt. hospi,20000,Tambram Sanatorium,0,,0,20000,21,37
+1300286,Male,75,No Education,Working,Yes,Yes,45,164,16.7,0,Ini smear +,,Pvt. docto,4000,Pvt. docto,5000,PHC,0,9000,,1
+1300383,Male,29,Middle,Working,Yes,No,52,173,17.4,0,Ini smear +,,Pvt. hospi,12000,PHC,0,,0,12000,7,18
+1300480,Male,45,No Education,Working,Yes,Yes,40,162,15.2,0,Ini smear +,,Pvt. docto,2000,GH,0,,0,2000,20,11
+1300674,Male,88,No Education,Non - Working,No,No,40,151,17.5,0,Ini smear -,Positive,PHC,0,,0,,0,0,,2
+1300771,Female,38,Primary,Non - Working,No,No,32,152,13.9,0,Ini smear +,Positive,Pvt. hospi,2500,Pvt. docto,600,PHC,0,3100,7,2
+1300868,Female,60,No Education,Non - Working,No,No,32,151,14,0,Ini smear +,Negative,PHC,0,GH,0,,0,0,,7
+1300965,Male,57,No Education,Working,Yes,No,48,162,18.3,0,Ini smear +,,PHC,0,GH,0,,0,0,,6
+1301062,Male,67,No Education,Working,Yes,Yes,40,157,16.2,1,Ini smear +,,Pvt. docto,300,PHC,0,,0,300,10,9
+1301741,Male,75,No Education,Working,No,No,50,169,17.5,0,Ini smear -,Positive,Pvt. hospi,2000,Tambram Sanatorium,0,,0,2000,30,0
+1301838,Male,55,No Education,Working,Yes,Yes,40,162,15.2,0,Ini smear -,Positive,Tambram sanatorium,0,,0,,0,0,30,7
+1301935,Male,60,No Education,Working,Yes,Yes,36,172,12.2,0,Ini smear +,,GH,0,,0,,0,0,4,2
+1302032,Male,50,Middle,Non - Working,No,No,45,152,19.5,0,Ini smear +,Positive,GH,0,,0,,0,0,2,0
+1302129,Female,60,Missing,Working,Yes,No,45,152,19.5,0,Ini smear +,,Pvt. clini,100,GH,0,,0,100,30,0
+1302323,Male,46,Primary,Non - Working,No,No,45,173,15,0,Ini smear -,Positive,GH,400,GH,0,,0,400,,8
+1302420,Male,80,No Education,Working,No,No,36,148,16.4,0,Ini smear +,Negative,GH,0,,0,,0,0,30,5
+1302517,Male,47,Middle,Working,No,No,45,168,15.9,1,Ini smear +,Negative,GH,0,Tambram Sanatorium,0,,0,0,30,16
+1302711,Male,42,Higher Secondary,Working,Yes,Yes,46,168,16.3,0,Ini smear +,Negative,Pvt. hospi,5000,,0,,0,5000,,33
+1302905,Male,18,Higher Secondary,Non - Working,No,No,38,156,15.6,0,Ini smear +,Positive,GH,0,Pvt. clini,500,Pvt. docto,420,920,10,0
+1303293,Male,70,Primary,Working,Yes,Yes,45,177,14.4,0,Ini smear +,,GH,0,,0,,0,0,14,8
+1303390,Male,38,Middle,Working,Yes,No,42,159,16.6,0,Ini smear -,Positive,Pvt. hospi,1500,Tambram Sanatorium,0,GH,0,1500,14,6
+1303584,Male,48,Middle,Working,Yes,No,65,163,24.5,0,Ini smear -,Positive,GH,0,,0,,0,0,30,18
+1303681,Male,59,Middle,Working,Yes,Yes,45,158,18,0,Ini smear +,,GH,0,,0,,0,0,30,4
+1303972,Male,65,No Education,Working,Yes,Yes,46.7,168,16.5,0,Ini smear +,,GH,0,,0,,0,0,60,8
+1304069,Male,57,Primary,Working,Yes,No,39.5,169,13.8,0,Ini smear +,,Pvt. hospi,300,GH,0,,0,300,8,8
+1304166,Male,51,Secondary,Working,Yes,No,50,167,17.9,1,Ini smear +,,PHC,0,GH,0,,0,0,30,2
+1304263,Male,65,No Education,Working,Yes,No,42,168,14.9,0,Ini smear +,,Pvt. clini,340,GH,0,,0,340,60,7
+1304360,Male,60,Primary,Working,No,No,65,175,21.2,0,Ini smear -,Positive,Pvt. docto,500,GH,0,,0,500,50,3
+1304554,Male,58,Primary,Working,Yes,Yes,56,169,19.6,0,Ini smear -,Positive,GH,0,,0,,0,0,30,0
+1304651,Male,40,Primary,Working,Yes,No,45,162,17.1,0,Ini smear +,,Pvt. clini,300,GH,0,,0,300,30,1
+1304748,Male,47,Middle,Working,Yes,Yes,50,171,17.1,0,Ini smear +,Negative,GH,0,,0,,0,0,7,4
+1304845,Female,26,Higher Secondary,Working,No,No,32,140,16.3,0,Ini smear +,,GH,0,,0,,0,0,10,4
+1304942,Male,62,No Education,Working,Yes,Yes,37,163,13.9,0,Ini smear +,,PHC,0,PHC,0,,0,0,14,4
+1305039,Male,40,Middle,Working,Yes,Yes,48,170,16.6,0,Ini smear +,,GH,0,,0,,0,0,15,2
+1305233,Male,24,Higher Secondary,Working,Yes,No,55,170,19,0,Ini smear +,,Pvt. hospi,2000,PHC,0,,0,2000,5,4
+1305330,Male,38,Middle,Working,Yes,Yes,44,154,18.6,0,Ini smear +,,Pvt. hospi,1500,PHC,0,,0,1500,14,5
+1305427,Female,33,Middle,Working,No,No,37,147,17.1,0,Ini smear +,,GH,0,,0,,0,0,7,3
+1305524,Male,66,No Education,Working,Yes,Yes,35.3,155,14.7,0,Ini smear +,,Pvt. hospi,2000,GH,0,,0,2000,60,14
+1305621,Male,36,Secondary,Working,Yes,Yes,44.9,163,16.9,0,Ini smear +,,Pvt. hospi,1500,GH,0,,0,1500,30,7
+1305718,Male,57,No Education,Working,Yes,No,56,159,22.2,0,Ini smear -,Positive,GH,0,,0,,0,0,4,6
+1305912,Male,65,Middle,Working,Yes,No,49.7,154,21,1,Ini smear +,,Pvt. hospi,10000,PHC,0,,0,10000,4,
+1306106,Female,40,No Education,Working,No,No,51.6,147,23.9,0,Ini smear -,Positive,GH,0,,0,,0,0,3,5
+1306300,Male,65,Primary,Working,No,No,47.9,159,18.9,0,Ini smear +,Negative,GH,500,,0,,0,500,30,16
+1306494,Male,44,Middle,Working,No,No,47,156,19.3,1,Ini smear +,,GH,0,,0,,0,0,30,0
+1306591,Male,62,Primary,Working,No,Yes,59,167,21.2,0,Ini smear +,,PHC,0,PHC,0,,0,0,2,29
+1306688,Male,65,Middle,Working,No,Yes,43,160,16.8,1,Ini smear +,,Pvt. docto,4000,GH,0,,0,4000,20,5
+1306979,Male,50,Primary,Working,Yes,No,44.1,163,16.6,1,Ini smear -,Positive,Pvt. hospi,700,GH,0,,0,700,30,20
+1307076,Male,65,Middle,Working,No,Yes,51.1,159,20.2,0,Ini smear -,Positive,GH,0,GH,0,,0,0,15,12
+1307173,Male,39,Primary,Working,Yes,No,42,169,14.7,1,Ini smear +,,GH,0,,0,,0,0,30,31
+1307270,Female,20,Secondary,Non - Working,No,No,40,153,17.1,0,Ini smear +,,GH,0,GH,0,,0,0,30,6
+1307367,Female,30,No Education,Working,No,No,42.7,148,19.5,0,Ini smear -,Positive,GH,0,GH,0,,0,0,15,7
+1307464,Female,45,No Education,Working,No,No,31.5,150,14,0,Ini smear +,Negative,Pvt. docto,800,Pvt. hospi,4000,PHC,0,4800,30,1
+1307561,Male,37,No Education,Working,No,No,41,159,16.2,0,Ini smear +,,Pvt. docto,2000,PHC,0,GH,0,2000,20,15
+1307658,Male,35,Middle,Working,No,No,39.2,162,14.9,0,Ini smear +,,GH,0,,0,,0,0,14,20
+1307755,Female,65,Primary,Non - Working,No,No,41.5,135,22.8,1,Ini smear -,Positive,GH,0,,0,,0,0,14,8
+1307852,Male,60,No Education,Working,No,Yes,51.6,169,18.1,0,Ini smear -,Positive,Pvt. hospi,1200,PHC,0,,0,1200,1,4
+1307949,Female,23,Higher Secondary,Working,No,No,38,154,16,0,Ini smear -,Positive,Pvt. docto,1000,Pvt. hospi,700,PHC,0,1700,3,32
+1308046,Male,40,Middle,Working,No,No,58,154,24.5,1,Ini smear -,Positive,Pvt. hospi,3000,GH,0,,0,3000,15,9
+1308143,Male,26,Higher Secondary,Working,No,No,44.2,169,15.5,0,Ini smear +,Negative,Pvt. clini,600,GH,0,Pvt. clini,500,1100,14,1
+1308240,Male,24,Secondary,Working,No,No,41.6,165,15.3,0,Ini smear +,,GH,0,,0,,0,0,14,8
+1308337,Male,66,Primary,Non - Working,No,No,36.2,168,12.8,0,Ini smear +,,Pvt. docto,300,GH,0,,0,300,21,16
+1308434,Male,46,Secondary,Non - Working,No,No,64,170,22.1,1,Missing,Positive,Pvt. hospi,30000,,0,,0,30000,7,35
+1308628,Male,47,Secondary,Non - Working,No,No,41.7,158,16.7,0,Ini smear -,Positive,Pvt. docto,7000,Pvt. docto,0,PHC,0,7000,14,1
+1308725,Male,65,Primary,Working,Yes,No,52.6,167,18.9,0,Missing,Positive,PHC,0,,0,,0,0,30,5
+1400196,Male,65,No Education,Non - Working,Yes,No,,,,0,Ini smear +,Positive,Pvt. docto,350,Pvt. hospi,800,PHC,0,1150,30,4
+1400293,Male,65,Primary,Working,No,Yes,,,,0,Ini smear +,,Pvt. clini,1500,PHC,0,,0,1500,37,3
+1400390,Male,50,No Education,Working,No,No,,,,1,Ini smear -,Positive,Pvt. clini,1000,Pvt. docto,1000,Pvt. hospi,2000,4000,14,1
+1400487,Male,32,Primary,Working,No,No,,,,0,Ini smear +,,Pvt. clini,500,Pvt. docto,150,Pvt. hospi,1000,1650,36,2
+1400584,Male,45,Higher Secondary,Working,No,No,50,,,1,Ini smear -,Positive,Pvt. hospi,3000,PHC,0,,0,3000,37,0
+1400681,Female,40,No Education,Working,No,No,35,,,0,Ini smear +,,Pvt. clini,3000,Pvt. clini,900,PHC,0,3900,30,7
+1400778,Male,70,No Education,Working,No,No,,,,1,Ini smear -,Positive,Pvt. hospi,6000,Tambram Sanatorium,0,GH,0,6000,26,25
+1401069,Male,56,Secondary,Working,No,No,,,,1,Ini smear -,Positive,Pvt. clini,0,Pvt. clini,0,Pvt. clini,1500,1500,60,12
+1401166,Male,60,No Education,Working,No,No,45,,,1,Ini smear +,,Pvt. hospi,10000,T.Pvt,3000,,0,13000,15,7
+1401263,Male,59,No Education,Working,No,No,45,,,1,Ini smear +,,PHC,0,PHC,0,GH,0,0,,16
+1401360,Female,47,No Education,Working,No,No,45,,,0,Ini smear +,,Pvt. hospi,2500,Pvt. hospi,2000,,0,4500,15,4
+1401457,Male,45,Missing,Working,Yes,Yes,48,,,0,Ini smear +,,GH,0,,0,,0,0,15,18
+1401554,Male,55,Primary,Working,No,No,48,,,1,Ini smear +,,Pvt. clini,1500,Pvt. clini,250,Tambram Sanatorium,0,1750,30,20
+1401651,Male,58,No Education,Working,Yes,Yes,45,,,0,Ini smear +,,GH,0,,0,,0,0,90,12
+1401748,Male,55,Missing,Working,No,No,32,158,12.8,0,Ini smear +,,Pvt. hospi,4500,Pvt. hospi,1000,Tambram Sanatorium,0,5500,60,0
+1401845,Male,55,Middle,Working,Yes,No,40,169,14,1,Ini smear +,,Pvt. clini,2300,Pvt. hospi,1500,,0,3800,19,8
+1401942,Female,58,No Education,Working,No,No,50,,,1,Ini smear +,,Pvt. hospi,3500,Tambram Sanatorium,0,,0,3500,25,3
+1402039,Male,70,No Education,Working,No,No,30,152,13,0,Ini smear +,,Pvt. clini,900,GH,0,,0,900,27,10
+1402233,Male,35,Middle,Working,Yes,No,52,155,21.6,0,Ini smear +,Negative,Pvt. hospi,0,Pvt. clini,0,GH,0,0,15,10
+1402427,Male,40,Secondary,Working,Yes,No,37,160,14.5,0,Ini smear +,Negative,Pvt. clini,500,Pvt. clini,500,Pvt. hospi,15000,16000,13,10
+1402621,Male,58,Secondary,Working,No,No,40,160,15.6,0,Ini smear +,,Pvt. hospi,1500,PHC,0,,0,1500,15,1
+1402718,Male,46,Higher Secondary,Working,Yes,Yes,37,159,14.6,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,20,6
+1402815,Male,73,Middle,Working,No,Yes,55,172,18.6,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,9,2
+1402912,Male,27,Middle,Working,Yes,No,41,170,14.2,0,Ini smear +,,Pvt. docto,200,Pvt. docto,150,PHC,0,350,10,1
+1403009,Male,65,No Education,Working,No,No,40,158,16,1,Ini smear -,Positive,Pvt. docto,500,Pvt. docto,300,Pvt. hospi,1000,1800,110,9
+1403106,Male,23,Primary,Working,Yes,No,110,172,37.2,0,Ini smear +,,Pvt. docto,300,GH,0,,0,300,14,8
+1403203,Female,24,Higher Secondary,Working,No,No,34,158,13.6,0,Ini smear +,,GH,0,Pvt. docto,540,GH,0,540,14,6
+1403300,Male,34,Middle,Working,Yes,No,40,153,17.1,0,Ini smear -,Positive,Pvt. clini,150,Tambram Sanatorium,0,,0,150,4,6
+1403494,Female,55,No Education,Working,No,No,39,155,16.2,1,Ini smear +,,Pvt. docto,400,Tambram Sanatorium,0,,0,400,37,42
+1403591,Female,22,Higher Secondary,Non - Working,No,No,34,159,13.4,0,Ini smear -,Positive,Pvt. docto,450,PHC,0,,0,450,5,7
+1403688,Female,20,Higher Secondary,Non - Working,No,No,32,158,12.8,0,Ini smear -,Positive,PHC,0,Pvt. hospi,300,PHC,0,300,30,8
+1403785,Male,28,Secondary,Working,Yes,Yes,41.9,176,13.5,0,Ini smear +,,Pvt. docto,150,PHC,0,GH,0,150,10,5
+1403882,Male,64,Primary,Working,Yes,Yes,40,153,17.1,0,Ini smear +,,Pvt. docto,150,Pvt. hospi,450,GH,0,600,90,4
+1403979,Male,60,Primary,Working,Yes,No,42,170,14.5,1,Ini smear +,,Pvt. hospi,420,GH,0,,0,420,30,3
+1404173,Male,64,Secondary,Working,No,Yes,50,165,18.4,0,Ini smear +,,Pvt. docto,180,PHC,0,,0,180,5,8
+1404270,Male,60,Primary,Working,Yes,No,40,155,16.6,0,Ini smear -,Positive,GH,0,Tambram Sanatorium,0,,0,0,90,15
+1404464,Male,55,Primary,Working,Yes,Yes,42,151,18.4,1,Ini smear +,,Pvt. hospi,200,Pvt. hospi,300,Tambram Sanatorium,0,500,30,7
+1404561,Male,49,Primary,Working,Yes,No,40,158,16,1,Ini smear -,Positive,Pvt. hospi,850,Pvt. hospi,600,GH,0,1450,44,13
+1404755,Male,53,Secondary,Working,Yes,No,40,161,15.4,0,Ini smear +,,PHC,0,,0,,0,0,10,6
+1404852,Male,60,No Education,Working,Yes,Yes,49,172,16.6,1,Ini smear +,,Pvt. hospi,1500,PHC,0,,0,1500,30,12
+1404949,Male,21,Secondary,Working,Yes,No,42,165,15.4,0,Ini smear +,,GH,0,,0,,0,0,30,1
+1405046,Male,20,Graduate,Non - Working,Yes,Yes,50,169,17.5,0,Ini smear +,,GH,0,,0,,0,0,14,1
+1405240,Male,40,Secondary,Working,Yes,No,56,165,20.6,1,Ini smear +,,GH,0,,0,,0,0,7,7
+1405434,Male,27,Middle,Working,Yes,No,39,153,16.7,0,Ini smear +,,Pvt. clini,200,PHC,0,,0,200,7,0
+1405531,Female,37,No Education,Working,No,No,36,152,15.6,0,Ini smear +,,Pvt. hospi,750,Tambram Sanatorium,0,,0,750,14,12
+1405628,Male,40,Middle,Working,Yes,No,67,170,23.2,1,Ini smear +,,Pvt. clini,1500,Pvt. hospi,1300,PHC,0,2800,11,6
+1405725,Male,40,Secondary,Working,Yes,No,73,170,25.3,1,Ini smear +,,Pvt. hospi,2000,Pvt. hospi,1000,GH,0,3000,21,15
+1405919,Female,45,Secondary,Non - Working,No,No,32.3,156,13.3,0,Ini smear +,,PHC,0,Pvt. hospi,1200,Tambram Sanatorium,0,1200,37,30
+1406113,Male,29,Primary,Working,Yes,No,38.2,162,14.6,0,Ini smear +,,Pvt. clini,650,PHC,0,,0,650,7,14
+1406210,Male,43,Secondary,Working,Yes,No,56,160,21.9,1,Ini smear +,,Pvt. hospi,400,Pvt. clini,2100,GH,0,2500,7,2
+1406307,Male,65,Middle,Working,Yes,Yes,30,146,14.1,0,Ini smear +,Negative,Pvt. hospi,4200,Tambram Sanatorium,0,,0,4200,60,23
+1500300,Male,50,No Education,Non - Working,No,No,37,155,15.4,1,Ini smear -,Positive,Tambram sanatorium,0,,0,,0,0,15,7
+1500494,Male,70,No Education,Non - Working,No,No,45,155,18.7,0,Ini smear +,,GH,1000,Pvt. docto,24000,,0,25000,30,40
+1501270,Male,55,No Education,Non - Working,No,No,45,155,18.7,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,105,7
+1501367,Male,55,No Education,Non - Working,No,Yes,35,150,15.6,0,Ini smear +,,GH,0,,0,,0,0,14,3
+1501561,Male,65,No Education,Non - Working,No,No,40,155,16.6,0,Ini smear +,Positive,GH,0,,0,,0,0,60,6
+1501658,Male,67,No Education,Non - Working,No,No,42,150,18.7,0,Ini smear +,,GH,0,,0,,0,0,21,3
+1501852,Male,48,No Education,Non - Working,No,No,40,155,16.6,0,Ini smear +,,GH,0,,0,,0,0,10,14
+1501949,Male,55,No Education,Non - Working,No,No,45,170,15.6,0,Ini smear +,,GH,0,,0,,0,0,7,4
+1502046,Male,76,Middle,Non - Working,No,No,35,145,16.6,0,Ini smear +,,Tambram sanatorium,0,,0,,0,0,30,27
+1502143,Male,42,Secondary,Non - Working,No,No,50,155,20.8,0,Ini smear +,,Pvt. hospi,6000,,0,,0,6000,9,9
+1502240,Male,76,No Education,Non - Working,No,No,40,155,16.6,0,Ini smear -,Positive,GH,0,,0,,0,0,7,4
+1502337,Male,22,Higher Secondary,Working,No,No,52,172,17.6,0,Ini smear -,Positive,GH,0,,0,,0,0,7,9
+1502434,Male,65,No Education,Non - Working,No,No,50,170,17.3,0,Ini smear +,Positive,Tambram sanatorium,0,,0,,0,0,30,12
+1502531,Female,45,No Education,Non - Working,No,No,44,165,16.2,0,Ini smear -,Positive,Pvt. hospi,6000,,0,,0,6000,30,28
+1502628,Male,24,Graduate,Working,No,No,55,175,18,0,Ini smear -,Positive,Pvt. clini,450,PHC,0,,0,450,7,1
+1502822,Male,35,Higher Secondary,Working,No,No,55,180,17,0,Ini smear +,,GH,0,,0,,0,0,14,22
+1503016,Male,53,Middle,Working,No,No,63,180,19.4,1,Ini smear +,,GH,0,,0,,0,0,14,4
+1503210,Male,46,No Education,Working,Yes,Yes,38.6,160,15.1,0,Ini smear +,,PHC,0,GH,0,,0,0,90,5
+1503307,Male,45,No Education,Working,No,No,65,175,21.2,0,Ini smear +,,GH,0,,0,,0,0,7,4
+1503404,Male,35,Middle,Working,Yes,No,,160,,0,Ini smear +,,GH,0,,0,,0,0,21,11
+1503501,Male,57,Primary,Non - Working,No,No,45,180,13.9,0,Ini smear +,,GH,0,,0,,0,0,14,18
+1503695,Female,19,Higher Secondary,Non - Working,No,No,36.9,153,15.8,0,Ini smear +,,PHC,0,Tambram Sanatorium,0,,0,0,18,19
+1503792,Female,40,No Education,Working,No,No,42,140,21.4,0,Ini smear +,,Pvt. clini,20000,GH,0,Tambram Sanatorium,0,20000,201,3
+1503986,Male,18,Higher Secondary,Non - Working,No,No,42,152,18.2,0,Ini smear +,Negative,GH,0,Pvt. clini,500,GH,0,500,14,7
+1504083,Female,60,No Education,Non - Working,No,No,42,150,18.7,1,Ini smear +,Positive,Pvt. docto,700,GH,0,,0,700,2,1
+1504180,Female,50,No Education,Working,No,No,33,147,15.3,0,Ini smear -,Positive,Pvt. clini,800,Pvt. hospi,1800,Tambram Sanatorium,0,2600,51,20
+1504277,Male,65,No Education,Working,No,No,42,155,17.5,1,Ini smear +,,Pvt. docto,500,Tambram Sanatorium,0,,0,500,150,54
+1504374,Male,38,Middle,Working,No,No,44,160,17.2,0,Ini smear +,Negative,Pvt. clini,1000,Pvt. docto,1000,GH,0,2000,21,5
+1504568,Female,22,Middle,Working,No,No,34,150,15.1,0,Ini smear +,Negative,Pvt. hospi,1500,Tambram Sanatorium,0,,0,1500,31,9
+1504762,Male,62,Middle,Working,Yes,Yes,34,160,13.3,0,Ini smear +,Positive,Pvt. clini,400,Tambram Sanatorium,0,,0,400,7,5
+1504859,Male,49,Middle,Working,Yes,No,57,170,19.7,1,Missing,Positive,Pvt. hospi,700,GH,0,,0,700,30,7
+1504956,Male,50,Primary,Working,Yes,Yes,50,175,16.3,1,Ini smear +,Positive,Tambram sanatorium,0,,0,,0,0,21,13
+1505053,Male,60,No Education,Working,No,No,38,165,14,0,Ini smear +,Positive,Pvt. clini,400,Tambram Sanatorium,0,,0,400,30,12
+1505150,Male,68,No Education,Working,Yes,Yes,48,165,17.6,0,Ini smear +,Positive,GH,0,Pvt. hospi,0,PHC,0,0,90,4
+1505247,Male,24,Higher Secondary,Working,No,No,48,175,15.7,0,Ini smear -,Positive,Pvt. hospi,10000,PHC,0,,0,10000,21,11
+1505441,Male,48,No Education,Working,Yes,No,39,160,15.2,0,Ini smear +,,Pvt. docto,700,GH,0,,0,700,14,0
+1505538,Male,54,Middle,Working,No,No,50,150,22.2,1,Ini smear +,Negative,Pvt. clini,750,GH,0,,0,750,7,8
+1505635,Male,50,No Education,Working,Yes,Yes,40,171,13.7,0,Ini smear +,,PHC,0,GH,0,,0,0,90,7
+1505732,Male,61,Primary,Working,Yes,Yes,45.3,171,15.5,0,Ini smear +,Positive,Pvt. clini,600,GH,0,,0,600,7,8
+1505926,Male,39,Middle,Working,Yes,Yes,49,167,17.6,0,Ini smear -,Positive,Other,0,GH,3000,,0,3000,13,16
+1506023,Male,44,Primary,Working,Yes,Yes,60,184,17.7,0,Ini smear +,Positive,Pvt. docto,600,Pvt. hospi,750,PHC,0,1350,30,3
+1506120,Male,37,No Education,Working,No,No,,160,,0,Ini smear +,Positive,PHC,0,Pvt. hospi,8000,PHC,0,8000,15,7
+1506217,Male,61,Secondary,Working,No,No,49,160,19.1,0,Ini smear -,Positive,GH,500,Tambram Sanatorium,0,,0,500,30,11
+1506314,Male,50,No Education,Working,Yes,No,34,170,11.8,1,Ini smear -,Positive,GH,0,Tambram Sanatorium,0,,0,0,47,38
+1506411,Male,61,Primary,Non - Working,Yes,Yes,56,170,19.4,0,Ini smear +,,GH,0,,0,,0,0,7,3
+1506508,Male,53,Middle,Working,Yes,Yes,37.3,168,13.2,0,Ini smear +,Positive,PHC,0,Tambram Sanatorium,0,,0,0,114,14
+1506702,Male,68,Primary,Non - Working,Yes,Yes,56,178,17.7,1,Ini smear +,Positive,Pvt. hospi,10000,Pvt. hospi,1000,PHC,0,11000,15,3
+1506896,Male,25,Middle,Working,No,No,46.6,183,13.9,0,Ini smear +,Positive,Pvt. hospi,10000,Tambram Sanatorium,0,,0,10000,13,7
+1506993,Male,32,Higher Secondary,Working,No,No,59,152,25.5,0,Ini smear +,Positive,Pvt. clini,2000,GH,0,,0,2000,60,4
+1507090,Female,55,No Education,Working,No,No,41,156,16.8,0,Ini smear +,Positive,GH,0,Tambram Sanatorium,0,,0,0,60,14
+1507187,Female,45,No Education,Non - Working,No,No,63.5,149,28.6,1,Ini smear -,Positive,Pvt. hospi,0,Pvt. hospi,6000,PHC,0,6000,14,13
+1507284,Female,40,No Education,Working,No,No,39.4,152,17.1,0,Ini smear +,Positive,GH,0,Pvt. clini,2400,PHC,0,2400,11,11
+1507381,Female,20,Higher Secondary,Working,No,No,40,152,17.3,0,Ini smear +,,GH,0,,0,,0,0,4,11
+1507478,Male,55,Middle,Working,Yes,Yes,48,186,13.9,0,Ini smear +,,PHC,0,,0,,0,0,21,14
+1507575,Female,20,Secondary,Working,No,No,40,152,17.3,0,Ini smear +,Positive,GH,0,GH,0,Pvt. docto,2000,2000,16,2
+1507672,Male,44,No Education,Working,No,No,57,168,20.2,0,Ini smear +,,Pvt. clini,1000,Tambram Sanatorium,0,,0,1000,30,20
+1507769,Male,60,No Education,Non - Working,Yes,No,48,177,15.3,0,Ini smear +,Positive,Pvt. clini,2000,Pvt. docto,1000,GH,0,3000,30,12
+1600113,Male,55,Primary,Working,Yes,Yes,42.6,142,21.1,1,Ini smear +,,GH,0,,0,,0,0,14,4
+1600210,Male,63,Primary,Working,No,No,61,172,20.6,1,Ini smear +,,T.Pvt,5000,,0,,0,5000,14,5
+1600307,Female,35,Primary,Non - Working,No,No,50,130,29.6,1,Ini smear +,,Pvt. clini,5000,GH,0,,0,5000,30,2
+1600404,Male,49,Primary,Working,No,No,48,160,18.7,1,Ini smear +,,Pvt. hospi,15000,GH,0,,0,15000,30,2
+1600501,Male,27,Secondary,Working,Yes,Yes,50,165,18.4,0,Ini smear -,,Pvt. clini,200,Pvt. hospi,400,Tambram Sanatorium,0,600,30,6
+1600695,Female,24,Secondary,Working,No,No,38,125,24.3,0,Ini smear +,Negative,Tambram sanatorium,0,GH,0,,0,0,8,19
+1600889,Male,45,Middle,Working,Yes,Yes,40.5,135,22.2,0,Ini smear +,,Pvt. docto,150,GH,0,,0,150,7,7
+1600986,Male,32,Graduate,Working,No,No,58,155,24.1,0,Ini smear -,Positive,Pvt. hospi,3000,Pvt. clini,700,Pvt. hospi,20000,23700,90,13
+1601083,Male,60,Primary,Working,No,No,48,145,22.8,1,Ini smear +,,Pvt. hospi,300,GH,0,,0,300,30,4
+1601180,Male,44,Middle,Non - Working,No,No,46,160,18,1,Ini smear +,,Pvt. hospi,8000,Pvt. hospi,1000,Pvt. hospi,450,9450,45,20
+1601277,Male,53,Secondary,Working,Yes,Yes,60,152,26,1,Ini smear +,,Pvt. clini,2000,GH,0,,0,2000,17,5
+1601374,Female,49,Primary,Working,No,No,60,160,23.4,1,Ini smear +,,Pvt. hospi,6000,Tambram Sanatorium,0,,0,6000,36,15
+1601568,Male,20,Higher Secondary,Non - Working,No,No,33,165,12.1,0,Ini smear +,Negative,Pvt. docto,1000,GH,0,,0,1000,28,7
+1601665,Male,62,No Education,Working,No,Yes,49,168,17.4,1,Ini smear -,Positive,Pvt. clini,1000,GH,0,,0,1000,90,9
+1601762,Male,60,No Education,Working,No,Yes,43.6,165,16,0,Ini smear -,Positive,GH,0,,0,,0,0,14,16
+1601859,Female,45,No Education,Working,No,No,48,150,21.3,0,Ini smear +,Positive,Pvt. docto,4000,GH,0,,0,4000,180,19
+1601956,Male,48,No Education,Working,No,No,45,160,17.6,0,Ini smear -,Positive,Pvt. clini,1000,Pvt. docto,3000,GH,0,4000,28,1
+1602053,Male,52,Secondary,Working,Yes,No,52,160,20.3,0,Ini smear +,Negative,Pvt. docto,2500,GH,0,,0,2500,12,6
+1602150,Male,64,Secondary,Working,No,No,53,156,21.8,1,Ini smear +,Negative,Pvt. docto,2000,GH,0,,0,2000,90,3
+1602247,Female,38,No Education,Working,No,No,32,144,15.4,0,Ini smear -,Positive,Pvt. docto,200,Pvt. docto,500,GH,0,700,16,6
+1602344,Male,53,Middle,Working,No,No,54,164,20.1,1,Ini smear +,,GH,0,,0,,0,0,60,9
+1602441,Female,60,No Education,Non - Working,No,No,48.4,162,18.4,0,Ini smear +,Negative,PHC,0,GH,0,,0,0,187,2
+1602538,Male,58,No Education,Working,No,No,47,159,18.6,1,Ini smear -,Positive,GH,0,GH,500,,0,500,30,14
+1602635,Male,62,Primary,Non - Working,No,No,60.1,170,20.8,1,Ini smear -,Positive,Pvt. docto,3000,GH,0,,0,3000,21,16
+1602732,Male,55,No Education,Working,Yes,No,38.3,164,14.2,0,Ini smear +,,GH,0,,0,,0,0,3,3
+1602829,Male,25,Graduate,Working,No,No,48.4,167,17.4,0,Ini smear +,Negative,Pvt. clini,650,Pvt. hospi,350,Pvt. hospi,10000,11000,25,8
+1603023,Male,43,Middle,Working,Yes,Yes,40.2,163,15.1,0,Ini smear +,,Pvt. docto,1000,GH,0,,0,1000,30,6
+1603120,Male,35,No Education,Working,Yes,Yes,46.6,168,16.5,0,Ini smear +,,Pvt. docto,3000,GH,0,,0,3000,30,2
+1603217,Male,57,Middle,Working,No,No,46.5,162,17.7,0,Ini smear +,Negative,Pvt. docto,200,GH,0,,0,200,30,16
+1603314,Male,36,Middle,Working,Yes,Yes,43.5,160,17,0,Ini smear +,,GH,0,,0,,0,0,14,8
+1603411,Male,23,Higher Secondary,Working,No,No,47.5,169,16.6,0,Ini smear +,,Pvt. docto,1000,GH,0,,0,1000,14,4
+1603508,Male,41,No Education,Working,No,No,48,175,15.7,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,30,2
+1603605,Male,52,Primary,Working,No,No,46,172,15.5,0,Ini smear +,,Pvt. docto,21000,GH,0,,0,21000,74,3
+1603702,Male,39,Primary,Working,Yes,No,62,162,23.6,1,Ini smear +,,Pvt. docto,500,Pvt. docto,300,GH,0,800,30,20
+1603896,Male,45,No Education,Working,No,Yes,43.2,180,13.3,0,Ini smear +,,Pvt. docto,5000,GH,0,,0,5000,60,10
+1603993,Male,36,Primary,Working,No,No,41.4,166,15,0,Ini smear +,,Pvt. clini,1000,Pvt. docto,500,GH,0,1500,30,10
+1604090,Female,27,Secondary,Working,No,No,33,148,15.1,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,30,14
+1604187,Male,35,Secondary,Working,Yes,No,50,164,18.6,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,30,10
+1604284,Male,47,No Education,Working,Yes,Yes,46.7,160,18.2,0,Ini smear +,,Pvt. docto,500,GH,0,,0,500,30,15
+1604381,Male,55,No Education,Working,No,Yes,44,166,16,0,Ini smear +,,Pvt. clini,500,Pvt. docto,5000,GH,0,5500,90,5
+1604478,Male,35,Primary,Working,Yes,No,45,161,17.4,1,Ini smear +,Positive,Pvt. clini,4500,GH,0,,0,4500,21,7
+1604575,Male,63,Primary,Working,Yes,Yes,52.6,176,17,0,Ini smear +,,Pvt. hospi,400,GH,0,GH,0,400,365,13
+1604672,Male,44,Middle,Working,Yes,Yes,42.7,175,13.9,0,Ini smear +,,Pvt. docto,9000,Pvt. docto,800,GH,0,9800,14,11
+1604769,Male,60,Middle,Working,No,No,64.2,175,21,1,Ini smear +,Positive,Pvt. clini,500,Tambram Sanatorium,0,,0,500,14,10
+1604866,Male,63,Middle,Working,No,Yes,38.5,160,15,1,Ini smear +,,Pvt. docto,1000,Tambram Sanatorium,0,,0,1000,180,22
+1604963,Male,65,No Education,Working,No,No,37,167,13.3,0,Ini smear +,,PHC,0,Tambram Sanatorium,0,,0,0,150,20
+1605060,Male,60,Middle,Working,No,No,46.8,155.5,19.4,0,Missing,Positive,Pvt. hospi,300,Pvt. clini,3200,GH,0,3500,90,2

@@ -1,0 +1,249 @@
+---
+title: 'Subsetting columns'
+---
+
+```{python}
+# | echo: false
+# Setup
+import pandas as pd
+
+pd.options.display.max_rows = 5
+```
+
+
+## Introduction
+
+Today we will begin our exploration of pandas for data manipulation!
+
+Our first focus will be on selecting and renaming columns. Often your dataset comes with many columns that you do not need, and you would like to narrow it down to just a few. Pandas makes this easy. Let's see how.
+
+## Learning objectives
+
+-   You can keep or drop columns from a DataFrame using pandas methods like `loc[]`, `iloc[]`, `filter()`, and `drop()`.
+-   You can select columns based on regex patterns with `filter()`.
+-   You can use `rename()` to change column names.
+
+## About pandas
+
+Pandas is a popular library for data manipulation and analysis. It is designed to make it easy to work with tabular data in Python.
+
+Install pandas with the following command in your terminal if it is not already installed:
+
+```{python}
+# | eval: false
+pip install pandas
+```
+
+Then import pandas with the following command in your script:
+
+```{python}
+import pandas as pd
+```
+
+## The Yaounde COVID-19 dataset
+
+In this lesson, we analyse results from a COVID-19 survey conducted in Yaounde, Cameroon in late 2020. The survey estimated how many people had been infected with COVID-19 in the region, by testing for antibodies.
+
+Let's load and examine the dataset:
+
+```{python}
+yao = pd.read_csv("data/yaounde_data.csv")
+yao
+```
+
+## Introducing Column Selection
+
+In pandas, the most common way to select a column **by name** is using the `loc` property. To select the `age` column, we type:
+
+```{python}
+yao.loc[:, "age"]
+```
+
+The syntax for the `loc` property is as follows:
+
+```{python}
+# | eval: false
+DataFrame.loc[ROWS_TO_KEEP, COLUMNS_TO_KEEP]
+```
+
+In our first example, since we want to keep all rows, we use `:`, then since we want to keep just the `age` column, we put that column after the comma.
+
+To select range of columns, we can use the `:` operator, with the start column first, then the end column. Let's select the columns from `age` to `sex`:
+
+```{python}
+yao.loc[:, "age":"sex"]
+```
+
+To select **multiple columns**, we can just pass a list of column names:
+
+```{python}
+yao.loc[:, ["age", "sex", "igg_result"]]
+```
+
+
+::: {.callout-tip title="Practice"}
+-   Use `.loc` to select the "weight_kg" and "height_cm" variables in the `yao` DataFrame. Assign the result to a new DataFrame called `yao_weight_height`. Then print this new DataFrame.
+
+```{python}
+# Your code here
+```
+
+-   Select and print the columns between `age` and `occupation`, inclusive, in the `yao` DataFrame. There should be six columns. Assign the result to a new DataFrame called `yao_age_occupation`.  Print this new DataFrame.
+
+```{python}
+# Your code here
+```
+
+:::
+
+::: {.callout-note title="Key Point"}
+Note that these selections are not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset with only three columns:
+
+```{python}
+yao_subset = yao.loc[:, ["age", "sex", "igg_result"]]
+yao_subset
+```
+
+And if we want to overwrite the original data frame, we can assign the subset back to the original DataFrame:
+
+```{python}
+yao_subset = yao_subset.loc[:, ["age"]]
+yao_subset
+```
+
+Now the `yao_subset` DataFrame has gone from having 3 columns to having 1 column.
+
+:::
+
+## Selecting Columns by Position using `iloc`
+
+You can also select a column **by position** using the `iloc` property. You can think of the "i" in `iloc` as standing for "integer".
+
+To select the 3rd column, we type:
+
+```{python}
+yao.iloc[:, 2]
+```
+
+Note that this is zero-based indexing, so the 3rd column is index 2.
+
+To select a range of columns, we can use the `:` operator, with the start column first, then the end column. Let's select the 2nd to 4th columns with `:`:
+
+```{python}
+yao.iloc[:, 1:4]
+```
+
+::: {.callout-note title="Key Point"}
+It may seem confusing that we use 1:4 to select columns 2 to 4. Here is a diagram to help:
+
+![Column range selection diagram](https://i.imgur.com/z6n8bt5.jpg)
+:::
+
+```{python}
+yao.iloc[:, [2, 3, 4]]  # Selects the 3rd, 4th, and 5th columns
+```
+
+::: {.callout-tip title="Practice"}
+-   use `.iloc` to select and print the 1st and 3rd columns in the `yao` DataFrame. These should be "id" and "age" (be careful about zero-based indexing!) Assign the result to a new DataFrame called `yao_id_age`. Then print this new DataFrame.
+
+```{python}
+# Your code here
+```
+:::
+
+## Excluding columns
+
+Sometimes it is more useful to drop columns you do not need than to explicitly select the ones that you do need.
+
+To drop columns, we can use the `drop()` method with the `columns` argument. To drop the age column, we type:
+
+```{python}
+yao.drop(columns=["age"])
+```
+
+To drop several columns:
+
+```{python}
+yao.drop(columns=["age", "sex"])
+```
+
+Again, note that this is not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset age and sex dropped:
+
+```{python}
+yao_subset = yao.drop(columns=["age", "sex"])
+yao_subset
+```
+
+::: {.callout-tip title="Practice"}
+-   From the `yao` DataFrame, **remove** the columns `highest_education` and `consultation`. Assign the result to a new DataFrame called `yao_no_education_consultation`. Print this new DataFrame.
+```{python}
+# Your code here
+```
+:::
+
+## Using filter() to select columns by regex
+
+The filter() method is a powerful way to select columns. 
+
+It can be used to select a sequence of columns, similar to `iloc` or `loc`: 
+
+```{python}
+yao.filter(["age", "sex", "igg_result"])  # Select "age", "sex" and "igg_result"
+```
+
+But the real power of `filter()` is to select columns based on patterns in their names, using the `regex` argument. As an example, to select columns containing the string "ig", we can write:
+
+```{python}
+yao.filter(regex="ig")
+```
+
+The argument `regex` specifies the pattern to match. Regex stands for regular expression and refers to a sequence of characters that define a search pattern.
+
+To select columns **starting with** the string "ig", we write:
+
+```{python}
+yao.filter(regex="^ig")
+```
+
+The symbol `^` is a regex character that matches the beginning of the string.
+
+To select columns **ending with** the string "result", we can write:
+
+```{python}
+yao.filter(regex="result$")
+```
+
+The character `$` is regex that matches the end of the string.
+
+::: {.callout-tip title="Practice"}
+
+-   Select all columns in the `yao` DataFrame that start with "is". Assign the result to a new DataFrame called `yao_is_columns`. Then print this new DataFrame.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Change column names with `rename()`
+
+We can use the `rename()` method to change column names:
+
+```{python}
+yao.rename(columns={"age": "patient_age", "sex": "patient_sex"})
+```
+
+::: {.callout-tip title="Practice"}
+
+-   Rename the `age_category` column in the `yao` DataFrame to `age_cat`. Assign the result to a new DataFrame called `yao_age_cat`. Then print this new DataFrame.
+
+```{python}
+# Your code here
+```
+:::
+
+## Wrap up
+
+Hopefully this lesson has shown you how intuitive and useful pandas is for data manipulation!
+
+This is the first of a series of basic data wrangling techniques: see you in the next lesson to learn more.

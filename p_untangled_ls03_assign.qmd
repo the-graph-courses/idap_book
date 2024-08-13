@@ -1,0 +1,201 @@
+---
+title: 'Creating variables'
+---
+
+## Intro
+
+You now know how to keep or drop columns and rows from your dataset. Today you will learn how to modify existing variables or create new ones, using the `assign()` method from pandas. This is an essential step in most data analysis projects.
+
+Let's go!
+
+## Learning objectives
+
+1. You can use the `assign()` method from pandas to create new variables or modify existing variables.
+
+2. You can create new numeric, string, categorical, and boolean variables.
+
+## Imports
+
+This lesson will require the pandas package. You can import it with the following code:
+
+```{python}
+import pandas as pd
+```
+
+## Datasets
+
+In this lesson, we will use a dataset of counties of the United States with demographic and economic data.
+
+```{python}
+counties = pd.read_csv("data/us_counties_data.csv")
+
+## small subset for illustration
+area_pop = counties.loc[:, ["county", "area_sq_miles", "pop_estimate_2020"]]
+```
+
+
+## Introducing `assign()`
+
+We use `pd.DataFrame.assign()` to create new variables or modify existing variables. 
+
+Let's see a quick example. The `area_pop` dataset contains a variable called `area_sq_miles`, which shows the land area of each county in square miles. 
+
+We want to **create a new variable** with the area in square kilometers so we must multiply the `area_sq_miles` variable by 2.59.
+
+Let's see how to do this with `assign()`:
+
+```{python}
+area_pop.assign(
+    area_sq_km=lambda x: x["area_sq_miles"] * 2.59
+)
+```
+
+Nice! The syntax may appear confusing, so let's break it down. 
+
+Inside the `assign()` method, we type our new variable name (`area_sq_km`) and then define a `lambda` function that takes the data frame as an argument and returns the new variable. A `lambda` is a fancy name for a small function without a name. 
+
+We can read `lambda x: x['area_sq_miles'] * 2.59` as, "define a function that takes a DataFrame `x`, then multiplies the `area_sq_miles` variable in that DataFrame by 2.59."
+
+Note that the symbol we called `x` above can be anything you want; it's simply a placeholder for the data frame. For example, you could call it `dat`:
+
+```{python}
+area_pop.assign(area_sq_km=lambda dat: dat["area_sq_miles"] * 2.59)
+```
+
+Let's see another example. We'll add a variable showing the area in hectares by multiplying `area_sq_miles` by 259. We'll also store the new DataFrame in a variable called `counties_area_conversions`.
+
+```{python}
+area_pop_converted = area_pop.assign(
+    area_sq_km=lambda x: x["area_sq_miles"] * 2.59,
+    area_hectares=lambda x: x["area_sq_miles"] * 259,
+)
+area_pop_converted  # view the new DataFrame
+```
+
+Now try your hand at the following practice exercise.
+
+::: {.callout-tip title='Practice'}
+
+```{python}
+# Your code here
+```
+:::
+
+Let's see another example of using the `assign()` method, one which involves multiple variables. We'll create a new variable called `pop_per_sq_km` by dividing `pop_estimate_2020` by `area_sq_km`. And we'll overwrite the existing DataFrame with the new one.
+
+```{python}
+area_pop_converted = area_pop_converted.assign(
+    pop_per_sq_km=lambda x: x["pop_estimate_2020"] / x["area_sq_km"]
+)
+area_pop_converted
+```
+
+As a final step, let's round the `pop_per_sq_km` variable to one decimal place:
+
+```{python}
+area_pop_converted = area_pop_converted.assign(
+    pop_per_sq_km=lambda x: round(x["pop_per_sq_km"], 1)
+)
+area_pop_converted
+```
+
+Notice that we used the same variable name `pop_per_sq_km` for the new variable, allowing us to overwrite the existing variable.
+
+::: {.callout-tip title='Practice'}
+
+```{python}
+# Your code here
+```
+:::
+
+::: {.callout-note title='Advanced'}
+
+### Why use lambda functions in `assign()`?
+
+You may be wondering whether the lambda function is really necessary within assign. After all, we could run code like this:
+
+```{python}
+area_pop.assign(
+    area_sq_km=area_pop["area_sq_miles"] * 2.59,
+    area_hectares=area_pop["area_sq_miles"] * 259,
+)
+```
+
+The problem with this approach is that it does not allow us to access variables created in the same `assign()` call.
+
+So if you try to use the area_sq_km variable to calculate the population density, you will get an error:
+
+```{python}
+# | eval: false
+area_pop.assign(
+    area_sq_km=area_pop["area_sq_miles"] * 2.59,
+    area_hectares=area_pop["area_sq_miles"] * 259,
+    pop_per_sq_km=area_pop["pop_estimate_2020"] / area_pop["area_sq_km"],
+)
+```
+
+```
+KeyError: 'area_sq_km'
+```
+
+This is because the `area_sq_km` variable was created in the same `assign()` call, so it is not available in the next line of code.
+
+Lambda functions in `assign()` enable chained assignments. This allows creating new columns based on intermediate results within the same call, enabling complex transformations not possible with direct column references.
+
+:::
+
+## Creating a Boolean variable
+
+You can use `assign()` to create a Boolean variable to categorize part of your dataset. Consider the `pop_change_2010_2020` variable in the `counties` dataset, which shows the percentage change in population between 2010 and 2020.
+
+```{python}
+changes_df = counties.loc[
+    :, ["county", "pop_change_2010_2020", "pct_emp_change_2010_2021"]
+]  # Make subset
+```
+
+Below we create a Boolean variable, `pop_increased`, that is `True` if the growth rate is greater than 0 and `False` if it is not.
+
+```{python}
+changes_df.assign(pop_increased=lambda x: x["pop_change_2010_2020"] > 0)
+```
+
+The code `x['pop_change_2010_2020'] > 0` evaluates whether each growth rate is greater than 0. Growth rates that match that condition (growth rates greater than 0) are `True` and those that fail the condition are `False`.
+
+Let's do the same for the employment change variable and store the results in our dataset.
+
+```{python}
+changes_df = changes_df.assign(
+    pop_increased=lambda x: x["pop_change_2010_2020"] > 0,
+    emp_increased=lambda x: x["pct_emp_change_2010_2021"] > 0,
+)
+changes_df
+```
+
+We can now count the number of counties that expanded using the `value_counts()` method:
+
+We can now query the dataset to, for example, see which counties had a population increase but an employment decrease. From a policy perspective, this would be a concern.
+
+```{python}
+changes_df.query("pop_increased == True & emp_increased == False")
+```
+
+There are 242 such concerning counties.
+
+::: {.callout-tip title='Practice'}
+
+:::
+
+## Converting variables to different types
+
+```{python}
+counties.loc[:, ["county": "pop_estimate_2020"]]
+```
+
+## Wrap up
+
+As you can imagine, transforming data is an essential step in any data analysis workflow. It is often required to clean data and to prepare it for further statistical analysis or for making plots. And as you have seen, it is quite simple to transform data with pandas' `assign()` method.
+
+Congrats on making it through.
+
+But your data wrangling journey isn't over yet! In our next lessons, we will learn how to create complex data summaries and how to create and work with data frame groups. Intrigued? See you in the next lesson.

@@ -1,0 +1,53 @@
+---
+title: 'Subsetting rows'
+---
+
+```{python}
+# | echo: false
+# Setup
+import pandas as pd
+
+classifications = pd.read_excel('../data/RuralAtlasData24.xlsx', sheet_name="County Classifications") 
+people = pd.read_excel('../data/RuralAtlasData24.xlsx', sheet_name="People")
+jobs = pd.read_excel('../data/RuralAtlasData24.xlsx', sheet_name="Jobs")
+income = pd.read_excel('../data/RuralAtlasData24.xlsx', sheet_name="Income")
+veterans = pd.read_excel('../data/RuralAtlasData24.xlsx', sheet_name="Veterans")
+```
+
+```{python}
+import janitor
+
+full_counties = (
+    classifications.merge(people, on=["FIPS", "State", "County"])
+    .merge(jobs, on=["FIPS", "State", "County"])
+    .merge(income, on=["FIPS", "State", "County"])
+    .merge(veterans, on=["FIPS", "State", "County"])
+)
+
+# Convert column names: spaces to underscores, camelCase to snake_case
+full_counties = full_counties.clean_names(case_type="snake")
+
+full_counties = full_counties.rename(
+    columns={
+        "land_area_sq_miles2020": "area_sq_miles",
+        "pop_change_rate1020": "pop_change_2010_2020",
+        "unemp_rate2020": "unemp_rate_2020",
+        "popestimate2020": "pop_estimate_2020",
+        "popestimate2021": "pop_estimate_2021",
+        "pct_emp_change1021": "pct_emp_change_2010_2021",
+        "med_hh_inc": "med_hh_inc_2021",  ## temporary to keep track of the variable
+    }
+)
+
+```
+
+```{python}
+full_counties.to_csv("../data/us_counties_data.csv", index=False)
+
+## get the names of all vars. Print all of them 
+print([col for col in full_counties.columns])
+```
+
+```{python}
+
+```

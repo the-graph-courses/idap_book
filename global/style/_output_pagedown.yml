@@ -1,0 +1,7 @@
+pagedown::html_paged:
+  template: '../global/style/tgc_custom_template.html'
+  css: ['../global/style/tgc_bookdown_custom_page.css', '../global/style/tgc_bookdown_custom_other.css']
+  toc: true
+  number_sections: false
+  self_contained: true
+  pandoc_args: --shift-heading-level-by=1

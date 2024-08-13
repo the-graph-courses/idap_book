@@ -1,0 +1,577 @@
+@import 'https://fonts.googleapis.com/css?family=Alegreya:400,400i,700,700i%7CAlegreya+SC%7CSource+Code+Pro:400,700';
+
+:root {
+  --background: whitesmoke;
+  --pagedjs-width: 210mm;
+  --pagedjs-height: 297mm;
+  
+  --pagedjs-margin-top: 1in;
+  --pagedjs-margin-right: 0.7in;
+  --pagedjs-margin-bottom: 0.7in;
+  --pagedjs-margin-left: 0.8in;
+  
+  --color-paper: white;
+  --color-mbox: rgba(0, 0, 0, 0.2);
+  --running-title-width: 2.5in;
+  --screen-pages-spacing: 5mm;
+  --main-color: #6EA5AF;
+}
+
+/* fonts */
+body, blockquote {
+  font-family: 'Alegreya', STKaiti, "华文楷体", serif;
+  font-size: 11pt;
+  font-weight: 400;
+}
+
+code {
+  font-family: 'Source Code Pro', STKaiti, "华文楷体", monospace;
+  font-weight: 400;
+}
+
+pre, code {
+  font-size: 9pt;
+}
+
+.smallcaps {
+  font-family: 'Alegreya SC', 'AlegreyaSC', STKaiti, "华文楷体", serif;
+  font-variant: small-caps;
+}
+
+code .smallcaps, .abstract .smallcaps {
+  font-family: inherit;
+}
+
+a.uri, a.email {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 9pt;
+  color: #2e3192;
+}
+
+a[href^="#"] {
+  font-family: 'Alegreya';
+  color: #ae2230;
+}
+
+/* main text content */
+.level1 p {
+  margin: 8pt 0;
+  text-align: justify;
+  line-height: 1.25;
+  hyphens: auto; /* don't work for Chrome on Windows and Linux */
+}
+
+a {
+  text-decoration: none;
+}
+
+.level1 sup, .level1 sub {
+  line-height: 0.75;
+}
+
+/* margins content */
+.pagedjs_margin {
+  font-size: 9pt;
+}
+
+.running-h1-title, .running-h2-title {
+  font-style: italic;
+}
+
+.pagedjs_margin-top .pagedjs_margin-content {
+  margin-top: auto;
+  margin-bottom: 7px;
+}
+
+/* first page */
+.title {
+  font-size: 20pt;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 21pt;
+  border-top: 1pt solid black;
+  padding-top: 28pt;
+  position: relative;
+}
+
+.title::before{
+  display: block;
+  position: absolute;
+  top: 0;
+  border-top: 4pt solid black;
+  width: 27mm;
+  content: '';
+}
+
+.date {
+  display: none;
+}
+
+.author {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin:0;
+  font-size: 9pt;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* abstract */
+.abstract {
+  text-align: center;
+  line-height: 1.8;
+}
+
+h3.abstract {
+  display: none;
+}
+
+/* table of contents, list of tables & list of figures */
+.toc * {
+  color: black !important;
+  white-space: nowrap;
+}
+
+.toc > ul > li > a {
+  font-weight: bold;
+}
+
+.toc > ul > li {
+  margin: 8pt 0;
+}
+
+.toc > ul > li > a > .leaders::before {
+  content: '';
+}
+
+.front-matter-ref + ul, .toc-section-unnumbered + ul {
+  display: none;
+}
+
+.toc a, .lof a, .lot a {
+  padding-right: 0.7em;
+}
+
+.toc a::after, .lof a::after, .lot a::after {
+  padding-left: 1em;
+}
+
+.lot ul, .lof ul {
+  padding-left: 1.55em;
+}
+
+.leaders::before {
+  word-spacing: 0.3em;
+}
+
+.toc li li {
+  padding-left: 2em;
+}
+
+.toc-section-number, .list-ref-number {
+  display: inline-block;
+  width: 2em;
+}
+
+/* chapter headers */
+.level1 > h1 {
+  font-size: 16pt;
+  font-weight: normal;
+  font-style: italic;
+  white-space: pre-line;
+  position: relative;
+  line-height: 28pt;
+  margin-bottom: 54pt;
+}
+
+.level1 > h1::after {
+  display: block;
+  content: " ";
+  width: 27mm;
+  height: 28pt;
+  position: absolute;
+  bottom: 0;
+  border-top: 4pt solid black;
+  border-bottom: 1pt solid black;
+}
+
+h1 > .header-section-number::after {
+  content: "\000A";
+}
+
+h1 > .header-section-number {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20pt;
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1pt solid black;
+  line-height: 30pt;
+  position: relative;
+  top: -5pt;
+}
+
+.toc > h1, .unnumbered > h1 {
+  font-weight: bold;
+}
+
+.toc > h1::before, .unnumbered > h1::before {
+  display: block;
+  height: 32pt;
+  position: relative;
+  top: -5pt;
+  content: " ";
+}
+
+/* section headers */
+.level2 > h2 {
+  font-size: 10pt;
+  margin-top: 40pt;
+  padding-top: 16pt;
+  border-top: 1pt solid black;
+  position: relative;
+}
+
+.level2:first-child > h2 {
+  margin-top: 20pt;
+}
+
+.level2 > h2::after{
+  display: block;
+  content: " ";
+  width: 27mm;
+  height: 27pt;
+  position: absolute;
+  bottom: 0;
+  border-top: 4pt solid black;
+}
+
+.level2 .header-section-number {
+  margin-right: 10px;
+}
+
+/* subsection headers */
+.level3 > h3 {
+  font-size: 10pt;
+  margin-top: 16pt;
+}
+
+.level3 .header-section-number {
+  margin-right: 10px;
+}
+
+/* footnotes */
+.footnote-break {
+  width: 2in;
+}
+
+.footnote-area {
+  padding-left: 12pt;
+}
+
+.footnote a.uri, .footnote a.email{
+  font-size: inherit;
+}
+
+/* viewer */
+@media screen {
+  .pagedjs_page {
+     box-shadow: 0 4px 10px rgb(0, 0, 0, 0.6), inset 0 0 3px rgb(0, 0, 0, 0.6);
+  }
+}
+
+@media screen and (min-width: 12.32in) {
+  .pagedjs_left_page {
+    box-shadow: -2px 4px 10px rgb(0, 0, 0, 0.6), inset -1px -1px 3px rgb(0, 0, 0, 0.6);
+  }
+  .pagedjs_right_page {
+    box-shadow: 2px 4px 10px rgb(0, 0, 0, 0.6), inset 1px -1px 3px rgb(0, 0, 0, 0.6);
+  }
+  .pagedjs_first_page {
+    box-shadow: 0 4px 10px rgb(0, 0, 0, 0.6), inset 0 0 3px rgb(0, 0, 0, 0.6);
+  }
+  .pagedjs_left_page:nth-last-of-type(1) {
+    box-shadow: 0 4px 10px rgb(0, 0, 0, 0.6), inset 0 0 3px rgb(0, 0, 0, 0.6);
+  }
+}
+
+
+
+/* ---------- CUSTOM STUFF STARTING HERE ------------ */
+
+
+
+/* --------------------------------------- */
+/* ----------- main elements ------------- */
+/* --------------------------------------- */
+
+
+/*-------- Background color & body font --------*/
+body {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 17px;
+}
+
+
+/* -----------custom code block ------------- */
+pre, code{
+  font-size: 0.83em; /* font size for the results code block */
+  opacity: 0.86;
+}
+
+/* sourceCode seems to affect the formatting of the code itself inside the tgc-code-block div */
+.sourceCode {
+    margin: 0.3em 0 0em 0 !important;
+    padding-bottom: 0.4em;
+    font-size: 0.9em; /* font size for R code block */
+    opacity: 1; !important /* We don't want the opacity reduction from pre, code to apply to the main code blocks */
+}
+
+.tgc-code-block {
+  background-color: #f6f5fc !important;
+  border: 1px solid #d9ced9;
+  padding: 3px 6px 3px 6px;
+    width: 100%;   /* fixes rendering of code block within practice and other divs */
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+
+/* Emphasis (e.g. italics) */
+em {
+    font-family: 'Tajawal', sans-serif;
+    color: dimgray;
+}
+
+/*------- Hyperlinks --------*/
+a {
+    color: #7f47b3;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #b552cb;
+    text-decoration: underline;
+}
+
+p {
+  margin: 1em 0 0.5em 0
+}
+
+.caption{
+  color: #828080;
+  margin-bottom: 1.5em;
+  
+}
+
+
+/* ----------All images ------------ */
+
+img {
+  
+  /* ----------image borders ------------ */
+
+  border:3px solid #32849425;
+  border-style: solid;
+
+  /* -----------vertical center------------- */
+  margin: auto;
+  display: block;
+}
+
+/* -----------div tips------------- */
+
+
+div.practice, div.watch-out, div.key-point, div.side-note, div.pro-tip, div.vocab, div.reminder, div.recap, div.rstudio-cloud, div.challenge, div.error{
+  padding: 0.5em;
+  padding-top: 0.8em;
+
+  /* left padding makes space for icons */
+  padding-left: 100px;
+  
+  min-height: 100px;
+  
+  /* add space around box */
+  margin: 1em 0em 1em 0em;
+
+  /* vertically center text */
+  display: flex;
+  
+  /* horizontally left-align */
+  align-items: left;
+  
+  
+  /* fix rendering of code block within div */
+  flex-direction: column;
+  justify-content: space-around;
+  
+  /* background  */
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-color: #fcfcfc;
+  
+ /* border */
+
+}
+
+  div.practice {
+  border: 4px #aed6d963;
+  border-style: dashed;
+  /* text color */
+  color: #21949e;
+  background-image: url("../../global/images/divs/practice.png");
+}
+
+  div.watch-out {
+  border: 4px #d9aeb563;
+  border-style: dashed;
+  /* text color */
+  color: #a82e56;
+  background-image: url("../../global/images/divs/watch_out.png");
+}
+
+  div.key-point {
+  border: 4px #e0be3463;
+  border-style: dashed;
+  /* text color */
+  color: #cf9a0a;
+  background-image: url("../../global/images/divs/key_point.png");
+}
+
+  div.side-note {
+  border: 4px #532f6663;
+  border-style: dashed;
+  /* text color */
+  color: #84549e;
+  background-image: url("../../global/images/divs/side_note.png");
+}
+
+  div.pro-tip {
+  border: 4px #6BC4E463;
+  border-style: dashed;
+  /* text color */
+  color: #377287;
+  background-image: url("../../global/images/divs/pro_tip.png");
+}
+
+  div.vocab {
+  border: 4px #CC5D2663;
+  border-style: dashed;
+  /* text color */
+  color: #943303;
+  background-image: url("../../global/images/divs/vocab.png");
+}
+
+  div.reminder {
+  border: 4px #24567A63;
+  border-style: dashed;
+  /* text color */
+  color: #24567A;
+  background-image: url("../../global/images/divs/reminder.png");
+}
+
+  div.recap {
+  border: 4px #5FBAA663;
+  border-style: dashed;
+  /* text color */
+  color: #5FBAA6;
+  background-image: url("../../global/images/divs/recap.png");
+}
+
+  div.rstudio-cloud {
+  border: 4px #2A5E9A63;
+  border-style: dashed;
+  /* text color */
+  color: #2A5E9A;
+  background-image: url("../../global/images/divs/rstudio_cloud.png");
+}
+
+  div.challenge {
+  border: 4px #28573644;
+  border-style: dashed;
+  /* text color */
+  color: #285736;
+  background-image: url("../../global/images/divs/challenge.png");
+}
+
+  div.error {
+  border: 4px #8B404963;
+  border-style: dashed;
+  /* text color */
+  color: #8B4049;
+  background-image: url("../../global/images/divs/error.png");
+}
+
+
+
+/*--------- Headers ---------*/
+
+
+.title {
+  font-weight: 500;
+  font-size: 3em;
+}
+
+h1 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0.3em;
+}
+
+h2 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0.2em;
+}
+
+h3 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0.1em;
+}
+
+h4 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0em;
+}
+
+h5 {
+  color: #328494;
+}
+
+
+/* ----------- User profiles -------------  */ 
+
+.user-profile-details li {
+  list-style: none;
+  padding: 1px 1px 1px 65px;
+  margin: 0px;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-profile-details p {
+    margin: 0em 0 0.5em 0
+}
+
+.user-profile-details img{
+  Position: absolute;
+  left: 0px; 
+  top: 0px; 
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #84b0ba;
+}
+
+.user-profile-details name{
+  color: #328494;
+  font-weight: 400;
+  font-size: 1.8em;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+

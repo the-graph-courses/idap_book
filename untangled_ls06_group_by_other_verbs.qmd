@@ -1,0 +1,431 @@
+---
+title: 'Grouped filter, mutate and arrange'
+output:
+  html_document:
+    number_sections: true
+    toc: true
+    toc_float: true
+    css: !expr here::here("global/style/style.css")
+    highlight: kate
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, echo = F, message = F, warning = F}
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(knitr, 
+               here, 
+               janitor,
+               tidyverse)
+ 
+ 
+```
+
+## Introduction
+
+Data wrangling often involves applying the same operations separately to different groups within the data. This pattern, sometimes called "split-apply-combine", is easily accomplished in {dplyr} by chaining the `group_by()` verb with other wrangling verbs like `filter()`, `mutate()`, and `arrange()` (all of which you have seen before!).
+
+In this lesson, you'll become confident with these kinds of grouped manipulations.
+
+Let's get started.
+
+## Learning objectives
+
+1.  You can use `group_by()` with `arrange()`, `filter()`, and `mutate()` to conduct grouped operations on a data frame.
+
+## Packages
+
+This lesson will require the {tidyverse} suite of packages and the {here} package:
+
+```{r}
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse, here)
+```
+
+## Datasets
+
+In this lesson, we will again use data from the COVID-19 serological survey conducted in Yaounde, Cameroon. Below, we import the data, create a small data frame subset, `yao` and an even smaller subset, `yao_sex_weight`.
+
+```{r, message = F}
+yao <- 
+  read_csv(here::here('data/yaounde_data.csv'))  %>% 
+  select(sex, age, age_category, weight_kg, occupation, igg_result, igm_result)
+
+yao
+
+yao_sex_weight <- 
+  yao %>% 
+  select(sex, weight_kg)
+
+yao_sex_weight
+```
+
+------------------------------------------------------------------------
+
+For practice questions, we will also use the sarcopenia data set that you have seen previously:
+
+```{r, message = F}
+sarcopenia <- read_csv(here::here('data/sarcopenia_elderly.csv'))
+
+sarcopenia
+```
+
+## Arranging by group
+
+The `arrange()` function orders the rows of a data frame by the values of selected columns. This function is only sensitive to groupings when we set its argument `.by_group` to `TRUE`. To illustrate this, consider the `yao_sex_weight` data frame:
+
+```{r}
+yao_sex_weight
+```
+
+We can arrange this data frame by weight like so:
+
+```{r}
+yao_sex_weight %>% 
+  arrange(weight_kg)
+```
+
+As expected, lower weights have been brought to the top of the data frame.
+
+If we first group the data, we might expect a different output:
+
+```{r}
+yao_sex_weight %>% 
+  group_by(sex) %>% 
+  arrange(weight_kg)
+```
+
+But as you see, the arrangement is still the same.
+
+Only when we set the `.by_group` argument to `TRUE` do we get something different:
+
+```{r}
+yao_sex_weight %>% 
+  group_by(sex) %>% 
+  arrange(weight_kg, .by_group = TRUE)
+```
+
+Now, the data is *first* sorted by sex (all women first), and then by weight.
+
+### `arrange()` can group automatically {.unnumbered}
+
+In reality we do not need `group_by()` to arrange by group; we can simply put multiple variables in the `arrange()` function for the same effect.
+
+So this simple `arrange()` statement:
+
+```{r}
+yao_sex_weight %>% 
+  arrange(sex, weight_kg)
+```
+
+is equivalent to the more complex `group_by()`, `arrange()` statement used before:
+
+```{r eval = F}
+yao_sex_weight %>% 
+  group_by(sex) %>% 
+  arrange(weight_kg, .by_group = TRUE)
+```
+
+The code `arrange(sex, weight_kg)` tells R to arrange the rows *first* by sex, and then by weight.
+
+Obviously, this syntax, with just `arrange()`, and no `group_by()` is simpler, so you can stick to it.
+
+::: Reminder
+`desc()` **for descending order**
+
+Recall that to arrange *in descending order*, we can wrap the target variable in `desc()`. So, for example, to sort by sex and weight, but with the heaviest people on top, we can run:
+
+```{r}
+yao_sex_weight %>% 
+  arrange(sex, desc(weight_kg))
+```
+:::
+
+::: {.callout-tip title='Practice'}
+With an `arrange()` call, sort the `sarcopenia` data first by sex and then by grip strength. (If done correctly, the first row should be of a woman with a grip strength of 1.3 kg). To make the arrangement clear, you should first `select()` the sex and grip strength variables.
+
+```{r eval = FALSE}
+## Complete the code with your answer:
+Q_grip_strength_arranged <- 
+  sarcopenia %>% 
+  select(______________________________) %>% 
+  arrange(______________________________)
+```
+
+```{r include = FALSE}
+## Check your answer
+.CHECK_Q_grip_strength_arranged()
+.HINT_Q_grip_strength_arranged()
+
+## To get the solution, run the line below
+.SOLUTION_Q_grip_strength_arranged()
+## Each question has a solution function similar to this.
+## Where HINT is replaced with SOLUTION in the function name.
+## But you will need to type out the function name for the remaining solutions on your own.
+## This is to discourage you from looking at the solution before answering the question.
+```
+
+:::
+
+::: {.callout-tip title='Practice'}
+The `sarcopenia` dataset contains a column, `age_group`, which stores age groups as a string (the age groups are "Sixties", "Seventies" and "Eighties"). Convert this variable to a factor with the levels in the right order (first "Sixties" then "Seventies" and so on). (Hint: Look back on the `case_when()` lesson if you do not see how to relevel a factor.)
+
+Then, with a nested `arrange()` call, arrange the data first by the newly-created `age_group` factor variable (younger individuals first) and then by `height_meters`, with shorter individuals first.
+
+```{r eval = FALSE}
+## Complete the code with your answer:
+Q_age_group_height <- 
+  sarcopenia 
+```
+
+```{r include = FALSE}
+## Check your answer
+.CHECK_Q_age_group_height()
+.HINT_Q_age_group_height()
+```
+:::
+
+## Filtering by group
+
+The `filter()` function keeps or drops rows based on a condition. If `filter()` is applied to grouped data, the filtering operation is carried out separately for each group.
+
+To illustrate this, consider again the `yao_sex_weight` data frame:
+
+```{r}
+yao_sex_weight
+```
+
+If we want to filter the data for the heaviest person, we could run:
+
+```{r}
+yao_sex_weight %>% 
+  filter(weight_kg == max(weight_kg))
+```
+
+But if we want to get heaviest person per sex group (the heaviest man *and* the heaviest woman), we can use `group_by(sex)` then `filter()`:
+
+```{r}
+yao_sex_weight %>% 
+  group_by(sex) %>% 
+  filter(weight_kg == max(weight_kg))
+```
+
+Great! The code above can be translated as "For each sex group, keep the row with the maximum `weight_kg` value".
+
+### Filtering with nested groupings {.unnumbered}
+
+`filter()` will work fine with any number of nested groupings.
+
+For example, if we want to see the heaviest man and heaviest woman *per age group* we could run the following on the `yao` data frame:
+
+```{r render = head_10_rows}
+yao %>% 
+  group_by(sex, age_category) %>% 
+  filter(weight_kg == max(weight_kg))
+```
+
+This code groups by sex *and* age category, and then finds the heaviest person in each sub-category.
+
+(Why do we have 10 rows in the output? Well, 2 sex groups x 5 groups age groups = 10 unique groupings.)
+
+The output is a bit scattered though, so we can chain this with the `arrange()` function, to arrange by sex and age group.
+
+```{r render = head_10_rows}
+yao %>% 
+  group_by(sex, age_category) %>% 
+  filter(weight_kg == max(weight_kg)) %>% 
+  arrange(sex, age_category)
+```
+
+Now the data is easier to read. All women come first, then men. But we see notice a weird arrangement of the age groups! Those aged 5 to 14 should come *first* in the arrangement. Of course, we've learned how to fix this---the `factor()` function, and its `levels` argument:
+
+```{r render = head_10_rows}
+yao %>%
+  mutate(age_category = factor(
+    age_category,
+    levels = c("5 - 14", "15 - 29", "30 - 44", "45 - 64", "65 +")
+  )) %>%
+  group_by(sex, age_category) %>%
+  filter(weight_kg == max(weight_kg)) %>%
+  arrange(sex, age_category)
+```
+
+Now we have a nice and well-arranged output!
+
+::: {.callout-tip title='Practice'}
+Group the `sarcopenia` data frame by age group and sex, then filter for the highest skeletal muscle index in each (nested) group.
+
+```{r eval = FALSE}
+## Complete the code with your answer:
+Q_max_skeletal_muscle_index <- 
+  sarcopenia 
+```
+
+```{r include = FALSE}
+## Check your answer
+.CHECK_Q_max_skeletal_muscle_index()
+.HINT_Q_max_skeletal_muscle_index()
+```
+:::
+
+## Mutating by group
+
+`mutate()` is used to modify columns or to create new ones. With grouped data, `mutate()` operates over each group independently.
+
+Let's first consider a regular `mutate()` call, not a grouped one. Imagine that you wanted to add a column that ranks respondents by weight. This can be done with the `rank()` function inside a `mutate()` call:
+
+```{r}
+yao_sex_weight %>% 
+  mutate(weight_rank = rank(weight_kg))
+```
+
+The output shows that the first row is the 901st lightest individual. But it would be more intuitive to rank in descending order with the heaviest person first. We can do this with the `desc()` function:
+
+```{r}
+yao_sex_weight %>% 
+  mutate(weight_rank = rank(desc(weight_kg)))
+```
+
+The output shows that the person in the first row is the 71st heaviest individual.
+
+------------------------------------------------------------------------
+
+Now, let's try to write a grouped `mutate()` call. Imagine we want to add this weight rank column *per sex group* in the data frame. That is, we want to know each person's weight rank in their sex category. In this case, we can chain `group_by(sex)` with `mutate()`:
+
+```{r}
+yao_sex_weight %>% 
+  group_by(sex) %>% 
+  mutate(weight_rank = rank(desc(weight_kg)))
+```
+
+Now we see that the person in the first row is the 53rd heaviest *woman*. (The .5 indicates that this rank is a tie with someone else in the data.)
+
+We could also arrange the data to make things clearer:
+
+```{r}
+yao_sex_weight %>% 
+  group_by(sex) %>% 
+  mutate(weight_rank = rank(desc(weight_kg))) %>% 
+  arrange(sex, weight_rank)
+```
+
+### Mutating with nested groupings {.unnumbered}
+
+Of course, as with the other verbs we have seen, `mutate()` also works with nested groups.
+
+For example, below we create the nested grouping of age *and* sex with the `yao` data frame, then add a rank column with `mutate()`:
+
+```{r}
+yao %>% 
+  group_by(sex, age_category) %>% 
+  mutate(weight_rank = rank(desc(weight_kg)))
+```
+
+The output shows that the person in the first row is 20th heaviest *woman in the 45 to 64 age group*.
+
+::: {.callout-tip title='Practice'}
+With the `sarcopenia` data, group by `age_group`, then in a new variable called `grip_strength_rank`, compute the per-age-group rank of each individual's grip strength. (To compute the rank, use `mutate()` and the `rank()` function with its default ties method.)
+
+```{r eval = FALSE}
+## Complete the code with your answer:
+Q_rank_grip_strength <- 
+  sarcopenia
+```
+
+```{r include = FALSE}
+## Check your answer
+.CHECK_Q_rank_grip_strength()
+.HINT_Q_rank_grip_strength()
+```
+:::
+
+::: {.callout-caution title='Watch Out'}
+**Remember to ungroup data before further analysis**
+
+As has been mentioned before, it is important ungroup your data before doing further analysis.
+
+Consider this last example, where we computed the weight rank of individuals per age and sex group:
+
+```{r}
+yao %>% 
+  group_by(sex, age_category) %>% 
+  mutate(weight_rank = rank(desc(weight_kg)))
+```
+
+If, in the process of analysis, you stored this output as a new data frame:
+
+```{r}
+yao_modified <- 
+  yao %>% 
+  group_by(sex, age_category) %>% 
+  mutate(weight_rank = rank(desc(weight_kg)))
+```
+
+And then, later on, you picked up the data frame and tried some other analysis, for example, filtering to get the oldest person in the data:
+
+```{r}
+yao_modified %>% 
+  filter(age == max(age))
+```
+
+You might be confused by the output! Why are there 55 rows of "oldest people"?
+
+This would be because you forgot to ungroup the data before storing it for further analysis. Let's do this properly now
+
+```{r}
+yao_modified <- 
+  yao %>% 
+  group_by(sex, age_category) %>% 
+  mutate(weight_rank = rank(desc(weight_kg))) %>% 
+  ungroup()
+```
+
+Now we can correctly obtain the oldest person/people in the data set:
+
+```{r}
+yao_modified %>% 
+  filter(age == max(age))
+```
+:::
+
+## Wrap up
+
+`group_by()` is a marvelous tool for arranging, mutating, filtering based on the groups within a single or multiple variables.
+
+![Fig: arrange() and group_by()](images/custom_dplyr_groupby_arrange.png){alt="Fig: arrange() and its use combined with group_by()." width="400"} ![Fig: mutate() and group_by()](images/custom_dplyr_groupby_mutate.png){alt="Fig: mutate() and its use combined with group_by()." width="400"}
+
+![Fig: filter() and group_by()](images/custom_dplyr_groupby_filter.png){alt="Fig: filter() and its use combined with group_by()." width="400"}
+
+There are numerous ways of combining these verbs to manipulate your data. We invite you to take some time and to try these verbs out in different combinations!
+
+See you next time!
+
+ 
+
+## References {.unlisted .unnumbered}
+
+Some material in this lesson was adapted from the following sources:
+
+-   Horst, A. (2022). *Dplyr-learnr*. <https://github.com/allisonhorst/dplyr-learnr> (Original work published 2020)
+
+-   *Group by one or more variables*. (n.d.). Retrieved 21 February 2022, from <https://dplyr.tidyverse.org/reference/group_by.html>
+
+-   *Create, modify, and delete columns --- Mutate*. (n.d.). Retrieved 21 February 2022, from <https://dplyr.tidyverse.org/reference/mutate.html>
+
+-   *Subset rows using column values --- Filter*. (n.d.). Retrieved 21 February 2022, from <https://dplyr.tidyverse.org/reference/filter.html>
+
+-   *Arrange rows by column values --- Arrange*. (n.d.). Retrieved 21 February 2022, from <https://dplyr.tidyverse.org/reference/arrange.html>
+
+Artwork was adapted from:
+
+-   Horst, A. (2022). *R & stats illustrations by Allison Horst*. <https://github.com/allisonhorst/stats-illustrations> (Original work published 2018)
+
+## Solutions 
+
+```{r}
+.SOLUTION_Q_grip_strength_arranged()
+.SOLUTION_Q_age_group_height()
+.SOLUTION_Q_max_skeletal_muscle_index()
+.SOLUTION_Q_rank_grip_strength()
+```
+

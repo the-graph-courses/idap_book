@@ -1,0 +1,178 @@
+---
+title: 'Setting up R and RStudio'
+output:
+  html_document:
+    number_sections: true
+    toc: true
+    toc_float: true
+    css: !expr here::here("global/style/style.css")
+    highlight: kate
+editor_options:
+  markdown:
+    wrap: 100
+  canonical: true
+  chunk_output_type: console
+---
+
+```{r, echo = F, message = F, warning = F}
+ ```
+
+------------------------------------------------------------------------
+
+## Learning objective {.unlisted .unnumbered}
+
+1.  You can access R and RStudio, either through RStudio.cloud or by downloading and installing these software to your computer.
+
+## Introduction
+
+To start you off on your R journey, we'll need to set you up with the required software, R and RStudio. **R** is the programming language that you'll use write code, while **RStudio** is an integrated development environment (IDE) that makes working with R easier.
+
+## Working locally vs. on the cloud
+
+There are two main ways that you can access and work with R and RStudio: download them to your computer, or use a web server to access them on the cloud.
+
+Using R and RStudio on the cloud is the less common option, but it may be the right choice if you are just getting started with programming, and you do not yet want to worry about installing software. You may also prefer the cloud option if your local computer is old, slow, or otherwise unfit for running R.
+
+Below, we go through the setup process for RStudio Cloud, Rstudio on Windows and RStudio on macOS separately. Jump to the section that is relevant for you!
+
+::: {.callout-caution title='Watch Out'}
+RStudio cloud will only give you 25 free project hours per month. After that, you will need to upgrade to a paid plan. If you think you'll need more than 25 hours per month, you may want to avoid this option.
+:::
+
+## RStudio on the cloud
+
+If you'll be working on the cloud, follow the steps below:
+
+1.  Go to the website [rstudio.cloud](https://rstudio.cloud){target="_blank"} and follow the instructions to sign up for a free account. (We recommend signing up with Google if you have a Google account, so you don't need to remember any new passwords).
+
+2.  Once you're done, click on the "New Project" icon at the top right, and select "New RStudio Project".
+
+![](images/new_rstudio_project_cloud.png){width="529"}
+
+You should see a screen like this:
+
+![](images/rstudio_cloud_fresh_window.png){width="528"}
+
+This is RStudio, your new home for a long time to come!
+
+At the top of the screen, rename the project from "Untitled Project" to something like "r_intro".
+
+![](images/rstudio_cloud_name_project.png){width="527"}
+
+You can start using R by typing code into the "console" pane on the left:
+
+![](images/rstudio_cloud_console.png){width="522"}
+
+Try using R as a calculator here; type `2 + 2` and press Enter.
+
+That's it; you're ready to roll. Whenever you want to reopen RStudio, navigate to rstudio.cloud,
+
+Proceed to the "wrapping up" section of the lesson.
+
+## Set up on Windows
+
+### Download and install R
+
+If you're working on Windows, follow the steps below to download and install R:
+
+1.  Go to [cran.rstudio.com](https://cran.rstudio.com/){target="_blank"} to access the R installation page. Then click the download link for Windows:
+
+    ![](images/cran_select_windows.png){width="537"}
+
+2.  Choose the "base" sub-directory.
+
+    ![](images/install_r_windows_base.png){width="568"}
+
+3.  Then click on the download link at the top of the page to download the latest version of R:
+
+    ![](images/install_r_windows_download2.png){width="569"}
+
+    Note that the screenshot above may not show the latest version.
+
+4.  After the download is finished, click on the downloaded file, then follow the instructions on the installation pop-up window. During installation, you should not have to change any of the defaults; just keep clicking "Next" until the installation is done.
+
+    Well done! You should now have R on your computer. But you likely won't ever need to interact with R directly. Instead you'll use the RStudio IDE to work with R. Follow the instructions in the next section to get RStudio.
+
+### Download, install & run RStudio
+
+To download RStudio, go to [rstudio.com/products/rstudio/download/#download](https://www.rstudio.com/products/rstudio/download/#download) and download the Windows version.
+
+![](images/install_rstudio_button_windows.png){width="400"}
+
+After the download is finished, click on the downloaded file and follow the installation instructions.
+
+Once installed, RStudio can be opened like any application on your computer: press the Windows key to bring up the Start menu, and search for "rstudio". Click to to open the app:
+
+![](images/open_rstudio_windows.png){width="400"}
+
+You should see a window like this:
+
+![](images/rstudio_first_view_windows.png){width="594"}
+
+This is RStudio, your new home for a long time to come!
+
+You can start using R by typing code into the "console" pane on the left:
+
+![](images/windows_write_code_here.png){width="500"}
+
+Try using R as a calculator here; type `2 + 2` and press Enter.
+
+That's it; you're ready to roll. Proceed to the "wrapping up" section of the lesson.
+
+## Set up on macOS
+
+### Download and install R
+
+If you're working on macOS, follow the steps below to download and install R:
+
+1.  Go to [cran.rstudio.com](https://cran.rstudio.com/){target="_blank"} to access the R installation page. Then click the link for macOS:
+
+    ![](images/install_r_select_mac.png){width="429"}
+
+2.  Download and install the relevant R version for your Mac. For most people, the first option under "Latest release" will be the one to get.
+
+    ![](images/r_mac_select_version.png){width="422"}
+
+3.  After the download is finished, click on the downloaded file, then follow the instructions on the installation pop-up window.
+
+Well done! You should now have R on your computer. But you likely won't ever need to interact with R directly. Instead you'll use the RStudio IDE to work with R. Follow the instructions in the next section to get RStudio.
+
+### Download, install & run RStudio
+
+To download RStudio, go to [rstudio.com/products/rstudio/download/#download](https://www.rstudio.com/products/rstudio/download/#download){target="_blank"} and download the version for macOS.
+
+![](images/download_rstudio_button_mac.png){width="400"}
+
+After the download is finished, click on the downloaded file and follow the installation instructions.
+
+Once installed, RStudio can be opened like any application on your computer: Press `Command` + `Space` to open Spotlight, then search for "rstudio". Click to open the app.
+
+![](images/mac_spotlight_rstudio.png){width="400"}
+
+You should see a window like this:
+
+![](images/mac_rstudio_window.png){width="516"}
+
+This is RStudio, your new home for a long time to come!
+
+You can start using R by typing code into the "console" pane on the left:
+
+![](images/mac_write_code_here.png){width="500"}
+
+Try using R as a calculator here; type `2 + 2` and press Enter.
+
+## Wrap up
+
+You should now have access to R and RStudio, so you're all set to begin the journey of learning to use these immensely powerful tools. See you in the next session!
+
+
+```{r echo = F, message = F}
+```
+
+## References {.unlisted .unnumbered}
+
+Some material in this lesson was adapted from the following sources:
+
+-   Nordmann, Emily, and Heather Cleland-Woods. *Chapter 2 Programming Basics \| Data Skills*. *psyteachr.github.io*, <https://psyteachr.github.io/data-skills-v1/programming-basics.html> Accessed 23 Feb. 2022.
+
+`r tgc_license()`

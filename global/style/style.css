@@ -1,0 +1,333 @@
+/*-------- Google font imports --------*/
+
+@import url(//fonts.googleapis.com/css?family=Roboto+Mono);
+@import url(//fonts.googleapis.com/css?family=Source+Code+Pro);
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;400;500;700&display=swap');
+
+
+/* ----------All images ------------ */
+
+img {
+  
+  /* ----------image borders ------------ */
+
+  border:3px solid #32849425;
+  border-style: solid;
+
+  /* -----------vertical center------------- */
+  margin: auto;
+  display: block;
+}
+
+/* -----------div tips------------- */
+
+
+div.practice, div.r-practice, div.watch-out, div.key-point, div.side-note, div.pro-tip, div.vocab, div.reminder, div.recap, div.rstudio-cloud, div.challenge, div.error{
+  padding: 0.5em;
+  padding-top: 0.8em;
+
+  /* left padding makes space for icons */
+  padding-left: 100px;
+  
+  min-height: 100px;
+  
+  /* add space around box */
+  margin: 1em 0em 1em 0em;
+
+  /* vertically center text */
+  display: flex;
+  
+  /* horizontally left-align */
+  align-items: left;
+  
+  
+  /* fix rendering of code block within div */
+  flex-direction: column;
+  justify-content: space-around;
+  
+  /* background  */
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-color: #fcfcfc;
+  
+ /* border */
+
+}
+
+  div.practice {
+  border: 4px #aed6d963;
+  border-style: dashed;
+  /* text color */
+  color: #21949e;
+  background-image: url("../../global/images/divs/practice.png");
+}
+
+  div.r-practice {
+  border: 4px #aed6d963;
+  border-style: dashed;
+  /* text color */
+  color: #21949e;
+  background-image: url("../../global/images/divs/r_practice.png");
+}
+
+  div.watch-out {
+  border: 4px #d9aeb563;
+  border-style: dashed;
+  /* text color */
+  color: #a82e56;
+  background-image: url("../../global/images/divs/watch_out.png");
+}
+
+  div.key-point {
+  border: 4px #e0be3463;
+  border-style: dashed;
+  /* text color */
+  color: #cf9a0a;
+  background-image: url("../../global/images/divs/key_point.png");
+}
+
+  div.side-note {
+  border: 4px #532f6663;
+  border-style: dashed;
+  /* text color */
+  color: #84549e;
+  background-image: url("../../global/images/divs/side_note.png");
+}
+
+  div.pro-tip {
+  border: 4px #6BC4E463;
+  border-style: dashed;
+  /* text color */
+  color: #377287;
+  background-image: url("../../global/images/divs/pro_tip.png");
+}
+
+  div.vocab {
+  border: 4px #CC5D2663;
+  border-style: dashed;
+  /* text color */
+  color: #943303;
+  background-image: url("../../global/images/divs/vocab.png");
+}
+
+  div.reminder {
+  border: 4px #24567A63;
+  border-style: dashed;
+  /* text color */
+  color: #24567A;
+  background-image: url("../../global/images/divs/reminder.png");
+}
+
+  div.recap {
+  border: 4px #5FBAA663;
+  border-style: dashed;
+  /* text color */
+  color: #5FBAA6;
+  background-image: url("../../global/images/divs/recap.png");
+}
+
+  div.rstudio-cloud {
+  border: 4px #2A5E9A63;
+  border-style: dashed;
+  /* text color */
+  color: #2A5E9A;
+  background-image: url("../../global/images/divs/rstudio_cloud.png");
+}
+
+  div.challenge {
+  border: 4px #28573644;
+  border-style: dashed;
+  /* text color */
+  color: #285736;
+  background-image: url("../../global/images/divs/challenge.png");
+}
+
+  div.error {
+  border: 4px #8B404963;
+  border-style: dashed;
+  /* text color */
+  color: #8B4049;
+  background-image: url("../../global/images/divs/error.png");
+}
+
+
+/* --------------------------------------- */
+/* ----------- main elements ------------- */
+/* --------------------------------------- */
+
+
+/*-------- Background color & body font --------*/
+body {
+  font-family: 'Tajawal', sans-serif;
+  color: black;
+  font-size: 18.5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+    /* -----------shrink body width. easier to read------------- */
+    /* max-width: 800px;*/
+    margin: 0 auto;
+  /* -----------background color important to distinguish iframe when embedded in WP------------- */
+    background-color: #F9FAFD; 
+}
+
+
+/* -----------custom code block ------------- */
+
+
+
+pre, code{
+  font-size: 0.9em; /* font size for the results code block */
+  opacity: 0.86;
+}
+
+/* sourceCode seems to affect the formatting of the code itself inside the tgc-code-block div */
+.sourceCode {
+    margin: 0.3em 0 0em 0 !important;
+    padding-bottom: 0.4em;
+    font-size: 16px; /* font size for R code block */
+    width: 100%;   /* fix rendering of code block within div */
+    opacity: 1; !important /* We don't want the opacity reduction from pre, code to apply to the main code blocks */
+}
+
+.tgc-code-block {
+  background-color: #f6f5fc !important;
+  border: 1px solid #d9ced9;
+  padding: 3px 6px 3px 6px;
+    width: 100%;   /* fixes rendering of code block within practice and other divs */
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+
+
+/*-------- Main Panel ---------*/
+.topics {
+    width: 70%;
+    overflow-x: auto;
+    padding-bottom: 600px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+}
+
+.band {
+    padding-left: 3%;
+    padding-right: 3%;
+    position: relative;
+}
+
+/* Emphasis (e.g. italics) */
+em {
+    font-family: 'Tajawal', sans-serif;
+    color: dimgray;
+}
+
+/*------- Hyperlinks --------*/
+a {
+    color: #7f47b3;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #b552cb;
+    text-decoration: underline;
+}
+
+p {
+  margin: 1em 0 0.5em 0
+}
+
+.caption{
+  color: #828080;
+  margin-bottom: 1.5em;
+  
+}
+
+
+/*--------- Headers ---------*/
+
+
+.title {
+  font-weight: 500;
+  font-size: 3em;
+}
+
+h1 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0.3em;
+}
+
+h2 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0.2em;
+}
+
+h3 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0.1em;
+}
+
+h4 {
+  color: #328494;
+  font-weight: 500;
+  padding-top: 0em;
+}
+
+h5 {
+  color: #328494;
+}
+
+
+/* ----------- User profiles -------------  */ 
+
+.user-profile-details li {
+  list-style: none;
+  padding: 1px 1px 1px 65px;
+  margin: 0px;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-profile-details p {
+    margin: 0em 0 0.5em 0
+}
+
+.user-profile-details img{
+  Position: absolute;
+  left: 0px; 
+  top: 0px; 
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #84b0ba;
+}
+
+.user-profile-details name{
+  color: #328494;
+  font-weight: 400;
+  font-size: 1.8em;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+
+/* ----------- Tables -------------  */
+
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+thead, tfoot, tr:nth-child(even) { background: #eee; }
+
+/*------- Sources --------*/
+
+/*-------- https://github.com/allisonhorst/dplyr-learnr/blob/master/css/style.css --------*/
+/*-------- https://codepen.io/Tajmul/pen/XydKNb  --------*/
+

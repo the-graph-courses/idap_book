@@ -1,0 +1,20 @@
+# Introduction {.unnumbered}
+
+This book is a compilation of lesson notes for a 3-month online course offered by The GRAPH Courses. To access the lesson videos, exercise files, and online quizzes, please visit our website, [thegraphcourses.org](https://thegraphcourses.org).
+
+The GRAPH Courses is a project of the Global Research and Analyses for Public Health (GRAPH) Network, a non-profit organization dedicated to making code and data skills accessible through affordable live bootcamps and free self-paced courses.
+
+## Contributors
+
+We are extremely grateful to the following individuals who have contributed to the development of these materials over several years:
+
+Amanda McKinley, Andree Valle Campos, Aziza Merzouki, Benedict Nguimbis, Bennour Hsin, Camille Beatrice Valera, Daniel Camara, Eduardo Araujo, Elton Mukonda, Guy Wafeu, Imad El Badisy, Imane Bensouda Korachi, Joy Vaz, Kene David Nwosu, Lameck Agasa, Laure Nguemo, Laure Vancauwenberghe, Matteo Franza, Michal Shrestha, Olivia Keiser, Sabina Rodriguez Velasquez, Sara Botero Mesa. 
+
+## Partners & Funders
+
+- University of Geneva
+- University of Oxford
+- World Health Organization
+- Global Fund
+- Ernst Goehner Foundation
+

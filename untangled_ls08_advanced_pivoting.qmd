@@ -1,0 +1,677 @@
+---
+title: 'Advanced pivoting'
+output:
+  html_document:
+    number_sections: true
+    toc: true
+    toc_float: true
+    css: !expr here::here("global/style/style.css")
+    highlight: kate
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, echo = F, message = F, warning = F}
+## Load packages 
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(rlang, tidyverse, knitr, here)
+
+knitr::opts_chunk$set(message = F, warning = F)
+ 
+```
+
+
+## Intro
+
+You know basic pivoting operations from long format datasets to wide format datasets and vice versa. However, as is often the case, basic manipulations are sometimes not enough for the wrangling you need to do. Let's now see the next level. Let's go !
+
+## Learning Objectives
+
+1.  Master complex pivoting from wide to long and long to wide
+
+2.  Know how to use separators as a pivoting tool
+
+## Packages
+
+```{r warning = F, message = F}
+## Load packages 
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse, outbreaks, janitor, rio, here, knitr)
+```
+
+## Datasets
+
+We will introduce these datasets as we go along but here is an overview:
+
+-   Survey data from India on how much money patients spent on tuberculosis treatment
+
+-   Biomarker data from an enteropathogen study in Zambia
+
+-   A diet survey from Vietnam
+
+## Wide to long
+
+Sometimes you have multiple kinds of wide data in the same table. Consider this artificial example of heights and weights for children over two years:
+
+```{r}
+child_stats <- 
+  tibble::tribble(
+    ~child, ~year1_height, ~year2_height, ~year1_weight, ~year2_weight,
+       "A",        "80cm",        "85cm",         "5kg",        "10kg",
+       "B",        "85cm",        "90cm",         "7kg",        "12kg",
+       "C",        "90cm",       "100cm",         "6kg",        "14kg"
+    )
+
+child_stats
+```
+
+If you pivot all the measurement columns, you'll get overly long data:
+
+```{r}
+child_stats %>% 
+  pivot_longer(2:5)
+```
+
+This is not what you (usually) want, because now you have two different kinds of data in the same column---weight and height.
+
+To get the right shape, you'll need to use the `names_sep` argument and the ".value" identifier:
+
+```{r}
+child_stats %>% 
+  pivot_longer(2:5, 
+               names_sep = "_",
+               names_to = c("period", ".value"))
+```
+
+Now we have one row for each child-period, an appropriately long format!
+
+What the code above is doing may not be clear, but you should already be able to answer the practice question below by pattern matching with our example. After the practice question, we will explain the `names_sep` argument and the ".value" identifier in more depth.
+
+::: {.callout-tip title='Practice'}
+Consider this other artificial data set:
+
+```{r}
+adult_stats <- 
+  tibble::tribble(
+    ~adult,  ~year1_BMI,  ~year2_BMI,  ~year1_HIV,  ~year2_HIV,
+       "A",          25,          30,  "Positive",  "Positive",
+       "B",          34,          28,  "Negative",  "Positive",
+       "C",          19,          17,  "Negative",  "Negative"
+  )
+
+
+adult_stats
+```
+
+Pivot the data into a long format to get the following structure:
+
+| adult | year | BMI | HIV |
+|-------|------|-----|-----|
+|       |      |     |     |
+|       |      |     |     |
+|       |      |     |     |
+
+```{r, eval = FALSE}
+Q_adult_long <-
+  adult_stats %>%
+  pivot_longer(_________)
+```
+
+```{r, include = FALSE}
+.CHECK_Q_adult_long()
+.HINT_Q_adult_long()
+```
+:::
+
+::: {.callout-note title='Side Note'}
+The `child_stats` example above has numbers stored as characters [...]
+
+As you saw in the previous lesson, you can easily extract the numbers from the output long data frame in our example using the `parse_number()` function from readr:
+
+```{r}
+child_stats_long <- 
+  child_stats %>% 
+  pivot_longer(2:5, 
+               names_sep = "_",
+               names_to = c("period", ".value"))
+
+child_stats_long
+```
+
+```{r}
+child_stats_long %>% 
+  mutate(height = parse_number(height), 
+         weight = parse_number(weight))
+```
+:::
+
+### Understanding `names_sep` and ".value"
+
+Now let's break down the `pivot_longer()` call we saw above a bit more:
+
+```{r}
+child_stats
+
+child_stats %>% 
+  pivot_longer(2:5, 
+               names_sep = "_",
+               names_to = c("period", ".value"))
+```
+
+Notice that the column names in the original `child_stats` data frame (`year1_height`, `year2_height` and so on) are made of three parts:
+
+-   the period being referenced: e.g. "year1"
+
+-   an underscore separator, "\_";
+
+-   and the type of value recorded "height" or "weight"
+
+We can make a table with these parts:
+
+| column_name    | period | separator | ".value" |
+|----------------|--------|-----------|----------|
+| `year1_height` | year1  | \_        | height   |
+| `year2_height` | year2  | \_        | height   |
+| `year1_weight` | year1  | \_        | weight   |
+| `year2_weight` | year2  | \_        | weight   |
+
+Based on that table, it should now be easier to understand the `names_sep` and `names_to` arguments that we supplied to `pivot_longer()`:
+
+#### `names_sep = "_"`:
+
+This is the separator between the period indicator (year) and the values (year and weight) recorded.
+
+If we have a different separator, this argument would change. For example, if the separator were an empty space, " ", you would have `names_sep = " "`, as seen in the example below:
+
+```{r}
+child_stats_space_sep <- 
+  tibble::tribble(
+    ~child, ~`yr1 height`, ~`yr2 height`, ~`yr1 weight`, ~`yr2 weight`,
+       "A",        "80cm",        "85cm",         "5kg",        "10kg",
+       "B",        "85cm",        "90cm",         "7kg",        "12kg",
+       "C",        "90cm",       "100cm",         "6kg",        "14kg"
+    )
+
+child_stats_space_sep %>% 
+  pivot_longer(2:5, 
+               names_sep = " ", 
+               names_to = c("period", ".value"))
+```
+
+#### `names_to = c("period", ".value")`
+
+Next, the names_to argument indicates how the data should be reshaped. We passed a vector of two character strings , "period" and the ".value" to this argument. Let's consider each in turn:
+
+**The "period" string** indicated that we want to move the data from each year (or period) into a separate row Note that there is nothing special about the word "period" used here; we could change this to any other string. So instead of "period", you could have written "time" or "year_of_measurement" or anything else:
+
+```{r}
+child_stats %>% 
+  pivot_longer(2:5, 
+               names_sep = "_",
+               names_to = c("year_of_measurement", ".value"))
+```
+
+Now, **the ".value" placeholder** is a special indicator, that tells `pivot_longer()` to make a separate column for every distinct value that appears after the separator. In our example, these distinct values are "height" and "weight".
+
+The ".value" string cannot be arbitrarily replaced. For example, this won't work:
+
+```{r}
+child_stats %>% 
+  pivot_longer(2:5, 
+               names_sep = "_", 
+               names_to = c("period", "values"))
+```
+
+------------------------------------------------------------------------
+
+To restate the point, the ".value" placeholder is tells `pivot_longer()` that we want to separate out the "height" and "weight" values into separate columns, because there are the two value types that occur after the "\_" separator in the column names.
+
+This means that if you had a wide dataset with three types of values, you would get separated-out columns, one for each value type. For example, consider the mock dataset below which shows children's records, at two time points, for the following variables:
+
+-   age in months,
+-   body fat %
+-   bmi
+
+```{r}
+child_stats_three_values <- 
+  tibble::tribble(
+  ~child,  ~t1_age,  ~t2_age, ~t1_fat, ~t2_fat, ~t1_bmi, ~t2_bmi,
+     "a",  "5mths",  "8mths",   "13%",   "15%",      14,      15,
+     "b",  "7mths",  "9mths",   "15%",   "17%",      16,      18
+  )
+child_stats_three_values
+```
+
+Here, in the column names there are three value types occurring after the "\_" separator: `age`, `fat` and `bmi`; the ".value" string tells `pivot_longer()` to make a new column for each value type:
+
+```{r}
+child_stats_three_values %>% 
+  pivot_longer(2:7, 
+               names_sep = "_",
+               names_to = c("time", ".value")
+               )
+```
+
+::: {.callout-tip title='Practice'}
+A pediatrician records the following information for a set of children over two years:
+
+-   head circumference;
+-   neck circumference; and
+-   hip circumference
+
+all in centimeters.
+
+The output table resembles the below:
+
+```{r}
+growth_stats <- 
+  tibble::tribble(
+    ~child,~yr1_head,~yr2_head,~yr1_neck,~yr2_neck,~yr1_hip,~yr2_hip,
+       "a",       45,       48,       23,       24,      51,      52,
+       "b",       48,       50,       24,       26,      52,      52,
+       "c",       50,       52,       24,       27,      53,      54
+    )
+
+growth_stats
+```
+
+Pivot the data into a long format to get the following structure:
+
+| child | year | head | neck | hip |
+|-------|------|------|------|-----|
+|       |      |      |      |     |
+|       |      |      |      |     |
+|       |      |      |      |     |
+
+```{r, eval = FALSE}
+Q_growth_stats_long <-
+  growth_stats %>%
+  pivot_longer(_________)
+```
+
+```{r, include = FALSE}
+.CHECK_Q_growth_stats_long()
+.HINT_Q_growth_stats_long()
+```
+:::
+
+### Value type *before* the separator
+
+In all the example we have used so far, the column names were constructed such that value type came after the separator (Recall our table:
+
+| column_name    | period | separator | ".value" |
+|----------------|--------|-----------|----------|
+| `year1_height` | year1  | \_        | height   |
+| `year2_height` | year2  | \_        | height   |
+| `year1_weight` | year1  | \_        | weight   |
+| `year2_weight` | year2  | \_        | weight   |
+
+)
+
+But of course, the column names could be constructed differently, with the value types coming before the separator, as in this example:
+
+```{r}
+child_stats2 <- 
+  tibble::tribble(
+    ~child, ~height_year1, ~height_year2, ~weight_year1, ~weight_year2,
+       "A",        "80cm",        "85cm",         "5kg",        "10kg",
+       "B",        "85cm",        "90cm",         "7kg",        "12kg",
+       "C",        "90cm",       "100cm",         "6kg",        "14kg"
+    )
+
+child_stats2
+```
+
+Here, the value types (height and weight) come before the "\_" separator.
+
+How can our `pivot_longer()` command accommodate this? Simple! Just swap the order of the vector given to the `names_to` argument:
+
+So instead of `names_to = c("time", ".value")`, you would have `names_to = c(".value", "time")`:
+
+```{r}
+child_stats2 %>% 
+  pivot_longer(2:5, 
+               names_sep = "_",
+               names_to = c(".value", "time"))
+```
+
+And that's it!
+
+::: {.callout-tip title='Practice'}
+Consider the following [data set from Zambia](https://zenodo.org/record/4571669) about enteropathogens and their biomarkers.
+
+```{r}
+enteropathogens_zambia_wide<- read_csv(here("data/enteropathogens_zambia_wide.csv"))
+
+enteropathogens_zambia_wide
+```
+
+This data frame has the following columns:
+
+-   LPS_1 and LPS_2: lipopolysaccharide levels, measured by Pyrochrome LAL, in EU/mL
+
+-   LBP_1 and LBP_2: LPS binding protein levels, in pg/mL
+
+-   IFABP_1 and IFAPB_2: intestinal-type fatty acid binding protein levels, in pg/mL
+
+Pivot the dataset so that it resembles the following structure
+
+| ID  | sample_count       | LPS | LBP | IFABP |
+|-----|--------------------|-----|-----|-------|
+|     |                    |     |     |       |
+|     |                    |     |     |       |
+|     |                    |     |     |       |
+
+```{r, eval = FALSE}
+
+enteropathogens_zambia_wide %>% 
+   pivot_longer(____________)
+```
+:::
+
+### A non-time-series example
+
+So far we have been using person-period (time series) datasets to illustrate the idea of complex pivots with multiple value types.
+
+But as we have mentioned, not all reshape-requiring datasets are time series data. Let's see a quick non-time-series example [...]
+
+You might measure the height (cm) and weight (kg) of a series of parental couples in a table like this:
+
+```{r}
+family_stats <- 
+  tibble::tribble(
+  ~couple, ~father_height, ~father_weight, ~mother_height, ~mother_weight,
+      "a",            180,            80,            160,             70,
+      "b",            185,            90,            150,             76,
+      "c",            182,            93,            143,             78
+  )
+family_stats
+```
+
+Here we have two different types of values (weight and height) for each person in the couple.
+
+To pivot this to one-row per person, we'll again need the `names_sep` and `names_to` arguments:
+
+```{r}
+family_stats %>% 
+  pivot_longer(2:5, 
+               names_sep  = "_",
+               names_to = c("person", ".value"))
+```
+
+The separator is an underscore, "\_", so we used `names_sep  = "_"` and because the value types come after the separator, the ".value" identifier was placed second in the `names_to` argument.
+
+### Escaping the dot separator
+
+A special example may crop up when you try to pivot a dataset where the separator is a period.
+
+```{r}
+child_stats_dot_sep <- 
+  tibble::tribble(
+    ~child, ~year1.height, ~year2.height, ~year1.weight, ~year2.weight,
+       "A",        "80cm",        "85cm",         "5kg",        "10kg",
+       "B",        "85cm",        "90cm",         "7kg",        "12kg",
+       "C",        "90cm",       "100cm",         "6kg",        "14kg"
+    )
+
+child_stats_dot_sep %>% 
+  pivot_longer(2:5, 
+               names_to = c("period", ".value"),
+               names_sep = "\\.")
+```
+
+There we used the string "\\." to indicate a dot "." because the "." is a special character in R, and sometimes needs to be [escaped](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html#escaping){target="_blank"}
+
+::: {.callout-tip title='Practice'}
+Consider again the adult_stats data you saw above. Now the column names have been changed slightly.
+
+```{r}
+adult_stats_dot_sep <- 
+  tibble::tribble(
+    ~adult,  ~`BMI.year1`,  ~`BMI.year2`,  ~`HIV.year1`,  ~`HIV.year2`,
+       "A",            25,            30,    "Positive",   "Positive",
+       "B",            34,            28,    "Negative",   "Positive",
+       "C",            19,            17,    "Negative",   "Negative"
+  )
+
+
+adult_stats_dot_sep
+```
+
+Again, pivot the data into a long format to get the following structure:
+
+| adult | year | BMI | HIV |
+|-------|------|-----|-----|
+|       |      |     |     |
+|       |      |     |     |
+|       |      |     |     |
+
+```{r, eval = FALSE}
+Q_adult2_long <-
+  adult_stats_dot_sep %>%
+  pivot_longer(_________)
+```
+
+```{r, include = FALSE}
+.CHECK_Q_adult2_long()
+.HINT_Q_adult2_long()
+```
+:::
+
+### What to do when you don't have a neat separator ?
+
+Sometimes you do not have a neat separator.
+
+Consider this [survey data from India](https://zenodo.org/record/5014153) that looked at how much money patients spent on tuberculosis treatment:
+
+```{r}
+tb_visits <- read_csv(here("data/india_tb_pathways_and_costs_data.csv")) %>% 
+  clean_names() %>% 
+  select(id, first_visit_location, first_visit_cost, second_visit_location, second_visit_cost, third_visit_location, third_visit_cost)
+
+tb_visits
+```
+
+It does not have a neat separator between the time indicators (first, second, third) and the value type (cost, location). That is, rather than something like "firstvisit_location", we have instead "first_visit_location", so the underscore is used for two purposes. For this reason, if you try our usual pivot strategy, you will get an error:
+
+```{r eval=F}
+tb_visits %>% 
+  pivot_longer(2:7, 
+               names_to = c("visit_count", ".value"), 
+               names_sep = "_")
+```
+
+```         
+Error in `pivot_longer_spec()`:
+! Can't combine `first_visit_location` <character> and `first_visit_cost` <double>.
+Run `rlang::last_error()` to see where the error occurred.
+```
+
+The most direct way to reshape this dataset successfully would be to use special "regex" (string manipulation), but you likely have not learned this yet!
+
+So for now, the solution we recommend is to manually rename your columns to insert a clear separator, "\_\_":
+
+```{r}
+tb_visits_renamed <- 
+  tb_visits %>% 
+  rename(first__visit_location = first_visit_location, 
+         first__visit_cost = first_visit_cost, 
+         second__visit_location = second_visit_location, 
+         second__visit_cost= second_visit_cost, 
+         third__visit_location = third_visit_location, 
+         third__visit_cost = third_visit_cost)
+
+tb_visits_renamed
+```
+
+Now we can try the pivot:
+
+```{r}
+tb_visits_long <-
+  tb_visits_renamed %>% 
+  pivot_longer(2:7, 
+               names_to = c("visit_count", ".value"), 
+               names_sep = "__")
+tb_visits_long
+```
+
+Now let's polish the data frame:
+
+```{r}
+tb_visits_long %>% 
+  # remove nonexistent entries
+  filter(!visit_location == "") %>% 
+  # give significant naming to the visit_count values
+  mutate(visit_count = case_when(visit_count == "first" ~ 1, 
+                                 visit_count == "second" ~ 2, 
+                                 visit_count == "third" ~ 3)) %>% 
+  # ensure visit_cost is numerical
+  mutate(visit_cost = as.numeric(visit_cost))
+```
+
+Above, we first remove the entries where we do not have the visit location information (i.e. we filter out the rows where the visit location variable is set to `""` ). We then convert to numeric values the visit count variable, where the strings `"first"` to `"third"` are converted to numerical entries `1` to `3`. Finally, we ensure the variable of visit cost is numeric using `mutate()` and the helper function `as.numeric()`.
+
+::: {.callout-tip title='Practice'}
+We will use [a survey data about diet from Vietnam](https://www.wur.nl/en/project/Retail-Diversity-for-Dietary-Diversity-RD4DD.htm). Women in Hanoi were interviewed about their food shopping, and this was used to create nutrition profiles for each women. Here we will use a subset of this data for 61 households who came for 2 visits, recording:
+
+-   `enerc_kcal_w_1`: the consumed energy from ingredient/food (Kcal) during the first visit (with `_2` for the second visit)
+
+-   `dry_w_1`: the consumed dry from ingredient/food (g) during the first visit (with `_2` for the second visit)
+
+-   `water_w_1`: the consumed water from ingredient/food (g) during the first visit (with `_2` for the second visit)
+
+-   `fat_w_1`: the consumed Lipid from ingredient/food (g) during the first visit (with `_2` for the second visit)
+
+```{r}
+diet_diversity_vietnam_wide <- read_csv(here("data/diet_diversity_vietnam_wide.csv"))
+
+diet_diversity_vietnam_wide
+```
+
+You should first distinguish if we have a neat operator or not. Based on this, rename your columns if necessary. Then bring the different visit records (1 and 2) into a sole column for energy, fat weight, water weight and dry weight. In other words, pivot the dataset into long format of this form:
+
+| household_id | visit | enerc_kcal_w | dry_w | water_w | fat_w |
+|--------------|-------|--------------|-------|---------|-------|
+|              |       |              |       |         |       |
+|              |       |              |       |         |       |
+
+```{r, eval = FALSE}
+Q_diet_diversity_vietnam_long <-
+  diet_diversity_vietnam_wide %>%
+  pivot_longer(_________)
+```
+
+```{r, include = FALSE}
+.CHECK_Q_diet_diversity_vietnam_long()
+.HINT_Q_diet_diversity_vietnam_long()
+```
+:::
+
+## Long to wide
+
+We just saw how to do some complex operations wide to long, which we saw in the previous lesson is essential for plotting and wrangling. Let's see the opposite transformation.
+
+It could be useful to put long to wide to do different transformations, filters, and processing NAs. In this format, your measurements / collected data become the columns of the data set.
+
+Let's take the Zambia enteropathogen data, and this time, let's take the original ! Indeed, what you were handling before was a dataset **prepared for you**, in a wide format. **The original dataset is long** and we will now see the data preparation I did beforehand, behind the scenes. You're almost becoming the teacher of this lesson ;)
+
+```{r}
+enteropathogens_zambia_long <- read_csv(here("data/enteropathogens_zambia_long.csv"))
+enteropathogens_zambia_long
+```
+
+This is how we convert it from long to wide:
+
+```{r}
+enteropathogens_zambia_wide <-
+  enteropathogens_zambia_long %>%
+  pivot_wider(
+    names_from = group,
+    values_from = c(LPS, LBP, IFABP)
+  )
+
+enteropathogens_zambia_wide
+```
+
+You can see that the values of the variable `group` (1 or 2) are added to the values' names (LPS, LBP, IFABP) to create the new columns representing different group data: for example, `LPS_1` and `LPS_2`.
+
+We are considering this "advanced" pivoting because we are pivoting wider several variables at the same time, but as you can see, the syntax is quite simple---the same arguments are used as we did with the simpler pivots in the previous lesson---`names_from` and `values_from`.
+
+------------------------------------------------------------------------
+
+Let's see another example, using the diet survey data from Vietnam that you manipulated previously:
+
+```{r}
+diet_diversity_vietnam_long <- read_csv(here("data/diet_diversity_vietnam_long.csv"))
+diet_diversity_vietnam_long
+```
+
+Here we will use the `visit_number` variable to create new variable for energy, water, fat and dry content of foods recorded at different visits:
+
+```{r}
+diet_diversity_vietnam_wide <-
+  diet_diversity_vietnam_long %>%
+  pivot_wider(
+    names_from = visit_number, 
+    values_from = c(enerc_kcal_w, dry_w, water_w, fat_w)
+  )
+
+diet_diversity_vietnam_wide
+```
+
+You can see that the values of the variable `visit_number` (1 or 2) are added to the values' names (`energy_kcal_w`, `dry_w`, `fat_w`, `water_w`) to create the new columns representing different group data: for example, `water_w_1` and `water_w_2`. We have pivoted to wide format all of these variables at the same time. Now each weight measure per visit is represented as a single variable (i.e. column) in the dataset.
+
+With this format, it is easy to sum together the energy intake per household for example:
+
+```{r}
+diet_diversity_vietnam_wide %>%
+  select(household_id, enerc_kcal_w_1, enerc_kcal_w_2) %>%
+  mutate(total_energy_kcal = enerc_kcal_w_1 + enerc_kcal_w_2) %>%
+  arrange(household_id)
+```
+
+However, you could get something similar in the long format:
+
+```{r}
+diet_diversity_vietnam_long %>%
+  group_by(household_id) %>%
+  summarize(total_energy = sum(enerc_kcal_w)) 
+```
+
+::: {.callout-tip title='Practice'}
+Take `tb_visits_long` dataset that we manipulated above and pivot it back to a wide format.
+
+```{r, eval = FALSE}
+Q_tb_visit_wide <-
+  tb_visits_long %>%
+  pivot_wider(_________)
+```
+
+```{r, include = FALSE}
+.CHECK_Q_tb_visit_wide()
+.HINT_Q_tb_visit_wide()
+```
+:::
+
+## Wrap up
+
+You data wrangling skills have just been enhanced with advanced pivoting. This skill will often prove essential when handling real world data. I have no doubt you will soon put it into practice. It is also essential, as we have seen, for plotting. So I hope pivoting will be of use not only for your wrangling, but also for your plotting tasks.
+
+
+
+ 
+## Solutions
+
+```{r}
+.SOLUTION_Q_adult_long()
+.SOLUTION_Q_growth_stats_long()
+.SOLUTION_Q_adult2_long()
+.SOLUTION_Q_diet_diversity_vietnam_long()
+.SOLUTION_Q_tb_visit_wide()
+.SOLUTION_Q_adult_long()
+.SOLUTION_Q_growth_stats_long()
+.SOLUTION_Q_adult2_long()
+.SOLUTION_Q_diet_diversity_vietnam_long()
+.SOLUTION_Q_tb_visit_wide()
+```
+

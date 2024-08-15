@@ -1,0 +1,344 @@
+---
+title: 'Subsetting rows'
+---
+
+```{python}
+# | echo: false
+# Setup
+import pandas as pd
+
+pd.options.display.max_rows = 5
+```
+
+
+## Intro
+
+In our previous lesson we saw how to select variables (columns). In this lesson we will see how to keep or drop data entries.
+
+Dropping abnormal data entries or keeping subsets of your data points is another essential aspect of data wrangling.
+
+Let's get started!
+
+## Learning objectives
+
+1.  You can use the `query()` method to keep or drop rows from a DataFrame.
+2.  You can specify conditions using relational operators like greater than (`>`), less than (`<`), equal to (`==`), and not equal to (`!=`).
+3.  You can combine conditions with `and` and `or`.
+4.  You can negate conditions with `not`.
+5.  You can use the `isna()` and `notna()` methods.
+
+## The Yaounde COVID-19 dataset
+
+In this lesson, we will again use the data from the COVID-19 serological survey conducted in Yaounde, Cameroon.
+
+```{python}
+import pandas as pd
+
+yaounde = pd.read_csv("data/yaounde_data.csv")
+# a smaller subset of variables
+yao = yaounde[
+    [
+        "age",
+        "sex",
+        "weight_kg",
+        "highest_education",
+        "neighborhood",
+        "occupation",
+        "is_smoker",
+        "is_pregnant",
+        "igg_result",
+        "igm_result",
+    ]
+]
+yao.head()
+```
+
+## Introducing `query()`
+
+We can use the `query()` method to keep rows that satisfy a set of conditions. Let's take a look at a simple example. If we want to keep just the male records, we run:
+
+```{python}
+yao.query('sex == "Male"')
+```
+
+As you can see, the `query()` syntax is quite simple. It may be a bit surprising to have to put code in quotes, but it is quite readable.
+
+Note the use of double equals (`==`) instead of single equals (`=`) there. The `==` sign tests for equality, while the single equals sign assigns a value. This is a common source of errors when you are a beginner, so watch out for it.
+
+We can chain `query()` with `shape[0]` to count the number of male respondents.
+
+```{python}
+yao.query('sex == "Male"').shape[0]
+```
+
+
+::: {.callout-note title="Reminder"}
+
+Recall that the `shape` property returns the number of rows and columns in a DataFrame. The first element, `shape[0]`, is the number of rows
+
+:::
+
+::: {.callout-note title="Key Point"}
+
+Note that these subsets are not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset of male respondents:
+
+```{python}
+yao_male = yao.query('sex == "Male"')
+yao_male
+```
+
+But for ease of explanation, in the examples below, we are simply printing the result, without storing it in a variable.
+
+:::
+
+::: {.callout-tip title="Practice"}
+
+Subset the `yao` data frame to respondents who were pregnant during the survey. Assign the result to a new DataFrame called `yao_pregnant`. Then print this new DataFrame. There should be 24 rows.
+
+```{python}
+# Your code here
+```
+
+Subset the `yao` data frame to female respondents. Assign the result to a new DataFrame called `yao_female`. There should be 549 rows.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Relational operators
+
+The `==` operator introduced above is an example of a "relational" operator, as it tests the relation between two values. Here is a list of some more of these operators. You will use these often when you are querying rows in your data.
+
+|              |                                     |
+|:-------------|:------------------------------------|
+| **Operator** | **is True if**                      |
+| A < B        | A is **less than** B                |
+| A <= B       | A is **less than or equal** to B    |
+| A > B        | A is **greater than** B             |
+| A >= B       | A is **greater than or equal to** B |
+| A == B       | A is **equal** to B                 |
+| A != B       | A is **not equal** to B             |
+| A.isin(B)    | A **is an element of** B            |
+
+Let's see how to use these with `query()`:
+
+```{python}
+yao.query('sex == "Female"')  # keep rows where `sex` is female
+yao.query('sex != "Male"')  # keep rows where `sex` is not "Male"
+yao.query("age < 6")  # keep respondents under 6
+yao.query("age >= 70")  # keep respondents aged at least 70
+
+# keep respondents whose highest education is "Primary" or "Secondary"
+yao.query('highest_education.isin(["Primary", "Secondary"])')
+```
+
+
+::: {.callout-tip title="Practice"}
+
+- From `yao`, keep only respondents who were children (under 18). Assign the result to a new DataFrame called `yao_children`. There should be 291 rows.
+
+```{python}
+# Your code here
+```
+
+- With `isin()`, keep only respondents who live in the "Tsinga" or "Messa" neighborhoods. Assign the result to a new DataFrame called `yao_tsinga_messa`. There should be 129 rows
+
+```{python}
+# Your code here
+```
+
+- From `yao`, keep  respondents who are less than or equal to 30 years. Assign the result to a new DataFrame called `yao_young`. There should be 590 rows.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Combining conditions with `and` and `or`
+
+We can pass multiple conditions to `query()` using `and` and `or`. 
+
+For example, to keep respondents who are younger than 18 or older than 65, we can write:
+
+```{python}
+yao.query('age < 18 or age > 65')
+```
+
+To keep respondents who are pregnant and are ex-smokers, we write:
+
+```{python}
+yao.query('is_pregnant == "Yes" and is_smoker == "Ex-smoker"')
+```
+
+There is only one person who is both pregnant and ex-smoker.
+
+::: {.callout-tip title="Practice"}
+
+Subset `yao` to only keep men who tested IgG positive. Assign the result to a new DataFrame called `yao_igg_positive_men`. There should be 148 rows after your filter. Think carefully about whether to use `and` or `or`.
+
+```{python}
+# Your code here
+```
+
+Subset `yao` to keep both children (under 18) and anyone whose highest education is primary school. Assign the result to a new DataFrame called `yao_children_primary`. There should be 444 rows after your filter. Think carefully about `and` vs `or`. It may be counterintuitive!
+
+```{python}
+# Your code here
+```
+
+:::
+
+Note that we can also chain queries together instead of using `and` or `or`. For example, to keep respondents who are above 18, who smoke and who live in Tsinga, we could write:
+
+```{python}
+yao.query('age > 18 and is_smoker == "Ex-smoker" and neighborhood == "Tsinga"')
+```
+
+But we could also write:
+
+```{python}
+(yao
+.query('age > 18')
+.query('is_smoker == "Ex-smoker"')
+.query('neighborhood == "Tsinga"'))
+```
+
+When you have a long sequence of conditions, this kind of chaining can be more readable than using `and` multiple times.
+
+## Negating conditions with `not`
+
+To negate conditions in `query()`, we use the `not` keyword.
+
+Let's use this to drop respondents who are students: 
+
+```{python}
+yao.query('not occupation == "Student"')
+```
+
+Of course, in this case, we could more simply use `!=` to drop students, so this is not a great use case for `not`.
+
+```{python}
+yao.query('occupation != "Student"')
+```
+
+`Not` is more useful when we have more complex conditions that we want to negate.
+
+Imagine we want to give out a drug, but respondents below 18 (children) or who weigh less than 30kg (too light) are not eligible. The code below selects the children and these light respondents:
+
+```{python}
+yao.query("age < 18 or weight_kg < 30")
+```
+
+Now to drop these individuals, we can negate the condition with `not`:
+
+```{python}
+yao.query("not (age < 18 or weight_kg < 30)")
+```
+
+Note how we enclosed the conditions in parentheses. This allows the not operator to 'act' on the whole condition, rather than just the first part of it.
+
+
+::: {.callout-tip title="Practice"}
+
+From `yao`, drop respondents that are either above 50 or who are smokers. Assign the result to a new DataFrame called `yao_young_smokers`. Your output should have 810 rows.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## `NaN` values
+
+The relational operators introduced so far do not work with null values like `NaN`.
+
+For example, the `is_pregnant` column contains missing values for some respondents. To keep the rows with missing `is_pregnant` values, we could try writing:
+
+```{python}
+# |eval: false
+yao.query("is_pregnant == NaN")  # does not work
+```
+
+But this will not work. This is because `NaN` is a non-existent value. So the system cannot evaluate whether it is “equal to” or “not equal to” anything.
+
+Instead, we can use the `isna()` method to select rows with missing values: 
+
+```{python}
+yao.query("is_pregnant.isna()")
+```
+
+Or we can select rows that are not missing with `notna()`:
+
+```{python}
+yao.query("is_pregnant.notna()")
+```
+
+::: {.callout-tip title="Practice"}
+
+From the `yao` dataset, keep all the respondents who had missing records for the report of their smoking status.
+
+```{python}
+# Your code here
+```
+
+:::
+
+
+## Logical subsetting with `[]`
+
+As a final note, you can also use logical subsetting with `[]` to filter rows. 
+
+We don't recommended this for filtering DataFrames, as it's difficult to use properly in method chains, but we will use it at other points in our Python journey, so it's good to know about. 
+
+It is also useful for filtering Series, as the `.query()` method is not available for Series. Let's see an example using a pandas Series. 
+
+```{python}
+s = pd.Series([1, 2, 3, 4, 5])
+s
+```
+
+We can use logical subsetting to filter this series:
+
+```{python}
+s[s > 3]
+```
+
+We obtain a new Series with the values that are greater than 3.
+
+We can do the same with DataFrames. Let's filter our `yao` DataFrame to keep only females:
+
+```{python}
+yao[yao.sex == 'Female']
+```
+
+This returns a DataFrame with only female respondents.
+
+We can combine conditions using `&` for AND and `|` for OR. For example, to keep females who are over 30:
+
+```{python}
+yao[(yao.sex == 'Female') & (yao.age > 30)]
+```
+
+Note the use of parentheses around each condition. 
+
+::: {.callout-tip title="Practice"}
+
+Create a Series called `heights` with the following values: [160, 175, 182, 168, 190, 173]. Then, use logical subsetting to create a new Series called `tall_people` that only includes heights greater than 180 cm.
+
+```{python}
+# Your code here
+```
+
+:::
+
+
+## Wrap up
+
+Great job! You've learned how to select specific columns and filter rows based on various conditions.
+
+These skills allow you to focus on relevant data and create targeted subsets for analysis.
+
+Next, we'll explore how to modify and transform your data, further expanding your data wrangling toolkit. See you in the next lesson!

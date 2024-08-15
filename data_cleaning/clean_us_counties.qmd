@@ -24,19 +24,48 @@ full_counties = (
     .merge(veterans, on=["FIPS", "State", "County"])
 )
 
-# Convert column names: spaces to underscores, camelCase to snake_case
+
 full_counties = full_counties.clean_names(case_type="snake")
 
 full_counties = full_counties.rename(
     columns={
         "land_area_sq_miles2020": "area_sq_miles",
         "pop_change_rate1020": "pop_change_2010_2020",
-        "unemp_rate2020": "unemp_rate_2020",
-        "popestimate2020": "pop_estimate_2020",
-        "popestimate2021": "pop_estimate_2021",
+        "unemp_rate2020": "unemp_20",
+        "popestimate2020": "pop_20",
         "pct_emp_change1021": "pct_emp_change_2010_2021",
-        "med_hh_inc": "med_hh_inc_2021",  ## temporary to keep track of the variable
+        "med_hh_inc": "hh_inc_21",  ## temporary to keep track of the variable
     }
+)
+
+full_counties = (
+    full_counties.assign(county=lambda x: x["county"] + ", " + x["state"])
+    .assign(
+        econ_type=lambda x: x.type_2015_update.case_when(
+            [
+                (x.type_2015_update == 0, "Nonspecialized"),
+                (x.type_2015_update == 1, "Farming"),
+                (x.type_2015_update == 2, "Mining"),
+                (x.type_2015_update == 3, "Manufacturing"),
+                (x.type_2015_update == 4, "Federal/State Government"),
+                (x.type_2015_update == 5, "Recreation"),
+            ]
+        )
+    )
+    .filter(
+        items=[
+            "state",
+            "county",
+            "pop_20",  # 2020
+            "area_sq_miles",
+            "hh_inc_21",  # 2021
+            "econ_type",
+            "unemp_20",  # 2020
+            "foreign_born_num",
+            "pop_change_2010_2020",
+            "pct_emp_change_2010_2021",
+        ]
+    )
 )
 
 ```

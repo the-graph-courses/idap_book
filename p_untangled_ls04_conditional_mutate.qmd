@@ -1,0 +1,357 @@
+---
+title: 'Conditional assignment with case_when() and np.where()'
+---
+
+
+```{python}
+# | echo: false
+# Setup
+import pandas as pd
+
+pd.options.display.max_rows = 7
+```
+
+## Introduction
+
+In the previous lesson, you learned the basics of data transformation using pandas' `assign()` method.
+
+In that lesson, we looked at *global* transformations; that is, transformations that did the same thing to an entire variable. In this lesson, we will look at how to *conditionally* manipulate certain rows based on whether or not they meet defined criteria.
+
+For this, we will mostly use the powerful pandas`case_when()` method. Note that this was introduced recently, in pandas 2.2, so if you are using an older version of pandas, you will need to upgrade.
+
+Let's get started.
+
+## Learning objectives
+
+1.  You can transform or create new variables based on conditions using `case_when()`
+
+2.  You know how to use a default condition in `case_when()` to match unmatched cases.
+
+3.  You can handle `NaN` values in `case_when()` transformations.
+
+4.  You understand `case_when()` conditions priority order.
+
+5.  You can use `np.where()` for binary conditional assignment.
+
+## Packages
+
+This lesson will require pandas and numpy:
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+## Datasets
+
+In this lesson, we will use a dataset of counties of the United States with demographic and economic data.
+
+Below we import it, then add some NAs to the `pop_20` column, to simulate missing data.
+
+```{python}
+# Import and view the dataset
+counties = pd.read_csv("data/us_counties_data.csv")
+
+# Add NAs to the population column
+counties.loc[counties.index % 5 == 0, "pop_20"] = np.nan
+
+counties
+```
+
+The variables in the dataset are: 
+
+- `state`, US state
+- `county`, US county
+- `pop_20`, population estimate for 2020
+- `area_sq_miles`, area in square miles
+- `hh_inc_21`, median household income for 2021
+- `econ_type`, economic type of the county
+- `pop_change_2010_2020`, population change between 2010 and 2020
+- `unemp_20`, unemployment rate for 2020
+- `pct_emp_change_2010_2021`, percentage change in employment between 2010 and 2021
+
+The variables are collected from a range of sources, including the US Census Bureau, the Bureau of Labor Statistics, and the American Community Survey.
+
+Let's also make some subsets of the data to work with.
+
+```{python}
+counties_pop = counties[["pop_20"]]
+counties_income = counties[["hh_inc_21"]]
+```
+
+## Introduction to `case_when()`
+
+To get familiar with `case_when()`, let's begin with a simple conditional transformation on the `pop_20` column of the `counties` dataset. 
+
+We will make a new column, called "pop_class", that has the value "Smaller" if the population is below 50,000, and "Larger" if the population is 50,000 or more.
+
+```{python}
+counties_pop = counties_pop.assign(
+    pop_class=lambda x: x.pop_20.case_when(
+        [
+            (x.pop_20 < 50000, "Smaller"),
+            (x.pop_20 >= 50000, "Larger"),
+        ]
+    )
+)
+counties_pop
+```
+
+The statement `case_when([(x.pop_20 < 50000, "Smaller"), (x.pop_20 >= 50000, "Larger")])` can be read as: "if `pop_20` is below 50,000, input 'Smaller', else if `pop_20` is greater than or equal to 50,000, input 'Larger'".
+
+The `case_when()` syntax may seem a bit foreign. So let's break it down:
+
+- First, we use the `assign()` method to create a new column, `pop_class`.
+- Then we use a lambda function to define the `pop_class` column. Hopefullyou you recall how to write these.
+- Then, we use the `case_when()` method to create the new column.
+- Inside the `case_when()` method, we use a list of tuples.
+- Recall that lists are created with square brackets `[]`.
+- Tuples are created with parentheses `(itemA, itemB)`, with each element in the tuple separated by a comma.
+- So the list of tuples is `[(conditionA, valueA), (conditionB, valueB)]`.
+
+------------------------------------------------------------------------
+
+After creating a new variable with `case_when()`, you shoul inspect it to make sure the transformation worked as intended.
+
+Let's use the `value_counts()` method to ensure that the numbers and proportions "make sense":
+
+```{python}
+counties_pop["pop_class"].value_counts() # numbers
+```
+
+```{python}
+counties_pop["pop_class"].value_counts(normalize=True) # proportions
+```
+
+Do these seem reasonable based on the population size of US counties? (Yes!)
+
+Let's make it a bit more complex with a third condition for medium-sized counties. Counties with populations from 30,000 to below 100,000 will be labeled "Medium", and counties with populations of 100,000 and up will be labeled "Large".
+
+```{python}
+counties_pop = counties_pop.assign(
+    pop_class=lambda x: x.pop_20.case_when(
+        [
+            (x.pop_20 < 30000, "Small"),
+            ((x.pop_20 >= 30000) & (x.pop_20 < 100000), "Medium"),
+            (x.pop_20 >= 100000, "Large"),
+        ]
+    )
+)
+counties_pop
+```
+
+Note that when we combine multiple conditions with `&`, we must use parentheses around each condition.
+
+::: {.callout-tip title='Practice'}
+
+The `counties_income` dataset has a column called `hh_inc_21` with the median household income in 2021. Make a new column, called `income_group`, with the following three groups: 
+
+- "Below 60k" for counties with income under $60,000
+- "60k to 100k" for counties with income between $60,000 and $100,000 (exclusive of 100k)
+- "100k and above" for counties with income of $100,000 and up
+
+```{python}
+# | eval: false
+# Complete the code with your answer:
+Q_income_group = counties_income.assign(
+    income_group=lambda x: x.hh_inc_21.case_when(
+        # Your code here
+    )
+)
+Q_income_group["income_group"].value_counts(normalize=True)
+```
+
+- Use the `value_counts()` method to count the proportions of each income group. If you did it correctly, the proportion of counties with median household income below $60,000 should be approximately 60%.
+
+:::
+
+::: {.callout-note title='Pro-tip'}
+
+## Denoting intervals
+
+When categorizing variables, it's important to clearly communicate whether each category includes or excludes its boundaries. Here are two common approaches:
+
+1. Mathematical notation:
+   - Use square brackets `[]` for inclusive bounds and parentheses `()` for exclusive bounds.
+   - Example:
+     - [0, 60,000) : This means under $60,000
+     - [60,000, 100,000) : This means $60,000 to $99,999
+     - [100,000, ∞) : This means $100,000 and up. The ∞ symbol stands for infinity.
+
+2. Code-friendly notation:
+    - Use `>=` and `<=` for inclusive bounds.
+    - Use `>` and `<` for exclusive bounds.
+    - Example:
+      - x < $60,000 : This means under $60,000
+      - $60,000 < x < $100,000 : This means $60,000 to $99,999.99...
+      - x >= $100,000 : This means $100,000 and up
+   
+3. Rounded integer ranges (more reader-friendly):
+   - Round values to integers and use descriptive language.
+   - Example:
+     - $0 to $59,999
+     - $60,000 to $99,999
+     - $100,000 and up
+
+Choose the method that best suits your audience and context.
+
+:::
+
+## A catch-all condition
+
+In a `case_when()` statement, you sometimes want to catch all rows not matched with provided conditions. You can do this with a catch-all condition. This should be something that always returns `True`. Unfortunately, simply using `True` as the condition will not work, since we need a **sequence** of True values. 
+
+You could use `pd.Series(True, index=df.index)` to create a sequence of `True` values, but perhaps an easier solution is to test whether the values are equal to themselves, using, for example `x.pop_20 == x.pop_20`:
+
+```{python}
+counties_pop = counties_pop.assign(
+    pop_class=lambda x: x.pop_20.case_when(
+        [
+            ((x.pop_20 >= 30000) & (x.pop_20 < 100000), "Medium"),
+            (x.pop_20 == x.pop_20, "Other"),
+        ]
+    )
+)
+counties_pop
+```
+
+This `x.pop_20 == x.pop_20` condition can be read as "for everything else...".
+
+::: {.callout-caution title='Watch Out'}
+
+### Order of conditions
+
+It is important to use `x.pop_20 == x.pop_20` as the *final* condition in `case_when()`. If you use it as the first condition, it will take precedence over all others, as seen here:
+
+```{python}
+counties_pop = counties_pop.assign(
+    pop_class=lambda x: x.pop_20.case_when(
+        [
+            (x.pop_20 == x.pop_20, "Other"),
+            ((x.pop_20 >= 30000) & (x.pop_20 < 100000), "Medium"),
+        ]
+    )
+)
+counties_pop
+```
+
+As you can observe, all non-NaN counties are now coded with "Other", because the `x.pop_20 == x.pop_20` condition was placed first, and therefore took precedence.
+
+Statements with case_when are evaluated from top to bottom, so conditions that should be evaluated first should be placed higher in the list.
+
+:::
+
+::: {.callout-tip title='Practice'}
+
+Using the `counties_income` data, and the `hh_inc_21` column, create a new column called `income_class` that has the value "Medium income" for counties with median household income from $60,000 to below $100,000 and "Other" for all other counties. (Use a catch-all condition.) Your new dataframe should be called `Q_income_class`.
+
+```{python}
+# Your code here
+```
+:::
+
+## Matching NaN's with `isna()`
+
+As you may have noticed, the `pop_20` column contains `NaN` values, and these are not matched with any of the conditions we provided. 
+
+We can match missing values manually with `isna()`. Below we match `NaN` populations with `isna()` and set their population size to "Missing population":
+
+```{python}
+counties_pop = counties_pop.assign(
+    pop_class=lambda x: x.pop_20.case_when(
+        [
+            (x.pop_20 < 50000, "Smaller"),
+            (x.pop_20 >= 50000, "Larger"),
+            (x.pop_20.isna(), "Missing"),
+        ]
+    )
+)
+counties_pop
+```
+
+::: {.callout-tip title='Practice'}
+
+The `econ_type` column of the `counties` dataset describes the primary economic activity of the county: 
+
+```{python}
+practice_econ = counties[["econ_type"]]
+practice_econ.value_counts(dropna=False)
+```
+
+Implement the following recoding, storing the new data in a column called `econ_type_recode`:
+
+- Farming, Mining and Manufacturing to "Industry"
+- Federal/State Government to "Government"
+- Recreation and Nonspecialized to "Other"
+- NaNs to "Missing"
+
+To get you started, here is how to recode "Farming, Mining and Manufacturing" to "Industry":
+
+```{python}
+Q_econ_type_recode = practice_econ.assign(
+    econ_type_recode=lambda x: x.econ_type.case_when(
+        [
+            (x.econ_type.isin(["Farming", "Mining", "Manufacturing"]), "Industry"),
+            # Rest of the conditions here
+        ]
+    )
+)
+Q_econ_type_recode
+```
+:::
+
+## Binary conditions: `np.where()`
+
+There is another function similar to `case_when()` for when we want to apply a binary condition to a variable: `np.where()`. A binary condition is either `True` or `False`.
+
+Let's test it out with a simple Series: 
+
+```{python}
+x = pd.Series([1, 2, 3, 4, 5])
+x
+```
+
+```{python}
+np.where(x > 3, "Above 3", "3 or below")
+```
+
+As you can see, `np.where()` returns a new array with the values "Above 3" for all values greater than 3, and "3 or below" for all values less than or equal to 3.
+
+This is useful when you want to make a quick modification to a variable, and don't want to type up a whole `case_when()` statement.
+
+Let's try it out on our dataset to classify counties as "Larger" if their population is 50000 or more, and "Smaller" if their population is less than 50000.
+
+```{python}
+counties_pop = counties_pop.assign(
+    pop_class=lambda x: np.where(x.pop_20 >= 50000, "Larger", "Smaller")
+)
+counties_pop
+```
+
+Nice and easy! 
+
+Since it is only a binary condition, it's utility is limited, but it can be useful for quick transformations.
+
+::: {.callout-tip title='Practice'}
+With the `counties_income` data, make a new column, called `income_class`, that has the value "Medium income" for counties with median household income between $60,000 and $100,000 (exclusive of 100k) and "Other" for all other counties. Use the `np.where()` function.
+
+```{python}
+# | eval: false
+# Complete the code with your answer:
+Q_income_class = counties_income.assign(
+    income_class=lambda x: np.where(
+        # Your code here
+    )
+)
+```
+:::
+
+## Wrap up
+
+Changing or constructing your variables based on conditions on other variables is one of the most repeated data wrangling tasks.
+
+I hope now that you will feel comfortable using `case_when()` and `np.where()` within `assign()`.
+
+Soon we will learn more complex pandas operations such as grouping variables and summarizing them.
+
+See you next time!

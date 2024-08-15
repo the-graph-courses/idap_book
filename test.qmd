@@ -1,0 +1,108 @@
+
+# Grouping and Summarizing Data in Python with pandas
+
+```{python}
+import pandas as pd
+import numpy as np
+
+###############################################################################
+# Pandas GroupBy Operations Demo
+###############################################################################
+
+###############################################################################
+# 1. Data Creation
+###############################################################################
+
+# Create sample data
+df = pd.DataFrame(
+    {
+        "id": range(1, 21),
+        "city": np.random.choice(["NY", "LA", "SF"], 20),
+        "age_group": np.random.choice(["child", "adult"], 20),
+        "purchases": np.random.randint(20, 100, 20),
+        "returns": np.random.randint(1, 10, 20),
+    }
+)
+
+###############################################################################
+# 2. Simple Grouped Aggregation
+###############################################################################
+
+# Using agg(): Get mean purchase count per age group
+df.groupby("age_group").agg(purchases_mean=("purchases", "mean"))
+
+# Multiple groups
+df.groupby(["age_group", "city"]).agg(purchases_mean=("purchases", "mean"))
+
+# Note: The dictionary method {column: aggregation} is not preferred due to lack of
+# control over column names and potential issues with nested dataframes.
+
+###############################################################################
+# 3. Complex Grouped Aggregation
+###############################################################################
+(
+    df.groupby("age_group")
+    .agg(
+        purchases_mean=("purchases", "mean"),
+        purchases_max=("purchases", "max"),
+        sd_population=("purchases", "std"),
+        sd_sample=("purchases", lambda x: x.std(ddof=1)),
+        purchase_sum=("purchases", "sum"),
+        return_sum=("returns", "sum"),
+    )
+    .assign(purchase_return_ratio=lambda x: x.purchase_sum / x.return_sum)
+)
+
+
+###############################################################################
+# 4. Grouped Assignment
+###############################################################################
+
+# Simple: Add column with difference from group mean using assign
+(
+    df.assign(
+        mean_purchase=df.groupby("age_group")["purchases"].transform("mean"),
+        diff_mean=lambda x: (x.purchases - x.mean_purchase).abs(),
+        categ=lambda x: np.where(x.diff_mean > 30, "extreme", "normal"),
+    )
+)
+
+###############################################################################
+# 5. Grouped Arrange (Sorting)
+###############################################################################
+
+# Sort by age_group, then by purchases descending
+df.sort_values(["age_group", "purchases"], ascending=[True, False])
+
+###############################################################################
+# 6. Grouped Filtering
+###############################################################################
+
+# Get rows with minimum purchases for each age group using assign and query
+(
+    # first create a column with the min purchase for each age group
+    df.assign(min_purchase=df.groupby("age_group")["purchases"].transform("min"))
+    # then query
+    .query("purchases == min_purchase")
+)
+
+
+# 6.3 Compound: Get rows with both minimum and maximum purchases for each age group
+# Using assign and query
+(
+    df.assign(
+        min_purchase=df.groupby("age_group")["purchases"].transform("min"),
+        max_purchase=df.groupby("age_group")["purchases"].transform("max"),
+    )
+    .query("purchases == min_purchase or purchases == max_purchase")
+    .drop(columns=["min_purchase", "max_purchase"])
+)
+
+
+```
+
+```{python}
+
+
+
+```

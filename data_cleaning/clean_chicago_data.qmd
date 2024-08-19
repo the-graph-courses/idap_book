@@ -1,0 +1,46 @@
+```{python}
+import pandas as pd
+contracts = pd.read_csv("../data/Contracts_20240818.csv")
+```
+
+```{python}
+# Print column names to verify
+print(contracts.columns)
+
+# Clean column names
+contracts.columns = contracts.columns.str.lower().str.replace(r"[^a-zA-Z0-9]", "_", regex=True).str.strip()
+```
+
+```{python}
+state_mapping = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California",
+    "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware", "FL": "Florida", "GA": "Georgia",
+    "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa",
+    "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
+    "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi", "MO": "Missouri",
+    "MT": "Montana", "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire", "NJ": "New Jersey",
+    "NM": "New Mexico", "NY": "New York", "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio",
+    "OK": "Oklahoma", "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina",
+    "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah", "VT": "Vermont",
+    "VA": "Virginia", "WA": "Washington", "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming",
+    "DC": "District of Columbia", "CAN": "Canada", "ISR": "Israel", "MH": "Marshall Islands",
+    "BC": "British Columbia"
+}
+
+contracts_clean = (contracts
+.query("~approval_date.isna()")
+.assign(approval_date = lambda x: pd.to_datetime(x.approval_date))
+.query("approval_date >= '2020-01-01' and approval_date <= '2023-12-31'")
+.rename(columns={
+    "purchase_order_description": "description",
+    "purchase_order__contract__number": "contract_num",
+    "revision_number": "revision_num",
+    "specification_number": "specification_num"
+})
+.assign(state=lambda df: df.state.replace(state_mapping))
+.pipe(lambda df: df.reindex(columns=["approval_date"] + [col for col in df.columns if col != "approval_date"]))
+.sort_values("approval_date")
+)
+
+contracts_clean.to_csv("../data/chicago_contracts_20_23.csv", index=False)
+```

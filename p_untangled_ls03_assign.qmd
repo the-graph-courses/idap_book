@@ -61,7 +61,7 @@ area_pop
 ```
 
 
-## Introducing `assign()`
+## Introducing `assign()` and lambda functions
 
 We use the `assign()` method from pandas to create new variables or modify existing variables. 
 
@@ -85,36 +85,6 @@ But the symbol called `x` above can be anything you want; it's simply a placehol
 area_pop.assign(area_sq_km=lambda dat: dat.area_sq_miles * 2.59)
 ```
 
-::: {.callout-note title='Side-note'}
-
-Note that we can also use the square brackets `[]` to access th variables being used within the assign method. This is useful if you want to use a variable that has a special character in its name.
-
-It's also needed if your variable name is a reserved word or method name.
-
-For example, if our population variable was called `pop`, we would get an error when accessing it with dot notation in the `assign()` method, because `pop` is a method name.
-
-```{python}
-demo_df = area_pop.rename(columns={"pop_20": "pop"})
-demo_df
-```
-
-```{python}
-# | eval: false
-demo_df.assign(pop_per_sq_mile=lambda x: x.pop / x.area_sq_miles)
-```
-
-```
-TypeError: unsupported operand type(s) for /: 'method' and 'float'
-```
-
-In such a case, you can use the square brackets `[]` to access the `pop` variable.
-
-```{python}
-demo_df.assign(pop_per_sq_mile=lambda x: x["pop"] / x.area_sq_miles)
-```
-
-:::
-
 Let's see another example. We'll add a variable showing the area in hectares by multiplying `area_sq_miles` by 259. We'll also store the new DataFrame in a variable called `area_pop_converted`. (Remember that if we don't store the new DataFrame in a variable, as in our example above, it will not be saved.)
 
 ```{python}
@@ -127,14 +97,41 @@ area_pop_converted  # view the new DataFrame
 
 ::: {.callout-tip title='Practice'}
 
-- Using the `area_pop` dataset, create a new column called `area_acres` by multiplying the `area_sq_miles` variable by 640. Store the new DataFrame in an object called `area_pop_conversion_question` and print it.
+### Practice Q: Area in acres
+
+- Using the `area_pop` dataset, create a new column called `area_acres` by multiplying the `area_sq_miles` variable by 640. Store the new DataFrame in an object called `conversion_question` and print it.
 
 ```{python}
 # your code here
 ```
 :::
 
-To get further practice with the `assign()` method, let's create a new variable called `pop_per_sq_km` by dividing `pop` by `area_sq_km`. 
+
+## Overwriting variables
+
+We can also use `assign()` to overwrite existing variables. For example, to round the `area_sq_km` variable to one decimal place, we can write:
+
+```{python}
+area_pop_converted.assign(area_sq_km=lambda x: round(x.area_sq_miles * 2.59, 1))
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Area in acres rounded
+
+- Using the `conversion_question` dataset you created above, round the `area_acres` variable to one decimal place. Store the new DataFrame in an object called `conversion_question_rounded` and print it.
+
+```{python}
+# your code here
+```
+:::
+
+
+## More complex assignments
+
+To get further practice with the `assign()` method, let's look at creating new columns that combine multiple existing variables.
+
+For example, to calculate the population density per square kilometer, we can write:
 
 ```{python}
 area_pop_converted.assign(pop_per_sq_km=lambda x: x.pop_20 / x.area_sq_km)
@@ -172,6 +169,8 @@ We see that New York county has the highest population density in the country.
 
 ::: {.callout-tip title='Practice'}
 
+### Practice Q: Rounding all variables
+
 - Consider the sample dataset created below. Use `assign()` to round all variables to 1 decimal place. Your final dataframe should be called `sample_df_rounded` and should still have three columns, `a`, `b`, and `c`.
 
 ```{python}
@@ -184,12 +183,6 @@ sample_df = pd.DataFrame(
 )
 sample_df
 ```
-
-```{python}
-# your code here
-```
-
-- Using the `area_pop` dataset, calculate the population density per square mile, and round this to two decimal places. Store the new DataFrame in an object called `area_pop_density_question` and print it.
 
 ```{python}
 # your code here
@@ -210,11 +203,11 @@ area_pop.assign(
 )
 ```
 
-Here, we are referring back to the `area_pop` DataFrame that we started with within the `assign()` method.
+Here, we are referring back to the `area_pop` DataFrame within the `assign()` method.
 
-The problem with this approach is that it does not allow us to access variables created in the same `assign()` call or created in the same method chain.
+The problem with this is we cannot access variables created in the same `assign()` call or created in the same method chain.
 
-This has the following consequence in our case: if you try to use the area_sq_km variable to calculate the population density, you will get an error:
+For example, below, if you try to use the `area_sq_km` variable to calculate the population density, you will get an error:
 
 ```{python}
 # | eval: false
@@ -225,12 +218,13 @@ area_pop.assign(
 )
 ```
 
-
 ```
 AttributeError: 'DataFrame' object has no attribute 'area_sq_km'
 ```
 
-Lambda functions in `assign()` allow creating new columns based on intermediate results within the same call. So the code below works, even though it references `area_sq_km` in the `pop_per_sq_km` line.
+Python cannot find the `area_sq_km` variable because it is created in the same `assign()` call. So the `area_pop` DataFrame is does not yet have that variable!
+
+Lambda functions in `assign()` allow you to create new columns based on intermediate results within the same call. So the code below works:
 
 ```{python}
 area_pop.assign(
@@ -286,6 +280,8 @@ There are 242 such concerning counties.
 
 ::: {.callout-tip title='Practice'}
 
+### Practice Q: Foreign-born residents
+
 - Use the `foreign_born_num` variable and the population estimate to calculate the percentage of foreign-born residents in each county. Then create a Boolean variable called `foreign_born_pct_gt_30` that is `True` if the percentage of foreign-born residents is greater than 30% and `False` if it is not. Store the new DataFrame in a variable called `foreign_born_df_question`.
 
 ```{python}
@@ -296,6 +292,69 @@ There are 242 such concerning counties.
 
 ```{python}
 # Your code here
+```
+
+:::
+
+::: {.callout-tip title='Pro-tip'}
+
+### Accessing variables with `[]` inside a lambda function
+
+We can also use the square brackets `[]` to access the variables. This is useful in two cases:
+
+1. When the variable name has special characters.
+2. When the variable name is a reserved word or method name in Python.
+
+If the population variable were called `pop 20`, with a space, we would not be able to access it with dot notation.
+
+```{python}
+demo_df = area_pop.rename(columns={"pop_20": "pop 20"})
+demo_df
+```
+
+```{python}
+# | eval: false
+demo_df.assign(pop_per_sq_km=lambda x: x.pop 20 / x.area_sq_miles) # gives error
+```
+
+```
+area_pop.assign(pop_per_sq_km=lambda x: x.pop 20 / x.area_sq_miles)
+                                            ^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+```
+
+So we would need to use square brackets to access the variable.
+
+```{python}
+demo_df.assign(pop_per_sq_km=lambda x: x["pop 20"] / x.area_sq_miles)
+```
+
+In reality, we should probably just rename such a variable though!
+
+----
+
+The square brackets are also needed if our variable name is a reserved word or method name in Python.
+
+For example, if our population variable was called `pop`, we would get an error when accessing it with dot notation in the `assign()` method, because `pop` is a method name.
+
+```{python}
+demo_df = area_pop.rename(columns={"pop_20": "pop"})
+demo_df
+```
+
+```{python}
+# | eval: false
+demo_df.assign(pop_per_sq_mile=lambda x: x.pop / x.area_sq_miles)
+```
+
+```
+TypeError: unsupported operand type(s) for /: 'method' and 'float'
+```
+
+In such a case, we can use the square brackets `[]` to access the `pop` variable.
+
+```{python}
+demo_df.assign(pop_per_sq_mile=lambda x: x["pop"] / x.area_sq_miles)
 ```
 
 :::

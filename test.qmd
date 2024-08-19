@@ -103,6 +103,153 @@ df.sort_values(["age_group", "purchases"], ascending=[True, False])
 
 ```{python}
 
+## Recreate this whole pipeline in Python pandas using modern, easily readable concise code.
 
+library(tidyverse)
+library(lubridate)
+
+# Generate 200 random records
+lab_dat <- tibble(
+  hospital_num = sample(paste0("P", 1:50), 200, replace = TRUE),
+  date_visit = seq(as.Date("2020-01-01"), as.Date("2024-08-16"), by = "day")[sample(1:1689, 200, replace = TRUE)]) %>%
+  arrange(hospital_num, date_visit)  
+
+viral_load_tests_plot <- 
+  lab_dat %>% 
+  ## sample groups
+  filter(hospital_num %in% sample(unique(hospital_num), 20)) %>%
+  ## months since last test
+  group_by(hospital_num) %>% 
+  arrange(date_visit, .by_group = T) %>% 
+  mutate(days_since_last_test = date_visit - lag(date_visit, n = 1, default = NA)) %>% 
+  ungroup() %>% 
+  select(hospital_num, days_since_last_test, date_visit) %>% 
+  ## longest month since last test (for arranging ggplot)
+  group_by(hospital_num) %>% 
+  mutate(longest_test_interval = max(days_since_last_test, na.rm = T)) %>% 
+  ungroup() %>% 
+  ## factor order
+  mutate(hospital_num = fct_reorder(hospital_num, longest_test_interval)) %>% 
+  ## plot
+  ggplot(aes(group = hospital_num, x = date_visit, y = hospital_num)) + 
+  geom_point() + 
+  geom_line() +
+  theme(legend.position = "none")
+
+viral_load_tests_plot
+
+```
+
+```{python}
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+
+# Generate 200 random records
+start_date = datetime(2020, 1, 1)
+end_date = datetime(2024, 8, 16)
+date_range = pd.date_range(start=start_date, end=end_date)
+
+lab_dat = pd.DataFrame({
+    'hospital_num': np.random.choice([f'P{i}' for i in range(1, 51)], 200),
+    'date_visit': np.random.choice(date_range, 200)
+})
+
+lab_dat = lab_dat.sort_values(['hospital_num', 'date_visit'])
+
+# Sample groups
+sampled_hospital_nums = np.random.choice(lab_dat['hospital_num'].unique(), 20, replace=False)
+lab_dat = lab_dat[lab_dat['hospital_num'].isin(sampled_hospital_nums)]
+
+# Calculate days since last test
+lab_dat = lab_dat.sort_values(['hospital_num', 'date_visit'])
+lab_dat['days_since_last_test'] = lab_dat.groupby('hospital_num')['date_visit'].diff().dt.days
+
+# Select required columns
+lab_dat = lab_dat[['hospital_num', 'days_since_last_test', 'date_visit']]
+
+# Calculate longest test interval
+longest_intervals = lab_dat.groupby('hospital_num')['days_since_last_test'].max()
+lab_dat = lab_dat.merge(longest_intervals.rename('longest_test_interval'), on='hospital_num')
+
+# Sort hospital numbers by longest test interval
+hospital_num_order = lab_dat.groupby('hospital_num')['longest_test_interval'].max().sort_values().index
+lab_dat['hospital_num'] = pd.Categorical(lab_dat['hospital_num'], categories=hospital_num_order, ordered=True)
+
+# Plot
+plt.figure(figsize=(12, 8))
+for hospital in lab_dat['hospital_num'].unique():
+    hospital_data = lab_dat[lab_dat['hospital_num'] == hospital]
+    plt.plot(hospital_data['date_visit'], hospital_data['hospital_num'], marker='o')
+
+plt.yticks(hospital_num_order)
+plt.xlabel('Date Visit')
+plt.ylabel('Hospital Number')
+plt.title('Viral Load Tests')
+plt.tight_layout()
+plt.show()
+
+```
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+
+# Generate 200 random records
+start_date = datetime(2020, 1, 1)
+end_date = datetime(2024, 8, 16)
+date_range = pd.date_range(start=start_date, end=end_date)
+
+lab_dat = (pd.DataFrame({
+    'hospital_num': np.random.choice([f'P{i}' for i in range(1, 51)], 200),
+    'date_visit': np.random.choice(date_range, 200)
+})
+.sort_values(['hospital_num', 'date_visit'])
+.reset_index(drop=True))
+
+viral_load_tests_plot = (
+    lab_dat
+    # Sample groups
+    .loc[lab_dat['hospital_num'].isin(np.random.choice(lab_dat['hospital_num'].unique(), 20, replace=False))]
+    # Calculate days since last test
+    .sort_values(['hospital_num', 'date_visit'])
+    .assign(days_since_last_test=lambda x: x.groupby('hospital_num')['date_visit'].diff().dt.days)
+    # Select required columns
+    [['hospital_num', 'days_since_last_test', 'date_visit']]
+    # Calculate longest test interval
+    .assign(longest_test_interval=lambda x: x.groupby('hospital_num')['days_since_last_test'].transform('max'))
+    # Sort hospital numbers by longest test interval
+    .assign(hospital_num=lambda x: pd.Categorical(
+        x['hospital_num'],
+        categories=x.groupby('hospital_num')['longest_test_interval'].max().sort_values().index,
+        ordered=True
+    ))
+)
+
+# Plot
+plt.figure(figsize=(12, 8))
+for hospital in viral_load_tests_plot['hospital_num'].cat.categories:
+    hospital_data = viral_load_tests_plot[viral_load_tests_plot['hospital_num'] == hospital]
+    plt.plot(hospital_data['date_visit'], hospital_data['hospital_num'], marker='o')
+
+plt.yticks(viral_load_tests_plot['hospital_num'].cat.categories)
+plt.xlabel('Date Visit')
+plt.ylabel('Hospital Number')
+plt.title('Viral Load Tests')
+plt.tight_layout()
+plt.show()
+
+```
+
+
+
+
+```{python}
 
 ```

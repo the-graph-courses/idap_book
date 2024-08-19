@@ -44,6 +44,8 @@ import pandas as pd
 
 In this lesson, we analyse results from a COVID-19 survey conducted in Yaounde, Cameroon in late 2020. The survey estimated how many people had been infected with COVID-19 in the region, by testing for antibodies.
 
+You can find out more about this dataset here: https://www.nature.com/articles/s41467-021-25946-0
+
 Let's load and examine the dataset:
 
 ```{python}
@@ -51,7 +53,7 @@ yao = pd.read_csv("data/yaounde_data.csv")
 yao
 ```
 
-## Selecting columns with `[]`
+## Selecting columns with square brackets `[]`
 
 In pandas, the most common way to select a column is simply to use square brackets `[]` and the column name. For example, to select the `age` and `sex` columns, we type:
 
@@ -82,6 +84,9 @@ yao[["age"]]  # returns a DataFrame
 
 
 ::: {.callout-note title="Key Point"}
+
+## Storing data subsets
+
 Note that these selections are not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset with only three columns:
 
 ```{python}
@@ -101,6 +106,10 @@ The `yao_subset` DataFrame has gone from having 3 columns to having 1 column.
 :::
 
 ::: {.callout-tip title="Practice"}
+
+
+### Practice Q: Select Columns with `[]`
+
 -   Use the `[]` operator to select the "weight_kg" and "height_cm" variables in the `yao` DataFrame. Assign the result to a new DataFrame called `yao_weight_height`. Then print this new DataFrame.
 
 ```{python}
@@ -111,7 +120,7 @@ The `yao_subset` DataFrame has gone from having 3 columns to having 1 column.
 
 ::: {.callout-note title="Pro tip"}
 
-There are many ways to select columns in pandas. In your free time, you may choose to explore the `.loc[]` and `.take()` methods, which provide additional functionality.
+There are many ways to select columns in pandas. In your free time, you may choose to explore the `.loc[]` and `.take()` methods, which provide additional functionality. 
 
 :::
 
@@ -139,7 +148,11 @@ yao_subset
 ```
 
 ::: {.callout-tip title="Practice"}
+
+### Practice Q: Drop Columns with `drop()`
+
 -   From the `yao` DataFrame, **remove** the columns `highest_education` and `consultation`. Assign the result to a new DataFrame called `yao_no_education_consultation`. Print this new DataFrame.
+
 ```{python}
 # Your code here
 ```
@@ -173,6 +186,8 @@ The character `$` is regex that matches the end of the string.
 
 ::: {.callout-tip title="Practice"}
 
+### Practice Q: Select Columns with Regex
+
 -   Select all columns in the `yao` DataFrame that start with "is". Assign the result to a new DataFrame called `yao_is_columns`. Then print this new DataFrame.
 
 ```{python}
@@ -191,6 +206,8 @@ yao.rename(columns={"age": "patient_age", "sex": "patient_sex"})
 
 ::: {.callout-tip title="Practice"}
 
+### Practice Q: Rename Columns with `rename()`
+
 -   Rename the `age_category` column in the `yao` DataFrame to `age_cat`. Assign the result to a new DataFrame called `yao_age_cat`. Then print this new DataFrame.
 
 ```{python}
@@ -198,7 +215,6 @@ yao.rename(columns={"age": "patient_age", "sex": "patient_sex"})
 ```
 
 :::
-
 
 ## Cleaning messy column names
 
@@ -247,12 +263,15 @@ test_df
 
 ::: {.callout-tip title="Practice"}
 
-- Consider the data frame defined below. Use the `str.replace()` method to clean the column names.
+### Practice Q: Clean Column Names with Regex
+
+- Consider the data frame defined below with messy column names. Use the `str.replace()` method to clean the column names.
 
 ```{python}
 cleaning_practice = pd.DataFrame(
     {"Aloha": range(3), "Bell Chart": range(3), "Animals@#$%^": range(3)}
 )
+cleaning_practice
 ```
 
 :::

@@ -31,6 +31,10 @@ Let's get started!
 
 In this lesson, we will again use the data from the COVID-19 serological survey conducted in Yaounde, Cameroon.
 
+You can find out more about this dataset here: https://www.nature.com/articles/s41467-021-25946-0
+
+Let's load the data into a pandas DataFrame.
+
 ```{python}
 import pandas as pd
 
@@ -44,6 +48,7 @@ yao = yaounde[
         "highest_education",
         "neighborhood",
         "occupation",
+        "symptoms",
         "is_smoker",
         "is_pregnant",
         "igg_result",
@@ -93,13 +98,9 @@ But for ease of explanation, in the examples below, we are simply printing the r
 
 ::: {.callout-tip title="Practice"}
 
+### Practice Q: Subset for Pregnant Respondents
+
 Subset the `yao` data frame to respondents who were pregnant during the survey. Assign the result to a new DataFrame called `yao_pregnant`. Then print this new DataFrame. There should be 24 rows.
-
-```{python}
-# Your code here
-```
-
-Subset the `yao` data frame to female respondents. Assign the result to a new DataFrame called `yao_female`. There should be 549 rows.
 
 ```{python}
 # Your code here
@@ -137,11 +138,19 @@ yao.query('highest_education.isin(["Primary", "Secondary"])')
 
 ::: {.callout-tip title="Practice"}
 
+### Practice Q: Subset for Children
+
 - From `yao`, keep only respondents who were children (under 18). Assign the result to a new DataFrame called `yao_children`. There should be 291 rows.
 
 ```{python}
 # Your code here
 ```
+
+:::
+
+::: {.callout-tip title="Practice"}
+
+### Practice Q: Subset for Tsinga and Messa
 
 - With `isin()`, keep only respondents who live in the "Tsinga" or "Messa" neighborhoods. Assign the result to a new DataFrame called `yao_tsinga_messa`. There should be 129 rows
 
@@ -149,41 +158,67 @@ yao.query('highest_education.isin(["Primary", "Secondary"])')
 # Your code here
 ```
 
-- From `yao`, keep  respondents who are less than or equal to 30 years. Assign the result to a new DataFrame called `yao_young`. There should be 590 rows.
+:::
+
+## Accessing external variables in `query()`
+
+The `query()` method allows you to access variables outside the DataFrame using the `@` symbol. This is useful when you want to use dynamic values in your query conditions.
+
+For example, say you have the variable `min_age` that you want to use in your query. You can do this as follows:
 
 ```{python}
+min_age = 25
+
+# Query using external variables
+yao.query('age >= @min_age')
+```
+
+This feature is helpful when you need to filter data based on values that may change or are determined at runtime.
+
+
+::: {.callout-tip title="Practice"}
+
+### Practice Q: Subset for Young Respondents
+
+- From `yao`, keep  respondents who are less than or equal to the variable `max_age`, defined below. Assign the result to a new DataFrame called `yao_young`. There should be 590 rows.
+
+```{python}
+max_age = 30
 # Your code here
 ```
 
+
 :::
 
-## Combining conditions with `and` and `or`
+## Combining conditions with `&` and `|`
 
-We can pass multiple conditions to `query()` using `and` and `or`. 
+We can pass multiple conditions to `query()` using `&` (the "ampersand" symbol) for AND and `|` (the "vertical bar" or "pipe" symbol) for OR. 
 
-For example, to keep respondents who are younger than 18 or older than 65, we can write:
+For example, to keep respondents who are either younger than 18 OR older than 65, we can write:
 
 ```{python}
-yao.query('age < 18 or age > 65')
+yao.query("age < 18 | age > 65")
 ```
 
-To keep respondents who are pregnant and are ex-smokers, we write:
+To keep respondents who are pregnant AND are ex-smokers, we write:
 
 ```{python}
-yao.query('is_pregnant == "Yes" and is_smoker == "Ex-smoker"')
+yao.query('is_pregnant == "Yes" & is_smoker == "Ex-smoker"')
 ```
 
 There is only one person who is both pregnant and ex-smoker.
 
 ::: {.callout-tip title="Practice"}
 
-Subset `yao` to only keep men who tested IgG positive. Assign the result to a new DataFrame called `yao_igg_positive_men`. There should be 148 rows after your filter. Think carefully about whether to use `and` or `or`.
+### Practice Q: Subset for IgG Positive Men
+
+Subset `yao` to only keep men who tested IgG positive. Assign the result to a new DataFrame called `yao_igg_positive_men`. There should be 148 rows after your filter. Think carefully about whether to use `&` or `|`.
 
 ```{python}
 # Your code here
 ```
 
-Subset `yao` to keep both children (under 18) and anyone whose highest education is primary school. Assign the result to a new DataFrame called `yao_children_primary`. There should be 444 rows after your filter. Think carefully about `and` vs `or`. It may be counterintuitive!
+Subset `yao` to keep both children (under 18) and anyone whose highest education is primary school. Assign the result to a new DataFrame called `yao_children_primary`. There should be 444 rows after your filter. Think carefully about `&` vs `|`. It may be counterintuitive!
 
 ```{python}
 # Your code here
@@ -191,10 +226,10 @@ Subset `yao` to keep both children (under 18) and anyone whose highest education
 
 :::
 
-Note that we can also chain queries together instead of using `and` or `or`. For example, to keep respondents who are above 18, who smoke and who live in Tsinga, we could write:
+Note that we can also chain queries together instead of using `&` or `|`. For example, to keep respondents who are above 18, who smoke and who live in Tsinga, we could write:
 
 ```{python}
-yao.query('age > 18 and is_smoker == "Ex-smoker" and neighborhood == "Tsinga"')
+yao.query('age > 18 & is_smoker == "Ex-smoker" & neighborhood == "Tsinga"')
 ```
 
 But we could also write:
@@ -206,17 +241,19 @@ But we could also write:
 .query('neighborhood == "Tsinga"'))
 ```
 
-When you have a long sequence of conditions, this kind of chaining can be more readable than using `and` multiple times.
+When you have a very long sequence of conditions, this kind of chaining can be more readable than using `&` multiple times. The example above is not *that* long, so it may not be a good candidate for splitting the query up, but now you know how to do it in case you need to.
 
-## Negating conditions with `not`
+## Negating conditions with the `~` operator
 
-To negate conditions in `query()`, we use the `not` keyword.
+To negate conditions in `query()`, we use the `~` operator (pronounced "tilde").
 
 Let's use this to drop respondents who are students: 
 
 ```{python}
-yao.query('not occupation == "Student"')
+yao.query('~ (occupation == "Student")')
 ```
+
+Notice that we have to enclose the condition in parentheses.
 
 Of course, in this case, we could more simply use `!=` to drop students, so this is not a great use case for `not`.
 
@@ -224,32 +261,34 @@ Of course, in this case, we could more simply use `!=` to drop students, so this
 yao.query('occupation != "Student"')
 ```
 
-`Not` is more useful when we have more complex conditions that we want to negate.
+The `~` operator is more useful when we have more complex conditions that we want to negate.
 
 Imagine we want to give out a drug, but respondents below 18 (children) or who weigh less than 30kg (too light) are not eligible. The code below selects the children and these light respondents:
 
 ```{python}
-yao.query("age < 18 or weight_kg < 30")
+yao.query("age < 18 | weight_kg < 30")
 ```
 
-Now to drop these individuals, we can negate the condition with `not`:
+Now to drop these individuals, we can negate the condition with `~`:
 
 ```{python}
-yao.query("not (age < 18 or weight_kg < 30)")
+yao.query("~ (age < 18 | weight_kg < 30)")
 ```
 
 Note how we enclosed the conditions in parentheses. This allows the not operator to 'act' on the whole condition, rather than just the first part of it.
 
-
 ::: {.callout-tip title="Practice"}
 
-From `yao`, drop respondents that are either above 50 or who are smokers. Assign the result to a new DataFrame called `yao_young_smokers`. Your output should have 810 rows.
+### Practice Q: Drop Smokers and drop those over 50
+
+From `yao`, drop respondents that are either above 50 or who are smokers. Assign the result to a new DataFrame called `yao_dropped`. Your output should have 810 rows.
 
 ```{python}
 # Your code here
 ```
 
 :::
+
 
 ## `NaN` values
 
@@ -278,6 +317,8 @@ yao.query("is_pregnant.notna()")
 
 ::: {.callout-tip title="Practice"}
 
+### Practice Q: Keep Missing Smoking Status
+
 From the `yao` dataset, keep all the respondents who had missing records for the report of their smoking status.
 
 ```{python}
@@ -286,14 +327,77 @@ From the `yao` dataset, keep all the respondents who had missing records for the
 
 :::
 
+## Querying Based on String Patterns
 
-## Logical subsetting with `[]`
+Sometimes, we need to filter our data based on whether a string column contains a certain substring. This is particularly useful when dealing with multi-answer type variables, where responses may contain multiple values separated by delimiters. Let's explore this using the `occupation` column in our dataset.
 
-As a final note, you can also use logical subsetting with `[]` to filter rows. 
+First, let's take a look at the unique values in the `occupation` column:
 
-We don't recommended this for filtering DataFrames, as it's difficult to use properly in method chains, but we will use it at other points in our Python journey, so it's good to know about. 
+```{python}
+occup_df = yao[["occupation", "sex"]]
+occup_df.value_counts().to_dict()
+```
 
-It is also useful for filtering Series, as the `.query()` method is not available for Series. Let's see an example using a pandas Series. 
+As we can see, some respondents have multiple occupations, separated by "--". To query based on string containment, we can use the `str.contains()` method within our `query()`.
+
+### Basic String Containment
+
+To find all respondents who are students (either solely or in combination with other occupations), we can use:
+
+```{python}
+occup_df.query("occupation.str.contains('Student')")
+```
+
+This query will return all rows where the `occupation` column contains the word "Student", regardless of whether it's the only occupation or part of a multiple-occupation entry.
+
+### Combining with Other Conditions
+
+You can combine string containment queries with other conditions. For example, to find female students:
+
+```{python}
+occup_df.query("occupation.str.contains('Student') & sex == 'Female'")
+```
+
+### Negating String Containment
+
+To find respondents who are not students (i.e., their occupation does not contain "Student"), you can use the `~` operator:
+
+```{python}
+occup_df.query("~occupation.str.contains('Student')")
+```
+
+### Search for non-alphabetic characters
+
+If you want to find respondents who have multiple occupations, you can search for the delimiter:
+
+```{python}
+occup_df.query("occupation.str.contains('--')")
+```
+
+This will return all rows where the occupation contains "--", indicating multiple occupations.
+
+
+::: {.callout-tip title="Practice"}
+
+### Practice Q: Symptoms
+
+The symptoms column contains a list of symptoms that respondents reported. 
+
+Query `yao` to find respondents who reported "Cough" or "Fever" as symptoms. Your answer should have 219 rows.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Subsetting with square brackets, `[]`
+
+As a final note, you can also use logical subsetting with `[]` (square brackets) to filter rows. 
+
+We don't recommend this for filtering DataFrames, as it's difficult to use properly in method chains, but we will use it at other points in our Python journey, so it's good to know about. 
+
+Let's see an example using a pandas Series. 
 
 ```{python}
 s = pd.Series([1, 2, 3, 4, 5])
@@ -303,10 +407,10 @@ s
 We can use logical subsetting to filter this series:
 
 ```{python}
-s[s > 3]
+s[s > 3]  # subset s to just the values greater than 3
 ```
 
-We obtain a new Series with the values that are greater than 3.
+We obtain a new Series with the values that are greater than 3. Series cannot be filtered with `query()`, so they are a good use case for `[]`.
 
 We can do the same with DataFrames. Let's filter our `yao` DataFrame to keep only females:
 
@@ -325,6 +429,8 @@ yao[(yao.sex == 'Female') & (yao.age > 30)]
 Note the use of parentheses around each condition. 
 
 ::: {.callout-tip title="Practice"}
+
+### Practice Q: Heights subset
 
 Create a Series called `heights` with the following values: [160, 175, 182, 168, 190, 173]. Then, use logical subsetting to create a new Series called `tall_people` that only includes heights greater than 180 cm.
 

@@ -1,0 +1,93 @@
+
+## Setting category order
+
+When working with categorical data, especially for visualization or certain types of statistical analysis, we often need to specify a particular order for the categories. By default, pandas will typically sort categories alphabetically or by their frequency. However, this may not always be the most meaningful or useful order for your analysis.
+
+For example, perhaps we want to make a table of frequencies for the `econ_type` column:
+
+```{python}
+econ_types_df = counties[["econ_type"]]
+econ_types_df.value_counts()
+```
+
+As you can see, it's ordered by frequency (descending). We can turn off the sorting by adding `sort=False` to the `value_counts()` function:
+
+```{python}
+econ_types_df.value_counts(sort=False)
+```
+
+Now the values are sorted alphabetically, which may not be the most meaningful order for our analysis.
+
+So we can specify a custom order for the categories by converting the column to a categorical variable with the `Categorical` data type in pandas.
+
+<!-- Nonspecialized              1237
+Manufacturing                501
+Farming                      444
+Federal/State Government     407
+Recreation                   333
+Mining                       221 -->
+
+Let's try this out to order the `econ_type` column with the order "Manufacturing", "Mining", "Farming", "Recreation", "Federal/State Government" then "Nonspecialized" as the last category.
+
+```{python}
+econ_types_df = econ_types_df.assign(
+    econ_type_ordered=lambda x: pd.Categorical(
+        x.econ_type,
+        categories=[
+            "Manufacturing",
+            "Mining",
+            "Farming",
+            "Recreation",
+            "Federal/State Government",
+            "Nonspecialized",
+        ],
+        ordered=True,
+    )
+)
+```
+
+The syntax for `pd.Categorical()` is `pd.Categorical(variable, categories=list, ordered=True)`. Now we can use `value_counts()` to see the categories in our specified order:
+
+```{python}
+econ_types_df.value_counts(ordered=True)
+```
+
+Now when we use `value_counts()`, the categories are displayed in our specified order, regardless of their frequency.
+
+This ordering can be particularly useful in plots:
+
+```{python}
+counties_pop["pop_class_ordered"].value_counts().plot(kind="bar")
+plt.title("County Population Classes")
+plt.show()
+```
+
+In this bar plot, the categories are displayed in our specified order, which can make the visualization more intuitive and easier to interpret.
+
+Remember, setting a specific order for your categories can be crucial for:
+
+1. Ensuring consistent ordering in tables and plots
+2. Proper functioning of ordinal variables in statistical models
+3. Making your data presentations more logical and easier to understand
+
+When you're working with categorical data, always consider whether a specific order would be beneficial for your analysis or presentation.
+
+::: {.callout-tip title='Practice'}
+
+Using the `counties_income` data from earlier, create an ordered categorical variable for the `income_group` column. The order should be "Below 60k", "60k to 100k", "100k and above". 
+
+Then, create a bar plot of the counts for each category. Your code should look something like this:
+
+```{python}
+# | eval: false
+# Your code here to create the ordered categorical variable
+
+# Plot
+Q_income_group["income_group_ordered"].value_counts().plot(kind="bar")
+plt.title("County Income Groups")
+plt.show()
+```
+
+How does the visual representation of the data change when you use an ordered categorical variable?
+
+:::

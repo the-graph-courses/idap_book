@@ -144,18 +144,24 @@ Note that when we combine multiple conditions with `&`, we must use parentheses 
 
 ::: {.callout-tip title='Practice'}
 
+### Practice Q: Recode income class
+
 The `counties_income` dataset has a column called `hh_inc_21` with the median household income in 2021. Make a new column, called `income_group`, with the following three groups: 
 
-- "Below 60k" for counties with income under $60,000
-- "60k to 100k" for counties with income between $60,000 and $100,000 (exclusive of 100k)
-- "100k and above" for counties with income of $100,000 and up
+- "Below 30k" for counties with income under $30,000
+- "30k to 60k" for counties with income between $30,000 and $60,000 (exclusive of 60k)
+- "60k and above" for counties with income of $60,000 and up
 
 ```{python}
 # | eval: false
 # Complete the code with your answer:
 Q_income_group = counties_income.assign(
     income_group=lambda x: x.hh_inc_21.case_when(
-        # Your code here
+        [
+            (x.hh_inc_21 < 30000, "Below 30k"),
+            _________________________________
+            _________________________________
+        ]
     )
 )
 Q_income_group["income_group"].value_counts(normalize=True)
@@ -196,6 +202,7 @@ When categorizing variables, it's important to clearly communicate whether each 
 Choose the method that best suits your audience and context.
 
 :::
+
 
 ## A catch-all condition
 
@@ -243,12 +250,76 @@ Statements with case_when are evaluated from top to bottom, so conditions that s
 
 ::: {.callout-tip title='Practice'}
 
+
+### Practice Q: Recode income class 2
+
 Using the `counties_income` data, and the `hh_inc_21` column, create a new column called `income_class` that has the value "Medium income" for counties with median household income from $60,000 to below $100,000 and "Other" for all other counties. (Use a catch-all condition.) Your new dataframe should be called `Q_income_class`.
 
 ```{python}
 # Your code here
 ```
 :::
+
+
+## Counting counties by name characteristics
+
+To get more practice with `case_when()`, let's explore a fun application of it by analyzing county names. 
+
+We'll look for counties that have the words "River" or "Rio" (spanish for river) in their names. This may be interesting to know, as these often indicate counties with significant water features.
+
+First, we'll use `case_when()` to create a new column that flags these counties:
+
+```{python}
+counties_names = counties[["county"]]
+
+counties_names = counties_names.assign(
+    water_name=lambda x: x.county.case_when(
+        [
+            (x.county.str.contains("River|Rio"), "River in name"),
+            (x.county == x.county, "Other"),
+        ]
+    )
+)
+counties_names
+```
+
+In this code, we're using a regular expression `"River|Rio"` to match either "River" or "Rio" in the county name. The `|` symbol in regex means "or". We're also using our catch-all condition `x.county == x.county` to label all other counties as "Other".
+
+Let's see how many counties we've identified:
+
+```{python}
+counties_names["water_name"].value_counts(normalize=True)
+```
+
+Interesting! It looks like about X% of counties have "River" or "Rio" in their name.
+
+Now, let's use `.query()` to keep just those water-related counties:
+
+```{python}
+water_counties = counties_names.query("water_name == 'Water in name'")
+water_counties
+```
+
+Cool! Do you recognize any of these counties?
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Find lake or bay counties
+
+In a similar way to what we did with "River" or "Rio", find counties with "Lake" or "Bay" in their names. Create a new column called `lake_bay_name` and then use `.query()` to create a dataframe called `lake_bay_counties` with only these counties.
+
+Start with the `counties_names` dataframe.
+
+```{python}
+# Your code here
+```
+
+How does the proportion of "Lake" or "Bay" counties compare to "River" or "Rio" counties?
+
+:::
+
+This example shows how we can use `case_when()` along with string methods and regular expressions to create meaningful categories based on text data. It's a powerful way to explore patterns in your dataset!
+
 
 ## Matching NaN's with `isna()`
 
@@ -271,6 +342,8 @@ counties_pop
 
 ::: {.callout-tip title='Practice'}
 
+### Practice Q: Recode economic type
+
 The `econ_type` column of the `counties` dataset describes the primary economic activity of the county: 
 
 ```{python}
@@ -288,17 +361,10 @@ Implement the following recoding, storing the new data in a column called `econ_
 To get you started, here is how to recode "Farming, Mining and Manufacturing" to "Industry":
 
 ```{python}
-Q_econ_type_recode = practice_econ.assign(
-    econ_type_recode=lambda x: x.econ_type.case_when(
-        [
-            (x.econ_type.isin(["Farming", "Mining", "Manufacturing"]), "Industry"),
-            # Rest of the conditions here
-        ]
-    )
-)
-Q_econ_type_recode
+# Your code here
 ```
 :::
+
 
 ## Binary conditions: `np.where()`
 
@@ -333,6 +399,9 @@ Nice and easy!
 Since it is only a binary condition, it's utility is limited, but it can be useful for quick transformations.
 
 ::: {.callout-tip title='Practice'}
+
+### Practice Q: Recode income class with np.where()
+
 With the `counties_income` data, make a new column, called `income_class`, that has the value "Medium income" for counties with median household income between $60,000 and $100,000 (exclusive of 100k) and "Other" for all other counties. Use the `np.where()` function.
 
 ```{python}

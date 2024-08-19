@@ -13,8 +13,6 @@ pd.options.display.max_rows = 7
 
 ## Introduction
 
-You've now mastered filtering data, selecting variables, and modifying columns. 
-
 In this lesson, we'll explore two powerful pandas methods: `agg()` and `groupby()`. These tools will enable you to extract summary statistics and perform operations on grouped data effortlessly. 
 
 Let's dive in and discover how to unlock deeper insights from your data!
@@ -25,19 +23,15 @@ Let's dive in and discover how to unlock deeper insights from your data!
 
 2.  You can use `pandas.DataFrame.groupby()` to group data by one or more variables before performing operations on them.
 
-3.  You understand why and how to ungroup grouped data frames.
+3.  You can use `sum()` together with `groupby()`-`agg()` to count rows that meet a condition.
 
-4.  You can use `pandas.DataFrame.groupby().size()` to count rows per group.
-
-5.  You can use `sum()` together with `groupby()`-`agg()` to count rows that meet a condition.
-
-6.  You can use `pandas.DataFrame.value_counts()` as a handy function to count rows per group.
+4. You can pass custom functions to `agg()` to compute summary statistics.
 
 ------------------------------------------------------------------------
 
 ## Libraries
 
-Run the following line to import the necessary libraries:
+Run the following lines to import the necessary libraries:
 
 ```{python}
 import pandas as pd
@@ -62,11 +56,11 @@ yao = yaounde[['age', 'age_category_3', 'sex', 'weight_kg', 'height_cm',
 yao
 ```
 
-See the first lesson in this chapter for more information about this dataset.
+You can find out more about this dataset here: https://www.nature.com/articles/s41467-021-25946-0
 
 ## What are summary statistics?
 
-A summary statistic is a single value (such as a mean or median) that describes a sequence of values (typically a column in your dataset). Summary statistics can describe the center, spread or range of a variable, or the counts and positions of values within that variable. 
+A summary statistic is a single value (such as a mean or median) that describes a sequence of values (typically a column in your dataset). 
 
 Computing summary statistics is a very common operation in most data analysis workflows, so it will be important to become fluent in extracting them from your datasets. And for this task, there is no better tool than the pandas method `agg()`! So let's see how to use this powerful method.
 
@@ -74,18 +68,7 @@ Computing summary statistics is a very common operation in most data analysis wo
 
 To get started, let's consider how to get simple summary statistics *without* using `agg()`, then we will consider why you *should* actually use `agg()`.
 
-Imagine you were asked to find the mean age of respondents in the `yao` data frame. How might you do this in base Python?
-
-First, recall that square bracket notation allows you to extract a column from a data frame:
-
-```{python}
-# | eval: false
-
-yao[["age"]]  # extract the `age` column from `yao`
-```
-
-To obtain the mean, you simply call the `mean()` method on this `yao['age']` Series:
-
+Imagine you were asked to find the mean age of respondents in the `yao` data frame. You can do this by calling the `mean()` method on the `age` column of the `yao` data frame:
 ```{python}
 yao[["age"]].mean()
 ```
@@ -100,22 +83,27 @@ Going back to the previous example, the correct syntax to get the mean age with 
 yao.agg(mean_age=('age', 'mean'))
 ```
 
-The anatomy of this syntax is quite simple. You simply need to the name of the new column (e.g. `mean_age`), the column to summarize (e.g. `age`), and the summary function (e.g. `'mean'`).
+The anatomy of this syntax is:
+
+```{python}
+# | eval: false
+dataframe.agg(new_column_name=("COLUMN_TO_SUMMARIZE", "SUMMARY_FUNCTION"))
+```
 
 ------------------------------------------------------------------------
 
 You can also compute multiple summary statistics in a single `agg()` statement. For example, if you wanted both the mean and the median age, you could run:
 
 ```{python}
-yao.agg(
-    mean_age=('age', 'mean'),
-    median_age=('age', 'median')
-)
+yao.agg(mean_age=("age", "mean"), median_age=("age", "median"))
 ```
 
 Nice! Try your hand at the practice question below.
 
 ::: {.callout-tip title='Practice'}
+
+### Practice Q: Mean and median weight
+
 Use `agg()` and the relevant summary functions to obtain the mean and median of respondent weights from the `weight_kg` variable of the `yao` data frame.
 
 ```{python}
@@ -125,6 +113,9 @@ Use `agg()` and the relevant summary functions to obtain the mean and median of 
 :::
 
 ::: {.callout-tip title='Practice'}
+
+### Practice Q: Min and max height
+
 Use `agg()` and the relevant summary functions to obtain the minimum and maximum respondent heights from the `height_cm` variable of the `yao` data frame. You may need to use a search engine to find out the minimum and maximum functions in Python if you don't remember them.
 
 ```{python}
@@ -139,10 +130,10 @@ Now let's see how to use `groupby()` to obtain grouped summaries, the primary re
 
 As its name suggests, `pandas.DataFrame.groupby()` lets you group a data frame by the values in a variable (e.g. male vs female sex). You can then perform operations that are split according to these groups.
 
-What effect does `groupby()` have on a data frame? Let's try to group the `yao` data frame by sex and observe the effect:
+Let's try to group the `yao` data frame by sex and observe the effect:
 
 ```{python}
-yao.groupby('sex')
+yao.groupby("sex")
 ```
 
 Hmm. Apparently nothing happened. We just get a `GroupBy` object.
@@ -151,9 +142,8 @@ But watch what happens when we chain the `groupby()` with the `agg()` call we us
 
 ```{python}
 (
-    yao
-    .groupby('sex')
-    .agg(mean_age=('age', 'mean'))
+    yao.groupby("sex")
+    .agg(mean_age=("age", "mean"), median_age=("age", "median"))
 )
 ```
 
@@ -161,10 +151,14 @@ Now we get a different statistic for each group! The mean age for female respond
 
 As was mentioned earlier, this kind of grouped summary is the primary reason the `agg()` function is so useful.
 
-You may notice that there are two headers. This is because the output has a hierarchical index (MultiIndex). While this can be useful in some cases, it often makes further data manipulation more difficult. We can reset the index to convert the group labels back to a regular column with the `reset_index()` method.
+You may notice that there are two header rows. This is because the output has a hierarchical index (called a MultiIndex in pandas). While this can be useful in some cases, it often makes further data manipulation more difficult. We can reset the index to convert the group labels back to a regular column with the `reset_index()` method.
 
 ```{python}
-yao.groupby("sex").agg(mean_age=("age", "mean")).reset_index()
+(
+    yao.groupby("sex")
+    .agg(mean_age=("age", "mean"), median_age=("age", "median"))
+    .reset_index()
+)
 ```
 
 ------------------------------------------------------------------------
@@ -182,7 +176,7 @@ Suppose you were asked to obtain the maximum and minimum weights for individuals
         count=("neighborhood", "size"),  # the size function counts rows per group
     )
     .reset_index()
-)
+) 
 ```
 
 Great! With just a few code lines you are able to extract quite a lot of information.
@@ -199,9 +193,8 @@ To count the total number of work days missed for each sex group, we can write:
 
 ```{python}
 (
-    yao
-    .groupby('sex')
-    .agg(total_days_missed=('n_days_miss_work', 'sum'))
+    yao.groupby("sex")
+    .agg(total_days_missed=("n_days_miss_work", "sum"))
     .reset_index()
 )
 ```
@@ -210,19 +203,13 @@ The output tells us that across all women in the sample, 256 work days were miss
 
 ------------------------------------------------------------------------
 
-So hopefully now you see why `agg()` is so powerful. In combination with `groupby()`, it lets you obtain highly informative grouped summaries of your datasets with very few lines of code.
+Hopefully now you see why `agg()` is so powerful. In combination with `groupby()`, it lets you obtain highly informative grouped summaries of your datasets with very few lines of code.
 
 Producing such summaries is a very important part of most data analysis workflows, so this skill is likely to come in handy soon!
 
-::: {.callout-note title='Vocab'}
-**`agg()` produces "Pivot Tables**"
-
-The summary data frames created by `agg()` are often called Pivot Tables in the context of spreadsheet software like Microsoft Excel.
-
-:::
-
-
 ::: {.callout-tip title='Practice'}
+
+### Practice Q: Min and max height per sex
 
 Use `groupby()`, `agg()`, and the relevant summary functions to obtain the minimum and maximum heights for each sex in the `yao` data frame, as well as the number of individuals in each sex group.
 
@@ -243,14 +230,28 @@ Your output should be a DataFrame that looks like this:
 
 **Groupby and agg are not always needed**
 
-Sometimes you just want a quick summary of a variable, not per group. In this case, you can use the `describe()` method to get a quick summary of a variable.
+Sometimes you just want a quick summary of a variable, not per group. 
 
-Remember that there are quick ways to get such statistics:
+Remember that there are quick ways to get such statistics. So you do not always need to use `groupby()` and `agg()`.
 
 ```{python}
 yao['age'].describe() # summary stats for a numeric variable
+```
+
+```{python}
 yao['sex'].describe() # summary stats for a categorical variable
+```
+
+```{python}
 yao['sex'].value_counts() # count of each category
+```
+
+```{python}
+yao.select_dtypes(object).describe() # summary stats for categorical variables
+```
+
+```{python}
+yao.select_dtypes(np.number).describe() # summary stats for numeric variables
 ```
 
 
@@ -260,15 +261,21 @@ yao['sex'].value_counts() # count of each category
 
 ## NaN values in `agg()`
 
-You can use the `dropna` parameter in `agg()` to control whether to drop NaN values. For example, the smoking status variable in the `yao` data frame contains NaN values. If we try to compute the mean weight for smokers, we can either include or exclude the NaN individuals in the summary table.
+When using `agg()` to compute grouped summary statistics, pay attention to whether your group of interest contains NaN values.
 
-By default, `dropna=True` and individuals with NaN values for the `is_smoker` variable are dropped from the summary table.
+For example, to get mean weight by smoking status, we can write:
 
 ```{python}
-yao.groupby("is_smoker").agg(weight_mean=("weight_kg", "mean")).reset_index()
+(
+    yao.groupby("is_smoker")
+    .agg(weight_mean=("weight_kg", "mean"))
+    .reset_index()
+)
 ```
 
-But we can include these individuals in the summary table by setting `dropna=False`:
+But this actually excludes some rows with NaN smoking status from the summary table.
+
+We can include these individuals in the summary table by setting `dropna=False` with the `groupby()` function.
 
 ```{python}
 (
@@ -278,22 +285,37 @@ But we can include these individuals in the summary table by setting `dropna=Fal
 )
 ```
 
+Also recall that you can see how many individuals are in each smoking status group by using the `size()` function. It is often useful to include this information in your summary table, so that you know how many individuals are behind each summary statistic.
+
+```{python}
+(
+    yao.groupby("is_smoker", dropna=False)
+    .agg(weight_mean=("weight_kg", "mean"), 
+         count=("is_smoker", "size"))
+    .reset_index()
+)
+```
+
+
 :::
 
 ::: {.callout-tip title='Practice'}
-Use `groupby()`, `agg()`, and the `mean()` function to obtain the mean weight (kg) by pregnancy status in the `yao` data frame. Be sure to include individuals with NaN pregnancy status in the summary table. Name the average weight column `weight_mean`. Store the output in a variable named `Q_weight_by_pregnancy_status`.
 
-The output data frame should look like something like this:
+### Practice Q: Mean weight by pregnancy status
+
+Use `groupby()`, `agg()`, and the `mean()` function to obtain the mean weight (kg) by pregnancy status in the `yao` data frame. Include individuals with NaN pregnancy status in the summary table. 
+
+The output data frame should look something like this:
 
 | is_pregnant | weight_mean |
 |-------------|-------------|
 | No          |             |
 | No response |             |
 | Yes         |             |
-| NA          |             |
+| NaN         |             |
 
 ```{python}
-# Your code here
+# your code here
 ```
 
 :::
@@ -302,7 +324,7 @@ The output data frame should look like something like this:
 
 It is possible to group a data frame by more than one variable. This is sometimes called "nested" grouping.
 
-Let's see an example. Suppose you want to know the mean age of men and women *in each neighbourhood* (rather than the mean age of *all* women), you could put both `sex` and `neighborhood` in the `groupby()` statement:
+Suppose you want to know the mean age of men and women *in each neighbourhood*, you could put both `sex` and `neighborhood` in the `groupby()` statement:
 
 ```{python}
 (
@@ -313,7 +335,7 @@ Let's see an example. Suppose you want to know the mean age of men and women *in
 )
 ```
 
-From this output data frame you can tell that, for example, women from Briqueterie have a mean age of 31.6 years, while men from Briqueterie have a mean age of 33.7 years.
+From this output data frame you can tell that, for example, women from Briqueterie have a mean age of 31.6 years.
 
 The order of the columns listed in `groupby()` is interchangeable. So if you run `groupby(['neighborhood', 'sex'])` instead of `groupby(['sex', 'neighborhood'])`, you'll get the same result, although it will be ordered differently:
 
@@ -326,11 +348,10 @@ The order of the columns listed in `groupby()` is interchangeable. So if you run
 )
 ```
 
-Now the column order is different: `neighborhood` is the first column, and `sex` is the second. And the row order is also different: rows are first ordered by `neighborhood`, then ordered by `sex` within each neighborhood.
-
-But the actual summary statistics are the same. For example, you can again see that women from Briqueterie have a mean age of 31.6 years, while men from Briqueterie have a mean age of 33.7 years.
-
 ::: {.callout-tip title='Practice'}
+
+### Practice Q: Total bedridden days per age-sex group
+
 Use `groupby()`, `agg()`, and the `sum()` function to calculate the total number of bedridden days (from the `n_bedridden_days` variable) reported by respondents of each age-sex group. For age group, use the `age_category_3` variable.
 
 Your output should be a data frame with three columns named as shown below:
@@ -338,18 +359,17 @@ Your output should be a data frame with three columns named as shown below:
 | age_category_3    | sex    | total_bedridden_days |
 |-------------------|--------|----------------------|
 | Adult             | Female |                      |
-|                   | Male   |                      |
+| Adult             | Male   |                      |
 | Child             | Female |                      |
-|                   | Male   |                      |
+| Child             | Male   |                      |
 | Senior            | Female |                      |
-|                   | Male   |                      |
+| Senior            | Male   |                      |
 
 ```{python}
-# Your code here
+# your code here
 ```
 
 :::
-I'd be happy to help you write the last two sections. Here's how we can complete them:
 
 ## Custom summary statistics
 
@@ -368,7 +388,13 @@ For example, let's say we want to calculate the range (difference between maximu
 
 Notice that we still provide a tuple to the `agg()` function, `('weight_kg', lambda x: x.max() - x.min())`, but the second element of the tuple is a lambda function.
 
+This lambda function operates on the column provided in the tuple, `weight_kg`. 
+
+(Unlike the lambda functions we saw in the `assign()` method, we do not need to access the column within the lambda with `x.weight_kg.max() - x.weight_kg.min()`. We simply use `x.max() - x.min()`.)
+
 ::: {.callout-tip title='Practice'}
+
+### Practice Q: IQR of age by neighborhood
 
 Find the interquartile range (IQR) of the age variable for each neighborhood. The IQR is the difference between the 75th and 25th percentiles. Your lambda will look like this: `lambda x: x.quantile(0.75) - x.quantile(0.25)`
 
@@ -378,7 +404,7 @@ Find the interquartile range (IQR) of the age variable for each neighborhood. Th
 
 :::
 
-### Counting rows that meet a condition
+## Counting rows that meet a condition
 
 It is sometimes useful to count the rows that meet specific conditions within a group. This can be done with the groupby and agg functions.
 
@@ -393,14 +419,32 @@ For example, to count the number of people under 18 in each neighborhood, we can
 )
 ```
 
-Let's add the number of seniors (65+) too, and we'll also calculate the percentage of children and seniors in each neighborhood:
+The lambda function `(x < 18).sum()` counts the number of values in the `x` series that are less than 18. The `x` series is the age variable for each neighborhood.
 
+
+Let's broaden our scope and add the number of seniors (65+) to the summary table.
 ```{python}
 (
     yao.groupby("neighborhood")
     .agg(
         num_children=("age", lambda x: (x < 18).sum()),
-        num_seniors=("age", lambda x: (x >= 65).sum()),
+        num_seniors=("age", lambda x: (x >= 65).sum())
+    )
+    .reset_index()
+)
+```
+
+
+## Calculate percentage shares
+
+We can expand our previous example to calculate the percentage of children and seniors in each neighborhood.
+
+Calculating such percentage shares is a common task in data analysis.
+
+```{python}
+(
+    yao.groupby("neighborhood")
+    .agg(
         children_percent=("age", lambda x: (x < 18).sum() / len(x) * 100),
         seniors_percent=("age", lambda x: (x >= 65).sum() / len(x) * 100),
     )
@@ -408,31 +452,55 @@ Let's add the number of seniors (65+) too, and we'll also calculate the percenta
 )
 ```
 
-`(x < 18).sum()` counts the number of individuals in the `x` series who are under 18 years old, then we divide by the total number of individuals in the series `len(x)` and multiply by 100 to get the percentage of children in each neighborhood. And likewise for seniors.
+Hopefully the code above is not too confusing. To calculate the percentage of children, we divide the number of children `(x < 18).sum()` by the total number of individuals in the series, `len(x)`, and multiply by 100. Likewise for seniors.
 
-  ------------------------------------------------------------------------
+A more concise approach utilizes the fact that the mean of a boolean series represents the proportion of True values:
 
-As a final example, to count the number of people with doctorate degrees in each neighborhood, we can write:
 ```{python}
 (
-    yao
-    .groupby('neighborhood')
-    .agg(count_with_doctorates=('highest_education', lambda x: (x == "Doctorate").sum()))
+    yao.groupby("neighborhood")
+    .agg(
+        children_percent=("age", lambda x: (x < 18).mean() * 100),
+        seniors_percent=("age", lambda x: (x >= 65).mean() * 100),
+    )
+    .reset_index()
+)
+```
+
+While this method is more efficient, it may be less intuitive. If you find it confusing, feel free to use the more explicit calculation shown earlier.
+
+------------------------------------------------------------------------
+
+As a final example, to count the number and percentage of people with doctorate degrees in each neighborhood, we can write:
+
+```{python}
+(
+    yao.groupby("neighborhood")
+    .agg(
+        count_w_doctorates=("highest_education", lambda x: (x == "Doctorate").sum()),
+        pct_in_neighborhood_w_doctorates=(
+            "highest_education",
+            lambda x: (x == "Doctorate").mean() * 100,
+        ),
+    )
     .reset_index()
 )
 ```
 
 ::: {.callout-tip title='Practice'}
+
+### Practice Q: Smoker rate by sex and age category
+
 Calculate the percentage of people with are smokers (use the `is_smoker` variable) for each combination of sex and age category (use `age_category_3`). The output should look like this:
 
 | sex    | age_category_3 | smoker_rate |
 |--------|----------------|---------------|
 | Female | Adult          |               |
-|        | Child          |               |
-|        | Senior         |               |
+| Female | Child          |               |
+| Female | Senior         |               |
 | Male   | Adult          |               |
-|        | Child          |               |
-|        | Senior         |               |
+| Male   | Child          |               |
+| Male   | Senior         |               |
 
 
 Your summary table should show that male adults have the highest smoker rate, followed by male seniors. 
@@ -440,20 +508,15 @@ Your summary table should show that male adults have the highest smoker rate, fo
 # Your code here
 ```
 
-
 :::
 
 
 ## Wrap up
 
-In this lesson, you've learned how to:
-
-1. Obtain quick summary statistics from your data using `agg()`.
-2. Group your data using `groupby()`.
-3. Combine `groupby()` with `agg()` for powerful data summarization.
+In this lesson, you've learned how to obtain quick summary statistics from your data using `agg()`, group your data using `groupby()`, and combine `groupby()` with `agg()` for powerful data summarization.
 
 These skills are essential for both exploratory data analysis and preparing data for presentation or plotting. The combination of `groupby()` and `agg()` is one of the most common and useful data manipulation techniques in pandas.
 
-It turns out that `groupby()` can be combined with many other pandas methods beyond just `agg()`. In our next lesson, we'll explore these additional combinations to further expand your data manipulation toolkit.
+In our next lesson, we'll explore ways to combine `groupby()` with other pandas methods.
 
 See you there!

@@ -1,0 +1,264 @@
+---
+title: 'Grouped Transformations and Filtering'
+---
+
+```{python}
+# | echo: false
+# Setup
+import pandas as pd
+import numpy as np
+
+pd.options.display.max_rows = 7
+```
+
+## Introduction to Grouped Operations
+
+Data wrangling often involves applying the same operations separately to different groups within the data. In this lesson, we'll learn how to use `groupby()` with `transform()` and `assign()` to conduct grouped transformations on a DataFrame.
+
+## Learning Objectives
+
+1. You can use `groupby()` with `transform()` and `assign()` to conduct grouped operations on a DataFrame.
+
+## Required Packages
+
+This lesson requires pandas and numpy:
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+## Simple Toy Dataset
+
+Let's start with a simple toy dataset to illustrate the concepts:
+
+```{python}
+# Create a simple toy dataset
+toy_data = pd.DataFrame(
+    {
+        "year": [2022, 2022, 2023, 2023],
+        "month": ["Jan", "Feb", "Jan", "Feb"],
+        "sales": [2, 4, 6, 8],
+    }
+)
+
+print(toy_data)
+```
+
+### Regular `assign()` Call
+
+Let's add a column with the mean sales for the entire dataset, then calculate the difference between each month's sales and the mean sales:
+
+```{python}
+toy_data.assign(
+    mean_sales=lambda x: x.sales.mean(), 
+    sales_diff=lambda x: x.sales - x.mean_sales
+)
+```
+
+In this example, the `mean_sales` column contains the mean sales value for the entire dataset (5), repeated in each row. The `sales_diff` column shows the difference between each month's sales and the overall mean sales.
+
+### Grouped `assign()` Call
+
+But we might want to see how each month's sales compare to the mean sales for that year. 
+
+```{python}
+toy_data.assign(
+    mean_sales=lambda x: x.groupby("year").sales.mean(),
+    sales_diff=lambda x: x.sales - x.mean_sales
+)
+```
+
+Now we have the mean sales for year 2022 as 3 and for year 2023 as 7. and the sales_diff column shows how far each month's sales are from the mean sales for that year.
+
+Let's break down the code, especially the first line:
+
+- Within the assign method, we initiate the `mean_sales` column
+- Then we pass the lambda function to the `mean_sales` column
+- The lambda function takes the dataframe, denoted `x` as input, groups it by `year` (`x.groupby("year")`), then pulls out the `sales` column (`x.groupby("year").sales`) then to compute the mean for each year, we use the `transform()` method (`x.groupby("year").sales.transform("mean")`).
+
+## Real Dataset: Austin Housing
+
+Now let's apply these concepts to a real dataset. We'll use the `housing` dataset containing housing sales data for Austin, Texas:
+
+```{python}
+housing = pd.read_csv("data/austinhousing.csv", usecols=["year", "month", "sales"])
+
+## Display first few rows of the dataset
+housing
+```
+
+### Regular `assign()` Call
+
+Let's add a column with the mean sales for the entire dataset, then calculate the difference between each month's sales and the mean sales:
+
+```{python}
+housing.assign(
+    mean_sales=lambda x: x.sales.mean(), 
+    sales_diff=lambda x: x.sales - x.mean_sales
+)
+```
+
+In this example, the `mean_sales` column contains the mean sales value for the entire dataset, repeated in each row. The `sales_diff` column shows the difference between each month's sales and the overall mean sales.
+
+### Grouped `assign()` Call
+
+Now, let's add a column with the mean sales for each year, and then calculate the difference between each month's sales and the mean sales for that year:
+
+```{python}
+housing.assign(
+    mean_sales=lambda x: x.groupby("year").sales.transform("mean"),
+    sales_diff=lambda x: x.sales - x.mean_sales
+)
+```
+
+Here's what's happening:
+- Within the `assign()` method, we group by year and use `transform("mean")` to compute the mean sales for each year.
+- The `mean_sales` column now contains the mean sales for each year, repeated in each row of that year.
+- The `sales_diff` column shows how far each month's sales are from the mean sales for that year, allowing us to see which months are high and low performers within each year.
+
+This grouped approach allows us to compare sales within each year, accounting for overall trends or differences between years.
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Compute Mean Temperature for Each Day
+
+With the `gibraltar` dataframe, group by the date of measurement, then in a new variable called `mean_temp`, compute the mean temperature for each day. Store the result in a new dataframe called `mean_temp_question`.
+
+```{python}
+# | eval: false
+## Complete the code with your answer:
+mean_temp_question = gibraltar.assign(
+    mean_temp=___________________________________-
+)
+
+mean_temp_question
+```
+
+:::
+
+### More Examples of Grouped Transformations
+
+#### Rank Sales Within Each Year
+
+Now let's look at a more complex example. We can add a column that ranks the sales volume for each year.
+
+```{python}
+housing.assign(sales_rank=housing.groupby("year").sales.rank(ascending=False))
+```
+
+In this example, we're creating a new column `sales_rank` that ranks the `sales` column in descending order within each year group. This allows us to see which months had the highest sales for each year.
+
+These examples demonstrate how we can use grouped operations to perform more nuanced analyses on our data, allowing us to uncover patterns and insights within specific subgroups of our dataset.
+
+
+#### Cumulative Sales Column
+
+Let's add a column that shows the cumulative sales for each year, adding up the sales for each month within the year.
+
+```{python}
+housing.assign(
+    cumulative_sales=housing.groupby("year").sales.transform("cumsum")
+)
+```
+
+#### Percent of Yearly Sales Done Each Month
+
+We can calculate the percent of sales done each month for that year.
+
+```{python}
+housing.assign(
+    percent_sales=lambda x: 100 * x.sales / x.groupby("year").sales.transform("sum")
+)
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Cumulative Listings Column
+
+With the `housing` dataframe, group by `year`, then create a cumulative listings column for each year.
+
+```{python}
+# Your code here
+```
+:::
+
+## Grouped Filtering with `query()`
+
+To query per group, it is usually better to create a relevant column with `groupby()` and `transform()`, then use `query()` on the resulting dataframe to filter data.
+
+### Filter for Month with Highest Sales Volume per Year
+
+For example, if we want to filter the data for the month with the highest sales volume per year group (the month with the highest sales volume for each year), we can use `groupby()` with `transform()` to first create a column with the max sales volume per year, then ungroup and filter.
+
+```{python}
+(
+housing
+  .assign(max_sales=housing.groupby("year").sales.transform("max"))
+  .query("sales == max_sales")
+)
+```
+
+We can drop the `max_sales` column if we want to at the end.
+
+```{python}
+(
+housing
+  .assign(max_sales=housing.groupby("year").sales.transform("max"))
+  .query("sales == max_sales")
+  .drop(columns=["max_sales"])
+)
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Filter for Time of Day with Highest Wind Speed
+
+With the `gibraltar` dataframe created above, group by the date of measurement, calculate the time of day with the highest recorded wind speed `wind_speed` for each day, then filter the dataframe to keep only the rows with the highest wind speed for each day.
+
+Note that for some days, there may be a tie in the highest wind speed.
+
+```{python}
+# Your code here
+```
+:::
+
+### Month with the Most "Typical" Sales
+
+We can also use `groupby()` with `transform()` to find the month with the most "typical" sales. We'll use the mean sales volume for each year as the "typical" sales volume, then get the month with the closest sales to that.
+
+```{python}
+(
+housing
+  .assign(
+    mean_sales=housing.groupby("year").sales.transform("mean"),
+    sales_diff_abs=lambda x: (x.sales - x.mean_sales).abs()
+    )
+  .sort_values("sales_diff_abs")
+  .groupby("year")
+  .first()
+)
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Filter for Times with Above Mean Temperature
+
+Group the `gibraltar` dataframe by `date`, then use `apply()`, `assign()`, and `query()` as needed to subset to only times when the temperature is above the mean temperature for that day. You should have 698 rows in the output.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Wrap Up
+
+In this lesson, we explored powerful techniques for grouped operations in pandas:
+
+1. Using `groupby()` with `transform()` and `assign()` for grouped transformations
+2. Combining `groupby()`, `transform()`, and `query()` for grouped filtering
+
+These methods significantly enhance our ability to analyze and manipulate data within specific groups.
+
+Congratulations on making it through!

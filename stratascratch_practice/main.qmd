@@ -1,0 +1,555 @@
+
+
+## DC bikeshare
+
+```{python}
+import pandas as pd
+
+dc_bikeshare = pd.read_csv("dc_bikeshare_q1_2012.csv")
+
+dc_bikeshare.groupby('bike_number').
+
+```
+
+```{python}
+
+import pandas as pd
+from datetime import datetime
+
+# Create sample data
+data = {
+    'worker_id': range(1, 11),
+    'first_name': ['John', 'Jane', 'Mike', 'Emily', 'David', 'Sarah', 'Tom', 'Lisa', 'Alex', 'Emma'],
+    'last_name': ['Doe', 'Smith', 'Johnson', 'Brown', 'Wilson', 'Lee', 'Taylor', 'Clark', 'White', 'Harris'],
+    'salary': [50000, 55000, 60000, 52000, 58000, 53000, 56000, 54000, 57000, 59000],
+    'joining_date': [
+        datetime(2023, 2, 15), datetime(2023, 4, 1), datetime(2023, 3, 10),
+        datetime(2023, 5, 20), datetime(2023, 1, 5), datetime(2023, 6, 12),
+        datetime(2023, 4, 30), datetime(2023, 7, 8), datetime(2023, 3, 25),
+        datetime(2023, 5, 3)
+    ],
+    'department': ['IT', 'Admin', 'Sales', 'Admin', 'IT', 'Admin', 'HR', 'Admin', 'Sales', 'IT']
+}
+
+# Create DataFrame
+worker = pd.DataFrame(data)
+
+# Display the DataFrame
+print(worker)
+
+# Question as a comment
+# Find the number of employees working in the Admin department that joined in April or later.
+
+
+worker.query('joining_date.dt.month > 4').shape[0]
+
+pd.to_datetime("2023-04-04").month
+```
+
+```{python}
+
+(worker
+    .groupby("department")
+    .agg(num_workers=("department", "size"))
+    .reset_index()
+    .sort_values('num_workers', ascending=False))
+
+```
+
+```{python}
+
+import pandas as pd
+
+# Sample data
+data = {
+    'city': ['Boston', 'Boston', 'Boston', 'Chicago', 'Chicago', 'New York'],
+    'property_type': ['Apartment', 'Condominium', 'House', 'Apartment', 'Condominium', 'Apartment'],
+    'bedrooms': [1, 2, 3, 2, 2, 1],
+    'bathrooms': [1, 2, 2, 2, 2, 1]
+}
+
+# Create DataFrame
+airbnb_search_details = pd.DataFrame(data)
+
+# Display the DataFrame
+print(airbnb_search_details)
+
+# Comment with the question
+# Number of Bathrooms and Bedrooms: Find the average number of bathrooms and bedrooms for each city's property types. Output the result along with the city name and the property type.
+
+
+
+```
+
+```{python}
+(airbnb_search_details 
+    .groupby(['city', 'property_type'])
+    .agg(n_bedrooms_avg = ('bedrooms', 'mean'),
+         n_bathrooms_avg = ('bathrooms', 'mean'))
+    .reset_index()
+    )
+```
+
+```{python}
+import pandas as pd
+
+# Create customers DataFrame
+customers = pd.DataFrame({
+    'id': [1, 2, 3, 4, 5],
+    'first_name': ['Emma', 'Eva', 'Farida', 'John', 'Alex'],
+    'last_name': ['Isaac', 'Lucas', 'Joseph', 'Doe', 'Smith'],
+    'city': ['Miami', 'Arizona', 'San Francisco', 'New York', 'Los Angeles'],
+    'address': ['123 Main St', '456 Oak Ave', '789 Pine Rd', '321 Elm St', '654 Cedar Ln'],
+    'phone_number': ['555-1234', '555-5678', '555-9012', '555-3456', '555-7890']
+})
+
+# Create orders DataFrame
+orders = pd.DataFrame({
+    'id': [101, 102, 103, 104],
+    'cust_id': [2, 2, 2, 3],
+    'order_date': ['2023-08-01', '2023-08-02', '2023-08-03', '2023-08-04'],
+    'order_details': ['Coat', 'Shirts', 'Slipper', 'Coat'],
+    'total_order_cost': [100, 50, 30, 120]
+})
+
+# Convert order_date to datetime
+orders['order_date'] = pd.to_datetime(orders['order_date'])
+
+# Display the DataFrames
+print("Customers DataFrame:")
+print(customers)
+print("\nOrders DataFrame:")
+print(orders)
+
+# Question as a comment
+"""
+Find the details of each customer regardless of whether the customer made an order. 
+Output the customer's first name, last name, and the city along with the order details.
+Sort records based on the customer's first name and the order details in ascending order.
+"""
+
+```
+
+
+```{python}
+(pd.merge(orders, customers, how="outer", left_on="cust_id", right_on="id")
+    [["first_name", "last_name", "city", "order_details"]])
+```
+
+```{python}
+import pandas as pd
+
+# Create the sample dataset
+data = {
+    'hotel_name': ['Hotel Arena', 'Hotel Arena', 'Hotel Arena', 'Hotel Arena', 'Hotel Arena', 'Hotel Arena', 'Other Hotel'],
+    'reviewer_score': [3.8, 4.2, 4.6, 5.4, 5.8, 5.8, 4.0],
+    'review_date': ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', '2023-01-07']
+}
+
+hotel_reviews = pd.DataFrame(data)
+
+# Convert review_date to datetime
+hotel_reviews['review_date'] = pd.to_datetime(hotel_reviews['review_date'])
+
+# Display the dataset
+print(hotel_reviews)
+
+# Comment with the question
+"""
+Reviews of Hotel Arena
+
+Find the number of rows for each review score earned by 'Hotel Arena'. 
+Output the hotel name (which should be 'Hotel Arena'), review score along with 
+the corresponding number of rows with that score for the specified hotel.
+"""
+```
+
+```{python}
+(
+    hotel_reviews
+    .query('hotel_name == "Hotel Arena"')
+    .groupby(['reviewer_score', 'hotel_name'])
+    .agg(n_reviews = ('reviewer_score', 'size'))
+    .reset_index()
+)
+```
+
+```{python}
+import pandas as pd
+
+# Question: Count the number of movies that Abigail Breslin was nominated for an oscar.
+
+data = {
+    'year': [2006, 2011, 2015, 2006, 2011],
+    'category': ['Actress in a Supporting Role'] * 5,
+    'nominee': ['Abigail Breslin', 'Abigail Breslin', 'Emma Stone', 'Meryl Streep', 'Jennifer Lawrence'],
+    'movie': ['Little Miss Sunshine', 'August: Osage County', 'Birdman', 'The Devil Wears Prada', 'Silver Linings Playbook'],
+    'winner': [False, False, False, False, True],
+    'id': [1, 2, 3, 4, 5]
+}
+
+oscar_nominees = pd.DataFrame(data)
+
+print(oscar_nominees)
+
+```
+
+```{python}
+oscar_nominees.query('nominee ==  "Abigail Breslin"')[["movie"]].nunique()
+```
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Create sample data
+data = {
+    'id': range(1, 11),
+    'time_id': pd.date_range(start='2023-01-01', periods=10),
+    'user_id': ['user_' + str(i) for i in np.random.randint(1, 6, 10)],
+    'customer_id': np.random.choice(['cust_A', 'cust_B', 'cust_C'], 10),
+    'client_id': np.random.choice(['client_1', 'client_2', 'client_3'], 10),
+    'event_type': np.random.choice(['login', 'purchase', 'view'], 10),
+    'event_id': np.random.randint(1, 100, 10)
+}
+
+# Create DataFrame
+fact_events = pd.DataFrame(data)
+
+# Display the DataFrame
+print(fact_events)
+
+# Question as a comment
+# Write a query that returns the number of unique users per client per month
+
+
+```
+
+```{python}
+(fact_events
+    .assign(time_id = lambda x: x.time_id.dt.month)
+    .groupby([ 'client_id', 'time_id'])
+    .agg(user_id = ('user_id', lambda x: x.nunique() ))
+    .reset_index()
+)
+```
+
+```{python}
+import pandas as pd
+import datetime
+
+# Create the sample dataset
+data = {
+    'business_name': ['AutohausAZ', 'Citizen Public House', 'Otto Pizza & Pastry'],
+    'review_id': ['C4TSIEcazRay0qIRPeMAFg', 'ZZ0paqUsSX-VJbfodTp1cQ', 'pF6W5JOPBK6kOXTB58cYrw'],
+    'user_id': ['jlbPUcCRiXlMtarzi9sW5w', 'EeCWSGwMAPzwe_c1Aumd1w', 'JG1Gd2mN2Qk7UpCqAUI-BQ'],
+    'stars': ['5', '4', '5'],
+    'review_date': [datetime.datetime(2011, 6, 27), datetime.datetime(2013, 3, 18), datetime.datetime(2013, 3, 14)],
+    'review_text': [
+        'Autohaus is my main source for parts for an old Mercedes that has been in the family since new that I am restoring. The old beater is truly a labor of love.',
+        'First time in PHX. Friend recommended. Friendly waitstaff. They were understaffed and extremely busy, but we never knew. The short ribs were tender and delicious.',
+        'LOVE THIS PIZZA! This is now one of my favorite pizza places in phoenix area. My husband and I walked into this cute family owned business and were greeted with smiles.'
+    ],
+    'funny': [1, 0, 0],
+    'useful': [2, 0, 1],
+    'cool': [1, 0, 3]
+}
+
+yelp_reviews = pd.DataFrame(data)
+
+# Display the dataset
+print(yelp_reviews)
+
+# Question as a comment
+# Find the review_text that received the highest number of 'cool' votes.
+# Output the business name along with the review text with the highest number of 'cool' votes.
+```
+
+
+```{python}
+(yelp_reviews.query('cool == cool.max()'))
+```
+
+```{python}
+import pandas as pd
+
+# Question: Output share of US users that are active. Active users are the ones with an "open" status in the table.
+
+data = {
+    'user_id': [1, 2, 3, 4, 5, 6, 7, 8],
+    'name': ['John Doe', 'Jane Smith', 'Bob Johnson', 'Alice Brown', 'Charlie Davis', 'Eva White', 'Frank Miller', 'Grace Lee'],
+    'status': ['open', 'closed', 'open', 'open', 'closed', 'open', 'open', 'closed'],
+    'country': ['USA', 'USA', 'Canada', 'USA', 'USA', 'UK', 'USA', 'USA']
+}
+
+fb_active_users = pd.DataFrame(data)
+
+print(fb_active_users)
+
+```
+
+```{python}
+(fb_active_users
+    .query("country == 'USA'")
+    .agg(prop_active = ('status', lambda x: (x=="open").sum()/len(x)))
+    ["status"]
+)
+```
+
+```{python}
+(fb_active_users
+    .groupby("country")
+    .agg(prop_active = ('status', lambda x: (x=="open").sum()/len(x)))
+)
+```
+
+```{python}
+import pandas as pd
+
+# Question: Find out who got the most votes and won the election. 
+# Each person has 1 vote, which can be split if voting for multiple candidates.
+
+data = {
+    'voter': ['Alice', 'Alice', 'Bob', 'Charlie', 'David', 'David', 'Eve', 'Frank'],
+    'candidate': ['John', 'Mary', 'John', 'Sarah', 'John', 'Sarah', 'Mary', None]
+}
+
+voting_results = pd.DataFrame(data)
+
+print(voting_results)
+
+```
+
+```{python}
+(
+voting_results
+    .assign(votes_count = lambda x: x.groupby('voter').voter.transform('count')  )
+    .assign(votes_weight = lambda x: 1/x.votes_count)
+    .groupby('candidate')
+    .agg(total_votes = ('votes_weight', 'sum'))
+    .sort_values('total_votes')
+    .tail(1)
+    .reset_index()
+    ["candidate"]
+)
+
+```
+
+```{python}
+(
+    voting_results
+    .assign(voter_count = lambda x: x.groupby('voter')['voter'].transform('count'))
+)
+
+```
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Create the sample dataset
+np.random.seed(42)
+
+# Generate data
+n_rows = 20
+first_names = ['Richard', 'Mark', 'Gina', 'Daniel', 'Pauline', 'Courtney', 'Helen', 'Greg', 'Lopez']
+last_names = ['Hasson', 'May', 'Korman', 'Bell', 'Wilks', 'Johnson', 'Hearn', '']
+video_ids = ['y6120QOlsfU', 'Ct6BUPvE2sM', 'dQw4w9WgXcQ', 'jNQXAC9IVRw', '5qap5aO4i9A']
+
+data = {
+    'user_firstname': np.random.choice(first_names, n_rows),
+    'user_lastname': np.random.choice(last_names, n_rows),
+    'video_id': np.random.choice(video_ids, n_rows),
+    'flag_id': [''.join(np.random.choice(list('abcdefghijklmnopqrstuvwxyz0123456789'), 6)) for _ in range(n_rows)]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Add some rows with missing flag_id and video_id
+df.loc[10, 'flag_id'] = np.nan
+df.loc[14, 'video_id'] = np.nan
+df.loc[18, 'flag_id'] = np.nan
+
+# Print the DataFrame
+print(df)
+
+print("\n# Question: For each video, find how many unique users flagged it. A unique user can be identified using")
+print("# the combination of their first name and last name. Do not consider rows in which there is no flag ID.")
+
+
+
+```
+
+```{python}
+
+(user_flags
+    .query('~ flag_id.isna()')
+    .assign(user = lambda x: x.user_firstname + x.user_lastname)
+    .groupby('video_id')
+    .agg(num_unique_users = ('user', lambda x: x.nunique() ))
+    .reset_index()
+)
+
+```
+
+```{python}
+result = user_flags[user_flags["flag_id"].notnull()]
+result["username"] = result["user_firstname"].astype(str) + " " + result["user_lastname"].astype(str)
+result = result.groupby(by="video_id")["username"].nunique().reset_index()
+result = result.rename(columns={"username": "num_unique_users"})
+
+```
+
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Create sample data
+np.random.seed(42)
+n = 100
+data = {
+    'student_id': range(1, n+1),
+    'sat_writing': np.random.randint(200, 800, n)
+}
+
+# Create DataFrame
+sat_scores = pd.DataFrame(data)
+
+# Add comment with the question
+# Find students with a median writing score
+
+print(sat_scores.head())
+
+```
+
+```{python}
+(sat_scores
+    .assign(median = lambda x: x.sat_writing.median())
+    .query('sat_writing == median')
+    )
+```
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Create sample data
+np.random.seed(42)
+states = ['CA', 'NY', 'TX', 'FL', 'IL', 'PA', 'OH', 'GA', 'NC', 'MI']
+n_businesses = 1000
+
+data = {
+    'business_id': [f'B{i:04d}' for i in range(n_businesses)],
+    'state': np.random.choice(states, n_businesses),
+    'stars': np.random.choice([1, 2, 3, 4, 5], n_businesses, p=[0.1, 0.2, 0.3, 0.25, 0.15])
+}
+
+# Create DataFrame
+yelp_business = pd.DataFrame(data)
+
+# Display first few rows
+print(yelp_business.head())
+
+# Comment with the question
+"""
+Find the top 5 states with the most 5 star businesses. Output the state name 
+along with the number of 5-star businesses and order records by the number 
+of 5-star businesses in descending order. In case there are ties in the 
+number of businesses, return all the unique states. If two states have the 
+same result, sort them in alphabetical order.
+"""
+
+```
+
+```{python}
+
+(yelp_business
+    .query('stars == 5')
+    .groupby('state')
+    .agg(n_businesses = ('state', 'size'))
+    .reset_index()
+    .nlargest(5, "n_businesses", keep="all")
+    .sort_values(["n_businesses", "state"], ascending=[False, True])
+)
+```
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Create sample datasets
+np.random.seed(0)
+
+# ms_user_dimension
+user_ids = range(1, 101)
+acc_ids = np.random.randint(700, 751, size=100)
+ms_user_dimension = pd.DataFrame({'user_id': user_ids, 'acc_id': acc_ids})
+
+# ms_acc_dimension
+acc_ids = range(700, 751)
+paying_customer = ['no']*25 + ['yes']*26
+ms_acc_dimension = pd.DataFrame({'acc_id': acc_ids, 'paying_customer': paying_customer})
+
+# ms_download_facts
+dates = pd.date_range(start='2020-08-15', end='2020-08-25')
+ms_download_facts = pd.DataFrame({
+    'date': np.random.choice(dates, size=100),
+    'user_id': np.random.randint(1, 101, size=100),
+    'downloads': np.random.randint(0, 10, size=100)
+})
+
+# Display the first few rows of each dataset
+print(ms_user_dimension.head())
+print(ms_acc_dimension.head())
+print(ms_download_facts.head())
+
+# Question as a comment
+"""
+Find the total number of downloads for paying and non-paying users by date. 
+Include only records where non-paying customers have more downloads than paying customers. 
+The output should be sorted by earliest date first and contain 3 columns: 
+date, non-paying downloads, paying downloads.
+"""
+
+```
+
+
+```{python}
+(ms_user_dimension
+ .merge(ms_acc_dimension, on="acc_id")
+ .merge(ms_download_facts, on="user_id")
+ .groupby(['paying_customer', 'date'])['downloads']
+ .sum()
+ .unstack(level='paying_customer')
+ .reset_index()
+ .query('no > yes')
+)
+```
+
+```{python}
+# Import your libraries
+import pandas as pd
+
+# Start writing code
+df = ms_download_facts.merge(ms_user_dimension)
+df = df.merge(ms_acc_dimension)
+df = df.pivot_table(index='date', columns='paying_customer', values='downloads', aggfunc='sum')
+df[df['no']>df['yes']].reset_index()
+```
+
+```{python}
+
+(
+    ms_user_dimension
+    .merge(ms_acc_dimension, on="acc_id", how="outer")
+    .merge(ms_download_facts, on = "user_id")
+    .groupby(['paying_customer', 'date'])
+    .agg(total = ('downloads', 'sum'))
+    .reset_index()
+    .pivot(columns='paying_customer', values='total', index = 'date')
+    .query('no > yes')
+    .reset_index()
+)
+```

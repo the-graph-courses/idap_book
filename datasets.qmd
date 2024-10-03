@@ -1,0 +1,64 @@
+---
+title: "Vega datasets"
+---
+
+
+```{python}
+from vega_datasets import data
+import pandas as pd
+from itables import init_notebook_mode
+
+init_notebook_mode(all_interactive=True)
+```
+
+```{python}
+for dataset in data.list_datasets():
+    print(dataset)
+```
+
+```{python}
+import pandas as pd
+from vega_datasets import data
+from itables import show
+
+def get_dataset_info(dataset_name):
+    try:
+        df = data(dataset_name)
+        if len(df) > 100:
+            df = df.head(100)
+        return {
+            'name': dataset_name,
+            'df': df,
+            'rows': len(df),
+            'columns': len(df.columns),
+            'size_kb': df.memory_usage(deep=True).sum() / 1024
+        }
+    except Exception as e:
+        return None
+
+dataset_names = [
+    '7zip', 'airports', 'annual-precip', 'anscombe', 'barley', 'birdstrikes',
+    'budget', 'budgets', 'burtin', 'cars', 'climate', 'co2-concentration',
+    'countries', 'crimea', 'disasters', 'driving', 'earthquakes', 'ffox',
+    'flare', 'flare-dependencies', 'flights-10k', 'flights-20k',
+    'flights-2k', 'flights-5k', 'flights-airport', 'gapminder',
+    'gapminder-health-income', 'gimp', 'github', 'graticule', 'income',
+    'iowa-electricity', 'iris', 'jobs', 'la-riots', 'londonBoroughs',
+    'londonCentroids', 'londonTubeLines', 'lookup_groups', 'lookup_people',
+    'miserables', 'monarchs', 'movies', 'normal-2d', 'obesity', 'ohlc',
+    'points', 'population', 'population_engineers_hurricanes', 'seattle-temps',
+    'seattle-weather', 'sf-temps', 'sp500', 'stocks', 'udistrict',
+    'unemployment', 'unemployment-across-industries', 'uniform-2d', 'us-10m',
+    'us-employment', 'us-state-capitals', 'volcano', 'weather', 'weball26',
+    'wheat', 'windvectors', 'world-110m', 'zipcodes'
+]
+
+dataset_info = [get_dataset_info(name) for name in dataset_names]
+dataset_info = [info for info in dataset_info if info is not None and info['size_kb'] > 0]
+
+for info in dataset_info:
+    print(f"Dataset: {info['name']}")
+    print(f"Rows: {info['rows']}, Columns: {info['columns']}, Size: {info['size_kb']:.2f} KB")
+    show(info['df'], caption=f"Top 100 rows of {info['name']} dataset")
+    print("\n")
+```

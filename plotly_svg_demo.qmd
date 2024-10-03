@@ -1,0 +1,58 @@
+---
+title: "Plotly Demo with SVG Support"
+format: 
+    pdf:
+        fig-format: svg
+---
+
+```{python}
+#| echo: false
+import plotly.io as pio
+```
+
+```{python}
+import plotly.express as px
+import pandas as pd
+from palmerpenguins import load_penguins
+import plotly.graph_objects as go
+
+penguins = load_penguins().dropna()
+
+penguins_count = (
+    penguins.groupby(["species", "island"]).size().reset_index(name="count")
+)
+
+fig = px.bar(penguins_count, x="species", y="count", color="island", barmode="relative")
+fig.write_image("plot1.svg", height=480, width=640)
+```
+
+![](plot1.svg)
+
+```{python}
+fig = px.scatter(
+    penguins,
+    x="bill_length_mm",
+    y="flipper_length_mm",
+    color="species",
+    symbol="species",
+    facet_col="island",
+)
+fig.write_image("plot2.svg")
+```
+
+![](plot2.svg)
+
+```{python}
+penguins_count = penguins.groupby(["year", "island"]).size().reset_index(name="count")
+
+fig = px.line(
+    penguins_count,
+    x="year",
+    y="count",
+    color="island",
+    line_dash="island",
+)
+fig.write_image("plot3.svg")
+```
+
+![](plot3.svg)

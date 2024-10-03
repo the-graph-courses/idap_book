@@ -1,0 +1,27 @@
+
+
+```{python}
+from plotnine import *
+from vega_datasets import data
+import mpld3
+```
+
+
+```{python}
+
+p = ggplot(data.iris()) + 
+geom_point(
+    aes(x="sepalLength", y="sepalWidth", color="species")
+)
+
+p
+```
+
+
+```{python}
+
+# Step 3: Make the plot interactive with mpld3
+mpld3.enable_notebook()  # If you're using a Jupyter notebook
+
+mpld3.display(p.draw())
+```

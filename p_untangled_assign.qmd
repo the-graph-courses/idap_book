@@ -1,0 +1,368 @@
+---
+title: 'Creating and modifying variables with `assign()`'
+---
+
+```{python}
+# | echo: false
+# Setup
+import pandas as pd
+
+pd.options.display.max_rows = 5
+```
+
+
+## Intro
+
+Today you will learn how to modify existing variables or create new ones, using the `assign()` method from pandas. This is an essential step in most data analysis projects.
+
+Let's get started!
+
+## Learning objective
+
+- You can use the `assign()` method from pandas to create new variables or modify existing variables.
+
+## Imports
+
+This lesson will require the pandas package. You can import it with the following code:
+
+```{python}
+import pandas as pd
+```
+
+## Datasets
+
+In this lesson, we will use a dataset of counties of the United States with demographic and economic data.
+
+```{python}
+counties = pd.read_csv("data/us_counties_data.csv")
+counties
+```
+
+The variables in the dataset are: 
+
+- `state`, US state
+- `county`, US county
+- `pop_20`, population estimate for 2020
+- `area_sq_miles`, area in square miles
+- `hh_inc_21`, median household income for 2021
+- `econ_type`, economic type of the county
+- `pop_change_2010_2020`, population change between 2010 and 2020
+- `unemp_20`, unemployment rate for 2020
+- `pct_emp_change_2010_2021`, percentage change in employment between 2010 and 2021
+
+The variables are collected from a range of sources, including the US Census Bureau, the Bureau of Labor Statistics, and the American Community Survey.
+
+Let's create a small subset of the variables, with just area and population, for illustration.
+
+```{python}
+## small subset for illustration
+area_pop = counties[["county", "area_sq_miles", "pop_20"]]
+area_pop
+```
+
+
+## Introducing `assign()` and lambda functions
+
+We use the `assign()` method from pandas to create new variables or modify existing variables. 
+
+Let's see a quick example. 
+
+The `area_pop` dataset shows the area of each county in square miles. We want to **create a new variable** with this converted to square kilometers so we must multiply the `area_sq_miles` variable by 2.59. With `assign()`, we can write:
+
+```{python}
+area_pop.assign(area_sq_km=lambda x: x.area_sq_miles * 2.59)
+```
+
+Nice! The syntax may appear confusing, so let's break it down. 
+
+We can read `lambda x: x.area_sq_miles * 2.59` as, "define a function that takes a DataFrame `x`, then multiplies the `area_sq_miles` variable in that DataFrame by 2.59."
+
+A `lambda` is a term to refer to a small function defined without a name. This part of the code is essential.
+
+But the symbol called `x` above can be anything you want; it's simply a placeholder for the data frame. For example, we could call it `dat`:
+
+```{python}
+area_pop.assign(area_sq_km=lambda dat: dat.area_sq_miles * 2.59)
+```
+
+Let's see another example. We'll add a variable showing the area in hectares by multiplying `area_sq_miles` by 259. We'll also store the new DataFrame in a variable called `area_pop_converted`. (Remember that if we don't store the new DataFrame in a variable, as in our example above, it will not be saved.)
+
+```{python}
+area_pop_converted = area_pop.assign(
+    area_sq_km=lambda x: x.area_sq_miles * 2.59,
+    area_hectares=lambda x: x.area_sq_miles * 259,
+)
+area_pop_converted  # view the new DataFrame
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Area in acres
+
+- Using the `area_pop` dataset, create a new column called `area_acres` by multiplying the `area_sq_miles` variable by 640. Store the new DataFrame in an object called `conversion_question` and print it.
+
+```{python}
+# your code here
+```
+:::
+
+
+## Overwriting variables
+
+We can also use `assign()` to overwrite existing variables. For example, to round the `area_sq_km` variable to one decimal place, we can write:
+
+```{python}
+area_pop_converted.assign(area_sq_km=lambda x: round(x.area_sq_miles * 2.59, 1))
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Area in acres rounded
+
+- Using the `conversion_question` dataset you created above, round the `area_acres` variable to one decimal place. Store the new DataFrame in an object called `conversion_question_rounded` and print it.
+
+```{python}
+# your code here
+```
+:::
+
+
+## More complex assignments
+
+To get further practice with the `assign()` method, let's look at creating new columns that combine multiple existing variables.
+
+For example, to calculate the population density per square kilometer, we can write:
+
+```{python}
+area_pop_converted.assign(pop_per_sq_km=lambda x: x.pop_20 / x.area_sq_km)
+```
+
+We can also round the `pop_per_sq_km` variable to one decimal place within the `assign()` method, either on the same line:
+
+```{python}
+area_pop_converted.assign(
+    pop_per_sq_km=lambda x: round(x.pop_20 / x.area_sq_km, 1)
+)
+```
+
+Or on a new line like so: 
+
+```{python}
+area_pop_converted.assign(
+    pop_per_sq_km=lambda x: x.pop_20 / x.area_sq_km,
+    pop_per_sq_km_rounded=lambda x: round(x.pop_per_sq_km, 1),
+)
+```
+
+As a final step, let's practice method chaining by arranging the dataset by the `pop_per_sq_km` variable in descending order, and store this in a new variable called `area_pop_converted_sorted`.
+
+```{python}
+area_pop_converted_sorted = area_pop_converted.assign(
+    pop_per_sq_km=lambda x: x.pop_20 / x.area_sq_km,
+    pop_per_sq_km_rounded=lambda x: round(x.pop_per_sq_km, 1),
+).sort_values("pop_per_sq_km", ascending=False)
+
+area_pop_converted_sorted
+```
+
+We see that New York county has the highest population density in the country.
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Rounding all variables
+
+- Consider the sample dataset created below. Use `assign()` to round all variables to 1 decimal place. Your final dataframe should be called `sample_df_rounded` and should still have three columns, `a`, `b`, and `c`.
+
+```{python}
+sample_df = pd.DataFrame(
+    {
+        "a": [1.111, 2.222, 3.333],
+        "b": [4.444, 5.555, 6.666],
+        "c": [7.777, 8.888, 9.999],
+    }
+)
+sample_df
+```
+
+```{python}
+# your code here
+```
+
+:::
+
+::: {.callout-note title='Pro-tip'}
+
+### Why use lambda functions in `assign()`?
+
+You may be wondering whether the lambda function is really necessary within assign. After all, we could run code like this:
+
+```{python}
+area_pop.assign(
+    area_sq_km=area_pop.area_sq_miles * 2.59,
+    area_hectares=area_pop.area_sq_miles * 259,
+)
+```
+
+Here, we are referring back to the `area_pop` DataFrame within the `assign()` method.
+
+The problem with this is we cannot access variables created in the same `assign()` call or created in the same method chain.
+
+For example, below, if you try to use the `area_sq_km` variable to calculate the population density, you will get an error:
+
+```{python}
+# | eval: false
+area_pop.assign(
+    area_sq_km=area_pop.area_sq_miles * 2.59,
+    area_hectares=area_pop.area_sq_miles * 259,
+    pop_per_sq_km=area_pop.pop_20 / area_pop.area_sq_km,
+)
+```
+
+```
+AttributeError: 'DataFrame' object has no attribute 'area_sq_km'
+```
+
+Python cannot find the `area_sq_km` variable because it is created in the same `assign()` call. So the `area_pop` DataFrame is does not yet have that variable!
+
+Lambda functions in `assign()` allow you to create new columns based on intermediate results within the same call. So the code below works:
+
+```{python}
+area_pop.assign(
+    area_sq_km=lambda x: x.area_sq_miles * 2.59,
+    area_hectares=lambda x: x.area_sq_miles * 259,
+    # area_sq_km is created in the previous line, but is already available here
+    pop_per_sq_km=lambda x: x.pop_20 / x.area_sq_km,
+)
+```
+
+:::
+
+## Creating Boolean variables
+
+You can use `assign()` to create a Boolean variable to categorize part of your dataset. 
+
+Consider the `pop_change_2010_2020` variable in the `counties` dataset, which shows the percentage change in population between 2010 and 2020. This is shown below in our `changes_df` subset.
+
+```{python}
+changes_df = counties[
+    ["county", "pop_change_2010_2020", "pct_emp_change_2010_2021"]
+]  # Make dataset subset
+changes_df
+```
+
+Below we create a Boolean variable, `pop_increased`, that is `True` if the growth rate is greater than 0 and `False` if it is not.
+
+```{python}
+changes_df.assign(pop_increased=lambda x: x.pop_change_2010_2020 > 0)
+```
+
+The code `x['pop_change_2010_2020'] > 0` evaluates whether each growth rate is greater than 0. Growth rates that match that condition (growth rates greater than 0) are `True` and those that fail the condition are `False`.
+
+Let's do the same for the employment change variable and store the results in our dataset.
+
+```{python}
+changes_df = changes_df.assign(
+    pop_increased=lambda x: x.pop_change_2010_2020 > 0,
+    emp_increased=lambda x: x.pct_emp_change_2010_2021 > 0,
+)
+changes_df
+```
+
+We can now query the dataset to, for example, see which counties had a population increase but an employment decrease. From a policy perspective, this would be a concern, since employment is not able to keep up with population growth.
+
+```{python}
+changes_df.query("pop_increased == True & emp_increased == False")
+# Or more succintly:
+changes_df.query("pop_increased & not emp_increased")
+```
+
+There are 242 such concerning counties.
+
+::: {.callout-tip title='Practice'}
+
+### Practice Q: Foreign-born residents
+
+- Use the `foreign_born_num` variable and the population estimate to calculate the percentage of foreign-born residents in each county. Then create a Boolean variable called `foreign_born_pct_gt_30` that is `True` if the percentage of foreign-born residents is greater than 30% and `False` if it is not. Store the new DataFrame in a variable called `foreign_born_df_question`.
+
+```{python}
+# your code here
+```
+
+- Use `.query()` on the `foreign_born_df_question` DataFrame to return only the counties where the `foreign_born_pct_gt_30` variable is `True`. You should get 24 rows.
+
+```{python}
+# Your code here
+```
+
+:::
+
+::: {.callout-tip title='Pro-tip'}
+
+### Accessing variables with `[]` inside a lambda function
+
+We can also use the square brackets `[]` to access the variables. This is useful in two cases:
+
+1. When the variable name has special characters.
+2. When the variable name is a reserved word or method name in Python.
+
+If the population variable were called `pop 20`, with a space, we would not be able to access it with dot notation.
+
+```{python}
+demo_df = area_pop.rename(columns={"pop_20": "pop 20"})
+demo_df
+```
+
+```{python}
+# | eval: false
+demo_df.assign(pop_per_sq_km=lambda x: x.pop 20 / x.area_sq_miles) # gives error
+```
+
+```
+area_pop.assign(pop_per_sq_km=lambda x: x.pop 20 / x.area_sq_miles)
+                                            ^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+```
+
+So we would need to use square brackets to access the variable.
+
+```{python}
+demo_df.assign(pop_per_sq_km=lambda x: x["pop 20"] / x.area_sq_miles)
+```
+
+In reality, we should probably just rename such a variable though!
+
+----
+
+The square brackets are also needed if our variable name is a reserved word or method name in Python.
+
+For example, if our population variable was called `pop`, we would get an error when accessing it with dot notation in the `assign()` method, because `pop` is a method name.
+
+```{python}
+demo_df = area_pop.rename(columns={"pop_20": "pop"})
+demo_df
+```
+
+```{python}
+# | eval: false
+demo_df.assign(pop_per_sq_mile=lambda x: x.pop / x.area_sq_miles)
+```
+
+```
+TypeError: unsupported operand type(s) for /: 'method' and 'float'
+```
+
+In such a case, we can use the square brackets `[]` to access the `pop` variable.
+
+```{python}
+demo_df.assign(pop_per_sq_mile=lambda x: x["pop"] / x.area_sq_miles)
+```
+
+:::
+
+## Wrap up
+
+As you can imagine, transforming data is an essential step in any data analysis workflow. It is often required to clean data and to prepare it for further statistical analysis or for making plots. And as you have seen, it is quite simple to transform data with pandas' `assign()` method.
+
+Congrats on making it through.
+
+But your data wrangling journey isn't over yet! In our next lessons, we will learn how to create complex data summaries and how to create and work with data frame groups. Intrigued? See you in the next lesson.

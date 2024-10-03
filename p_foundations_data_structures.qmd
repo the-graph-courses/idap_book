@@ -1,0 +1,189 @@
+---
+title: 'Data Structures in Python for Beginner Data Analysts'
+---
+
+## Intro
+
+In this lesson, we'll explore the basic building blocks for organizing data in Python and Pandas. These tools are essential for data analysis. We'll cover Python lists and dictionaries, as well as Pandas Series and DataFrames.
+
+Let's dive in!
+
+## Learning objectives
+
+- Create and work with Python lists and dictionaries
+- Understand and use Pandas Series
+- Explore Pandas DataFrames for organizing structured data
+
+## Imports
+
+We need pandas for this lesson. Make sure it's installed before we begin.
+
+```{python}
+import pandas as pd
+```
+
+## Python Lists
+
+Lists are like ordered containers that can hold different types of information.
+
+```{python}
+grocery_list = ["apples", "bananas", "milk", "bread"] 
+grocery_list
+```
+
+### Accessing Elements
+
+In Python, we use something called "zero-based indexing" to access items in a list. This means we start counting positions from 0, not 1.
+
+Let's see some examples:
+
+```{python}
+print(grocery_list[0])  # First item (remember, we start at 0!)
+print(grocery_list[1])  # Second item
+print(grocery_list[2])  # Third item
+```
+
+It might seem odd at first, but it's a common practice in many programming languages. It has to do with how computers store information, and the ease of writing algorithms.
+
+### Modifying Elements
+
+We can change the contents of a list after we've created it, using the same indexing system.
+
+```{python}
+grocery_list[1] = "oranges"  # Replace the second item (at index 1)
+grocery_list
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Working with Lists
+
+1. Create a list called `temperatures` with these values: 72, 75, 78, 79, 76
+2. Show the third element of the list
+3. Change the last element to 77
+4. Display the modified list
+
+```{python}
+# Your code here
+```
+:::
+
+## Python Dictionaries
+
+Dictionaries are like labeled storage boxes for your data. Each piece of data (value) has a unique label (key).
+
+```{python}
+student_grades = {"Alice": 90, "Bob": 85, "Charlie": 92}
+student_grades
+```
+
+### Accessing Values
+
+We use the label (key) to get the associated information (value).
+
+```{python}
+student_grades["Bob"]
+```
+
+### Adding/Modifying Entries
+
+We can easily add new information or change existing data in a dictionary.
+
+```{python}
+student_grades["David"] = 88  # Add a new student
+student_grades["Alice"] = 95  # Update Alice's grade
+student_grades
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Working with Dictionaries
+
+1. Create a dictionary called `fruit_prices` with these pairs: "apple": 0.50, "banana": 0.25, "orange": 0.75
+2. Show the price of an orange
+3. Add a new fruit "grape" with a price of 1.00
+4. Change the price of "banana" to 0.30
+5. Display the updated dictionary
+
+```{python}
+# Your code here
+```
+:::
+
+## Pandas Series
+
+A Pandas Series is like a single column of data with labels for each row. It's similar to a list, but with added features.
+
+```{python}
+sales = pd.Series([150, 200, 180], index=["Mon", "Tue", "Wed"])
+sales
+```
+
+### Accessing Data
+
+We can use the labels to easily find specific information.
+
+```{python}
+sales["Tue"]
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Working with Pandas Series
+
+1. Create a Pandas Series called `temperatures` with this data: 72, 75, 78, 79, 76
+   Use these labels: "Mon", "Tue", "Wed", "Thu", "Fri"
+2. Display the entire Series
+3. Show the temperature for Wednesday
+4. Calculate and display the average temperature
+
+```{python}
+# Your code here
+```
+:::
+
+## Pandas DataFrames
+
+A DataFrame is like a spreadsheet in Python. It has rows and columns, making it perfect for organizing structured data.
+
+```{python}
+data = {'Name': ['Alice', 'Bob', 'Charlie'],
+        'Age': [25, 30, 28],
+        'City': ['New York', 'London', 'Paris']}
+
+df = pd.DataFrame(data)
+df
+```
+
+### Accessing Data
+
+We can select specific columns or rows from our DataFrame.
+
+```{python}
+df['City']  # Selecting a column
+
+df.loc[1]  # Selecting a row by its label
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Working with DataFrames
+
+1. Create a DataFrame called `students` with this information:
+   - Columns: "Name", "Age", "Grade"
+   - Data: 
+     - ["Alice", 15, "A"]
+     - ["Bob", 16, "B"]
+     - ["Charlie", 15, "A"]
+     - ["David", 16, "C"]
+2. Display the entire DataFrame
+3. Show only the "Grade" column
+4. Display the row for Bob
+5. Calculate and show the average age of the students
+
+```{python}
+# Your code here
+```
+:::
+
+This lesson introduces you to the essential data structures in Python and Pandas for beginner data analysts. By practicing with these structures, you'll become more comfortable organizing and analyzing data in Python!

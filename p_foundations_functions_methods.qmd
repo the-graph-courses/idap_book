@@ -1,973 +1,401 @@
 ---
-title: 'Coding basics'
-output:
-  html_document:
-    number_sections: true
-    toc: true
-    toc_float: true
-    css: !expr here::here("global/style/style.css")
-    highlight: kate
+title: 'Functions, Methods, and Libraries in Python'
 ---
 
-```{r echo = F, message = F, warning = F, eval.expr=TRUE}
-source(here::here("global/functions/misc_functions.R"))
-knitr::opts_chunk$set(class.source = "tgc-code-block", 
-                      error = TRUE)
-dev_mode <- TRUE
-```
+## Learning objectives 
 
-------------------------------------------------------------------------
-
-## Learning objectives {.unlisted .unnumbered}
-
-1.  You can write comments in R.
-
-2.  You can create section headers in RStudio.
-
-3.  You know how to use R as a calculator.
-
-4.  You can create, overwrite and manipulate R objects.
-
-5.  You understand the basic rules for naming R objects.
-
-6.  You understand the syntax for calling R functions.
-
-7.  You know how to nest multiple functions.
-
-8.  You can use install and load add-on R packages and call functions from these packages.
+1. You understand what functions and methods are in Python.
+2. You can identify and use arguments (parameters) in functions and methods.
+3. You know how to call built-in functions and methods on objects.
+4. You understand what libraries are in Python and how to import them.
+5. You know how to install a simple external library and use it in your code.
 
 ## Introduction
 
-In the last lesson, you learned how to use RStudio, the wonderful integrated development environment (IDE) that makes working with R much easier. In this lesson, you will learn the basics of using R itself.
+In this lesson, you will learn about functions, methods, and libraries in Python, building on the basics we covered in the previous lesson.
 
-To get started, open RStudio, and open a new script with `File > New File > R Script` on the RStudio menu.
+To get started, open your preferred Python environment (e.g., Jupyter Notebook, VS Code, or PyCharm), and create a new Python file or notebook.
 
-![](images/new_r_script.jpg){width="451" height="71"}
+Next, **save the file** with a name like "functions_and_libraries.py" or "functions_and_libraries.ipynb" depending on your environment.
 
-Next, **save the script** with `File > Save` on the RStudio menu or by using the shortcut `Command`/`Control` + `S` . This should bring up the Save File dialog box. Save the file with a name like "coding_basics".
-
-You should now type all the code from this lesson into that script.
-
-
-
-## Comments
-
-There are two main types of text in an R script: commands and comments. A command is a line or lines of R code that instructs R to do something (e.g. `2 + 2`)
-
-A comment is text that is ignored by the computer.
-
-Anything that follows a `#` symbol (pronounced "hash" or "pound") on a given line is a comment. Try typing out and running the code below to see this:
-
-```{r eval = F}
-## A comment
-2 + 2 # Another comment
-## 2 + 2
-```
-
-Since they are ignored by the computer, comments are meant for *humans.* They help you and others keep track of what your code is doing. Use them often! Like your mother always says, "too much everything is bad, except for R comments".
-
-::: {.callout-tip title='Practice'}
-**Question 1**
-
-True or False: both code chunks below are valid ways to comment code:?
-
-```{r eval = F}
-## add two numbers
-2 + 2
-```
-
-```{r eval = F}
-2 + 2 # add two numbers
-```
-
-**Note:** All question answers can be found at the end of the lesson.
-:::
-
-A fantastic use of comments is to separate your scripts into sections. If you put four dashes after a comment, RStudio will create a new section in your code:
-
-```{r}
-## New section ----
-```
-
-This has two nice benefits. Firstly, you can click on the little arrow beside the section header to fold, or collapse, that section of code:
-
-![](images/section_folder_icon.jpg){width="171"}
-
-Second, you can click on the "Outline" icon at the top right of the Editor to view and navigate through all the contents in your script:
-
-![](images/rstudio_outline.jpg){width="194"}
-
-
-
-## R s a calculator
-
-R works as a calculator, and obeys the correct order of operations. Type and run the following expressions and observe their output:
-
-```{r}
-2 + 2
-2 - 2
-2 * 2 # two times two 
-2 / 2 # two divided by two
-2 ^ 2 # two raised to the power of two
-2 + 2 * 2   # this is evaluated following the order of operations
-sqrt(100)	# square root
-```
-
-The square root command shown on the last line is a good example of an R *function*, where `100` is the *argument* to the function. You will see more functions soon.
-
-::: {.callout-note title='Reminder'}
-We hope you remember the shortcut to run code!
-
-To **run a single line of code**, place your cursor anywhere on that line, then hit `Command` + `Enter` on macOS, or `Control` + `Enter` on Windows.
-
-To **run multiple lines**, drag your cursor to highlight the relevant lines then again press `Command`/`Control` + `Enter`.
-:::
-
-::: {.callout-tip title='Practice'}
-**Question 2**
-
-In the following expression, which sign is evaluated first by R, the minus or the division?
-
-```{r}
-2 - 2 / 2
-```
-:::
-
-
-
-## Formatting code
-
-R does not care how you choose to space out your code.
-
-For the math operations we did above, all the following would be valid code:
-
-```{r}
-2+2
-2 + 2
-2                +                   2
-```
-
-Similarly, for the `sqrt()` function used above, any of these would be valid:
-
-```{r}
-sqrt(100)
-sqrt(    100     )
-## you can even space the command out over multiple lines
-sqrt(  
-  100
-    )
-```
-
-But of course, you should try to space out your code in sensible ways. What exactly is "sensible"? Well, it may be hard for you to know at the moment. Over time, as you read other people's code, you will learn that there are certain R *conventions* for code spacing and formatting.
-
-In the meantime, you can ask RStudio to help format your code for you. To do this, highlight any section of code you want to reformat, and, on the RStudio menu, go to `Code > Reformat Code`, or use the shortcut `Shift` + `Command/Control` + `A`.
-
-::: {.callout-caution title='Watch Out'}
-**Stuck on the + sign**
-
-If you run an incomplete line of code, R will print a `+` sign to indicate that it is waiting for you to finish the code.
-
-For example, if you run the following code:
-
-```{r eval = F}
-sqrt(100
-```
-
-you will not get the output you expect (10). Rather the console will `sqrt(` and a `+` sign:
-
-![](images/sqrt_missing_parenth.jpg){width="80" height="34"}
-
-R is waiting for you complete the closing parenthesis. You can complete the code and get rid of the `+` by just entering the missing parenthesis:
-
-```{r eval = F}
-)
-```
-
-![](images/sqrt_completed_parenth.jpg){width="105" height="49"}
-
-Alternatively, press the escape key, `ESC` while your cursor is in the console to start over.
-:::
-
-
-
-## Objects in R
-
-### Create an object
-
-When you run code as we have been doing above, the result of the command (or its *value*) is simply displayed in the console---it is not stored anywhere.
-
-```{r}
-2 + 2 # R prints this result, 4, but does not store it 
-```
-
-To store a value for future use, assign it to an *object* with the *assignment operator**,*** `<-` :
-
-```{r}
-my_obj <- 2 + 2 # assign the result of `2 + 2 ` to the object called `my_obj`
-my_obj # print my_obj
-```
-
-The assignment operator, `<-` , is made of the 'less than' sign, `<` , and a minus, `-`. You will use it thousands of times over your R lifetime, so please don't type it manually! Instead, use RStudio's shortcut, **`alt`** + **`-`** (**alt** AND **minus**) on Windows or **`option`** + **`-`** (**option** AND **minus**) on macOS.
-
-::: {.callout-note title='Side Note'}
-Also note that you can use the *equals* sign, `=`, for assignment.
-
-```{r}
-my_obj = 2 + 2 
-```
-
-But this is not commonly used by the R community (mostly for historical reasons), so we discourage it too. Follow the convention and use `<-`.
-:::
-
-Now that you've created the object `my_obj`, R knows all about it and will keep track of it during this R session. You can view any created objects in the *Environment* tab of RStudio.
-
-![](images/rstudio_environment_object.png){width="312"}
-
-
-
-### What is an object?
-
-So what exactly is an object? Think of it as a named bucket that can contain anything. When you run the code below:
-
-```{r}
-my_obj <- 20
-```
-
-you are telling R, "put the number 20 inside a bucket named 'my_obj'".
-
-![](images/my_obj_20.jpg){width="156"}
-
-Once the code is run, we would say, in R terms, that "the value of object called `my_obj` is 20".
-
-------------------------------------------------------------------------
-
-And if you run this code:
-
-```{r}
-first_name <- "Joanna"
-```
-
-you are instructing R to "put the value 'Joanna' inside the bucket called 'first_name'".
-
-![](images/object_first_name_joanna.jpg){width="235"}
-
-Once the code is run, we would say, in R terms, that "the value of the `first_name` object is Joanna".
-
-------------------------------------------------------------------------
-
-Note that R evaluates the code *before* putting it inside the bucket.
-
-So, before when we ran this code,
-
-```{r}
-my_obj <- 2 + 2
-```
-
-R firsts does the calculation of `2 + 2`, then stores the result, 4, inside the object.
-
-![](images/object_two_plus_two.jpg){width="223"}
-
-::: {.callout-tip title='Practice'}
-**Question 3**
-
-Consider the code chunk below:
-
-```{r}
-result <-  2 + 2 + 2
-```
-
-What is the value of the `result` object created?
-
-A. `2 + 2 + 2`
-
-B. numeric
-
-C. 6
-:::
-
-
-
-### Datasets are objects too
-
-So far, you have been working with very simple objects. You may be thinking "Where are the spreadsheets and datasets? Why are we writing `my_obj <- 2 + 2`? Is this a primary school maths class?!"
-
-Be patient.
-
-We want you to get familiar with the concept of an R object because once you start dealing with real datasets, these will also be stored as R objects.
-
-Let's see a preview of this now. Type out the code below to download a dataset on Ebola cases that we stored on Google Drive and put it in the object `ebola_sierra_leone_data`.
-
-```{r render = head_5_rows}
-ebola_sierra_leone_data <- read.csv("https://tinyurl.com/ebola-data-sample")
-ebola_sierra_leone_data # print ebola_data
-```
-
-This data contains a sample of patient information from the 2014-2016 Ebola outbreak in Sierra Leone.
-
-------------------------------------------------------------------------
-
-Because you can store datasets as objects, its very easy to work with multiple datasets at the same time.
-
-Below, we import and view another dataset from the web:
-
-```{r eval = F}
-diabetes_china <- read.csv("https://tinyurl.com/diabetes-china")
-```
-
-Because the dataset above is quite large, it may be helpful to look at it in the data viewer:
-
-```{r eval = FALSE}
-View(diabetes_china)
-```
-
-Notice that both datasets now appear in your *Environment* tab.
-
-::: {.callout-note title='Side Note'}
-Rather than reading data from an internet drive as we did above, it is more likely that you will have the data on your computer, and you will want to read it into R from your there. We will cover this in a future lesson.
-
-Later in the course, we will also show you how to store and read data from a web service like Google Drive, which is nice for easy portability.
-:::
-
-
-
-### Rename an object
-
-You sometimes want to rename an object. It is not possible to do this directly.
-
-To rename an object, you make a copy of the object with a new name, and delete the original.
-
-For example, maybe we decide that the name of the `ebola_sierra_leone_data` object is too long. To change it to the shorter "ebola_data" run:
-
-```{r}
-ebola_data <- ebola_sierra_leone_data
-```
-
-This has copied the contents from the `ebola_sierra_leone_data` *bucket* to a new `ebola_data` *bucket*.
-
-You can now get rid of the old `ebola_sierra_leone_data` bucket with the `rm()` function, which stands for "remove":
-
-```{r}
-rm(ebola_sierra_leone_data)
-```
-
-
-
-### Overwrite an object
-
-Overwriting an object is like changing the *contents* of a *bucket*.
-
-For example, previously we ran this code to store the value "Joanna" inside the `first_name` object:
-
-```{r}
-first_name <- "Joanna"
-```
-
-To change this to a different, simply re-run the line with a different value:
-
-```{r}
-first_name <- "Luigi"
-```
-
-You can take a look at the Environment tab to observe the change.
-
-
-
-### Working with objects
-
-Most of your time in R will be spent manipulating R objects. Let's see some quick examples.
-
-You can run simple commands on objects. For example, below we store the value `100` in an object and then take the square root of the object:
-
-```{r}
-my_number <- 100
-sqrt(my_number)
-```
-
-R "sees" `my_number` as the number 100, and so is able to evaluate it's square root.
-
-------------------------------------------------------------------------
-
-You can also combine existing objects to create new objects. For example, type out the code below to add `my_number` to itself, and store the result in a new object called `my_sum`:
-
-```{r}
-my_sum <- my_number + my_number
-```
-
-What should be the value of `my_sum`? First take a guess, then check it.
-
-::: {.callout-note title='Side Note'}
-To check the value of an object, such as `my_sum`, you can type and run just the code `my_sum` in the Console or the Editor. Alternatively, you can simply highlight the value `my_sum` in the existing code and press `Command/Control` + `Enter`.
-:::
-
-------------------------------------------------------------------------
-
-But of course, most of your analysis will involve working with *data* objects, such as the `ebola_data` object we created previously.
-
-Let's see a very simple example of how to interact with a data object; we will tackle it properly in the next lesson.
-
-To get a table of the different sex distribution of patients in the `ebola_data` object, we can run the following:
-
-```{r}
-table(ebola_data$sex)
-```
-
-The dollar sign symbol, `$`, above allowed us subset to a specific column.
-
-::: {.callout-tip title='Practice'}
-**Question 4**
-
-a.  Consider the code below. What is the value of the `answer` object?
-
-```{r}
-eight <- 9
-answer <- eight - 8
-```
-
-b.  Use `table()` to make a table with the distribution of patients across districts in the `ebola_data` object.
-:::
-
-
-
-### Some errors with objects
-
-```{r}
-first_name <- "Luigi"
-last_name <- "Fenway"
-```
-
-```{r eval = FALSE}
-full_name <- first_name + last_name
-```
-
-    Error in first_name + last_name : non-numeric argument to binary operator
-
-The error message tells you that these objects are not numbers and therefore cannot be added with `+`. This is a fairly common error type, caused by trying to do inappropriate things to your objects. Be careful about this.
-
-In this particular case, we can use the function `paste()` to put these two objects together:
-
-```{r}
-full_name <- paste(first_name, last_name)
-full_name
-```
-
-------------------------------------------------------------------------
-
-Another error you'll get a lot is `Error: object 'XXX' not found`. For example:
-
-```{r eval = F}
-my_number <- 48 # define `my_obj`
-My_number + 2 # attempt to add 2 to `my_obj`
-```
-
-    Error: object 'My_number' not found
-
-Here, R returns an error message because we haven't created (or *defined*) the object `My_obj` yet. (Recall that R is case-sensitive.)
-
-------------------------------------------------------------------------
-
-When you first start learning R, dealing with errors can be frustrating. They're often difficult to understand (e.g. what exactly does "*non-numeric argument to binary operator*" mean?).
-
-Try Googling any error messages you get and browsing through the first few results. This will lead you to forums (e.g. stackoverflow.com) where other R learners have complained about the same error. Here you may find explanations of, and solutions to, your problems.
-
-::: {.callout-tip title='Practice'}
-**Question 5**
-
-a.  The code below returns an error. Why?
-
-```{r eval = FALSE}
-my_first_name <- "Kene"
-my_last_name <- "Nwosu"
-my_first_name + my_last_name
-```
-
-b.  The code below returns an error. Why? (Look carefully)
-
-```{r eval = FALSE}
-my_1st_name <- "Kene"
-my_last_name <- "Nwosu"
-
-paste(my_Ist_name, my_last_name)
-```
-:::
-
-
-
-### Naming objects
-
-> There are only ***two hard things*** in Computer Science: cache invalidation and ***naming things***.
->
-> --- Phil Karlton.
-
-Because much of your work in R involves interacting with objects you have created, picking intelligent names for these objects is important.
-
-Naming objects is difficult because names should be both **short** (so that you can type them quickly) and **informative** (so that you can easily remember what is inside the object), and these two goals are often in conflict.
-
-So names that are too long, like the one below, are bad because they take forever to type.
-
-```{r eval = F}
-sample_of_the_ebola_outbreak_dataset_from_sierra_leone_in_2014
-```
-
-And a name like `data` is bad because it is not informative; the name does not give a good idea of what the object is.
-
-As you write more R code, you will learn how to write short and informative names.
-
-------------------------------------------------------------------------
-
-For names with multiple words, there are a few conventions for how to separate the words:
-
-```{r eval=FALSE}
-snake_case <- "Snake case uses underscores"
-period.case <- "Period case uses periods"
-camelCase <- "Camel case capitalizes new words (but not the first word)"
-```
-
-We recommend snake_case, which uses all lower-case words, and separates words with `_`.
-
-------------------------------------------------------------------------
-
-Note too that there are some limitations on objects' names:
-
--   names must start with a letter. So `2014_data` is not a valid name (because it starts with a number).
-
--   names can only contain letters, numbers, periods (`.`) and underscores (`_`). So `ebola-data` or `ebola~data` or `ebola data` with a space are not valid names.
-
-If you really want to use these characters in your object names, you can enclose the names in backticks:
-
-    `ebola-data`
-    `ebola~data`
-    `ebola data`
-
-All of the above are valid R object names. For example, type and run the following code:
-
-```{r eval = FALSE}
-`ebola~data` <- ebola_data
-`ebola~data`
-```
-
-But in general you should avoid using backticks to rescue bad object names. Just write proper names.
-
-::: {.callout-tip title='Practice'}
-**Question 6**
-
-In the code chunk below, we are attempting to take the top 20 rows of the `ebola_data` table. All but one of these lines has an error. Which line will run properly?
-
-```{r, eval = FALSE}
-20_top_rows <- head(ebola_data, 20)
-twenty-top-rows <- head(ebola_data, 20)
-top_20_rows <- head(ebola_data, 20)
-```
-:::
-
-
+You should now type all the code from this lesson into that file.
 
 ## Functions
 
-Much of your work in R will involve calling *functions*.
+A function is a block of code that performs a specific task. It can take inputs (arguments) and return outputs. Here's an example of a built-in function with just one argument:
 
-You can think of each function as a machine that takes in some input (or *arguments*) and returns some output.
-
-![](images/apple_slicing_function_analogy.png){width="610"}
-
-So far you have already seen many functions, including, `sqrt()`, `paste()` and `plot()`. Run the lines below to refresh your memory:
-
-```{r eval = F}
-sqrt(100)
-paste("I am number", 2 + 2)
-plot(women)
+```{python}
+# Using the len() function to get the length of a string
+len("Python")
 ```
 
-
-
-### Basic function syntax
-
-The standard way to call a function is to provide a *value* for each *argument*:
-
-```{r eval = F}
-function_name(argument1 = "value", argument2 = "value")
-```
-
-Let's demonstrate this with the `head()` function, which returns the first few elements of an object.
-
-To return the first three rows of the Ebola dataset, you run:
-
-```{r}
-head(x = ebola_data, n = 3)
-```
-
-In the code above, `head()` takes in two arguments:
-
--   `x` , the object of interest, and
-
--   `n`, the number of elements to return.
-
-We can also swap the order of the arguments:
-
-```{r}
-head(n = 3, x = ebola_data)
-```
-
-------------------------------------------------------------------------
-
-If you put the argument values in the right order, you can skip typing their names. So the following two lines of code are equivalent and both run:
-
-```{r}
-head(x = ebola_data, n = 3)
-head(ebola_data, 3)
-```
-
-But if the argument values are in the wrong order, you will get an error if you do not type the argument names. Below, the first line runs but the second does not run:
-
-```{r eval = FALSE}
-head(n = 3, x = ebola_data)
-head(3, ebola_data)
-```
-
-(To see the "correct order" for the arguments, take a look at the help file for the `head()` function)
-
-------------------------------------------------------------------------
-
-Some function arguments can be skipped altogether, because they have *default* values.
-
-For example, with `head()`, the default value of `n` is 6, so running just `head(ebola_data)` will return the first 6 rows.
-
-```{r}
-head(ebola_data)
-```
-
-To see the arguments to a function, press the **Tab** key when your cursor is inside the function's parentheses:
-
-![](images/head_definition_help.png)
-
-::: {.callout-tip title='Practice'}
-**Question 7**
-
-In the code lines below, we are attempting to take the top 6 rows of the `women` dataset (which is built into R). Which line is invalid?
-
-```{r eval = FALSE}
-head(women)
-head(women, 6)
-head(x = women, 6)
-head(x = women, n = 6)
-head(6, women)
-```
-
-(If you are not sure, just try typing and running each line. Remember that the goal here is for you to gain some practice.)
-:::
-
-------------------------------------------------------------------------
-
-Let's spend some time playing with another function, the `paste()` function, which we already saw above, This function is a bit special because it can take in any number of input arguments.
-
-So you could have two arguments:
-
-```{r}
-paste("Luigi", "Fenway")
-```
-
-Or four arguments:
-
-```{r}
-paste("Luigi", "Fenway", "Luigi", "Fenway")
-```
-
-And so on up to infinity.
-
-And as you might recall, we can also `paste()` named objects:
-
-```{r}
-first_name <- "Luigi"
-paste("My name is", first_name, "and my last name is", last_name)
-```
-
-::: {.callout-note title='Pro Tip'}
-Functions like `paste()` can take in many values because they have a special argument, an ellipsis: `…` If you consult the help file for the paste function, you will see this:
-
-![](images/paste_ellipsis.jpg){width="432"}
-:::
-
-Another useful argument for `paste()` is called `sep`. It tells R what character to use to separate the terms:
-
-```{r}
-paste("Luigi", "Fenway", sep = "-")
-```
-
-
-
-### Nesting functions
-
-The output of a function can be immediately taken in by another function. This is called function nesting.
-
-For example, the function `tolower()` converts a string to lower case.
-
-```{r}
-tolower("LUIGI")
-```
-
-You can take the output of this and pass it directly into another function:
-
-```{r}
-paste(tolower("LUIGI"), "is my name")
-```
-
-------------------------------------------------------------------------
-
-Without this option of nesting, you would have to assign an intermediate object:
-
-```{r}
-my_lowercase_name <- tolower("LUIGI")
-paste(my_lowercase_name, "is my name")
-```
-
-Function nesting will come in very handy soon.
-
-::: {.callout-tip title='Practice'}
-**Question 8**
-
-The code chunks below are all examples of function nesting. One of the lines has an error. Which line is it, and what is the error?
-
-```{r eval = F}
-sqrt(head(women))
-```
-
-```{r eval = F}
-paste(sqrt(9), "plus 1 is", sqrt(16))
-```
-
-```{r eval = F}
-sqrt(tolower("LUIGI"))
-```
-:::
-
-
-
-## Packages
-
-As we mentioned previously, R is wonderful because it is user extensible: anyone can create a software *package* that adds new functionality. Most of R's power comes from these packages.
-
-In the previous lesson, you installed and loaded the {highcharter} package using the `install.packages()` and `library()` functions. Let's learn a bit more about packages now.
-
-
-
-### A first example: the {tableone} package
-
-Let's now install and use another R package, called `tableone`:
-
-```{r eval = F}
-install.packages("tableone")
-```
-
-```{r}
-library(tableone)
-```
-
-Note that you only need to install a package once, but you have to load it with `library()` each time you want to use it. This means that you should generally run the `install.packages()` line directly from the console, rather than typing it into your script.
-
-------------------------------------------------------------------------
-
-The package eases the construction of "Table 1", i.e. a table with characteristics of the study sample that is commonly found in biomedical research papers.
-
-The simplest use case is summarizing the whole dataset. You can just feed in the data frame to the `data` argument of the main workhorse function `CreateTableOne()`.
-
-```{r}
-CreateTableOne(data = ebola_data)
-```
-
-You can see there are 200 patients in this dataset, the mean age is 33 and 38% of the sample of the sample is male, among other details.
-
-Very cool! (One problem is that the package is assuming that the date variables are categorical; because of this the output table is much too long!)
-
-The point of this demonstration of {tableone} is to show you that there is a lot of power in external R packages. This is a big strength of working with R, an open-source language with a vibrant ecosystem of contributors. Thousands of people are working right now on packages that may be helpful to you one day.
-
-You can Google search "Cool R packages" and browse through the answers if you are eager to learn about more R packages.
-
-::: {.callout-note title='Side Note'}
-You may have noticed that we embrace package names in curly braces, e.g. {tableone}. This is just a styling convention among R users/teachers. The braces do not *mean* anything.
-:::
-
-
-
-### Full signifiers
-
-The *full signifier* of a function includes both the package name and the function name: `package::function()`.
-
-So for example, instead of writing:
-
-```{r eval = F}
-CreateTableOne(data = ebola_data)
-```
-
-We could write this function with its full signifier, `package::function()`:
-
-```{r eval = F}
-tableone::CreateTableOne(data = ebola_data)
-```
-
-You usually do not need to use these full signifiers in your scripts. But there are some situations where it is helpful:
-
-The most common reason is that you want to make it very clear which package a function comes from.
-
-Secondly, you sometimes want to avoid needing to run `library(package)` before accessing the functions in a package. That is, you want to use a function from a package without first loading that package from the library. In that case, you can use the full signifier syntax.
-
-So the following:
-
-```{r eval = F}
-tableone::CreateTableOne(data = ebola_data)
-```
-
-is equivalent to:
-
-```{r eval = F}
-library(tableone)
-CreateTableOne(data = ebola_data)
+The `round()` function takes two arguments: the number to round and the number of decimal places to round to.   
+
+```{python}
+# Using the round() function to round a number
+round(3.1415, 2)
 ```
 
 ::: {.callout-tip title='Practice'}
-**Question 9**
 
-Consider the code below:
+### Q: Using built-in functions
 
-```{r eval = FALSE}
-tableone::CreateTableOne(data = ebola_data)
+Use the `abs()` function to get the absolute value of -5.
+
+Write your code below and run it to check your answer:
+
+```{python}
+# Your code here
 ```
 
-Which of the following is a correct interpretation of what this code means:
-
-A. The code applies the `CreateTableOne` function from the {tableone} package on the `ebola_data` object.
-
-B. The code applies the `CreateTableOne` argument from the {tableone} function on the `ebola_data` package.
-
-C. The code applies the `CreateTableOne` function from the {tableone} package on the `ebola_data` package.
 :::
 
+## Arguments (Parameters)
 
+Arguments (also called parameters) are the values that you pass to a function (or method) when you call it. 
 
-### pacman::p_load()
+There are different ways to pass arguments to a function.
 
-Rather than use two separate functions, `install.packages()` then `library()`, to install then load packages, you can use a single function, `p_load()`, from the {pacman} package to automatically install a package if it is not yet installed, *and* load the package. We encourage this approach in the rest of this course.
+Consider again the `round()` function.
 
-Install {pacman} now by running this in your console:
+If we look at the documentation for the `round()` function, with : 
 
-```{r eval = F}
-install.packages("pacman")
+```{python}
+round?
 ```
 
-From now on, when you are introduced to a new package, you can simply use, `pacman::p_load(package_name)` to both install and load the package:
+We see that it takes two arguments:
 
-Try this now for the `outbreaks` package, which we will use soon:
+- `number`: The number to round.
+- `ndigits`: The number of decimal places to round to.
 
-```{r eval = F}
-pacman::p_load(outbreaks)
+There are two main ways to pass arguments to this function. 
+
+1. Positional arguments: Passed in the order they are defined. Since the default order of the arguments is `number` then `ndigits`, we can pass the arguments in that order without specifying the argument names, as we did above.
+
+```{python}
+round(3.1415, 2)
 ```
 
-------------------------------------------------------------------------
+If we swap the order of the arguments, we get an error:
 
-Now we have a small problem. The wonderful function `pacman::p_load()` automatically installs and loads packages.
-
-But it would be nice to have some code that automatically installs the {pacman} package itself, if it is missing on a user's computer.
-
-But if you put the `install.packages()` line in a script, like so:
-
-```{r eval = F}
-install.packages("pacman")
-pacman::p_load(here, rmarkdown)
+```{python}
+# | eval: False
+round(2, 3.1415)
 ```
 
-you will waste a lot of time. Because every time a user opens and runs a script, it will *reinstall* {pacman}, which can take a while. Instead we need code that first *checks whether pacman is not yet installed* and installs it if this is not the case.
+2. Keyword arguments: Passed by specifying the argument name followed by a `=` and the argument value. 
 
-We can do this with the following code:
-
-```{r eval = F}
-if(!require(pacman)) install.packages("pacman")
+```{python}
+round(number=3.1415, ndigits=2)
 ```
 
-You do not have to understand it at the moment, as it uses some syntax that you have not yet learned. Just note that in future chapters, we will often start a script with code like this:
+With this method, we can pass the arguments in any order, as long as we use the argument names.
 
-```{r eval = F}
-if(!require(pacman)) install.packages("pacman")
-pacman::p_load(here, rmarkdown)
+```{python}
+round(ndigits=2, number=3.1415)
 ```
 
-The first line will install {pacman} if it is not yet installed. The second line will use `p_load()` function from {pacman} to load the remaining packages (and `pacman::p_load()` installs any packages that are not yet installed).
-
-Phew! Hope your head is still intact.
+Specifying the keyword is usually recommended, except for simple functions with very few arguments, or when the order of the arguments is obvious from context.
 
 ::: {.callout-tip title='Practice'}
-**Question 10**
 
-At the start of an R script, we would like to install and load the package called {janitor}. Which of the following code chunks do we recommend you have in your script?
+### Q: Using Positional Arguments with `pow()`
 
-A.  
+Use the `pow()` function to calculate 2 raised to the power of 5 by passing positional arguments. You may need to consult the documentation for the `pow()` function to see how it works.
 
-```{r eval = F}
-if(!require(pacman)) install.packages("pacman")
-pacman::p_load(janitor)
+Write your code below and run it to check your answer:
+
+```{python}
+# Your code here
 ```
 
-B.  
+### Q: Using Keyword Arguments with `round()`
 
-```{r eval = F}
-install.packages("janitor")
-library(janitor)
+Use the `round()` function to round the number `9.8765` to `3` decimal places by specifying keyword arguments.
+
+Write your code below and run it to check your answer:
+
+```{python}
+# Your code here
 ```
 
-C.  
-
-```{r eval = F}
-install.packages("janitor")
-pacman::p_load(janitor)
-```
 :::
 
+## Methods
+
+Methods are similar to functions, but they are associated with specific objects or data types. They are called using dot notation. 
+
+For example, every string object comes with a range of built-in methods, like `upper()` to convert to uppercase, `lower()` to convert to lowercase, `replace()` to replace substrings, and many more. 
+
+Let's see how to use these:
+
+```{python}
+name = "python"
+print(name.upper())
+print(name.lower())
+print(name.replace("p", "🐍"))
+```
+
+We can also call the methods directly on the string object, without assigning it to a variable:
+
+```{python}
+# Using the upper() method on a string
+print("python".upper())
+print("PYTHON".lower())
+print("python".replace("p", "🐍"))
+```
+
+Similarly, numbers in Python come with some built-in methods. For example, the `as_integer_ratio()` (added in Python 3.8) method converts a decimalnumber to a ratio of two integers.
+
+```{python}
+# Using the as_integer_ratio() method on a float
+example_decimal = 1.5
+example_decimal.as_integer_ratio()
+```
+
+::: {.callout-note title='Practice'}
+
+### Q: Definitions
+
+Come up with simple definitions for the following terms that are clear to YOU (even if not technically exactly accurate):
+
+- Function
+- Method
+- Argument (Parameter)
+- Dot Notation
+
+:::
+
+::: {.callout-tip title='Practice'}
+
+### Q: Using methods
+
+1. Call the `replace()` method on the string "Helo" to replace the single l with two ls.
+2. Call the `split()` method on the string "Hello World" to split the string into a list of words.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Libraries in Python
+
+Libraries are collections of pre-written code that you can use in your programs. They extend the functionality of Python by providing additional functions and tools.
+
+For example, the `math` library provides mathematical functions like `sqrt()` for square roots and `sin()` for sine.
+
+If we try to use the `sqrt()` function without importing the `math` library, we get an error:
+
+```{python}
+# | eval: False
+# This will cause a NameError
+sqrt(16)
+```
+
+We can import the `math` library and use the `sqrt()` function like this:
+
+```{python}
+# Import the library
+import math
+```
+
+Then we can use the `sqrt()` function like this:
+
+```{python}
+# Use the sqrt() function
+math.sqrt(16)
+```
+
+We can get help on a function in a similar way, calling both the function and the library it's in:
+
+```{python}
+# Get help on the sqrt() function
+math.sqrt?
+```
+
+We can also import libraries with aliases. For example, we can import the `math` library with the alias `m`:
+
+```{python}
+# Import the entire library with an alias
+import math as m
+# Then we can use the alias to call the function
+m.sqrt(16)
+```
+
+Finally, if you want to skip the alias/library name, you can either import the functions individually: 
+
+```{python}
+# Import specific functions from a library
+from math import sqrt, sin
+# Then we can use the function directly
+sqrt(16)
+sin(0)
+```
+
+Or import everything from the library:
+
+```{python}
+# Import everything from the library
+from math import *
+# Then we can all functions directly, such as sqrt() and sin()
+sqrt(16)
+cos(0)
+tan(0)
+sin(0)
+```
+
+Phew that's a lot of ways to import libraries! You'll mostly see the `import ... as ...` syntax, and sometimes the `from ... import ...` syntax.
+
+Note that we typically import all required libraries at the top of the file, in a single code chunk. This is a good practice to follow.
+
+::: {.callout-tip title='Practice'}
+
+### Q: Definitions
+
+Come up with simple definitions for the following terms that are clear to YOU (even if not technically exactly accurate):
+
+- Library (Module)
+- Import
+- Alias
+
+:::
+
+::: {.callout-tip title='Practice'}
+
+### Q: Using functions from imported libraries
+
+- Import the `random` library and use the `randint()` function to generate a random integer between 1 and 10. You can use the `?` operator to get help on the function after importing it. 
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Installing Libraries
+
+While Python comes with many built-in libraries, there are thousands of additional libraries available that you can install to extend Python's functionality even further. Let's look at how to install and use a simple external library, with the `cowsay` library as an example.
+
+If we try to import this library without first installing it, we get an error:
+
+```{python}
+# | eval: False
+import cowsay
+```
+
+To install the library, you can use the `!pip install` command in a code cell in Google Colab. For `cowsay`, you would run:
+
+```{python}
+# | eval: False
+!pip install cowsay
+```
+
+Pip installs packages from a remote repository called [PyPI](https://pypi.org/). Anyone can create and upload a package to PyPI. After a few checks, it's then available for anyone to install.
+
+::: {.callout-note title='Side-note'}
+
+For those working on local Python instances, you can install `cowsay` using pip in your terminal:
+
+```
+pip install cowsay
+```
+
+:::
+
+Once installed, we can now import and use the `cowsay` library:
+
+```{python}
+import cowsay
+
+# Make the cow say something
+cowsay.cow('Moo!')
+```
+
+This should display an ASCII art cow saying "Moo!".
+
+::: {.callout-tip title='Practice'}
+
+### Q: Using the emoji library
+
+1. Install the `emoji` library.
+2. Import the `emoji` library.
+3. Consult the help for the `emojize()` function in the `emoji` library.
+4. Use the `emojize()` function to display an emoji for "thumbs up".
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Wrap-up
+
+In this lesson, we've covered:
+
+1. Functions and methods in Python
+2. Arguments (parameters) and how to use them
+3. Importing and using libraries
+4. Installing and using an external library
+
+These concepts are fundamental to Python programming and will be used extensively as you continue to develop your skills. Practice using different functions, methods, and libraries to become more comfortable with these concepts.
 
 
-## Wrapping up
-
-With your new knowledge of R objects, R functions and the packages that functions come from, you are ready, believe it or not, to do basic data analysis in R. We'll jump into this head first in the next lesson. See you there!
 
 
+```{python}
 
-## Answers 
+import os
+from PyPDF2 import PdfReader, PdfWriter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
-1.  True.
+# Path to the input PDF file
+input_pdf = "/Users/kendavidn/Dropbox/Mac (2)/Downloads/Certificates 19Sep2024.pdf"
 
-2.  The division sign is evaluated first.
+# List of students and their information
+students = [
+    "Adriana Gomes",
+    "Loureen Valyne",
+    "Nuneaton Ramesar",
+    "Toheeb Olanrewaju Sarafadeen",
+    "Rajkumar Rajendram",
+    "Abdeldjalil Belkheir",
+    "Eman Elafef",
+    "Yopa Abraham",
+    "Augustine Alie",
+    "Sarah Macklin",
+    "Ekumbo Botuli",
+    "Roya Hosseini"
+]
 
-3.  The answer is C. The code `2 + 2 + 2` gets evaluated before it is stored in the object.
+# Certificate name (you can modify this as needed)
+certificate_name = "FOSSA Certificate"
 
-4.  a\. The value is 1. The code evaluates to `9-8`.
+# Create output directory if it doesn't exist
+output_dir = "/Users/kendavidn/Dropbox/Mac (2)/Downloads/split_certificates"
+os.makedirs(output_dir, exist_ok=True)
 
-    b\. table(ebola_data\$district)
+# Open the input PDF
+pdf_reader = PdfReader(input_pdf)
 
-5.  a\. You cannot add two character strings. Adding only works for numbers.
+# Iterate through pages and save each as a separate file
+for i, student in enumerate(students, start=1):
+    pdf_writer = PdfWriter()
+    pdf_writer.add_page(pdf_reader.pages[i-1])
+    
+    # Create output filename
+    output_filename = f"{student} - {certificate_name}.pdf"
+    output_path = os.path.join(output_dir, output_filename)
+    
+    # Save the individual page
+    with open(output_path, "wb") as output_file:
+        pdf_writer.write(output_file)
+    
+    print(f"Saved: {output_filename}")
 
-    b\. `my_1st_name` is typed with the number 1 initially, but in the `paste()` command, it is typed with the letter "I".
-
-6.  The third line is the only line with a valid object name: `top_20_rows`
-
-7.  The last line, `head(6, women)`, is invalid because the arguments are in the wrong order and they are not named.
-
-8.  The third code chunk has a problem. It attempts to find the square root of a character, which is impossible.
-
-9.  The first line, A, is the correct interpretation.
-
-10. The first code chunk is the recommended way to install and load the package {janitor}
-
-
-
-
-
-
+print("All certificates have been split and saved.")
 
 
-### References {.unlisted .unnumbered}
-
-Some material in this lesson was adapted from the following sources:
-
--   "<File:Apple> slicing function.png." *Wikimedia Commons, the free media repository*. 1 Oct 2021, 04:26 UTC. 20 Mar 2022, 17:27 \<<https://commons.wikimedia.org/w/index.php?title=File:Apple_slicing_function.png&oldid=594767630>\>.
-
--   "PsyteachR \| Data Skills for Reproducible Research." 2021. Github.io. 2021. <https://psyteachr.github.io/reprores-v2/index.html.>
-
--   Douglas, Alex, Deon Roos, Francesca Mancini, Ana Couto, and David Lusseau. 2022. "An Introduction to R." Intro2r.com. January 27, 2022. <https://intro2r.com/.>
-
-`r tgc_license()`
+```

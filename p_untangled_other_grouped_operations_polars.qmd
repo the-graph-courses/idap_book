@@ -1,0 +1,168 @@
+Here's the lesson rewritten using Polars:
+
+---
+title: 'Grouped Transformations and Filtering with Polars'
+---
+
+```{python}
+# | echo: false
+# Setup
+import polars as pl
+import numpy as np
+
+pl.Config.set_fmt_str_lengths(7)
+```
+
+## Introduction to Grouped Operations
+
+Data wrangling often involves applying the same operations separately to different groups within the data. In this lesson, we'll learn how to use `groupby()` with `over()` and `with_columns()` to conduct grouped transformations on a DataFrame using Polars.
+
+## Learning Objectives
+
+1. You can use `groupby()` with `over()` and `with_columns()` to conduct grouped operations on a DataFrame.
+
+## Required Packages
+
+This lesson requires Polars and numpy:
+
+```{python}
+import polars as pl
+import numpy as np
+```
+
+## Simple Toy Dataset
+
+Let's start with a simple toy dataset to illustrate the concepts:
+
+```{python}
+# Create a simple toy dataset
+toy_data = pl.DataFrame(
+    {
+        "year": [2022, 2022, 2023, 2023],
+        "month": ["Jan", "Feb", "Jan", "Feb"],
+        "sales": [2, 4, 6, 8],
+    }
+)
+
+print(toy_data)
+```
+
+### Regular `with_columns()` Call
+
+Let's add a column with the mean sales for the entire dataset, then calculate the difference between each month's sales and the mean sales:
+
+```{python}
+toy_data.with_columns(
+    pl.col("sales").mean().alias("mean_sales"),
+    (pl.col("sales") - pl.col("sales").mean()).alias("sales_diff")
+)
+```
+
+### Grouped `with_columns()` Call
+
+But we might want to see how each month's sales compare to the mean sales for that year. 
+
+```{python}
+toy_data.with_columns(
+    pl.col("sales").mean().over("year").alias("mean_sales"),
+    (pl.col("sales") - pl.col("sales").mean().over("year")).alias("sales_diff")
+)
+```
+
+## Real Dataset: Austin Housing
+
+Now let's apply these concepts to a real dataset. We'll use the `housing` dataset containing housing sales data for Austin, Texas:
+
+```{python}
+housing = pl.read_csv("data/austinhousing.csv").select(["year", "month", "sales"])
+
+## Display first few rows of the dataset
+housing
+```
+
+### Regular `with_columns()` Call
+
+Let's add a column with the mean sales for the entire dataset, then calculate the difference between each month's sales and the mean sales:
+
+```{python}
+housing.with_columns(
+    pl.col("sales").mean().alias("mean_sales"),
+    (pl.col("sales") - pl.col("sales").mean()).alias("sales_diff")
+)
+```
+
+### Grouped `with_columns()` Call
+
+Now, let's add a column with the mean sales for each year, and then calculate the difference between each month's sales and the mean sales for that year:
+
+```{python}
+housing.with_columns(
+    pl.col("sales").mean().over("year").alias("mean_sales"),
+    (pl.col("sales") - pl.col("sales").mean().over("year")).alias("sales_diff")
+)
+```
+
+### More Examples of Grouped Transformations
+
+#### Rank Sales Within Each Year
+
+```{python}
+housing.with_columns(
+    pl.col("sales").rank(descending=True).over("year").alias("sales_rank")
+)
+```
+
+#### Cumulative Sales Column
+
+```{python}
+housing.with_columns(
+    pl.col("sales").cumsum().over("year").alias("cumulative_sales")
+)
+```
+
+#### Percent of Yearly Sales Done Each Month
+
+```{python}
+housing.with_columns(
+    (100 * pl.col("sales") / pl.col("sales").sum().over("year")).alias("percent_sales")
+)
+```
+
+## Grouped Filtering
+
+### Filter for Month with Highest Sales Volume per Year
+
+```{python}
+(
+housing
+  .with_columns(pl.col("sales").max().over("year").alias("max_sales"))
+  .filter(pl.col("sales") == pl.col("max_sales"))
+  .drop("max_sales")
+)
+```
+
+### Month with the Most "Typical" Sales
+
+```{python}
+(
+housing
+  .with_columns(
+    pl.col("sales").mean().over("year").alias("mean_sales"),
+    (pl.col("sales") - pl.col("sales").mean().over("year")).abs().alias("sales_diff_abs")
+    )
+  .sort("sales_diff_abs")
+  .groupby("year")
+  .first()
+)
+```
+
+## Wrap Up
+
+In this lesson, we explored powerful techniques for grouped operations in Polars:
+
+1. Using `over()` with `with_columns()` for grouped transformations
+2. Combining `over()`, `with_columns()`, and `filter()` for grouped filtering
+
+These methods significantly enhance our ability to analyze and manipulate data within specific groups.
+
+Congratulations on making it through!

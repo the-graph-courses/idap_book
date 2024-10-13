@@ -1,0 +1,535 @@
+---
+title: 'Bivariate & Multivariate Graphs with Plotly Express'
+---
+
+## Introduction
+
+In this lesson, you'll learn how to create bivariate and multivariate graphs using Plotly Express. These types of graphs are essential for exploring relationships between two or more variables, whether they are quantitative or categorical. Understanding these relationships can provide deeper insights into your data.
+
+Let's dive in!
+
+## Learning Objectives
+
+By the end of this lesson, you will be able to:
+
+- Create scatter plots for quantitative vs. quantitative data
+- Generate grouped histograms and violin plots for quantitative vs. categorical data
+- Create grouped, stacked, and percent-stacked bar charts for categorical vs. categorical data
+- Visualize time series data using bar charts and line charts
+- Create bubble charts to display relationships between three or more variables
+- Use faceting to compare distributions across subsets of data
+
+## Imports
+
+This lesson requires `plotly.express`, `pandas`, `numpy`, and `vega_datasets`. Install them if you haven't already.
+
+```{python}
+import plotly.express as px
+import pandas as pd
+import numpy as np
+from vega_datasets import data
+```
+
+## Numeric vs. Numeric Data
+
+When both variables are quantitative, scatter plots are an excellent way to visualize their relationship.
+
+### Scatter Plot
+
+Let's create a scatter plot to examine the relationship between `total_bill` and `tip` in the tips dataset. The tips dataset is included in Plotly Express and contains information about restaurant bills and tips that were collected by a waiter in a US restaurant.
+
+First, we'll load the dataset and view the first five rows:
+
+```{python}
+tips = px.data.tips()
+tips
+```
+
+Next, we'll create a basic scatter plot. We do this with the `px.scatter` function.
+
+```{python}
+px.scatter(tips, x='total_bill', y='tip')
+```
+
+From the scatter plot, we can observe that as the total bill increases, the tip amount tends to increase as well.
+
+Let's enhance the scatter plot by adding labels and a title. 
+
+```{python}
+px.scatter(
+    tips,
+    x="total_bill",
+    y="tip",
+    labels={"total_bill": "Total Bill ($)", "tip": "Tip ($)"},
+    title="Relationship Between Total Bill and Tip Amount",
+)
+```
+
+Recall that you can see additional information about the function by typing `px.scatter?` in a cell and executing the cell. 
+
+```{python}
+# | eval: False
+px.scatter?
+```
+
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Life Expectancy vs. GDP Per Capita
+
+Using the Gapminder dataset (the 2007 subset, `g_2007`, defined below), create a scatter plot showing the relationship between `gdpPercap` (GDP per capita) and `lifeExp` (life expectancy).
+
+According to the plot, what is the relationship between GDP per capita and life expectancy?
+
+```{python}
+gapminder = px.data.gapminder()
+g_2007 = gapminder.query('year == 2007')
+g_2007.head()
+# Your code here
+```
+
+:::
+
+## Numeric vs. Categorical Data
+
+When one variable is quantitative and the other is categorical, we can use grouped histograms, violin plots, or box plots to visualize the distribution of the quantitative variable across different categories.
+
+### Grouped Histograms
+
+First, here's how you can create a regular histogram of all tips:
+
+```{python}
+px.histogram(tips, x='tip')
+```
+
+To create a grouped histogram, use the `color` parameter to specify the categorical variable. Here, we'll color the histogram by `sex`:
+
+```{python}
+px.histogram(tips, x='tip', color='sex')
+```
+
+By default, the histograms for each category are stacked. To change this behavior, you can use the `barmode` parameter. For example, `barmode='overlay'` will create an overlaid histogram:
+
+```{python}
+px.histogram(tips, x="tip", color="sex", barmode="overlay")
+```
+
+This creates two semi-transparent histograms overlaid on top of each other, allowing for direct comparison of the distributions.
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Age Distribution by Gender
+
+Using the `la_riots` dataset from `vega_datasets`, create a grouped histogram of `age` by `gender`. Compare the age distributions between different genders.
+
+According to the plot, was the oldest victim male or female?
+
+```{python}
+la_riots = data.la_riots()
+la_riots.head()
+# Your code here
+```
+
+:::
+
+### Violin & Box Plots
+
+Violin plots are useful for comparing the distribution of a quantitative variable across different categories. They show the probability density of the data at different values and can include a box plot to summarize key statistics.
+
+First, let's create a violin plot of all tips:
+
+```{python}
+px.violin(tips, y="tip")
+```
+
+We can add a box plot to the violin plot by setting the `box` parameter to `True`:
+
+```{python}
+px.violin(tips, y="tip", box=True)
+```
+
+For just the box plot, we can use `px.box`:
+
+```{python}
+px.box(tips, y="tip")
+```
+
+To add jitter points to the violin or box plots, we can use the `points = 'all'` parameter.
+
+```{python}
+px.violin(tips, y="tip", points="all")
+```
+
+Now, to create a violin plot of tips by gender, use the `x` parameter to specify the categorical variable:
+
+```{python}
+px.violin(tips, y="tip", x="sex", box=True)
+```
+
+We can also add a color axis to differentiate the violins:
+
+```{python}
+px.violin(tips, y="tip", x="sex", color="sex", box=True)
+```
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Life Expectancy by Continent
+
+Using the `g_2007` dataset, create a violin plot showing the distribution of `lifeExp` by `continent`. 
+
+According to the plot, which continent has the highest median country life expectancy?
+
+```{python}
+g_2007 = gapminder.query("year == 2007")
+g_2007.head()
+# Your code here
+```
+
+:::
+
+### Summary Bar Charts (Mean and Standard Deviation)
+
+Sometimes it's useful to display the mean and standard deviation of a quantitative variable across different categories. This can be visualized using a bar chart with error bars.
+
+First, let's calculate the mean and standard deviation of tips for each gender. You have not yet learned how to do this, but you will in a later lesson.
+
+```{python}
+# Calculate the mean and standard deviation
+summary_df = (
+    tips.groupby("sex")
+    .agg(mean_tip=("tip", "mean"), std_tip=("tip", "std"))
+    .reset_index()
+)
+summary_df
+```
+
+Next, we'll create a bar chart using `px.bar` and add error bars using the `error_y` parameter:
+
+```{python}
+# Create the bar chart
+px.bar(summary_df, x="sex", y="mean_tip", error_y="std_tip")
+```
+
+This bar chart displays the average tip amount for each gender, with error bars representing the standard deviation.
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Average Total Bill by Day
+
+Using the `tips` dataset, create a bar chart of mean `total_bill` by `day` with standard deviation error bars. You should copy and paste the code from the example above and modify it to create this plot.
+
+According to the plot, which day has the highest average total bill?
+
+```{python}
+tips.head()  # View the tips dataset
+# Your code here
+```
+
+:::
+
+
+::: {.callout-note title='Side Note: Difference between `px.bar` and `px.histogram`'}
+
+Notice that this is the first time we are using the `px.bar` function. For past plots, we have used `px.histogram` to make bar charts.
+
+The bar chart function generally expects that the numeric variable being plotted is already in it's own column, while the histogram function does the grouping for you.
+
+For example, in the cell below, we use `px.histogram` to make a bar chart of the `sex` column. The resulting plot compares the number of male and female customers in the dataset.
+
+```{python}
+px.histogram(tips, x='sex')
+```
+
+To make the same plot using `px.bar`, we first need to group by the `sex` column and count the number of rows for each sex.
+
+```{python}
+sex_counts = tips['sex'].value_counts().reset_index()
+sex_counts
+```
+
+We can then plot the `day` column using `px.bar`:
+
+```{python}
+px.bar(sex_counts, x="sex", y="count")
+```
+
+This produces a bar chart with one bar for each sex.
+
+:::
+
+
+## Categorical vs. Categorical Data
+
+When both variables are categorical, bar charts with a color axis are effective for visualizing the frequency distribution across categories. We will focus on three types of bar charts: stacked bar charts, percent-stacked bar charts, and grouped/clustered bar charts.
+
+### Stacked Bar Charts
+
+Stacked bar charts show the total counts and the breakdown within each category. To make a stacked bar chart, use the `color` parameter to specify the categorical variable:
+
+```{python}
+px.histogram(
+    tips,
+    x='day',
+    color='sex'
+)
+```
+
+Let's add numbers to the bars to show the exact counts, and also improve the color palette with custom colors.
+
+```{python}
+px.histogram(
+    tips,
+    x="day",
+    color="sex",
+    text_auto=True,
+    color_discrete_sequence=["#deb221", "#2f828a"],
+)
+```
+
+This stacked bar chart shows the total number of customers each day, broken down by gender.
+
+::: {.callout-tip title='Practice'}
+
+### Practice: High and Low Income Countries by Continent
+
+Using the `g_2007_income` dataset, create a stacked bar chart showing the count of high and low income countries in each continent.
+
+```{python}
+gap_dat = px.data.gapminder()
+
+g_2007_income = (
+    gap_dat.query("year == 2007")
+    .drop(columns=["year", "iso_alpha", "iso_num"])
+    .assign(
+        income_group=lambda df: np.where(
+            df.gdpPercap > 15000, "High Income", "Low & Middle Income"
+        )
+    )
+)
+
+g_2007_income.head()
+# Your code here
+```
+
+:::
+
+### Percent-Stacked Bar Charts
+
+To show proportions instead of counts, we can create percent-stacked bar charts by setting the `barnorm` parameter to `'percent'`:
+
+```{python}
+# Create the percent-stacked bar chart
+px.histogram(tips, x="day", color="sex", barnorm="percent")
+```
+
+This chart normalizes the bar heights to represent percentages, showing the proportion of each gender for each day. 
+
+We can also add text labels to the bars to show the exact percentages:
+
+```{python}
+px.histogram(tips, x="day", color="sex", barnorm="percent", text_auto=".1f")
+```
+
+The symbol `.1f` in the `text_auto` parameter formats the text labels to one decimal place.
+
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Proportion of High and Low Income Countries by Continent
+
+Again using the `g_2007_income` dataset, create a percent-stacked bar chart showing the proportion of high and low income countries in each continent. Add text labels to the bars to show the exact percentages.
+
+According the plot, which continent has the highest proportion of high income countries? Are there any limitations to this plot?
+
+```{python}
+# Your code here
+```
+
+:::
+
+### Clustered Bar Charts 
+
+For clustered bar charts, set the `barmode` parameter to `'group'` to place the bars for each category side by side:
+
+```{python}
+px.histogram(tips, x="day", color="sex", barmode="group")
+```
+
+This layout makes it easier to compare values across categories directly.
+
+## Time Series Data
+
+Time series data represents observations collected at different points in time. It's crucial for analyzing trends, patterns, and changes over time. Let's explore some basic time series visualizations using Nigeria's population data from the Gapminder dataset.
+
+First, let's prepare our data:
+
+```{python}
+# Load the Gapminder dataset
+gapminder = px.data.gapminder()
+
+# Subset the data for Nigeria
+nigeria_pop = gapminder.query('country == "Nigeria"')[['year', 'pop']]
+nigeria_pop
+```
+
+### Bar Chart
+
+A bar chart can be used to plot time series data.
+
+```{python}
+# Bar chart
+px.bar(nigeria_pop, x="year", y="pop")
+```
+
+This bar chart gives us a clear view of how Nigeria's population has changed over the years, with each bar representing the population at a specific year.
+
+### Line Chart
+
+A line chart is excellent for showing continuous changes over time:
+
+```{python}
+# Line chart
+px.line(nigeria_pop, x="year", y="pop")
+```
+
+The line chart connects the population values, making it easier to see the overall trend of population growth.
+
+Adding markers to a line chart can highlight specific data points:
+
+```{python}
+# Line chart with points
+px.line(nigeria_pop, x='year', y='pop', markers=True)
+```
+
+We can also compare the population growth of multiple countries by adding a `color` parameter:
+
+```{python}
+nigeria_ghana = gapminder.query('country in ["Nigeria", "Ghana"]')
+px.line(nigeria_ghana, x="year", y="pop", color="country", markers=True)
+```
+
+This chart allows us to compare the population trends of Nigeria and Ghana over time.
+
+::: {.callout-tip title='Practice'}
+
+### Practice: GDP per Capita Time Series
+
+Using the Gapminder dataset, create a time series visualization for the GDP per capita of Iraq.
+
+```{python}
+# Your code here
+```
+
+What happened to Iraq in the 1980s that might explain the graph shown?
+
+:::
+
+## Plots with three or more variables
+
+Although bivariate visualizations are the most common types of visualizations, plots with three or more variables are also sometimes useful. Let's explore a few examples.
+
+### Bubble Charts
+
+Bubble charts show the relationship between three variables by mapping the size of the points to a third variable. Below, we plot the relationship between `gdpPercap` and `lifeExp` with the size of the points representing the population of the country.
+
+```{python}
+px.scatter(g_2007, x="gdpPercap", y="lifeExp", size="pop")
+```
+
+We can easily spot the largest countries by population, such as China, India, and the United States. We can also add a color axis to differentiate between continents:
+
+```{python}
+px.scatter(g_2007, x="gdpPercap", y="lifeExp", size="pop", color="continent")
+```
+
+Now we have four different variables being plotted:
+
+- `gdpPercap` on the x-axis
+- `lifeExp` on the y-axis
+- `pop` as the size of the points
+- `continent` as the color of the points
+
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Tips Bubble Chart
+
+Using the `tips` dataset, create a bubble chart showing the relationship between `total_bill` and `tip` with the size of the points representing the `size` of the party, and the color representing the `day` of the week.
+
+Use the plot to answer the question:
+
+- The highest two tip amounts were on which days and what was the table size?
+
+```{python}
+tips.head()
+# Your code here
+```
+
+:::
+
+### Facet Plots
+
+Faceting splits a single plot into multiple plots, with each plot showing a different subset of the data. This is useful for comparing distributions across subsets.
+
+For example, we can facet the bubble chart by continent:
+
+```{python}
+px.scatter(
+    g_2007,
+    x="gdpPercap",
+    y="lifeExp",
+    size="pop",
+    color="continent",
+    facet_col="continent",
+)
+```
+
+We can change the arrangement of the facets by changing the `facet_col_wrap` parameter. For example, `facet_col_wrap=2` will wrap the facets into two columns:
+
+```{python}
+px.scatter(
+    g_2007,
+    x="gdpPercap",
+    y="lifeExp",
+    size="pop",
+    color="continent",
+    facet_col="continent",
+    facet_col_wrap=2,
+)
+```
+
+Similarly, we can facet the violin plots of tips by day of the week:
+
+```{python}
+px.violin(
+    tips,
+    x="sex",
+    y="tip",
+    color="sex",
+    facet_col="day",
+    facet_col_wrap=2,
+)
+```
+
+Faceting allows us to compare distributions across different days, providing more granular insights.
+
+::: {.callout-tip title='Practice'}
+
+### Practice: Tips Facet Plot
+
+Using the `tips` dataset, create a percent-stacked bar chart of the `time` column, colored by the `sex` column, and facetted by the `day` column.
+
+Which day-time has the highest proportion of male customers (e.g. Friday Lunch, Saturday Dinner, etc.)?
+```{python}
+tips.head()
+# Your code here
+```
+
+:::
+
+## Summary
+
+In this lesson, you learned how to create bivariate and multivariate graphs using Plotly Express. Understanding these visualization techniques will help you explore and communicate relationships in your data more effectively.
+
+See you in the next lesson!

@@ -614,7 +614,7 @@ tabyl(ebola_sierra_leone$district)
 ## We can also plot the following chart (generated with esquisse)
 ggplot(ebola_sierra_leone) +
   aes(x = district) +
-  geom_bar(fill = "#112446") +
+  geom_bar(fill = "#00FF00") +
   theme_minimal()
 ```
 
@@ -641,11 +641,11 @@ That dataset is in the form of an Excel spreadsheet, so when you are importing t
 
 This dataset contains the results of a COVID-19 serological survey conducted in Yaounde, Cameroon in late 2020. The survey estimated how many people had been infected with COVID-19 in the region, by testing for IgG and IgM antibodies. The full dataset can be obtained from here: [go.nature.com/3R866wx](https://go.nature.com/3R866wx){target="_blank"}
 
-## Wrapping up
+## Wrap up 
 
-Congratulations! You have now taken your first baby steps in analyzing data with R: you imported a dataset, explored its structure, performed basic univariate analysis and visualization on its numeric and categorical variables, and you were able to answer important questions about the outbreak based on this.
+Great job on getting to the end of this lesson! 
 
-Of course, this was only a *sneak peek* of the data analysis process---a lot was left out. Hopefully, though, this sneak peek has gotten you a bit excited about what you can do with R. And hopefully, you can already start to apply some of these to your own datasets. The journey is only beginning! See you soon.
+You have now taken your first baby steps in analyzing data with R: you imported a dataset, explored its structure, performed basic univariate analysis and visualization on its numeric and categorical variables, and you were able to answer important questions about the outbreak based on this.
 
 
 

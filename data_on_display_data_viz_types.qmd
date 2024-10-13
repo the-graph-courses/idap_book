@@ -1,0 +1,113 @@
+---
+title: "Data Visualization Types"
+---
+
+```{r}
+pacman::p_load(tidyverse, ggthemr)
+
+ggthemr("flat")
+
+
+theme_large_labels <- theme_minimal() +
+  theme(
+    text = element_text(size = 14),
+    axis.title = element_text(size = 24, face = "bold"),
+    axis.text = element_text(size = 20),
+    plot.title = element_text(size = 18, face = "bold"),
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 14, face = "bold"),
+  )
+
+
+```
+
+```{r}
+tips <- read_csv("data/tips.csv")
+
+# Set a theme with much larger labels, and a default fill color
+```
+
+# Univariate Graphs
+
+## Numeric
+
+- What is the distribution of tips?
+
+```{r}
+# histogram
+tips %>% 
+  ggplot(aes(x = tip)) +
+  geom_histogram() + 
+  theme_large_labels
+```
+
+```{r}
+# boxplot
+tips %>% 
+  ggplot(aes(x = tip)) +
+  geom_boxplot() + 
+  theme_large_labels
+```
+
+```{r}
+# violin plot
+tips %>% 
+  ggplot(aes(x = tip, y = 1)) +
+  geom_violin() + 
+  theme_large_labels
+```
+
+```{r}
+# combine all three plots
+
+# first precompute proportions for the 
+
+tips %>% 
+  ggplot(aes(x = tip)) +
+  geom_histogram(aes(y=..count../sum(..count..))) +
+  geom_boxplot(alpha = 0.5, position = position_nudge(y = 0.4)) +
+  geom_density(alpha = 0.5) +
+  theme_large_labels +
+  theme(legend.position = "bottom") + 
+  labs(y = "Count/Proportion")
+
+```
+
+
+- What is the distribution of bill amounts?
+
+```{r}
+# histogram
+tips %>% 
+  ggplot(aes(x = total_bill)) +
+  geom_histogram() + 
+  theme_large_labels
+```
+
+```{r}
+# boxplot
+tips %>% 
+  ggplot(aes(x = total_bill)) +
+  geom_boxplot() + 
+  theme_large_labels
+```
+
+```{r}
+# violin plot
+tips %>% 
+  ggplot(aes(x = total_bill, y = 1)) +
+  geom_violin() + 
+  theme_large_labels
+```
+
+```{r}
+# combine all three plots
+tips %>% 
+  ggplot(aes(x = total_bill)) +
+  geom_histogram(aes(y = ..count../sum(..count..))) +
+  geom_boxplot(alpha = 0.5, position = position_nudge(y = 0.4)) +
+  geom_density(alpha = 0.5) +
+  theme_large_labels +
+  theme(legend.position = "bottom") + 
+  labs(y = "Count/Proportion")
+```

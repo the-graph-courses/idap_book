@@ -1,0 +1,198 @@
+---
+title: "Data Visualization Types"
+---
+
+```{python}
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import plotly.io as pio
+
+# Create a custom template
+custom_template = pio.templates["plotly_white"]
+custom_template.layout.update(
+    font=dict(size=40),  # Increase the default font size
+    title=dict(font=dict(size=45)),  # Increase title font size
+    xaxis=dict(title=dict(font=dict(size=40)), tickfont=dict(size=30)),  # Increase x-axis title font size
+    yaxis=dict(title=dict(font=dict(size=40)), tickfont=dict(size=30)),  # Increase y-axis title font size
+    colorway=["#2f828a"]  # Set default color
+)
+
+# Set the custom template as default
+pio.templates.default = custom_template
+
+tips = px.data.tips()
+```
+
+# Univariate Graphs
+
+## Numeric
+
+```{python}
+px.histogram(tips, x='tip')
+```
+
+```{python}
+px.box(tips, x='tip')
+```
+
+```{python}
+px.violin(tips, x='tip', box=True, points="all")
+
+?px.violin
+```
+
+# Categorical
+
+```{python}
+sex_categ = px.histogram(tips, x='sex', color='sex', color_discrete_sequence= ['#deb221', '#2f828a'])
+# remove the legend
+sex_categ.update_layout(showlegend=False)
+```
+
+```{python}
+# pie
+pie_categ = px.pie(tips, values='tip', names='sex', color='sex', color_discrete_sequence=['#deb221', '#2f828a'])
+pie_categ.update_layout(showlegend=False)
+pie_categ.update_traces(textposition='none')
+```
+
+# Bivariate Graphs
+
+## Numeric vs Numeric
+
+```{python}
+px.scatter(tips, x='total_bill', y='tip')
+```
+
+# Numeric vs Categorical
+
+```{python}
+# grouped histogram
+px.histogram(tips, x='tip', color='sex', barmode='overlay', color_discrete_sequence= ['#deb221', '#2f828a'])
+```
+
+```{python}
+# grouped violin plot
+grouped_violin = px.violin(tips, y='sex', x='tip', color='sex', box=True, points="all", color_discrete_sequence= ['#deb221', '#2f828a'])
+grouped_violin.update_layout(showlegend=False)
+```
+
+```{python}
+# summary plot (e.g. mean + std tip by sex, bar plot)
+# first calculate the mean and std in a single data frame with assign 
+summary_df = tips.groupby('sex').agg({'tip': ['mean', 'std']}).reset_index()
+summary_df.columns = ['sex', 'mean_tip', 'std_tip']
+
+sex_bar =   px.bar(summary_df, y='sex', x='mean_tip', error_x='std_tip', color='sex', color_discrete_sequence=['#deb221', '#2f828a'])
+sex_bar.update_layout(showlegend=False)
+```
+
+# Categorical vs Categorical
+
+
+```{python}
+# grouped bar plot
+categ_categ_grouped_bar = px.histogram(tips, x='day', color='sex', barmode='group', color_discrete_sequence= ['#deb221', '#2f828a'])
+categ_categ_grouped_bar.update_layout(showlegend=False)
+```
+
+```{python}
+# stacked
+categ_categ_stacked_bar = px.histogram(tips, x='day', color='sex', color_discrete_sequence= ['#deb221', '#2f828a'])
+categ_categ_stacked_bar.update_layout(showlegend=False)
+```
+
+```{python}
+# percent stacked
+percent_stacked_df = (
+    tips.groupby(["sex", "day"])
+    .size()
+    .reset_index(name='count')
+    .assign(percent=lambda x: x.groupby('day')['count'].transform(lambda y: y / y.sum() * 100))
+)
+
+categ_categ_percent_stacked_bar = px.bar(
+    percent_stacked_df,
+    x="day",
+    y="percent",
+    color="sex",
+    barmode="relative",
+    color_discrete_sequence=["#deb221", "#2f828a"],
+)
+categ_categ_percent_stacked_bar.update_layout(showlegend=False)
+```
+
+```{python}
+px.histogram(tips, x='day', color='sex', barmode='stack', barnorm='percent', color_discrete_sequence= ['#deb221', '#2f828a'])
+```
+
+
+# Practice
+
+```{python}
+gap_dat = px.data.gapminder()
+
+gap_2007 = (gap_dat
+    .query('year == 2007')
+    .drop(columns=['year', 'iso_alpha', 'iso_num'])
+    .assign(income_group=lambda df: np.where(df.gdpPercap > 15000, 'High Income', 'Low & Middle Income'))
+)
+```
+
+1. How does country GDP per capita vary across continents?
+
+```{python}
+gdp_per_cap_violin = px.violin(
+    gap_2007,
+    x="gdpPercap",
+    y="continent",
+    color="continent",
+    box=True,
+    points="all",
+    color_discrete_sequence=px.colors.qualitative.G10,
+)
+
+gdp_per_cap_violin.update_layout(showlegend=False)
+```
+
+2. Is there a relationship between GDP per capita & life expectancy?
+
+```{python}
+px.scatter(gap_2007, x='gdpPercap', y='lifeExp')
+```
+
+
+3. How does life expectancy vary between the income groups?
+
+```{python}
+px.strip(gap_2007, x="income_group", y="lifeExp")
+px.violin(gap_2007, x="income_group", y="lifeExp", box=True, points="all")
+```
+
+4. What is the relationship between continent & income group?
+
+```{python}
+income_group_continent_bar = px.histogram(gap_2007, x='continent', color='income_group', barmode='stack', color_discrete_sequence= ['#deb221', '#2f828a'])
+income_group_continent_bar.update_layout(showlegend=False)
+```
+
+
+# Time series
+
+Nigeria population over time
+
+```{python}
+# as a bar chart
+nigeria_pop = gap_dat.query('country == "Nigeria"')
+
+
+# Bar chart
+px.bar(nigeria_pop, x='year', y='pop')
+
+# Line chart
+px.line(nigeria_pop, x='year', y='pop')
+
+# Line chart with points
+px.line(nigeria_pop, x='year', y='pop', markers=True)
+```

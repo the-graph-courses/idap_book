@@ -328,7 +328,6 @@ you are telling Python, "store the number 20 in a variable named 'my_var'".
 
 Once the code is run, we would say, in Python terms, that "the value of variable `my_var` is 20".
 
-
 Try to come up with a similar sentence for this code chunk:
 
 ```{python}

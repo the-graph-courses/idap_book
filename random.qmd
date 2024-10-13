@@ -1,0 +1,25 @@
+
+
+```{python}
+import plotly.express as px
+import pandas as pd
+```
+
+```{python}
+df = pd.DataFrame({
+    "names": ["Company", "HR", "Sales", "Marketing"],
+    "parents": ["", "Company", "Company", "Company"]
+})
+
+# Creating a treemap plot and layout
+px.treemap(
+    df,
+    names = 'names',
+    parents = 'parents'
+)
+```
+
+```{python}
+
+
+```

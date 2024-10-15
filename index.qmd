@@ -1,5 +1,7 @@
 # Introduction {.unnumbered}
 
+DRAFT book for the course "Introduction to Data Science with Python"
+
 This book is a compilation of lesson notes for a 3-month online course offered by The GRAPH Courses. To access the lesson videos, exercise files, and online quizzes, please visit our website, [thegraphcourses.org](https://thegraphcourses.org).
 
 The GRAPH Courses is a project of the Global Research and Analyses for Public Health (GRAPH) Network, a non-profit organization dedicated to making code and data skills accessible through affordable live bootcamps and free self-paced courses.

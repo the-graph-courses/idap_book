@@ -38,8 +38,6 @@ px.box(tips, x='tip')
 
 ```{python}
 px.violin(tips, x='tip', box=True, points="all")
-
-?px.violin
 ```
 
 # Categorical

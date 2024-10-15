@@ -429,18 +429,21 @@ Though it's not used often in data analysis, the `input()` function from Python 
 Here's a simple example. We can request user input and store it in a variable called `name`.
 
 ```{python}
+#| eval: false
 name = input()
 ```
 
 And then we can print a greeting to the user.
 
 ```{python}
+#| eval: false
 print("Hello,", name)
 ```
 
 We can also include a question for the input prompt:
 
 ```{python}
+#| eval: false
 name = input('What is your name? ')
 print("Hello,", name)
 ```
@@ -448,6 +451,7 @@ print("Hello,", name)
 Let's see another example. We'll tell the user how many letters are in their name.
 
 ```{python}
+#| eval: false
 name = input('What is your name? ')
 print("There are", len(name), "letters in your name")
 ```

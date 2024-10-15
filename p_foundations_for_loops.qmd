@@ -1,12 +1,12 @@
 ---
-title: 'Loops in Python'
+title: 'Intro to Loops in Python'
 ---
 
 ## Introduction
 
 At the heart of programming is the concept of repeating a task multiple times. A `for` loop is one fundamental way to do that. Loops enable efficient repetition, saving time and effort.
 
-Mastering this concept is essential for writing intelligent and efficient Python code.
+Mastering this concept is essential for writing intelligent Python code.
 
 Let's dive in and enhance your coding skills!
 
@@ -14,21 +14,19 @@ Let's dive in and enhance your coding skills!
 
 By the end of this lesson, you will be able to:
 
-- Explain the syntax and structure of a basic `for` loop in Python
-- Use index variables to iterate through multiple lists simultaneously in a loop
-- Integrate `if/else` conditional statements within a loop
-- Store loop results in lists
-- Apply loops to tasks like analyzing multiple datasets and generating multiple plots
+- Use basic `for` loops in Python
+- Use index variables to iterate through lists in a loop
+- Format output using f-strings within loops
+- Apply loops to generate multiple plots for data visualization
 
 ## Packages
 
 In this lesson, we will use the following Python libraries:
 
 ```{python}
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import plotly.express as px
+from vega_datasets import data
 ```
 
 ## Intro to `for` Loops
@@ -42,11 +40,10 @@ ages = [7, 8, 9]  # List of ages in years
 We could try to directly multiply the list by 12:
 
 ```{python}
-# | eval: False
-print(ages * 12)
+ages * 12
 ```
 
-But this does not work.
+But this does not do what we want. It repeats the list 12 times.
 
 Rather, we need to loop through each element in the list and multiply it by 12:
 
@@ -55,6 +52,8 @@ for age in ages:
     print(age * 12)
 ```
 
+`for` and `in` are required keywords in the loop. The colon and the indentation on the second line are also required.
+
 In this loop, `age` is a temporary variable that takes the value of each element in `ages` during each iteration. First, `age` is 7, then 8, then 9.
 
 You can choose any name for this variable:
@@ -62,6 +61,13 @@ You can choose any name for this variable:
 ```{python}
 for random_name in ages:
     print(random_name * 12)
+```
+
+Note that we need the print statement since the loop does not automatically print the result: 
+
+```{python}
+for age in ages:
+    age * 12
 ```
 
 ::: {.callout-tip title='Practice'}
@@ -73,6 +79,38 @@ Try converting hours to minutes using a `for` loop. Start with this list of hour
 ```{python}
 hours = [3, 4, 5]  # List of hours
 # Your code here
+```
+
+:::
+
+## Printing with f-strings
+
+We might want to print both the result and the original age. We could do this by concatenating strings with the `+` operator. But we need to convert the age to a string with `str()`.
+
+```{python}
+for age in ages:
+    print(str(age) + " years is " + str(age * 12) + " months" )
+```
+
+Alternatively, we can use something called an f-string. This is a string that allows us to embed variables directly.
+
+```{python}
+for age in ages:
+    print(f"{age} years is {age * 12} months")
+```
+
+Within the f-string, we use curly braces `{}` to embed the variables.
+
+::: {.callout-tip title='Practice'}
+
+### Practice: F-String
+
+Again convert the list of hours below to minutes. Use f-strings to print both the original hours and the converted minutes.
+
+```{python}
+hours = [3, 4, 5]  # List of hours
+# Your code here
+# Example output "3 hours is 180 minutes"
 ```
 
 :::
@@ -91,80 +129,69 @@ months = ages * 12
 print(months)
 ```
 
-However, there are scenarios where loops are useful, especially when working with multiple lists or non-tabular data structures.
+But while libraries like pandas offer powerful ways to work with data, for loops are essential for tasks that can't be easily vectorized or when you need fine-grained control over the iteration process.
 
-## Looping with an Index
+## Looping with an Index and Value
 
-It is often useful to loop through a list using an index (plural: indices), which is a counter that keeps track of the current iteration.
+Sometimes, we want to access both the position (index) and the value of items in a list. The `enumerate()` function helps us do this easily.
 
-Let's look at our `ages` list again, which we want to convert to months:
+Let's look at our `ages` list again:
 
 ```{python}
 ages = [7, 8, 9]  # List of ages in years
 ```
 
-To use indices in a loop, we can use the `range()` function along with `len()`:
+First, let's see what `enumerate()` actually does:
 
 ```{python}
-indices = range(len(ages))
+for item in enumerate(ages):
+    print(item)
 ```
 
-Now, `indices` is a range object with values 0, 1, 2, corresponding to the positions in `ages`. We use this in a `for` loop as follows:
+As you can see, `enumerate()` gives us pairs of (index, value).
+
+We can unpack these pairs directly in the `for` loop:
 
 ```{python}
-for i in indices:
-    print(ages[i] * 12)
+for i, age in enumerate(ages):
+    print(f"The person at index {i} is aged {age}")
 ```
 
-In this code, `ages[i]` refers to the `i`th element in our `ages` list.
+Here, `i` is the index, and `age` is the value at that index.
 
-The name of the variable `i` is arbitrary. We could have used `j` or `index` or `position` or anything else.
+Now, let's create a more detailed output using both the index and value:
 
 ```{python}
-for position in indices:
-    print(ages[position] * 12)
+for i, age in enumerate(ages):
+    print(f"The person at index {i} is aged {age} years which is {age * 12} months")
 ```
 
-Alternatively, we can use `range()` directly in the `for` loop:
+This is particularly useful when you need both the position and the value in your loop.
 
-```{python}
-for i in range(len(ages)):
-    print(ages[i] * 12)
-```
 
-Such index-based loops are useful for working with multiple lists at the same time. We will see this in the next section.
+::: {.callout-tip title='Practice'}
 
-::: practice
+### Practice: Enumerate with F-strings
 
-### Hours to Minutes Indexed Loop
-
-Rewrite your loop from last question using indices:
+Use `enumerate()` and f-strings to print a sentence for each hour in the list:
 
 ```{python}
 hours = [3, 4, 5]  # List of hours
 
 # Your code here
+# Example output: "Hour 3 at index 0 is equal to 180 minutes"
 ```
 
 :::
+
 
 # Real Loops Application: Generating Multiple Plots
 
 Now that you have a solid understanding of `for` loops, let's apply our knowledge to a more realistic looping task: generating multiple plots.
 
-We'll use the `tips` dataset from Plotly Express and the `gapminder` dataset from Vega datasets to demonstrate this. Our aim is to create scatter plots for each day of the week in the tips dataset, and line plots for a few selected countries in the gapminder dataset.
+We'll use  the `gapminder` dataset from Vega datasets to demonstrate this. Our aim is to create line plots for a few selected countries in the gapminder dataset.
 
-First, let's import the necessary libraries and load the data:
-
-```{python}
-import plotly.express as px
-from vega_datasets import data
-
-# Load tips dataset
-tips = px.data.tips()
-tips.head()
-
-```
+First, let's load the data:
 
 ```{python}
 # Load gapminder dataset
@@ -172,19 +199,29 @@ gapminder = data.gapminder()
 gapminder.head()
 ```
 
-Let's start with the gapminder dataset. We'll create a line plot showing life expectancy over time for a few selected countries:
+Now let's create a line chart for a single country. We'll use the `query` method to filter the data for the country "Canada". We have not learned this method yet; it is a pandas function that allows us to filter the data based on a condition. We will learn more about it later in the course.
 
 ```{python}
-countries = ["United States", "China", "India", "Nigeria"]
+# Filter data for China
+china_data = gapminder.query("country == 'China'")
 
-for country in countries:
-    country_data = gapminder.query("country == @country")
+# Create line chart
+fig = px.line(china_data, x="year", y="life_expect", title="Life Expectancy in China")
+fig.show()
+```
+
+Now, let's create a loop to create line plots for a few selected countries.
+
+```{python}
+countries = ["India", "China", "United States", "Indonesia", "Pakistan"]
+
+for country_name in countries:
+    country_data = gapminder.query("country == @country_name")
     fig = px.line(
         country_data,
         x="year",
         y="life_expect",
-        title="Life Expectancy in " + country,
-        labels={"life_expect": "Life Expectancy (years)"},
+        title=f"Life Expectancy in {country_name}",
     )
     fig.show()
 ```
@@ -193,34 +230,39 @@ This loop creates a separate line plot for each country in our list, showing how
 
 ::: {.callout-tip title='Practice'}
 
-### Practice: Tips Scatter Plots by Day
+### Practice: Population Over Time
 
-Now it's your turn! Using the `tips` dataset, create a scatter plot of total bill vs. tip for each day of the week. Here's a template to get you started:
+Using the `gapminder` dataset, create a bar chart (with `px.bar`) of the population for the countries `United States`, `Canada`, `Mexico` and `Jamaica` over time.
 
 ```{python}
-# List of days
-days = ['Thur', 'Fri', 'Sat', 'Sun']
-
-# Your loop here
-for day in days:
-    # Filter data for the current day
-    day_data = tips[tips['day'] == day]
-    
-    # Create and show the scatter plot
-    fig = px.scatter(day_data, x='total_bill', y='tip', title=f'Tips on {day}')
-    fig.show()
+# Your code here
 ```
-
-After running your code, answer these questions:
-
-1. Which day seems to have the highest tips?
-2. Is there any day where the relationship between total bill and tip looks different from the others?
 
 :::
 
-These examples demonstrate how loops can be used to efficiently generate multiple plots, saving time and reducing code repetition when working with datasets that have multiple categories or groups.
 
+::: {.callout-tip title='Practice'}
+
+### Practice: Tips Histogram by Day
+
+Using the `tips` dataset, create a histogram of the total bill for each day of the week.
+
+```{python}
+# Load tips dataset
+tips = px.data.tips()
+tips.head()
+```
+
+
+```{python}
+# List of days
+days = ["Thur", "Fri", "Sat", "Sun"]
+
+# Your loop here
+```
+
+:::
 
 # Wrap Up!
 
-In this lesson, we delved into `for` loops in Python, demonstrating their utility from basic tasks to complex data analysis involving multiple datasets and plot generation. For loops are an essential part of Python programming, and mastering them will greatly enhance your coding capabilities. Hopefully, this lesson has equipped you with the skills to confidently implement for loops in various data processing contexts.
+We've covered the very basics of `for` loops in Python, from simple syntax to practical data analysis applications. Loops are essential for efficient coding, allowing you to automate repetitive tasks. As we progress in the course, we will encounter many other applications of this key programming construct.

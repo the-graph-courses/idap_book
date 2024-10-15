@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Functions, Methods, and Libraries in Python</title>
+<title>3&nbsp; Functions, Methods, and Libraries in Python – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,29 +57,250 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="p_foundations_functions_methods_files/libs/clipboard/clipboard.min.js"></script>
-<script src="p_foundations_functions_methods_files/libs/quarto-html/quarto.js"></script>
-<script src="p_foundations_functions_methods_files/libs/quarto-html/popper.min.js"></script>
-<script src="p_foundations_functions_methods_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="p_foundations_functions_methods_files/libs/quarto-html/anchor.min.js"></script>
-<link href="p_foundations_functions_methods_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="p_foundations_functions_methods_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="p_foundations_functions_methods_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="p_foundations_functions_methods_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="p_foundations_functions_methods_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./p_foundations_data_structures.html" rel="next">
+<link href="./p_foundations_coding_basics.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_functions_methods.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions, Methods, and Libraries in Python</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Data Science with Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/the-graph-courses/idap_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_google_colab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Google Colab</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_coding_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Coding basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_functions_methods.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions, Methods, and Libraries in Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Structures in Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_for_loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Intro to Loops in Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_data_on_display_data_viz_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_data_on_display_univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_data_on_display_multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Manipulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_subset_columns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Subsetting columns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_query_rows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Subsetting rows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Creating and modifying variables with <code>assign()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_case_when.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conditional assignment with case_when() and np.where()</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_groupby_agg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_other_grouped_operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">3.1</span> Learning objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">3.2</span> Introduction</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">3.3</span> Functions</a></li>
+  <li><a href="#arguments-parameters" id="toc-arguments-parameters" class="nav-link" data-scroll-target="#arguments-parameters"><span class="header-section-number">3.4</span> Arguments (Parameters)</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">3.5</span> Methods</a></li>
+  <li><a href="#libraries-in-python" id="toc-libraries-in-python" class="nav-link" data-scroll-target="#libraries-in-python"><span class="header-section-number">3.6</span> Libraries in Python</a></li>
+  <li><a href="#installing-libraries" id="toc-installing-libraries" class="nav-link" data-scroll-target="#installing-libraries"><span class="header-section-number">3.7</span> Installing Libraries</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">3.8</span> Wrap-up</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_functions_methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_functions_methods.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions, Methods, and Libraries in Python</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Functions, Methods, and Libraries in Python</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions, Methods, and Libraries in Python</span></h1>
 </div>
 
 
@@ -96,8 +317,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<section id="learning-objectives" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning objectives</h2>
 <ol type="1">
 <li>You understand what functions and methods are in Python.</li>
 <li>You can identify and use arguments (parameters) in functions and methods.</li>
@@ -106,17 +327,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>You know how to install a simple external library and use it in your code.</li>
 </ol>
 </section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.2</span> Introduction</h2>
 <p>In this lesson, you will learn about functions, methods, and libraries in Python, building on the basics we covered in the previous lesson.</p>
 <p>To get started, open your preferred Python environment (e.g., Jupyter Notebook, VS Code, or PyCharm), and create a new Python file or notebook.</p>
 <p>Next, <strong>save the file</strong> with a name like “functions_and_libraries.py” or “functions_and_libraries.ipynb” depending on your environment.</p>
 <p>You should now type all the code from this lesson into that file.</p>
 </section>
-<section id="functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<section id="functions" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="functions"><span class="header-section-number">3.3</span> Functions</h2>
 <p>A function is a block of code that performs a specific task. It can take inputs (arguments) and return outputs. Here’s an example of a built-in function with just one argument:</p>
-<div id="0af1d984" class="cell" data-execution_count="1">
+<div id="092a280c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the len() function to get the length of a string</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(<span class="st">"Python"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -124,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>round()</code> function takes two arguments: the number to round and the number of decimal places to round to.</p>
-<div id="6b71bf87" class="cell" data-execution_count="2">
+<div id="23356c33" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the round() function to round a number</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -140,23 +361,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Practice
 </div>
 </div>
-<section id="q-using-built-in-functions" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="q-using-built-in-functions">Q: Using built-in functions</h3>
+<section id="q-using-built-in-functions" class="level3 callout-body-container callout-body" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="q-using-built-in-functions"><span class="header-section-number">3.3.1</span> Q: Using built-in functions</h3>
 <p>Use the <code>abs()</code> function to get the absolute value of -5.</p>
 <p>Write your code below and run it to check your answer:</p>
-<div id="3ce2d7a9" class="cell" data-execution_count="3">
+<div id="fda1ef06" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="arguments-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="arguments-parameters">Arguments (Parameters)</h2>
+<section id="arguments-parameters" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="arguments-parameters"><span class="header-section-number">3.4</span> Arguments (Parameters)</h2>
 <p>Arguments (also called parameters) are the values that you pass to a function (or method) when you call it.</p>
 <p>There are different ways to pass arguments to a function.</p>
 <p>Consider again the <code>round()</code> function.</p>
 <p>If we look at the documentation for the <code>round()</code> function, with :</p>
-<div id="fd5d19e4" class="cell" data-execution_count="4">
+<div id="75a89f12" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We see that it takes two arguments:</p>
@@ -168,27 +389,27 @@ Practice
 <ol type="1">
 <li>Positional arguments: Passed in the order they are defined. Since the default order of the arguments is <code>number</code> then <code>ndigits</code>, we can pass the arguments in that order without specifying the argument names, as we did above.</li>
 </ol>
-<div id="b19a3738" class="cell" data-execution_count="5">
+<div id="8084a17c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>3.14</code></pre>
 </div>
 </div>
 <p>If we swap the order of the arguments, we get an error:</p>
-<div id="307d2449" class="cell" data-execution_count="6">
+<div id="2fc2e042" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="dv">2</span>, <span class="fl">3.1415</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Keyword arguments: Passed by specifying the argument name followed by a <code>=</code> and the argument value.</li>
 </ol>
-<div id="c8cf1398" class="cell" data-execution_count="7">
+<div id="abd51452" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(number<span class="op">=</span><span class="fl">3.1415</span>, ndigits<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>3.14</code></pre>
 </div>
 </div>
 <p>With this method, we can pass the arguments in any order, as long as we use the argument names.</p>
-<div id="9b63cbcf" class="cell" data-execution_count="8">
+<div id="91dff0b6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(ndigits<span class="op">=</span><span class="dv">2</span>, number<span class="op">=</span><span class="fl">3.1415</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>3.14</code></pre>
@@ -205,31 +426,31 @@ Practice
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<section id="q-using-positional-arguments-with-pow" class="level3">
-<h3 class="anchored" data-anchor-id="q-using-positional-arguments-with-pow">Q: Using Positional Arguments with <code>pow()</code></h3>
+<section id="q-using-positional-arguments-with-pow" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="q-using-positional-arguments-with-pow"><span class="header-section-number">3.4.1</span> Q: Using Positional Arguments with <code>pow()</code></h3>
 <p>Use the <code>pow()</code> function to calculate 2 raised to the power of 5 by passing positional arguments. You may need to consult the documentation for the <code>pow()</code> function to see how it works.</p>
 <p>Write your code below and run it to check your answer:</p>
-<div id="fad54ea1" class="cell" data-execution_count="9">
+<div id="7fab72f1" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="q-using-keyword-arguments-with-round" class="level3">
-<h3 class="anchored" data-anchor-id="q-using-keyword-arguments-with-round">Q: Using Keyword Arguments with <code>round()</code></h3>
+<section id="q-using-keyword-arguments-with-round" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="q-using-keyword-arguments-with-round"><span class="header-section-number">3.4.2</span> Q: Using Keyword Arguments with <code>round()</code></h3>
 <p>Use the <code>round()</code> function to round the number <code>9.8765</code> to <code>3</code> decimal places by specifying keyword arguments.</p>
 <p>Write your code below and run it to check your answer:</p>
-<div id="c65c7c23" class="cell" data-execution_count="10">
+<div id="b6fc2dfd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </div>
 </section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="methods" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="methods"><span class="header-section-number">3.5</span> Methods</h2>
 <p>Methods are similar to functions, but they are associated with specific objects or data types. They are called using dot notation.</p>
 <p>For example, every string object comes with a range of built-in methods, like <code>upper()</code> to convert to uppercase, <code>lower()</code> to convert to lowercase, <code>replace()</code> to replace substrings, and many more.</p>
 <p>Let’s see how to use these:</p>
-<div id="89cdc8e1" class="cell" data-execution_count="11">
+<div id="699aefef" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"python"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(name.upper())</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(name.lower())</span>
@@ -241,7 +462,7 @@ python
 </div>
 </div>
 <p>We can also call the methods directly on the string object, without assigning it to a variable:</p>
-<div id="40a6bd29" class="cell" data-execution_count="12">
+<div id="7be2b314" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the upper() method on a string</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"python"</span>.upper())</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PYTHON"</span>.lower())</span>
@@ -253,7 +474,7 @@ python
 </div>
 </div>
 <p>Similarly, numbers in Python come with some built-in methods. For example, the <code>as_integer_ratio()</code> (added in Python 3.8) method converts a decimalnumber to a ratio of two integers.</p>
-<div id="5ec71e69" class="cell" data-execution_count="13">
+<div id="8b364f6b" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the as_integer_ratio() method on a float</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>example_decimal <span class="op">=</span> <span class="fl">1.5</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>example_decimal.as_integer_ratio()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -270,8 +491,8 @@ python
 Practice
 </div>
 </div>
-<section id="q-definitions" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="q-definitions">Q: Definitions</h3>
+<section id="q-definitions" class="level3 callout-body-container callout-body" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="q-definitions"><span class="header-section-number">3.5.1</span> Q: Definitions</h3>
 <p>Come up with simple definitions for the following terms that are clear to YOU (even if not technically exactly accurate):</p>
 <ul>
 <li>Function</li>
@@ -290,34 +511,34 @@ Practice
 Practice
 </div>
 </div>
-<section id="q-using-methods" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="q-using-methods">Q: Using methods</h3>
+<section id="q-using-methods" class="level3 callout-body-container callout-body" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="q-using-methods"><span class="header-section-number">3.5.2</span> Q: Using methods</h3>
 <ol type="1">
 <li>Call the <code>replace()</code> method on the string “Helo” to replace the single l with two ls.</li>
 <li>Call the <code>split()</code> method on the string “Hello World” to split the string into a list of words.</li>
 </ol>
-<div id="1a627c32" class="cell" data-execution_count="14">
+<div id="27a5140c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="libraries-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="libraries-in-python">Libraries in Python</h2>
+<section id="libraries-in-python" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="libraries-in-python"><span class="header-section-number">3.6</span> Libraries in Python</h2>
 <p>Libraries are collections of pre-written code that you can use in your programs. They extend the functionality of Python by providing additional functions and tools.</p>
 <p>For example, the <code>math</code> library provides mathematical functions like <code>sqrt()</code> for square roots and <code>sin()</code> for sine.</p>
 <p>If we try to use the <code>sqrt()</code> function without importing the <code>math</code> library, we get an error:</p>
-<div id="14e8b95b" class="cell" data-execution_count="15">
+<div id="41605f69" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will cause a NameError</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sqrt(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can import the <code>math</code> library and use the <code>sqrt()</code> function like this:</p>
-<div id="77f1a41c" class="cell" data-execution_count="16">
+<div id="e02c351a" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the library</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we can use the <code>sqrt()</code> function like this:</p>
-<div id="acdb9241" class="cell" data-execution_count="17">
+<div id="df46aa2f" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the sqrt() function</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>math.sqrt(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -325,12 +546,12 @@ Practice
 </div>
 </div>
 <p>We can get help on a function in a similar way, calling both the function and the library it’s in:</p>
-<div id="5c902b1e" class="cell" data-execution_count="18">
+<div id="b52ab26b" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get help on the sqrt() function</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>math.sqrt?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also import libraries with aliases. For example, we can import the <code>math</code> library with the alias <code>m</code>:</p>
-<div id="cadfcaac" class="cell" data-execution_count="19">
+<div id="31397c5f" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the entire library with an alias</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math <span class="im">as</span> m</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can use the alias to call the function</span></span>
@@ -340,7 +561,7 @@ Practice
 </div>
 </div>
 <p>Finally, if you want to skip the alias/library name, you can either import the functions individually:</p>
-<div id="bbd74a7f" class="cell" data-execution_count="20">
+<div id="e51c838d" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import specific functions from a library</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt, sin</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can use the function directly</span></span>
@@ -351,7 +572,7 @@ Practice
 </div>
 </div>
 <p>Or import everything from the library:</p>
-<div id="bc46d652" class="cell" data-execution_count="21">
+<div id="87bc362d" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import everything from the library</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can all functions directly, such as sqrt() and sin()</span></span>
@@ -374,8 +595,8 @@ Practice
 Practice
 </div>
 </div>
-<section id="q-definitions-1" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="q-definitions-1">Q: Definitions</h3>
+<section id="q-definitions-1" class="level3 callout-body-container callout-body" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="q-definitions-1"><span class="header-section-number">3.6.1</span> Q: Definitions</h3>
 <p>Come up with simple definitions for the following terms that are clear to YOU (even if not technically exactly accurate):</p>
 <ul>
 <li>Library (Module)</li>
@@ -393,26 +614,26 @@ Practice
 Practice
 </div>
 </div>
-<section id="q-using-functions-from-imported-libraries" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="q-using-functions-from-imported-libraries">Q: Using functions from imported libraries</h3>
+<section id="q-using-functions-from-imported-libraries" class="level3 callout-body-container callout-body" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="q-using-functions-from-imported-libraries"><span class="header-section-number">3.6.2</span> Q: Using functions from imported libraries</h3>
 <ul>
 <li>Import the <code>random</code> library and use the <code>randint()</code> function to generate a random integer between 1 and 10. You can use the <code>?</code> operator to get help on the function after importing it.</li>
 </ul>
-<div id="1e36c8e2" class="cell" data-execution_count="22">
+<div id="dc318bec" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="installing-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="installing-libraries">Installing Libraries</h2>
+<section id="installing-libraries" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="installing-libraries"><span class="header-section-number">3.7</span> Installing Libraries</h2>
 <p>While Python comes with many built-in libraries, there are thousands of additional libraries available that you can install to extend Python’s functionality even further. Let’s look at how to install and use a simple external library, with the <code>cowsay</code> library as an example.</p>
 <p>If we try to import this library without first installing it, we get an error:</p>
-<div id="de6b811a" class="cell" data-execution_count="23">
+<div id="64d2568a" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To install the library, you can use the <code>!pip install</code> command in a code cell in Google Colab. For <code>cowsay</code>, you would run:</p>
-<div id="ce14a3c1" class="cell" data-execution_count="24">
+<div id="523f5100" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install cowsay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pip installs packages from a remote repository called <a href="https://pypi.org/">PyPI</a>. Anyone can create and upload a package to PyPI. After a few checks, it’s then available for anyone to install.</p>
@@ -431,7 +652,7 @@ Side-note
 </div>
 </div>
 <p>Once installed, we can now import and use the <code>cowsay</code> library:</p>
-<div id="f7ed7075" class="cell" data-execution_count="25">
+<div id="e606b6de" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the cow say something</span></span>
@@ -459,22 +680,22 @@ Side-note
 Practice
 </div>
 </div>
-<section id="q-using-the-emoji-library" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="q-using-the-emoji-library">Q: Using the emoji library</h3>
+<section id="q-using-the-emoji-library" class="level3 callout-body-container callout-body" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="q-using-the-emoji-library"><span class="header-section-number">3.7.1</span> Q: Using the emoji library</h3>
 <ol type="1">
 <li>Install the <code>emoji</code> library.</li>
 <li>Import the <code>emoji</code> library.</li>
 <li>Consult the help for the <code>emojize()</code> function in the <code>emoji</code> library.</li>
 <li>Use the <code>emojize()</code> function to display an emoji for “thumbs up”.</li>
 </ol>
-<div id="f83fcb74" class="cell" data-execution_count="26">
+<div id="9aa7b113" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="wrap-up" class="level2">
-<h2 class="anchored" data-anchor-id="wrap-up">Wrap-up</h2>
+<section id="wrap-up" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">3.8</span> Wrap-up</h2>
 <p>In this lesson, we’ve covered:</p>
 <ol type="1">
 <li>Functions and methods in Python</li>
@@ -483,10 +704,78 @@ Practice
 <li>Installing and using an external library</li>
 </ol>
 <p>These concepts are fundamental to Python programming and will be used extensively as you continue to develop your skills. Practice using different functions, methods, and libraries to become more comfortable with these concepts.</p>
+<div id="c721e5f3" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PyPDF2 <span class="im">import</span> PdfReader, PdfWriter</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> reportlab.pdfgen <span class="im">import</span> canvas</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> reportlab.lib.pagesizes <span class="im">import</span> letter</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Path to the input PDF file</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>input_pdf <span class="op">=</span> <span class="st">"/Users/kendavidn/Dropbox/Mac (2)/Downloads/Certificates 19Sep2024.pdf"</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co"># List of students and their information</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> [</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Adriana Gomes"</span>,</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Loureen Valyne"</span>,</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nuneaton Ramesar"</span>,</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Toheeb Olanrewaju Sarafadeen"</span>,</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rajkumar Rajendram"</span>,</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Abdeldjalil Belkheir"</span>,</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Eman Elafef"</span>,</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Yopa Abraham"</span>,</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Augustine Alie"</span>,</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sarah Macklin"</span>,</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Ekumbo Botuli"</span>,</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Roya Hosseini"</span></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Certificate name (you can modify this as needed)</span></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>certificate_name <span class="op">=</span> <span class="st">"FOSSA Certificate"</span></span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Create output directory if it doesn't exist</span></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">"/Users/kendavidn/Dropbox/Mac (2)/Downloads/split_certificates"</span></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>os.makedirs(output_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the input PDF</span></span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>pdf_reader <span class="op">=</span> PdfReader(input_pdf)</span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through pages and save each as a separate file</span></span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, student <span class="kw">in</span> <span class="bu">enumerate</span>(students, start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>    pdf_writer <span class="op">=</span> PdfWriter()</span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>    pdf_writer.add_page(pdf_reader.pages[i<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create output filename</span></span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>    output_filename <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>student<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>certificate_name<span class="sc">}</span><span class="ss">.pdf"</span></span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>    output_path <span class="op">=</span> os.path.join(output_dir, output_filename)</span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save the individual page</span></span>
+<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"wb"</span>) <span class="im">as</span> output_file:</span>
+<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>        pdf_writer.write(output_file)</span>
+<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Saved: </span><span class="sc">{</span>output_filename<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All certificates have been split and saved."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saved: Adriana Gomes - FOSSA Certificate.pdf
+Saved: Loureen Valyne - FOSSA Certificate.pdf
+Saved: Nuneaton Ramesar - FOSSA Certificate.pdf
+Saved: Toheeb Olanrewaju Sarafadeen - FOSSA Certificate.pdf
+Saved: Rajkumar Rajendram - FOSSA Certificate.pdf
+Saved: Abdeldjalil Belkheir - FOSSA Certificate.pdf
+Saved: Eman Elafef - FOSSA Certificate.pdf
+Saved: Yopa Abraham - FOSSA Certificate.pdf
+Saved: Augustine Alie - FOSSA Certificate.pdf
+Saved: Sarah Macklin - FOSSA Certificate.pdf
+Saved: Ekumbo Botuli - FOSSA Certificate.pdf
+Saved: Roya Hosseini - FOSSA Certificate.pdf
+All certificates have been split and saved.</code></pre>
+</div>
+</div>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -907,7 +1196,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./p_foundations_coding_basics.html" class="pagination-link" aria-label="Coding basics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Coding basics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./p_foundations_data_structures.html" class="pagination-link" aria-label="Data Structures in Python">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Structures in Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Book created by <a href="https://thegraphcourses.org/">The GRAPH Courses</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_functions_methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>TEMPORARY For a PDF copy, please visit this <a href="https://raw.githubusercontent.com/the-graph-courses/idar_book/main/pdf/Introduction-to-Data-Analysis-with-R.pdf">page</a>.</p>
+</div>
+  </div>
+</footer>
 
 
 

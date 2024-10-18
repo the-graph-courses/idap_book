@@ -10,9 +10,7 @@ import mpld3
 ```{python}
 
 p = ggplot(data.iris()) + 
-geom_point(
-    aes(x="sepalLength", y="sepalWidth", color="species")
-)
+geom_point(aes(x="sepalLength", y="sepalWidth", color="species"))
 
 p
 ```
@@ -25,3 +23,4 @@ mpld3.enable_notebook()  # If you're using a Jupyter notebook
 
 mpld3.display(p.draw())
 ```
+

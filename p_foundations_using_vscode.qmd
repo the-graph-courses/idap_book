@@ -1,0 +1,98 @@
+---
+title: "Using VS Code"
+---
+
+## Introduction
+
+In this lesson, we will explore Visual Studio Code (VS Code), a powerful and versatile editor for writing, running, and debugging Python code. VS Code is widely used due to its rich feature set and extensive extension library, which makes coding more efficient and enjoyable.
+
+## Learning Objectives
+
+By the end of this lesson, you should be able to:
+
+- Open VS Code and navigate to the editor, terminal, and explorer tabs.
+- Create a new Python file and run it using the Python extension.
+- Use the Command Palette to search for and select a color theme.
+
+## Installing VS Code
+
+VS Code is available for Windows, macOS, and Linux. You can download it from the [official website](https://code.visualstudio.com/download).
+
+After installing VS Code, let's explore some of its features.
+
+## Navigating the Explorer Tab
+
+The **Explorer** tab displays the files and folders in your current workspace. When you open VS Code for the first time, it may indicate that you have not yet opened a folder. Most of our work in Python will be organized in folders (also known as workspaces) that contain multiple files.
+
+Let's create our first workspace:
+
+1. On your computer, navigate to your desktop or another memorable location.
+2. Create a new folder called `first_python_workspace`.
+3. In VS Code, click on the **"Open Folder"** button and locate your newly created folder. Alternatively, you can drag the folder into the VS Code window.
+
+Now that your workspace is open in VS Code, you can create a new file:
+
+1. In the **Explorer** tab, right-click inside the workspace folder.
+2. Select **"New File"**.
+3. Name the file `first_script.py`. The file will automatically open in the editor.
+
+## Writing and Saving Python Code
+
+Let's write some Python code in your new file:
+
+```python
+print("Hello, " + "World!")
+```
+
+To save the file, press `Ctrl + S` (or `Cmd + S` on macOS).
+
+## Installing the Python Extension
+
+To run Python code within VS Code, we need to install the Python extension:
+
+1. Click on the **Extensions** tab on the left sidebar (it looks like four squares).
+2. In the search bar at the top, type **"Python"**.
+3. Find the extension named **"Python"** published by Microsoft, and click **Install**.
+
+## Running Your Python Script
+
+With the Python extension installed, you can now run your script:
+
+1. Open `first_script.py` if it's not already open.
+2. Click on the **Run** icon (a play button) in the top right corner of the editor.
+   - Alternatively, you can right-click inside the editor and select **"Run Python File in Terminal"**.
+3. A terminal window will open at the bottom of the screen, and your code will execute. You should see the output:
+
+   ```
+   Hello, World!
+   ```
+
+## Using the Command Palette
+
+The **Command Palette** is a powerful feature in VS Code that allows you to access various commands and settings:
+
+1. Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on macOS) to open the Command Palette.
+2. Start typing **"theme"**, and select **"Preferences: Color Theme"** from the list.
+3. Use the up and down arrow keys to cycle through the available color themes.
+4. Press `Enter` to select your preferred theme.
+
+
+## Wrap Up
+
+In this lesson, we've:
+
+- **Installed VS Code** and set up a workspace.
+- **Created and saved a Python script**.
+- **Installed the Python extension** to enable running and debugging code.
+- **Used the Command Palette** to customize the editor's appearance.
+- **Explored the Terminal tab** to execute commands and run scripts.
+
+VS Code is a versatile tool that will enhance your coding experience. As you continue learning Python, you'll find many more features and extensions that can help streamline your development workflow.
+
+**Next Steps:**
+
+- Explore additional VS Code extensions that can aid in Python development.
+- Practice writing and running more complex Python scripts.
+- Customize your workspace settings to suit your coding style.
+
+Happy coding!

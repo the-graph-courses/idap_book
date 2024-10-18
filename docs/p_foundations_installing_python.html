@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="The GRAPH Courses">
 
-<title>Introduction to Data Science with Python</title>
+<title>6&nbsp; Installing Python – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_foundations_google_colab.html" rel="next">
+<link href="./p_foundations_using_vscode.html" rel="next">
+<link href="./p_foundations_for_loops.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_installing_python.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Installing Python</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -158,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_foundations_installing_python.html" class="sidebar-item-text sidebar-link">
+  <a href="./p_foundations_installing_python.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
   </div>
 </li>
@@ -274,33 +274,40 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7</span> Introduction</a>
   <ul class="collapse">
-  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors">Contributors</a></li>
-  <li><a href="#partners-funders" id="toc-partners-funders" class="nav-link" data-scroll-target="#partners-funders">Partners &amp; Funders</a></li>
+  <li><a href="#windows-users" id="toc-windows-users" class="nav-link" data-scroll-target="#windows-users"><span class="header-section-number">7.1</span> Windows Users</a>
+  <ul class="collapse">
+  <li><a href="#step-1-check-your-current-python-version" id="toc-step-1-check-your-current-python-version" class="nav-link" data-scroll-target="#step-1-check-your-current-python-version"><span class="header-section-number">7.1.1</span> Step 1: Check Your Current Python Version</a></li>
+  <li><a href="#step-2-download-python-3.12.0" id="toc-step-2-download-python-3.12.0" class="nav-link" data-scroll-target="#step-2-download-python-3.12.0"><span class="header-section-number">7.1.2</span> Step 2: Download Python 3.12.0</a></li>
+  <li><a href="#step-3-install-python-3.12.0" id="toc-step-3-install-python-3.12.0" class="nav-link" data-scroll-target="#step-3-install-python-3.12.0"><span class="header-section-number">7.1.3</span> Step 3: Install Python 3.12.0</a></li>
+  <li><a href="#step-4-verify-the-installation" id="toc-step-4-verify-the-installation" class="nav-link" data-scroll-target="#step-4-verify-the-installation"><span class="header-section-number">7.1.4</span> Step 4: Verify the Installation</a></li>
+  <li><a href="#step-5-run-python-locally" id="toc-step-5-run-python-locally" class="nav-link" data-scroll-target="#step-5-run-python-locally"><span class="header-section-number">7.1.5</span> Step 5: Run Python Locally</a></li>
+  </ul></li>
+  <li><a href="#macos-users" id="toc-macos-users" class="nav-link" data-scroll-target="#macos-users"><span class="header-section-number">7.2</span> macOS Users</a>
+  <ul class="collapse">
+  <li><a href="#step-1-check-your-current-python-version-1" id="toc-step-1-check-your-current-python-version-1" class="nav-link" data-scroll-target="#step-1-check-your-current-python-version-1"><span class="header-section-number">7.2.1</span> Step 1: Check Your Current Python Version</a></li>
+  <li><a href="#step-2-download-python-3.12.0-1" id="toc-step-2-download-python-3.12.0-1" class="nav-link" data-scroll-target="#step-2-download-python-3.12.0-1"><span class="header-section-number">7.2.2</span> Step 2: Download Python 3.12.0</a></li>
+  <li><a href="#step-3-install-python-3.12.0-1" id="toc-step-3-install-python-3.12.0-1" class="nav-link" data-scroll-target="#step-3-install-python-3.12.0-1"><span class="header-section-number">7.2.3</span> Step 3: Install Python 3.12.0</a></li>
+  <li><a href="#step-4-verify-the-installation-1" id="toc-step-4-verify-the-installation-1" class="nav-link" data-scroll-target="#step-4-verify-the-installation-1"><span class="header-section-number">7.2.4</span> Step 4: Verify the Installation</a></li>
+  <li><a href="#step-5-run-python-locally-1" id="toc-step-5-run-python-locally-1" class="nav-link" data-scroll-target="#step-5-run-python-locally-1"><span class="header-section-number">7.2.5</span> Step 5: Run Python Locally</a></li>
+  </ul></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_installing_python.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_installing_python.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Installing Python</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction to Data Science with Python</h1>
-<p class="subtitle lead">With Real-World Examples from Research, Business and Industry</p>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Installing Python</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>The GRAPH Courses </p>
-          </div>
-  </div>
     
   
     
@@ -311,28 +318,218 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
-<section id="introduction" class="level1 unnumbered">
-<h1 class="unnumbered">Introduction</h1><p><img src="cover.jpg" title="Introduction to Data Science with Python" class="quarto-cover-image img-fluid"></p>
-<p>DRAFT book for the course “Introduction to Data Science with Python”</p>
-<p>This book is a compilation of lesson notes for a 3-month online course offered by The GRAPH Courses. To access the lesson videos, exercise files, and online quizzes, please visit our website, <a href="https://thegraphcourses.org">thegraphcourses.org</a>.</p>
-<p>The GRAPH Courses is a project of the Global Research and Analyses for Public Health (GRAPH) Network, a non-profit organization dedicated to making code and data skills accessible through affordable live bootcamps and free self-paced courses.</p>
-<section id="contributors" class="level2">
-<h2 class="anchored" data-anchor-id="contributors">Contributors</h2>
-<p>We are extremely grateful to the following individuals who have contributed to the development of these materials over several years:</p>
-<p>Amanda McKinley, Andree Valle Campos, Aziza Merzouki, Benedict Nguimbis, Bennour Hsin, Camille Beatrice Valera, Daniel Camara, Eduardo Araujo, Elton Mukonda, Guy Wafeu, Imad El Badisy, Imane Bensouda Korachi, Joy Vaz, Kene David Nwosu, Lameck Agasa, Laure Nguemo, Laure Vancauwenberghe, Matteo Franza, Michal Shrestha, Olivia Keiser, Sabina Rodriguez Velasquez, Sara Botero Mesa.</p>
-</section>
-<section id="partners-funders" class="level2">
-<h2 class="anchored" data-anchor-id="partners-funders">Partners &amp; Funders</h2>
+<section id="introduction" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Introduction</h1>
+<p>So far in this course, you’ve been working mostly in Google Colab—a convenient, cloud-based environment for running Python code. Now it’s time to tackle working locally on your own machine. This allows you to work offline and gives you more control over your development environment.</p>
+<p>We’ll guide you through installing Python <strong>3.12.0</strong> to ensure compatibility with the examples and exercises we’ll cover. Let’s get started!</p>
+<p>Before we proceed, we’ll split the instructions into two tracks:</p>
 <ul>
-<li>University of Geneva</li>
-<li>University of Oxford</li>
-<li>World Health Organization</li>
-<li>Global Fund</li>
-<li>Ernst Goehner Foundation</li>
+<li><strong>Windows Users</strong></li>
+<li><strong>macOS Users</strong></li>
 </ul>
+<p>Please follow the instructions specific to your operating system.</p>
+<section id="windows-users" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="windows-users"><span class="header-section-number">7.1</span> Windows Users</h2>
+<section id="step-1-check-your-current-python-version" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="step-1-check-your-current-python-version"><span class="header-section-number">7.1.1</span> Step 1: Check Your Current Python Version</h3>
+<ol type="1">
+<li><strong>Open Command Prompt:</strong>
+<ul>
+<li>Press <code>Win + R</code>, type <code>cmd</code>, and press <strong>Enter</strong>.</li>
+</ul></li>
+<li><strong>Check Python Version:</strong>
+<ul>
+<li>Type <code>python --version</code> and press <strong>Enter</strong>.</li>
+<li>If Python is installed, it will display the version number.</li>
+<li><strong>Note:</strong> If you see a version lower than <strong>3.12.0</strong>, we’ll proceed to install the correct version.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-2-download-python-3.12.0" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="step-2-download-python-3.12.0"><span class="header-section-number">7.1.2</span> Step 2: Download Python 3.12.0</h3>
+<ol type="1">
+<li><strong>Search for Python 3.12.0:</strong>
+<ul>
+<li>Open your web browser.</li>
+<li>Go to <a href="https://www.google.com">Google</a> and search for <strong>“Python 3.12.0”</strong>.</li>
+</ul></li>
+<li><strong>Navigate to the Official Website:</strong>
+<ul>
+<li>In the search results, find the link to <strong>python.org</strong> that mentions Python 3.12.0.</li>
+<li>Ensure the URL is from <strong>www.python.org</strong> to avoid unofficial sources.</li>
+</ul></li>
+<li><strong>Download the Installer:</strong>
+<ul>
+<li>Scroll down to the bottom of the Python 3.12.0 page.</li>
+<li>Under the <strong>“Files”</strong> section, find <strong>“Windows installer (64-bit)”</strong>.
+<ul>
+<li><strong>Note:</strong> Most modern Windows computers are 64-bit.</li>
+</ul></li>
+<li>Click on the link to download the installer.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-3-install-python-3.12.0" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="step-3-install-python-3.12.0"><span class="header-section-number">7.1.3</span> Step 3: Install Python 3.12.0</h3>
+<ol type="1">
+<li><strong>Run the Installer:</strong>
+<ul>
+<li>Locate the downloaded file (usually in your <strong>Downloads</strong> folder).</li>
+<li>Double-click the installer to run it.</li>
+</ul></li>
+<li><strong>Setup Installation:</strong>
+<ul>
+<li><strong>Important:</strong> Check the box that says <strong>“Add Python 3.12 to PATH”</strong> at the bottom of the installer window.</li>
+<li>Click <strong>“Install Now”</strong>.</li>
+</ul></li>
+<li><strong>User Account Control:</strong>
+<ul>
+<li>If prompted by User Account Control, click <strong>“Yes”</strong> to allow the installation.</li>
+</ul></li>
+<li><strong>Complete Installation:</strong>
+<ul>
+<li>Wait for the installation to finish.</li>
+<li>Click <strong>“Close”</strong> when done.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-4-verify-the-installation" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="step-4-verify-the-installation"><span class="header-section-number">7.1.4</span> Step 4: Verify the Installation</h3>
+<ol type="1">
+<li><strong>Open Command Prompt:</strong>
+<ul>
+<li>Press <code>Win + R</code>, type <code>cmd</code>, and press <strong>Enter</strong>.</li>
+</ul></li>
+<li><strong>Check Python Version:</strong>
+<ul>
+<li>Type <code>python --version</code> and press <strong>Enter</strong>.</li>
+<li>You should see <code>Python 3.12.0</code>.</li>
+<li>You may also see a newer version if you already have Python on your computer. That’s okay. From our IDE, we will be able to select the correct version of Python that we just installed.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-5-run-python-locally" class="level3" data-number="7.1.5">
+<h3 data-number="7.1.5" class="anchored" data-anchor-id="step-5-run-python-locally"><span class="header-section-number">7.1.5</span> Step 5: Run Python Locally</h3>
+<ol type="1">
+<li><strong>Start Python Interpreter:</strong>
+<ul>
+<li>In Command Prompt, type <code>python</code> and press <strong>Enter</strong>.</li>
+</ul></li>
+<li><strong>Run a Test Command:</strong>
+<ul>
+<li>At the <code>&gt;&gt;&gt;</code> prompt, type <code>2 + 2</code> and press <strong>Enter</strong>.</li>
+<li>You should see <code>4</code>.</li>
+</ul></li>
+<li><strong>Exit Python:</strong>
+<ul>
+<li>Type <code>exit()</code> and press <strong>Enter</strong>.</li>
+</ul></li>
+</ol>
+<p><strong>Yay!</strong> You’ve successfully installed Python 3.12.0 on your Windows computer and ran your first local Python command.</p>
+<hr>
+</section>
+</section>
+<section id="macos-users" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="macos-users"><span class="header-section-number">7.2</span> macOS Users</h2>
+<section id="step-1-check-your-current-python-version-1" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="step-1-check-your-current-python-version-1"><span class="header-section-number">7.2.1</span> Step 1: Check Your Current Python Version</h3>
+<ol type="1">
+<li><strong>Open Terminal:</strong>
+<ul>
+<li>Go to <strong>Applications &gt; Utilities &gt; Terminal</strong>.</li>
+</ul></li>
+<li><strong>Check Python Version:</strong>
+<ul>
+<li>Type <code>python3 --version</code> and press <strong>Return</strong>.</li>
+<li>If Python is installed, it will display the version number.</li>
+<li><strong>Note:</strong> If you see a version lower than <strong>3.12.0</strong>, we’ll proceed to install the correct version.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-2-download-python-3.12.0-1" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="step-2-download-python-3.12.0-1"><span class="header-section-number">7.2.2</span> Step 2: Download Python 3.12.0</h3>
+<ol type="1">
+<li><strong>Search for Python 3.12.0:</strong>
+<ul>
+<li>Open your web browser.</li>
+<li>Go to <a href="https://www.google.com">Google</a> and search for <strong>“Python 3.12.0”</strong>.</li>
+</ul></li>
+<li><strong>Navigate to the Official Website:</strong>
+<ul>
+<li>In the search results, find the link to <strong>python.org</strong> that mentions Python 3.12.0.</li>
+<li>Ensure the URL is from <strong>www.python.org</strong> to avoid unofficial sources.</li>
+</ul></li>
+<li><strong>Download the Installer:</strong>
+<ul>
+<li>Scroll down to the bottom of the Python 3.12.0 page.</li>
+<li>Under the <strong>“Files”</strong> section, find <strong>“macOS 64-bit universal2 installer”</strong>.</li>
+<li>Click on the link to download the installer.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-3-install-python-3.12.0-1" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="step-3-install-python-3.12.0-1"><span class="header-section-number">7.2.3</span> Step 3: Install Python 3.12.0</h3>
+<ol type="1">
+<li><strong>Run the Installer:</strong>
+<ul>
+<li>Locate the downloaded <code>.pkg</code> file (usually in your <strong>Downloads</strong> folder).</li>
+<li>Double-click the installer to run it.</li>
+</ul></li>
+<li><strong>Follow Installation Steps:</strong>
+<ul>
+<li>Click <strong>“Continue”</strong> through the prompts.</li>
+<li>Read and agree to the license terms.</li>
+<li>Click <strong>“Install”</strong>.</li>
+</ul></li>
+<li><strong>Authenticate Installation:</strong>
+<ul>
+<li>Enter your administrator password when prompted.</li>
+<li>Click <strong>“Install Software”</strong>.</li>
+</ul></li>
+<li><strong>Complete Installation:</strong>
+<ul>
+<li>Wait for the installation to finish.</li>
+<li>Click <strong>“Close”</strong> once the installation is complete.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-4-verify-the-installation-1" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="step-4-verify-the-installation-1"><span class="header-section-number">7.2.4</span> Step 4: Verify the Installation</h3>
+<ol type="1">
+<li><strong>Open Terminal:</strong>
+<ul>
+<li>Go to <strong>Applications &gt; Utilities &gt; Terminal</strong>.</li>
+</ul></li>
+<li><strong>Check Python Version:</strong>
+<ul>
+<li>Type <code>python3 --version</code> and press <strong>Return</strong>.</li>
+<li>You should see <code>Python 3.12.0</code>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="step-5-run-python-locally-1" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="step-5-run-python-locally-1"><span class="header-section-number">7.2.5</span> Step 5: Run Python Locally</h3>
+<ol type="1">
+<li><strong>Start Python Interpreter:</strong>
+<ul>
+<li>In Terminal, type <code>python3</code> and press <strong>Return</strong>.</li>
+</ul></li>
+<li><strong>Run a Test Command:</strong>
+<ul>
+<li>At the <code>&gt;&gt;&gt;</code> prompt, type <code>2 + 2</code> and press <strong>Return</strong>.</li>
+<li>You should see <code>4</code>.</li>
+</ul></li>
+<li><strong>Exit Python:</strong>
+<ul>
+<li>Type <code>exit()</code> and press <strong>Return</strong>.</li>
+</ul></li>
+</ol>
+<p><strong>Yay!</strong> You’ve successfully installed Python 3.12.0 on your Mac and ran your first local Python command.</p>
+<hr>
+<p>You’re now all set to continue the course with your new local Python environment. Happy coding!</p>
 
 
+</section>
 </section>
 </section>
 
@@ -759,10 +956,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./p_foundations_for_loops.html" class="pagination-link" aria-label="Intro to Loops in Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Intro to Loops in Python</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_foundations_google_colab.html" class="pagination-link" aria-label="Introduction to Google Colab">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Google Colab</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./p_foundations_using_vscode.html" class="pagination-link" aria-label="Using VS Code">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Using VS Code</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -774,7 +974,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_installing_python.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>TEMPORARY For a PDF copy, please visit this <a href="https://raw.githubusercontent.com/the-graph-courses/idar_book/main/pdf/Introduction-to-Data-Analysis-with-R.pdf">page</a>.</p>
 </div>

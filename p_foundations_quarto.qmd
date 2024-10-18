@@ -1,0 +1,327 @@
+---
+title: "Using Quarto"
+format: html
+---
+
+## Introduction
+
+A significant part of your role as a data analyst involves communicating results to others through reports. **Quarto** is one of the most powerful and versatile tools for producing such reports. It enables you to generate dynamic documents by combining formatted text and results produced by code. With Quarto, you can create documents in various formats such as HTML, PDF, Word, PowerPoint slides, web dashboards, and many others.
+
+Most of our documents in the GRAPH courses are actually written in Quarto!
+
+In this lesson, we will cover the basics of this powerful tool.
+
+## Learning Objectives
+
+By the end of this lesson, you should be able to:
+
+- Create and render a Quarto document that includes Python code and narrative text.
+- Output documents in multiple formats, including HTML, PDF, Word, etc.
+- Understand basic Markdown syntax.
+- Use code chunk options to control code execution and output display.
+- Use Python packages to display tables and figures in Quarto documents.
+
+## Installing Quarto
+
+To get started, you first need to install Quarto. You can download it from the [Quarto website](https://quarto.org/docs/download/).
+
+After installing, you can check that it is installed by running the following command in the command line or terminal:
+
+```bash
+quarto --version
+```
+
+Now that Quarto is installed, use it to install the `tinytex` package, which we will need to compile our PDFs:
+
+```bash
+quarto install tinytex
+```
+
+To use all the features of Quarto in VSCode, we need to install the **Quarto** extension and the **Jupyter** extension. You can install these in the Extensions tab of VSCode.
+
+That's a lot of installations, but fear not—you only have to do these steps once on your computer.
+
+## Project Setup
+
+To begin, open your `graph_courses_python` project in VSCode.
+
+If you did not watch the previous video explaining project setup, please do so now. After creating your project folder, you need to create a virtual environment, select an interpreter, and install the jupyter package.
+
+## Create a New Document
+
+A Quarto document is a simple text file with the `.qmd` extension.
+
+To create a new Quarto document, create a new file and save it with a `.qmd` extension, for example, `first_quarto_doc.qmd`.
+
+Add two sections to your document with the following text:
+
+```markdown
+# Section 1
+
+Hello
+
+---
+
+# Section 2
+
+World
+```
+
+## Adding Code Chunks
+
+You can add code chunks to your document by using the ```{python} syntax. The shortcut to insert a code chunk is to type `Cmd + Option + I` (on Mac) or `Ctrl + Alt + I` (on Windows/Linux). Alternatively, you can click on the "..." button at the top right of the screen.
+
+Let's create a code chunk that adds two numbers together and displays the result:
+
+```{python}
+2 + 2
+```
+
+You should see a "Run Cell" button in the toolbar. Click this to run the code chunk.
+
+VSCode may prompt you to install a specific package. Go ahead and install it.
+
+Now practice adding one more code chunk at the end of the document that multiplies two numbers.
+
+As you add these, you should see the buttons "Run Next Cell" and "Run Above" also appear.
+
+There are two shortcuts you should also get used to:
+
+- `Cmd + Enter` (Mac) or `Ctrl + Enter` (Windows/Linux) to run the code chunk
+- `option + Enter` (Mac) or `Alt + Enter` (Windows/Linux) to run the current line or the highlighted section of code.
+
+So we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.
+
+Let's see how to do this.
+
+## Quarto Document Header (YAML)
+
+At the top of the document, let's add a YAML section. This is where we can specify details about the document, such as its title, author, and format.
+
+```yaml
+---
+title: "My First Quarto Document"
+author: "Your Name"
+format: html
+---
+```
+
+The `format` is where we can specify the output format of the document. For now, we are trying to keep things simple and just use HTML.
+
+For things to render properly, however, we need the `jupyter` package. So install this in a code chunk:
+
+```{python}
+!pip install jupyter
+```
+
+You can delete this code after it's done running, since you only need to install packages once for each project.
+
+Now, if we render the document by clicking on the "Render" button or by using the hotkey `Cmd + Shift + K` (on Mac) or `Ctrl + Shift + K` (on Windows/Linux), we should see the document rendered.
+
+So now we have the main elements of a Quarto document:
+
+- The YAML header
+- Section headers
+- Text
+- Code chunks
+- The outputs of those code chunks
+
+These things together make a very powerful tool.
+
+Let's try to make a few more types of documents, then we'll come back to see how to use these tools a bit more.
+
+## Output Formats
+
+You can change the `format` value in the YAML header to experiment with other formats.
+
+Try the following formats:
+
+- `html`: Renders the document as an HTML webpage.
+- `pdf`: Renders the document as a PDF. You will need to have LaTeX (or tinytex) installed on your computer to use this format.
+- `docx`: Renders the document as a Microsoft Word document.
+- `dashboard`: Renders the document as an interactive dashboard.
+- `pptx`: Renders the document as a PowerPoint presentation.
+- `revealjs`: Renders the document as an HTML slideshow.
+
+There is a chance some of these may not work on your computer due to different operating systems or versions of software.
+
+## Markdown
+
+The text inside Quarto documents is written in Markdown.
+
+**Markdown** is a simple set of conventions for adding formatting to plain text. For example, to italicize text, you wrap it in asterisks `*text here*`, and to start a new header, you use the pound sign `#`. We will learn these in detail below.
+
+In your editor, you can refer to the "Markdown Quick Reference" or "Cheatsheet" to learn more about Markdown syntax.
+
+You can define titles of different levels by starting a line with one or more `#`:
+
+```markdown
+# Level 1 Title
+
+## Level 2 Title
+
+### Level 3 Title
+```
+
+The body of the document consists of text that follows the Markdown syntax. A Markdown file is a text file that contains lightweight markup to help set heading levels or format text. For example, the following text:
+
+```markdown
+This is text with *italics* and **bold**.
+
+You can define bulleted lists:
+
+- First element
+- Second element
+```
+
+Will generate the following formatted text:
+
+> This is text with *italics* and **bold**.
+>
+> You can define bulleted lists:
+>
+> - First element
+> - Second element
+
+Note that you need spaces before and after lists, as well as keeping the listed items on separate lines. Otherwise, they will all crunch together rather than making a list.
+
+We see that words placed between asterisks are italicized, and lines that begin with a dash are transformed into a bulleted list.
+
+The Markdown syntax allows for other formatting, such as the ability to insert links or images. For example, the following code:
+
+```markdown
+[Example Link](https://example.com)
+```
+
+... will give the following link:
+
+> [Example Link](https://example.com)
+
+We can also embed images. In your document, you can type:
+
+```markdown
+![Alt text](images/picture_name.jpg)
+```
+
+Replace "Alt text" with a description of the image (it can also be blank), "images" with the name of the image folder in your project, and "picture_name.jpg" with the name of the image you want to use. Alternatively, in some editors, you can drag and drop the image into your document.
+
+## Code Chunk Options
+
+It is possible to pass options to each code chunk to modify its behavior.
+
+For example, a code chunk looks like this:
+
+```{python}
+# Your code here
+x = 2 + 2
+print(x)
+```
+
+But you can add options to control the code chunk's execution and display:
+
+```{python}
+#| echo: false
+x = 2 + 2
+print(x)
+```
+
+In this example, the `echo: false` option tells Quarto not to display the code in the rendered document, only the output.
+
+### Global Options
+
+You may want to apply options globally to all code chunks in your document. You can set default code execution options in the YAML header under the `execute` key.
+
+For example:
+
+```yaml
+---
+title: "Quarto Document"
+format: html
+execute:
+  echo: false
+---
+```
+
+This will set `echo: false` for all code chunks.
+
+### Other Code Chunk Options
+
+Here is a comprehensive list of options you can pass to code chunks:
+
+| Option     | Description                                                                                                                                       |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| `eval`     | Evaluate the code chunk (if `false`, just echoes the code into the output).                                                                       |
+| `echo`     | Include the source code in output (`true` or `false`).                                                                                            |
+| `output`   | Include the results of executing the code in the output (`true`, `false`, or `asis` to indicate that the output is raw markdown).                 |
+| `warning`  | Include warnings in the output (`true` or `false`).                                                                                               |
+| `error`    | Include errors in the output (note that this implies that errors executing code will not halt processing of the document).                         |
+| `include`  | Catch-all for preventing any output (code or results) from being included (e.g., `include: false` suppresses all output from the code block).     |
+
+## Displaying Tables
+
+By default, pandas DataFrames display adequately in Quarto. However, to make them look nicer, we can use the `itables` package.
+
+Make sure you have the `itables` package installed. If not, install it:
+```{python}
+!pip install itables
+```
+
+Then, you can run something like:
+
+```{python}
+import plotly.express as px
+from itables import show
+
+tips = px.data.tips()
+show(tips)
+```
+
+Of course, interactive tables will only work in HTML formats. We'll look at tables for other formats later.
+
+## Displaying Plots
+
+For interactive plots, we can use the `plotly` package.
+
+First, install `plotly`:
+
+```{python}
+!pip install plotly
+```
+
+Then run something like:
+
+```{python}
+tips = px.data.tips()
+tips_sex = px.violin(tips, x="day", y="total_bill", color="sex")
+tips_sex.show()
+```
+
+This will display an interactive Plotly plot in the HTML output.
+
+For static outputs like PDFs and Word documents, we need to write the image to a file and then include it in the document.
+
+First, save the plot as an image:
+
+```{python}
+tips_sex.write_image("tips_sex_plot.png")
+```
+
+This will create a static image file in the same folder as your document. We can then include it in the document like this:
+
+```markdown
+![Violin plot of total bill by day and sex](tips_sex_plot.png)
+```
+
+This will display the image in the output.
+
+---
+
+## Wrapping Up
+
+In this lesson, we learned how to create and render Quarto documents, add formatting, and include code chunks.
+
+We also learned how to use code chunk options to control the behavior of our documents.
+
+We experimented with different output formats and how to customize the display of our documents.
+
+With these tools, you can create dynamic and interactive reports that are easily shareable in various formats. Quarto's flexibility and integration with Python make it an excellent choice for data analysts and researchers alike.

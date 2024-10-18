@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="The GRAPH Courses">
 
-<title>Introduction to Data Science with Python</title>
+<title>8&nbsp; Workspace Folders and Virtual Environments with venv and VS Code – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_foundations_google_colab.html" rel="next">
+<link href="./p_foundations_quarto.html" rel="next">
+<link href="./p_foundations_using_vscode.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_venv.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -170,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_foundations_venv.html" class="sidebar-item-text sidebar-link">
+  <a href="./p_foundations_venv.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></span></a>
   </div>
 </li>
@@ -274,33 +308,34 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">8.2</span> Learning Objectives</a></li>
+  <li><a href="#creating-a-new-workspace" id="toc-creating-a-new-workspace" class="nav-link" data-scroll-target="#creating-a-new-workspace"><span class="header-section-number">8.3</span> Creating a New Workspace</a></li>
+  <li><a href="#understanding-virtual-environments" id="toc-understanding-virtual-environments" class="nav-link" data-scroll-target="#understanding-virtual-environments"><span class="header-section-number">8.4</span> Understanding Virtual Environments</a>
   <ul class="collapse">
-  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors">Contributors</a></li>
-  <li><a href="#partners-funders" id="toc-partners-funders" class="nav-link" data-scroll-target="#partners-funders">Partners &amp; Funders</a></li>
+  <li><a href="#environments-interpreter" id="toc-environments-interpreter" class="nav-link" data-scroll-target="#environments-interpreter"><span class="header-section-number">8.4.1</span> Environments &amp; Interpreter</a></li>
   </ul></li>
+  <li><a href="#creating-a-virtual-environment" id="toc-creating-a-virtual-environment" class="nav-link" data-scroll-target="#creating-a-virtual-environment"><span class="header-section-number">8.5</span> Creating a Virtual Environment</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">8.6</span> Installing Packages</a></li>
+  <li><a href="#summary-of-key-steps" id="toc-summary-of-key-steps" class="nav-link" data-scroll-target="#summary-of-key-steps"><span class="header-section-number">8.7</span> Summary of Key Steps</a></li>
+  <li><a href="#demonstrating-environment-isolation" id="toc-demonstrating-environment-isolation" class="nav-link" data-scroll-target="#demonstrating-environment-isolation"><span class="header-section-number">8.8</span> Demonstrating Environment Isolation</a></li>
+  <li><a href="#installing-course-packages" id="toc-installing-course-packages" class="nav-link" data-scroll-target="#installing-course-packages"><span class="header-section-number">8.9</span> Installing Course Packages</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8.10</span> Conclusion</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_venv.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_venv.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction to Data Science with Python</h1>
-<p class="subtitle lead">With Real-World Examples from Research, Business and Industry</p>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>The GRAPH Courses </p>
-          </div>
-  </div>
     
   
     
@@ -311,29 +346,117 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
-<section id="introduction" class="level1 unnumbered">
-<h1 class="unnumbered">Introduction</h1><p><img src="cover.jpg" title="Introduction to Data Science with Python" class="quarto-cover-image img-fluid"></p>
-<p>DRAFT book for the course “Introduction to Data Science with Python”</p>
-<p>This book is a compilation of lesson notes for a 3-month online course offered by The GRAPH Courses. To access the lesson videos, exercise files, and online quizzes, please visit our website, <a href="https://thegraphcourses.org">thegraphcourses.org</a>.</p>
-<p>The GRAPH Courses is a project of the Global Research and Analyses for Public Health (GRAPH) Network, a non-profit organization dedicated to making code and data skills accessible through affordable live bootcamps and free self-paced courses.</p>
-<section id="contributors" class="level2">
-<h2 class="anchored" data-anchor-id="contributors">Contributors</h2>
-<p>We are extremely grateful to the following individuals who have contributed to the development of these materials over several years:</p>
-<p>Amanda McKinley, Andree Valle Campos, Aziza Merzouki, Benedict Nguimbis, Bennour Hsin, Camille Beatrice Valera, Daniel Camara, Eduardo Araujo, Elton Mukonda, Guy Wafeu, Imad El Badisy, Imane Bensouda Korachi, Joy Vaz, Kene David Nwosu, Lameck Agasa, Laure Nguemo, Laure Vancauwenberghe, Matteo Franza, Michal Shrestha, Olivia Keiser, Sabina Rodriguez Velasquez, Sara Botero Mesa.</p>
+<section id="introduction" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
+<p>In this lesson, we will explore virtual environments in Python using Visual Studio Code (VS Code). We’ll create a new workspace, set up a virtual environment, and install packages specific to our project.</p>
 </section>
-<section id="partners-funders" class="level2">
-<h2 class="anchored" data-anchor-id="partners-funders">Partners &amp; Funders</h2>
+<section id="learning-objectives" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">8.2</span> Learning Objectives</h2>
+<p>By the end of this lesson, you should be able to:</p>
 <ul>
-<li>University of Geneva</li>
-<li>University of Oxford</li>
-<li>World Health Organization</li>
-<li>Global Fund</li>
-<li>Ernst Goehner Foundation</li>
+<li>Create a new workspace in VS Code</li>
+<li>Understand the concept of virtual environments</li>
+<li>Create and use a virtual environment in VS Code</li>
+<li>Install and use packages within a virtual environment</li>
 </ul>
-
-
 </section>
+<section id="creating-a-new-workspace" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="creating-a-new-workspace"><span class="header-section-number">8.3</span> Creating a New Workspace</h2>
+<ol type="1">
+<li><strong>Open VS Code.</strong></li>
+<li>Go to <strong>File &gt; Open Folder</strong>.</li>
+<li>Create a new folder named <code>graph_courses_python</code> and select it.</li>
+</ol>
+<p>Next, let’s try to import a package we haven’t installed yet. Create a new Python file named <code>test_cowsay.py</code> and add the following line:</p>
+<div id="3cafb955" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will not work because we haven’t installed the <code>cowsay</code> package yet. To install it properly, we’ll need to use virtual environments.</p>
+</section>
+<section id="understanding-virtual-environments" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="understanding-virtual-environments"><span class="header-section-number">8.4</span> Understanding Virtual Environments</h2>
+<p>Virtual environments are isolated Python environments that allow you to manage packages for specific projects without affecting your system-wide Python installation.</p>
+<section id="environments-interpreter" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="environments-interpreter"><span class="header-section-number">8.4.1</span> Environments &amp; Interpreter</h3>
+<ul>
+<li><strong>Environments</strong> are for package management.</li>
+<li>The <strong>interpreter</strong> is the Python version you’re using.</li>
+</ul>
+</section>
+</section>
+<section id="creating-a-virtual-environment" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="creating-a-virtual-environment"><span class="header-section-number">8.5</span> Creating a Virtual Environment</h2>
+<ol type="1">
+<li>Open the <strong>Command Palette</strong> (<strong>View &gt; Command Palette</strong> or <code>Ctrl+Shift+P</code>).</li>
+<li>Type <code>Python: Create Environment</code> and select it.</li>
+<li>Choose <strong>Venv</strong> as the environment type.</li>
+<li>Select the Python interpreter you want to use (e.g., Python 3.12.0).</li>
+</ol>
+<p>You should now see a new folder called <code>.venv</code>. This is the virtual environment. Inside it is a folder called <code>lib</code>, which contains packages.</p>
+<p>Next, tell VS Code to use this virtual environment:</p>
+<ol type="1">
+<li>Open the <strong>Command Palette</strong> again.</li>
+<li>Type <code>Python: Select Interpreter</code> and choose it.</li>
+<li>Select the interpreter associated with your virtual environment (it should be listed under <code>.venv</code>).</li>
+</ol>
+<p>Now we’ve created and selected our virtual environment. We can install packages without affecting other projects.</p>
+</section>
+<section id="installing-packages" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="installing-packages"><span class="header-section-number">8.6</span> Installing Packages</h2>
+<p>Let’s install the <code>cowsay</code> package.</p>
+<ol type="1">
+<li>Open a <strong>new terminal</strong> in VS Code.</li>
+<li>Ensure the terminal is using your virtual environment.</li>
+<li>Run the following command:</li>
+</ol>
+<pre class="{bash}"><code>#| eval: false
+pip install cowsay</code></pre>
+<p>Refresh your environment if necessary. You should now see the <code>cowsay</code> package in the list of installed packages.</p>
+<p>Now we can use the package. Open <code>test_cowsay.py</code> and click the run button to execute the script.</p>
+<p>You should see a cow saying hello!</p>
+</section>
+<section id="summary-of-key-steps" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="summary-of-key-steps"><span class="header-section-number">8.7</span> Summary of Key Steps</h2>
+<p>For each new Python project, follow these steps:</p>
+<ol type="1">
+<li><strong>F</strong>older: Create a project folder.</li>
+<li><strong>E</strong>nvironment: Set up a virtual environment.</li>
+<li><strong>I</strong>nterpreter: Select the appropriate Python interpreter.</li>
+<li><strong>L</strong>ibraries: Install the necessary packages.</li>
+</ol>
+<p>Remember the acronym <strong>FEIL</strong> to help you recall these steps.</p>
+</section>
+<section id="demonstrating-environment-isolation" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="demonstrating-environment-isolation"><span class="header-section-number">8.8</span> Demonstrating Environment Isolation</h2>
+<p>Let’s demonstrate that the virtual environment is isolated.</p>
+<ol type="1">
+<li><p>Open your previous workspace <code>my_first_workspace</code> in a new VS Code window.</p></li>
+<li><p>Create a Python file and try to use the <code>cowsay</code> package:</p>
+<p>::: {#b6d3bf73 .cell execution_count=2} <code>{.python .cell-code}  import cowsay</code> :::</p></li>
+</ol>
+<p>This will probably not work because <code>cowsay</code> is not installed in that environment. If it does work, it means you have <code>cowsay</code> installed globally, which is okay.</p>
+<p>Now, let’s return to our main folder/workspace. This is where you’ll conduct most of your analysis for this course.</p>
+</section>
+<section id="installing-course-packages" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="installing-course-packages"><span class="header-section-number">8.9</span> Installing Course Packages</h2>
+<p>As a final step, let’s install the packages we’ll need for the course. While we could install each package as we encounter it, it’s more efficient to install them all at once. In the terminal, run the following command:</p>
+<pre class="{bash}"><code>#| eval: false
+pip install plotly pandas jupyter ipykernel kaleido itables</code></pre>
+<ul>
+<li><strong>pandas</strong>: Data manipulation library.</li>
+<li><strong>plotly</strong>: Visualization library.</li>
+<li><strong>jupyter</strong> and <strong>ipykernel</strong>: Allow us to use Quarto to display our plots.</li>
+<li><strong>kaleido</strong>: Library for saving plots in different formats.</li>
+<li><strong>itables</strong>: Library for displaying tables in Quarto.</li>
+</ul>
+<p>Keep this list of packages handy for future reference, as you’ll likely need them for most projects.</p>
+<p>This command will install all the required packages in one go. If your installation stops at some point, try rerunning the command. Sometimes network issues may cause the installation to fail. If it freezes for more than 10 minutes, close the terminal and rerun the command.</p>
+</section>
+<section id="conclusion" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.10</span> Conclusion</h2>
+<p>You’ve now learned how to create a workspace, set up a virtual environment, install packages, and use them in your Python projects. Remember that each project should have its own virtual environment to keep dependencies isolated and manageable.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -759,10 +882,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./p_foundations_using_vscode.html" class="pagination-link" aria-label="Using VS Code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Using VS Code</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_foundations_google_colab.html" class="pagination-link" aria-label="Introduction to Google Colab">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Google Colab</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./p_foundations_quarto.html" class="pagination-link" aria-label="Using Quarto">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -774,7 +900,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_venv.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>TEMPORARY For a PDF copy, please visit this <a href="https://raw.githubusercontent.com/the-graph-courses/idar_book/main/pdf/Introduction-to-Data-Analysis-with-R.pdf">page</a>.</p>
 </div>

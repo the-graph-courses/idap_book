@@ -17,6 +17,11 @@ First we show the different types of data visualization types. Then we show how 
 ![Slide 7](slides/data_viz_types/Slide7.jpeg)
 ![Slide 8](slides/data_viz_types/Slide8.jpeg)
 ![Slide 9](slides/data_viz_types/Slide9.jpeg)
+![Slide 10](slides/data_viz_types/Slide10.jpeg)
+![Slide 11](slides/data_viz_types/Slide11.jpeg)
+![Slide 12](slides/data_viz_types/Slide12.jpeg)
+![Slide 13](slides/data_viz_types/Slide13.jpeg)
+![Slide 14](slides/data_viz_types/Slide14.jpeg)
 
 
 # Code

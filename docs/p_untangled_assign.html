@@ -370,14 +370,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="imports" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">15.3</span> Imports</h2>
 <p>This lesson will require the pandas package. You can import it with the following code:</p>
-<div id="03bcc23f" class="cell" data-execution_count="2">
+<div id="4a61d83b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="datasets" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="datasets"><span class="header-section-number">15.4</span> Datasets</h2>
 <p>In this lesson, we will use a dataset of counties of the United States with demographic and economic data.</p>
-<div id="f237f169" class="cell" data-execution_count="3">
+<div id="6177c99a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>counties <span class="op">=</span> pd.read_csv(<span class="st">"data/us_counties_data.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>counties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -487,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>The variables are collected from a range of sources, including the US Census Bureau, the Bureau of Labor Statistics, and the American Community Survey.</p>
 <p>Let’s create a small subset of the variables, with just area and population, for illustration.</p>
-<div id="e3fb4ece" class="cell" data-execution_count="4">
+<div id="5d414ca1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## small subset for illustration</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>area_pop <span class="op">=</span> counties[[<span class="st">"county"</span>, <span class="st">"area_sq_miles"</span>, <span class="st">"pop_20"</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>area_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -548,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We use the <code>assign()</code> method from pandas to create new variables or modify existing variables.</p>
 <p>Let’s see a quick example.</p>
 <p>The <code>area_pop</code> dataset shows the area of each county in square miles. We want to <strong>create a new variable</strong> with this converted to square kilometers so we must multiply the <code>area_sq_miles</code> variable by 2.59. With <code>assign()</code>, we can write:</p>
-<div id="19982593" class="cell" data-execution_count="5">
+<div id="618dca91" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>area_pop.assign(area_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x.area_sq_miles <span class="op">*</span> <span class="fl">2.59</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -611,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We can read <code>lambda x: x.area_sq_miles * 2.59</code> as, “define a function that takes a DataFrame <code>x</code>, then multiplies the <code>area_sq_miles</code> variable in that DataFrame by 2.59.”</p>
 <p>A <code>lambda</code> is a term to refer to a small function defined without a name. This part of the code is essential.</p>
 <p>But the symbol called <code>x</code> above can be anything you want; it’s simply a placeholder for the data frame. For example, we could call it <code>dat</code>:</p>
-<div id="3d000a34" class="cell" data-execution_count="6">
+<div id="b3fd828e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>area_pop.assign(area_sq_km<span class="op">=</span><span class="kw">lambda</span> dat: dat.area_sq_miles <span class="op">*</span> <span class="fl">2.59</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -671,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Let’s see another example. We’ll add a variable showing the area in hectares by multiplying <code>area_sq_miles</code> by 259. We’ll also store the new DataFrame in a variable called <code>area_pop_converted</code>. (Remember that if we don’t store the new DataFrame in a variable, as in our example above, it will not be saved.)</p>
-<div id="3ff048fc" class="cell" data-execution_count="7">
+<div id="08347ebc" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>area_pop_converted <span class="op">=</span> area_pop.assign(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    area_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x.area_sq_miles <span class="op">*</span> <span class="fl">2.59</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    area_hectares<span class="op">=</span><span class="kw">lambda</span> x: x.area_sq_miles <span class="op">*</span> <span class="dv">259</span>,</span>
@@ -754,7 +754,7 @@ Practice
 <ul>
 <li>Using the <code>area_pop</code> dataset, create a new column called <code>area_acres</code> by multiplying the <code>area_sq_miles</code> variable by 640. Store the new DataFrame in an object called <code>conversion_question</code> and print it.</li>
 </ul>
-<div id="9e81bf72" class="cell" data-execution_count="8">
+<div id="3e3c04a1" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -763,7 +763,7 @@ Practice
 <section id="overwriting-variables" class="level2" data-number="15.6">
 <h2 data-number="15.6" class="anchored" data-anchor-id="overwriting-variables"><span class="header-section-number">15.6</span> Overwriting variables</h2>
 <p>We can also use <code>assign()</code> to overwrite existing variables. For example, to round the <code>area_sq_km</code> variable to one decimal place, we can write:</p>
-<div id="f220dde5" class="cell" data-execution_count="9">
+<div id="11525fe6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>area_pop_converted.assign(area_sq_km<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">round</span>(x.area_sq_miles <span class="op">*</span> <span class="fl">2.59</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
@@ -842,7 +842,7 @@ Practice
 <ul>
 <li>Using the <code>conversion_question</code> dataset you created above, round the <code>area_acres</code> variable to one decimal place. Store the new DataFrame in an object called <code>conversion_question_rounded</code> and print it.</li>
 </ul>
-<div id="bffecf3a" class="cell" data-execution_count="10">
+<div id="357dd38f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -852,7 +852,7 @@ Practice
 <h2 data-number="15.7" class="anchored" data-anchor-id="more-complex-assignments"><span class="header-section-number">15.7</span> More complex assignments</h2>
 <p>To get further practice with the <code>assign()</code> method, let’s look at creating new columns that combine multiple existing variables.</p>
 <p>For example, to calculate the population density per square kilometer, we can write:</p>
-<div id="30710821" class="cell" data-execution_count="11">
+<div id="705aa1bb" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>area_pop_converted.assign(pop_per_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20 <span class="op">/</span> x.area_sq_km)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -924,7 +924,7 @@ Practice
 </div>
 </div>
 <p>We can also round the <code>pop_per_sq_km</code> variable to one decimal place within the <code>assign()</code> method, either on the same line:</p>
-<div id="51219346" class="cell" data-execution_count="12">
+<div id="f8f51c88" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>area_pop_converted.assign(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    pop_per_sq_km<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">round</span>(x.pop_20 <span class="op">/</span> x.area_sq_km, <span class="dv">1</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -998,7 +998,7 @@ Practice
 </div>
 </div>
 <p>Or on a new line like so:</p>
-<div id="b3480976" class="cell" data-execution_count="13">
+<div id="6e945a7a" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>area_pop_converted.assign(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    pop_per_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20 <span class="op">/</span> x.area_sq_km,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    pop_per_sq_km_rounded<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">round</span>(x.pop_per_sq_km, <span class="dv">1</span>),</span>
@@ -1079,7 +1079,7 @@ Practice
 </div>
 </div>
 <p>As a final step, let’s practice method chaining by arranging the dataset by the <code>pop_per_sq_km</code> variable in descending order, and store this in a new variable called <code>area_pop_converted_sorted</code>.</p>
-<div id="3f707724" class="cell" data-execution_count="14">
+<div id="ecc83a6d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>area_pop_converted_sorted <span class="op">=</span> area_pop_converted.assign(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    pop_per_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20 <span class="op">/</span> x.area_sq_km,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    pop_per_sq_km_rounded<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">round</span>(x.pop_per_sq_km, <span class="dv">1</span>),</span>
@@ -1176,7 +1176,7 @@ Practice
 <ul>
 <li>Consider the sample dataset created below. Use <code>assign()</code> to round all variables to 1 decimal place. Your final dataframe should be called <code>sample_df_rounded</code> and should still have three columns, <code>a</code>, <code>b</code>, and <code>c</code>.</li>
 </ul>
-<div id="2111d530" class="cell" data-execution_count="15">
+<div id="5085aedd" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    {</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"a"</span>: [<span class="fl">1.111</span>, <span class="fl">2.222</span>, <span class="fl">3.333</span>],</span>
@@ -1223,7 +1223,7 @@ Practice
 </div>
 </div>
 </div>
-<div id="3bbeff13" class="cell" data-execution_count="16">
+<div id="502ba389" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1240,7 +1240,7 @@ Pro-tip
 <section id="why-use-lambda-functions-in-assign" class="level3 callout-body-container callout-body" data-number="15.7.2">
 <h3 data-number="15.7.2" class="anchored" data-anchor-id="why-use-lambda-functions-in-assign"><span class="header-section-number">15.7.2</span> Why use lambda functions in <code>assign()</code>?</h3>
 <p>You may be wondering whether the lambda function is really necessary within assign. After all, we could run code like this:</p>
-<div id="6fd11581" class="cell" data-execution_count="17">
+<div id="cf2f49a6" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>area_pop.assign(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    area_sq_km<span class="op">=</span>area_pop.area_sq_miles <span class="op">*</span> <span class="fl">2.59</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    area_hectares<span class="op">=</span>area_pop.area_sq_miles <span class="op">*</span> <span class="dv">259</span>,</span>
@@ -1311,7 +1311,7 @@ Pro-tip
 <p>Here, we are referring back to the <code>area_pop</code> DataFrame within the <code>assign()</code> method.</p>
 <p>The problem with this is we cannot access variables created in the same <code>assign()</code> call or created in the same method chain.</p>
 <p>For example, below, if you try to use the <code>area_sq_km</code> variable to calculate the population density, you will get an error:</p>
-<div id="a214e0d2" class="cell" data-execution_count="18">
+<div id="023ee5d0" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>area_pop.assign(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    area_sq_km<span class="op">=</span>area_pop.area_sq_miles <span class="op">*</span> <span class="fl">2.59</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    area_hectares<span class="op">=</span>area_pop.area_sq_miles <span class="op">*</span> <span class="dv">259</span>,</span>
@@ -1321,7 +1321,7 @@ Pro-tip
 <pre><code>AttributeError: 'DataFrame' object has no attribute 'area_sq_km'</code></pre>
 <p>Python cannot find the <code>area_sq_km</code> variable because it is created in the same <code>assign()</code> call. So the <code>area_pop</code> DataFrame is does not yet have that variable!</p>
 <p>Lambda functions in <code>assign()</code> allow you to create new columns based on intermediate results within the same call. So the code below works:</p>
-<div id="7b528967" class="cell" data-execution_count="19">
+<div id="333e116b" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>area_pop.assign(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    area_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x.area_sq_miles <span class="op">*</span> <span class="fl">2.59</span>,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    area_hectares<span class="op">=</span><span class="kw">lambda</span> x: x.area_sq_miles <span class="op">*</span> <span class="dv">259</span>,</span>
@@ -1404,7 +1404,7 @@ Pro-tip
 <h2 data-number="15.8" class="anchored" data-anchor-id="creating-boolean-variables"><span class="header-section-number">15.8</span> Creating Boolean variables</h2>
 <p>You can use <code>assign()</code> to create a Boolean variable to categorize part of your dataset.</p>
 <p>Consider the <code>pop_change_2010_2020</code> variable in the <code>counties</code> dataset, which shows the percentage change in population between 2010 and 2020. This is shown below in our <code>changes_df</code> subset.</p>
-<div id="f5cf6c29" class="cell" data-execution_count="20">
+<div id="f487a795" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>changes_df <span class="op">=</span> counties[</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"county"</span>, <span class="st">"pop_change_2010_2020"</span>, <span class="st">"pct_emp_change_2010_2021"</span>]</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>]  <span class="co"># Make dataset subset</span></span>
@@ -1461,7 +1461,7 @@ Pro-tip
 </div>
 </div>
 <p>Below we create a Boolean variable, <code>pop_increased</code>, that is <code>True</code> if the growth rate is greater than 0 and <code>False</code> if it is not.</p>
-<div id="ea2c39de" class="cell" data-execution_count="21">
+<div id="46be0f21" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>changes_df.assign(pop_increased<span class="op">=</span><span class="kw">lambda</span> x: x.pop_change_2010_2020 <span class="op">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
@@ -1522,7 +1522,7 @@ Pro-tip
 </div>
 <p>The code <code>x['pop_change_2010_2020'] &gt; 0</code> evaluates whether each growth rate is greater than 0. Growth rates that match that condition (growth rates greater than 0) are <code>True</code> and those that fail the condition are <code>False</code>.</p>
 <p>Let’s do the same for the employment change variable and store the results in our dataset.</p>
-<div id="508fad95" class="cell" data-execution_count="22">
+<div id="7d42f398" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>changes_df <span class="op">=</span> changes_df.assign(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    pop_increased<span class="op">=</span><span class="kw">lambda</span> x: x.pop_change_2010_2020 <span class="op">&gt;</span> <span class="dv">0</span>,</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    emp_increased<span class="op">=</span><span class="kw">lambda</span> x: x.pct_emp_change_2010_2021 <span class="op">&gt;</span> <span class="dv">0</span>,</span>
@@ -1592,7 +1592,7 @@ Pro-tip
 </div>
 </div>
 <p>We can now query the dataset to, for example, see which counties had a population increase but an employment decrease. From a policy perspective, this would be a concern, since employment is not able to keep up with population growth.</p>
-<div id="cc4e3c08" class="cell" data-execution_count="23">
+<div id="6a763abc" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>changes_df.query(<span class="st">"pop_increased == True &amp; emp_increased == False"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Or more succintly:</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>changes_df.query(<span class="st">"pop_increased &amp; not emp_increased"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1674,13 +1674,13 @@ Practice
 <ul>
 <li>Use the <code>foreign_born_num</code> variable and the population estimate to calculate the percentage of foreign-born residents in each county. Then create a Boolean variable called <code>foreign_born_pct_gt_30</code> that is <code>True</code> if the percentage of foreign-born residents is greater than 30% and <code>False</code> if it is not. Store the new DataFrame in a variable called <code>foreign_born_df_question</code>.</li>
 </ul>
-<div id="ff379af3" class="cell" data-execution_count="24">
+<div id="1af8a47e" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Use <code>.query()</code> on the <code>foreign_born_df_question</code> DataFrame to return only the counties where the <code>foreign_born_pct_gt_30</code> variable is <code>True</code>. You should get 24 rows.</li>
 </ul>
-<div id="ce74d1ce" class="cell" data-execution_count="25">
+<div id="f197d12f" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1702,7 +1702,7 @@ Pro-tip
 <li>When the variable name is a reserved word or method name in Python.</li>
 </ol>
 <p>If the population variable were called <code>pop 20</code>, with a space, we would not be able to access it with dot notation.</p>
-<div id="ed66cafc" class="cell" data-execution_count="26">
+<div id="219780a3" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>demo_df <span class="op">=</span> area_pop.rename(columns<span class="op">=</span>{<span class="st">"pop_20"</span>: <span class="st">"pop 20"</span>})</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>demo_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -1756,14 +1756,14 @@ Pro-tip
 </div>
 </div>
 </div>
-<div id="4879ae55" class="cell" data-execution_count="27">
+<div id="3ca99aa2" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>demo_df.assign(pop_per_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x.pop <span class="dv">20</span> <span class="op">/</span> x.area_sq_miles) <span class="co"># gives error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>area_pop.assign(pop_per_sq_km=lambda x: x.pop 20 / x.area_sq_miles)
                                             ^
 SyntaxError: invalid syntax. Perhaps you forgot a comma?</code></pre>
 <p>So we would need to use square brackets to access the variable.</p>
-<div id="2cbeaa12" class="cell" data-execution_count="28">
+<div id="411feb06" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>demo_df.assign(pop_per_sq_km<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="st">"pop 20"</span>] <span class="op">/</span> x.area_sq_miles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
@@ -1826,7 +1826,7 @@ SyntaxError: invalid syntax. Perhaps you forgot a comma?</code></pre>
 <hr>
 <p>The square brackets are also needed if our variable name is a reserved word or method name in Python.</p>
 <p>For example, if our population variable was called <code>pop</code>, we would get an error when accessing it with dot notation in the <code>assign()</code> method, because <code>pop</code> is a method name.</p>
-<div id="7dd2183f" class="cell" data-execution_count="29">
+<div id="6db3c7a6" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>demo_df <span class="op">=</span> area_pop.rename(columns<span class="op">=</span>{<span class="st">"pop_20"</span>: <span class="st">"pop"</span>})</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>demo_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -1880,12 +1880,12 @@ SyntaxError: invalid syntax. Perhaps you forgot a comma?</code></pre>
 </div>
 </div>
 </div>
-<div id="45909a35" class="cell" data-execution_count="30">
+<div id="e81f46a6" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>demo_df.assign(pop_per_sq_mile<span class="op">=</span><span class="kw">lambda</span> x: x.pop <span class="op">/</span> x.area_sq_miles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>TypeError: unsupported operand type(s) for /: 'method' and 'float'</code></pre>
 <p>In such a case, we can use the square brackets <code>[]</code> to access the <code>pop</code> variable.</p>
-<div id="c7372664" class="cell" data-execution_count="31">
+<div id="41e65527" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>demo_df.assign(pop_per_sq_mile<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="st">"pop"</span>] <span class="op">/</span> x.area_sq_miles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>

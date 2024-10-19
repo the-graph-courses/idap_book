@@ -2,6 +2,25 @@
 title: "Data Visualization Types"
 ---
 
+This lesson covers a basic taxonomy of data visualization types and how to create them using Plotly. It is best consumed in video format. This written lesson is here just for quick reference.
+
+First we show the different types of data visualization types. Then we show how to create each type of visualization using Plotly.
+
+# Slides
+
+![Slide 1](slides/data_viz_types/Slide1.jpeg)
+![Slide 2](slides/data_viz_types/Slide2.jpeg)
+![Slide 3](slides/data_viz_types/Slide3.jpeg)
+![Slide 4](slides/data_viz_types/Slide4.jpeg)
+![Slide 5](slides/data_viz_types/Slide5.jpeg)
+![Slide 6](slides/data_viz_types/Slide6.jpeg)
+![Slide 7](slides/data_viz_types/Slide7.jpeg)
+![Slide 8](slides/data_viz_types/Slide8.jpeg)
+![Slide 9](slides/data_viz_types/Slide9.jpeg)
+
+
+# Code
+
 ```{python}
 import plotly.express as px
 import pandas as pd

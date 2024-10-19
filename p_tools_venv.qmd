@@ -1,5 +1,5 @@
 ---
-title: "Workspace Folders and Virtual Environments with `venv` and VS Code"
+title: "Folders and Virtual Environments"
 ---
 
 ## Introduction
@@ -17,22 +17,27 @@ By the end of this lesson, you should be able to:
 
 ## Creating a New Workspace
 
-1. **Open VS Code.**
+1. On your desktop or in your `Documents` folder, create a new folder and name it `graph_courses_python`. This is going to be the main folder for many of the projects for this course so make sure you put it in an easy to reach place.   
+
+2. **Open VS Code.**
 2. Go to **File > Open Folder**.
-3. Create a new folder named `graph_courses_python` and select it.
+
+3. Navigate to the `graph_courses_python` folder you just created and select it.
+
+now create a new script and call it `test_cowsay.py`. 
+
+Type print(2 + 2) in the file then run it with the button to make sure everything is working. 
 
 Next, let's try to import a package we haven't installed yet. Create a new Python file named `test_cowsay.py` and add the following line:
 
 ```{python}
-#| eval: false
+# | eval: false
 import cowsay
+
+cowsay.cow("Hello, World!")
 ```
 
 This will not work because we haven't installed the `cowsay` package yet. To install it properly, we'll need to use virtual environments.
-
-## Understanding Virtual Environments
-
-Virtual environments are isolated Python environments that allow you to manage packages for specific projects without affecting your system-wide Python installation.
 
 ### Environments & Interpreter
 
@@ -61,7 +66,8 @@ Now we've created and selected our virtual environment. We can install packages 
 Let's install the `cowsay` package.
 
 1. Open a **new terminal** in VS Code.
-2. Ensure the terminal is using your virtual environment.
+You can do this with the terminal file menu option then selecting 'new terminal'. 
+2. Ensure the terminal is using your virtual environment. You can do this by hovering over the terminal icon in terminal window. It should mention that there is an activated environment for ....venv among other things
 3. Run the following command:
 
 ```{bash}
@@ -69,7 +75,12 @@ Let's install the `cowsay` package.
 pip install cowsay
 ```
 
+Sometimes pip disappears off path randomly. Restart vscode, select interpreter again, and it should fix it. Seems to be some bug with VS Code. 
+
+
+
 Refresh your environment if necessary. You should now see the `cowsay` package in the list of installed packages.
+
 
 Now we can use the package. Open `test_cowsay.py` and click the run button to execute the script.
 
@@ -77,20 +88,23 @@ You should see a cow saying hello!
 
 ## Summary of Key Steps
 
-For each new Python project, follow these steps:
+Congrats! You have now created a virtual environment and installed a package. 
+
+These are key steps for any new Python project:
 
 1. **F**older: Create a project folder.
 2. **E**nvironment: Set up a virtual environment.
 3. **I**nterpreter: Select the appropriate Python interpreter.
 4. **L**ibraries: Install the necessary packages.
 
-Remember the acronym **FEIL** to help you recall these steps.
+Remember the acronym **FEIL** to help you recall these steps. (If you don't complete these steps you increase your chances of "FEIL"ure 😅)
+It's a bit of a pain to have to set up a virtual environment every time you start a new project, but it's a good habit to get into. 
 
 ## Demonstrating Environment Isolation
 
 Let's demonstrate that the virtual environment is isolated.
 
-1. Open your previous workspace `my_first_workspace` in a new VS Code window.
+1. Open your previous workspace `my_first_workspace` with the File > Open Folder menu option.
 2. Create a Python file and try to use the `cowsay` package:
 
     ```{python}
@@ -104,7 +118,7 @@ Now, let's return to our main folder/workspace. This is where you'll conduct mos
 
 ## Installing Course Packages
 
-As a final step, let's install the packages we'll need for the course. While we could install each package as we encounter it, it's more efficient to install them all at once. In the terminal, run the following command:
+As a final step, let's install the packages we'll need for the course. While we could install each package as we encounter it, it's more efficient to install them all at once. In the terminal, run the following command. Type these very carefully. 
 
 ```{bash}
 #| eval: false
@@ -116,6 +130,8 @@ pip install plotly pandas jupyter ipykernel kaleido itables
 - **jupyter** and **ipykernel**: Allow us to use Quarto to display our plots.
 - **kaleido**: Library for saving plots in different formats.
 - **itables**: Library for displaying tables in Quarto.
+
+When its done installing, your cursor in the terminal should be active again. e.g. you should be able to press enter to start a new command. 
 
 Keep this list of packages handy for future reference, as you'll likely need them for most projects.
 

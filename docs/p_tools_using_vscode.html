@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Workspace Folders and Virtual Environments with venv and VS Code – Introduction to Data Science with Python</title>
+<title>10&nbsp; Installing and Using VS Code – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_foundations_quarto.html" rel="next">
-<link href="./p_foundations_using_vscode.html" rel="prev">
+<link href="./p_tools_venv.html" rel="next">
+<link href="./p_tools_installing_python.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_venv.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_tools_installing_python.html">Tools for Local Python</a></li><li class="breadcrumb-item"><a href="./p_tools_using_vscode.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -190,30 +190,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Intro to Loops in Python</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_installing_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_using_vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Using VS Code</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_venv.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -228,19 +204,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_data_viz_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_univariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_multivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
       </ul>
@@ -248,12 +224,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Data Manipulation</span></a>
+ <span class="menu-text">Tools for Local Python</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_installing_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_using_vscode.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_venv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Manipulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_subset_columns.html" class="sidebar-item-text sidebar-link">
@@ -308,28 +319,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">8.2</span> Learning Objectives</a></li>
-  <li><a href="#creating-a-new-workspace" id="toc-creating-a-new-workspace" class="nav-link" data-scroll-target="#creating-a-new-workspace"><span class="header-section-number">8.3</span> Creating a New Workspace</a></li>
-  <li><a href="#understanding-virtual-environments" id="toc-understanding-virtual-environments" class="nav-link" data-scroll-target="#understanding-virtual-environments"><span class="header-section-number">8.4</span> Understanding Virtual Environments</a>
-  <ul class="collapse">
-  <li><a href="#environments-interpreter" id="toc-environments-interpreter" class="nav-link" data-scroll-target="#environments-interpreter"><span class="header-section-number">8.4.1</span> Environments &amp; Interpreter</a></li>
-  </ul></li>
-  <li><a href="#creating-a-virtual-environment" id="toc-creating-a-virtual-environment" class="nav-link" data-scroll-target="#creating-a-virtual-environment"><span class="header-section-number">8.5</span> Creating a Virtual Environment</a></li>
-  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">8.6</span> Installing Packages</a></li>
-  <li><a href="#summary-of-key-steps" id="toc-summary-of-key-steps" class="nav-link" data-scroll-target="#summary-of-key-steps"><span class="header-section-number">8.7</span> Summary of Key Steps</a></li>
-  <li><a href="#demonstrating-environment-isolation" id="toc-demonstrating-environment-isolation" class="nav-link" data-scroll-target="#demonstrating-environment-isolation"><span class="header-section-number">8.8</span> Demonstrating Environment Isolation</a></li>
-  <li><a href="#installing-course-packages" id="toc-installing-course-packages" class="nav-link" data-scroll-target="#installing-course-packages"><span class="header-section-number">8.9</span> Installing Course Packages</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8.10</span> Conclusion</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">10.1</span> Introduction</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">10.2</span> Learning Objectives</a></li>
+  <li><a href="#installing-vs-code" id="toc-installing-vs-code" class="nav-link" data-scroll-target="#installing-vs-code"><span class="header-section-number">10.3</span> Installing VS Code</a></li>
+  <li><a href="#navigating-the-explorer-tab" id="toc-navigating-the-explorer-tab" class="nav-link" data-scroll-target="#navigating-the-explorer-tab"><span class="header-section-number">10.4</span> Navigating the Explorer Tab</a></li>
+  <li><a href="#writing-and-saving-python-code" id="toc-writing-and-saving-python-code" class="nav-link" data-scroll-target="#writing-and-saving-python-code"><span class="header-section-number">10.5</span> Writing and Saving Python Code</a></li>
+  <li><a href="#installing-the-python-extension" id="toc-installing-the-python-extension" class="nav-link" data-scroll-target="#installing-the-python-extension"><span class="header-section-number">10.6</span> Installing the Python Extension</a></li>
+  <li><a href="#running-your-python-script" id="toc-running-your-python-script" class="nav-link" data-scroll-target="#running-your-python-script"><span class="header-section-number">10.7</span> Running Your Python Script</a></li>
+  <li><a href="#using-the-command-palette" id="toc-using-the-command-palette" class="nav-link" data-scroll-target="#using-the-command-palette"><span class="header-section-number">10.8</span> Using the Command Palette</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">10.9</span> Wrap Up</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_venv.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_tools_using_vscode.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_venv.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_tools_installing_python.html">Tools for Local Python</a></li><li class="breadcrumb-item"><a href="./p_tools_using_vscode.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></h1>
 </div>
 
 
@@ -346,115 +353,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
-<p>In this lesson, we will explore virtual environments in Python using Visual Studio Code (VS Code). We’ll create a new workspace, set up a virtual environment, and install packages specific to our project.</p>
+<section id="introduction" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">10.1</span> Introduction</h2>
+<p>In this lesson, we will explore Visual Studio Code (VS Code), a powerful and versatile editor for writing, running, and debugging Python code. VS Code is widely used due to its rich feature set and extensive extension library, which makes coding more efficient and enjoyable.</p>
 </section>
-<section id="learning-objectives" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">8.2</span> Learning Objectives</h2>
+<section id="learning-objectives" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">10.2</span> Learning Objectives</h2>
 <p>By the end of this lesson, you should be able to:</p>
 <ul>
-<li>Create a new workspace in VS Code</li>
-<li>Understand the concept of virtual environments</li>
-<li>Create and use a virtual environment in VS Code</li>
-<li>Install and use packages within a virtual environment</li>
+<li>Open VS Code and navigate to the editor, terminal, and explorer tabs.</li>
+<li>Create a new Python file and run it using the Python extension.</li>
+<li>Use the Command Palette to search for and select a color theme.</li>
 </ul>
 </section>
-<section id="creating-a-new-workspace" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="creating-a-new-workspace"><span class="header-section-number">8.3</span> Creating a New Workspace</h2>
-<ol type="1">
-<li><strong>Open VS Code.</strong></li>
-<li>Go to <strong>File &gt; Open Folder</strong>.</li>
-<li>Create a new folder named <code>graph_courses_python</code> and select it.</li>
-</ol>
-<p>Next, let’s try to import a package we haven’t installed yet. Create a new Python file named <code>test_cowsay.py</code> and add the following line:</p>
-<div id="3cafb955" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This will not work because we haven’t installed the <code>cowsay</code> package yet. To install it properly, we’ll need to use virtual environments.</p>
+<section id="installing-vs-code" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="installing-vs-code"><span class="header-section-number">10.3</span> Installing VS Code</h2>
+<p>VS Code is available for Windows, macOS, and Linux. Search for “VS Code” in your favorite search engine and go to the official website, code.visualstudio.com. Download the version for your computer’s operating system.</p>
+<p>After installing VS Code, you may need to drag the icon to your applications folder.</p>
+<p>From your applications folder, open VS Code.</p>
 </section>
-<section id="understanding-virtual-environments" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="understanding-virtual-environments"><span class="header-section-number">8.4</span> Understanding Virtual Environments</h2>
-<p>Virtual environments are isolated Python environments that allow you to manage packages for specific projects without affecting your system-wide Python installation.</p>
-<section id="environments-interpreter" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="environments-interpreter"><span class="header-section-number">8.4.1</span> Environments &amp; Interpreter</h3>
+<section id="navigating-the-explorer-tab" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="navigating-the-explorer-tab"><span class="header-section-number">10.4</span> Navigating the Explorer Tab</h2>
+<p>The <strong>Explorer</strong> tab displays the files and folders in your current workspace. When you open VS Code for the first time, it may indicate that you have not yet opened a folder. Most of our work in Python will be organized in folders (also known as workspaces) that contain multiple files.</p>
+<p>Let’s create our first workspace:</p>
+<ol type="1">
+<li>On your computer, navigate to your desktop or another memorable location.</li>
+<li>Create a new folder called <code>first_python_workspace</code>.</li>
+<li>In VS Code, click on the <strong>“Open Folder”</strong> button and locate your newly created folder. Alternatively, you can drag the folder into the VS Code window.</li>
+</ol>
+<p>Now that your workspace is open in VS Code, you can create a new file:</p>
+<ol type="1">
+<li>In the <strong>Explorer</strong> tab, right-click inside the workspace folder.</li>
+<li>Select <strong>“New File”</strong>.</li>
+<li>Name the file <code>first_script.py</code>. The file will automatically open in the editor.</li>
+</ol>
+</section>
+<section id="writing-and-saving-python-code" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="writing-and-saving-python-code"><span class="header-section-number">10.5</span> Writing and Saving Python Code</h2>
+<p>Let’s write some Python code in your new file:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To save the file, press <code>Ctrl + S</code> (or <code>Cmd + S</code> on macOS).</p>
+</section>
+<section id="installing-the-python-extension" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="installing-the-python-extension"><span class="header-section-number">10.6</span> Installing the Python Extension</h2>
+<p>To run Python code within VS Code, we need to install the Python extension:</p>
+<ol type="1">
+<li>Click on the <strong>Extensions</strong> tab on the left sidebar (it looks like four squares).</li>
+<li>In the search bar at the top, type <strong>“Python”</strong>.</li>
+<li>Find the extension named <strong>“Python”</strong> published by Microsoft, and click <strong>Install</strong>.</li>
+</ol>
+</section>
+<section id="running-your-python-script" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="running-your-python-script"><span class="header-section-number">10.7</span> Running Your Python Script</h2>
+<p>With the Python extension installed, you can now run your script:</p>
+<ol type="1">
+<li><p>Open <code>first_script.py</code> if it’s not already open.</p></li>
+<li><p>Click on the <strong>Run</strong> icon (a play button) in the top right corner of the editor.</p>
 <ul>
-<li><strong>Environments</strong> are for package management.</li>
-<li>The <strong>interpreter</strong> is the Python version you’re using.</li>
-</ul>
-</section>
-</section>
-<section id="creating-a-virtual-environment" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="creating-a-virtual-environment"><span class="header-section-number">8.5</span> Creating a Virtual Environment</h2>
-<ol type="1">
-<li>Open the <strong>Command Palette</strong> (<strong>View &gt; Command Palette</strong> or <code>Ctrl+Shift+P</code>).</li>
-<li>Type <code>Python: Create Environment</code> and select it.</li>
-<li>Choose <strong>Venv</strong> as the environment type.</li>
-<li>Select the Python interpreter you want to use (e.g., Python 3.12.0).</li>
+<li>Alternatively, you can right-click inside the editor and select RUn python then <strong>“Run Python File in Terminal”</strong>.</li>
+</ul></li>
+<li><p>A terminal window will open at the bottom of the screen, and your code will execute. You should see the output:</p>
+<pre><code>4</code></pre></li>
 </ol>
-<p>You should now see a new folder called <code>.venv</code>. This is the virtual environment. Inside it is a folder called <code>lib</code>, which contains packages.</p>
-<p>Next, tell VS Code to use this virtual environment:</p>
-<ol type="1">
-<li>Open the <strong>Command Palette</strong> again.</li>
-<li>Type <code>Python: Select Interpreter</code> and choose it.</li>
-<li>Select the interpreter associated with your virtual environment (it should be listed under <code>.venv</code>).</li>
-</ol>
-<p>Now we’ve created and selected our virtual environment. We can install packages without affecting other projects.</p>
 </section>
-<section id="installing-packages" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="installing-packages"><span class="header-section-number">8.6</span> Installing Packages</h2>
-<p>Let’s install the <code>cowsay</code> package.</p>
-<ol type="1">
-<li>Open a <strong>new terminal</strong> in VS Code.</li>
-<li>Ensure the terminal is using your virtual environment.</li>
-<li>Run the following command:</li>
+<section id="using-the-command-palette" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="using-the-command-palette"><span class="header-section-number">10.8</span> Using the Command Palette</h2>
+<p>The <strong>Command Palette</strong> is a powerful feature in VS Code that allows you to access various commands and settings:</p>
+<p>To access it, click on the search bar at the top of vscode window, then either press &gt; or select the ‘show and run commands’ option.</p>
+<p>then type ‘theme’ and select ‘Preferences: Color Theme’.</p>
+<ol start="3" type="1">
+<li>Use the up and down arrow keys to cycle through the available color themes.</li>
+<li>Press <code>Enter</code> to select your preferred theme.</li>
 </ol>
-<pre class="{bash}"><code>#| eval: false
-pip install cowsay</code></pre>
-<p>Refresh your environment if necessary. You should now see the <code>cowsay</code> package in the list of installed packages.</p>
-<p>Now we can use the package. Open <code>test_cowsay.py</code> and click the run button to execute the script.</p>
-<p>You should see a cow saying hello!</p>
 </section>
-<section id="summary-of-key-steps" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="summary-of-key-steps"><span class="header-section-number">8.7</span> Summary of Key Steps</h2>
-<p>For each new Python project, follow these steps:</p>
-<ol type="1">
-<li><strong>F</strong>older: Create a project folder.</li>
-<li><strong>E</strong>nvironment: Set up a virtual environment.</li>
-<li><strong>I</strong>nterpreter: Select the appropriate Python interpreter.</li>
-<li><strong>L</strong>ibraries: Install the necessary packages.</li>
-</ol>
-<p>Remember the acronym <strong>FEIL</strong> to help you recall these steps.</p>
-</section>
-<section id="demonstrating-environment-isolation" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="demonstrating-environment-isolation"><span class="header-section-number">8.8</span> Demonstrating Environment Isolation</h2>
-<p>Let’s demonstrate that the virtual environment is isolated.</p>
-<ol type="1">
-<li><p>Open your previous workspace <code>my_first_workspace</code> in a new VS Code window.</p></li>
-<li><p>Create a Python file and try to use the <code>cowsay</code> package:</p>
-<p>::: {#b6d3bf73 .cell execution_count=2} <code>{.python .cell-code}  import cowsay</code> :::</p></li>
-</ol>
-<p>This will probably not work because <code>cowsay</code> is not installed in that environment. If it does work, it means you have <code>cowsay</code> installed globally, which is okay.</p>
-<p>Now, let’s return to our main folder/workspace. This is where you’ll conduct most of your analysis for this course.</p>
-</section>
-<section id="installing-course-packages" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="installing-course-packages"><span class="header-section-number">8.9</span> Installing Course Packages</h2>
-<p>As a final step, let’s install the packages we’ll need for the course. While we could install each package as we encounter it, it’s more efficient to install them all at once. In the terminal, run the following command:</p>
-<pre class="{bash}"><code>#| eval: false
-pip install plotly pandas jupyter ipykernel kaleido itables</code></pre>
+<section id="wrap-up" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">10.9</span> Wrap Up</h2>
+<p>In this lesson, we’ve:</p>
 <ul>
-<li><strong>pandas</strong>: Data manipulation library.</li>
-<li><strong>plotly</strong>: Visualization library.</li>
-<li><strong>jupyter</strong> and <strong>ipykernel</strong>: Allow us to use Quarto to display our plots.</li>
-<li><strong>kaleido</strong>: Library for saving plots in different formats.</li>
-<li><strong>itables</strong>: Library for displaying tables in Quarto.</li>
+<li><strong>Installed VS Code</strong> and set up a workspace.</li>
+<li><strong>Created and saved a Python script</strong>.</li>
+<li><strong>Installed the Python extension</strong> to enable running and debugging code.</li>
+<li><strong>Used the Command Palette</strong> to customize the editor’s appearance.</li>
 </ul>
-<p>Keep this list of packages handy for future reference, as you’ll likely need them for most projects.</p>
-<p>This command will install all the required packages in one go. If your installation stops at some point, try rerunning the command. Sometimes network issues may cause the installation to fail. If it freezes for more than 10 minutes, close the terminal and rerun the command.</p>
-</section>
-<section id="conclusion" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.10</span> Conclusion</h2>
-<p>You’ve now learned how to create a workspace, set up a virtual environment, install packages, and use them in your Python projects. Remember that each project should have its own virtual environment to keep dependencies isolated and manageable.</p>
+<p>Happy coding!</p>
 
 
 </section>
@@ -882,13 +863,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./p_foundations_using_vscode.html" class="pagination-link" aria-label="Using VS Code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Using VS Code</span></span>
+      <a href="./p_tools_installing_python.html" class="pagination-link" aria-label="Installing Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installing Python</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_foundations_quarto.html" class="pagination-link" aria-label="Using Quarto">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./p_tools_venv.html" class="pagination-link" aria-label="Folders and Virtual Environments">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -900,10 +881,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_venv.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_tools_using_vscode.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>TEMPORARY For a PDF copy, please visit this <a href="https://raw.githubusercontent.com/the-graph-courses/idar_book/main/pdf/Introduction-to-Data-Analysis-with-R.pdf">page</a>.</p>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 

@@ -11,6 +11,9 @@ Most of our documents in the GRAPH courses are actually written in Quarto!
 
 In this lesson, we will cover the basics of this powerful tool.
 
+Note that for this lesson, the video may be easier to understand that the lesson notes, since there are many Graphic-user-interface steps that are hard to describe in writing. 
+
+
 ## Learning Objectives
 
 By the end of this lesson, you should be able to:
@@ -23,7 +26,11 @@ By the end of this lesson, you should be able to:
 
 ## Installing Quarto
 
-To get started, you first need to install Quarto. You can download it from the [Quarto website](https://quarto.org/docs/download/).
+To get started, you first need to install Quarto.
+
+Search for quarto download in your favorite search engine. Then follow the instructions for your operating system. 
+
+On a mac this will mean downloading an .pkg or dmg file then double clicking it to start the installation. 
 
 After installing, you can check that it is installed by running the following command in the command line or terminal:
 
@@ -69,7 +76,15 @@ World
 
 ## Adding Code Chunks
 
-You can add code chunks to your document by using the ```{python} syntax. The shortcut to insert a code chunk is to type `Cmd + Option + I` (on Mac) or `Ctrl + Alt + I` (on Windows/Linux). Alternatively, you can click on the "..." button at the top right of the screen.
+You can add code chunks to your document by using the following syntax:
+
+```markdown
+```{python}
+# Your code here
+```
+```
+
+The shortcut to insert a code chunk is to type `Cmd + Shift + I` (on Mac) or `Ctrl + Shift + I` (on Windows). Alternatively, you can click on the "..." button at the top right of the screen.
 
 Let's create a code chunk that adds two numbers together and displays the result:
 
@@ -79,9 +94,9 @@ Let's create a code chunk that adds two numbers together and displays the result
 
 You should see a "Run Cell" button in the toolbar. Click this to run the code chunk.
 
-VSCode may prompt you to install a specific package. Go ahead and install it.
+VSCode may prompt you to install the ipykernel package if you have not yet installed it in your current environment. Go ahead and install it. (or rewatch our video on setting up a virtual environment if you are not sure how to do this).
 
-Now practice adding one more code chunk at the end of the document that multiplies two numbers.
+Now practice adding one more code chunk at the end of the document that multiplies 3 by 3.
 
 As you add these, you should see the buttons "Run Next Cell" and "Run Above" also appear.
 
@@ -90,7 +105,9 @@ There are two shortcuts you should also get used to:
 - `Cmd + Enter` (Mac) or `Ctrl + Enter` (Windows/Linux) to run the code chunk
 - `option + Enter` (Mac) or `Alt + Enter` (Windows/Linux) to run the current line or the highlighted section of code.
 
-So we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.
+to test these, add multiple lines of code to one code chunk then pracyice ruinning the whole thing with the first shortcut, then line by line with the second. 
+
+So as you can see we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.
 
 Let's see how to do this.
 
@@ -108,15 +125,13 @@ format: html
 
 The `format` is where we can specify the output format of the document. For now, we are trying to keep things simple and just use HTML.
 
-For things to render properly, however, we need the `jupyter` package. So install this in a code chunk:
+For things to render properly, you need the `jupyter` package. Watch our video on setting up a virtual environment if you have not done this yet and are not sure how to install packages.
 
-```{python}
-!pip install jupyter
-```
+ender the document by clicking on the "Render" button 
 
-You can delete this code after it's done running, since you only need to install packages once for each project.
+You should see a new tab open in your vscode. 
 
-Now, if we render the document by clicking on the "Render" button or by using the hotkey `Cmd + Shift + K` (on Mac) or `Ctrl + Shift + K` (on Windows/Linux), we should see the document rendered.
+If you go to the explorer, you should see a new file called `first_quarto_doc.html`. 
 
 So now we have the main elements of a Quarto document:
 
@@ -126,9 +141,15 @@ So now we have the main elements of a Quarto document:
 - Code chunks
 - The outputs of those code chunks
 
-These things together make a very powerful tool.
+These things together make a very powerful tool for reporting.
 
-Let's try to make a few more types of documents, then we'll come back to see how to use these tools a bit more.
+Something something 
+
+format:
+  html:
+    embed-resources: true
+
+Another powerful feature of Quarto is its ability to output to many formats.
 
 ## Output Formats
 
@@ -139,9 +160,10 @@ Try the following formats:
 - `html`: Renders the document as an HTML webpage.
 - `pdf`: Renders the document as a PDF. You will need to have LaTeX (or tinytex) installed on your computer to use this format.
 - `docx`: Renders the document as a Microsoft Word document.
-- `dashboard`: Renders the document as an interactive dashboard.
 - `pptx`: Renders the document as a PowerPoint presentation.
 - `revealjs`: Renders the document as an HTML slideshow.
+- `dashboard`: Renders the document as an interactive dashboard.
+
 
 There is a chance some of these may not work on your computer due to different operating systems or versions of software.
 
@@ -263,6 +285,7 @@ By default, pandas DataFrames display adequately in Quarto. However, to make the
 
 Make sure you have the `itables` package installed. If not, install it:
 ```{python}
+#| eval: false
 !pip install itables
 ```
 
@@ -281,14 +304,6 @@ Of course, interactive tables will only work in HTML formats. We'll look at tabl
 ## Displaying Plots
 
 For interactive plots, we can use the `plotly` package.
-
-First, install `plotly`:
-
-```{python}
-!pip install plotly
-```
-
-Then run something like:
 
 ```{python}
 tips = px.data.tips()

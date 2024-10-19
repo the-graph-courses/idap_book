@@ -72,9 +72,10 @@ Import the train dataset and repeat the process
 ## Getting data from your Drive
 
 1. Search for "[your city] housing filetype:csv" on Google
-2. In the files tab, click the button to mount your drive
-3. Create a folder and upload the downloaded file
-4. Import it with pandas as before
+2. Download the file
+3. In the files tab, click the button to mount your drive
+4. Create a folder and upload the downloaded file
+5. Import it with pandas as before
 
 ## Where is your notebook saved?
 

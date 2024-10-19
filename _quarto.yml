@@ -14,8 +14,6 @@ book:
   page-footer:
     left: |
       Book created by <a href="https://thegraphcourses.org/">The GRAPH Courses</a>
-    right: |
-      TEMPORARY For a PDF copy, please visit this <a href="https://raw.githubusercontent.com/the-graph-courses/idar_book/main/pdf/Introduction-to-Data-Analysis-with-R.pdf">page</a>.
   chapters:
     - index.qmd
 
@@ -28,15 +26,17 @@ book:
         - p_foundations_functions_methods.qmd
         - p_foundations_data_structures.qmd
         - p_foundations_for_loops.qmd
-        - p_foundations_installing_python.qmd
-        - p_foundations_using_vscode.qmd
-        - p_foundations_venv.qmd
-        - p_foundations_quarto.qmd
     - part: "Data Visualization"
       chapters:
         - p_data_on_display_data_viz_types.qmd
         - p_data_on_display_univariate.qmd
         - p_data_on_display_multivariate.qmd
+    - part: "Tools for Local Python"
+      chapters:
+        - p_tools_installing_python.qmd
+        - p_tools_using_vscode.qmd
+        - p_tools_venv.qmd
+        - p_tools_quarto.qmd
     - part: "Data Manipulation"
       chapters:
         - p_untangled_subset_columns.qmd

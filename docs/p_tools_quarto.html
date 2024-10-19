@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Using Quarto – Introduction to Data Science with Python</title>
+<title>12&nbsp; Using Quarto – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_data_on_display_data_viz_types.html" rel="next">
-<link href="./p_foundations_venv.html" rel="prev">
+<link href="./p_untangled_subset_columns.html" rel="next">
+<link href="./p_tools_venv.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -136,7 +136,7 @@ require(['plotly'], function(Plotly) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_quarto.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using Quarto</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_tools_installing_python.html">Tools for Local Python</a></li><li class="breadcrumb-item"><a href="./p_tools_quarto.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using Quarto</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -209,30 +209,6 @@ require(['plotly'], function(Plotly) {
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Intro to Loops in Python</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_installing_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_using_vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Using VS Code</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_venv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_foundations_quarto.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -247,19 +223,19 @@ require(['plotly'], function(Plotly) {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_data_viz_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_univariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_multivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,12 +243,47 @@ require(['plotly'], function(Plotly) {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Data Manipulation</span></a>
+ <span class="menu-text">Tools for Local Python</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_installing_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_using_vscode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_venv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_quarto.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Manipulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_subset_columns.html" class="sidebar-item-text sidebar-link">
@@ -327,32 +338,32 @@ require(['plotly'], function(Plotly) {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">9.1</span> Introduction</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">9.2</span> Learning Objectives</a></li>
-  <li><a href="#installing-quarto" id="toc-installing-quarto" class="nav-link" data-scroll-target="#installing-quarto"><span class="header-section-number">9.3</span> Installing Quarto</a></li>
-  <li><a href="#project-setup" id="toc-project-setup" class="nav-link" data-scroll-target="#project-setup"><span class="header-section-number">9.4</span> Project Setup</a></li>
-  <li><a href="#create-a-new-document" id="toc-create-a-new-document" class="nav-link" data-scroll-target="#create-a-new-document"><span class="header-section-number">9.5</span> Create a New Document</a></li>
-  <li><a href="#adding-code-chunks" id="toc-adding-code-chunks" class="nav-link" data-scroll-target="#adding-code-chunks"><span class="header-section-number">9.6</span> Adding Code Chunks</a></li>
-  <li><a href="#quarto-document-header-yaml" id="toc-quarto-document-header-yaml" class="nav-link" data-scroll-target="#quarto-document-header-yaml"><span class="header-section-number">9.7</span> Quarto Document Header (YAML)</a></li>
-  <li><a href="#output-formats" id="toc-output-formats" class="nav-link" data-scroll-target="#output-formats"><span class="header-section-number">9.8</span> Output Formats</a></li>
-  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown"><span class="header-section-number">9.9</span> Markdown</a></li>
-  <li><a href="#code-chunk-options" id="toc-code-chunk-options" class="nav-link" data-scroll-target="#code-chunk-options"><span class="header-section-number">9.10</span> Code Chunk Options</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">12.1</span> Introduction</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">12.2</span> Learning Objectives</a></li>
+  <li><a href="#installing-quarto" id="toc-installing-quarto" class="nav-link" data-scroll-target="#installing-quarto"><span class="header-section-number">12.3</span> Installing Quarto</a></li>
+  <li><a href="#project-setup" id="toc-project-setup" class="nav-link" data-scroll-target="#project-setup"><span class="header-section-number">12.4</span> Project Setup</a></li>
+  <li><a href="#create-a-new-document" id="toc-create-a-new-document" class="nav-link" data-scroll-target="#create-a-new-document"><span class="header-section-number">12.5</span> Create a New Document</a></li>
+  <li><a href="#adding-code-chunks" id="toc-adding-code-chunks" class="nav-link" data-scroll-target="#adding-code-chunks"><span class="header-section-number">12.6</span> Adding Code Chunks</a></li>
+  <li><a href="#quarto-document-header-yaml" id="toc-quarto-document-header-yaml" class="nav-link" data-scroll-target="#quarto-document-header-yaml"><span class="header-section-number">12.7</span> Quarto Document Header (YAML)</a></li>
+  <li><a href="#output-formats" id="toc-output-formats" class="nav-link" data-scroll-target="#output-formats"><span class="header-section-number">12.8</span> Output Formats</a></li>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown"><span class="header-section-number">12.9</span> Markdown</a></li>
+  <li><a href="#code-chunk-options" id="toc-code-chunk-options" class="nav-link" data-scroll-target="#code-chunk-options"><span class="header-section-number">12.10</span> Code Chunk Options</a>
   <ul class="collapse">
-  <li><a href="#global-options" id="toc-global-options" class="nav-link" data-scroll-target="#global-options"><span class="header-section-number">9.10.1</span> Global Options</a></li>
-  <li><a href="#other-code-chunk-options" id="toc-other-code-chunk-options" class="nav-link" data-scroll-target="#other-code-chunk-options"><span class="header-section-number">9.10.2</span> Other Code Chunk Options</a></li>
+  <li><a href="#global-options" id="toc-global-options" class="nav-link" data-scroll-target="#global-options"><span class="header-section-number">12.10.1</span> Global Options</a></li>
+  <li><a href="#other-code-chunk-options" id="toc-other-code-chunk-options" class="nav-link" data-scroll-target="#other-code-chunk-options"><span class="header-section-number">12.10.2</span> Other Code Chunk Options</a></li>
   </ul></li>
-  <li><a href="#displaying-tables" id="toc-displaying-tables" class="nav-link" data-scroll-target="#displaying-tables"><span class="header-section-number">9.11</span> Displaying Tables</a></li>
-  <li><a href="#displaying-plots" id="toc-displaying-plots" class="nav-link" data-scroll-target="#displaying-plots"><span class="header-section-number">9.12</span> Displaying Plots</a></li>
-  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">9.13</span> Wrapping Up</a></li>
+  <li><a href="#displaying-tables" id="toc-displaying-tables" class="nav-link" data-scroll-target="#displaying-tables"><span class="header-section-number">12.11</span> Displaying Tables</a></li>
+  <li><a href="#displaying-plots" id="toc-displaying-plots" class="nav-link" data-scroll-target="#displaying-plots"><span class="header-section-number">12.12</span> Displaying Plots</a></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">12.13</span> Wrapping Up</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_tools_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_foundations_google_colab.html">Foundations</a></li><li class="breadcrumb-item"><a href="./p_foundations_quarto.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using Quarto</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_tools_installing_python.html">Tools for Local Python</a></li><li class="breadcrumb-item"><a href="./p_tools_quarto.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using Quarto</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using Quarto</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using Quarto</span></h1>
 </div>
 
 
@@ -369,14 +380,15 @@ require(['plotly'], function(Plotly) {
 </header>
 
 
-<section id="introduction" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">9.1</span> Introduction</h2>
+<section id="introduction" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">12.1</span> Introduction</h2>
 <p>A significant part of your role as a data analyst involves communicating results to others through reports. <strong>Quarto</strong> is one of the most powerful and versatile tools for producing such reports. It enables you to generate dynamic documents by combining formatted text and results produced by code. With Quarto, you can create documents in various formats such as HTML, PDF, Word, PowerPoint slides, web dashboards, and many others.</p>
 <p>Most of our documents in the GRAPH courses are actually written in Quarto!</p>
 <p>In this lesson, we will cover the basics of this powerful tool.</p>
+<p>Note that for this lesson, the video may be easier to understand that the lesson notes, since there are many Graphic-user-interface steps that are hard to describe in writing.</p>
 </section>
-<section id="learning-objectives" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">9.2</span> Learning Objectives</h2>
+<section id="learning-objectives" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">12.2</span> Learning Objectives</h2>
 <p>By the end of this lesson, you should be able to:</p>
 <ul>
 <li>Create and render a Quarto document that includes Python code and narrative text.</li>
@@ -386,9 +398,11 @@ require(['plotly'], function(Plotly) {
 <li>Use Python packages to display tables and figures in Quarto documents.</li>
 </ul>
 </section>
-<section id="installing-quarto" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="installing-quarto"><span class="header-section-number">9.3</span> Installing Quarto</h2>
-<p>To get started, you first need to install Quarto. You can download it from the <a href="https://quarto.org/docs/download/">Quarto website</a>.</p>
+<section id="installing-quarto" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="installing-quarto"><span class="header-section-number">12.3</span> Installing Quarto</h2>
+<p>To get started, you first need to install Quarto.</p>
+<p>Search for quarto download in your favorite search engine. Then follow the instructions for your operating system.</p>
+<p>On a mac this will mean downloading an .pkg or dmg file then double clicking it to start the installation.</p>
 <p>After installing, you can check that it is installed by running the following command in the command line or terminal:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now that Quarto is installed, use it to install the <code>tinytex</code> package, which we will need to compile our PDFs:</p>
@@ -396,13 +410,13 @@ require(['plotly'], function(Plotly) {
 <p>To use all the features of Quarto in VSCode, we need to install the <strong>Quarto</strong> extension and the <strong>Jupyter</strong> extension. You can install these in the Extensions tab of VSCode.</p>
 <p>That’s a lot of installations, but fear not—you only have to do these steps once on your computer.</p>
 </section>
-<section id="project-setup" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="project-setup"><span class="header-section-number">9.4</span> Project Setup</h2>
+<section id="project-setup" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="project-setup"><span class="header-section-number">12.4</span> Project Setup</h2>
 <p>To begin, open your <code>graph_courses_python</code> project in VSCode.</p>
 <p>If you did not watch the previous video explaining project setup, please do so now. After creating your project folder, you need to create a virtual environment, select an interpreter, and install the jupyter package.</p>
 </section>
-<section id="create-a-new-document" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="create-a-new-document"><span class="header-section-number">9.5</span> Create a New Document</h2>
+<section id="create-a-new-document" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="create-a-new-document"><span class="header-section-number">12.5</span> Create a New Document</h2>
 <p>A Quarto document is a simple text file with the <code>.qmd</code> extension.</p>
 <p>To create a new Quarto document, create a new file and save it with a <code>.qmd</code> extension, for example, <code>first_quarto_doc.qmd</code>.</p>
 <p>Add two sections to your document with the following text:</p>
@@ -416,141 +430,52 @@ require(['plotly'], function(Plotly) {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>World</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="adding-code-chunks" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="adding-code-chunks"><span class="header-section-number">9.6</span> Adding Code Chunks</h2>
-<p>You can add code chunks to your document by using the ``<code>{python} syntax. The shortcut to insert a code chunk is to type</code>Cmd + Option + I<code>(on Mac) or</code>Ctrl + Alt + I` (on Windows/Linux). Alternatively, you can click on the “…” button at the top right of the screen.</p>
-<p>Let’s create a code chunk that adds two numbers together and displays the result:</p>
-<div id="c02247b6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<section id="adding-code-chunks" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="adding-code-chunks"><span class="header-section-number">12.6</span> Adding Code Chunks</h2>
+<p>You can add code chunks to your document by using the following syntax:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>::: {#5a538691 .cell execution_count=1}</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">``` {.python .cell-code}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<pre><code>
+The shortcut to insert a code chunk is to type `Cmd + Shift + I` (on Mac) or `Ctrl + Shift + I` (on Windows). Alternatively, you can click on the "..." button at the top right of the screen.
+
+Let's create a code chunk that adds two numbers together and displays the result:
+
+::: {#aef0075d .cell execution_count=2}
+``` {.python .cell-code}
+2 + 2</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>4</code></pre>
 </div>
-</div>
+<p>:::</p>
 <p>You should see a “Run Cell” button in the toolbar. Click this to run the code chunk.</p>
-<p>VSCode may prompt you to install a specific package. Go ahead and install it.</p>
-<p>Now practice adding one more code chunk at the end of the document that multiplies two numbers.</p>
+<p>VSCode may prompt you to install the ipykernel package if you have not yet installed it in your current environment. Go ahead and install it. (or rewatch our video on setting up a virtual environment if you are not sure how to do this).</p>
+<p>Now practice adding one more code chunk at the end of the document that multiplies 3 by 3.</p>
 <p>As you add these, you should see the buttons “Run Next Cell” and “Run Above” also appear.</p>
 <p>There are two shortcuts you should also get used to:</p>
 <ul>
 <li><code>Cmd + Enter</code> (Mac) or <code>Ctrl + Enter</code> (Windows/Linux) to run the code chunk</li>
 <li><code>option + Enter</code> (Mac) or <code>Alt + Enter</code> (Windows/Linux) to run the current line or the highlighted section of code.</li>
 </ul>
-<p>So we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.</p>
+<p>to test these, add multiple lines of code to one code chunk then pracyice ruinning the whole thing with the first shortcut, then line by line with the second.</p>
+<p>So as you can see we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.</p>
 <p>Let’s see how to do this.</p>
 </section>
-<section id="quarto-document-header-yaml" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="quarto-document-header-yaml"><span class="header-section-number">9.7</span> Quarto Document Header (YAML)</h2>
+<section id="quarto-document-header-yaml" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="quarto-document-header-yaml"><span class="header-section-number">12.7</span> Quarto Document Header (YAML)</h2>
 <p>At the top of the document, let’s add a YAML section. This is where we can specify details about the document, such as its title, author, and format.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My First Quarto Document"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My First Quarto Document"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>format</code> is where we can specify the output format of the document. For now, we are trying to keep things simple and just use HTML.</p>
-<p>For things to render properly, however, we need the <code>jupyter</code> package. So install this in a code chunk:</p>
-<div id="a445722e" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install jupyter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Requirement already satisfied: jupyter in ./.venv/lib/python3.12/site-packages (1.1.1)
-Requirement already satisfied: notebook in ./.venv/lib/python3.12/site-packages (from jupyter) (7.2.2)
-Requirement already satisfied: jupyter-console in ./.venv/lib/python3.12/site-packages (from jupyter) (6.6.3)
-Requirement already satisfied: nbconvert in ./.venv/lib/python3.12/site-packages (from jupyter) (7.16.4)
-Requirement already satisfied: ipykernel in ./.venv/lib/python3.12/site-packages (from jupyter) (6.29.5)
-Requirement already satisfied: ipywidgets in ./.venv/lib/python3.12/site-packages (from jupyter) (8.1.5)
-Requirement already satisfied: jupyterlab in ./.venv/lib/python3.12/site-packages (from jupyter) (4.2.5)
-Requirement already satisfied: appnope in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.1.4)
-Requirement already satisfied: comm&gt;=0.1.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.2.2)
-Requirement already satisfied: debugpy&gt;=1.6.5 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (1.8.6)
-Requirement already satisfied: ipython&gt;=7.23.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (8.27.0)
-Requirement already satisfied: jupyter-client&gt;=6.1.12 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (8.6.3)
-Requirement already satisfied: jupyter-core!=5.0.*,&gt;=4.12 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (5.7.2)
-Requirement already satisfied: matplotlib-inline&gt;=0.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.1.7)
-Requirement already satisfied: nest-asyncio in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (1.6.0)
-Requirement already satisfied: packaging in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (24.1)
-Requirement already satisfied: psutil in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (6.0.0)
-Requirement already satisfied: pyzmq&gt;=24 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (26.2.0)
-Requirement already satisfied: tornado&gt;=6.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (6.4.1)
-Requirement already satisfied: traitlets&gt;=5.4.0 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (5.14.3)
-Requirement already satisfied: widgetsnbextension~=4.0.12 in ./.venv/lib/python3.12/site-packages (from ipywidgets-&gt;jupyter) (4.0.13)
-Requirement already satisfied: jupyterlab-widgets~=3.0.12 in ./.venv/lib/python3.12/site-packages (from ipywidgets-&gt;jupyter) (3.0.13)
-Requirement already satisfied: prompt-toolkit&gt;=3.0.30 in ./.venv/lib/python3.12/site-packages (from jupyter-console-&gt;jupyter) (3.0.48)
-Requirement already satisfied: pygments in ./.venv/lib/python3.12/site-packages (from jupyter-console-&gt;jupyter) (2.18.0)
-Requirement already satisfied: async-lru&gt;=1.0.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.0.4)
-Requirement already satisfied: httpx&gt;=0.25.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (0.27.2)
-Requirement already satisfied: jinja2&gt;=3.0.3 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (3.1.4)
-Requirement already satisfied: jupyter-lsp&gt;=2.0.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.2.5)
-Requirement already satisfied: jupyter-server&lt;3,&gt;=2.4.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.14.2)
-Requirement already satisfied: jupyterlab-server&lt;3,&gt;=2.27.1 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.27.3)
-Requirement already satisfied: notebook-shim&gt;=0.2 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (0.2.4)
-Requirement already satisfied: setuptools&gt;=40.1.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (75.1.0)
-Requirement already satisfied: beautifulsoup4 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (4.12.3)
-Requirement already satisfied: bleach!=5.0.0 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (6.1.0)
-Requirement already satisfied: defusedxml in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.7.1)
-Requirement already satisfied: jupyterlab-pygments in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.3.0)
-Requirement already satisfied: markupsafe&gt;=2.0 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (2.1.5)
-Requirement already satisfied: mistune&lt;4,&gt;=2.0.3 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (3.0.2)
-Requirement already satisfied: nbclient&gt;=0.5.0 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.10.0)
-Requirement already satisfied: nbformat&gt;=5.7 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (5.10.4)
-Requirement already satisfied: pandocfilters&gt;=1.4.1 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (1.5.1)
-Requirement already satisfied: tinycss2 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (1.3.0)
-Requirement already satisfied: six&gt;=1.9.0 in ./.venv/lib/python3.12/site-packages (from bleach!=5.0.0-&gt;nbconvert-&gt;jupyter) (1.16.0)
-Requirement already satisfied: webencodings in ./.venv/lib/python3.12/site-packages (from bleach!=5.0.0-&gt;nbconvert-&gt;jupyter) (0.5.1)
-Requirement already satisfied: anyio in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (4.6.0)
-Requirement already satisfied: certifi in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (2024.8.30)
-Requirement already satisfied: httpcore==1.* in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (1.0.5)
-Requirement already satisfied: idna in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (2.10)
-Requirement already satisfied: sniffio in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (1.3.1)
-Requirement already satisfied: h11&lt;0.15,&gt;=0.13 in ./.venv/lib/python3.12/site-packages (from httpcore==1.*-&gt;httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (0.14.0)
-Requirement already satisfied: decorator in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (5.1.1)
-Requirement already satisfied: jedi&gt;=0.16 in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.19.1)
-Requirement already satisfied: stack-data in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.6.3)
-Requirement already satisfied: pexpect&gt;4.3 in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (4.9.0)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in ./.venv/lib/python3.12/site-packages (from jupyter-client&gt;=6.1.12-&gt;ipykernel-&gt;jupyter) (2.9.0.post0)
-Requirement already satisfied: platformdirs&gt;=2.5 in ./.venv/lib/python3.12/site-packages (from jupyter-core!=5.0.*,&gt;=4.12-&gt;ipykernel-&gt;jupyter) (4.3.6)
-Requirement already satisfied: argon2-cffi&gt;=21.1 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (23.1.0)
-Requirement already satisfied: jupyter-events&gt;=0.9.0 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.10.0)
-Requirement already satisfied: jupyter-server-terminals&gt;=0.4.4 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.5.3)
-Requirement already satisfied: overrides&gt;=5.0 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (7.7.0)
-Requirement already satisfied: prometheus-client&gt;=0.9 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.21.0)
-Requirement already satisfied: send2trash&gt;=1.8.2 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.8.3)
-Requirement already satisfied: terminado&gt;=0.8.3 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.18.1)
-Requirement already satisfied: websocket-client&gt;=1.7 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.8.0)
-Requirement already satisfied: babel&gt;=2.10 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.16.0)
-Requirement already satisfied: json5&gt;=0.9.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.9.25)
-Requirement already satisfied: jsonschema&gt;=4.18.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (4.23.0)
-Requirement already satisfied: requests&gt;=2.31 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.32.3)
-Requirement already satisfied: fastjsonschema&gt;=2.15 in ./.venv/lib/python3.12/site-packages (from nbformat&gt;=5.7-&gt;nbconvert-&gt;jupyter) (2.20.0)
-Requirement already satisfied: wcwidth in ./.venv/lib/python3.12/site-packages (from prompt-toolkit&gt;=3.0.30-&gt;jupyter-console-&gt;jupyter) (0.2.13)
-Requirement already satisfied: soupsieve&gt;1.2 in ./.venv/lib/python3.12/site-packages (from beautifulsoup4-&gt;nbconvert-&gt;jupyter) (2.6)
-Requirement already satisfied: argon2-cffi-bindings in ./.venv/lib/python3.12/site-packages (from argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (21.2.0)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in ./.venv/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.8.4)
-Requirement already satisfied: attrs&gt;=22.2.0 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (24.2.0)
-Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2023.12.1)
-Requirement already satisfied: referencing&gt;=0.28.4 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.35.1)
-Requirement already satisfied: rpds-py&gt;=0.7.1 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.20.0)
-Requirement already satisfied: python-json-logger&gt;=2.0.4 in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.0.7)
-Requirement already satisfied: pyyaml&gt;=5.3 in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (6.0.2)
-Requirement already satisfied: rfc3339-validator in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.1.4)
-Requirement already satisfied: rfc3986-validator&gt;=0.1.1 in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.1.1)
-Requirement already satisfied: ptyprocess&gt;=0.5 in ./.venv/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.7.0)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in ./.venv/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (3.3.2)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in ./.venv/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.2.3)
-Requirement already satisfied: executing&gt;=1.2.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (2.1.0)
-Requirement already satisfied: asttokens&gt;=2.1.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (2.4.1)
-Requirement already satisfied: pure-eval in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.2.3)
-Requirement already satisfied: fqdn in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.5.1)
-Requirement already satisfied: isoduration in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (20.11.0)
-Requirement already satisfied: jsonpointer&gt;1.13 in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (3.0.0)
-Requirement already satisfied: uri-template in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.3.0)
-Requirement already satisfied: webcolors&gt;=24.6.0 in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (24.8.0)
-Requirement already satisfied: cffi&gt;=1.0.1 in ./.venv/lib/python3.12/site-packages (from argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.17.1)
-Requirement already satisfied: pycparser in ./.venv/lib/python3.12/site-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.22)
-Requirement already satisfied: arrow&gt;=0.15.0 in ./.venv/lib/python3.12/site-packages (from isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.3.0)
-Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in ./.venv/lib/python3.12/site-packages (from arrow&gt;=0.15.0-&gt;isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.9.0.20240906)</code></pre>
-</div>
-</div>
-<p>You can delete this code after it’s done running, since you only need to install packages once for each project.</p>
-<p>Now, if we render the document by clicking on the “Render” button or by using the hotkey <code>Cmd + Shift + K</code> (on Mac) or <code>Ctrl + Shift + K</code> (on Windows/Linux), we should see the document rendered.</p>
+<p>For things to render properly, you need the <code>jupyter</code> package. Watch our video on setting up a virtual environment if you have not done this yet and are not sure how to install packages.</p>
+<p>ender the document by clicking on the “Render” button</p>
+<p>You should see a new tab open in your vscode.</p>
+<p>If you go to the explorer, you should see a new file called <code>first_quarto_doc.html</code>.</p>
 <p>So now we have the main elements of a Quarto document:</p>
 <ul>
 <li>The YAML header</li>
@@ -559,41 +484,43 @@ Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in ./.venv/lib/p
 <li>Code chunks</li>
 <li>The outputs of those code chunks</li>
 </ul>
-<p>These things together make a very powerful tool.</p>
-<p>Let’s try to make a few more types of documents, then we’ll come back to see how to use these tools a bit more.</p>
+<p>These things together make a very powerful tool for reporting.</p>
+<p>Something something</p>
+<p>format: html: embed-resources: true</p>
+<p>Another powerful feature of Quarto is its ability to output to many formats.</p>
 </section>
-<section id="output-formats" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="output-formats"><span class="header-section-number">9.8</span> Output Formats</h2>
+<section id="output-formats" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="output-formats"><span class="header-section-number">12.8</span> Output Formats</h2>
 <p>You can change the <code>format</code> value in the YAML header to experiment with other formats.</p>
 <p>Try the following formats:</p>
 <ul>
 <li><code>html</code>: Renders the document as an HTML webpage.</li>
 <li><code>pdf</code>: Renders the document as a PDF. You will need to have LaTeX (or tinytex) installed on your computer to use this format.</li>
 <li><code>docx</code>: Renders the document as a Microsoft Word document.</li>
-<li><code>dashboard</code>: Renders the document as an interactive dashboard.</li>
 <li><code>pptx</code>: Renders the document as a PowerPoint presentation.</li>
 <li><code>revealjs</code>: Renders the document as an HTML slideshow.</li>
+<li><code>dashboard</code>: Renders the document as an interactive dashboard.</li>
 </ul>
 <p>There is a chance some of these may not work on your computer due to different operating systems or versions of software.</p>
 </section>
-<section id="markdown" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="markdown"><span class="header-section-number">9.9</span> Markdown</h2>
+<section id="markdown" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="markdown"><span class="header-section-number">12.9</span> Markdown</h2>
 <p>The text inside Quarto documents is written in Markdown.</p>
 <p><strong>Markdown</strong> is a simple set of conventions for adding formatting to plain text. For example, to italicize text, you wrap it in asterisks <code>*text here*</code>, and to start a new header, you use the pound sign <code>#</code>. We will learn these in detail below.</p>
 <p>In your editor, you can refer to the “Markdown Quick Reference” or “Cheatsheet” to learn more about Markdown syntax.</p>
 <p>You can define titles of different levels by starting a line with one or more <code>#</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Level 1 Title</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Level 2 Title</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Level 3 Title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Level 1 Title</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Level 2 Title</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Level 3 Title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The body of the document consists of text that follows the Markdown syntax. A Markdown file is a text file that contains lightweight markup to help set heading levels or format text. For example, the following text:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>This is text with *italics* and **bold**.</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>You can define bulleted lists:</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>First element</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Second element</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>This is text with *italics* and **bold**.</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>You can define bulleted lists:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>First element</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Second element</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Will generate the following formatted text:</p>
 <blockquote class="blockquote">
 <p>This is text with <em>italics</em> and <strong>bold</strong>.</p>
@@ -606,48 +533,48 @@ Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in ./.venv/lib/p
 <p>Note that you need spaces before and after lists, as well as keeping the listed items on separate lines. Otherwise, they will all crunch together rather than making a list.</p>
 <p>We see that words placed between asterisks are italicized, and lines that begin with a dash are transformed into a bulleted list.</p>
 <p>The Markdown syntax allows for other formatting, such as the ability to insert links or images. For example, the following code:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Example Link</span><span class="co">](https://example.com)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Example Link</span><span class="co">](https://example.com)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>… will give the following link:</p>
 <blockquote class="blockquote">
 <p><a href="https://example.com">Example Link</a></p>
 </blockquote>
 <p>We can also embed images. In your document, you can type:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Alt text](images/picture_name.jpg)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Alt text](images/picture_name.jpg)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Replace “Alt text” with a description of the image (it can also be blank), “images” with the name of the image folder in your project, and “picture_name.jpg” with the name of the image you want to use. Alternatively, in some editors, you can drag and drop the image into your document.</p>
 </section>
-<section id="code-chunk-options" class="level2" data-number="9.10">
-<h2 data-number="9.10" class="anchored" data-anchor-id="code-chunk-options"><span class="header-section-number">9.10</span> Code Chunk Options</h2>
+<section id="code-chunk-options" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="code-chunk-options"><span class="header-section-number">12.10</span> Code Chunk Options</h2>
 <p>It is possible to pass options to each code chunk to modify its behavior.</p>
 <p>For example, a code chunk looks like this:</p>
-<div id="1660d156" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6cdef62e" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>4</code></pre>
 </div>
 </div>
 <p>But you can add options to control the code chunk’s execution and display:</p>
-<div id="a393251f" class="cell" data-execution_count="4">
+<div id="a51d9d49" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>4</code></pre>
 </div>
 </div>
 <p>In this example, the <code>echo: false</code> option tells Quarto not to display the code in the rendered document, only the output.</p>
-<section id="global-options" class="level3" data-number="9.10.1">
-<h3 data-number="9.10.1" class="anchored" data-anchor-id="global-options"><span class="header-section-number">9.10.1</span> Global Options</h3>
+<section id="global-options" class="level3" data-number="12.10.1">
+<h3 data-number="12.10.1" class="anchored" data-anchor-id="global-options"><span class="header-section-number">12.10.1</span> Global Options</h3>
 <p>You may want to apply options globally to all code chunks in your document. You can set default code execution options in the YAML header under the <code>execute</code> key.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Quarto Document"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Quarto Document"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will set <code>echo: false</code> for all code chunks.</p>
 </section>
-<section id="other-code-chunk-options" class="level3" data-number="9.10.2">
-<h3 data-number="9.10.2" class="anchored" data-anchor-id="other-code-chunk-options"><span class="header-section-number">9.10.2</span> Other Code Chunk Options</h3>
+<section id="other-code-chunk-options" class="level3" data-number="12.10.2">
+<h3 data-number="12.10.2" class="anchored" data-anchor-id="other-code-chunk-options"><span class="header-section-number">12.10.2</span> Other Code Chunk Options</h3>
 <p>Here is a comprehensive list of options you can pass to code chunks:</p>
 <table class="caption-top table">
 <colgroup>
@@ -689,46 +616,22 @@ Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in ./.venv/lib/p
 </table>
 </section>
 </section>
-<section id="displaying-tables" class="level2" data-number="9.11">
-<h2 data-number="9.11" class="anchored" data-anchor-id="displaying-tables"><span class="header-section-number">9.11</span> Displaying Tables</h2>
+<section id="displaying-tables" class="level2" data-number="12.11">
+<h2 data-number="12.11" class="anchored" data-anchor-id="displaying-tables"><span class="header-section-number">12.11</span> Displaying Tables</h2>
 <p>By default, pandas DataFrames display adequately in Quarto. However, to make them look nicer, we can use the <code>itables</code> package.</p>
 <p>Make sure you have the <code>itables</code> package installed. If not, install it:</p>
-<div id="b3f2f737" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install itables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Requirement already satisfied: itables in ./.venv/lib/python3.12/site-packages (2.2.2)
-Requirement already satisfied: ipython in ./.venv/lib/python3.12/site-packages (from itables) (8.27.0)
-Requirement already satisfied: numpy in ./.venv/lib/python3.12/site-packages (from itables) (2.1.1)
-Requirement already satisfied: pandas in ./.venv/lib/python3.12/site-packages (from itables) (2.2.3)
-Requirement already satisfied: decorator in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (5.1.1)
-Requirement already satisfied: jedi&gt;=0.16 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (0.19.1)
-Requirement already satisfied: matplotlib-inline in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (0.1.7)
-Requirement already satisfied: prompt-toolkit&lt;3.1.0,&gt;=3.0.41 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (3.0.48)
-Requirement already satisfied: pygments&gt;=2.4.0 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (2.18.0)
-Requirement already satisfied: stack-data in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (0.6.3)
-Requirement already satisfied: traitlets&gt;=5.13.0 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (5.14.3)
-Requirement already satisfied: pexpect&gt;4.3 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (4.9.0)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in ./.venv/lib/python3.12/site-packages (from pandas-&gt;itables) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in ./.venv/lib/python3.12/site-packages (from pandas-&gt;itables) (2024.2)
-Requirement already satisfied: tzdata&gt;=2022.7 in ./.venv/lib/python3.12/site-packages (from pandas-&gt;itables) (2024.2)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in ./.venv/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython-&gt;itables) (0.8.4)
-Requirement already satisfied: ptyprocess&gt;=0.5 in ./.venv/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython-&gt;itables) (0.7.0)
-Requirement already satisfied: wcwidth in ./.venv/lib/python3.12/site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython-&gt;itables) (0.2.13)
-Requirement already satisfied: six&gt;=1.5 in ./.venv/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;itables) (1.16.0)
-Requirement already satisfied: executing&gt;=1.2.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython-&gt;itables) (2.1.0)
-Requirement already satisfied: asttokens&gt;=2.1.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython-&gt;itables) (2.4.1)
-Requirement already satisfied: pure-eval in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython-&gt;itables) (0.2.3)</code></pre>
-</div>
+<div id="4833aecf" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install itables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, you can run something like:</p>
-<div id="bf2a0aca" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itables <span class="im">import</span> show</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>show(tips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9bfb9e26" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itables <span class="im">import</span> show</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>show(tips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<table id="itables_0c0132e4_d0d3_4552_ac7d_cca6fac5d9bb" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_808d6338_7bb6_4fb0_bfc5_940cbcb7a604" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       
@@ -812,7 +715,7 @@ Loading ITables v2.2.2 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.0.13/dt_bundle.js';
 
-    document.querySelectorAll("#itables_0c0132e4_d0d3_4552_ac7d_cca6fac5d9bb:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_808d6338_7bb6_4fb0_bfc5_940cbcb7a604:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
@@ -831,27 +734,17 @@ Loading ITables v2.2.2 from the internet...
 </div>
 <p>Of course, interactive tables will only work in HTML formats. We’ll look at tables for other formats later.</p>
 </section>
-<section id="displaying-plots" class="level2" data-number="9.12">
-<h2 data-number="9.12" class="anchored" data-anchor-id="displaying-plots"><span class="header-section-number">9.12</span> Displaying Plots</h2>
+<section id="displaying-plots" class="level2" data-number="12.12">
+<h2 data-number="12.12" class="anchored" data-anchor-id="displaying-plots"><span class="header-section-number">12.12</span> Displaying Plots</h2>
 <p>For interactive plots, we can use the <code>plotly</code> package.</p>
-<p>First, install <code>plotly</code>:</p>
-<div id="29564fff" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install plotly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Requirement already satisfied: plotly in ./.venv/lib/python3.12/site-packages (5.24.1)
-Requirement already satisfied: tenacity&gt;=6.2.0 in ./.venv/lib/python3.12/site-packages (from plotly) (9.0.0)
-Requirement already satisfied: packaging in ./.venv/lib/python3.12/site-packages (from plotly) (24.1)</code></pre>
-</div>
-</div>
-<p>Then run something like:</p>
-<div id="a4b87c12" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tips_sex <span class="op">=</span> px.violin(tips, x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"total_bill"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>tips_sex.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="804dafd7" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>tips_sex <span class="op">=</span> px.violin(tips, x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"total_bill"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tips_sex.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>                            <div id="ad338992-d406-46a7-bdf3-2676a0f79533" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("ad338992-d406-46a7-bdf3-2676a0f79533")) {                    Plotly.newPlot(                        "ad338992-d406-46a7-bdf3-2676a0f79533",                        [{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Female\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"#636efa"},"name":"Female","offsetgroup":"Female","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Thur"],"x0":" ","xaxis":"x","y":[16.99,24.59,35.26,14.83,10.33,16.97,20.29,15.77,19.65,15.06,20.69,16.93,10.29,34.81,26.41,16.45,3.07,17.07,26.86,25.28,14.73,10.07,34.83,5.75,16.32,22.75,11.35,15.38,44.3,22.42,20.92,14.31,7.25,25.71,17.31,10.65,12.43,24.08,13.42,12.48,29.8,14.52,11.38,20.27,11.17,12.26,18.26,8.51,10.33,14.15,13.16,17.47,27.05,16.43,8.35,18.64,11.87,29.85,25.0,13.39,16.21,17.51,10.59,10.63,9.6,20.9,18.15,19.81,43.11,13.0,12.74,13.0,16.4,16.47,12.76,13.27,28.17,12.9,30.14,13.42,15.98,16.27,10.09,22.12,35.83,27.18,18.78],"y0":" ","yaxis":"y","type":"violin"},{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Male\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"#EF553B"},"name":"Male","offsetgroup":"Male","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat"],"x0":" ","xaxis":"x","y":[10.34,21.01,23.68,25.29,8.77,26.88,15.04,14.78,10.27,15.42,18.43,21.58,16.29,20.65,17.92,39.42,19.82,17.81,13.37,12.69,21.7,9.55,18.35,17.78,24.06,16.31,18.69,31.27,16.04,17.46,13.94,9.68,30.4,18.29,22.23,32.4,28.55,18.04,12.54,9.94,25.56,19.49,38.01,11.24,48.27,20.29,13.81,11.02,18.29,17.59,20.08,20.23,15.01,12.02,10.51,17.92,27.2,22.76,17.29,19.44,16.66,32.68,15.98,13.03,18.28,24.71,21.16,28.97,22.49,40.17,27.28,12.03,21.01,12.46,15.36,20.49,25.21,18.24,14.0,38.07,23.95,29.93,11.69,14.26,15.95,8.52,22.82,19.08,16.0,34.3,41.19,9.78,7.51,14.07,13.13,17.26,24.55,19.77,48.17,16.49,21.5,12.66,13.81,24.52,20.76,31.71,50.81,15.81,7.25,31.85,16.82,32.9,17.89,14.48,34.63,34.65,23.33,45.35,23.17,40.55,20.69,30.46,23.1,15.69,28.44,15.48,16.58,7.56,10.34,13.51,18.71,20.53,26.59,38.73,24.27,30.06,25.89,48.33,28.15,11.59,7.74,12.16,8.58,13.42,20.45,13.28,24.01,15.69,11.61,10.77,15.53,10.07,12.6,32.83,29.03,22.67,17.82],"y0":" ","yaxis":"y","type":"violin"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"day"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"total_bill"}},"legend":{"title":{"text":"sex"},"tracegroupgap":0},"violinmode":"group"},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="740da1e9-2806-46dd-96e3-ea76144bcd48" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("740da1e9-2806-46dd-96e3-ea76144bcd48")) {                    Plotly.newPlot(                        "740da1e9-2806-46dd-96e3-ea76144bcd48",                        [{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Female\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"#636efa"},"name":"Female","offsetgroup":"Female","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Thur"],"x0":" ","xaxis":"x","y":[16.99,24.59,35.26,14.83,10.33,16.97,20.29,15.77,19.65,15.06,20.69,16.93,10.29,34.81,26.41,16.45,3.07,17.07,26.86,25.28,14.73,10.07,34.83,5.75,16.32,22.75,11.35,15.38,44.3,22.42,20.92,14.31,7.25,25.71,17.31,10.65,12.43,24.08,13.42,12.48,29.8,14.52,11.38,20.27,11.17,12.26,18.26,8.51,10.33,14.15,13.16,17.47,27.05,16.43,8.35,18.64,11.87,29.85,25.0,13.39,16.21,17.51,10.59,10.63,9.6,20.9,18.15,19.81,43.11,13.0,12.74,13.0,16.4,16.47,12.76,13.27,28.17,12.9,30.14,13.42,15.98,16.27,10.09,22.12,35.83,27.18,18.78],"y0":" ","yaxis":"y","type":"violin"},{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Male\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"#EF553B"},"name":"Male","offsetgroup":"Male","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat"],"x0":" ","xaxis":"x","y":[10.34,21.01,23.68,25.29,8.77,26.88,15.04,14.78,10.27,15.42,18.43,21.58,16.29,20.65,17.92,39.42,19.82,17.81,13.37,12.69,21.7,9.55,18.35,17.78,24.06,16.31,18.69,31.27,16.04,17.46,13.94,9.68,30.4,18.29,22.23,32.4,28.55,18.04,12.54,9.94,25.56,19.49,38.01,11.24,48.27,20.29,13.81,11.02,18.29,17.59,20.08,20.23,15.01,12.02,10.51,17.92,27.2,22.76,17.29,19.44,16.66,32.68,15.98,13.03,18.28,24.71,21.16,28.97,22.49,40.17,27.28,12.03,21.01,12.46,15.36,20.49,25.21,18.24,14.0,38.07,23.95,29.93,11.69,14.26,15.95,8.52,22.82,19.08,16.0,34.3,41.19,9.78,7.51,14.07,13.13,17.26,24.55,19.77,48.17,16.49,21.5,12.66,13.81,24.52,20.76,31.71,50.81,15.81,7.25,31.85,16.82,32.9,17.89,14.48,34.63,34.65,23.33,45.35,23.17,40.55,20.69,30.46,23.1,15.69,28.44,15.48,16.58,7.56,10.34,13.51,18.71,20.53,26.59,38.73,24.27,30.06,25.89,48.33,28.15,11.59,7.74,12.16,8.58,13.42,20.45,13.28,24.01,15.69,11.61,10.77,15.53,10.07,12.6,32.83,29.03,22.67,17.82],"y0":" ","yaxis":"y","type":"violin"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"day"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"total_bill"}},"legend":{"title":{"text":"sex"},"tracegroupgap":0},"violinmode":"group"},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('ad338992-d406-46a7-bdf3-2676a0f79533');
+var gd = document.getElementById('740da1e9-2806-46dd-96e3-ea76144bcd48');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -879,16 +772,16 @@ if (outputEl) {{
 <p>This will display an interactive Plotly plot in the HTML output.</p>
 <p>For static outputs like PDFs and Word documents, we need to write the image to a file and then include it in the document.</p>
 <p>First, save the plot as an image:</p>
-<div id="eb969f85" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tips_sex.write_image(<span class="st">"tips_sex_plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="944ce193" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tips_sex.write_image(<span class="st">"tips_sex_plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will create a static image file in the same folder as your document. We can then include it in the document like this:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Violin plot of total bill by day and sex](tips_sex_plot.png)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Violin plot of total bill by day and sex](tips_sex_plot.png)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will display the image in the output.</p>
 <hr>
 </section>
-<section id="wrapping-up" class="level2" data-number="9.13">
-<h2 data-number="9.13" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">9.13</span> Wrapping Up</h2>
+<section id="wrapping-up" class="level2" data-number="12.13">
+<h2 data-number="12.13" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">12.13</span> Wrapping Up</h2>
 <p>In this lesson, we learned how to create and render Quarto documents, add formatting, and include code chunks.</p>
 <p>We also learned how to use code chunk options to control the behavior of our documents.</p>
 <p>We experimented with different output formats and how to customize the display of our documents.</p>
@@ -1320,13 +1213,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./p_foundations_venv.html" class="pagination-link" aria-label="Workspace Folders and Virtual Environments with `venv` and VS Code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workspace Folders and Virtual Environments with <code>venv</code> and VS Code</span></span>
+      <a href="./p_tools_venv.html" class="pagination-link" aria-label="Folders and Virtual Environments">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_data_on_display_data_viz_types.html" class="pagination-link" aria-label="Data Visualization Types">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./p_untangled_subset_columns.html" class="pagination-link" aria-label="Subsetting columns">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Subsetting columns</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1338,10 +1231,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_tools_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>TEMPORARY For a PDF copy, please visit this <a href="https://raw.githubusercontent.com/the-graph-courses/idar_book/main/pdf/Introduction-to-Data-Analysis-with-R.pdf">page</a>.</p>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 

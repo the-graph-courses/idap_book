@@ -1,5 +1,5 @@
 ---
-title: "Using VS Code"
+title: "Installing and Using VS Code"
 ---
 
 ## Introduction
@@ -16,9 +16,12 @@ By the end of this lesson, you should be able to:
 
 ## Installing VS Code
 
-VS Code is available for Windows, macOS, and Linux. You can download it from the [official website](https://code.visualstudio.com/download).
+VS Code is available for Windows, macOS, and Linux. Search for "VS Code" in your favorite search engine and go to the official website, code.visualstudio.com. Download the version for your computer's operating system. 
 
-After installing VS Code, let's explore some of its features.
+After installing VS Code, you may need to drag the icon to your applications folder. 
+
+From your applications folder, open VS Code. 
+
 
 ## Navigating the Explorer Tab
 
@@ -41,7 +44,7 @@ Now that your workspace is open in VS Code, you can create a new file:
 Let's write some Python code in your new file:
 
 ```python
-print("Hello, " + "World!")
+print(2 + 2)
 ```
 
 To save the file, press `Ctrl + S` (or `Cmd + S` on macOS).
@@ -60,19 +63,21 @@ With the Python extension installed, you can now run your script:
 
 1. Open `first_script.py` if it's not already open.
 2. Click on the **Run** icon (a play button) in the top right corner of the editor.
-   - Alternatively, you can right-click inside the editor and select **"Run Python File in Terminal"**.
+   - Alternatively, you can right-click inside the editor and select RUn python then **"Run Python File in Terminal"**.
 3. A terminal window will open at the bottom of the screen, and your code will execute. You should see the output:
 
    ```
-   Hello, World!
+   4
    ```
 
 ## Using the Command Palette
 
 The **Command Palette** is a powerful feature in VS Code that allows you to access various commands and settings:
 
-1. Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on macOS) to open the Command Palette.
-2. Start typing **"theme"**, and select **"Preferences: Color Theme"** from the list.
+To access it, click on the search bar at the top of vscode window, then either press > or select the 'show and run commands' option. 
+
+then type 'theme' and select 'Preferences: Color Theme'. 
+
 3. Use the up and down arrow keys to cycle through the available color themes.
 4. Press `Enter` to select your preferred theme.
 
@@ -85,14 +90,5 @@ In this lesson, we've:
 - **Created and saved a Python script**.
 - **Installed the Python extension** to enable running and debugging code.
 - **Used the Command Palette** to customize the editor's appearance.
-- **Explored the Terminal tab** to execute commands and run scripts.
-
-VS Code is a versatile tool that will enhance your coding experience. As you continue learning Python, you'll find many more features and extensions that can help streamline your development workflow.
-
-**Next Steps:**
-
-- Explore additional VS Code extensions that can aid in Python development.
-- Practice writing and running more complex Python scripts.
-- Customize your workspace settings to suit your coding style.
 
 Happy coding!

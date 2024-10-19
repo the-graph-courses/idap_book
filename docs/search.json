@@ -133,7 +133,7 @@
     "href": "p_foundations_google_colab.html#getting-data-from-your-drive",
     "title": "1  Introduction to Google Colab",
     "section": "1.9 Getting data from your Drive",
-    "text": "1.9 Getting data from your Drive\n\nSearch for “[your city] housing filetype:csv” on Google\nIn the files tab, click the button to mount your drive\nCreate a folder and upload the downloaded file\nImport it with pandas as before",
+    "text": "1.9 Getting data from your Drive\n\nSearch for “[your city] housing filetype:csv” on Google\nDownload the file\nIn the files tab, click the button to mount your drive\nCreate a folder and upload the downloaded file\nImport it with pandas as before",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Google Colab</span>"
@@ -221,7 +221,7 @@
     "href": "p_foundations_coding_basics.html#python-as-a-calculator",
     "title": "2  Coding basics",
     "section": "2.4 Python as a calculator",
-    "text": "2.4 Python as a calculator\nAs you have already seen, Python works as a calculator in standard ways.\nBelow are some other examples of basic arithmetic operations:\n\n2 - 2 # two minus two\n\n0\n\n\n\n2 * 2  # two times two \n\n4\n\n\n\n2 / 2  # two divided by two\n\n1.0\n\n\n\n2 ** 2  # two raised to the power of two\n\n4\n\n\nThere are a few other operators you may come across. For example, % is the modulo operator, which returns the remainder of the division.\n\n10 % 3  # ten modulo three\n\n1\n\n\n// is the floor division operator, which divides then rounds down to the nearest whole number.\n\n10 // 3  # ten floor division three\n\n3\n\n\n\n\n\n\n\n\nPractice\n\n\n\n2.4.1 Q: Modulo and floor division\nGuess the result of the following code chunks then run them to check your answer:\n\n5 % 4\n\n\n5 // 4\n\n\n\n\n2.4.2 Order of operations\nPython obeys the standard PEMDAS order of operations (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction).\nFor example, multiplication is evaluated before addition, so below the result is 6.\n\n2 + 2 * 2   \n\n6\n\n\n\n\n\n\n\n\nPractice\n\n\n\n2.4.3 Q: Evaluating arithmetic expressions\nWhich, if any, of the following code chunks will evaluate to 10?\n\n2 + 2 * 4\n\n\n6 + 2 ** 2\n\n\n\n\n\n2.4.4 Using the math library\nWe can also use the math library to do more complex mathematical operations. For example, we can use the math.sqrt function to calculate the square root of a number.\n\nimport math\nmath.sqrt(100)  # square root\n\n10.0\n\n\nOr we can use the math.log function to calculate the natural logarithm of a number.\n\nimport math\nmath.log(100)  # logarithm\n\n4.605170185988092\n\n\nmath.sqrt and math.log are examples of Python functions, where an argument (e.g., 100) is passed to the function to perform a calculation.\nWe will learn more about functions later.\n\n\n\n\n\n\nVocab\n\n\n\nFunction: A reusable block of code that performs a specific task. Functions often take inputs (called arguments) and return outputs.\n\n\n\n\n\n\n\n\nPractice\n\n\n\n\n2.4.5 Q: Using the math library\nUsing the math library, calculate the square root of 81.\nWrite your code below and run it to check your answers:\n\n# Your code here\n\n\n\n2.4.6 Q: Describing the use of the random library\nConsider the following code, which generates a random number between 1 and 10:\n\nimport random\nrandom.randint(1, 10)\n\n5\n\n\nIn that code, identify the library, the function, and the argument(s) to the function.",
+    "text": "2.4 Python as a calculator\nAs you have already seen, Python works as a calculator in standard ways.\nBelow are some other examples of basic arithmetic operations:\n\n2 - 2 # two minus two\n\n0\n\n\n\n2 * 2  # two times two \n\n4\n\n\n\n2 / 2  # two divided by two\n\n1.0\n\n\n\n2 ** 2  # two raised to the power of two\n\n4\n\n\nThere are a few other operators you may come across. For example, % is the modulo operator, which returns the remainder of the division.\n\n10 % 3  # ten modulo three\n\n1\n\n\n// is the floor division operator, which divides then rounds down to the nearest whole number.\n\n10 // 3  # ten floor division three\n\n3\n\n\n\n\n\n\n\n\nPractice\n\n\n\n2.4.1 Q: Modulo and floor division\nGuess the result of the following code chunks then run them to check your answer:\n\n5 % 4\n\n\n5 // 4\n\n\n\n\n2.4.2 Order of operations\nPython obeys the standard PEMDAS order of operations (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction).\nFor example, multiplication is evaluated before addition, so below the result is 6.\n\n2 + 2 * 2   \n\n6\n\n\n\n\n\n\n\n\nPractice\n\n\n\n2.4.3 Q: Evaluating arithmetic expressions\nWhich, if any, of the following code chunks will evaluate to 10?\n\n2 + 2 * 4\n\n\n6 + 2 ** 2\n\n\n\n\n\n2.4.4 Using the math library\nWe can also use the math library to do more complex mathematical operations. For example, we can use the math.sqrt function to calculate the square root of a number.\n\nimport math\nmath.sqrt(100)  # square root\n\n10.0\n\n\nOr we can use the math.log function to calculate the natural logarithm of a number.\n\nimport math\nmath.log(100)  # logarithm\n\n4.605170185988092\n\n\nmath.sqrt and math.log are examples of Python functions, where an argument (e.g., 100) is passed to the function to perform a calculation.\nWe will learn more about functions later.\n\n\n\n\n\n\nVocab\n\n\n\nFunction: A reusable block of code that performs a specific task. Functions often take inputs (called arguments) and return outputs.\n\n\n\n\n\n\n\n\nPractice\n\n\n\n\n2.4.5 Q: Using the math library\nUsing the math library, calculate the square root of 81.\nWrite your code below and run it to check your answers:\n\n# Your code here\n\n\n\n2.4.6 Q: Describing the use of the random library\nConsider the following code, which generates a random number between 1 and 10:\n\nimport random\nrandom.randint(1, 10)\n\n3\n\n\nIn that code, identify the library, the function, and the argument(s) to the function.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Coding basics</span>"
@@ -525,586 +525,575 @@
     ]
   },
   {
-    "objectID": "p_foundations_installing_python.html",
-    "href": "p_foundations_installing_python.html",
-    "title": "6  Installing Python",
-    "section": "",
-    "text": "7 Introduction\nSo far in this course, you’ve been working mostly in Google Colab—a convenient, cloud-based environment for running Python code. Now it’s time to tackle working locally on your own machine. This allows you to work offline and gives you more control over your development environment.\nWe’ll guide you through installing Python 3.12.0 to ensure compatibility with the examples and exercises we’ll cover. Let’s get started!\nBefore we proceed, we’ll split the instructions into two tracks:\nPlease follow the instructions specific to your operating system.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Installing Python</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_installing_python.html#windows-users",
-    "href": "p_foundations_installing_python.html#windows-users",
-    "title": "6  Installing Python",
-    "section": "7.1 Windows Users",
-    "text": "7.1 Windows Users\n\n7.1.1 Step 1: Check Your Current Python Version\n\nOpen Command Prompt:\n\nPress Win + R, type cmd, and press Enter.\n\nCheck Python Version:\n\nType python --version and press Enter.\nIf Python is installed, it will display the version number.\nNote: If you see a version lower than 3.12.0, we’ll proceed to install the correct version.\n\n\n\n\n7.1.2 Step 2: Download Python 3.12.0\n\nSearch for Python 3.12.0:\n\nOpen your web browser.\nGo to Google and search for “Python 3.12.0”.\n\nNavigate to the Official Website:\n\nIn the search results, find the link to python.org that mentions Python 3.12.0.\nEnsure the URL is from www.python.org to avoid unofficial sources.\n\nDownload the Installer:\n\nScroll down to the bottom of the Python 3.12.0 page.\nUnder the “Files” section, find “Windows installer (64-bit)”.\n\nNote: Most modern Windows computers are 64-bit.\n\nClick on the link to download the installer.\n\n\n\n\n7.1.3 Step 3: Install Python 3.12.0\n\nRun the Installer:\n\nLocate the downloaded file (usually in your Downloads folder).\nDouble-click the installer to run it.\n\nSetup Installation:\n\nImportant: Check the box that says “Add Python 3.12 to PATH” at the bottom of the installer window.\nClick “Install Now”.\n\nUser Account Control:\n\nIf prompted by User Account Control, click “Yes” to allow the installation.\n\nComplete Installation:\n\nWait for the installation to finish.\nClick “Close” when done.\n\n\n\n\n7.1.4 Step 4: Verify the Installation\n\nOpen Command Prompt:\n\nPress Win + R, type cmd, and press Enter.\n\nCheck Python Version:\n\nType python --version and press Enter.\nYou should see Python 3.12.0.\nYou may also see a newer version if you already have Python on your computer. That’s okay. From our IDE, we will be able to select the correct version of Python that we just installed.\n\n\n\n\n7.1.5 Step 5: Run Python Locally\n\nStart Python Interpreter:\n\nIn Command Prompt, type python and press Enter.\n\nRun a Test Command:\n\nAt the &gt;&gt;&gt; prompt, type 2 + 2 and press Enter.\nYou should see 4.\n\nExit Python:\n\nType exit() and press Enter.\n\n\nYay! You’ve successfully installed Python 3.12.0 on your Windows computer and ran your first local Python command.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Installing Python</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_installing_python.html#macos-users",
-    "href": "p_foundations_installing_python.html#macos-users",
-    "title": "6  Installing Python",
-    "section": "7.2 macOS Users",
-    "text": "7.2 macOS Users\n\n7.2.1 Step 1: Check Your Current Python Version\n\nOpen Terminal:\n\nGo to Applications &gt; Utilities &gt; Terminal.\n\nCheck Python Version:\n\nType python3 --version and press Return.\nIf Python is installed, it will display the version number.\nNote: If you see a version lower than 3.12.0, we’ll proceed to install the correct version.\n\n\n\n\n7.2.2 Step 2: Download Python 3.12.0\n\nSearch for Python 3.12.0:\n\nOpen your web browser.\nGo to Google and search for “Python 3.12.0”.\n\nNavigate to the Official Website:\n\nIn the search results, find the link to python.org that mentions Python 3.12.0.\nEnsure the URL is from www.python.org to avoid unofficial sources.\n\nDownload the Installer:\n\nScroll down to the bottom of the Python 3.12.0 page.\nUnder the “Files” section, find “macOS 64-bit universal2 installer”.\nClick on the link to download the installer.\n\n\n\n\n7.2.3 Step 3: Install Python 3.12.0\n\nRun the Installer:\n\nLocate the downloaded .pkg file (usually in your Downloads folder).\nDouble-click the installer to run it.\n\nFollow Installation Steps:\n\nClick “Continue” through the prompts.\nRead and agree to the license terms.\nClick “Install”.\n\nAuthenticate Installation:\n\nEnter your administrator password when prompted.\nClick “Install Software”.\n\nComplete Installation:\n\nWait for the installation to finish.\nClick “Close” once the installation is complete.\n\n\n\n\n7.2.4 Step 4: Verify the Installation\n\nOpen Terminal:\n\nGo to Applications &gt; Utilities &gt; Terminal.\n\nCheck Python Version:\n\nType python3 --version and press Return.\nYou should see Python 3.12.0.\n\n\n\n\n7.2.5 Step 5: Run Python Locally\n\nStart Python Interpreter:\n\nIn Terminal, type python3 and press Return.\n\nRun a Test Command:\n\nAt the &gt;&gt;&gt; prompt, type 2 + 2 and press Return.\nYou should see 4.\n\nExit Python:\n\nType exit() and press Return.\n\n\nYay! You’ve successfully installed Python 3.12.0 on your Mac and ran your first local Python command.\n\nYou’re now all set to continue the course with your new local Python environment. Happy coding!",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Installing Python</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html",
-    "href": "p_foundations_using_vscode.html",
-    "title": "7  Using VS Code",
-    "section": "",
-    "text": "7.1 Introduction\nIn this lesson, we will explore Visual Studio Code (VS Code), a powerful and versatile editor for writing, running, and debugging Python code. VS Code is widely used due to its rich feature set and extensive extension library, which makes coding more efficient and enjoyable.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#learning-objectives",
-    "href": "p_foundations_using_vscode.html#learning-objectives",
-    "title": "7  Using VS Code",
-    "section": "7.2 Learning Objectives",
-    "text": "7.2 Learning Objectives\nBy the end of this lesson, you should be able to:\n\nOpen VS Code and navigate to the editor, terminal, and explorer tabs.\nCreate a new Python file and run it using the Python extension.\nUse the Command Palette to search for and select a color theme.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#installing-vs-code",
-    "href": "p_foundations_using_vscode.html#installing-vs-code",
-    "title": "7  Using VS Code",
-    "section": "7.3 Installing VS Code",
-    "text": "7.3 Installing VS Code\nVS Code is available for Windows, macOS, and Linux. You can download it from the official website.\nAfter installing VS Code, let’s explore some of its features.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#navigating-the-explorer-tab",
-    "href": "p_foundations_using_vscode.html#navigating-the-explorer-tab",
-    "title": "7  Using VS Code",
-    "section": "7.4 Navigating the Explorer Tab",
-    "text": "7.4 Navigating the Explorer Tab\nThe Explorer tab displays the files and folders in your current workspace. When you open VS Code for the first time, it may indicate that you have not yet opened a folder. Most of our work in Python will be organized in folders (also known as workspaces) that contain multiple files.\nLet’s create our first workspace:\n\nOn your computer, navigate to your desktop or another memorable location.\nCreate a new folder called first_python_workspace.\nIn VS Code, click on the “Open Folder” button and locate your newly created folder. Alternatively, you can drag the folder into the VS Code window.\n\nNow that your workspace is open in VS Code, you can create a new file:\n\nIn the Explorer tab, right-click inside the workspace folder.\nSelect “New File”.\nName the file first_script.py. The file will automatically open in the editor.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#writing-and-saving-python-code",
-    "href": "p_foundations_using_vscode.html#writing-and-saving-python-code",
-    "title": "7  Using VS Code",
-    "section": "7.5 Writing and Saving Python Code",
-    "text": "7.5 Writing and Saving Python Code\nLet’s write some Python code in your new file:\nprint(\"Hello, \" + \"World!\")\nTo save the file, press Ctrl + S (or Cmd + S on macOS).",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#installing-the-python-extension",
-    "href": "p_foundations_using_vscode.html#installing-the-python-extension",
-    "title": "7  Using VS Code",
-    "section": "7.6 Installing the Python Extension",
-    "text": "7.6 Installing the Python Extension\nTo run Python code within VS Code, we need to install the Python extension:\n\nClick on the Extensions tab on the left sidebar (it looks like four squares).\nIn the search bar at the top, type “Python”.\nFind the extension named “Python” published by Microsoft, and click Install.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#running-your-python-script",
-    "href": "p_foundations_using_vscode.html#running-your-python-script",
-    "title": "7  Using VS Code",
-    "section": "7.7 Running Your Python Script",
-    "text": "7.7 Running Your Python Script\nWith the Python extension installed, you can now run your script:\n\nOpen first_script.py if it’s not already open.\nClick on the Run icon (a play button) in the top right corner of the editor.\n\nAlternatively, you can right-click inside the editor and select “Run Python File in Terminal”.\n\nA terminal window will open at the bottom of the screen, and your code will execute. You should see the output:\nHello, World!",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#using-the-command-palette",
-    "href": "p_foundations_using_vscode.html#using-the-command-palette",
-    "title": "7  Using VS Code",
-    "section": "7.8 Using the Command Palette",
-    "text": "7.8 Using the Command Palette\nThe Command Palette is a powerful feature in VS Code that allows you to access various commands and settings:\n\nPress Ctrl + Shift + P (or Cmd + Shift + P on macOS) to open the Command Palette.\nStart typing “theme”, and select “Preferences: Color Theme” from the list.\nUse the up and down arrow keys to cycle through the available color themes.\nPress Enter to select your preferred theme.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_using_vscode.html#wrap-up",
-    "href": "p_foundations_using_vscode.html#wrap-up",
-    "title": "7  Using VS Code",
-    "section": "7.9 Wrap Up",
-    "text": "7.9 Wrap Up\nIn this lesson, we’ve:\n\nInstalled VS Code and set up a workspace.\nCreated and saved a Python script.\nInstalled the Python extension to enable running and debugging code.\nUsed the Command Palette to customize the editor’s appearance.\nExplored the Terminal tab to execute commands and run scripts.\n\nVS Code is a versatile tool that will enhance your coding experience. As you continue learning Python, you’ll find many more features and extensions that can help streamline your development workflow.\nNext Steps:\n\nExplore additional VS Code extensions that can aid in Python development.\nPractice writing and running more complex Python scripts.\nCustomize your workspace settings to suit your coding style.\n\nHappy coding!",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Using VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html",
-    "href": "p_foundations_venv.html",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "",
-    "text": "8.1 Introduction\nIn this lesson, we will explore virtual environments in Python using Visual Studio Code (VS Code). We’ll create a new workspace, set up a virtual environment, and install packages specific to our project.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#learning-objectives",
-    "href": "p_foundations_venv.html#learning-objectives",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.2 Learning Objectives",
-    "text": "8.2 Learning Objectives\nBy the end of this lesson, you should be able to:\n\nCreate a new workspace in VS Code\nUnderstand the concept of virtual environments\nCreate and use a virtual environment in VS Code\nInstall and use packages within a virtual environment",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#creating-a-new-workspace",
-    "href": "p_foundations_venv.html#creating-a-new-workspace",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.3 Creating a New Workspace",
-    "text": "8.3 Creating a New Workspace\n\nOpen VS Code.\nGo to File &gt; Open Folder.\nCreate a new folder named graph_courses_python and select it.\n\nNext, let’s try to import a package we haven’t installed yet. Create a new Python file named test_cowsay.py and add the following line:\n\nimport cowsay\n\nThis will not work because we haven’t installed the cowsay package yet. To install it properly, we’ll need to use virtual environments.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#understanding-virtual-environments",
-    "href": "p_foundations_venv.html#understanding-virtual-environments",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.4 Understanding Virtual Environments",
-    "text": "8.4 Understanding Virtual Environments\nVirtual environments are isolated Python environments that allow you to manage packages for specific projects without affecting your system-wide Python installation.\n\n8.4.1 Environments & Interpreter\n\nEnvironments are for package management.\nThe interpreter is the Python version you’re using.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#creating-a-virtual-environment",
-    "href": "p_foundations_venv.html#creating-a-virtual-environment",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.5 Creating a Virtual Environment",
-    "text": "8.5 Creating a Virtual Environment\n\nOpen the Command Palette (View &gt; Command Palette or Ctrl+Shift+P).\nType Python: Create Environment and select it.\nChoose Venv as the environment type.\nSelect the Python interpreter you want to use (e.g., Python 3.12.0).\n\nYou should now see a new folder called .venv. This is the virtual environment. Inside it is a folder called lib, which contains packages.\nNext, tell VS Code to use this virtual environment:\n\nOpen the Command Palette again.\nType Python: Select Interpreter and choose it.\nSelect the interpreter associated with your virtual environment (it should be listed under .venv).\n\nNow we’ve created and selected our virtual environment. We can install packages without affecting other projects.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#installing-packages",
-    "href": "p_foundations_venv.html#installing-packages",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.6 Installing Packages",
-    "text": "8.6 Installing Packages\nLet’s install the cowsay package.\n\nOpen a new terminal in VS Code.\nEnsure the terminal is using your virtual environment.\nRun the following command:\n\n#| eval: false\npip install cowsay\nRefresh your environment if necessary. You should now see the cowsay package in the list of installed packages.\nNow we can use the package. Open test_cowsay.py and click the run button to execute the script.\nYou should see a cow saying hello!",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#summary-of-key-steps",
-    "href": "p_foundations_venv.html#summary-of-key-steps",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.7 Summary of Key Steps",
-    "text": "8.7 Summary of Key Steps\nFor each new Python project, follow these steps:\n\nFolder: Create a project folder.\nEnvironment: Set up a virtual environment.\nInterpreter: Select the appropriate Python interpreter.\nLibraries: Install the necessary packages.\n\nRemember the acronym FEIL to help you recall these steps.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#demonstrating-environment-isolation",
-    "href": "p_foundations_venv.html#demonstrating-environment-isolation",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.8 Demonstrating Environment Isolation",
-    "text": "8.8 Demonstrating Environment Isolation\nLet’s demonstrate that the virtual environment is isolated.\n\nOpen your previous workspace my_first_workspace in a new VS Code window.\nCreate a Python file and try to use the cowsay package:\n::: {#b6d3bf73 .cell execution_count=2} {.python .cell-code}  import cowsay :::\n\nThis will probably not work because cowsay is not installed in that environment. If it does work, it means you have cowsay installed globally, which is okay.\nNow, let’s return to our main folder/workspace. This is where you’ll conduct most of your analysis for this course.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#installing-course-packages",
-    "href": "p_foundations_venv.html#installing-course-packages",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.9 Installing Course Packages",
-    "text": "8.9 Installing Course Packages\nAs a final step, let’s install the packages we’ll need for the course. While we could install each package as we encounter it, it’s more efficient to install them all at once. In the terminal, run the following command:\n#| eval: false\npip install plotly pandas jupyter ipykernel kaleido itables\n\npandas: Data manipulation library.\nplotly: Visualization library.\njupyter and ipykernel: Allow us to use Quarto to display our plots.\nkaleido: Library for saving plots in different formats.\nitables: Library for displaying tables in Quarto.\n\nKeep this list of packages handy for future reference, as you’ll likely need them for most projects.\nThis command will install all the required packages in one go. If your installation stops at some point, try rerunning the command. Sometimes network issues may cause the installation to fail. If it freezes for more than 10 minutes, close the terminal and rerun the command.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_venv.html#conclusion",
-    "href": "p_foundations_venv.html#conclusion",
-    "title": "8  Workspace Folders and Virtual Environments with venv and VS Code",
-    "section": "8.10 Conclusion",
-    "text": "8.10 Conclusion\nYou’ve now learned how to create a workspace, set up a virtual environment, install packages, and use them in your Python projects. Remember that each project should have its own virtual environment to keep dependencies isolated and manageable.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Workspace Folders and Virtual Environments with `venv` and VS Code</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html",
-    "href": "p_foundations_quarto.html",
-    "title": "9  Using Quarto",
-    "section": "",
-    "text": "9.1 Introduction\nA significant part of your role as a data analyst involves communicating results to others through reports. Quarto is one of the most powerful and versatile tools for producing such reports. It enables you to generate dynamic documents by combining formatted text and results produced by code. With Quarto, you can create documents in various formats such as HTML, PDF, Word, PowerPoint slides, web dashboards, and many others.\nMost of our documents in the GRAPH courses are actually written in Quarto!\nIn this lesson, we will cover the basics of this powerful tool.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#learning-objectives",
-    "href": "p_foundations_quarto.html#learning-objectives",
-    "title": "9  Using Quarto",
-    "section": "9.2 Learning Objectives",
-    "text": "9.2 Learning Objectives\nBy the end of this lesson, you should be able to:\n\nCreate and render a Quarto document that includes Python code and narrative text.\nOutput documents in multiple formats, including HTML, PDF, Word, etc.\nUnderstand basic Markdown syntax.\nUse code chunk options to control code execution and output display.\nUse Python packages to display tables and figures in Quarto documents.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#installing-quarto",
-    "href": "p_foundations_quarto.html#installing-quarto",
-    "title": "9  Using Quarto",
-    "section": "9.3 Installing Quarto",
-    "text": "9.3 Installing Quarto\nTo get started, you first need to install Quarto. You can download it from the Quarto website.\nAfter installing, you can check that it is installed by running the following command in the command line or terminal:\nquarto --version\nNow that Quarto is installed, use it to install the tinytex package, which we will need to compile our PDFs:\nquarto install tinytex\nTo use all the features of Quarto in VSCode, we need to install the Quarto extension and the Jupyter extension. You can install these in the Extensions tab of VSCode.\nThat’s a lot of installations, but fear not—you only have to do these steps once on your computer.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#project-setup",
-    "href": "p_foundations_quarto.html#project-setup",
-    "title": "9  Using Quarto",
-    "section": "9.4 Project Setup",
-    "text": "9.4 Project Setup\nTo begin, open your graph_courses_python project in VSCode.\nIf you did not watch the previous video explaining project setup, please do so now. After creating your project folder, you need to create a virtual environment, select an interpreter, and install the jupyter package.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#create-a-new-document",
-    "href": "p_foundations_quarto.html#create-a-new-document",
-    "title": "9  Using Quarto",
-    "section": "9.5 Create a New Document",
-    "text": "9.5 Create a New Document\nA Quarto document is a simple text file with the .qmd extension.\nTo create a new Quarto document, create a new file and save it with a .qmd extension, for example, first_quarto_doc.qmd.\nAdd two sections to your document with the following text:\n# Section 1\n\nHello\n\n---\n\n# Section 2\n\nWorld",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#adding-code-chunks",
-    "href": "p_foundations_quarto.html#adding-code-chunks",
-    "title": "9  Using Quarto",
-    "section": "9.6 Adding Code Chunks",
-    "text": "9.6 Adding Code Chunks\nYou can add code chunks to your document by using the ``{python} syntax. The shortcut to insert a code chunk is to typeCmd + Option + I(on Mac) orCtrl + Alt + I` (on Windows/Linux). Alternatively, you can click on the “…” button at the top right of the screen.\nLet’s create a code chunk that adds two numbers together and displays the result:\n\n2 + 2\n\n4\n\n\nYou should see a “Run Cell” button in the toolbar. Click this to run the code chunk.\nVSCode may prompt you to install a specific package. Go ahead and install it.\nNow practice adding one more code chunk at the end of the document that multiplies two numbers.\nAs you add these, you should see the buttons “Run Next Cell” and “Run Above” also appear.\nThere are two shortcuts you should also get used to:\n\nCmd + Enter (Mac) or Ctrl + Enter (Windows/Linux) to run the code chunk\noption + Enter (Mac) or Alt + Enter (Windows/Linux) to run the current line or the highlighted section of code.\n\nSo we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.\nLet’s see how to do this.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#quarto-document-header-yaml",
-    "href": "p_foundations_quarto.html#quarto-document-header-yaml",
-    "title": "9  Using Quarto",
-    "section": "9.7 Quarto Document Header (YAML)",
-    "text": "9.7 Quarto Document Header (YAML)\nAt the top of the document, let’s add a YAML section. This is where we can specify details about the document, such as its title, author, and format.\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\nformat: html\n---\nThe format is where we can specify the output format of the document. For now, we are trying to keep things simple and just use HTML.\nFor things to render properly, however, we need the jupyter package. So install this in a code chunk:\n\n!pip install jupyter\n\nRequirement already satisfied: jupyter in ./.venv/lib/python3.12/site-packages (1.1.1)\nRequirement already satisfied: notebook in ./.venv/lib/python3.12/site-packages (from jupyter) (7.2.2)\nRequirement already satisfied: jupyter-console in ./.venv/lib/python3.12/site-packages (from jupyter) (6.6.3)\nRequirement already satisfied: nbconvert in ./.venv/lib/python3.12/site-packages (from jupyter) (7.16.4)\nRequirement already satisfied: ipykernel in ./.venv/lib/python3.12/site-packages (from jupyter) (6.29.5)\nRequirement already satisfied: ipywidgets in ./.venv/lib/python3.12/site-packages (from jupyter) (8.1.5)\nRequirement already satisfied: jupyterlab in ./.venv/lib/python3.12/site-packages (from jupyter) (4.2.5)\nRequirement already satisfied: appnope in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.1.4)\nRequirement already satisfied: comm&gt;=0.1.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.2.2)\nRequirement already satisfied: debugpy&gt;=1.6.5 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (1.8.6)\nRequirement already satisfied: ipython&gt;=7.23.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (8.27.0)\nRequirement already satisfied: jupyter-client&gt;=6.1.12 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (8.6.3)\nRequirement already satisfied: jupyter-core!=5.0.*,&gt;=4.12 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (5.7.2)\nRequirement already satisfied: matplotlib-inline&gt;=0.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.1.7)\nRequirement already satisfied: nest-asyncio in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (1.6.0)\nRequirement already satisfied: packaging in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (24.1)\nRequirement already satisfied: psutil in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (6.0.0)\nRequirement already satisfied: pyzmq&gt;=24 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (26.2.0)\nRequirement already satisfied: tornado&gt;=6.1 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (6.4.1)\nRequirement already satisfied: traitlets&gt;=5.4.0 in ./.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (5.14.3)\nRequirement already satisfied: widgetsnbextension~=4.0.12 in ./.venv/lib/python3.12/site-packages (from ipywidgets-&gt;jupyter) (4.0.13)\nRequirement already satisfied: jupyterlab-widgets~=3.0.12 in ./.venv/lib/python3.12/site-packages (from ipywidgets-&gt;jupyter) (3.0.13)\nRequirement already satisfied: prompt-toolkit&gt;=3.0.30 in ./.venv/lib/python3.12/site-packages (from jupyter-console-&gt;jupyter) (3.0.48)\nRequirement already satisfied: pygments in ./.venv/lib/python3.12/site-packages (from jupyter-console-&gt;jupyter) (2.18.0)\nRequirement already satisfied: async-lru&gt;=1.0.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.0.4)\nRequirement already satisfied: httpx&gt;=0.25.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (0.27.2)\nRequirement already satisfied: jinja2&gt;=3.0.3 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (3.1.4)\nRequirement already satisfied: jupyter-lsp&gt;=2.0.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.2.5)\nRequirement already satisfied: jupyter-server&lt;3,&gt;=2.4.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.14.2)\nRequirement already satisfied: jupyterlab-server&lt;3,&gt;=2.27.1 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.27.3)\nRequirement already satisfied: notebook-shim&gt;=0.2 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (0.2.4)\nRequirement already satisfied: setuptools&gt;=40.1.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (75.1.0)\nRequirement already satisfied: beautifulsoup4 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (4.12.3)\nRequirement already satisfied: bleach!=5.0.0 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (6.1.0)\nRequirement already satisfied: defusedxml in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.7.1)\nRequirement already satisfied: jupyterlab-pygments in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.3.0)\nRequirement already satisfied: markupsafe&gt;=2.0 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (2.1.5)\nRequirement already satisfied: mistune&lt;4,&gt;=2.0.3 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (3.0.2)\nRequirement already satisfied: nbclient&gt;=0.5.0 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.10.0)\nRequirement already satisfied: nbformat&gt;=5.7 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (5.10.4)\nRequirement already satisfied: pandocfilters&gt;=1.4.1 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (1.5.1)\nRequirement already satisfied: tinycss2 in ./.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (1.3.0)\nRequirement already satisfied: six&gt;=1.9.0 in ./.venv/lib/python3.12/site-packages (from bleach!=5.0.0-&gt;nbconvert-&gt;jupyter) (1.16.0)\nRequirement already satisfied: webencodings in ./.venv/lib/python3.12/site-packages (from bleach!=5.0.0-&gt;nbconvert-&gt;jupyter) (0.5.1)\nRequirement already satisfied: anyio in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (4.6.0)\nRequirement already satisfied: certifi in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (2024.8.30)\nRequirement already satisfied: httpcore==1.* in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (1.0.5)\nRequirement already satisfied: idna in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (2.10)\nRequirement already satisfied: sniffio in ./.venv/lib/python3.12/site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (1.3.1)\nRequirement already satisfied: h11&lt;0.15,&gt;=0.13 in ./.venv/lib/python3.12/site-packages (from httpcore==1.*-&gt;httpx&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (0.14.0)\nRequirement already satisfied: decorator in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (5.1.1)\nRequirement already satisfied: jedi&gt;=0.16 in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.19.1)\nRequirement already satisfied: stack-data in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.6.3)\nRequirement already satisfied: pexpect&gt;4.3 in ./.venv/lib/python3.12/site-packages (from ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (4.9.0)\nRequirement already satisfied: python-dateutil&gt;=2.8.2 in ./.venv/lib/python3.12/site-packages (from jupyter-client&gt;=6.1.12-&gt;ipykernel-&gt;jupyter) (2.9.0.post0)\nRequirement already satisfied: platformdirs&gt;=2.5 in ./.venv/lib/python3.12/site-packages (from jupyter-core!=5.0.*,&gt;=4.12-&gt;ipykernel-&gt;jupyter) (4.3.6)\nRequirement already satisfied: argon2-cffi&gt;=21.1 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (23.1.0)\nRequirement already satisfied: jupyter-events&gt;=0.9.0 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.10.0)\nRequirement already satisfied: jupyter-server-terminals&gt;=0.4.4 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.5.3)\nRequirement already satisfied: overrides&gt;=5.0 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (7.7.0)\nRequirement already satisfied: prometheus-client&gt;=0.9 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.21.0)\nRequirement already satisfied: send2trash&gt;=1.8.2 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.8.3)\nRequirement already satisfied: terminado&gt;=0.8.3 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.18.1)\nRequirement already satisfied: websocket-client&gt;=1.7 in ./.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.8.0)\nRequirement already satisfied: babel&gt;=2.10 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.16.0)\nRequirement already satisfied: json5&gt;=0.9.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.9.25)\nRequirement already satisfied: jsonschema&gt;=4.18.0 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (4.23.0)\nRequirement already satisfied: requests&gt;=2.31 in ./.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.32.3)\nRequirement already satisfied: fastjsonschema&gt;=2.15 in ./.venv/lib/python3.12/site-packages (from nbformat&gt;=5.7-&gt;nbconvert-&gt;jupyter) (2.20.0)\nRequirement already satisfied: wcwidth in ./.venv/lib/python3.12/site-packages (from prompt-toolkit&gt;=3.0.30-&gt;jupyter-console-&gt;jupyter) (0.2.13)\nRequirement already satisfied: soupsieve&gt;1.2 in ./.venv/lib/python3.12/site-packages (from beautifulsoup4-&gt;nbconvert-&gt;jupyter) (2.6)\nRequirement already satisfied: argon2-cffi-bindings in ./.venv/lib/python3.12/site-packages (from argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (21.2.0)\nRequirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in ./.venv/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.8.4)\nRequirement already satisfied: attrs&gt;=22.2.0 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (24.2.0)\nRequirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2023.12.1)\nRequirement already satisfied: referencing&gt;=0.28.4 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.35.1)\nRequirement already satisfied: rpds-py&gt;=0.7.1 in ./.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.20.0)\nRequirement already satisfied: python-json-logger&gt;=2.0.4 in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.0.7)\nRequirement already satisfied: pyyaml&gt;=5.3 in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (6.0.2)\nRequirement already satisfied: rfc3339-validator in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.1.4)\nRequirement already satisfied: rfc3986-validator&gt;=0.1.1 in ./.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.1.1)\nRequirement already satisfied: ptyprocess&gt;=0.5 in ./.venv/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.7.0)\nRequirement already satisfied: charset-normalizer&lt;4,&gt;=2 in ./.venv/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (3.3.2)\nRequirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in ./.venv/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.2.3)\nRequirement already satisfied: executing&gt;=1.2.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (2.1.0)\nRequirement already satisfied: asttokens&gt;=2.1.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (2.4.1)\nRequirement already satisfied: pure-eval in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=7.23.1-&gt;ipykernel-&gt;jupyter) (0.2.3)\nRequirement already satisfied: fqdn in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.5.1)\nRequirement already satisfied: isoduration in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (20.11.0)\nRequirement already satisfied: jsonpointer&gt;1.13 in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (3.0.0)\nRequirement already satisfied: uri-template in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.3.0)\nRequirement already satisfied: webcolors&gt;=24.6.0 in ./.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (24.8.0)\nRequirement already satisfied: cffi&gt;=1.0.1 in ./.venv/lib/python3.12/site-packages (from argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.17.1)\nRequirement already satisfied: pycparser in ./.venv/lib/python3.12/site-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.22)\nRequirement already satisfied: arrow&gt;=0.15.0 in ./.venv/lib/python3.12/site-packages (from isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.3.0)\nRequirement already satisfied: types-python-dateutil&gt;=2.8.10 in ./.venv/lib/python3.12/site-packages (from arrow&gt;=0.15.0-&gt;isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.9.0.20240906)\n\n\nYou can delete this code after it’s done running, since you only need to install packages once for each project.\nNow, if we render the document by clicking on the “Render” button or by using the hotkey Cmd + Shift + K (on Mac) or Ctrl + Shift + K (on Windows/Linux), we should see the document rendered.\nSo now we have the main elements of a Quarto document:\n\nThe YAML header\nSection headers\nText\nCode chunks\nThe outputs of those code chunks\n\nThese things together make a very powerful tool.\nLet’s try to make a few more types of documents, then we’ll come back to see how to use these tools a bit more.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#output-formats",
-    "href": "p_foundations_quarto.html#output-formats",
-    "title": "9  Using Quarto",
-    "section": "9.8 Output Formats",
-    "text": "9.8 Output Formats\nYou can change the format value in the YAML header to experiment with other formats.\nTry the following formats:\n\nhtml: Renders the document as an HTML webpage.\npdf: Renders the document as a PDF. You will need to have LaTeX (or tinytex) installed on your computer to use this format.\ndocx: Renders the document as a Microsoft Word document.\ndashboard: Renders the document as an interactive dashboard.\npptx: Renders the document as a PowerPoint presentation.\nrevealjs: Renders the document as an HTML slideshow.\n\nThere is a chance some of these may not work on your computer due to different operating systems or versions of software.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#markdown",
-    "href": "p_foundations_quarto.html#markdown",
-    "title": "9  Using Quarto",
-    "section": "9.9 Markdown",
-    "text": "9.9 Markdown\nThe text inside Quarto documents is written in Markdown.\nMarkdown is a simple set of conventions for adding formatting to plain text. For example, to italicize text, you wrap it in asterisks *text here*, and to start a new header, you use the pound sign #. We will learn these in detail below.\nIn your editor, you can refer to the “Markdown Quick Reference” or “Cheatsheet” to learn more about Markdown syntax.\nYou can define titles of different levels by starting a line with one or more #:\n# Level 1 Title\n\n## Level 2 Title\n\n### Level 3 Title\nThe body of the document consists of text that follows the Markdown syntax. A Markdown file is a text file that contains lightweight markup to help set heading levels or format text. For example, the following text:\nThis is text with *italics* and **bold**.\n\nYou can define bulleted lists:\n\n- First element\n- Second element\nWill generate the following formatted text:\n\nThis is text with italics and bold.\nYou can define bulleted lists:\n\nFirst element\nSecond element\n\n\nNote that you need spaces before and after lists, as well as keeping the listed items on separate lines. Otherwise, they will all crunch together rather than making a list.\nWe see that words placed between asterisks are italicized, and lines that begin with a dash are transformed into a bulleted list.\nThe Markdown syntax allows for other formatting, such as the ability to insert links or images. For example, the following code:\n[Example Link](https://example.com)\n… will give the following link:\n\nExample Link\n\nWe can also embed images. In your document, you can type:\n![Alt text](images/picture_name.jpg)\nReplace “Alt text” with a description of the image (it can also be blank), “images” with the name of the image folder in your project, and “picture_name.jpg” with the name of the image you want to use. Alternatively, in some editors, you can drag and drop the image into your document.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#code-chunk-options",
-    "href": "p_foundations_quarto.html#code-chunk-options",
-    "title": "9  Using Quarto",
-    "section": "9.10 Code Chunk Options",
-    "text": "9.10 Code Chunk Options\nIt is possible to pass options to each code chunk to modify its behavior.\nFor example, a code chunk looks like this:\n\n# Your code here\nx = 2 + 2\nprint(x)\n\n4\n\n\nBut you can add options to control the code chunk’s execution and display:\n\n\n4\n\n\nIn this example, the echo: false option tells Quarto not to display the code in the rendered document, only the output.\n\n9.10.1 Global Options\nYou may want to apply options globally to all code chunks in your document. You can set default code execution options in the YAML header under the execute key.\nFor example:\n---\ntitle: \"Quarto Document\"\nformat: html\nexecute:\n  echo: false\n---\nThis will set echo: false for all code chunks.\n\n\n9.10.2 Other Code Chunk Options\nHere is a comprehensive list of options you can pass to code chunks:\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\neval\nEvaluate the code chunk (if false, just echoes the code into the output).\n\n\necho\nInclude the source code in output (true or false).\n\n\noutput\nInclude the results of executing the code in the output (true, false, or asis to indicate that the output is raw markdown).\n\n\nwarning\nInclude warnings in the output (true or false).\n\n\nerror\nInclude errors in the output (note that this implies that errors executing code will not halt processing of the document).\n\n\ninclude\nCatch-all for preventing any output (code or results) from being included (e.g., include: false suppresses all output from the code block).",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#displaying-tables",
-    "href": "p_foundations_quarto.html#displaying-tables",
-    "title": "9  Using Quarto",
-    "section": "9.11 Displaying Tables",
-    "text": "9.11 Displaying Tables\nBy default, pandas DataFrames display adequately in Quarto. However, to make them look nicer, we can use the itables package.\nMake sure you have the itables package installed. If not, install it:\n\n!pip install itables\n\nRequirement already satisfied: itables in ./.venv/lib/python3.12/site-packages (2.2.2)\nRequirement already satisfied: ipython in ./.venv/lib/python3.12/site-packages (from itables) (8.27.0)\nRequirement already satisfied: numpy in ./.venv/lib/python3.12/site-packages (from itables) (2.1.1)\nRequirement already satisfied: pandas in ./.venv/lib/python3.12/site-packages (from itables) (2.2.3)\nRequirement already satisfied: decorator in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (5.1.1)\nRequirement already satisfied: jedi&gt;=0.16 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (0.19.1)\nRequirement already satisfied: matplotlib-inline in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (0.1.7)\nRequirement already satisfied: prompt-toolkit&lt;3.1.0,&gt;=3.0.41 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (3.0.48)\nRequirement already satisfied: pygments&gt;=2.4.0 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (2.18.0)\nRequirement already satisfied: stack-data in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (0.6.3)\nRequirement already satisfied: traitlets&gt;=5.13.0 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (5.14.3)\nRequirement already satisfied: pexpect&gt;4.3 in ./.venv/lib/python3.12/site-packages (from ipython-&gt;itables) (4.9.0)\nRequirement already satisfied: python-dateutil&gt;=2.8.2 in ./.venv/lib/python3.12/site-packages (from pandas-&gt;itables) (2.9.0.post0)\nRequirement already satisfied: pytz&gt;=2020.1 in ./.venv/lib/python3.12/site-packages (from pandas-&gt;itables) (2024.2)\nRequirement already satisfied: tzdata&gt;=2022.7 in ./.venv/lib/python3.12/site-packages (from pandas-&gt;itables) (2024.2)\nRequirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in ./.venv/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython-&gt;itables) (0.8.4)\nRequirement already satisfied: ptyprocess&gt;=0.5 in ./.venv/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython-&gt;itables) (0.7.0)\nRequirement already satisfied: wcwidth in ./.venv/lib/python3.12/site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython-&gt;itables) (0.2.13)\nRequirement already satisfied: six&gt;=1.5 in ./.venv/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;itables) (1.16.0)\nRequirement already satisfied: executing&gt;=1.2.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython-&gt;itables) (2.1.0)\nRequirement already satisfied: asttokens&gt;=2.1.0 in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython-&gt;itables) (2.4.1)\nRequirement already satisfied: pure-eval in ./.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython-&gt;itables) (0.2.3)\n\n\nThen, you can run something like:\n\nimport plotly.express as px\nfrom itables import show\n\ntips = px.data.tips()\nshow(tips)\n\n\n\n    \n      \n      total_bill\n      tip\n      sex\n      smoker\n      day\n      time\n      size\n    \n  \n\n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n\n\nLoading ITables v2.2.2 from the internet...\n(need help?)\n\n\n\n\n\n\n\n\nOf course, interactive tables will only work in HTML formats. We’ll look at tables for other formats later.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#displaying-plots",
-    "href": "p_foundations_quarto.html#displaying-plots",
-    "title": "9  Using Quarto",
-    "section": "9.12 Displaying Plots",
-    "text": "9.12 Displaying Plots\nFor interactive plots, we can use the plotly package.\nFirst, install plotly:\n\n!pip install plotly\n\nRequirement already satisfied: plotly in ./.venv/lib/python3.12/site-packages (5.24.1)\nRequirement already satisfied: tenacity&gt;=6.2.0 in ./.venv/lib/python3.12/site-packages (from plotly) (9.0.0)\nRequirement already satisfied: packaging in ./.venv/lib/python3.12/site-packages (from plotly) (24.1)\n\n\nThen run something like:\n\ntips = px.data.tips()\ntips_sex = px.violin(tips, x=\"day\", y=\"total_bill\", color=\"sex\")\ntips_sex.show()\n\n                                                \n\n\nThis will display an interactive Plotly plot in the HTML output.\nFor static outputs like PDFs and Word documents, we need to write the image to a file and then include it in the document.\nFirst, save the plot as an image:\n\ntips_sex.write_image(\"tips_sex_plot.png\")\n\nThis will create a static image file in the same folder as your document. We can then include it in the document like this:\n![Violin plot of total bill by day and sex](tips_sex_plot.png)\nThis will display the image in the output.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "p_foundations_quarto.html#wrapping-up",
-    "href": "p_foundations_quarto.html#wrapping-up",
-    "title": "9  Using Quarto",
-    "section": "9.13 Wrapping Up",
-    "text": "9.13 Wrapping Up\nIn this lesson, we learned how to create and render Quarto documents, add formatting, and include code chunks.\nWe also learned how to use code chunk options to control the behavior of our documents.\nWe experimented with different output formats and how to customize the display of our documents.\nWith these tools, you can create dynamic and interactive reports that are easily shareable in various formats. Quarto’s flexibility and integration with Python make it an excellent choice for data analysts and researchers alike.",
-    "crumbs": [
-      "Foundations",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Using Quarto</span>"
-    ]
-  },
-  {
     "objectID": "p_data_on_display_data_viz_types.html",
     "href": "p_data_on_display_data_viz_types.html",
-    "title": "10  Data Visualization Types",
+    "title": "6  Data Visualization Types",
     "section": "",
-    "text": "11 Univariate Graphs",
+    "text": "7 Univariate Graphs",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Visualization Types</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Visualization Types</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_data_viz_types.html#numeric",
     "href": "p_data_on_display_data_viz_types.html#numeric",
-    "title": "10  Data Visualization Types",
-    "section": "11.1 Numeric",
-    "text": "11.1 Numeric\n\npx.histogram(tips, x='tip')\n\n                                                \n\n\n\npx.box(tips, x='tip')\n\n                                                \n\n\n\npx.violin(tips, x='tip', box=True, points=\"all\")",
+    "title": "6  Data Visualization Types",
+    "section": "7.1 Numeric",
+    "text": "7.1 Numeric\n\npx.histogram(tips, x='tip')\n\n                                                \n\n\n\npx.box(tips, x='tip')\n\n                                                \n\n\n\npx.violin(tips, x='tip', box=True, points=\"all\")",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Visualization Types</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Visualization Types</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_data_viz_types.html#numeric-vs-numeric",
     "href": "p_data_on_display_data_viz_types.html#numeric-vs-numeric",
-    "title": "10  Data Visualization Types",
-    "section": "13.1 Numeric vs Numeric",
-    "text": "13.1 Numeric vs Numeric\n\npx.scatter(tips, x='total_bill', y='tip')",
+    "title": "6  Data Visualization Types",
+    "section": "9.1 Numeric vs Numeric",
+    "text": "9.1 Numeric vs Numeric\n\npx.scatter(tips, x='total_bill', y='tip')",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Visualization Types</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Visualization Types</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_univariate.html",
     "href": "p_data_on_display_univariate.html",
-    "title": "11  Univariate Graphs with Plotly Express",
+    "title": "7  Univariate Graphs with Plotly Express",
     "section": "",
-    "text": "11.1 Intro\nIn this lesson, you’ll learn how to create univariate graphs using Plotly Express. Univariate graphs are essential for understanding the distribution of a single variable, whether it’s categorical or quantitative.\nLet’s get started!",
+    "text": "7.1 Intro\nIn this lesson, you’ll learn how to create univariate graphs using Plotly Express. Univariate graphs are essential for understanding the distribution of a single variable, whether it’s categorical or quantitative.\nLet’s get started!",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_univariate.html#learning-objectives",
     "href": "p_data_on_display_univariate.html#learning-objectives",
-    "title": "11  Univariate Graphs with Plotly Express",
-    "section": "11.2 Learning objectives",
-    "text": "11.2 Learning objectives\n\nCreate bar charts, pie charts, and treemaps for categorical data using Plotly Express\nGenerate histograms for quantitative data using Plotly Express\nCustomize graph appearance and labels",
+    "title": "7  Univariate Graphs with Plotly Express",
+    "section": "7.2 Learning objectives",
+    "text": "7.2 Learning objectives\n\nCreate bar charts, pie charts, and treemaps for categorical data using Plotly Express\nGenerate histograms for quantitative data using Plotly Express\nCustomize graph appearance and labels",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_univariate.html#imports",
     "href": "p_data_on_display_univariate.html#imports",
-    "title": "11  Univariate Graphs with Plotly Express",
-    "section": "11.3 Imports",
-    "text": "11.3 Imports\nThis lesson requires plotly.express, pandas, and vega_datasets. Install them if you haven’t already.\n\nimport plotly.express as px\nimport pandas as pd\nfrom vega_datasets import data",
+    "title": "7  Univariate Graphs with Plotly Express",
+    "section": "7.3 Imports",
+    "text": "7.3 Imports\nThis lesson requires plotly.express, pandas, and vega_datasets. Install them if you haven’t already.\n\nimport plotly.express as px\nimport pandas as pd\nfrom vega_datasets import data",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_univariate.html#quantitative-data",
     "href": "p_data_on_display_univariate.html#quantitative-data",
-    "title": "11  Univariate Graphs with Plotly Express",
-    "section": "11.4 Quantitative Data",
-    "text": "11.4 Quantitative Data\n\n11.4.1 Histogram\nHistograms are used to visualize the distribution of continuous variables.\nLet’s make a histogram of the tip amounts in the tips dataset.\n\ntips = px.data.tips()\ntips.head() # view the first 5 rows\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n\n\n\n\n\n\npx.histogram(tips, x='tip')\n\n                                                \n\n\nWe can see that the highest bar, corresponding to tips between 1.75 and 2.24, has a frequency of 55. This means that there were 55 tips between 1.75 and 2.24.\n\n\n\n\n\n\nSide-note\n\n\n\nNotice that plotly charts are interactive. You can hover over the bars to see the exact number of tips in each bin.\nTry playing with the buttons at the top right. The button to download the chart as a png is especially useful.\n\n\n\n\n\n\n\n\nPractice\n\n\n\n11.4.2 Practice: Speed Distribution Histogram\nFollowing the example of the histogram of tips, create a histogram of the speed distribution (Speed_IAS_in_knots) using the birdstrikes dataset.\n\nbirdstrikes = data.birdstrikes()\nbirdstrikes.head()\n# Your code here\n\n\n\n\n\n\n\n\nAirport__Name\nAircraft__Make_Model\nEffect__Amount_of_damage\nFlight_Date\nAircraft__Airline_Operator\nOrigin_State\nWhen__Phase_of_flight\nWildlife__Size\nWildlife__Species\nWhen__Time_of_day\nCost__Other\nCost__Repair\nCost__Total_$\nSpeed_IAS_in_knots\n\n\n\n\n0\nBARKSDALE AIR FORCE BASE ARPT\nT-38A\nNone\n1/8/90 0:00\nMILITARY\nLouisiana\nClimb\nLarge\nTurkey vulture\nDay\n0\n0\n0\n300.0\n\n\n1\nBARKSDALE AIR FORCE BASE ARPT\nKC-10A\nNone\n1/9/90 0:00\nMILITARY\nLouisiana\nApproach\nMedium\nUnknown bird or bat\nNight\n0\n0\n0\n200.0\n\n\n2\nBARKSDALE AIR FORCE BASE ARPT\nB-52\nNone\n1/11/90 0:00\nMILITARY\nLouisiana\nTake-off run\nMedium\nUnknown bird or bat\nDay\n0\n0\n0\n130.0\n\n\n3\nNEW ORLEANS INTL\nB-737-300\nSubstantial\n1/11/90 0:00\nSOUTHWEST AIRLINES\nLouisiana\nTake-off run\nSmall\nRock pigeon\nDay\n0\n0\n0\n140.0\n\n\n4\nBARKSDALE AIR FORCE BASE ARPT\nKC-10A\nNone\n1/12/90 0:00\nMILITARY\nLouisiana\nClimb\nMedium\nUnknown bird or bat\nDay\n0\n0\n0\n160.0\n\n\n\n\n\n\n\n\n\nWe can view the help documentation for the function by typing px.histogram? in a cell and running it.\n\npx.histogram?\n\nFrom the help documentation, we can see that the px.histogram function has many arguments that we can use to customize the graph.\nLet’s make the histogram a bit nicer by adding a title, customizing the x axis label, and changing the color.\n\npx.histogram(\n    tips,\n    x=\"tip\",\n    labels={\"tip\": \"Tip Amount ($)\"},\n    title=\"Distribution of Tips\", \n    color_discrete_sequence=[\"lightseagreen\"]\n)\n\n                                                \n\n\nColor names are based on standard CSS color naming from Mozilla. You can see the full list here.\nAlternatively, you can use hex color codes, like #1f77b4. You can get these easily by using a color picker. Search for “color picker” on Google.\n\npx.histogram(\n    tips,\n    x=\"tip\",\n    labels={\"tip\": \"Tip Amount ($)\"},\n    title=\"Distribution of Tips\", \n    color_discrete_sequence=[\"#6a5acd\"]\n)\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n11.4.3 Practice: Bird Strikes Histogram Custom\nUpdate your birdstrikes histogram to use a hex code color, add a title, and change the x-axis label to “Speed (Nautical Miles Per Hour)”.\n\n# Your code here\n\n\n\n\n\n11.4.4 Counts on bars\nWe can add counts to the bars with the text_auto argument.\n\npx.histogram(tips, x='tip', text_auto= True)\n\n                                                \n\n\n\n11.4.4.1 Bins and bandwidths\nWe can adjust the number of bins or bin width to better represent the data using the nbins argument. Let’s make a histogram with just 10 bins:\n\npx.histogram(tips, x='tip', nbins=10)\n\n                                                \n\n\nNow we have broader tip amount groups.\n\n\n\n\n\n\nPractice\n\n\n\n11.4.5 Practice: Speed Distribution Histogram Custom\nCreate a histogram of the speed distribution (Speed_IAS_in_knots) with 15 bins using the birdstrikes dataset. Add counts to the bars, use a color of your choice, and add an appropriate title.\n\n# Your code here",
+    "title": "7  Univariate Graphs with Plotly Express",
+    "section": "7.4 Quantitative Data",
+    "text": "7.4 Quantitative Data\n\n7.4.1 Histogram\nHistograms are used to visualize the distribution of continuous variables.\nLet’s make a histogram of the tip amounts in the tips dataset.\n\ntips = px.data.tips()\ntips.head() # view the first 5 rows\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n\n\n\n\n\n\npx.histogram(tips, x='tip')\n\n                                                \n\n\nWe can see that the highest bar, corresponding to tips between 1.75 and 2.24, has a frequency of 55. This means that there were 55 tips between 1.75 and 2.24.\n\n\n\n\n\n\nSide-note\n\n\n\nNotice that plotly charts are interactive. You can hover over the bars to see the exact number of tips in each bin.\nTry playing with the buttons at the top right. The button to download the chart as a png is especially useful.\n\n\n\n\n\n\n\n\nPractice\n\n\n\n7.4.2 Practice: Speed Distribution Histogram\nFollowing the example of the histogram of tips, create a histogram of the speed distribution (Speed_IAS_in_knots) using the birdstrikes dataset.\n\nbirdstrikes = data.birdstrikes()\nbirdstrikes.head()\n# Your code here\n\n\n\n\n\n\n\n\nAirport__Name\nAircraft__Make_Model\nEffect__Amount_of_damage\nFlight_Date\nAircraft__Airline_Operator\nOrigin_State\nWhen__Phase_of_flight\nWildlife__Size\nWildlife__Species\nWhen__Time_of_day\nCost__Other\nCost__Repair\nCost__Total_$\nSpeed_IAS_in_knots\n\n\n\n\n0\nBARKSDALE AIR FORCE BASE ARPT\nT-38A\nNone\n1/8/90 0:00\nMILITARY\nLouisiana\nClimb\nLarge\nTurkey vulture\nDay\n0\n0\n0\n300.0\n\n\n1\nBARKSDALE AIR FORCE BASE ARPT\nKC-10A\nNone\n1/9/90 0:00\nMILITARY\nLouisiana\nApproach\nMedium\nUnknown bird or bat\nNight\n0\n0\n0\n200.0\n\n\n2\nBARKSDALE AIR FORCE BASE ARPT\nB-52\nNone\n1/11/90 0:00\nMILITARY\nLouisiana\nTake-off run\nMedium\nUnknown bird or bat\nDay\n0\n0\n0\n130.0\n\n\n3\nNEW ORLEANS INTL\nB-737-300\nSubstantial\n1/11/90 0:00\nSOUTHWEST AIRLINES\nLouisiana\nTake-off run\nSmall\nRock pigeon\nDay\n0\n0\n0\n140.0\n\n\n4\nBARKSDALE AIR FORCE BASE ARPT\nKC-10A\nNone\n1/12/90 0:00\nMILITARY\nLouisiana\nClimb\nMedium\nUnknown bird or bat\nDay\n0\n0\n0\n160.0\n\n\n\n\n\n\n\n\n\nWe can view the help documentation for the function by typing px.histogram? in a cell and running it.\n\npx.histogram?\n\nFrom the help documentation, we can see that the px.histogram function has many arguments that we can use to customize the graph.\nLet’s make the histogram a bit nicer by adding a title, customizing the x axis label, and changing the color.\n\npx.histogram(\n    tips,\n    x=\"tip\",\n    labels={\"tip\": \"Tip Amount ($)\"},\n    title=\"Distribution of Tips\", \n    color_discrete_sequence=[\"lightseagreen\"]\n)\n\n                                                \n\n\nColor names are based on standard CSS color naming from Mozilla. You can see the full list here.\nAlternatively, you can use hex color codes, like #1f77b4. You can get these easily by using a color picker. Search for “color picker” on Google.\n\npx.histogram(\n    tips,\n    x=\"tip\",\n    labels={\"tip\": \"Tip Amount ($)\"},\n    title=\"Distribution of Tips\", \n    color_discrete_sequence=[\"#6a5acd\"]\n)\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n7.4.3 Practice: Bird Strikes Histogram Custom\nUpdate your birdstrikes histogram to use a hex code color, add a title, and change the x-axis label to “Speed (Nautical Miles Per Hour)”.\n\n# Your code here\n\n\n\n\n\n7.4.4 Counts on bars\nWe can add counts to the bars with the text_auto argument.\n\npx.histogram(tips, x='tip', text_auto= True)\n\n                                                \n\n\n\n7.4.4.1 Bins and bandwidths\nWe can adjust the number of bins or bin width to better represent the data using the nbins argument. Let’s make a histogram with just 10 bins:\n\npx.histogram(tips, x='tip', nbins=10)\n\n                                                \n\n\nNow we have broader tip amount groups.\n\n\n\n\n\n\nPractice\n\n\n\n7.4.5 Practice: Speed Distribution Histogram Custom\nCreate a histogram of the speed distribution (Speed_IAS_in_knots) with 15 bins using the birdstrikes dataset. Add counts to the bars, use a color of your choice, and add an appropriate title.\n\n# Your code here",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_univariate.html#categorical-data",
     "href": "p_data_on_display_univariate.html#categorical-data",
-    "title": "11  Univariate Graphs with Plotly Express",
-    "section": "11.5 Categorical Data",
-    "text": "11.5 Categorical Data\n\n11.5.1 Bar chart\nBar charts can be used to display the frequency of a single categorical variable.\nPlotly has a px.bar function that we will see later. But for single categorical variables, the function plotly wants you to use is actually px.histogram. (Statisticians everywhere are crying; histograms are supposed to be used for just quantitative data!)\nLet’s create a basic bar chart showing the distribution of sex in the tips dataset:\n\npx.histogram(tips, x='sex')   \n\n                                                \n\n\nLet’s add counts to the bars.\n\npx.histogram(tips, x='sex', text_auto= True)\n\n                                                \n\n\nWe can enhance the chart by adding a color axis, and customizing the labels and title.\n\npx.histogram(tips, x='sex', text_auto=True, color='sex', \n             labels={'sex': 'Gender'},\n             title='Distribution of Customers by Gender')\n\n                                                \n\n\nArguably, in this plot, we do not need the color axis, since the sex variable is already represented by the x axis. But public audiences like colors, so it may still be worth including.\nHowever, we should remove the legend. Let’s also use custom colors.\nFor this, we can first create a figure object, then use the .layout.update method from that object to update the legend.\n\ntips_by_sex = px.histogram(\n    tips,\n    x=\"sex\",\n    text_auto=True,\n    color=\"sex\",\n    labels={\"sex\": \"Gender\"},\n    title=\"Distribution of Customers by Gender\",\n    color_discrete_sequence=[\"#1f77b4\", \"#ff7f0e\"],\n)\n\ntips_by_sex.update_layout(showlegend=False)\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n11.5.2 Practice: Bird Strikes by Phase of Flight\nCreate a bar chart showing the frequency of bird strikes by the phase of flight, When__Phase_of_flight. Add appropriate labels and a title. Use colors of your choice, and remove the legend.\n\n# Your code here\n\n\n\n\n11.5.2.1 Sorting categories\nIt is sometimes useful to dictate a specific order for the categories in a bar chart.\nConsider this bar chart of the election winners by district in the 2013 Montreal mayoral election.\n\nelection = px.data.election()\nelection.head()\n\n\n\n\n\n\n\n\ndistrict\nCoderre\nBergeron\nJoly\ntotal\nwinner\nresult\ndistrict_id\n\n\n\n\n0\n101-Bois-de-Liesse\n2481\n1829\n3024\n7334\nJoly\nplurality\n101\n\n\n1\n102-Cap-Saint-Jacques\n2525\n1163\n2675\n6363\nJoly\nplurality\n102\n\n\n2\n11-Sault-au-Récollet\n3348\n2770\n2532\n8650\nCoderre\nplurality\n11\n\n\n3\n111-Mile-End\n1734\n4782\n2514\n9030\nBergeron\nmajority\n111\n\n\n4\n112-DeLorimier\n1770\n5933\n3044\n10747\nBergeron\nmajority\n112\n\n\n\n\n\n\n\n\npx.histogram(election, x='winner')\n\n                                                \n\n\nLet’s define a custom order for the categories. “Bergeron” will be first, then “Joly” then “Coderre”.\n\ncustom_order = [\"Bergeron\", \"Joly\", \"Coderre\"]\nelection_chart = px.histogram(election, x='winner', category_orders={'winner': custom_order})\nelection_chart\n\n                                                \n\n\nWe can also sort the categories by frequency.\nWe can sort the categories by frequency using the categoryorder attribute of the x axis.\n\nelection_chart = px.histogram(election, x=\"winner\")\nelection_chart.update_xaxes(categoryorder=\"total descending\")\n\n                                                \n\n\nOr in ascending order:\n\nelection_chart = px.histogram(election, x=\"winner\")\nelection_chart.update_xaxes(categoryorder=\"total ascending\")\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n11.5.3 Practice: Sorted Origin State Bar Chart\nCreate a sorted bar chart showing the distribution of bird strikes by origin state. Sort the bars in ascending order of frequency.\n\n# Your code here\n\n\n\n\n\n\n11.5.4 Horizontal bar chart\nWhen you have many categories, horizontal bar charts are often easier to read than vertical bar charts. To make a horizontal bar chart, simply use the y axis instead of the x axis.\n\npx.histogram(tips, y='day')\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n11.5.5 Practice: Horizontal Bar Chart of Origin State\nCreate a horizontal bar chart showing the distribution of bird strikes by origin state.\n\n# Your code here\n\n\n\n\n\n11.5.6 Pie chart\nPie charts are also useful for showing the proportion of categorical variables. They are best used when you have a small number of categories. For larger numbers of categories, pie charts are hard to read.\nLet’s make a pie chart of the distribution of tips by day of the week.\n\npx.pie(tips, names=\"day\")\n\n                                                \n\n\nWe can add labels to the pie chart to make it easier to read.\n\ntips_by_day = px.pie(tips, names=\"day\")\ntips_by_day_with_labels = tips_by_day.update_traces(textposition=\"inside\", textinfo=\"percent+label\")\ntips_by_day_with_labels\n\n                                                \n\n\nThe legend is no longer needed, so we can remove it.\n\ntips_by_day_with_labels.update_layout(showlegend=False)\n\n                                                \n\n\n\n\n\n\n\n\nPro\n\n\n\nIf you forget how to make simple changes like this, don’t hesitate to consult the plotly documentation, Google or ChatGPT.\n\n\n\n\n\n\n\n\nPractice\n\n\n\n11.5.7 Practice: Wildlife Size Pie Chart\nCreate a pie chart showing the distribution of bird strikes by wildlife size. Include percentages and labels inside the pie slices.\n\n# Your code here",
+    "title": "7  Univariate Graphs with Plotly Express",
+    "section": "7.5 Categorical Data",
+    "text": "7.5 Categorical Data\n\n7.5.1 Bar chart\nBar charts can be used to display the frequency of a single categorical variable.\nPlotly has a px.bar function that we will see later. But for single categorical variables, the function plotly wants you to use is actually px.histogram. (Statisticians everywhere are crying; histograms are supposed to be used for just quantitative data!)\nLet’s create a basic bar chart showing the distribution of sex in the tips dataset:\n\npx.histogram(tips, x='sex')   \n\n                                                \n\n\nLet’s add counts to the bars.\n\npx.histogram(tips, x='sex', text_auto= True)\n\n                                                \n\n\nWe can enhance the chart by adding a color axis, and customizing the labels and title.\n\npx.histogram(tips, x='sex', text_auto=True, color='sex', \n             labels={'sex': 'Gender'},\n             title='Distribution of Customers by Gender')\n\n                                                \n\n\nArguably, in this plot, we do not need the color axis, since the sex variable is already represented by the x axis. But public audiences like colors, so it may still be worth including.\nHowever, we should remove the legend. Let’s also use custom colors.\nFor this, we can first create a figure object, then use the .layout.update method from that object to update the legend.\n\ntips_by_sex = px.histogram(\n    tips,\n    x=\"sex\",\n    text_auto=True,\n    color=\"sex\",\n    labels={\"sex\": \"Gender\"},\n    title=\"Distribution of Customers by Gender\",\n    color_discrete_sequence=[\"#1f77b4\", \"#ff7f0e\"],\n)\n\ntips_by_sex.update_layout(showlegend=False)\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n7.5.2 Practice: Bird Strikes by Phase of Flight\nCreate a bar chart showing the frequency of bird strikes by the phase of flight, When__Phase_of_flight. Add appropriate labels and a title. Use colors of your choice, and remove the legend.\n\n# Your code here\n\n\n\n\n7.5.2.1 Sorting categories\nIt is sometimes useful to dictate a specific order for the categories in a bar chart.\nConsider this bar chart of the election winners by district in the 2013 Montreal mayoral election.\n\nelection = px.data.election()\nelection.head()\n\n\n\n\n\n\n\n\ndistrict\nCoderre\nBergeron\nJoly\ntotal\nwinner\nresult\ndistrict_id\n\n\n\n\n0\n101-Bois-de-Liesse\n2481\n1829\n3024\n7334\nJoly\nplurality\n101\n\n\n1\n102-Cap-Saint-Jacques\n2525\n1163\n2675\n6363\nJoly\nplurality\n102\n\n\n2\n11-Sault-au-Récollet\n3348\n2770\n2532\n8650\nCoderre\nplurality\n11\n\n\n3\n111-Mile-End\n1734\n4782\n2514\n9030\nBergeron\nmajority\n111\n\n\n4\n112-DeLorimier\n1770\n5933\n3044\n10747\nBergeron\nmajority\n112\n\n\n\n\n\n\n\n\npx.histogram(election, x='winner')\n\n                                                \n\n\nLet’s define a custom order for the categories. “Bergeron” will be first, then “Joly” then “Coderre”.\n\ncustom_order = [\"Bergeron\", \"Joly\", \"Coderre\"]\nelection_chart = px.histogram(election, x='winner', category_orders={'winner': custom_order})\nelection_chart\n\n                                                \n\n\nWe can also sort the categories by frequency.\nWe can sort the categories by frequency using the categoryorder attribute of the x axis.\n\nelection_chart = px.histogram(election, x=\"winner\")\nelection_chart.update_xaxes(categoryorder=\"total descending\")\n\n                                                \n\n\nOr in ascending order:\n\nelection_chart = px.histogram(election, x=\"winner\")\nelection_chart.update_xaxes(categoryorder=\"total ascending\")\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n7.5.3 Practice: Sorted Origin State Bar Chart\nCreate a sorted bar chart showing the distribution of bird strikes by origin state. Sort the bars in ascending order of frequency.\n\n# Your code here\n\n\n\n\n\n\n7.5.4 Horizontal bar chart\nWhen you have many categories, horizontal bar charts are often easier to read than vertical bar charts. To make a horizontal bar chart, simply use the y axis instead of the x axis.\n\npx.histogram(tips, y='day')\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n7.5.5 Practice: Horizontal Bar Chart of Origin State\nCreate a horizontal bar chart showing the distribution of bird strikes by origin state.\n\n# Your code here\n\n\n\n\n\n7.5.6 Pie chart\nPie charts are also useful for showing the proportion of categorical variables. They are best used when you have a small number of categories. For larger numbers of categories, pie charts are hard to read.\nLet’s make a pie chart of the distribution of tips by day of the week.\n\npx.pie(tips, names=\"day\")\n\n                                                \n\n\nWe can add labels to the pie chart to make it easier to read.\n\ntips_by_day = px.pie(tips, names=\"day\")\ntips_by_day_with_labels = tips_by_day.update_traces(textposition=\"inside\", textinfo=\"percent+label\")\ntips_by_day_with_labels\n\n                                                \n\n\nThe legend is no longer needed, so we can remove it.\n\ntips_by_day_with_labels.update_layout(showlegend=False)\n\n                                                \n\n\n\n\n\n\n\n\nPro\n\n\n\nIf you forget how to make simple changes like this, don’t hesitate to consult the plotly documentation, Google or ChatGPT.\n\n\n\n\n\n\n\n\nPractice\n\n\n\n7.5.7 Practice: Wildlife Size Pie Chart\nCreate a pie chart showing the distribution of bird strikes by wildlife size. Include percentages and labels inside the pie slices.\n\n# Your code here",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_univariate.html#summary",
     "href": "p_data_on_display_univariate.html#summary",
-    "title": "11  Univariate Graphs with Plotly Express",
-    "section": "11.6 Summary",
-    "text": "11.6 Summary\nIn this lesson, you learned how to create univariate graphs using Plotly Express. You should now feel confident in your ability to create bar charts, pie charts, and histograms. You should also feel comfortable customizing the appearance of your graphs.\nSee you in the next lesson.",
+    "title": "7  Univariate Graphs with Plotly Express",
+    "section": "7.6 Summary",
+    "text": "7.6 Summary\nIn this lesson, you learned how to create univariate graphs using Plotly Express. You should now feel confident in your ability to create bar charts, pie charts, and histograms. You should also feel comfortable customizing the appearance of your graphs.\nSee you in the next lesson.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Univariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html",
     "href": "p_data_on_display_multivariate.html",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
     "section": "",
-    "text": "12.1 Introduction\nIn this lesson, you’ll learn how to create bivariate and multivariate graphs using Plotly Express. These types of graphs are essential for exploring relationships between two or more variables, whether they are quantitative or categorical. Understanding these relationships can provide deeper insights into your data.\nLet’s dive in!",
+    "text": "8.1 Introduction\nIn this lesson, you’ll learn how to create bivariate and multivariate graphs using Plotly Express. These types of graphs are essential for exploring relationships between two or more variables, whether they are quantitative or categorical. Understanding these relationships can provide deeper insights into your data.\nLet’s dive in!",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#learning-objectives",
     "href": "p_data_on_display_multivariate.html#learning-objectives",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.2 Learning Objectives",
-    "text": "12.2 Learning Objectives\nBy the end of this lesson, you will be able to:\n\nCreate scatter plots for quantitative vs. quantitative data\nGenerate grouped histograms and violin plots for quantitative vs. categorical data\nCreate grouped, stacked, and percent-stacked bar charts for categorical vs. categorical data\nVisualize time series data using bar charts and line charts\nCreate bubble charts to display relationships between three or more variables\nUse faceting to compare distributions across subsets of data",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.2 Learning Objectives",
+    "text": "8.2 Learning Objectives\nBy the end of this lesson, you will be able to:\n\nCreate scatter plots for quantitative vs. quantitative data\nGenerate grouped histograms and violin plots for quantitative vs. categorical data\nCreate grouped, stacked, and percent-stacked bar charts for categorical vs. categorical data\nVisualize time series data using bar charts and line charts\nCreate bubble charts to display relationships between three or more variables\nUse faceting to compare distributions across subsets of data",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#imports",
     "href": "p_data_on_display_multivariate.html#imports",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.3 Imports",
-    "text": "12.3 Imports\nThis lesson requires plotly.express, pandas, numpy, and vega_datasets. Install them if you haven’t already.\n\nimport plotly.express as px\nimport pandas as pd\nimport numpy as np\nfrom vega_datasets import data",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.3 Imports",
+    "text": "8.3 Imports\nThis lesson requires plotly.express, pandas, numpy, and vega_datasets. Install them if you haven’t already.\n\nimport plotly.express as px\nimport pandas as pd\nimport numpy as np\nfrom vega_datasets import data",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#numeric-vs.-numeric-data",
     "href": "p_data_on_display_multivariate.html#numeric-vs.-numeric-data",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.4 Numeric vs. Numeric Data",
-    "text": "12.4 Numeric vs. Numeric Data\nWhen both variables are quantitative, scatter plots are an excellent way to visualize their relationship.\n\n12.4.1 Scatter Plot\nLet’s create a scatter plot to examine the relationship between total_bill and tip in the tips dataset. The tips dataset is included in Plotly Express and contains information about restaurant bills and tips that were collected by a waiter in a US restaurant.\nFirst, we’ll load the dataset and view the first five rows:\n\ntips = px.data.tips()\ntips\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n239\n29.03\n5.92\nMale\nNo\nSat\nDinner\n3\n\n\n240\n27.18\n2.00\nFemale\nYes\nSat\nDinner\n2\n\n\n241\n22.67\n2.00\nMale\nYes\nSat\nDinner\n2\n\n\n242\n17.82\n1.75\nMale\nNo\nSat\nDinner\n2\n\n\n243\n18.78\n3.00\nFemale\nNo\nThur\nDinner\n2\n\n\n\n\n244 rows × 7 columns\n\n\n\nNext, we’ll create a basic scatter plot. We do this with the px.scatter function.\n\npx.scatter(tips, x='total_bill', y='tip')\n\n                                                \n\n\nFrom the scatter plot, we can observe that as the total bill increases, the tip amount tends to increase as well.\nLet’s enhance the scatter plot by adding labels and a title.\n\npx.scatter(\n    tips,\n    x=\"total_bill\",\n    y=\"tip\",\n    labels={\"total_bill\": \"Total Bill ($)\", \"tip\": \"Tip ($)\"},\n    title=\"Relationship Between Total Bill and Tip Amount\",\n)\n\n                                                \n\n\nRecall that you can see additional information about the function by typing px.scatter? in a cell and executing the cell.\n\npx.scatter?\n\n\n\n\n\n\n\nPractice\n\n\n\n12.4.2 Practice: Life Expectancy vs. GDP Per Capita\nUsing the Gapminder dataset (the 2007 subset, g_2007, defined below), create a scatter plot showing the relationship between gdpPercap (GDP per capita) and lifeExp (life expectancy).\nAccording to the plot, what is the relationship between GDP per capita and life expectancy?\n\ngapminder = px.data.gapminder()\ng_2007 = gapminder.query('year == 2007')\ng_2007.head()\n# Your code here\n\n\n\n\n\n\n\n\ncountry\ncontinent\nyear\nlifeExp\npop\ngdpPercap\niso_alpha\niso_num\n\n\n\n\n11\nAfghanistan\nAsia\n2007\n43.828\n31889923\n974.580338\nAFG\n4\n\n\n23\nAlbania\nEurope\n2007\n76.423\n3600523\n5937.029526\nALB\n8\n\n\n35\nAlgeria\nAfrica\n2007\n72.301\n33333216\n6223.367465\nDZA\n12\n\n\n47\nAngola\nAfrica\n2007\n42.731\n12420476\n4797.231267\nAGO\n24\n\n\n59\nArgentina\nAmericas\n2007\n75.320\n40301927\n12779.379640\nARG\n32",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.4 Numeric vs. Numeric Data",
+    "text": "8.4 Numeric vs. Numeric Data\nWhen both variables are quantitative, scatter plots are an excellent way to visualize their relationship.\n\n8.4.1 Scatter Plot\nLet’s create a scatter plot to examine the relationship between total_bill and tip in the tips dataset. The tips dataset is included in Plotly Express and contains information about restaurant bills and tips that were collected by a waiter in a US restaurant.\nFirst, we’ll load the dataset and view the first five rows:\n\ntips = px.data.tips()\ntips\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n239\n29.03\n5.92\nMale\nNo\nSat\nDinner\n3\n\n\n240\n27.18\n2.00\nFemale\nYes\nSat\nDinner\n2\n\n\n241\n22.67\n2.00\nMale\nYes\nSat\nDinner\n2\n\n\n242\n17.82\n1.75\nMale\nNo\nSat\nDinner\n2\n\n\n243\n18.78\n3.00\nFemale\nNo\nThur\nDinner\n2\n\n\n\n\n244 rows × 7 columns\n\n\n\nNext, we’ll create a basic scatter plot. We do this with the px.scatter function.\n\npx.scatter(tips, x='total_bill', y='tip')\n\n                                                \n\n\nFrom the scatter plot, we can observe that as the total bill increases, the tip amount tends to increase as well.\nLet’s enhance the scatter plot by adding labels and a title.\n\npx.scatter(\n    tips,\n    x=\"total_bill\",\n    y=\"tip\",\n    labels={\"total_bill\": \"Total Bill ($)\", \"tip\": \"Tip ($)\"},\n    title=\"Relationship Between Total Bill and Tip Amount\",\n)\n\n                                                \n\n\nRecall that you can see additional information about the function by typing px.scatter? in a cell and executing the cell.\n\npx.scatter?\n\n\n\n\n\n\n\nPractice\n\n\n\n8.4.2 Practice: Life Expectancy vs. GDP Per Capita\nUsing the Gapminder dataset (the 2007 subset, g_2007, defined below), create a scatter plot showing the relationship between gdpPercap (GDP per capita) and lifeExp (life expectancy).\nAccording to the plot, what is the relationship between GDP per capita and life expectancy?\n\ngapminder = px.data.gapminder()\ng_2007 = gapminder.query('year == 2007')\ng_2007.head()\n# Your code here\n\n\n\n\n\n\n\n\ncountry\ncontinent\nyear\nlifeExp\npop\ngdpPercap\niso_alpha\niso_num\n\n\n\n\n11\nAfghanistan\nAsia\n2007\n43.828\n31889923\n974.580338\nAFG\n4\n\n\n23\nAlbania\nEurope\n2007\n76.423\n3600523\n5937.029526\nALB\n8\n\n\n35\nAlgeria\nAfrica\n2007\n72.301\n33333216\n6223.367465\nDZA\n12\n\n\n47\nAngola\nAfrica\n2007\n42.731\n12420476\n4797.231267\nAGO\n24\n\n\n59\nArgentina\nAmericas\n2007\n75.320\n40301927\n12779.379640\nARG\n32",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#numeric-vs.-categorical-data",
     "href": "p_data_on_display_multivariate.html#numeric-vs.-categorical-data",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.5 Numeric vs. Categorical Data",
-    "text": "12.5 Numeric vs. Categorical Data\nWhen one variable is quantitative and the other is categorical, we can use grouped histograms, violin plots, or box plots to visualize the distribution of the quantitative variable across different categories.\n\n12.5.1 Grouped Histograms\nFirst, here’s how you can create a regular histogram of all tips:\n\npx.histogram(tips, x='tip')\n\n                                                \n\n\nTo create a grouped histogram, use the color parameter to specify the categorical variable. Here, we’ll color the histogram by sex:\n\npx.histogram(tips, x='tip', color='sex')\n\n                                                \n\n\nBy default, the histograms for each category are stacked. To change this behavior, you can use the barmode parameter. For example, barmode='overlay' will create an overlaid histogram:\n\npx.histogram(tips, x=\"tip\", color=\"sex\", barmode=\"overlay\")\n\n                                                \n\n\nThis creates two semi-transparent histograms overlaid on top of each other, allowing for direct comparison of the distributions.\n\n\n\n\n\n\nPractice\n\n\n\n12.5.2 Practice: Age Distribution by Gender\nUsing the la_riots dataset from vega_datasets, create a grouped histogram of age by gender. Compare the age distributions between different genders.\nAccording to the plot, was the oldest victim male or female?\n\nla_riots = data.la_riots()\nla_riots.head()\n# Your code here\n\n\n\n\n\n\n\n\nfirst_name\nlast_name\nage\ngender\nrace\ndeath_date\naddress\nneighborhood\ntype\nlongitude\nlatitude\n\n\n\n\n0\nCesar A.\nAguilar\n18.0\nMale\nLatino\n1992-04-30\n2009 W. 6th St.\nWestlake\nOfficer-involved shooting\n-118.273976\n34.059281\n\n\n1\nGeorge\nAlvarez\n42.0\nMale\nLatino\n1992-05-01\nMain & College streets\nChinatown\nNot riot-related\n-118.234098\n34.062690\n\n\n2\nWilson\nAlvarez\n40.0\nMale\nLatino\n1992-05-23\n3100 Rosecrans Ave.\nHawthorne\nHomicide\n-118.326816\n33.901662\n\n\n3\nBrian E.\nAndrew\n30.0\nMale\nBlack\n1992-04-30\nRosecrans & Chester avenues\nCompton\nOfficer-involved shooting\n-118.215390\n33.903457\n\n\n4\nVivian\nAustin\n87.0\nFemale\nBlack\n1992-05-03\n1600 W. 60th St.\nHarvard Park\nDeath\n-118.304741\n33.985667\n\n\n\n\n\n\n\n\n\n\n\n12.5.3 Violin & Box Plots\nViolin plots are useful for comparing the distribution of a quantitative variable across different categories. They show the probability density of the data at different values and can include a box plot to summarize key statistics.\nFirst, let’s create a violin plot of all tips:\n\npx.violin(tips, y=\"tip\")\n\n                                                \n\n\nWe can add a box plot to the violin plot by setting the box parameter to True:\n\npx.violin(tips, y=\"tip\", box=True)\n\n                                                \n\n\nFor just the box plot, we can use px.box:\n\npx.box(tips, y=\"tip\")\n\n                                                \n\n\nTo add jitter points to the violin or box plots, we can use the points = 'all' parameter.\n\npx.violin(tips, y=\"tip\", points=\"all\")\n\n                                                \n\n\nNow, to create a violin plot of tips by gender, use the x parameter to specify the categorical variable:\n\npx.violin(tips, y=\"tip\", x=\"sex\", box=True)\n\n                                                \n\n\nWe can also add a color axis to differentiate the violins:\n\npx.violin(tips, y=\"tip\", x=\"sex\", color=\"sex\", box=True)\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n12.5.4 Practice: Life Expectancy by Continent\nUsing the g_2007 dataset, create a violin plot showing the distribution of lifeExp by continent.\nAccording to the plot, which continent has the highest median country life expectancy?\n\ng_2007 = gapminder.query(\"year == 2007\")\ng_2007.head()\n# Your code here\n\n\n\n\n\n\n\n\ncountry\ncontinent\nyear\nlifeExp\npop\ngdpPercap\niso_alpha\niso_num\n\n\n\n\n11\nAfghanistan\nAsia\n2007\n43.828\n31889923\n974.580338\nAFG\n4\n\n\n23\nAlbania\nEurope\n2007\n76.423\n3600523\n5937.029526\nALB\n8\n\n\n35\nAlgeria\nAfrica\n2007\n72.301\n33333216\n6223.367465\nDZA\n12\n\n\n47\nAngola\nAfrica\n2007\n42.731\n12420476\n4797.231267\nAGO\n24\n\n\n59\nArgentina\nAmericas\n2007\n75.320\n40301927\n12779.379640\nARG\n32\n\n\n\n\n\n\n\n\n\n\n\n12.5.5 Summary Bar Charts (Mean and Standard Deviation)\nSometimes it’s useful to display the mean and standard deviation of a quantitative variable across different categories. This can be visualized using a bar chart with error bars.\nFirst, let’s calculate the mean and standard deviation of tips for each gender. You have not yet learned how to do this, but you will in a later lesson.\n\n# Calculate the mean and standard deviation\nsummary_df = (\n    tips.groupby(\"sex\")\n    .agg(mean_tip=(\"tip\", \"mean\"), std_tip=(\"tip\", \"std\"))\n    .reset_index()\n)\nsummary_df\n\n\n\n\n\n\n\n\nsex\nmean_tip\nstd_tip\n\n\n\n\n0\nFemale\n2.833448\n1.159495\n\n\n1\nMale\n3.089618\n1.489102\n\n\n\n\n\n\n\nNext, we’ll create a bar chart using px.bar and add error bars using the error_y parameter:\n\n# Create the bar chart\npx.bar(summary_df, x=\"sex\", y=\"mean_tip\", error_y=\"std_tip\")\n\n                                                \n\n\nThis bar chart displays the average tip amount for each gender, with error bars representing the standard deviation.\n\n\n\n\n\n\nPractice\n\n\n\n12.5.6 Practice: Average Total Bill by Day\nUsing the tips dataset, create a bar chart of mean total_bill by day with standard deviation error bars. You should copy and paste the code from the example above and modify it to create this plot.\nAccording to the plot, which day has the highest average total bill?\n\ntips.head()  # View the tips dataset\n# Your code here\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSide Note: Difference between px.bar and px.histogram\n\n\n\nNotice that this is the first time we are using the px.bar function. For past plots, we have used px.histogram to make bar charts.\nThe bar chart function generally expects that the numeric variable being plotted is already in it’s own column, while the histogram function does the grouping for you.\nFor example, in the cell below, we use px.histogram to make a bar chart of the sex column. The resulting plot compares the number of male and female customers in the dataset.\n\npx.histogram(tips, x='sex')\n\n                                                \n\n\nTo make the same plot using px.bar, we first need to group by the sex column and count the number of rows for each sex.\n\nsex_counts = tips['sex'].value_counts().reset_index()\nsex_counts\n\n\n\n\n\n\n\n\nsex\ncount\n\n\n\n\n0\nMale\n157\n\n\n1\nFemale\n87\n\n\n\n\n\n\n\nWe can then plot the day column using px.bar:\n\npx.bar(sex_counts, x=\"sex\", y=\"count\")\n\n                                                \n\n\nThis produces a bar chart with one bar for each sex.",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.5 Numeric vs. Categorical Data",
+    "text": "8.5 Numeric vs. Categorical Data\nWhen one variable is quantitative and the other is categorical, we can use grouped histograms, violin plots, or box plots to visualize the distribution of the quantitative variable across different categories.\n\n8.5.1 Grouped Histograms\nFirst, here’s how you can create a regular histogram of all tips:\n\npx.histogram(tips, x='tip')\n\n                                                \n\n\nTo create a grouped histogram, use the color parameter to specify the categorical variable. Here, we’ll color the histogram by sex:\n\npx.histogram(tips, x='tip', color='sex')\n\n                                                \n\n\nBy default, the histograms for each category are stacked. To change this behavior, you can use the barmode parameter. For example, barmode='overlay' will create an overlaid histogram:\n\npx.histogram(tips, x=\"tip\", color=\"sex\", barmode=\"overlay\")\n\n                                                \n\n\nThis creates two semi-transparent histograms overlaid on top of each other, allowing for direct comparison of the distributions.\n\n\n\n\n\n\nPractice\n\n\n\n8.5.2 Practice: Age Distribution by Gender\nUsing the la_riots dataset from vega_datasets, create a grouped histogram of age by gender. Compare the age distributions between different genders.\nAccording to the plot, was the oldest victim male or female?\n\nla_riots = data.la_riots()\nla_riots.head()\n# Your code here\n\n\n\n\n\n\n\n\nfirst_name\nlast_name\nage\ngender\nrace\ndeath_date\naddress\nneighborhood\ntype\nlongitude\nlatitude\n\n\n\n\n0\nCesar A.\nAguilar\n18.0\nMale\nLatino\n1992-04-30\n2009 W. 6th St.\nWestlake\nOfficer-involved shooting\n-118.273976\n34.059281\n\n\n1\nGeorge\nAlvarez\n42.0\nMale\nLatino\n1992-05-01\nMain & College streets\nChinatown\nNot riot-related\n-118.234098\n34.062690\n\n\n2\nWilson\nAlvarez\n40.0\nMale\nLatino\n1992-05-23\n3100 Rosecrans Ave.\nHawthorne\nHomicide\n-118.326816\n33.901662\n\n\n3\nBrian E.\nAndrew\n30.0\nMale\nBlack\n1992-04-30\nRosecrans & Chester avenues\nCompton\nOfficer-involved shooting\n-118.215390\n33.903457\n\n\n4\nVivian\nAustin\n87.0\nFemale\nBlack\n1992-05-03\n1600 W. 60th St.\nHarvard Park\nDeath\n-118.304741\n33.985667\n\n\n\n\n\n\n\n\n\n\n\n8.5.3 Violin & Box Plots\nViolin plots are useful for comparing the distribution of a quantitative variable across different categories. They show the probability density of the data at different values and can include a box plot to summarize key statistics.\nFirst, let’s create a violin plot of all tips:\n\npx.violin(tips, y=\"tip\")\n\n                                                \n\n\nWe can add a box plot to the violin plot by setting the box parameter to True:\n\npx.violin(tips, y=\"tip\", box=True)\n\n                                                \n\n\nFor just the box plot, we can use px.box:\n\npx.box(tips, y=\"tip\")\n\n                                                \n\n\nTo add jitter points to the violin or box plots, we can use the points = 'all' parameter.\n\npx.violin(tips, y=\"tip\", points=\"all\")\n\n                                                \n\n\nNow, to create a violin plot of tips by gender, use the x parameter to specify the categorical variable:\n\npx.violin(tips, y=\"tip\", x=\"sex\", box=True)\n\n                                                \n\n\nWe can also add a color axis to differentiate the violins:\n\npx.violin(tips, y=\"tip\", x=\"sex\", color=\"sex\", box=True)\n\n                                                \n\n\n\n\n\n\n\n\nPractice\n\n\n\n8.5.4 Practice: Life Expectancy by Continent\nUsing the g_2007 dataset, create a violin plot showing the distribution of lifeExp by continent.\nAccording to the plot, which continent has the highest median country life expectancy?\n\ng_2007 = gapminder.query(\"year == 2007\")\ng_2007.head()\n# Your code here\n\n\n\n\n\n\n\n\ncountry\ncontinent\nyear\nlifeExp\npop\ngdpPercap\niso_alpha\niso_num\n\n\n\n\n11\nAfghanistan\nAsia\n2007\n43.828\n31889923\n974.580338\nAFG\n4\n\n\n23\nAlbania\nEurope\n2007\n76.423\n3600523\n5937.029526\nALB\n8\n\n\n35\nAlgeria\nAfrica\n2007\n72.301\n33333216\n6223.367465\nDZA\n12\n\n\n47\nAngola\nAfrica\n2007\n42.731\n12420476\n4797.231267\nAGO\n24\n\n\n59\nArgentina\nAmericas\n2007\n75.320\n40301927\n12779.379640\nARG\n32\n\n\n\n\n\n\n\n\n\n\n\n8.5.5 Summary Bar Charts (Mean and Standard Deviation)\nSometimes it’s useful to display the mean and standard deviation of a quantitative variable across different categories. This can be visualized using a bar chart with error bars.\nFirst, let’s calculate the mean and standard deviation of tips for each gender. You have not yet learned how to do this, but you will in a later lesson.\n\n# Calculate the mean and standard deviation\nsummary_df = (\n    tips.groupby(\"sex\")\n    .agg(mean_tip=(\"tip\", \"mean\"), std_tip=(\"tip\", \"std\"))\n    .reset_index()\n)\nsummary_df\n\n\n\n\n\n\n\n\nsex\nmean_tip\nstd_tip\n\n\n\n\n0\nFemale\n2.833448\n1.159495\n\n\n1\nMale\n3.089618\n1.489102\n\n\n\n\n\n\n\nNext, we’ll create a bar chart using px.bar and add error bars using the error_y parameter:\n\n# Create the bar chart\npx.bar(summary_df, x=\"sex\", y=\"mean_tip\", error_y=\"std_tip\")\n\n                                                \n\n\nThis bar chart displays the average tip amount for each gender, with error bars representing the standard deviation.\n\n\n\n\n\n\nPractice\n\n\n\n8.5.6 Practice: Average Total Bill by Day\nUsing the tips dataset, create a bar chart of mean total_bill by day with standard deviation error bars. You should copy and paste the code from the example above and modify it to create this plot.\nAccording to the plot, which day has the highest average total bill?\n\ntips.head()  # View the tips dataset\n# Your code here\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSide Note: Difference between px.bar and px.histogram\n\n\n\nNotice that this is the first time we are using the px.bar function. For past plots, we have used px.histogram to make bar charts.\nThe bar chart function generally expects that the numeric variable being plotted is already in it’s own column, while the histogram function does the grouping for you.\nFor example, in the cell below, we use px.histogram to make a bar chart of the sex column. The resulting plot compares the number of male and female customers in the dataset.\n\npx.histogram(tips, x='sex')\n\n                                                \n\n\nTo make the same plot using px.bar, we first need to group by the sex column and count the number of rows for each sex.\n\nsex_counts = tips['sex'].value_counts().reset_index()\nsex_counts\n\n\n\n\n\n\n\n\nsex\ncount\n\n\n\n\n0\nMale\n157\n\n\n1\nFemale\n87\n\n\n\n\n\n\n\nWe can then plot the day column using px.bar:\n\npx.bar(sex_counts, x=\"sex\", y=\"count\")\n\n                                                \n\n\nThis produces a bar chart with one bar for each sex.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#categorical-vs.-categorical-data",
     "href": "p_data_on_display_multivariate.html#categorical-vs.-categorical-data",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.6 Categorical vs. Categorical Data",
-    "text": "12.6 Categorical vs. Categorical Data\nWhen both variables are categorical, bar charts with a color axis are effective for visualizing the frequency distribution across categories. We will focus on three types of bar charts: stacked bar charts, percent-stacked bar charts, and grouped/clustered bar charts.\n\n12.6.1 Stacked Bar Charts\nStacked bar charts show the total counts and the breakdown within each category. To make a stacked bar chart, use the color parameter to specify the categorical variable:\n\npx.histogram(\n    tips,\n    x='day',\n    color='sex'\n)\n\n                                                \n\n\nLet’s add numbers to the bars to show the exact counts, and also improve the color palette with custom colors.\n\npx.histogram(\n    tips,\n    x=\"day\",\n    color=\"sex\",\n    text_auto=True,\n    color_discrete_sequence=[\"#deb221\", \"#2f828a\"],\n)\n\n                                                \n\n\nThis stacked bar chart shows the total number of customers each day, broken down by gender.\n\n\n\n\n\n\nPractice\n\n\n\n12.6.2 Practice: High and Low Income Countries by Continent\nUsing the g_2007_income dataset, create a stacked bar chart showing the count of high and low income countries in each continent.\n\ngap_dat = px.data.gapminder()\n\ng_2007_income = (\n    gap_dat.query(\"year == 2007\")\n    .drop(columns=[\"year\", \"iso_alpha\", \"iso_num\"])\n    .assign(\n        income_group=lambda df: np.where(\n            df.gdpPercap &gt; 15000, \"High Income\", \"Low & Middle Income\"\n        )\n    )\n)\n\ng_2007_income.head()\n# Your code here\n\n\n\n\n\n\n\n\ncountry\ncontinent\nlifeExp\npop\ngdpPercap\nincome_group\n\n\n\n\n11\nAfghanistan\nAsia\n43.828\n31889923\n974.580338\nLow & Middle Income\n\n\n23\nAlbania\nEurope\n76.423\n3600523\n5937.029526\nLow & Middle Income\n\n\n35\nAlgeria\nAfrica\n72.301\n33333216\n6223.367465\nLow & Middle Income\n\n\n47\nAngola\nAfrica\n42.731\n12420476\n4797.231267\nLow & Middle Income\n\n\n59\nArgentina\nAmericas\n75.320\n40301927\n12779.379640\nLow & Middle Income\n\n\n\n\n\n\n\n\n\n\n\n12.6.3 Percent-Stacked Bar Charts\nTo show proportions instead of counts, we can create percent-stacked bar charts by setting the barnorm parameter to 'percent':\n\n# Create the percent-stacked bar chart\npx.histogram(tips, x=\"day\", color=\"sex\", barnorm=\"percent\")\n\n                                                \n\n\nThis chart normalizes the bar heights to represent percentages, showing the proportion of each gender for each day.\nWe can also add text labels to the bars to show the exact percentages:\n\npx.histogram(tips, x=\"day\", color=\"sex\", barnorm=\"percent\", text_auto=\".1f\")\n\n                                                \n\n\nThe symbol .1f in the text_auto parameter formats the text labels to one decimal place.\n\n\n\n\n\n\nPractice\n\n\n\n12.6.4 Practice: Proportion of High and Low Income Countries by Continent\nAgain using the g_2007_income dataset, create a percent-stacked bar chart showing the proportion of high and low income countries in each continent. Add text labels to the bars to show the exact percentages.\nAccording the plot, which continent has the highest proportion of high income countries? Are there any limitations to this plot?\n\n# Your code here\n\n\n\n\n\n12.6.5 Clustered Bar Charts\nFor clustered bar charts, set the barmode parameter to 'group' to place the bars for each category side by side:\n\npx.histogram(tips, x=\"day\", color=\"sex\", barmode=\"group\")\n\n                                                \n\n\nThis layout makes it easier to compare values across categories directly.",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.6 Categorical vs. Categorical Data",
+    "text": "8.6 Categorical vs. Categorical Data\nWhen both variables are categorical, bar charts with a color axis are effective for visualizing the frequency distribution across categories. We will focus on three types of bar charts: stacked bar charts, percent-stacked bar charts, and grouped/clustered bar charts.\n\n8.6.1 Stacked Bar Charts\nStacked bar charts show the total counts and the breakdown within each category. To make a stacked bar chart, use the color parameter to specify the categorical variable:\n\npx.histogram(\n    tips,\n    x='day',\n    color='sex'\n)\n\n                                                \n\n\nLet’s add numbers to the bars to show the exact counts, and also improve the color palette with custom colors.\n\npx.histogram(\n    tips,\n    x=\"day\",\n    color=\"sex\",\n    text_auto=True,\n    color_discrete_sequence=[\"#deb221\", \"#2f828a\"],\n)\n\n                                                \n\n\nThis stacked bar chart shows the total number of customers each day, broken down by gender.\n\n\n\n\n\n\nPractice\n\n\n\n8.6.2 Practice: High and Low Income Countries by Continent\nUsing the g_2007_income dataset, create a stacked bar chart showing the count of high and low income countries in each continent.\n\ngap_dat = px.data.gapminder()\n\ng_2007_income = (\n    gap_dat.query(\"year == 2007\")\n    .drop(columns=[\"year\", \"iso_alpha\", \"iso_num\"])\n    .assign(\n        income_group=lambda df: np.where(\n            df.gdpPercap &gt; 15000, \"High Income\", \"Low & Middle Income\"\n        )\n    )\n)\n\ng_2007_income.head()\n# Your code here\n\n\n\n\n\n\n\n\ncountry\ncontinent\nlifeExp\npop\ngdpPercap\nincome_group\n\n\n\n\n11\nAfghanistan\nAsia\n43.828\n31889923\n974.580338\nLow & Middle Income\n\n\n23\nAlbania\nEurope\n76.423\n3600523\n5937.029526\nLow & Middle Income\n\n\n35\nAlgeria\nAfrica\n72.301\n33333216\n6223.367465\nLow & Middle Income\n\n\n47\nAngola\nAfrica\n42.731\n12420476\n4797.231267\nLow & Middle Income\n\n\n59\nArgentina\nAmericas\n75.320\n40301927\n12779.379640\nLow & Middle Income\n\n\n\n\n\n\n\n\n\n\n\n8.6.3 Percent-Stacked Bar Charts\nTo show proportions instead of counts, we can create percent-stacked bar charts by setting the barnorm parameter to 'percent':\n\n# Create the percent-stacked bar chart\npx.histogram(tips, x=\"day\", color=\"sex\", barnorm=\"percent\")\n\n                                                \n\n\nThis chart normalizes the bar heights to represent percentages, showing the proportion of each gender for each day.\nWe can also add text labels to the bars to show the exact percentages:\n\npx.histogram(tips, x=\"day\", color=\"sex\", barnorm=\"percent\", text_auto=\".1f\")\n\n                                                \n\n\nThe symbol .1f in the text_auto parameter formats the text labels to one decimal place.\n\n\n\n\n\n\nPractice\n\n\n\n8.6.4 Practice: Proportion of High and Low Income Countries by Continent\nAgain using the g_2007_income dataset, create a percent-stacked bar chart showing the proportion of high and low income countries in each continent. Add text labels to the bars to show the exact percentages.\nAccording the plot, which continent has the highest proportion of high income countries? Are there any limitations to this plot?\n\n# Your code here\n\n\n\n\n\n8.6.5 Clustered Bar Charts\nFor clustered bar charts, set the barmode parameter to 'group' to place the bars for each category side by side:\n\npx.histogram(tips, x=\"day\", color=\"sex\", barmode=\"group\")\n\n                                                \n\n\nThis layout makes it easier to compare values across categories directly.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#time-series-data",
     "href": "p_data_on_display_multivariate.html#time-series-data",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.7 Time Series Data",
-    "text": "12.7 Time Series Data\nTime series data represents observations collected at different points in time. It’s crucial for analyzing trends, patterns, and changes over time. Let’s explore some basic time series visualizations using Nigeria’s population data from the Gapminder dataset.\nFirst, let’s prepare our data:\n\n# Load the Gapminder dataset\ngapminder = px.data.gapminder()\n\n# Subset the data for Nigeria\nnigeria_pop = gapminder.query('country == \"Nigeria\"')[['year', 'pop']]\nnigeria_pop\n\n\n\n\n\n\n\n\nyear\npop\n\n\n\n\n1128\n1952\n33119096\n\n\n1129\n1957\n37173340\n\n\n1130\n1962\n41871351\n\n\n1131\n1967\n47287752\n\n\n1132\n1972\n53740085\n\n\n1133\n1977\n62209173\n\n\n1134\n1982\n73039376\n\n\n1135\n1987\n81551520\n\n\n1136\n1992\n93364244\n\n\n1137\n1997\n106207839\n\n\n1138\n2002\n119901274\n\n\n1139\n2007\n135031164\n\n\n\n\n\n\n\n\n12.7.1 Bar Chart\nA bar chart can be used to plot time series data.\n\n# Bar chart\npx.bar(nigeria_pop, x=\"year\", y=\"pop\")\n\n                                                \n\n\nThis bar chart gives us a clear view of how Nigeria’s population has changed over the years, with each bar representing the population at a specific year.\n\n\n12.7.2 Line Chart\nA line chart is excellent for showing continuous changes over time:\n\n# Line chart\npx.line(nigeria_pop, x=\"year\", y=\"pop\")\n\n                                                \n\n\nThe line chart connects the population values, making it easier to see the overall trend of population growth.\nAdding markers to a line chart can highlight specific data points:\n\n# Line chart with points\npx.line(nigeria_pop, x='year', y='pop', markers=True)\n\n                                                \n\n\nWe can also compare the population growth of multiple countries by adding a color parameter:\n\nnigeria_ghana = gapminder.query('country in [\"Nigeria\", \"Ghana\"]')\npx.line(nigeria_ghana, x=\"year\", y=\"pop\", color=\"country\", markers=True)\n\n                                                \n\n\nThis chart allows us to compare the population trends of Nigeria and Ghana over time.\n\n\n\n\n\n\nPractice\n\n\n\n12.7.3 Practice: GDP per Capita Time Series\nUsing the Gapminder dataset, create a time series visualization for the GDP per capita of Iraq.\n\n# Your code here\n\nWhat happened to Iraq in the 1980s that might explain the graph shown?",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.7 Time Series Data",
+    "text": "8.7 Time Series Data\nTime series data represents observations collected at different points in time. It’s crucial for analyzing trends, patterns, and changes over time. Let’s explore some basic time series visualizations using Nigeria’s population data from the Gapminder dataset.\nFirst, let’s prepare our data:\n\n# Load the Gapminder dataset\ngapminder = px.data.gapminder()\n\n# Subset the data for Nigeria\nnigeria_pop = gapminder.query('country == \"Nigeria\"')[['year', 'pop']]\nnigeria_pop\n\n\n\n\n\n\n\n\nyear\npop\n\n\n\n\n1128\n1952\n33119096\n\n\n1129\n1957\n37173340\n\n\n1130\n1962\n41871351\n\n\n1131\n1967\n47287752\n\n\n1132\n1972\n53740085\n\n\n1133\n1977\n62209173\n\n\n1134\n1982\n73039376\n\n\n1135\n1987\n81551520\n\n\n1136\n1992\n93364244\n\n\n1137\n1997\n106207839\n\n\n1138\n2002\n119901274\n\n\n1139\n2007\n135031164\n\n\n\n\n\n\n\n\n8.7.1 Bar Chart\nA bar chart can be used to plot time series data.\n\n# Bar chart\npx.bar(nigeria_pop, x=\"year\", y=\"pop\")\n\n                                                \n\n\nThis bar chart gives us a clear view of how Nigeria’s population has changed over the years, with each bar representing the population at a specific year.\n\n\n8.7.2 Line Chart\nA line chart is excellent for showing continuous changes over time:\n\n# Line chart\npx.line(nigeria_pop, x=\"year\", y=\"pop\")\n\n                                                \n\n\nThe line chart connects the population values, making it easier to see the overall trend of population growth.\nAdding markers to a line chart can highlight specific data points:\n\n# Line chart with points\npx.line(nigeria_pop, x='year', y='pop', markers=True)\n\n                                                \n\n\nWe can also compare the population growth of multiple countries by adding a color parameter:\n\nnigeria_ghana = gapminder.query('country in [\"Nigeria\", \"Ghana\"]')\npx.line(nigeria_ghana, x=\"year\", y=\"pop\", color=\"country\", markers=True)\n\n                                                \n\n\nThis chart allows us to compare the population trends of Nigeria and Ghana over time.\n\n\n\n\n\n\nPractice\n\n\n\n8.7.3 Practice: GDP per Capita Time Series\nUsing the Gapminder dataset, create a time series visualization for the GDP per capita of Iraq.\n\n# Your code here\n\nWhat happened to Iraq in the 1980s that might explain the graph shown?",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#plots-with-three-or-more-variables",
     "href": "p_data_on_display_multivariate.html#plots-with-three-or-more-variables",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.8 Plots with three or more variables",
-    "text": "12.8 Plots with three or more variables\nAlthough bivariate visualizations are the most common types of visualizations, plots with three or more variables are also sometimes useful. Let’s explore a few examples.\n\n12.8.1 Bubble Charts\nBubble charts show the relationship between three variables by mapping the size of the points to a third variable. Below, we plot the relationship between gdpPercap and lifeExp with the size of the points representing the population of the country.\n\npx.scatter(g_2007, x=\"gdpPercap\", y=\"lifeExp\", size=\"pop\")\n\n                                                \n\n\nWe can easily spot the largest countries by population, such as China, India, and the United States. We can also add a color axis to differentiate between continents:\n\npx.scatter(g_2007, x=\"gdpPercap\", y=\"lifeExp\", size=\"pop\", color=\"continent\")\n\n                                                \n\n\nNow we have four different variables being plotted:\n\ngdpPercap on the x-axis\nlifeExp on the y-axis\npop as the size of the points\ncontinent as the color of the points\n\n\n\n\n\n\n\nPractice\n\n\n\n12.8.2 Practice: Tips Bubble Chart\nUsing the tips dataset, create a bubble chart showing the relationship between total_bill and tip with the size of the points representing the size of the party, and the color representing the day of the week.\nUse the plot to answer the question:\n\nThe highest two tip amounts were on which days and what was the table size?\n\n\ntips.head()\n# Your code here\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n\n\n\n\n\n\n\n\n\n12.8.3 Facet Plots\nFaceting splits a single plot into multiple plots, with each plot showing a different subset of the data. This is useful for comparing distributions across subsets.\nFor example, we can facet the bubble chart by continent:\n\npx.scatter(\n    g_2007,\n    x=\"gdpPercap\",\n    y=\"lifeExp\",\n    size=\"pop\",\n    color=\"continent\",\n    facet_col=\"continent\",\n)\n\n                                                \n\n\nWe can change the arrangement of the facets by changing the facet_col_wrap parameter. For example, facet_col_wrap=2 will wrap the facets into two columns:\n\npx.scatter(\n    g_2007,\n    x=\"gdpPercap\",\n    y=\"lifeExp\",\n    size=\"pop\",\n    color=\"continent\",\n    facet_col=\"continent\",\n    facet_col_wrap=2,\n)\n\n                                                \n\n\nSimilarly, we can facet the violin plots of tips by day of the week:\n\npx.violin(\n    tips,\n    x=\"sex\",\n    y=\"tip\",\n    color=\"sex\",\n    facet_col=\"day\",\n    facet_col_wrap=2,\n)\n\n                                                \n\n\nFaceting allows us to compare distributions across different days, providing more granular insights.\n\n\n\n\n\n\nPractice\n\n\n\n12.8.4 Practice: Tips Facet Plot\nUsing the tips dataset, create a percent-stacked bar chart of the time column, colored by the sex column, and facetted by the day column.\nWhich day-time has the highest proportion of male customers (e.g. Friday Lunch, Saturday Dinner, etc.)?\n\ntips.head()\n# Your code here\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.8 Plots with three or more variables",
+    "text": "8.8 Plots with three or more variables\nAlthough bivariate visualizations are the most common types of visualizations, plots with three or more variables are also sometimes useful. Let’s explore a few examples.\n\n8.8.1 Bubble Charts\nBubble charts show the relationship between three variables by mapping the size of the points to a third variable. Below, we plot the relationship between gdpPercap and lifeExp with the size of the points representing the population of the country.\n\npx.scatter(g_2007, x=\"gdpPercap\", y=\"lifeExp\", size=\"pop\")\n\n                                                \n\n\nWe can easily spot the largest countries by population, such as China, India, and the United States. We can also add a color axis to differentiate between continents:\n\npx.scatter(g_2007, x=\"gdpPercap\", y=\"lifeExp\", size=\"pop\", color=\"continent\")\n\n                                                \n\n\nNow we have four different variables being plotted:\n\ngdpPercap on the x-axis\nlifeExp on the y-axis\npop as the size of the points\ncontinent as the color of the points\n\n\n\n\n\n\n\nPractice\n\n\n\n8.8.2 Practice: Tips Bubble Chart\nUsing the tips dataset, create a bubble chart showing the relationship between total_bill and tip with the size of the points representing the size of the party, and the color representing the day of the week.\nUse the plot to answer the question:\n\nThe highest two tip amounts were on which days and what was the table size?\n\n\ntips.head()\n# Your code here\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n\n\n\n\n\n\n\n\n\n8.8.3 Facet Plots\nFaceting splits a single plot into multiple plots, with each plot showing a different subset of the data. This is useful for comparing distributions across subsets.\nFor example, we can facet the bubble chart by continent:\n\npx.scatter(\n    g_2007,\n    x=\"gdpPercap\",\n    y=\"lifeExp\",\n    size=\"pop\",\n    color=\"continent\",\n    facet_col=\"continent\",\n)\n\n                                                \n\n\nWe can change the arrangement of the facets by changing the facet_col_wrap parameter. For example, facet_col_wrap=2 will wrap the facets into two columns:\n\npx.scatter(\n    g_2007,\n    x=\"gdpPercap\",\n    y=\"lifeExp\",\n    size=\"pop\",\n    color=\"continent\",\n    facet_col=\"continent\",\n    facet_col_wrap=2,\n)\n\n                                                \n\n\nSimilarly, we can facet the violin plots of tips by day of the week:\n\npx.violin(\n    tips,\n    x=\"sex\",\n    y=\"tip\",\n    color=\"sex\",\n    facet_col=\"day\",\n    facet_col_wrap=2,\n)\n\n                                                \n\n\nFaceting allows us to compare distributions across different days, providing more granular insights.\n\n\n\n\n\n\nPractice\n\n\n\n8.8.4 Practice: Tips Facet Plot\nUsing the tips dataset, create a percent-stacked bar chart of the time column, colored by the sex column, and facetted by the day column.\nWhich day-time has the highest proportion of male customers (e.g. Friday Lunch, Saturday Dinner, etc.)?\n\ntips.head()\n# Your code here\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
     ]
   },
   {
     "objectID": "p_data_on_display_multivariate.html#summary",
     "href": "p_data_on_display_multivariate.html#summary",
-    "title": "12  Bivariate & Multivariate Graphs with Plotly Express",
-    "section": "12.9 Summary",
-    "text": "12.9 Summary\nIn this lesson, you learned how to create bivariate and multivariate graphs using Plotly Express. Understanding these visualization techniques will help you explore and communicate relationships in your data more effectively.\nSee you in the next lesson!",
+    "title": "8  Bivariate & Multivariate Graphs with Plotly Express",
+    "section": "8.9 Summary",
+    "text": "8.9 Summary\nIn this lesson, you learned how to create bivariate and multivariate graphs using Plotly Express. Understanding these visualization techniques will help you explore and communicate relationships in your data more effectively.\nSee you in the next lesson!",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bivariate & Multivariate Graphs with Plotly Express</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_installing_python.html",
+    "href": "p_tools_installing_python.html",
+    "title": "9  Installing Python",
+    "section": "",
+    "text": "10 Introduction\nSo far in our learning sequence, you’ve been working mostly in Google Colab, a convenient, cloud-based environment for running Python code. Now it’s time to tackle working locally on your own machine. This allows you to work offline and gives you more control over your development environment.\nWe’ll guide you through installing Python 3.12.0 to ensure compatibility with the examples and exercises we’ll cover. Let’s get started!\nBefore we proceed, we’ll split the instructions into two tracks:\nPlease follow the instructions specific to your operating system.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Installing Python</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_installing_python.html#windows-users",
+    "href": "p_tools_installing_python.html#windows-users",
+    "title": "9  Installing Python",
+    "section": "10.1 Windows Users",
+    "text": "10.1 Windows Users\n\n10.1.1 Step 1: Check Your Current Python Version\n\nPress Win + R, type cmd, and press Enter to open Command Prompt.\nType python --version and press Enter.\nIf Python is installed, it will display the version number.\nNote: If you see a version lower than 3.12.0, we’ll proceed to install the correct version.\n\n\n\n10.1.2 Step 2: Download Python 3.12.0\n\nOpen your web browser.\nGo to Google and search for “Python 3.12.0”.\nIn the search results, find the link to python.org that mentions Python 3.12.0.\nScroll down to the bottom of the Python 3.12.0 page to find the “Windows installer (64-bit)”. Then click on the link to download the installer.\n\n\n\n10.1.3 Step 3: Install Python\n\nLocate the downloaded file (usually in your Downloads folder).\nDouble-click the installer to run it.\nImportant: Check the box that says “Add Python 3.12 to PATH” at the bottom of the installer window.\nIf you have the option, also elect to use admin privileges.\nAt the end you may be asked whether to disable path length limit. Click yes to this too.\nWait for the installation to finish.\n\n\n\n10.1.4 Step 4: Verify the Installation\n\nClose your old command prompt window if it is still open.\nIn your start menu, search for cmd to open a new command prompt.\nType python --version and press Enter.\nYou should see Python 3.12.0. (If you see a newer version if you already have Python on your computer. That’s okay. From our IDE, we will be able to select the correct version of Python that we just installed.)\n\n\n\n10.1.5 Step 5: Run Python Locally\n\nIn Command Prompt, type python and press Enter.\nAt the &gt;&gt;&gt; prompt, type 2 + 2 and press Enter.\nYou should see 4.\nType exit() and press Enter.\n\nYay! You’ve successfully installed Python and you ran your first local Python command.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Installing Python</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_installing_python.html#macos-users",
+    "href": "p_tools_installing_python.html#macos-users",
+    "title": "9  Installing Python",
+    "section": "10.2 macOS Users",
+    "text": "10.2 macOS Users\n\n10.2.1 Step 1: Check Your Current Python Version\n\nGo to Applications &gt; Utilities &gt; Terminal.\nType python3 --version and press Return.\nIf Python is installed, it will display the version number.\nYou may get a pop-up asking to install command line developer tools if you do not have them. Go ahead and accept and install that.\nOtherwise, you may get a pop-up asking to install something. Click Cancel and proceed to the next step.\nIf you already have version 3.12.0 installed, you can skip the rest of the steps. If you have any other version (higher or lower), proceed to the next step.\n\n\n\n10.2.2 Step 2: Download Python 3.12.0\n\nOpen your web browser.\nGo to Google and search for “Python 3.12.0”.\nIn the search results, find the link to python.org that mentions Python 3.12.0.\nEnsure the URL is from www.python.org to avoid unofficial sources.\nScroll down to the bottom of the Python 3.12.0 page.\nUnder the “Files” section, find “macOS 64-bit universal2 installer”.\nClick on the link to download the installer.\n\n\n\n10.2.3 Step 3: Install Python 3.12.0\n\nLocate the downloaded .pkg file (usually in your Downloads folder).\nDouble-click the installer to run it.\nClick “Continue” through the prompts.\nRead and agree to the license terms.\nClick “Install”.\nEnter your administrator password when prompted.\nClick “Install Software”.\nWait for the installation to finish.\nClick “Close” once the installation is complete.\n\n\n\n10.2.4 Step 4: Verify the Installation\n\nGo to Applications &gt; Utilities &gt; Terminal.\nType python3 --version and press Return.\nYou should see Python 3.12.0.\n\n\n\n10.2.5 Step 5: Run Python Locally\n\nIn Terminal, type python3 and press Return.\nAt the &gt;&gt;&gt; prompt, type 2 + 2 and press Return.\nYou should see 4.\nType exit() and press Return.\n\nYay! You’ve successfully installed Python 3.12.0 on your Mac and you ran your first local Python command.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Installing Python</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html",
+    "href": "p_tools_using_vscode.html",
+    "title": "10  Installing and Using VS Code",
+    "section": "",
+    "text": "10.1 Introduction\nIn this lesson, we will explore Visual Studio Code (VS Code), a powerful and versatile editor for writing, running, and debugging Python code. VS Code is widely used due to its rich feature set and extensive extension library, which makes coding more efficient and enjoyable.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#learning-objectives",
+    "href": "p_tools_using_vscode.html#learning-objectives",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.2 Learning Objectives",
+    "text": "10.2 Learning Objectives\nBy the end of this lesson, you should be able to:\n\nOpen VS Code and navigate to the editor, terminal, and explorer tabs.\nCreate a new Python file and run it using the Python extension.\nUse the Command Palette to search for and select a color theme.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#installing-vs-code",
+    "href": "p_tools_using_vscode.html#installing-vs-code",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.3 Installing VS Code",
+    "text": "10.3 Installing VS Code\nVS Code is available for Windows, macOS, and Linux. Search for “VS Code” in your favorite search engine and go to the official website, code.visualstudio.com. Download the version for your computer’s operating system.\nAfter installing VS Code, you may need to drag the icon to your applications folder.\nFrom your applications folder, open VS Code.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#navigating-the-explorer-tab",
+    "href": "p_tools_using_vscode.html#navigating-the-explorer-tab",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.4 Navigating the Explorer Tab",
+    "text": "10.4 Navigating the Explorer Tab\nThe Explorer tab displays the files and folders in your current workspace. When you open VS Code for the first time, it may indicate that you have not yet opened a folder. Most of our work in Python will be organized in folders (also known as workspaces) that contain multiple files.\nLet’s create our first workspace:\n\nOn your computer, navigate to your desktop or another memorable location.\nCreate a new folder called first_python_workspace.\nIn VS Code, click on the “Open Folder” button and locate your newly created folder. Alternatively, you can drag the folder into the VS Code window.\n\nNow that your workspace is open in VS Code, you can create a new file:\n\nIn the Explorer tab, right-click inside the workspace folder.\nSelect “New File”.\nName the file first_script.py. The file will automatically open in the editor.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#writing-and-saving-python-code",
+    "href": "p_tools_using_vscode.html#writing-and-saving-python-code",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.5 Writing and Saving Python Code",
+    "text": "10.5 Writing and Saving Python Code\nLet’s write some Python code in your new file:\nprint(2 + 2)\nTo save the file, press Ctrl + S (or Cmd + S on macOS).",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#installing-the-python-extension",
+    "href": "p_tools_using_vscode.html#installing-the-python-extension",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.6 Installing the Python Extension",
+    "text": "10.6 Installing the Python Extension\nTo run Python code within VS Code, we need to install the Python extension:\n\nClick on the Extensions tab on the left sidebar (it looks like four squares).\nIn the search bar at the top, type “Python”.\nFind the extension named “Python” published by Microsoft, and click Install.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#running-your-python-script",
+    "href": "p_tools_using_vscode.html#running-your-python-script",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.7 Running Your Python Script",
+    "text": "10.7 Running Your Python Script\nWith the Python extension installed, you can now run your script:\n\nOpen first_script.py if it’s not already open.\nClick on the Run icon (a play button) in the top right corner of the editor.\n\nAlternatively, you can right-click inside the editor and select RUn python then “Run Python File in Terminal”.\n\nA terminal window will open at the bottom of the screen, and your code will execute. You should see the output:\n4",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#using-the-command-palette",
+    "href": "p_tools_using_vscode.html#using-the-command-palette",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.8 Using the Command Palette",
+    "text": "10.8 Using the Command Palette\nThe Command Palette is a powerful feature in VS Code that allows you to access various commands and settings:\nTo access it, click on the search bar at the top of vscode window, then either press &gt; or select the ‘show and run commands’ option.\nthen type ‘theme’ and select ‘Preferences: Color Theme’.\n\nUse the up and down arrow keys to cycle through the available color themes.\nPress Enter to select your preferred theme.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_using_vscode.html#wrap-up",
+    "href": "p_tools_using_vscode.html#wrap-up",
+    "title": "10  Installing and Using VS Code",
+    "section": "10.9 Wrap Up",
+    "text": "10.9 Wrap Up\nIn this lesson, we’ve:\n\nInstalled VS Code and set up a workspace.\nCreated and saved a Python script.\nInstalled the Python extension to enable running and debugging code.\nUsed the Command Palette to customize the editor’s appearance.\n\nHappy coding!",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installing and Using VS Code</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html",
+    "href": "p_tools_venv.html",
+    "title": "11  Folders and Virtual Environments",
+    "section": "",
+    "text": "11.1 Introduction\nIn this lesson, we will explore virtual environments in Python using Visual Studio Code (VS Code). We’ll create a new workspace, set up a virtual environment, and install packages specific to our project.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#learning-objectives",
+    "href": "p_tools_venv.html#learning-objectives",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.2 Learning Objectives",
+    "text": "11.2 Learning Objectives\nBy the end of this lesson, you should be able to:\n\nCreate a new workspace in VS Code\nUnderstand the concept of virtual environments\nCreate and use a virtual environment in VS Code\nInstall and use packages within a virtual environment",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#creating-a-new-workspace",
+    "href": "p_tools_venv.html#creating-a-new-workspace",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.3 Creating a New Workspace",
+    "text": "11.3 Creating a New Workspace\n\nOn your desktop or in your Documents folder, create a new folder and name it graph_courses_python. This is going to be the main folder for many of the projects for this course so make sure you put it in an easy to reach place.\nOpen VS Code.\nGo to File &gt; Open Folder.\nNavigate to the graph_courses_python folder you just created and select it.\n\nnow create a new script and call it test_cowsay.py.\nType print(2 + 2) in the file then run it with the button to make sure everything is working.\nNext, let’s try to import a package we haven’t installed yet. Create a new Python file named test_cowsay.py and add the following line:\n\nimport cowsay\n\ncowsay.cow(\"Hello, World!\")\n\nThis will not work because we haven’t installed the cowsay package yet. To install it properly, we’ll need to use virtual environments.\n\n11.3.1 Environments & Interpreter\n\nEnvironments are for package management.\nThe interpreter is the Python version you’re using.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#creating-a-virtual-environment",
+    "href": "p_tools_venv.html#creating-a-virtual-environment",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.4 Creating a Virtual Environment",
+    "text": "11.4 Creating a Virtual Environment\n\nOpen the Command Palette (View &gt; Command Palette or Ctrl+Shift+P).\nType Python: Create Environment and select it.\nChoose Venv as the environment type.\nSelect the Python interpreter you want to use (e.g., Python 3.12.0).\n\nYou should now see a new folder called .venv. This is the virtual environment. Inside it is a folder called lib, which contains packages.\nNext, tell VS Code to use this virtual environment:\n\nOpen the Command Palette again.\nType Python: Select Interpreter and choose it.\nSelect the interpreter associated with your virtual environment (it should be listed under .venv).\n\nNow we’ve created and selected our virtual environment. We can install packages without affecting other projects.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#installing-packages",
+    "href": "p_tools_venv.html#installing-packages",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.5 Installing Packages",
+    "text": "11.5 Installing Packages\nLet’s install the cowsay package.\n\nOpen a new terminal in VS Code. You can do this with the terminal file menu option then selecting ‘new terminal’.\nEnsure the terminal is using your virtual environment. You can do this by hovering over the terminal icon in terminal window. It should mention that there is an activated environment for ….venv among other things\nRun the following command:\n\n#| eval: false\npip install cowsay\nSometimes pip disappears off path randomly. Restart vscode, select interpreter again, and it should fix it. Seems to be some bug with VS Code.\nRefresh your environment if necessary. You should now see the cowsay package in the list of installed packages.\nNow we can use the package. Open test_cowsay.py and click the run button to execute the script.\nYou should see a cow saying hello!",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#summary-of-key-steps",
+    "href": "p_tools_venv.html#summary-of-key-steps",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.6 Summary of Key Steps",
+    "text": "11.6 Summary of Key Steps\nCongrats! You have now created a virtual environment and installed a package.\nThese are key steps for any new Python project:\n\nFolder: Create a project folder.\nEnvironment: Set up a virtual environment.\nInterpreter: Select the appropriate Python interpreter.\nLibraries: Install the necessary packages.\n\nRemember the acronym FEIL to help you recall these steps. (If you don’t complete these steps you increase your chances of “FEIL”ure 😅) It’s a bit of a pain to have to set up a virtual environment every time you start a new project, but it’s a good habit to get into.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#demonstrating-environment-isolation",
+    "href": "p_tools_venv.html#demonstrating-environment-isolation",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.7 Demonstrating Environment Isolation",
+    "text": "11.7 Demonstrating Environment Isolation\nLet’s demonstrate that the virtual environment is isolated.\n\nOpen your previous workspace my_first_workspace with the File &gt; Open Folder menu option.\nCreate a Python file and try to use the cowsay package:\n::: {#677ba163 .cell execution_count=2} {.python .cell-code}  import cowsay :::\n\nThis will probably not work because cowsay is not installed in that environment. If it does work, it means you have cowsay installed globally, which is okay.\nNow, let’s return to our main folder/workspace. This is where you’ll conduct most of your analysis for this course.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#installing-course-packages",
+    "href": "p_tools_venv.html#installing-course-packages",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.8 Installing Course Packages",
+    "text": "11.8 Installing Course Packages\nAs a final step, let’s install the packages we’ll need for the course. While we could install each package as we encounter it, it’s more efficient to install them all at once. In the terminal, run the following command. Type these very carefully.\n#| eval: false\npip install plotly pandas jupyter ipykernel kaleido itables\n\npandas: Data manipulation library.\nplotly: Visualization library.\njupyter and ipykernel: Allow us to use Quarto to display our plots.\nkaleido: Library for saving plots in different formats.\nitables: Library for displaying tables in Quarto.\n\nWhen its done installing, your cursor in the terminal should be active again. e.g. you should be able to press enter to start a new command.\nKeep this list of packages handy for future reference, as you’ll likely need them for most projects.\nThis command will install all the required packages in one go. If your installation stops at some point, try rerunning the command. Sometimes network issues may cause the installation to fail. If it freezes for more than 10 minutes, close the terminal and rerun the command.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_venv.html#conclusion",
+    "href": "p_tools_venv.html#conclusion",
+    "title": "11  Folders and Virtual Environments",
+    "section": "11.9 Conclusion",
+    "text": "11.9 Conclusion\nYou’ve now learned how to create a workspace, set up a virtual environment, install packages, and use them in your Python projects. Remember that each project should have its own virtual environment to keep dependencies isolated and manageable.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Folders and Virtual Environments</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html",
+    "href": "p_tools_quarto.html",
+    "title": "12  Using Quarto",
+    "section": "",
+    "text": "12.1 Introduction\nA significant part of your role as a data analyst involves communicating results to others through reports. Quarto is one of the most powerful and versatile tools for producing such reports. It enables you to generate dynamic documents by combining formatted text and results produced by code. With Quarto, you can create documents in various formats such as HTML, PDF, Word, PowerPoint slides, web dashboards, and many others.\nMost of our documents in the GRAPH courses are actually written in Quarto!\nIn this lesson, we will cover the basics of this powerful tool.\nNote that for this lesson, the video may be easier to understand that the lesson notes, since there are many Graphic-user-interface steps that are hard to describe in writing.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#learning-objectives",
+    "href": "p_tools_quarto.html#learning-objectives",
+    "title": "12  Using Quarto",
+    "section": "12.2 Learning Objectives",
+    "text": "12.2 Learning Objectives\nBy the end of this lesson, you should be able to:\n\nCreate and render a Quarto document that includes Python code and narrative text.\nOutput documents in multiple formats, including HTML, PDF, Word, etc.\nUnderstand basic Markdown syntax.\nUse code chunk options to control code execution and output display.\nUse Python packages to display tables and figures in Quarto documents.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#installing-quarto",
+    "href": "p_tools_quarto.html#installing-quarto",
+    "title": "12  Using Quarto",
+    "section": "12.3 Installing Quarto",
+    "text": "12.3 Installing Quarto\nTo get started, you first need to install Quarto.\nSearch for quarto download in your favorite search engine. Then follow the instructions for your operating system.\nOn a mac this will mean downloading an .pkg or dmg file then double clicking it to start the installation.\nAfter installing, you can check that it is installed by running the following command in the command line or terminal:\nquarto --version\nNow that Quarto is installed, use it to install the tinytex package, which we will need to compile our PDFs:\nquarto install tinytex\nTo use all the features of Quarto in VSCode, we need to install the Quarto extension and the Jupyter extension. You can install these in the Extensions tab of VSCode.\nThat’s a lot of installations, but fear not—you only have to do these steps once on your computer.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#project-setup",
+    "href": "p_tools_quarto.html#project-setup",
+    "title": "12  Using Quarto",
+    "section": "12.4 Project Setup",
+    "text": "12.4 Project Setup\nTo begin, open your graph_courses_python project in VSCode.\nIf you did not watch the previous video explaining project setup, please do so now. After creating your project folder, you need to create a virtual environment, select an interpreter, and install the jupyter package.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#create-a-new-document",
+    "href": "p_tools_quarto.html#create-a-new-document",
+    "title": "12  Using Quarto",
+    "section": "12.5 Create a New Document",
+    "text": "12.5 Create a New Document\nA Quarto document is a simple text file with the .qmd extension.\nTo create a new Quarto document, create a new file and save it with a .qmd extension, for example, first_quarto_doc.qmd.\nAdd two sections to your document with the following text:\n# Section 1\n\nHello\n\n---\n\n# Section 2\n\nWorld",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#adding-code-chunks",
+    "href": "p_tools_quarto.html#adding-code-chunks",
+    "title": "12  Using Quarto",
+    "section": "12.6 Adding Code Chunks",
+    "text": "12.6 Adding Code Chunks\nYou can add code chunks to your document by using the following syntax:\n\n::: {#5a538691 .cell execution_count=1}\n``` {.python .cell-code}\n# Your code here\n:::\n\nThe shortcut to insert a code chunk is to type `Cmd + Shift + I` (on Mac) or `Ctrl + Shift + I` (on Windows). Alternatively, you can click on the \"...\" button at the top right of the screen.\n\nLet's create a code chunk that adds two numbers together and displays the result:\n\n::: {#aef0075d .cell execution_count=2}\n``` {.python .cell-code}\n2 + 2\n\n4\n\n:::\nYou should see a “Run Cell” button in the toolbar. Click this to run the code chunk.\nVSCode may prompt you to install the ipykernel package if you have not yet installed it in your current environment. Go ahead and install it. (or rewatch our video on setting up a virtual environment if you are not sure how to do this).\nNow practice adding one more code chunk at the end of the document that multiplies 3 by 3.\nAs you add these, you should see the buttons “Run Next Cell” and “Run Above” also appear.\nThere are two shortcuts you should also get used to:\n\nCmd + Enter (Mac) or Ctrl + Enter (Windows/Linux) to run the code chunk\noption + Enter (Mac) or Alt + Enter (Windows/Linux) to run the current line or the highlighted section of code.\n\nto test these, add multiple lines of code to one code chunk then pracyice ruinning the whole thing with the first shortcut, then line by line with the second.\nSo as you can see we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.\nLet’s see how to do this.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#quarto-document-header-yaml",
+    "href": "p_tools_quarto.html#quarto-document-header-yaml",
+    "title": "12  Using Quarto",
+    "section": "12.7 Quarto Document Header (YAML)",
+    "text": "12.7 Quarto Document Header (YAML)\nAt the top of the document, let’s add a YAML section. This is where we can specify details about the document, such as its title, author, and format.\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\nformat: html\n---\nThe format is where we can specify the output format of the document. For now, we are trying to keep things simple and just use HTML.\nFor things to render properly, you need the jupyter package. Watch our video on setting up a virtual environment if you have not done this yet and are not sure how to install packages.\nender the document by clicking on the “Render” button\nYou should see a new tab open in your vscode.\nIf you go to the explorer, you should see a new file called first_quarto_doc.html.\nSo now we have the main elements of a Quarto document:\n\nThe YAML header\nSection headers\nText\nCode chunks\nThe outputs of those code chunks\n\nThese things together make a very powerful tool for reporting.\nSomething something\nformat: html: embed-resources: true\nAnother powerful feature of Quarto is its ability to output to many formats.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#output-formats",
+    "href": "p_tools_quarto.html#output-formats",
+    "title": "12  Using Quarto",
+    "section": "12.8 Output Formats",
+    "text": "12.8 Output Formats\nYou can change the format value in the YAML header to experiment with other formats.\nTry the following formats:\n\nhtml: Renders the document as an HTML webpage.\npdf: Renders the document as a PDF. You will need to have LaTeX (or tinytex) installed on your computer to use this format.\ndocx: Renders the document as a Microsoft Word document.\npptx: Renders the document as a PowerPoint presentation.\nrevealjs: Renders the document as an HTML slideshow.\ndashboard: Renders the document as an interactive dashboard.\n\nThere is a chance some of these may not work on your computer due to different operating systems or versions of software.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#markdown",
+    "href": "p_tools_quarto.html#markdown",
+    "title": "12  Using Quarto",
+    "section": "12.9 Markdown",
+    "text": "12.9 Markdown\nThe text inside Quarto documents is written in Markdown.\nMarkdown is a simple set of conventions for adding formatting to plain text. For example, to italicize text, you wrap it in asterisks *text here*, and to start a new header, you use the pound sign #. We will learn these in detail below.\nIn your editor, you can refer to the “Markdown Quick Reference” or “Cheatsheet” to learn more about Markdown syntax.\nYou can define titles of different levels by starting a line with one or more #:\n# Level 1 Title\n\n## Level 2 Title\n\n### Level 3 Title\nThe body of the document consists of text that follows the Markdown syntax. A Markdown file is a text file that contains lightweight markup to help set heading levels or format text. For example, the following text:\nThis is text with *italics* and **bold**.\n\nYou can define bulleted lists:\n\n- First element\n- Second element\nWill generate the following formatted text:\n\nThis is text with italics and bold.\nYou can define bulleted lists:\n\nFirst element\nSecond element\n\n\nNote that you need spaces before and after lists, as well as keeping the listed items on separate lines. Otherwise, they will all crunch together rather than making a list.\nWe see that words placed between asterisks are italicized, and lines that begin with a dash are transformed into a bulleted list.\nThe Markdown syntax allows for other formatting, such as the ability to insert links or images. For example, the following code:\n[Example Link](https://example.com)\n… will give the following link:\n\nExample Link\n\nWe can also embed images. In your document, you can type:\n![Alt text](images/picture_name.jpg)\nReplace “Alt text” with a description of the image (it can also be blank), “images” with the name of the image folder in your project, and “picture_name.jpg” with the name of the image you want to use. Alternatively, in some editors, you can drag and drop the image into your document.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#code-chunk-options",
+    "href": "p_tools_quarto.html#code-chunk-options",
+    "title": "12  Using Quarto",
+    "section": "12.10 Code Chunk Options",
+    "text": "12.10 Code Chunk Options\nIt is possible to pass options to each code chunk to modify its behavior.\nFor example, a code chunk looks like this:\n\n# Your code here\nx = 2 + 2\nprint(x)\n\n4\n\n\nBut you can add options to control the code chunk’s execution and display:\n\n\n4\n\n\nIn this example, the echo: false option tells Quarto not to display the code in the rendered document, only the output.\n\n12.10.1 Global Options\nYou may want to apply options globally to all code chunks in your document. You can set default code execution options in the YAML header under the execute key.\nFor example:\n---\ntitle: \"Quarto Document\"\nformat: html\nexecute:\n  echo: false\n---\nThis will set echo: false for all code chunks.\n\n\n12.10.2 Other Code Chunk Options\nHere is a comprehensive list of options you can pass to code chunks:\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\neval\nEvaluate the code chunk (if false, just echoes the code into the output).\n\n\necho\nInclude the source code in output (true or false).\n\n\noutput\nInclude the results of executing the code in the output (true, false, or asis to indicate that the output is raw markdown).\n\n\nwarning\nInclude warnings in the output (true or false).\n\n\nerror\nInclude errors in the output (note that this implies that errors executing code will not halt processing of the document).\n\n\ninclude\nCatch-all for preventing any output (code or results) from being included (e.g., include: false suppresses all output from the code block).",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#displaying-tables",
+    "href": "p_tools_quarto.html#displaying-tables",
+    "title": "12  Using Quarto",
+    "section": "12.11 Displaying Tables",
+    "text": "12.11 Displaying Tables\nBy default, pandas DataFrames display adequately in Quarto. However, to make them look nicer, we can use the itables package.\nMake sure you have the itables package installed. If not, install it:\n\n!pip install itables\n\nThen, you can run something like:\n\nimport plotly.express as px\nfrom itables import show\n\ntips = px.data.tips()\nshow(tips)\n\n\n\n    \n      \n      total_bill\n      tip\n      sex\n      smoker\n      day\n      time\n      size\n    \n  \n\n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n\n\nLoading ITables v2.2.2 from the internet...\n(need help?)\n\n\n\n\n\n\n\n\nOf course, interactive tables will only work in HTML formats. We’ll look at tables for other formats later.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#displaying-plots",
+    "href": "p_tools_quarto.html#displaying-plots",
+    "title": "12  Using Quarto",
+    "section": "12.12 Displaying Plots",
+    "text": "12.12 Displaying Plots\nFor interactive plots, we can use the plotly package.\n\ntips = px.data.tips()\ntips_sex = px.violin(tips, x=\"day\", y=\"total_bill\", color=\"sex\")\ntips_sex.show()\n\n                                                \n\n\nThis will display an interactive Plotly plot in the HTML output.\nFor static outputs like PDFs and Word documents, we need to write the image to a file and then include it in the document.\nFirst, save the plot as an image:\n\ntips_sex.write_image(\"tips_sex_plot.png\")\n\nThis will create a static image file in the same folder as your document. We can then include it in the document like this:\n![Violin plot of total bill by day and sex](tips_sex_plot.png)\nThis will display the image in the output.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "p_tools_quarto.html#wrapping-up",
+    "href": "p_tools_quarto.html#wrapping-up",
+    "title": "12  Using Quarto",
+    "section": "12.13 Wrapping Up",
+    "text": "12.13 Wrapping Up\nIn this lesson, we learned how to create and render Quarto documents, add formatting, and include code chunks.\nWe also learned how to use code chunk options to control the behavior of our documents.\nWe experimented with different output formats and how to customize the display of our documents.\nWith these tools, you can create dynamic and interactive reports that are easily shareable in various formats. Quarto’s flexibility and integration with Python make it an excellent choice for data analysts and researchers alike.",
+    "crumbs": [
+      "Tools for Local Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Quarto</span>"
     ]
   },
   {
@@ -1651,7 +1640,7 @@
     "href": "p_untangled_groupby_agg.html#grouped-summaries-with-pandas.dataframe.groupby",
     "title": "17  Grouping and summarizing data",
     "section": "17.7 Grouped summaries with pandas.DataFrame.groupby()",
-    "text": "17.7 Grouped summaries with pandas.DataFrame.groupby()\nNow let’s see how to use groupby() to obtain grouped summaries, the primary reason for using agg() in the first place.\nAs its name suggests, pandas.DataFrame.groupby() lets you group a data frame by the values in a variable (e.g. male vs female sex). You can then perform operations that are split according to these groups.\nLet’s try to group the yao data frame by sex and observe the effect:\n\nyao.groupby(\"sex\")\n\n&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x11190d430&gt;\n\n\nHmm. Apparently nothing happened. We just get a GroupBy object.\nBut watch what happens when we chain the groupby() with the agg() call we used in the previous section:\n\n(\n    yao.groupby(\"sex\")\n    .agg(mean_age=(\"age\", \"mean\"), median_age=(\"age\", \"median\"))\n)\n\n\n\n\n\n\n\n\nmean_age\nmedian_age\n\n\nsex\n\n\n\n\n\n\nFemale\n29.495446\n26.0\n\n\nMale\n28.395735\n25.0\n\n\n\n\n\n\n\nNow we get a different statistic for each group! The mean age for female respondents is about 29.5, while for male respondents it’s about 28.4.\nAs was mentioned earlier, this kind of grouped summary is the primary reason the agg() function is so useful.\nYou may notice that there are two header rows. This is because the output has a hierarchical index (called a MultiIndex in pandas). While this can be useful in some cases, it often makes further data manipulation more difficult. We can reset the index to convert the group labels back to a regular column with the reset_index() method.\n\n(\n    yao.groupby(\"sex\")\n    .agg(mean_age=(\"age\", \"mean\"), median_age=(\"age\", \"median\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nsex\nmean_age\nmedian_age\n\n\n\n\n0\nFemale\n29.495446\n26.0\n\n\n1\nMale\n28.395735\n25.0\n\n\n\n\n\n\n\n\nLet’s see some more examples.\nSuppose you were asked to obtain the maximum and minimum weights for individuals in different neighborhoods, and also present the number of individuals in each neighborhood. We can write:\n\n(\n    yao.groupby(\"neighborhood\")\n    .agg(\n        max_weight=(\"weight_kg\", \"max\"),\n        min_weight=(\"weight_kg\", \"min\"),\n        count=(\"neighborhood\", \"size\"),  # the size function counts rows per group\n    )\n    .reset_index()\n) \n\n\n\n\n\n\n\n\nneighborhood\nmax_weight\nmin_weight\ncount\n\n\n\n\n0\nBriqueterie\n128\n20\n106\n\n\n1\nCarriere\n129\n14\n236\n\n\n2\nCité Verte\n118\n16\n72\n\n\n...\n...\n...\n...\n...\n\n\n6\nNkomkana\n161\n15\n75\n\n\n7\nTsinga\n105\n15\n81\n\n\n8\nTsinga Oliga\n100\n17\n67\n\n\n\n\n9 rows × 4 columns\n\n\n\nGreat! With just a few code lines you are able to extract quite a lot of information.\n\nLet’s see one more example for good measure. The variable n_days_miss_work tells us the number of days that respondents missed work due to COVID-like symptoms. Individuals who reported no COVID-like symptoms have an NA for this variable:\n\nyao[['n_days_miss_work']]\n\n\n\n\n\n\n\n\nn_days_miss_work\n\n\n\n\n0\n0.0\n\n\n1\nNaN\n\n\n2\nNaN\n\n\n...\n...\n\n\n968\n0.0\n\n\n969\nNaN\n\n\n970\nNaN\n\n\n\n\n971 rows × 1 columns\n\n\n\nTo count the total number of work days missed for each sex group, we can write:\n\n(\n    yao.groupby(\"sex\")\n    .agg(total_days_missed=(\"n_days_miss_work\", \"sum\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nsex\ntotal_days_missed\n\n\n\n\n0\nFemale\n256.0\n\n\n1\nMale\n272.0\n\n\n\n\n\n\n\nThe output tells us that across all women in the sample, 256 work days were missed due to COVID-like symptoms, and across all men, 272 days.\n\nHopefully now you see why agg() is so powerful. In combination with groupby(), it lets you obtain highly informative grouped summaries of your datasets with very few lines of code.\nProducing such summaries is a very important part of most data analysis workflows, so this skill is likely to come in handy soon!\n\n\n\n\n\n\nPractice\n\n\n\n17.7.1 Practice Q: Min and max height per sex\nUse groupby(), agg(), and the relevant summary functions to obtain the minimum and maximum heights for each sex in the yao data frame, as well as the number of individuals in each sex group.\nYour output should be a DataFrame that looks like this:\n\n\n\nsex\nmin_height_cm\nmax_height_cm\ncount\n\n\n\n\nFemale\n\n\n\n\n\nMale\n\n\n\n\n\n\n\n# Your code here\n\n\n\n\n\n\n\n\n\nPro-tip\n\n\n\nGroupby and agg are not always needed\nSometimes you just want a quick summary of a variable, not per group.\nRemember that there are quick ways to get such statistics. So you do not always need to use groupby() and agg().\n\nyao['age'].describe() # summary stats for a numeric variable\n\ncount    971.000000\nmean      29.017508\nstd       17.340397\n            ...    \n50%       26.000000\n75%       39.000000\nmax       79.000000\nName: age, Length: 8, dtype: float64\n\n\n\nyao['sex'].describe() # summary stats for a categorical variable\n\ncount        971\nunique         2\ntop       Female\nfreq         549\nName: sex, dtype: object\n\n\n\nyao['sex'].value_counts() # count of each category\n\nsex\nFemale    549\nMale      422\nName: count, dtype: int64\n\n\n\nyao.select_dtypes(object).describe() # summary stats for categorical variables\n\n\n\n\n\n\n\n\nage_category_3\nsex\nneighborhood\nis_smoker\nis_pregnant\noccupation\ntreatment_combinations\nsymptoms\nhighest_education\nigg_result\n\n\n\n\ncount\n971\n971\n971\n969\n549\n971\n262\n971\n971\n971\n\n\nunique\n3\n2\n9\n3\n3\n28\n31\n122\n7\n2\n\n\ntop\nAdult\nFemale\nCarriere\nNon-smoker\nNo\nStudent\nTraditional meds.\nNo symptoms\nSecondary\nNegative\n\n\nfreq\n635\n549\n236\n859\n464\n383\n57\n675\n433\n669\n\n\n\n\n\n\n\n\nyao.select_dtypes(np.number).describe() # summary stats for numeric variables\n\n\n\n\n\n\n\n\nage\nweight_kg\nheight_cm\nn_days_miss_work\nn_bedridden_days\n\n\n\n\ncount\n971.000000\n971.000000\n971.000000\n296.000000\n295.000000\n\n\nmean\n29.017508\n64.405767\n158.944387\n1.783784\n1.145763\n\n\nstd\n17.340397\n23.053370\n18.776356\n4.583006\n2.525201\n\n\n...\n...\n...\n...\n...\n...\n\n\n50%\n26.000000\n66.000000\n164.000000\n0.000000\n0.000000\n\n\n75%\n39.000000\n78.000000\n170.000000\n2.000000\n2.000000\n\n\nmax\n79.000000\n162.000000\n196.000000\n45.000000\n30.000000\n\n\n\n\n8 rows × 5 columns\n\n\n\n\n\n\n\n\n\n\n\nWatch-out\n\n\n\n17.8 NaN values in agg()\nWhen using agg() to compute grouped summary statistics, pay attention to whether your group of interest contains NaN values.\nFor example, to get mean weight by smoking status, we can write:\n\n(\n    yao.groupby(\"is_smoker\")\n    .agg(weight_mean=(\"weight_kg\", \"mean\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nis_smoker\nweight_mean\n\n\n\n\n0\nEx-smoker\n76.366197\n\n\n1\nNon-smoker\n63.033760\n\n\n2\nSmoker\n72.410256\n\n\n\n\n\n\n\nBut this actually excludes some rows with NaN smoking status from the summary table.\nWe can include these individuals in the summary table by setting dropna=False with the groupby() function.\n\n(\n    yao.groupby(\"is_smoker\", dropna=False)\n    .agg(weight_mean=(\"weight_kg\", \"mean\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nis_smoker\nweight_mean\n\n\n\n\n0\nEx-smoker\n76.366197\n\n\n1\nNon-smoker\n63.033760\n\n\n2\nSmoker\n72.410256\n\n\n3\nNaN\n73.000000\n\n\n\n\n\n\n\nAlso recall that you can see how many individuals are in each smoking status group by using the size() function. It is often useful to include this information in your summary table, so that you know how many individuals are behind each summary statistic.\n\n(\n    yao.groupby(\"is_smoker\", dropna=False)\n    .agg(weight_mean=(\"weight_kg\", \"mean\"), \n         count=(\"is_smoker\", \"size\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nis_smoker\nweight_mean\ncount\n\n\n\n\n0\nEx-smoker\n76.366197\n71\n\n\n1\nNon-smoker\n63.033760\n859\n\n\n2\nSmoker\n72.410256\n39\n\n\n3\nNaN\n73.000000\n2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPractice\n\n\n\n17.8.1 Practice Q: Mean weight by pregnancy status\nUse groupby(), agg(), and the mean() function to obtain the mean weight (kg) by pregnancy status in the yao data frame. Include individuals with NaN pregnancy status in the summary table.\nThe output data frame should look something like this:\n\n\n\nis_pregnant\nweight_mean\n\n\n\n\nNo\n\n\n\nNo response\n\n\n\nYes\n\n\n\nNaN\n\n\n\n\n\n# your code here",
+    "text": "17.7 Grouped summaries with pandas.DataFrame.groupby()\nNow let’s see how to use groupby() to obtain grouped summaries, the primary reason for using agg() in the first place.\nAs its name suggests, pandas.DataFrame.groupby() lets you group a data frame by the values in a variable (e.g. male vs female sex). You can then perform operations that are split according to these groups.\nLet’s try to group the yao data frame by sex and observe the effect:\n\nyao.groupby(\"sex\")\n\n&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x113c67350&gt;\n\n\nHmm. Apparently nothing happened. We just get a GroupBy object.\nBut watch what happens when we chain the groupby() with the agg() call we used in the previous section:\n\n(\n    yao.groupby(\"sex\")\n    .agg(mean_age=(\"age\", \"mean\"), median_age=(\"age\", \"median\"))\n)\n\n\n\n\n\n\n\n\nmean_age\nmedian_age\n\n\nsex\n\n\n\n\n\n\nFemale\n29.495446\n26.0\n\n\nMale\n28.395735\n25.0\n\n\n\n\n\n\n\nNow we get a different statistic for each group! The mean age for female respondents is about 29.5, while for male respondents it’s about 28.4.\nAs was mentioned earlier, this kind of grouped summary is the primary reason the agg() function is so useful.\nYou may notice that there are two header rows. This is because the output has a hierarchical index (called a MultiIndex in pandas). While this can be useful in some cases, it often makes further data manipulation more difficult. We can reset the index to convert the group labels back to a regular column with the reset_index() method.\n\n(\n    yao.groupby(\"sex\")\n    .agg(mean_age=(\"age\", \"mean\"), median_age=(\"age\", \"median\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nsex\nmean_age\nmedian_age\n\n\n\n\n0\nFemale\n29.495446\n26.0\n\n\n1\nMale\n28.395735\n25.0\n\n\n\n\n\n\n\n\nLet’s see some more examples.\nSuppose you were asked to obtain the maximum and minimum weights for individuals in different neighborhoods, and also present the number of individuals in each neighborhood. We can write:\n\n(\n    yao.groupby(\"neighborhood\")\n    .agg(\n        max_weight=(\"weight_kg\", \"max\"),\n        min_weight=(\"weight_kg\", \"min\"),\n        count=(\"neighborhood\", \"size\"),  # the size function counts rows per group\n    )\n    .reset_index()\n) \n\n\n\n\n\n\n\n\nneighborhood\nmax_weight\nmin_weight\ncount\n\n\n\n\n0\nBriqueterie\n128\n20\n106\n\n\n1\nCarriere\n129\n14\n236\n\n\n2\nCité Verte\n118\n16\n72\n\n\n...\n...\n...\n...\n...\n\n\n6\nNkomkana\n161\n15\n75\n\n\n7\nTsinga\n105\n15\n81\n\n\n8\nTsinga Oliga\n100\n17\n67\n\n\n\n\n9 rows × 4 columns\n\n\n\nGreat! With just a few code lines you are able to extract quite a lot of information.\n\nLet’s see one more example for good measure. The variable n_days_miss_work tells us the number of days that respondents missed work due to COVID-like symptoms. Individuals who reported no COVID-like symptoms have an NA for this variable:\n\nyao[['n_days_miss_work']]\n\n\n\n\n\n\n\n\nn_days_miss_work\n\n\n\n\n0\n0.0\n\n\n1\nNaN\n\n\n2\nNaN\n\n\n...\n...\n\n\n968\n0.0\n\n\n969\nNaN\n\n\n970\nNaN\n\n\n\n\n971 rows × 1 columns\n\n\n\nTo count the total number of work days missed for each sex group, we can write:\n\n(\n    yao.groupby(\"sex\")\n    .agg(total_days_missed=(\"n_days_miss_work\", \"sum\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nsex\ntotal_days_missed\n\n\n\n\n0\nFemale\n256.0\n\n\n1\nMale\n272.0\n\n\n\n\n\n\n\nThe output tells us that across all women in the sample, 256 work days were missed due to COVID-like symptoms, and across all men, 272 days.\n\nHopefully now you see why agg() is so powerful. In combination with groupby(), it lets you obtain highly informative grouped summaries of your datasets with very few lines of code.\nProducing such summaries is a very important part of most data analysis workflows, so this skill is likely to come in handy soon!\n\n\n\n\n\n\nPractice\n\n\n\n17.7.1 Practice Q: Min and max height per sex\nUse groupby(), agg(), and the relevant summary functions to obtain the minimum and maximum heights for each sex in the yao data frame, as well as the number of individuals in each sex group.\nYour output should be a DataFrame that looks like this:\n\n\n\nsex\nmin_height_cm\nmax_height_cm\ncount\n\n\n\n\nFemale\n\n\n\n\n\nMale\n\n\n\n\n\n\n\n# Your code here\n\n\n\n\n\n\n\n\n\nPro-tip\n\n\n\nGroupby and agg are not always needed\nSometimes you just want a quick summary of a variable, not per group.\nRemember that there are quick ways to get such statistics. So you do not always need to use groupby() and agg().\n\nyao['age'].describe() # summary stats for a numeric variable\n\ncount    971.000000\nmean      29.017508\nstd       17.340397\n            ...    \n50%       26.000000\n75%       39.000000\nmax       79.000000\nName: age, Length: 8, dtype: float64\n\n\n\nyao['sex'].describe() # summary stats for a categorical variable\n\ncount        971\nunique         2\ntop       Female\nfreq         549\nName: sex, dtype: object\n\n\n\nyao['sex'].value_counts() # count of each category\n\nsex\nFemale    549\nMale      422\nName: count, dtype: int64\n\n\n\nyao.select_dtypes(object).describe() # summary stats for categorical variables\n\n\n\n\n\n\n\n\nage_category_3\nsex\nneighborhood\nis_smoker\nis_pregnant\noccupation\ntreatment_combinations\nsymptoms\nhighest_education\nigg_result\n\n\n\n\ncount\n971\n971\n971\n969\n549\n971\n262\n971\n971\n971\n\n\nunique\n3\n2\n9\n3\n3\n28\n31\n122\n7\n2\n\n\ntop\nAdult\nFemale\nCarriere\nNon-smoker\nNo\nStudent\nTraditional meds.\nNo symptoms\nSecondary\nNegative\n\n\nfreq\n635\n549\n236\n859\n464\n383\n57\n675\n433\n669\n\n\n\n\n\n\n\n\nyao.select_dtypes(np.number).describe() # summary stats for numeric variables\n\n\n\n\n\n\n\n\nage\nweight_kg\nheight_cm\nn_days_miss_work\nn_bedridden_days\n\n\n\n\ncount\n971.000000\n971.000000\n971.000000\n296.000000\n295.000000\n\n\nmean\n29.017508\n64.405767\n158.944387\n1.783784\n1.145763\n\n\nstd\n17.340397\n23.053370\n18.776356\n4.583006\n2.525201\n\n\n...\n...\n...\n...\n...\n...\n\n\n50%\n26.000000\n66.000000\n164.000000\n0.000000\n0.000000\n\n\n75%\n39.000000\n78.000000\n170.000000\n2.000000\n2.000000\n\n\nmax\n79.000000\n162.000000\n196.000000\n45.000000\n30.000000\n\n\n\n\n8 rows × 5 columns\n\n\n\n\n\n\n\n\n\n\n\nWatch-out\n\n\n\n17.8 NaN values in agg()\nWhen using agg() to compute grouped summary statistics, pay attention to whether your group of interest contains NaN values.\nFor example, to get mean weight by smoking status, we can write:\n\n(\n    yao.groupby(\"is_smoker\")\n    .agg(weight_mean=(\"weight_kg\", \"mean\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nis_smoker\nweight_mean\n\n\n\n\n0\nEx-smoker\n76.366197\n\n\n1\nNon-smoker\n63.033760\n\n\n2\nSmoker\n72.410256\n\n\n\n\n\n\n\nBut this actually excludes some rows with NaN smoking status from the summary table.\nWe can include these individuals in the summary table by setting dropna=False with the groupby() function.\n\n(\n    yao.groupby(\"is_smoker\", dropna=False)\n    .agg(weight_mean=(\"weight_kg\", \"mean\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nis_smoker\nweight_mean\n\n\n\n\n0\nEx-smoker\n76.366197\n\n\n1\nNon-smoker\n63.033760\n\n\n2\nSmoker\n72.410256\n\n\n3\nNaN\n73.000000\n\n\n\n\n\n\n\nAlso recall that you can see how many individuals are in each smoking status group by using the size() function. It is often useful to include this information in your summary table, so that you know how many individuals are behind each summary statistic.\n\n(\n    yao.groupby(\"is_smoker\", dropna=False)\n    .agg(weight_mean=(\"weight_kg\", \"mean\"), \n         count=(\"is_smoker\", \"size\"))\n    .reset_index()\n)\n\n\n\n\n\n\n\n\nis_smoker\nweight_mean\ncount\n\n\n\n\n0\nEx-smoker\n76.366197\n71\n\n\n1\nNon-smoker\n63.033760\n859\n\n\n2\nSmoker\n72.410256\n39\n\n\n3\nNaN\n73.000000\n2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPractice\n\n\n\n17.8.1 Practice Q: Mean weight by pregnancy status\nUse groupby(), agg(), and the mean() function to obtain the mean weight (kg) by pregnancy status in the yao data frame. Include individuals with NaN pregnancy status in the summary table.\nThe output data frame should look something like this:\n\n\n\nis_pregnant\nweight_mean\n\n\n\n\nNo\n\n\n\nNo response\n\n\n\nYes\n\n\n\nNaN\n\n\n\n\n\n# your code here",
     "crumbs": [
       "Data Manipulation",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Grouping and summarizing data</span>"

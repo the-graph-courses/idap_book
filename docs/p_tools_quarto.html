@@ -350,7 +350,6 @@ require(['plotly'], function(Plotly) {
   <li><a href="#code-chunk-options" id="toc-code-chunk-options" class="nav-link" data-scroll-target="#code-chunk-options"><span class="header-section-number">12.10</span> Code Chunk Options</a>
   <ul class="collapse">
   <li><a href="#global-options" id="toc-global-options" class="nav-link" data-scroll-target="#global-options"><span class="header-section-number">12.10.1</span> Global Options</a></li>
-  <li><a href="#other-code-chunk-options" id="toc-other-code-chunk-options" class="nav-link" data-scroll-target="#other-code-chunk-options"><span class="header-section-number">12.10.2</span> Other Code Chunk Options</a></li>
   </ul></li>
   <li><a href="#displaying-tables" id="toc-displaying-tables" class="nav-link" data-scroll-target="#displaying-tables"><span class="header-section-number">12.11</span> Displaying Tables</a></li>
   <li><a href="#displaying-plots" id="toc-displaying-plots" class="nav-link" data-scroll-target="#displaying-plots"><span class="header-section-number">12.12</span> Displaying Plots</a></li>
@@ -385,7 +384,7 @@ require(['plotly'], function(Plotly) {
 <p>A significant part of your role as a data analyst involves communicating results to others through reports. <strong>Quarto</strong> is one of the most powerful and versatile tools for producing such reports. It enables you to generate dynamic documents by combining formatted text and results produced by code. With Quarto, you can create documents in various formats such as HTML, PDF, Word, PowerPoint slides, web dashboards, and many others.</p>
 <p>Most of our documents in the GRAPH courses are actually written in Quarto!</p>
 <p>In this lesson, we will cover the basics of this powerful tool.</p>
-<p>Note that for this lesson, the video may be easier to understand that the lesson notes, since there are many Graphic-user-interface steps that are hard to describe in writing.</p>
+<p>Note that for this lesson, the video may be easier to understand than the lesson notes, since there are many graphical user interface steps that are hard to describe in writing.</p>
 </section>
 <section id="learning-objectives" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">12.2</span> Learning Objectives</h2>
@@ -401,19 +400,18 @@ require(['plotly'], function(Plotly) {
 <section id="installing-quarto" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="installing-quarto"><span class="header-section-number">12.3</span> Installing Quarto</h2>
 <p>To get started, you first need to install Quarto.</p>
-<p>Search for quarto download in your favorite search engine. Then follow the instructions for your operating system.</p>
-<p>On a mac this will mean downloading an .pkg or dmg file then double clicking it to start the installation.</p>
+<p>Search for “quarto download” in your favorite search engine. Follow the results to the “Quarto.org” website, and then follow the instructions for your operating system. (We are not providing a direct link here since the exact link may change over time).</p>
 <p>After installing, you can check that it is installed by running the following command in the command line or terminal:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now that Quarto is installed, use it to install the <code>tinytex</code> package, which we will need to compile our PDFs:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To use all the features of Quarto in VSCode, we need to install the <strong>Quarto</strong> extension and the <strong>Jupyter</strong> extension. You can install these in the Extensions tab of VSCode.</p>
+<p>To use all the features of Quarto in VSCode, we need to install the <strong>Quarto</strong> extension and the <strong>Jupyter</strong> extension. You can install these in the Extensions tab of VSCode. Be sure to install the official versions of these extensions; they should have checkmarks next to them.</p>
 <p>That’s a lot of installations, but fear not—you only have to do these steps once on your computer.</p>
 </section>
 <section id="project-setup" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="project-setup"><span class="header-section-number">12.4</span> Project Setup</h2>
 <p>To begin, open your <code>graph_courses_python</code> project in VSCode.</p>
-<p>If you did not watch the previous video explaining project setup, please do so now. After creating your project folder, you need to create a virtual environment, select an interpreter, and install the jupyter package.</p>
+<p>If you did not watch the previous video explaining project setup, please do so now. In that video, we explain how to create a project folder, create a virtual environment, select an interpreter, and install the <code>jupyter</code>, <code>ipykernel</code>, <code>kaleido</code>, <code>itables</code>, <code>plotly</code>, and <code>pandas</code> packages.</p>
 </section>
 <section id="create-a-new-document" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="create-a-new-document"><span class="header-section-number">12.5</span> Create a New Document</h2>
@@ -432,49 +430,39 @@ require(['plotly'], function(Plotly) {
 </section>
 <section id="adding-code-chunks" class="level2" data-number="12.6">
 <h2 data-number="12.6" class="anchored" data-anchor-id="adding-code-chunks"><span class="header-section-number">12.6</span> Adding Code Chunks</h2>
-<p>You can add code chunks to your document by using the following syntax:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>::: {#f5e2a44a .cell execution_count=1}</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">``` {.python .cell-code}</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-<pre><code>
-The shortcut to insert a code chunk is to type `Cmd + Shift + I` (on Mac) or `Ctrl + Shift + I` (on Windows). Alternatively, you can click on the "..." button at the top right of the screen.
-
-Let's create a code chunk that adds two numbers together and displays the result:
-
-::: {#313b1df4 .cell execution_count=2}
-``` {.python .cell-code}
-2 + 2</code></pre>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<p>You can add code chunks to your document by using the following syntax with the shortcut <code>Cmd + Shift + I</code> (on Mac) or <code>Ctrl + Shift + I</code> (on Windows). Alternatively, you can click on the “…” button at the top right of the screen.</p>
+<p>Let’s create a code chunk that adds two numbers together and displays the result:</p>
+<div id="a8e1527c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>You should see a “Run Cell” button in the toolbar. Click this to run the code chunk.</p>
-<p>VSCode may prompt you to install the ipykernel package if you have not yet installed it in your current environment. Go ahead and install it. (or rewatch our video on setting up a virtual environment if you are not sure how to do this).</p>
+<p>VSCode may prompt you to install the <code>ipykernel</code> package if you have not yet installed it in your current environment. Go ahead and install it.</p>
 <p>Now practice adding one more code chunk at the end of the document that multiplies 3 by 3.</p>
 <p>As you add these, you should see the buttons “Run Next Cell” and “Run Above” also appear.</p>
 <p>There are two shortcuts you should also get used to:</p>
 <ul>
-<li><code>Cmd + Enter</code> (Mac) or <code>Ctrl + Enter</code> (Windows/Linux) to run the code chunk</li>
-<li><code>option + Enter</code> (Mac) or <code>Alt + Enter</code> (Windows/Linux) to run the current line or the highlighted section of code.</li>
+<li><code>Cmd + Enter</code> (Mac) or <code>Ctrl + Enter</code> (Windows/Linux) to run the code chunk.</li>
+<li><code>Option + Enter</code> (Mac) or <code>Alt + Enter</code> (Windows/Linux) to run the current line or the highlighted section of code.</li>
 </ul>
-<p>to test these, add multiple lines of code to one code chunk then pracyice ruinning the whole thing with the first shortcut, then line by line with the second.</p>
-<p>So as you can see we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.</p>
-<p>Let’s see how to do this.</p>
+<p>To test these, add multiple lines of code to one code chunk, then practice running the whole chunk with the first shortcut, and line by line with the second.</p>
+<p>As you can see, we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.</p>
+<p>Let’s see how to use this functionality.</p>
 </section>
 <section id="quarto-document-header-yaml" class="level2" data-number="12.7">
 <h2 data-number="12.7" class="anchored" data-anchor-id="quarto-document-header-yaml"><span class="header-section-number">12.7</span> Quarto Document Header (YAML)</h2>
 <p>At the top of the document, let’s add a YAML section. This is where we can specify details about the document, such as its title, author, and format.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My First Quarto Document"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My First Quarto Document"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>format</code> is where we can specify the output format of the document. For now, we are trying to keep things simple and just use HTML.</p>
 <p>For things to render properly, you need the <code>jupyter</code> package. Watch our video on setting up a virtual environment if you have not done this yet and are not sure how to install packages.</p>
-<p>ender the document by clicking on the “Render” button</p>
-<p>You should see a new tab open in your vscode.</p>
+<p>To render the document, click on the “Render” button in the top right of the screen.</p>
+<p>You should see a new tab open in your VSCode.</p>
 <p>If you go to the explorer, you should see a new file called <code>first_quarto_doc.html</code>.</p>
 <p>So now we have the main elements of a Quarto document:</p>
 <ul>
@@ -484,9 +472,11 @@ Let's create a code chunk that adds two numbers together and displays the result
 <li>Code chunks</li>
 <li>The outputs of those code chunks</li>
 </ul>
-<p>These things together make a very powerful tool for reporting.</p>
-<p>Something something</p>
-<p>format: html: embed-resources: true</p>
+<p>These elements together make Quarto a very powerful tool for reporting.</p>
+<p>You can also customize the output format with additional options. For example, to embed resources directly into the HTML file, you can modify the <code>format</code> section in the YAML header:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another powerful feature of Quarto is its ability to output to many formats.</p>
 </section>
 <section id="output-formats" class="level2" data-number="12.8">
@@ -546,7 +536,7 @@ Let's create a code chunk that adds two numbers together and displays the result
 <h2 data-number="12.10" class="anchored" data-anchor-id="code-chunk-options"><span class="header-section-number">12.10</span> Code Chunk Options</h2>
 <p>It is possible to pass options to each code chunk to modify its behavior.</p>
 <p>For example, a code chunk looks like this:</p>
-<div id="24dfff2b" class="cell" data-execution_count="3">
+<div id="ba214cdc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -555,7 +545,7 @@ Let's create a code chunk that adds two numbers together and displays the result
 </div>
 </div>
 <p>But you can add options to control the code chunk’s execution and display:</p>
-<div id="ea132e3f" class="cell" data-execution_count="4">
+<div id="71eb2c3e" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>4</code></pre>
 </div>
@@ -573,65 +563,23 @@ Let's create a code chunk that adds two numbers together and displays the result
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will set <code>echo: false</code> for all code chunks.</p>
 </section>
-<section id="other-code-chunk-options" class="level3" data-number="12.10.2">
-<h3 data-number="12.10.2" class="anchored" data-anchor-id="other-code-chunk-options"><span class="header-section-number">12.10.2</span> Other Code Chunk Options</h3>
-<p>Here is a comprehensive list of options you can pass to code chunks:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 7%">
-<col style="width: 92%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>eval</code></td>
-<td>Evaluate the code chunk (if <code>false</code>, just echoes the code into the output).</td>
-</tr>
-<tr class="even">
-<td><code>echo</code></td>
-<td>Include the source code in output (<code>true</code> or <code>false</code>).</td>
-</tr>
-<tr class="odd">
-<td><code>output</code></td>
-<td>Include the results of executing the code in the output (<code>true</code>, <code>false</code>, or <code>asis</code> to indicate that the output is raw markdown).</td>
-</tr>
-<tr class="even">
-<td><code>warning</code></td>
-<td>Include warnings in the output (<code>true</code> or <code>false</code>).</td>
-</tr>
-<tr class="odd">
-<td><code>error</code></td>
-<td>Include errors in the output (note that this implies that errors executing code will not halt processing of the document).</td>
-</tr>
-<tr class="even">
-<td><code>include</code></td>
-<td>Catch-all for preventing any output (code or results) from being included (e.g., <code>include: false</code> suppresses all output from the code block).</td>
-</tr>
-</tbody>
-</table>
-</section>
 </section>
 <section id="displaying-tables" class="level2" data-number="12.11">
 <h2 data-number="12.11" class="anchored" data-anchor-id="displaying-tables"><span class="header-section-number">12.11</span> Displaying Tables</h2>
-<p>By default, pandas DataFrames display adequately in Quarto. However, to make them look nicer, we can use the <code>itables</code> package.</p>
-<p>Make sure you have the <code>itables</code> package installed. If not, install it:</p>
-<div id="e82dcbd1" class="cell" data-execution_count="5">
+<p>By default, pandas DataFrames display neatly in Quarto. However, for interactive tables, we can use the <code>itables</code> package.</p>
+<p>Ensure that you have the <code>itables</code> package installed. If not, you can install it using the following command:</p>
+<div id="4e4097fe" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install itables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then, you can run something like:</p>
-<div id="fdbafca4" class="cell" data-execution_count="6">
+<p>Then, you can run code similar to the following:</p>
+<div id="81c6f5a1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itables <span class="im">import</span> show</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>show(tips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<table id="itables_28762b38_c3b5_41f3_b1ec_26c3e2b648d8" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_8906afce_f058_4fc0_9539_a31b8bf44551" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       
@@ -715,7 +663,7 @@ Loading ITables v2.2.2 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.0.13/dt_bundle.js';
 
-    document.querySelectorAll("#itables_28762b38_c3b5_41f3_b1ec_26c3e2b648d8:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_8906afce_f058_4fc0_9539_a31b8bf44551:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
@@ -732,19 +680,19 @@ Loading ITables v2.2.2 from the internet...
 </script>
 </div>
 </div>
-<p>Of course, interactive tables will only work in HTML formats. We’ll look at tables for other formats later.</p>
+<p>Note that interactive tables will only work in HTML formats. We will look at tables for other formats later.</p>
 </section>
 <section id="displaying-plots" class="level2" data-number="12.12">
 <h2 data-number="12.12" class="anchored" data-anchor-id="displaying-plots"><span class="header-section-number">12.12</span> Displaying Plots</h2>
-<p>For interactive plots, we can use the <code>plotly</code> package.</p>
-<div id="3339af78" class="cell" data-execution_count="7">
+<p>For interactive plots, the <code>plotly</code> package is very useful.</p>
+<div id="a65549d4" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>tips_sex <span class="op">=</span> px.violin(tips, x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"total_bill"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tips_sex.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>                            <div id="c49bb471-b023-4d44-92e7-bd411708ab7f" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("c49bb471-b023-4d44-92e7-bd411708ab7f")) {                    Plotly.newPlot(                        "c49bb471-b023-4d44-92e7-bd411708ab7f",                        [{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Female\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"#636efa"},"name":"Female","offsetgroup":"Female","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Thur"],"x0":" ","xaxis":"x","y":[16.99,24.59,35.26,14.83,10.33,16.97,20.29,15.77,19.65,15.06,20.69,16.93,10.29,34.81,26.41,16.45,3.07,17.07,26.86,25.28,14.73,10.07,34.83,5.75,16.32,22.75,11.35,15.38,44.3,22.42,20.92,14.31,7.25,25.71,17.31,10.65,12.43,24.08,13.42,12.48,29.8,14.52,11.38,20.27,11.17,12.26,18.26,8.51,10.33,14.15,13.16,17.47,27.05,16.43,8.35,18.64,11.87,29.85,25.0,13.39,16.21,17.51,10.59,10.63,9.6,20.9,18.15,19.81,43.11,13.0,12.74,13.0,16.4,16.47,12.76,13.27,28.17,12.9,30.14,13.42,15.98,16.27,10.09,22.12,35.83,27.18,18.78],"y0":" ","yaxis":"y","type":"violin"},{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Male\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"#EF553B"},"name":"Male","offsetgroup":"Male","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat"],"x0":" ","xaxis":"x","y":[10.34,21.01,23.68,25.29,8.77,26.88,15.04,14.78,10.27,15.42,18.43,21.58,16.29,20.65,17.92,39.42,19.82,17.81,13.37,12.69,21.7,9.55,18.35,17.78,24.06,16.31,18.69,31.27,16.04,17.46,13.94,9.68,30.4,18.29,22.23,32.4,28.55,18.04,12.54,9.94,25.56,19.49,38.01,11.24,48.27,20.29,13.81,11.02,18.29,17.59,20.08,20.23,15.01,12.02,10.51,17.92,27.2,22.76,17.29,19.44,16.66,32.68,15.98,13.03,18.28,24.71,21.16,28.97,22.49,40.17,27.28,12.03,21.01,12.46,15.36,20.49,25.21,18.24,14.0,38.07,23.95,29.93,11.69,14.26,15.95,8.52,22.82,19.08,16.0,34.3,41.19,9.78,7.51,14.07,13.13,17.26,24.55,19.77,48.17,16.49,21.5,12.66,13.81,24.52,20.76,31.71,50.81,15.81,7.25,31.85,16.82,32.9,17.89,14.48,34.63,34.65,23.33,45.35,23.17,40.55,20.69,30.46,23.1,15.69,28.44,15.48,16.58,7.56,10.34,13.51,18.71,20.53,26.59,38.73,24.27,30.06,25.89,48.33,28.15,11.59,7.74,12.16,8.58,13.42,20.45,13.28,24.01,15.69,11.61,10.77,15.53,10.07,12.6,32.83,29.03,22.67,17.82],"y0":" ","yaxis":"y","type":"violin"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"day"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"total_bill"}},"legend":{"title":{"text":"sex"},"tracegroupgap":0},"violinmode":"group"},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="f8c46312-5c57-4f4b-bd7d-209ffba35347" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("f8c46312-5c57-4f4b-bd7d-209ffba35347")) {                    Plotly.newPlot(                        "f8c46312-5c57-4f4b-bd7d-209ffba35347",                        [{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Female\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"#636efa"},"name":"Female","offsetgroup":"Female","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Thur"],"x0":" ","xaxis":"x","y":[16.99,24.59,35.26,14.83,10.33,16.97,20.29,15.77,19.65,15.06,20.69,16.93,10.29,34.81,26.41,16.45,3.07,17.07,26.86,25.28,14.73,10.07,34.83,5.75,16.32,22.75,11.35,15.38,44.3,22.42,20.92,14.31,7.25,25.71,17.31,10.65,12.43,24.08,13.42,12.48,29.8,14.52,11.38,20.27,11.17,12.26,18.26,8.51,10.33,14.15,13.16,17.47,27.05,16.43,8.35,18.64,11.87,29.85,25.0,13.39,16.21,17.51,10.59,10.63,9.6,20.9,18.15,19.81,43.11,13.0,12.74,13.0,16.4,16.47,12.76,13.27,28.17,12.9,30.14,13.42,15.98,16.27,10.09,22.12,35.83,27.18,18.78],"y0":" ","yaxis":"y","type":"violin"},{"alignmentgroup":"True","box":{"visible":false},"hovertemplate":"sex=Male\u003cbr\u003eday=%{x}\u003cbr\u003etotal_bill=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"#EF553B"},"name":"Male","offsetgroup":"Male","orientation":"v","scalegroup":"True","showlegend":true,"x":["Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Fri","Fri","Fri","Fri","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sat","Sat","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Sun","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Thur","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Fri","Fri","Fri","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat","Sat"],"x0":" ","xaxis":"x","y":[10.34,21.01,23.68,25.29,8.77,26.88,15.04,14.78,10.27,15.42,18.43,21.58,16.29,20.65,17.92,39.42,19.82,17.81,13.37,12.69,21.7,9.55,18.35,17.78,24.06,16.31,18.69,31.27,16.04,17.46,13.94,9.68,30.4,18.29,22.23,32.4,28.55,18.04,12.54,9.94,25.56,19.49,38.01,11.24,48.27,20.29,13.81,11.02,18.29,17.59,20.08,20.23,15.01,12.02,10.51,17.92,27.2,22.76,17.29,19.44,16.66,32.68,15.98,13.03,18.28,24.71,21.16,28.97,22.49,40.17,27.28,12.03,21.01,12.46,15.36,20.49,25.21,18.24,14.0,38.07,23.95,29.93,11.69,14.26,15.95,8.52,22.82,19.08,16.0,34.3,41.19,9.78,7.51,14.07,13.13,17.26,24.55,19.77,48.17,16.49,21.5,12.66,13.81,24.52,20.76,31.71,50.81,15.81,7.25,31.85,16.82,32.9,17.89,14.48,34.63,34.65,23.33,45.35,23.17,40.55,20.69,30.46,23.1,15.69,28.44,15.48,16.58,7.56,10.34,13.51,18.71,20.53,26.59,38.73,24.27,30.06,25.89,48.33,28.15,11.59,7.74,12.16,8.58,13.42,20.45,13.28,24.01,15.69,11.61,10.77,15.53,10.07,12.6,32.83,29.03,22.67,17.82],"y0":" ","yaxis":"y","type":"violin"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"day"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"total_bill"}},"legend":{"title":{"text":"sex"},"tracegroupgap":0},"violinmode":"group"},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('c49bb471-b023-4d44-92e7-bd411708ab7f');
+var gd = document.getElementById('f8c46312-5c57-4f4b-bd7d-209ffba35347');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -770,21 +718,19 @@ if (outputEl) {{
 </div>
 </div>
 <p>This will display an interactive Plotly plot in the HTML output.</p>
-<p>For static outputs like PDFs and Word documents, we need to write the image to a file and then include it in the document.</p>
+<p>For static outputs like PDFs and Word documents, we need to save the plot as an image file and then include it in the document.</p>
 <p>First, save the plot as an image:</p>
-<div id="aa885c75" class="cell" data-execution_count="8">
+<div id="5581ebae" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tips_sex.write_image(<span class="st">"tips_sex_plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will create a static image file in the same folder as your document. We can then include it in the document like this:</p>
+<p>This command will create a static image file in the same folder as your document. We can then include it in the document as follows:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Violin plot of total bill by day and sex](tips_sex_plot.png)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will display the image in the output.</p>
 <hr>
 </section>
 <section id="wrapping-up" class="level2" data-number="12.13">
 <h2 data-number="12.13" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">12.13</span> Wrapping Up</h2>
-<p>In this lesson, we learned how to create and render Quarto documents, add formatting, and include code chunks.</p>
-<p>We also learned how to use code chunk options to control the behavior of our documents.</p>
-<p>We experimented with different output formats and how to customize the display of our documents.</p>
+<p>In this lesson, we covered how to create and render Quarto documents, add formatting, and include code chunks. We also learned how to use code chunk options to control the behavior of our documents. We experimented with different output formats and how to customize the display of our documents.</p>
 <p>With these tools, you can create dynamic and interactive reports that are easily shareable in various formats. Quarto’s flexibility and integration with Python make it an excellent choice for data analysts and researchers alike.</p>
 
 

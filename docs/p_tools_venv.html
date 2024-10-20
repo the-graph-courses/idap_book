@@ -323,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">11.2</span> Learning Objectives</a></li>
   <li><a href="#creating-a-new-workspace" id="toc-creating-a-new-workspace" class="nav-link" data-scroll-target="#creating-a-new-workspace"><span class="header-section-number">11.3</span> Creating a New Workspace</a>
   <ul class="collapse">
-  <li><a href="#environments-interpreter" id="toc-environments-interpreter" class="nav-link" data-scroll-target="#environments-interpreter"><span class="header-section-number">11.3.1</span> Environments &amp; Interpreter</a></li>
+  <li><a href="#vocab-environments-interpreter" id="toc-vocab-environments-interpreter" class="nav-link" data-scroll-target="#vocab-environments-interpreter"><span class="header-section-number">11.3.1</span> Vocab: Environments &amp; Interpreter</a></li>
   </ul></li>
   <li><a href="#creating-a-virtual-environment" id="toc-creating-a-virtual-environment" class="nav-link" data-scroll-target="#creating-a-virtual-environment"><span class="header-section-number">11.4</span> Creating a Virtual Environment</a></li>
   <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">11.5</span> Installing Packages</a></li>
@@ -372,33 +372,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="creating-a-new-workspace" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="creating-a-new-workspace"><span class="header-section-number">11.3</span> Creating a New Workspace</h2>
-<ol type="1">
-<li><p>On your desktop or in your <code>Documents</code> folder, create a new folder and name it <code>graph_courses_python</code>. This is going to be the main folder for many of the projects for this course so make sure you put it in an easy to reach place.</p></li>
-<li><p><strong>Open VS Code.</strong></p></li>
-<li><p>Go to <strong>File &gt; Open Folder</strong>.</p></li>
-<li><p>Navigate to the <code>graph_courses_python</code> folder you just created and select it.</p></li>
-</ol>
-<p>now create a new script and call it <code>test_cowsay.py</code>.</p>
-<p>Type print(2 + 2) in the file then run it with the button to make sure everything is working.</p>
-<p>Next, let’s try to import a package we haven’t installed yet. Create a new Python file named <code>test_cowsay.py</code> and add the following line:</p>
-<div id="51c5c3a9" class="cell" data-execution_count="1">
+<p>On your desktop or in your <code>Documents</code> folder, create a new folder and name it <code>graph_courses_python</code>. This is going to be the main folder for many of the projects for this course so make sure you put it in an easy to reach place.</p>
+<p>Open VS Code.</p>
+<p>Go to <strong>File &gt; Open Folder</strong>.</p>
+<p>Navigate to the <code>graph_courses_python</code> folder you just created and select it.</p>
+<p>Now create a new script and call it <code>test_cowsay.py</code>.</p>
+<p>Type <code>print(2 + 2)</code> in the file then run it by clicking the run button to make sure everything is working.</p>
+<p>Next, let’s try to import a package we haven’t installed yet. Add the following line to your file:</p>
+<div id="e57e28c8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cowsay.cow(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will not work because we haven’t installed the <code>cowsay</code> package yet. To install it properly, we’ll need to use virtual environments.</p>
-<section id="environments-interpreter" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="environments-interpreter"><span class="header-section-number">11.3.1</span> Environments &amp; Interpreter</h3>
+<p>If you try to run this, you’ll get an error.</p>
+<p>This will not work because we haven’t installed the <code>cowsay</code> package yet. And to install it properly, we’ll need to use virtual environments.</p>
+<section id="vocab-environments-interpreter" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="vocab-environments-interpreter"><span class="header-section-number">11.3.1</span> Vocab: Environments &amp; Interpreter</h3>
 <ul>
-<li><strong>Environments</strong> are for package management.</li>
-<li>The <strong>interpreter</strong> is the Python version you’re using.</li>
+<li>An <strong>environment</strong> is a folder that contains a specific version of Python and any packages you install.</li>
+<li>The <strong>Python Interpreter</strong> is the specific</li>
 </ul>
 </section>
 </section>
 <section id="creating-a-virtual-environment" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="creating-a-virtual-environment"><span class="header-section-number">11.4</span> Creating a Virtual Environment</h2>
 <ol type="1">
-<li>Open the <strong>Command Palette</strong> (<strong>View &gt; Command Palette</strong> or <code>Ctrl+Shift+P</code>).</li>
+<li>Open the <strong>Command Palette</strong></li>
 <li>Type <code>Python: Create Environment</code> and select it.</li>
 <li>Choose <strong>Venv</strong> as the environment type.</li>
 <li>Select the Python interpreter you want to use (e.g., Python 3.12.0).</li>
@@ -422,9 +421,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <pre class="{bash}"><code>#| eval: false
 pip install cowsay</code></pre>
-<p>Sometimes pip disappears off path randomly. Restart vscode, select interpreter again, and it should fix it. Seems to be some bug with VS Code.</p>
-<p>Refresh your environment if necessary. You should now see the <code>cowsay</code> package in the list of installed packages.</p>
-<p>Now we can use the package. Open <code>test_cowsay.py</code> and click the run button to execute the script.</p>
+<p>Occasionally, you might encounter an issue where pip is not recognized in the terminal. This is likely due to a temporary glitch in VS Code’s environment detection. If this happens, try the following steps:</p>
+<ol type="1">
+<li>Close and reopen VS Code.</li>
+<li>Use the Command Palette to select the Python interpreter again.</li>
+<li>Open a new terminal.</li>
+</ol>
+<p>These steps should resolve the issue and restore access to pip. If the problem persists, it may indicate a more complex configuration problem that requires further investigation.</p>
+<p>Now we should be able to use the <code>cowsay</code> package. Open <code>test_cowsay.py</code> and click the run button to execute the script.</p>
 <p>You should see a cow saying hello!</p>
 </section>
 <section id="summary-of-key-steps" class="level2" data-number="11.6">
@@ -437,7 +441,8 @@ pip install cowsay</code></pre>
 <li><strong>I</strong>nterpreter: Select the appropriate Python interpreter.</li>
 <li><strong>L</strong>ibraries: Install the necessary packages.</li>
 </ol>
-<p>Remember the acronym <strong>FEIL</strong> to help you recall these steps. (If you don’t complete these steps you increase your chances of “FEIL”ure 😅) It’s a bit of a pain to have to set up a virtual environment every time you start a new project, but it’s a good habit to get into.</p>
+<p>Remember the acronym <strong>FEIL</strong> to help you recall these steps. (If you don’t complete these steps you increase your chances of “FEIL”ure 😅)</p>
+<p>It’s a bit of a pain to have to set up a virtual environment every time you start a new project, but it’s a good habit to get into.</p>
 </section>
 <section id="demonstrating-environment-isolation" class="level2" data-number="11.7">
 <h2 data-number="11.7" class="anchored" data-anchor-id="demonstrating-environment-isolation"><span class="header-section-number">11.7</span> Demonstrating Environment Isolation</h2>
@@ -445,7 +450,7 @@ pip install cowsay</code></pre>
 <ol type="1">
 <li><p>Open your previous workspace <code>my_first_workspace</code> with the File &gt; Open Folder menu option.</p></li>
 <li><p>Create a Python file and try to use the <code>cowsay</code> package:</p>
-<p>::: {#3f9fd03e .cell execution_count=2} <code>{.python .cell-code}  import cowsay</code> :::</p></li>
+<p>::: {#d22e4451 .cell execution_count=2} <code>{.python .cell-code}  import cowsay</code> :::</p></li>
 </ol>
 <p>This will probably not work because <code>cowsay</code> is not installed in that environment. If it does work, it means you have <code>cowsay</code> installed globally, which is okay.</p>
 <p>Now, let’s return to our main folder/workspace. This is where you’ll conduct most of your analysis for this course.</p>

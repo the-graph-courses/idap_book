@@ -2,7 +2,7 @@
 title: "Installing Python"
 ---
 
-# Introduction
+## Introduction
 
 So far in our learning sequence, you've been working mostly in Google Colab, a convenient, cloud-based environment for running Python code. Now it's time to tackle working locally on your own machine. This allows you to work offline and gives you more control over your development environment.
 
@@ -19,10 +19,10 @@ Please follow the instructions specific to your operating system.
 
 ### Step 1: Check Your Current Python Version
 
-- Press `Win + R`, type `cmd`, and press **Enter** to open Command Prompt.
-- Type `python --version` and press **Enter**.
+- Search for "Command Prompt" in your start menu.
+- Into the terminal window type `python --version` and press **Enter**.
 - If Python is installed, it will display the version number.
-- **Note:** If you see a version lower than **3.12.0**, we'll proceed to install the correct version.
+- If you already have version **3.12.0** installed, you can skip the rest of the steps. If you have any other version (higher or lower), proceed to the next step to install **3.12.0**.
 
 ### Step 2: Download Python 3.12.0
 
@@ -43,9 +43,9 @@ Please follow the instructions specific to your operating system.
 ### Step 4: Verify the Installation
 
 - Close your old command prompt window if it is still open.
-- In your start menu, search for `cmd` to open a new command prompt.
+- In your start menu, again search for "Command Prompt" and open a new terminal window.
 - Type `python --version` and press **Enter**.
-- You should see `Python 3.12.0`. (If you see a newer version if you already have Python on your computer. That's okay. From our IDE, we will be able to select the correct version of Python that we just installed.)
+- You should see `Python 3.12.0`. (You may see a newer version if you already had Python on your computer. That's okay. From our IDE, we will be able to select the correct version of Python that we just installed.)
 
 ### Step 5: Run Python Locally
 
@@ -64,8 +64,9 @@ Please follow the instructions specific to your operating system.
 - Type `python3 --version` and press **Return**.
 - If Python is installed, it will display the version number.
 - You may get a pop-up asking to install command line developer tools if you do not have them. Go ahead and accept and install that.
-- Otherwise, you may get a pop-up asking to install something. Click **Cancel** and proceed to the next step.
-- If you already have version 3.12.0 installed, you can skip the rest of the steps. If you have any other version (higher or lower), proceed to the next step.
+- If your computer does not have Python installed, you will get an error.
+- Otherwise, you should see a version number.
+- If you already have version **3.12.0** installed, you can skip the rest of the steps. If you have any other version (higher or lower), proceed to the next step to install **3.12.0**.
 
 ### Step 2: Download Python 3.12.0
 
@@ -79,19 +80,15 @@ Please follow the instructions specific to your operating system.
 
 ### Step 3: Install Python 3.12.0
 
-- Locate the downloaded `.pkg` file (usually in your **Downloads** folder).
+- Locate the downloaded file (usually in your **Downloads** folder).
 - Double-click the installer to run it.
-- Click **"Continue"** through the prompts.
-- Read and agree to the license terms.
-- Click **"Install"**.
-- Enter your administrator password when prompted.
-- Click **"Install Software"**.
 - Wait for the installation to finish.
 - Click **"Close"** once the installation is complete.
 
 ### Step 4: Verify the Installation
 
-- Go to **Applications > Utilities > Terminal**.
+- Close your old terminal window if it is still open.
+- Again go to **Applications > Utilities > Terminal**.
 - Type `python3 --version` and press **Return**.
 - You should see `Python 3.12.0`.
 

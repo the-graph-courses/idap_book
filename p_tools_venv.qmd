@@ -17,18 +17,19 @@ By the end of this lesson, you should be able to:
 
 ## Creating a New Workspace
 
-1. On your desktop or in your `Documents` folder, create a new folder and name it `graph_courses_python`. This is going to be the main folder for many of the projects for this course so make sure you put it in an easy to reach place.   
+On your desktop or in your `Documents` folder, create a new folder and name it `graph_courses_python`. This is going to be the main folder for many of the projects for this course so make sure you put it in an easy to reach place.   
 
-2. **Open VS Code.**
-2. Go to **File > Open Folder**.
+Open VS Code.
 
-3. Navigate to the `graph_courses_python` folder you just created and select it.
+Go to **File > Open Folder**.
 
-now create a new script and call it `test_cowsay.py`. 
+Navigate to the `graph_courses_python` folder you just created and select it.
 
-Type print(2 + 2) in the file then run it with the button to make sure everything is working. 
+Now create a new script and call it `test_cowsay.py`. 
 
-Next, let's try to import a package we haven't installed yet. Create a new Python file named `test_cowsay.py` and add the following line:
+Type `print(2 + 2)` in the file then run it by clicking the run button to make sure everything is working. 
+
+Next, let's try to import a package we haven't installed yet. Add the following line to your file:
 
 ```{python}
 # | eval: false
@@ -37,16 +38,18 @@ import cowsay
 cowsay.cow("Hello, World!")
 ```
 
-This will not work because we haven't installed the `cowsay` package yet. To install it properly, we'll need to use virtual environments.
+If you try to run this, you'll get an error.
 
-### Environments & Interpreter
+This will not work because we haven't installed the `cowsay` package yet. And to     install it properly, we'll need to use virtual environments.
 
-- **Environments** are for package management.
-- The **interpreter** is the Python version you're using.
+### Vocab: Environments & Interpreter
+
+- An **environment** is a folder that contains a specific version of Python and any packages you install.
+- The **Python Interpreter** is the specific
 
 ## Creating a Virtual Environment
 
-1. Open the **Command Palette** (**View > Command Palette** or `Ctrl+Shift+P`).
+1. Open the **Command Palette** 
 2. Type `Python: Create Environment` and select it.
 3. Choose **Venv** as the environment type.
 4. Select the Python interpreter you want to use (e.g., Python 3.12.0).
@@ -75,14 +78,15 @@ You can do this with the terminal file menu option then selecting 'new terminal'
 pip install cowsay
 ```
 
-Sometimes pip disappears off path randomly. Restart vscode, select interpreter again, and it should fix it. Seems to be some bug with VS Code. 
+Occasionally, you might encounter an issue where pip is not recognized in the terminal. This is likely due to a temporary glitch in VS Code's environment detection. If this happens, try the following steps:
 
+1. Close and reopen VS Code.
+2. Use the Command Palette to select the Python interpreter again.
+3. Open a new terminal.
 
+These steps should resolve the issue and restore access to pip. If the problem persists, it may indicate a more complex configuration problem that requires further investigation.
 
-Refresh your environment if necessary. You should now see the `cowsay` package in the list of installed packages.
-
-
-Now we can use the package. Open `test_cowsay.py` and click the run button to execute the script.
+Now we should be able to use the `cowsay` package. Open `test_cowsay.py` and click the run button to execute the script.
 
 You should see a cow saying hello!
 
@@ -98,6 +102,7 @@ These are key steps for any new Python project:
 4. **L**ibraries: Install the necessary packages.
 
 Remember the acronym **FEIL** to help you recall these steps. (If you don't complete these steps you increase your chances of "FEIL"ure 😅)
+
 It's a bit of a pain to have to set up a virtual environment every time you start a new project, but it's a good habit to get into. 
 
 ## Demonstrating Environment Isolation

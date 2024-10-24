@@ -18,7 +18,7 @@ Our first focus will be on selecting and renaming columns. Often your dataset co
 
 ## Learning objectives
 
--   You can keep or drop columns from a DataFrame using pandas methods like `loc[]`, `filter()`, and `drop()`.
+-   You can keep or drop columns from a DataFrame using square brackets `[]`, `filter()`, and `drop()`.
 -   You can select columns based on regex patterns with `filter()`.
 -   You can use `rename()` to change column names.
 -   You can use regex to clean column names.
@@ -184,6 +184,12 @@ yao.filter(regex="result$")
 
 The character `$` is regex that matches the end of the string.
 
+::: {.callout-note title="Pro Tip"}
+
+Regex is notoriously difficult to remember, but LLMs like ChatGPT are very good at generating the right patterns. Simply ask, for example, "What is the regex for strings starting with 'ig'"
+
+:::
+
 ::: {.callout-tip title="Practice"}
 
 ### Practice Q: Select Columns with Regex
@@ -218,12 +224,14 @@ yao.rename(columns={"age": "patient_age", "sex": "patient_sex"})
 
 ## Cleaning messy column names
 
-For automatic cleaning of column names, you can use regular expressions with the `str.replace()` method in pandas. This will allow you to replace everything that is not a letter or a number with an underscore ('\_').
+For cleaning column names, you can use regular expressions with the `str.replace()` method in pandas. 
 
 Here's how you can do it on a test DataFrame with messy column names. Messy column names are names with spaces, special characters, or other non-alphanumeric characters.
 
 ```{python}
-test_df = pd.DataFrame({"good_name": [1], "bad name": [2], "bad*@name*2": [3]})
+test_df = pd.DataFrame(
+    {"good_name": range(3), "bad name": range(3), "bad*@name*2": range(3)}
+)
 test_df
 ```
 
@@ -252,7 +260,7 @@ We can automatically clean such names using the `str.replace()` method along wit
 clean_names = test_df.columns.str.replace(r'[^a-zA-Z0-9]', '_', regex=True)
 ```
 
-The regular expression `r'[^a-zA-Z0-9]'` matches any character that is not a letter (either uppercase or lowercase) or a digit. The `str.replace()` method replaces these characters with an underscore ('\_') to make the column names more legible and usable in dot notation.
+The regular expression `r'[^a-zA-Z0-9]'` matches any character that is not a letter (either uppercase or lowercase) or a digit. The `str.replace()` method replaces these characters with an underscore ('\_') to make the column names more legible and usable in dot notation. 
 
 Now we can replace the column names in the DataFrame with the cleaned names:
 
@@ -269,7 +277,7 @@ test_df
 
 ```{python}
 cleaning_practice = pd.DataFrame(
-    {"Aloha": range(3), "Bell Chart": range(3), "Animals@#$%^": range(3)}
+    {"Aloha": range(3), "Bell Chart": range(3), "Animals@the zoo": range(3)}
 )
 cleaning_practice
 ```

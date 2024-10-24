@@ -1,0 +1,14 @@
+
+```{python}
+import plotly.express as px
+
+df = px.data.tips()
+
+fig = px.histogram(df, x="tip", color="sex")
+fig.update_coloraxes(colorbar=dict(bgcolor="green"))
+# fig
+
+fig.update_traces(marker=dict(opacity=0.1))
+fig
+```
+

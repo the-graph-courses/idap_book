@@ -198,7 +198,7 @@ Regex is notoriously difficult to remember, but LLMs like ChatGPT are very good 
 
 ### Practice Q: Select Columns with Regex
 
--   Select all columns in the `yao` DataFrame that start with "is". Assign the result to a new DataFrame called `yao_is_columns`. Then print this new DataFrame.
+-   Select all columns in the `yao` DataFrame that start with "is_". Assign the result to a new DataFrame called `yao_is_columns`. Then print this new DataFrame.
 
 ```{python}
 # Your code here

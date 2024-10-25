@@ -1,5 +1,5 @@
 ---
-title: 'Subsetting rows'
+title: 'Querying rows'
 ---
 
 ```{python}

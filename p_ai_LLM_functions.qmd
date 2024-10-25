@@ -7,26 +7,30 @@ import openai
 import os
 
 my_client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
+
 ```
 
 # Fixed Questions 
 
 ```{python}
 @ell.simple(model="gpt-4o-mini", client=my_client)
-def city_rec_uk(message):
+def chat(message):
     return message
 ```
 
 ```{python}
-print(city_rec_uk("What is the most tourist-friendly city in the UK?"))
+response = chat("What is the most tourist-friendly city in France?")
 ```
 
+Print for better readability.
+```{python}
+print(response)
+```
 
 # Variable Questions 
 
-
 ```{python}
-countries = ["Ghana", "Brazil", "United Kingdom", "United States"]
+countries = ["Nigeria", "Chile", "France", "Canada"]
 
 
 @ell.simple(model="gpt-4o-mini", client=my_client)
@@ -73,7 +77,6 @@ class Rec(BaseModel):
 @ell.complex(model="gpt-4o-mini", client=my_client, response_format=Rec)
 def city_rec_clean(country):
     return f"What is the most tourist-friendly city in {country}?"
-
 ```
 
 ```{python}
@@ -94,7 +97,6 @@ city_df = country_df.assign(
 city_df
 ```
 
-
 Yaay! 
 
 Now let's get more information about the city. Rating out of 5. And best season to visit (FIX the options to be only 4 seasons).
@@ -114,18 +116,18 @@ class Season(str, Enum):
 
 class RecDetail(BaseModel):
     city: str = Field(description="The name of the city")
-    rating: int = Field(description="Tourist-friendliness rating out of 5")
+    safety: int = Field(description="Safety rating out of 10")
     best_season: Season = Field(description="Best season to visit")
 
 
 @ell.complex(model="gpt-4o-mini", client=my_client, response_format=RecDetail)
 def city_rec_detail(country):
-    return f"What is the most tourist-friendly city in {country}? Provide the city name, a tourist-friendliness rating out of 5, and the best season to visit (Spring, Summer, Autumn, or Winter)."
-
+    return f"""What is the most tourist-friendly city in {country}? 
+    Provide the city name, a safety rating, and the best season to visit."""
 ```
 
 ```{python}
-# Test the function
+# Test the function with a country
 recommendation = city_rec_detail("United Kingdom")
 print(recommendation.parsed)
 ```
@@ -136,8 +138,8 @@ city_df = country_df.assign(
     city=lambda x: x.country.apply(
         lambda country: city_rec_detail(country).parsed.city
     ),
-    rating=lambda x: x.country.apply(
-        lambda country: city_rec_detail(country).parsed.rating
+    safety=lambda x: x.country.apply(
+        lambda country: city_rec_detail(country).parsed.safety
     ),
     best_season=lambda x: x.country.apply(
         lambda country: city_rec_detail(country).parsed.best_season.value
@@ -145,28 +147,5 @@ city_df = country_df.assign(
 )
 city_df
 ```
-
-
-```{python}
-# Define the structured output model
-class CityRecommendation(BaseModel):
-    city: str = Field(description="The name of the recommended city")
-    safety_rating: float = Field(description="Safety rating out of 5", ge=0, le=5)
-    public_transport_rating: float = Field(description="Public transport quality rating out of 5", ge=0, le=5)
-```
-
-
-
-```{python}
-# Define the function with structured output
-@ell.complex(model="gpt-4o-mini", client=my_client, response_format=CityRecommendation)
-def get_city_recommendation(country: str) -> CityRecommendation:
-    """Recommend a tourist-friendly city in the given country with safety and public transport ratings."""
-    return f"Recommend a tourist-friendly city in {country} with its safety and public transport ratings out of 5."
-
-
-from pydantic import BaseModel, Field
-```
-
 
 # Advanced (optional). Parallel processing. 

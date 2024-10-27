@@ -274,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_query_rows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Subsetting rows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Querying rows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -391,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.3" class="anchored" data-anchor-id="comments"><span class="header-section-number">2.3</span> Comments</h2>
 <p>Comments are text that is ignored by Python. They are used to explain what the code is doing.</p>
 <p>You use the symbol <code>#</code>, pronounced “hash” or “pound”, to start a comment. Anything after the <code>#</code> on the same line is ignored. For example:</p>
-<div id="04c73d74" class="cell" data-execution_count="1">
+<div id="cb5ea02b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Addition</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -399,20 +399,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If we just tried to write Addition above the code, it would cause an error:</p>
-<div id="70d13bc6" class="cell" data-execution_count="2">
+<div id="215fd377" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Addition</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>NameError: name 'Addition' is not defined</code></pre>
 <p>We can put the comment on the same line as the code, but it needs to come after the code.</p>
-<div id="6a041ff9" class="cell" data-execution_count="3">
+<div id="0ca8ad46" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>  <span class="co"># Addition</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>4</code></pre>
 </div>
 </div>
 <p>To write multiple lines of comments, you can either add more <code>#</code> symbols:</p>
-<div id="199e331d" class="cell" data-execution_count="4">
+<div id="ed2adfa2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Addition</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two numbers</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -421,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Or you can use triple quotes <code>'''</code> or <code>"""</code>:</p>
-<div id="c94a63c5" class="cell" data-execution_count="5">
+<div id="f04f246f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">Addition:</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">Below we add two numbers</span></span>
@@ -432,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Or:</p>
-<div id="570aa81f" class="cell" data-execution_count="6">
+<div id="af0497e0" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">Addition:</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">Below we add two numbers</span></span>
@@ -481,39 +481,39 @@ Practice
 <h2 data-number="2.4" class="anchored" data-anchor-id="python-as-a-calculator"><span class="header-section-number">2.4</span> Python as a calculator</h2>
 <p>As you have already seen, Python works as a calculator in standard ways.</p>
 <p>Below are some other examples of basic arithmetic operations:</p>
-<div id="71a68328" class="cell" data-execution_count="7">
+<div id="2dd6ea2f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span> <span class="co"># two minus two</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0</code></pre>
 </div>
 </div>
-<div id="601c505b" class="cell" data-execution_count="8">
+<div id="8dfffba8" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> <span class="dv">2</span>  <span class="co"># two times two </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>4</code></pre>
 </div>
 </div>
-<div id="1bf08384" class="cell" data-execution_count="9">
+<div id="5544bd2e" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span>  <span class="co"># two divided by two</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>1.0</code></pre>
 </div>
 </div>
-<div id="a9e614ea" class="cell" data-execution_count="10">
+<div id="bee43203" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">**</span> <span class="dv">2</span>  <span class="co"># two raised to the power of two</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>4</code></pre>
 </div>
 </div>
 <p>There are a few other operators you may come across. For example, <code>%</code> is the modulo operator, which returns the remainder of the division.</p>
-<div id="56a32e1d" class="cell" data-execution_count="11">
+<div id="dd019c9f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">%</span> <span class="dv">3</span>  <span class="co"># ten modulo three</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>1</code></pre>
 </div>
 </div>
 <p><code>//</code> is the floor division operator, which divides then rounds down to the nearest whole number.</p>
-<div id="5ef2b931" class="cell" data-execution_count="12">
+<div id="f2aaad13" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">//</span> <span class="dv">3</span>  <span class="co"># ten floor division three</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>3</code></pre>
@@ -531,10 +531,10 @@ Practice
 <section id="q-modulo-and-floor-division" class="level3 callout-body-container callout-body" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="q-modulo-and-floor-division"><span class="header-section-number">2.4.1</span> Q: Modulo and floor division</h3>
 <p>Guess the result of the following code chunks then run them to check your answer:</p>
-<div id="641e0499" class="cell" data-execution_count="13">
+<div id="d949b554" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">%</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f906dc4f" class="cell" data-execution_count="14">
+<div id="85a35c46" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">//</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -543,7 +543,7 @@ Practice
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="order-of-operations"><span class="header-section-number">2.4.2</span> Order of operations</h3>
 <p>Python obeys the standard PEMDAS order of operations (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction).</p>
 <p>For example, multiplication is evaluated before addition, so below the result is <code>6</code>.</p>
-<div id="5f3716b4" class="cell" data-execution_count="15">
+<div id="8f148bd6" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">2</span>   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>6</code></pre>
@@ -561,10 +561,10 @@ Practice
 <section id="q-evaluating-arithmetic-expressions" class="level3 callout-body-container callout-body" data-number="2.4.3">
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="q-evaluating-arithmetic-expressions"><span class="header-section-number">2.4.3</span> Q: Evaluating arithmetic expressions</h3>
 <p>Which, if any, of the following code chunks will evaluate to <code>10</code>?</p>
-<div id="58db4869" class="cell" data-execution_count="16">
+<div id="c548834f" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3541f476" class="cell" data-execution_count="17">
+<div id="44c50c38" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -573,7 +573,7 @@ Practice
 <section id="using-the-math-library" class="level3" data-number="2.4.4">
 <h3 data-number="2.4.4" class="anchored" data-anchor-id="using-the-math-library"><span class="header-section-number">2.4.4</span> Using the math library</h3>
 <p>We can also use the <code>math</code> library to do more complex mathematical operations. For example, we can use the <code>math.sqrt</code> function to calculate the square root of a number.</p>
-<div id="f8f46c0b" class="cell" data-execution_count="18">
+<div id="0ecb8146" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>math.sqrt(<span class="dv">100</span>)  <span class="co"># square root</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
@@ -581,7 +581,7 @@ Practice
 </div>
 </div>
 <p>Or we can use the <code>math.log</code> function to calculate the natural logarithm of a number.</p>
-<div id="fba6bd12" class="cell" data-execution_count="19">
+<div id="4e105a3b" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>math.log(<span class="dv">100</span>)  <span class="co"># logarithm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
@@ -617,18 +617,18 @@ Practice
 <h3 data-number="2.4.5" class="anchored" data-anchor-id="q-using-the-math-library"><span class="header-section-number">2.4.5</span> Q: Using the math library</h3>
 <p>Using the <code>math</code> library, calculate the square root of 81.</p>
 <p>Write your code below and run it to check your answers:</p>
-<div id="77c2cb43" class="cell" data-execution_count="20">
+<div id="570b4e26" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="q-describing-the-use-of-the-random-library" class="level3" data-number="2.4.6">
 <h3 data-number="2.4.6" class="anchored" data-anchor-id="q-describing-the-use-of-the-random-library"><span class="header-section-number">2.4.6</span> Q: Describing the use of the random library</h3>
 <p>Consider the following code, which generates a random number between 1 and 10:</p>
-<div id="2a2043cc" class="cell" data-execution_count="21">
+<div id="4f8122f3" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>random.randint(<span class="dv">1</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>3</code></pre>
+<pre><code>9</code></pre>
 </div>
 </div>
 <p>In that code, identify the library, the function, and the argument(s) to the function.</p>
@@ -644,7 +644,7 @@ Practice
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="blank-lines"><span class="header-section-number">2.5.1</span> Blank Lines</h3>
 <p>Use blank lines to separate different parts of your code:</p>
 <p>For example, consider the following code chunk:</p>
-<div id="6e0bc6c9" class="cell" data-execution_count="22">
+<div id="8a0c1bed" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up numbers</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span></span>
@@ -657,7 +657,7 @@ Practice
 </div>
 </div>
 <p>We can add blank lines to separate the different parts of the code:</p>
-<div id="b8a397d2" class="cell" data-execution_count="23">
+<div id="6c3e683d" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up numbers</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span></span>
@@ -676,7 +676,7 @@ Practice
 <section id="spaces-around-operators" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="spaces-around-operators"><span class="header-section-number">2.5.2</span> Spaces around operators</h3>
 <p>Adding spaces around mathematical operators improves readability:</p>
-<div id="1a9fddd9" class="cell" data-execution_count="24">
+<div id="b197c761" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard to read</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">5</span><span class="op">+</span><span class="dv">3</span><span class="op">*</span><span class="dv">2</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -684,7 +684,7 @@ Practice
 <span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When listing items, add a space after each comma:</p>
-<div id="e3441b1f" class="cell" data-execution_count="25">
+<div id="2fd1f73c" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard to read</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -699,7 +699,7 @@ Practice
 <section id="create-a-variable" class="level3" data-number="2.6.1">
 <h3 data-number="2.6.1" class="anchored" data-anchor-id="create-a-variable"><span class="header-section-number">2.6.1</span> Create a variable</h3>
 <p>As you have seen, to store a value for future use in Python, we assign it to a <em>variable</em> with the <em>assignment operator</em>, <code>=</code>.</p>
-<div id="d259adcf" class="cell" data-execution_count="26">
+<div id="59474959" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>my_var <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>  <span class="co"># assign the result of `2 + 2 ` to the variable called `my_var`</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_var)  <span class="co"># print my_var</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -709,13 +709,13 @@ Practice
 <p>Now that you’ve created the variable <code>my_var</code>, Python knows about it and will keep track of it during this Python session.</p>
 <p>You can open your environment to see what variables you have created. This looks different depending on your IDE.</p>
 <p>So what exactly is a variable? Think of it as a named container that can hold a value. When you run the code below:</p>
-<div id="c3e0dfea" class="cell" data-execution_count="27">
+<div id="a20b3011" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>my_var <span class="op">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>you are telling Python, “store the number 20 in a variable named ‘my_var’”.</p>
 <p>Once the code is run, we would say, in Python terms, that “the value of variable <code>my_var</code> is 20”.</p>
 <p>Try to come up with a similar sentence for this code chunk:</p>
-<div id="f44048cf" class="cell" data-execution_count="28">
+<div id="fdd598f2" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> <span class="st">"Joanna"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After we run this code, we would say, in Python terms, that “the value of the <code>first_name</code> variable is Joanna”.</p>
@@ -750,15 +750,15 @@ Vocab
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="reassigning-variables"><span class="header-section-number">2.6.2</span> Reassigning Variables</h3>
 <p>Reassigning a variable is like changing the contents of a container.</p>
 <p>For example, previously we ran this code to store the value “Joanna” inside the <code>first_name</code> variable:</p>
-<div id="9a909682" class="cell" data-execution_count="29">
+<div id="5393fe99" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> <span class="st">"Joanna"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To change this to a different value, simply run a new assignment statement with a new value:</p>
-<div id="09dd8cf8" class="cell" data-execution_count="30">
+<div id="3d9af563" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> <span class="st">"Luigi"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can print the variable to observe the change:</p>
-<div id="537e63cb" class="cell" data-execution_count="31">
+<div id="e3af9304" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>first_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>'Luigi'</code></pre>
@@ -769,7 +769,7 @@ Vocab
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="working-with-variables"><span class="header-section-number">2.6.3</span> Working with Variables</h3>
 <p>Most of your time in Python will be spent manipulating variables. Let’s see some quick examples.</p>
 <p>You can run simple commands on variables. For example, below we store the value <code>100</code> in a variable and then take the square root of the variable:</p>
-<div id="4b966a1f" class="cell" data-execution_count="32">
+<div id="d37e732c" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>my_number <span class="op">=</span> <span class="dv">100</span></span>
@@ -781,7 +781,7 @@ Vocab
 <p>Python “sees” <code>my_number</code> as the number 100, and so is able to evaluate its square root.</p>
 <hr>
 <p>You can also combine existing variables to create new variables. For example, type out the code below to add <code>my_number</code> to itself, and store the result in a new variable called <code>my_sum</code>:</p>
-<div id="1aad0f46" class="cell" data-execution_count="33">
+<div id="f2a5ae6c" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>my_sum <span class="op">=</span> my_number <span class="op">+</span> my_number</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>my_sum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -791,7 +791,7 @@ Vocab
 <p>What should be the value of <code>my_sum</code>? First take a guess, then check it by printing it.</p>
 <hr>
 <p>Python also allows us to concatenate strings with the <code>+</code> operator. For example, we can concatenate the <code>first_name</code> and <code>last_name</code> variables to create a new variable called <code>full_name</code>:</p>
-<div id="2bcaf5c7" class="cell" data-execution_count="34">
+<div id="cd94f9cf" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> <span class="st">"Joanna"</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="op">=</span> <span class="st">"Luigi"</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>full_name <span class="op">=</span> first_name <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> last_name</span>
@@ -812,7 +812,7 @@ Practice
 <section id="q-variable-assignment-and-manipulation" class="level3 callout-body-container callout-body" data-number="2.6.4">
 <h3 data-number="2.6.4" class="anchored" data-anchor-id="q-variable-assignment-and-manipulation"><span class="header-section-number">2.6.4</span> Q: Variable assignment and manipulation</h3>
 <p>Consider the code below. What is the value of the <code>answer</code> variable? Think about it, then run the code to check your answer.</p>
-<div id="e24b9b6b" class="cell" data-execution_count="35">
+<div id="ee6527b8" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>eight <span class="op">=</span> <span class="dv">9</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>answer <span class="op">=</span> eight <span class="op">-</span> <span class="dv">8</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>answer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -824,20 +824,20 @@ Practice
 <h3 data-number="2.6.5" class="anchored" data-anchor-id="getting-user-input"><span class="header-section-number">2.6.5</span> Getting User Input</h3>
 <p>Though it’s not used often in data analysis, the <code>input()</code> function from Python is a cool Python feature that you should know about. It allows you to get input from the user.</p>
 <p>Here’s a simple example. We can request user input and store it in a variable called <code>name</code>.</p>
-<div id="70d938d3" class="cell" data-execution_count="36">
+<div id="79dda877" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And then we can print a greeting to the user.</p>
-<div id="c6dde9f7" class="cell" data-execution_count="37">
+<div id="4b9771a2" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello,"</span>, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also include a question for the input prompt:</p>
-<div id="820dac4f" class="cell" data-execution_count="38">
+<div id="9e29efc3" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">'What is your name? '</span>)</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello,"</span>, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s see another example. We’ll tell the user how many letters are in their name.</p>
-<div id="1e38a6be" class="cell" data-execution_count="39">
+<div id="4a94bcab" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">'What is your name? '</span>)</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"There are"</span>, <span class="bu">len</span>(name), <span class="st">"letters in your name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -862,7 +862,7 @@ Practice
 <section id="common-error-with-variables" class="level3" data-number="2.6.7">
 <h3 data-number="2.6.7" class="anchored" data-anchor-id="common-error-with-variables"><span class="header-section-number">2.6.7</span> Common Error with Variables</h3>
 <p>One of the most common errors you’ll encounter when working with variables in Python is the <code>NameError</code>. This occurs when you try to use a variable that hasn’t been defined yet. For example:</p>
-<div id="52b7381e" class="cell" data-execution_count="40">
+<div id="e25d5d4b" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="op">=</span> <span class="dv">48</span>  <span class="co"># define `my_number`</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>My_number <span class="op">+</span> <span class="dv">2</span>  <span class="co"># attempt to add 2 to `my_number`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -870,7 +870,7 @@ Practice
 <pre><code>NameError: name 'My_number' is not defined</code></pre>
 <p>Here, Python returns an error message because we haven’t created (or <em>defined</em>) the variable <code>My_number</code> yet. Recall that Python is case-sensitive; we defined <code>my_number</code> but tried to use <code>My_number</code>.</p>
 <p>To fix this, make sure you’re using the correct variable name:</p>
-<div id="55f6a7ef" class="cell" data-execution_count="41">
+<div id="472192bc" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="op">=</span> <span class="dv">48</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>my_number <span class="op">+</span> <span class="dv">2</span>  <span class="co"># This will work and return 50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -895,7 +895,7 @@ Practice
 <section id="q-debugging-variable-errors" class="level3 callout-body-container callout-body" data-number="2.6.8">
 <h3 data-number="2.6.8" class="anchored" data-anchor-id="q-debugging-variable-errors"><span class="header-section-number">2.6.8</span> Q: Debugging variable errors</h3>
 <p>The code below returns an error. Why? (Look carefully)</p>
-<div id="467a942d" class="cell" data-execution_count="42">
+<div id="7c0cef96" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>my_1st_name <span class="op">=</span> <span class="st">"Kene"</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>my_last_name <span class="op">=</span> <span class="st">"Nwosu"</span></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -914,14 +914,14 @@ Practice
 <p>Because much of your work in Python involves interacting with variables you have created, picking intelligent names for these variables is important.</p>
 <p>Naming variables is difficult because names should be both <strong>short</strong> (so that you can type them quickly) and <strong>informative</strong> (so that you can easily remember what the variable contains), and these two goals are often in conflict.</p>
 <p>So names that are too long, like the one below, are bad because they take forever to type.</p>
-<div id="17e784ce" class="cell" data-execution_count="43">
+<div id="ba5d860a" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>sample_of_the_ebola_outbreak_dataset_from_sierra_leone_in_2014</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And a name like <code>data</code> is bad because it is not informative; the name does not give a good idea of what the variable contains.</p>
 <p>As you write more Python code, you will learn how to write short and informative names.</p>
 <hr>
 <p>For names with multiple words, there are a few conventions for how to separate the words:</p>
-<div id="06a6cc8c" class="cell" data-execution_count="44">
+<div id="41cf0d6a" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>snake_case <span class="op">=</span> <span class="st">"Snake case uses underscores"</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>camelCase <span class="op">=</span> <span class="st">"Camel case capitalizes new words (but not the first word)"</span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>PascalCase <span class="op">=</span> <span class="st">"Pascal case capitalizes all words including the first"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -932,16 +932,16 @@ Practice
 <ul>
 <li>Names must start with a letter or underscore. So <code>2014_data</code> is not a valid name (because it starts with a number). Try running the code chunk below to see what error you get.</li>
 </ul>
-<div id="a1217503" class="cell" data-execution_count="45">
+<div id="a15b9822" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2014</span><span class="er">_data</span> <span class="op">=</span> <span class="st">"This is not a valid name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Names can only contain letters, numbers, and underscores (<code>_</code>). So <code>ebola-data</code> or <code>ebola~data</code> or <code>ebola data</code> with a space are not valid names.</li>
 </ul>
-<div id="a479ea81" class="cell" data-execution_count="46">
+<div id="37d8c6e2" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>ebola<span class="op">-</span>data <span class="op">=</span> <span class="st">"This is not a valid name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ffb867cb" class="cell" data-execution_count="47">
+<div id="63a0a0ce" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>ebola<span class="op">~</span>data <span class="op">=</span> <span class="st">"This is not a valid name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Side note">
@@ -970,7 +970,7 @@ Practice
 <h3 data-number="2.6.10" class="anchored" data-anchor-id="q-valid-variable-naming-conventions"><span class="header-section-number">2.6.10</span> Q: Valid variable naming conventions</h3>
 <p>Which of the following variable names are valid in Python? Try to determine this without running the code, then check your answers by attempting to run each line.</p>
 <p>Then fix the invalid variable names.</p>
-<div id="8a99a917" class="cell" data-execution_count="48">
+<div id="c9c582d6" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="er">st_name</span> <span class="op">=</span> <span class="st">"John"</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="op">=</span> <span class="st">"Doe"</span></span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>full<span class="op">-</span>name <span class="op">=</span> <span class="st">"John Doe"</span></span>

@@ -22,10 +22,11 @@ Let's get started!
 ## Learning objectives
 
 1.  You can use the `query()` method to keep or drop rows from a DataFrame.
-2.  You can specify conditions using relational operators like greater than (`>`), less than (`<`), equal to (`==`), and not equal to (`!=`).
+2.  You can specify conditions using relational operators like greater than (`>`), less than (`<`), equal to (`==`), not equal to (`!=`), and is an element of (`isin()`).
 3.  You can combine conditions with `&` and `|`.
 4.  You can negate conditions with `~`.
 5.  You can use the `isna()` and `notna()` methods.
+6.  You can query based on string patterns using `str.contains()`.
 
 ## The Yaounde COVID-19 dataset
 
@@ -225,6 +226,19 @@ To keep all respondents who are pregnant or ex-smokers, we write:
 yao.query('is_pregnant == "Yes" | is_smoker == "Ex-smoker"')
 ```
 
+
+
+::: {.callout-note title="Side note"}
+
+To get the unique values in a column, you can use the `value_counts()` method.
+
+```{python}
+yao.is_smoker.value_counts()
+```
+
+:::
+
+
 ::: {.callout-tip title="Practice"}
 
 ### Practice Q: Subset for IgG Positive Men
@@ -327,8 +341,7 @@ Sometimes, we need to filter our data based on whether a string column contains 
 First, let's take a look at the unique values in the `occupation` column:
 
 ```{python}
-occup_df = yao[["occupation", "sex"]]
-occup_df.occupation.value_counts().to_dict()
+yao.occupation.value_counts().to_dict()
 ```
 
 As we can see, some respondents have multiple occupations, separated by "--". To query based on string containment, we can use the `str.contains()` method within our `query()`.
@@ -338,37 +351,26 @@ As we can see, some respondents have multiple occupations, separated by "--". To
 To find all respondents who are students (either solely or in combination with other occupations), we can use:
 
 ```{python}
-occup_df.query("occupation.str.contains('Student')")
+yao.query("occupation.str.contains('Student')")
 ```
 
 This query will return all rows where the `occupation` column contains the word "Student", regardless of whether it's the only occupation or part of a multiple-occupation entry.
-
-### Combining with Other Conditions
-
-You can combine string containment queries with other conditions. For example, to find female students:
-
-```{python}
-occup_df.query("occupation.str.contains('Student') & sex == 'Female'")
-```
 
 ### Negating String Containment
 
 To find respondents who are not students (i.e., their occupation does not contain "Student"), you can use the `~` operator:
 
 ```{python}
-occup_df.query("~occupation.str.contains('Student')")
+yao.query("~occupation.str.contains('Student')")
 ```
 
-### Search for non-alphabetic characters
+### Using `|` with string containment
 
-If you want to find respondents who have multiple occupations, you can search for the delimiter:
+To find respondents who are students or farmers, we can use:
 
 ```{python}
-occup_df.query("occupation.str.contains('--')")
+yao.query("occupation.str.contains('Student|Farmer')")
 ```
-
-This will return all rows where the occupation contains "--", indicating multiple occupations.
-
 
 ::: {.callout-tip title="Practice"}
 

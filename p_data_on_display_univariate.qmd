@@ -2,6 +2,15 @@
 title: 'Univariate Graphs with Plotly Express'
 ---
 
+
+```{python}
+# | echo: false
+# temporary solution to avoid SSL certificate verification error
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+```
+
+
 ## Intro
 
 In this lesson, you'll learn how to create univariate graphs using Plotly Express. Univariate graphs are essential for understanding the distribution of a single variable, whether it's categorical or quantitative.

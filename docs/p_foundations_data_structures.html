@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="imports" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">4.3</span> Imports</h2>
 <p>We need pandas for this lesson. You can import it like this:</p>
-<div id="201c323e" class="cell" data-execution_count="1">
+<div id="38c47a6a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you get an error, you probably need to install it. You can do this by running <code>!pip install pandas</code> in a cell.</p>
@@ -383,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="python-lists" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="python-lists"><span class="header-section-number">4.4</span> Python Lists</h2>
 <p>Lists are like ordered containers that can hold different types of information. For example, you might have a list of things to buy:</p>
-<div id="126caa2a" class="cell" data-execution_count="2">
+<div id="f3203a17" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shopping <span class="op">=</span> [<span class="st">"apples"</span>, <span class="st">"bananas"</span>, <span class="st">"milk"</span>, <span class="st">"bread"</span>] </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>shopping</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -392,7 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In Python, we use something called “zero-based indexing” to access items in a list. This means we start counting positions from 0, not 1.</p>
 <p>Let’s see some examples:</p>
-<div id="35ca0136" class="cell" data-execution_count="3">
+<div id="36e1847b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shopping[<span class="dv">0</span>])  <span class="co"># First item (remember, we start at 0!)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shopping[<span class="dv">1</span>])  <span class="co"># Second item</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shopping[<span class="dv">2</span>])  <span class="co"># Third item</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -404,7 +404,7 @@ milk</code></pre>
 </div>
 <p>It might seem odd at first, but it’s a common practice in many programming languages. It has to do with how computers store information, and the ease of writing algorithms.</p>
 <p>We can change the contents of a list after we’ve created it, using the same indexing system.</p>
-<div id="e43a2e74" class="cell" data-execution_count="4">
+<div id="6752fb4f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>shopping[<span class="dv">1</span>] <span class="op">=</span> <span class="st">"oranges"</span>  <span class="co"># Replace the second item (at index 1)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>shopping</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -412,7 +412,7 @@ milk</code></pre>
 </div>
 </div>
 <p>There are many methods accessible to lists. For example, we can add elements to a list using the <code>append()</code> method.</p>
-<div id="629acc9e" class="cell" data-execution_count="5">
+<div id="9930fce5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>shopping.append(<span class="st">"eggs"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>shopping</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -436,7 +436,7 @@ Practice
 <li>Print the first element of the list</li>
 <li>Change the last element to 6</li>
 </ol>
-<div id="f76f5e56" class="cell" data-execution_count="6">
+<div id="70ae2203" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -445,7 +445,7 @@ Practice
 <section id="python-dictionaries" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="python-dictionaries"><span class="header-section-number">4.5</span> Python Dictionaries</h2>
 <p>Dictionaries are like labeled storage boxes for your data. Each piece of data (value) has a unique label (key). Below, we have a dictionary of grades for some students.</p>
-<div id="351ae56d" class="cell" data-execution_count="7">
+<div id="f3fe7f65" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> {<span class="st">"Alice"</span>: <span class="dv">90</span>, <span class="st">"Bob"</span>: <span class="dv">85</span>, <span class="st">"Charlie"</span>: <span class="dv">92</span>}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>grades</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -454,7 +454,7 @@ Practice
 </div>
 <p>As you can see, dictionaries are defined using curly braces <code>{}</code>, with keys and values separated by colons <code>:</code>, and the key-value pairs are separated by commas.</p>
 <p>We use the key to get the associated value.</p>
-<div id="a4114c03" class="cell" data-execution_count="8">
+<div id="be257ebc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>grades[<span class="st">"Bob"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>85</code></pre>
@@ -463,14 +463,14 @@ Practice
 <section id="addingmodifying-entries" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="addingmodifying-entries"><span class="header-section-number">4.5.1</span> Adding/Modifying Entries</h3>
 <p>We can easily add new information or change existing data in a dictionary.</p>
-<div id="2e32a55a" class="cell" data-execution_count="9">
+<div id="3a53fd99" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>grades[<span class="st">"David"</span>] <span class="op">=</span> <span class="dv">88</span>  <span class="co"># Add a new student</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>grades</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>{'Alice': 90, 'Bob': 85, 'Charlie': 92, 'David': 88}</code></pre>
 </div>
 </div>
-<div id="51e3559c" class="cell" data-execution_count="10">
+<div id="619cd121" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>grades[<span class="st">"Alice"</span>] <span class="op">=</span> <span class="dv">95</span>  <span class="co"># Update Alice's grade</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>grades</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -494,7 +494,7 @@ Practice
 <li>Add a new fruit “grape” with a price of 1.5</li>
 <li>Change the price of “banana” to 0.30</li>
 </ol>
-<div id="d6c6d879" class="cell" data-execution_count="11">
+<div id="92cbf78c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -505,7 +505,7 @@ Practice
 <h2 data-number="4.6" class="anchored" data-anchor-id="pandas-series"><span class="header-section-number">4.6</span> Pandas Series</h2>
 <p>Pandas provides a data structure called a Series that is similar to a list, but with additional features that are particularly useful for data analysis.</p>
 <p>Let’s create a simple Series:</p>
-<div id="d727bb57" class="cell" data-execution_count="12">
+<div id="aa15fbed" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>temps <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>temps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -518,7 +518,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>We can use built-in Series methods to calculate summary statistics.</p>
-<div id="6fe4393f" class="cell" data-execution_count="13">
+<div id="ef30e147" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>temps.mean()</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>temps.median()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>temps.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -527,7 +527,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>An important feature of Series is that they can have a custom index for intuitive access.</p>
-<div id="b444a49d" class="cell" data-execution_count="14">
+<div id="f4f69c33" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temps_labeled <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], index<span class="op">=</span>[<span class="st">'Mon'</span>, <span class="st">'Tue'</span>, <span class="st">'Wed'</span>, <span class="st">'Thu'</span>])</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>temps_labeled</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>temps_labeled[<span class="st">'Wed'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -551,7 +551,7 @@ Practice
 <li>Create a Series called <code>rainfall</code> with these values: 5, 2, 7, 4, 1</li>
 <li>Get the mean and median rainfall</li>
 </ol>
-<div id="0ee68c06" class="cell" data-execution_count="15">
+<div id="6ba763ad" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -564,14 +564,14 @@ Practice
 <p>A DataFrame is like a spreadsheet in Python. It has rows and columns, making it perfect for organizing structured data.</p>
 <p>Most of the time, you will be importing external data frames, but you should know how to data frames from scratch within Python as well.</p>
 <p>Let’s create three lists first:</p>
-<div id="38afa349" class="cell" data-execution_count="16">
+<div id="6970a27d" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create three lists</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">28</span>]</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>cities <span class="op">=</span> [<span class="st">"Lagos"</span>, <span class="st">"London"</span>, <span class="st">"Lima"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we combined them into a dictionary, and finally into a dataframe.</p>
-<div id="ee9d5881" class="cell" data-execution_count="17">
+<div id="5b823d4a" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'name'</span>: names,</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">'age'</span>: ages,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'city'</span>: cities}</span>
@@ -617,7 +617,7 @@ Practice
 </div>
 </div>
 <p>Note that we could have created the dataframe without the intermediate series:</p>
-<div id="34472fd6" class="cell" data-execution_count="18">
+<div id="0cd0915b" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>people_df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    {</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"name"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>],</span>
@@ -665,7 +665,7 @@ Practice
 </div>
 </div>
 <p>We can select specific columns or rows from our DataFrame.</p>
-<div id="5eef3630" class="cell" data-execution_count="19">
+<div id="fe710908" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>people_df[<span class="st">"city"</span>]  <span class="co"># Selecting a column. Note that this returns a Series.</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>people_df.loc[<span class="dv">0</span>]  <span class="co"># Selecting a row by its label. This also returns a Series.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -676,7 +676,7 @@ Name: 0, dtype: object</code></pre>
 </div>
 </div>
 <p>We can call methods on the dataframe.</p>
-<div id="5f4080f7" class="cell" data-execution_count="20">
+<div id="10fcb791" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>people_df.describe() <span class="co"># This is a summary of the numerical columns</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>people_df.info() <span class="co"># This is a summary of the data types</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -694,7 +694,7 @@ memory usage: 204.0+ bytes</code></pre>
 </div>
 <p>And we can call methods on the Series objects that result from selecting columns.</p>
 <p>For example, we can get summary statistics on the “city” column.</p>
-<div id="e59cdec5" class="cell" data-execution_count="21">
+<div id="3865144f" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>people_df[<span class="st">"city"</span>].describe()  <span class="co"># This is a summary of the "city" column</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>people_df[<span class="st">"age"</span>].mean()  <span class="co"># This is the mean of the "age" column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
@@ -729,7 +729,7 @@ Practice
 <li>Display the row for Bob</li>
 <li>Calculate and show the average age of the students</li>
 </ol>
-<div id="fb0be612" class="cell" data-execution_count="22">
+<div id="54cbedac" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>

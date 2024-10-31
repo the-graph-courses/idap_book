@@ -2,13 +2,20 @@
 title: 'Intro to Loops in Python'
 ---
 
+```{python}
+# | echo: false
+# temporary solution to avoid SSL certificate verification error
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+```
+
 ## Introduction
 
 At the heart of programming is the concept of repeating a task multiple times. A `for` loop is one fundamental way to do that. Loops enable efficient repetition, saving time and effort.
 
 Mastering this concept is essential for writing intelligent Python code.
 
-Let's dive in and enhance your coding skills!
+Let's dive in and enhance your coding skills!/Applications/Python 3.12/Install Certificates.command
 
 ## Learning Objectives
 

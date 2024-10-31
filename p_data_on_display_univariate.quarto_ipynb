@@ -1,0 +1,674 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: 'Univariate Graphs with Plotly Express'\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "## Intro\n",
+        "\n",
+        "In this lesson, you'll learn how to create univariate graphs using Plotly Express. Univariate graphs are essential for understanding the distribution of a single variable, whether it's categorical or quantitative.\n",
+        "\n",
+        "Let's get started!\n",
+        "\n",
+        "## Learning objectives\n",
+        "\n",
+        "- Create bar charts, pie charts, and treemaps for categorical data using Plotly Express\n",
+        "- Generate histograms for quantitative data using Plotly Express\n",
+        "- Customize graph appearance and labels\n",
+        "\n",
+        "## Imports\n",
+        "\n",
+        "This lesson requires plotly.express, pandas, and vega_datasets. Install them if you haven't already.\n"
+      ],
+      "id": "f9255171"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import plotly.express as px\n",
+        "import pandas as pd\n",
+        "from vega_datasets import data"
+      ],
+      "id": "4f273ffa",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Quantitative Data\n",
+        "\n",
+        "### Histogram\n",
+        "\n",
+        "Histograms are used to visualize the distribution of continuous variables.\n",
+        "\n",
+        "Let's make a histogram of the tip amounts in the tips dataset.\n"
+      ],
+      "id": "a6c3737e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "tips = px.data.tips()\n",
+        "tips.head() # view the first 5 rows"
+      ],
+      "id": "c4896095",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(tips, x='tip')"
+      ],
+      "id": "e3687012",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We can see that the highest bar, corresponding to tips between 1.75 and 2.24, has a frequency of 55. This means that there were 55 tips between 1.75 and 2.24.\n",
+        "\n",
+        "::: {.callout-note title='Side-note'}\n",
+        "\n",
+        "Notice that plotly charts are interactive. You can hover over the bars to see the exact number of tips in each bin.\n",
+        "\n",
+        "Try playing with the buttons at the top right. The button to download the chart as a png is especially useful.\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "::: {.callout-tip title='Practice'}\n",
+        "\n",
+        "### Practice: Speed Distribution Histogram \n",
+        "\n",
+        "Following the example of the histogram of tips, create a histogram of the speed distribution (Speed_IAS_in_knots) using the birdstrikes dataset. \n"
+      ],
+      "id": "06845bf4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "birdstrikes = data.birdstrikes()\n",
+        "birdstrikes.head()\n",
+        "# Your code here"
+      ],
+      "id": "e20c375f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "\n",
+        "We can view the help documentation for the function by typing `px.histogram?` in a cell and running it.  \n"
+      ],
+      "id": "547b410b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram?"
+      ],
+      "id": "33213c71",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "From the help documentation, we can see that the `px.histogram` function has many arguments that we can use to customize the graph.\n",
+        "\n",
+        "Let's make the histogram a bit nicer by adding a title, customizing the x axis label, and changing the color.\n"
+      ],
+      "id": "37b98d61"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(\n",
+        "    tips,\n",
+        "    x=\"tip\",\n",
+        "    labels={\"tip\": \"Tip Amount ($)\"},\n",
+        "    title=\"Distribution of Tips\", \n",
+        "    color_discrete_sequence=[\"lightseagreen\"]\n",
+        ")"
+      ],
+      "id": "2bb56c69",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Color names are based on standard CSS color naming from Mozilla. You can see the full list [here](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color).\n",
+        "\n",
+        "Alternatively, you can use hex color codes, like `#1f77b4`. You can get these easily by using a color picker. Search for \"color picker\" on Google. \n"
+      ],
+      "id": "d46bd95f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(\n",
+        "    tips,\n",
+        "    x=\"tip\",\n",
+        "    labels={\"tip\": \"Tip Amount ($)\"},\n",
+        "    title=\"Distribution of Tips\", \n",
+        "    color_discrete_sequence=[\"#6a5acd\"]\n",
+        ")"
+      ],
+      "id": "2571d33b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.callout-tip title='Practice'}\n",
+        "\n",
+        "### Practice: Bird Strikes Histogram Custom\n",
+        "\n",
+        "Update your birdstrikes histogram to use a hex code color, add a title, and change the x-axis label to \"Speed (Nautical Miles Per Hour)\".\n"
+      ],
+      "id": "a0058ca9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Your code here"
+      ],
+      "id": "e3a7b68d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "\n",
+        "### Counts on bars\n",
+        "\n",
+        "We can add counts to the bars with the `text_auto` argument.\n"
+      ],
+      "id": "150539e2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(tips, x='tip', text_auto= True)"
+      ],
+      "id": "5d25d6e9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Bins and bandwidths\n",
+        "\n",
+        "We can adjust the number of bins or bin width to better represent the data using the `nbins` argument. Let's make a histogram with just 10 bins:\n"
+      ],
+      "id": "9ea46e8e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(tips, x='tip', nbins=10)"
+      ],
+      "id": "3a94a745",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Now we have broader tip amount groups.\n",
+        "\n",
+        "::: {.callout-tip title='Practice'}\n",
+        "\n",
+        "### Practice: Speed Distribution Histogram Custom\n",
+        "\n",
+        "Create a histogram of the speed distribution (Speed_IAS_in_knots) with 15 bins using the birdstrikes dataset. Add counts to the bars, use a color of your choice, and add an appropriate title.\n"
+      ],
+      "id": "6d28edfd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Your code here"
+      ],
+      "id": "08f139be",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "## Categorical Data\n",
+        "\n",
+        "### Bar chart\n",
+        "\n",
+        "Bar charts can be used to display the frequency of a single categorical variable. \n",
+        "\n",
+        "Plotly has a `px.bar` function that we will see later. But for **single categorical variables**, the function plotly wants you to use is actually `px.histogram`. (Statisticians everywhere are crying; histograms are supposed to be used for just quantitative data!)\n",
+        "\n",
+        "Let's create a basic bar chart showing the distribution of sex in the tips dataset:\n"
+      ],
+      "id": "7e718054"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(tips, x='sex')   "
+      ],
+      "id": "58624f20",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Let's add counts to the bars.\n"
+      ],
+      "id": "e9a691f5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(tips, x='sex', text_auto= True)"
+      ],
+      "id": "4c62aa36",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We can enhance the chart by adding a color axis, and customizing the labels and title.\n"
+      ],
+      "id": "0ff364c1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(tips, x='sex', text_auto=True, color='sex', \n",
+        "             labels={'sex': 'Gender'},\n",
+        "             title='Distribution of Customers by Gender')"
+      ],
+      "id": "72afd359",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Arguably, in this plot, we do not need the `color` axis, since the `sex` variable is already represented by the x axis. But public audiences like colors, so it may still be worth including. \n",
+        "\n",
+        "However, we should remove the legend. Let's also use custom colors.\n",
+        "\n",
+        "For this, we can first create a figure object, then use the `.layout.update` method from that object to update the legend.\n"
+      ],
+      "id": "ebf08a46"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "tips_by_sex = px.histogram(\n",
+        "    tips,\n",
+        "    x=\"sex\",\n",
+        "    text_auto=True,\n",
+        "    color=\"sex\",\n",
+        "    labels={\"sex\": \"Gender\"},\n",
+        "    title=\"Distribution of Customers by Gender\",\n",
+        "    color_discrete_sequence=[\"#1f77b4\", \"#ff7f0e\"],\n",
+        ")\n",
+        "\n",
+        "tips_by_sex.update_layout(showlegend=False)"
+      ],
+      "id": "8c051a2e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.callout-tip title='Practice'}\n",
+        "\n",
+        "### Practice: Bird Strikes by Phase of Flight\n",
+        "\n",
+        "Create a bar chart showing the frequency of bird strikes by the phase of flight, `When__Phase_of_flight`. Add appropriate labels and a title. Use colors of your choice, and remove the legend.\n"
+      ],
+      "id": "a5910206"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Your code here"
+      ],
+      "id": "360af1a3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "#### Sorting categories\n",
+        "\n",
+        "It is sometimes useful to dictate a specific order for the categories in a bar chart. \n",
+        "\n",
+        "Consider this bar chart of the election winners by district in the 2013 Montreal mayoral election.\n"
+      ],
+      "id": "8bf69098"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "election = px.data.election()\n",
+        "election.head()"
+      ],
+      "id": "3bf19444",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(election, x='winner')"
+      ],
+      "id": "83d26dd8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Let's define a custom order for the categories. \"Bergeron\" will be first, then \"Joly\" then \"Coderre\".\n"
+      ],
+      "id": "b591002a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "custom_order = [\"Bergeron\", \"Joly\", \"Coderre\"]\n",
+        "election_chart = px.histogram(election, x='winner', category_orders={'winner': custom_order})\n",
+        "election_chart"
+      ],
+      "id": "4fefe8c3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We can also sort the categories by frequency.\n",
+        "\n",
+        "We can sort the categories by frequency using the `categoryorder` attribute of the x axis.\n"
+      ],
+      "id": "c210e22c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "election_chart = px.histogram(election, x=\"winner\")\n",
+        "election_chart.update_xaxes(categoryorder=\"total descending\")"
+      ],
+      "id": "1face4ad",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Or in ascending order:\n"
+      ],
+      "id": "0c449905"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "election_chart = px.histogram(election, x=\"winner\")\n",
+        "election_chart.update_xaxes(categoryorder=\"total ascending\")"
+      ],
+      "id": "3d960e12",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.callout-tip title='Practice'}\n",
+        "\n",
+        "### Practice: Sorted Origin State Bar Chart\n",
+        "\n",
+        "Create a sorted bar chart showing the distribution of bird strikes by origin state. Sort the bars in ascending order of frequency.\n"
+      ],
+      "id": "3ae2c3d3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Your code here"
+      ],
+      "id": "7a092aa3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "### Horizontal bar chart\n",
+        "\n",
+        "When you have many categories, horizontal bar charts are often easier to read than vertical bar charts. To make a horizontal bar chart, simply use the `y` axis instead of the `x` axis.\n"
+      ],
+      "id": "14263c26"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.histogram(tips, y='day')"
+      ],
+      "id": "6fc9a99d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.callout-tip title='Practice'}\n",
+        "\n",
+        "### Practice: Horizontal Bar Chart of Origin State\n",
+        "    \n",
+        "Create a horizontal bar chart showing the distribution of bird strikes by origin state.\n"
+      ],
+      "id": "f243b09c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Your code here"
+      ],
+      "id": "9f548b38",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "\n",
+        "### Pie chart\n",
+        "\n",
+        "Pie charts are also useful for showing the proportion of categorical variables. They are best used when you have a *small* number of categories. For larger numbers of categories, pie charts are hard to read.\n",
+        "\n",
+        "Let's make a pie chart of the distribution of tips by day of the week.\n"
+      ],
+      "id": "4dbb7bec"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "px.pie(tips, names=\"day\")"
+      ],
+      "id": "0f0a6b2e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We can add labels to the pie chart to make it easier to read.\n"
+      ],
+      "id": "9d5ce197"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "tips_by_day = px.pie(tips, names=\"day\")\n",
+        "tips_by_day_with_labels = tips_by_day.update_traces(textposition=\"inside\", textinfo=\"percent+label\")\n",
+        "tips_by_day_with_labels"
+      ],
+      "id": "c36c6cc9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The legend is no longer needed, so we can remove it.\n"
+      ],
+      "id": "08832173"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "tips_by_day_with_labels.update_layout(showlegend=False)"
+      ],
+      "id": "4fdc31ce",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.callout-note title='Pro'}\n",
+        "\n",
+        "If you forget how to make simple changes like this, don't hesitate to consult the plotly documentation, Google or ChatGPT.\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "::: {.callout-tip title='Practice'}\n",
+        "\n",
+        "### Practice: Wildlife Size Pie Chart\n",
+        "\n",
+        "Create a pie chart showing the distribution of bird strikes by wildlife size. Include percentages and labels inside the pie slices.\n"
+      ],
+      "id": "d751c06c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Your code here"
+      ],
+      "id": "17b746f7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "\n",
+        "\n",
+        "## Summary\n",
+        "\n",
+        "In this lesson, you learned how to create univariate graphs using Plotly Express. You should now feel confident in your ability to create bar charts, pie charts, and histograms. You should also feel comfortable customizing the appearance of your graphs.\n",
+        "\n",
+        "See you in the next lesson."
+      ],
+      "id": "723ee283"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/kendavidn/Dropbox/tgc_github_projects/idap_book/.venv/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

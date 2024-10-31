@@ -1,0 +1,36 @@
+---
+title: "India TB Pathways Analysis: DEMO OF COMMON ERRORS"
+author: "Kene David Nwosu"
+format: html
+execute:
+  echo: false
+---
+
+# Intro to dataset
+
+In this report, we analyze the India TB Pathways dataset.
+
+```{python}
+# Import packages
+import pandas as pd
+import plotly.express as px
+from itables import show
+
+# Load the dataset
+df = pd.read_csv("data/india_tb_pathways_and_costs_data.csv")
+
+show(df.head())
+```
+
+The dataset is seen above.
+
+# Age vs alcohol violin chart
+
+```{python}
+# Create a violin plot of Age vs Alcohol
+fig = px.violin(df, x="Alcohol", y="Age", title="Age vs Alcohol Consumption")
+fig.show()
+
+float(df.loc[1, "Age"])
+float(df.loc[1, "Age"])
+```

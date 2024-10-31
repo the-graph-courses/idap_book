@@ -1876,5 +1876,225 @@
       "Data Manipulation",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reshaping data</span>"
     ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html",
+    "href": "p_untangled_modifying_variables.html",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "",
+    "text": "15.1 Introduction\nIn data analysis, one of the most common tasks is creating new variables or modifying existing ones within your dataset. pandas provides straightforward and efficient ways to accomplish this.",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#learning-objectives",
+    "href": "p_untangled_modifying_variables.html#learning-objectives",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.2 Learning Objectives",
+    "text": "15.2 Learning Objectives\n\nUnderstand how to create new variables in a DataFrame.\nLearn how to modify existing variables.\nHandle potential issues with modifying variables on views.",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#imports",
+    "href": "p_untangled_modifying_variables.html#imports",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.3 Imports",
+    "text": "15.3 Imports\nFirst, let’s import the pandas package:\n\nimport pandas as pd\n\nNow we’ll set an important option that will help us avoid some warnings down the line. Later in the lesson, we’ll discuss this in more detail.\n\npd.set_option(\"mode.copy_on_write\", True)",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#dataset",
+    "href": "p_untangled_modifying_variables.html#dataset",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.4 Dataset",
+    "text": "15.4 Dataset\nIn this lesson, we’ll use a dataset of United States counties with demographic and economic data. You can download the dataset from this link:https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip.\nOnce you’ve downloaded the file, unzip it and place the us_counties_data.csv file in the data folder for your project.\n\ncounties = pd.read_csv(\"data/us_counties_data.csv\")\ncounties\n\n\n\n\n\n\n\n\nstate\ncounty\npop_20\narea_sq_miles\nhh_inc_21\necon_type\nunemp_20\nforeign_born_num\npop_change_2010_2020\npct_emp_change_2010_2021\n\n\n\n\n0\nAL\nAutauga, AL\n58877.0\n594.456107\n66444.0\nNonspecialized\n5.4\n1241.0\n7.758700\n9.0\n\n\n1\nAL\nBaldwin, AL\n233140.0\n1589.836014\n65658.0\nRecreation\n6.2\n7938.0\n27.159356\n28.2\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nPR\nYabucoa, PR\n30364.0\n55.214614\nNaN\nNaN\nNaN\nNaN\n-19.807069\n0.1\n\n\n3225\nPR\nYauco, PR\n34062.0\n67.711484\nNaN\nNaN\nNaN\nNaN\n-18.721309\n-5.3\n\n\n\n\n3226 rows × 10 columns\n\n\n\nThe variables in the dataset are:\n\nstate: US state\ncounty: US county\npop_20: Population estimate for 2020\narea_sq_miles: Area in square miles\nhh_inc_21: Median household income for 2021\necon_type: Economic type of the county\npop_change_2010_2020: Population change between 2010 and 2020 (%)\nunemp_20: Unemployment rate for 2020 (%)\npct_emp_change_2010_2021: Percentage change in employment between 2010 and 2021 (%)\nforeign_born_num: Number of foreign-born residents\n\nLet’s create a small subset of the dataset with just the area and population columns for illustration.\n\n# Small subset for illustration\narea_df = counties[[\"county\", \"area_sq_miles\", \"pop_20\"]]\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n\n\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n\n\n\n\n3226 rows × 3 columns",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#creating-new-variables",
+    "href": "p_untangled_modifying_variables.html#creating-new-variables",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.5 Creating New Variables",
+    "text": "15.5 Creating New Variables\nSuppose we want to convert the area from square miles to square kilometers. Since 1 square mile is approximately 2.59 square kilometers, we can create a new variable area_sq_km by multiplying the area_sq_miles column by 2.59.\n\narea_df[\"area_sq_km\"] = area_df[\"area_sq_miles\"] * 2.59\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.641317\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.675277\n\n\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.005851\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.372743\n\n\n\n\n3226 rows × 4 columns\n\n\n\nThe syntax is very easy to understand, although a bit hard to type.\nWith area_df[\"area_sq_km\"], we’re indicating that we want to create a new column called area_sq_km, then area_df[\"area_sq_miles\"] * 2.59 is the expression that computes the values for this new column.\nLet’s add another variable, this time in hectares. The conversion factor is 1 square mile = 259 hectares.\n\n# Convert area to hectares as well\narea_df[\"area_hectares\"] = area_df[\"area_sq_miles\"] * 259\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.641317\n153964.131747\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.675277\n411767.527703\n\n\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.005851\n14300.585058\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.372743\n17537.274254\n\n\n\n\n3226 rows × 5 columns\n\n\n\n\n\n\n\n\n\nPractice\n\n\n\n15.5.1 Practice Q: Area in Acres\nUsing the area_df dataset, create a new column called area_acres by multiplying the area_sq_miles variable by 640. Store the result back into area_df and display the DataFrame.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#modifying-existing-variables",
+    "href": "p_untangled_modifying_variables.html#modifying-existing-variables",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.6 Modifying Existing Variables",
+    "text": "15.6 Modifying Existing Variables\nSuppose we want to round the area_sq_km variable to one decimal place. We can call the round method on the area_sq_km column.\n\narea_df[\"area_sq_km\"] = area_df[\"area_sq_km\"].round(1)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n\n\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n\n\n\n\n3226 rows × 5 columns\n\n\n\n\n\n\n\n\n\nPractice\n\n\n\n15.6.1 Practice Q: Rounding area_acres\nUsing the area_df dataset, round the area_acres variable to one decimal place. Update the DataFrame area_df and display it.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#calculations-with-multiple-variables",
+    "href": "p_untangled_modifying_variables.html#calculations-with-multiple-variables",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.7 Calculations with Multiple Variables",
+    "text": "15.7 Calculations with Multiple Variables\nWe can create new variables based on multiple existing variables.\nFor example, let’s calculate the population density per square kilometer.\n\narea_df[\"pop_per_sq_km\"] = area_df[\"pop_20\"] / area_df[\"area_sq_km\"]\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n38.241751\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n56.618986\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n212.335664\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n194.196123\n\n\n\n\n3226 rows × 6 columns\n\n\n\nWe could tag on the round method to this output to round the result to one decimal place.\n\narea_df[\"pop_per_sq_km\"] = (area_df[\"pop_20\"] / area_df[\"area_sq_km\"]).round(1)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n38.2\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n56.6\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n212.3\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n194.2\n\n\n\n\n3226 rows × 6 columns\n\n\n\nOr, if you prefer, you can do this in two steps:\n\narea_df[\"pop_per_sq_km\"] = area_df[\"pop_20\"] / area_df[\"area_sq_km\"]\narea_df[\"pop_per_sq_km\"] = area_df[\"pop_per_sq_km\"].round(1)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n38.2\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n56.6\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n212.3\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n194.2\n\n\n\n\n3226 rows × 6 columns\n\n\n\nAfter calculating the population density, we might want to sort the DataFrame based on this new variable. Let’s sort in descending order.\n\n# Sort by population density in descending order\narea_df = area_df.sort_values(\"pop_per_sq_km\", ascending=False)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n1863\nNew York, NY\n22.656266\n1687834.0\n58.7\n5867.972888\n28753.6\n\n\n1856\nKings, NY\n69.376570\n2727393.0\n179.7\n17968.531752\n15177.5\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n98\nWrangell-Petersburg, AK\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n2921\nBedford, VA\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n3226 rows × 6 columns\n\n\n\nWe see that New York County has the highest population density in the dataset.\n\n\n\n\n\n\nPractice\n\n\n\n15.7.1 Practice Q: Calculate Foreign-Born Percentage\nUse the counties dataset to calculate the percentage of foreign-born residents in each county. The variable foreign_born_num shows the number of foreign-born residents and pop_20 shows the total population.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#creating-boolean-variables",
+    "href": "p_untangled_modifying_variables.html#creating-boolean-variables",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.8 Creating Boolean Variables",
+    "text": "15.8 Creating Boolean Variables\nIt is sometimes useful to create Boolean variables to categorize or flag data based on conditions. Boolean variables are variables that take on only two values: True or False.\nConsider the pop_change_2010_2020 variable in the counties dataset, which shows the percentage change in population between 2010 and 2020.\n\nchanges_df = counties[[\"county\", \"pop_change_2010_2020\", \"pct_emp_change_2010_2021\"]]\nchanges_df\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\n\n\n\n\n0\nAutauga, AL\n7.758700\n9.0\n\n\n1\nBaldwin, AL\n27.159356\n28.2\n\n\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n-19.807069\n0.1\n\n\n3225\nYauco, PR\n-18.721309\n-5.3\n\n\n\n\n3226 rows × 3 columns\n\n\n\nWe might want to create a Boolean variable to flag whether the population increased. For this, let’s set the pop_increase variable to True if the population increased and False otherwise.\nRunning the expression changes_df[\"pop_change_2010_2020\"] &gt; 0 returns a Series of Boolean values:\n\nchanges_df[\"pop_change_2010_2020\"] &gt; 0\n\n0        True\n1        True\n        ...  \n3224    False\n3225    False\nName: pop_change_2010_2020, Length: 3226, dtype: bool\n\n\nWe can assign this Series of Boolean values to the pop_increase variable.\n\nchanges_df[\"pop_increase\"] = changes_df[\"pop_change_2010_2020\"] &gt; 0\nchanges_df\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\n\n\n\n\n0\nAutauga, AL\n7.758700\n9.0\nTrue\n\n\n1\nBaldwin, AL\n27.159356\n28.2\nTrue\n\n\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n-19.807069\n0.1\nFalse\n\n\n3225\nYauco, PR\n-18.721309\n-5.3\nFalse\n\n\n\n\n3226 rows × 4 columns\n\n\n\nSimilarly, we can create a Boolean variable emp_increase for employment change.\n\nchanges_df[\"emp_increase\"] = changes_df[\"pct_emp_change_2010_2021\"] &gt; 0\nchanges_df\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\nemp_increase\n\n\n\n\n0\nAutauga, AL\n7.758700\n9.0\nTrue\nTrue\n\n\n1\nBaldwin, AL\n27.159356\n28.2\nTrue\nTrue\n\n\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n-19.807069\n0.1\nFalse\nTrue\n\n\n3225\nYauco, PR\n-18.721309\n-5.3\nFalse\nFalse\n\n\n\n\n3226 rows × 5 columns\n\n\n\nWe can now filter the DataFrame to find counties where the population increased but employment decreased.\n\n# Counties where population increased but employment decreased\npop_up_emp_down = changes_df.query(\"pop_increase == True & emp_increase == False\")\npop_up_emp_down\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\nemp_increase\n\n\n\n\n71\nBethel, AK\n9.716099\n-0.7\nTrue\nFalse\n\n\n75\nDillingham, AK\n0.206313\n-16.1\nTrue\nFalse\n\n\n...\n...\n...\n...\n...\n...\n\n\n3127\nCampbell, WY\n1.935708\n-14.8\nTrue\nFalse\n\n\n3137\nNatrona, WY\n5.970842\n-0.2\nTrue\nFalse\n\n\n\n\n242 rows × 5 columns\n\n\n\nYou could also write this in shorthand like so:\n\n# Counties where population increased but employment decreased\npop_up_emp_down = changes_df.query(\"pop_increase & ~(emp_increase)\")\npop_up_emp_down\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\nemp_increase\n\n\n\n\n71\nBethel, AK\n9.716099\n-0.7\nTrue\nFalse\n\n\n75\nDillingham, AK\n0.206313\n-16.1\nTrue\nFalse\n\n\n...\n...\n...\n...\n...\n...\n\n\n3127\nCampbell, WY\n1.935708\n-14.8\nTrue\nFalse\n\n\n3137\nNatrona, WY\n5.970842\n-0.2\nTrue\nFalse\n\n\n\n\n242 rows × 5 columns\n\n\n\nThere are several such counties, which might be of interest for further analysis.\n\n\n\n\n\n\nPractice\n\n\n\n15.8.1 Practice Q: Categorize Counties by Foreign-Born Population\nIn a previous practice question, we calculated the percentage of foreign-born residents in each county. Now, create a Boolean variable foreign_born_pct_gt_30 that is True if the percentage is greater than 30%.\nWhen you’re done, query the DataFrame to show only counties where foreign_born_pct_gt_30 is True. You should get 24 rows.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#the-copy-on-write-warning",
+    "href": "p_untangled_modifying_variables.html#the-copy-on-write-warning",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.9 The Copy-on-Write Warning",
+    "text": "15.9 The Copy-on-Write Warning\nEarlier in this lesson, we enabled “copy-on-write” mode. Let’s see what happens when this feature is disabled.\n\npd.set_option(\"mode.copy_on_write\", False)\n\n# Create a small subset of our data\nsubset = counties.query(\"state == 'AL'\")\n\nsubset\n\n\n\n\n\n\n\n\nstate\ncounty\npop_20\narea_sq_miles\nhh_inc_21\necon_type\nunemp_20\nforeign_born_num\npop_change_2010_2020\npct_emp_change_2010_2021\n\n\n\n\n0\nAL\nAutauga, AL\n58877.0\n594.456107\n66444.0\nNonspecialized\n5.4\n1241.0\n7.758700\n9.0\n\n\n1\nAL\nBaldwin, AL\n233140.0\n1589.836014\n65658.0\nRecreation\n6.2\n7938.0\n27.159356\n28.2\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n65\nAL\nWilcox, AL\n10518.0\n887.857611\n30071.0\nManufacturing\n16.2\n36.0\n-9.168809\n3.8\n\n\n66\nAL\nWinston, AL\n23491.0\n612.998002\n47176.0\nManufacturing\n5.2\n408.0\n-3.855579\n18.1\n\n\n\n\n67 rows × 10 columns\n\n\n\nWhen we attempt to modify the subset, we receive a warning:\n\n# Modify the subset\nsubset['unemp_20'] = subset['unemp_20'].round(0)\n\n/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_27983/317403666.py:2: SettingWithCopyWarning:\n\n\nA value is trying to be set on a copy of a slice from a DataFrame.\nTry using .loc[row_indexer,col_indexer] = value instead\n\nSee the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n\n\n\nWhile we won’t delve deeply into the technical details of this warning (as it involves complex pandas internals), it’s worth noting that the warning includes a link to the pandas documentation. This documentation contains the setting we used at the beginning of our lesson.\nIf you ever need to reference this setting again, you can simply click the link in the warning message to access the documentation. The documentation page also provides more detailed information about this particular issue.\nAlso note that from Pandas 3.0 (probably to be released in 2025) this warning will be removed, as the default behavior will be to copy on write.",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_modifying_variables.html#wrap-up",
+    "href": "p_untangled_modifying_variables.html#wrap-up",
+    "title": "15  Creating and Modifying Variables in pandas",
+    "section": "15.10 Wrap-Up",
+    "text": "15.10 Wrap-Up\nTransforming data is a fundamental step in any data analysis workflow. pandas makes it straightforward to create and modify variables within your DataFrames using simple and intuitive syntax.\nIn this lesson, you’ve learned how to:\n\nCreate new variables by assigning to new columns.\nModify existing variables.\nPerform calculations involving multiple variables.\nCreate Boolean variables based on conditions.\n\nCongratulations on completing this lesson!",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Creating and Modifying Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html",
+    "href": "p_untangled_transform_variables.html",
+    "title": "15  Transforming Variables in pandas",
+    "section": "",
+    "text": "15.1 Introduction\nIn data analysis, one of the most common tasks is transforming variables within your dataset. The pandas library provides straightforward and efficient ways to accomplish this.",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#learning-objectives",
+    "href": "p_untangled_transform_variables.html#learning-objectives",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.2 Learning Objectives",
+    "text": "15.2 Learning Objectives\n\nUnderstand how to create new variables in a DataFrame.\nLearn how to modify existing variables.\nHandle potential issues with modifying variables on views.",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#imports",
+    "href": "p_untangled_transform_variables.html#imports",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.3 Imports",
+    "text": "15.3 Imports\nFirst, let’s import the pandas package:\n\nimport pandas as pd\n\nNow we’ll set an important option that will help us avoid some warnings down the line. Later in the lesson, we’ll discuss this in more detail.\n\npd.set_option(\"mode.copy_on_write\", True)",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#dataset",
+    "href": "p_untangled_transform_variables.html#dataset",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.4 Dataset",
+    "text": "15.4 Dataset\nIn this lesson, we’ll use a dataset of United States counties with demographic and economic data. You can download the dataset from this link:https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip.\nOnce you’ve downloaded the file, unzip it and place the us_counties_data.csv file in the data folder for your project.\n\ncounties = pd.read_csv(\"data/us_counties_data.csv\")\ncounties\n\n\n\n\n\n\n\n\nstate\ncounty\npop_20\narea_sq_miles\nhh_inc_21\necon_type\nunemp_20\nforeign_born_num\npop_change_2010_2020\npct_emp_change_2010_2021\n\n\n\n\n0\nAL\nAutauga, AL\n58877.0\n594.456107\n66444.0\nNonspecialized\n5.4\n1241.0\n7.758700\n9.0\n\n\n1\nAL\nBaldwin, AL\n233140.0\n1589.836014\n65658.0\nRecreation\n6.2\n7938.0\n27.159356\n28.2\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nPR\nYabucoa, PR\n30364.0\n55.214614\nNaN\nNaN\nNaN\nNaN\n-19.807069\n0.1\n\n\n3225\nPR\nYauco, PR\n34062.0\n67.711484\nNaN\nNaN\nNaN\nNaN\n-18.721309\n-5.3\n\n\n\n\n3226 rows × 10 columns\n\n\n\nThe variables in the dataset are:\n\nstate: US state\ncounty: US county\npop_20: Population estimate for 2020\narea_sq_miles: Area in square miles\nhh_inc_21: Median household income for 2021\necon_type: Economic type of the county\npop_change_2010_2020: Population change between 2010 and 2020 (%)\nunemp_20: Unemployment rate for 2020 (%)\npct_emp_change_2010_2021: Percentage change in employment between 2010 and 2021 (%)\nforeign_born_num: Number of foreign-born residents\n\nLet’s create a small subset of the dataset with just the area and population columns for illustration.\n\n# Small subset for illustration\narea_df = counties[[\"county\", \"area_sq_miles\", \"pop_20\"]]\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n\n\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n\n\n\n\n3226 rows × 3 columns",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#creating-new-variables",
+    "href": "p_untangled_transform_variables.html#creating-new-variables",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.5 Creating New Variables",
+    "text": "15.5 Creating New Variables\nSuppose we want to convert the area from square miles to square kilometers. Since 1 square mile is approximately 2.59 square kilometers, we can create a new variable area_sq_km by multiplying the area_sq_miles column by 2.59.\n\narea_df[\"area_sq_km\"] = area_df[\"area_sq_miles\"] * 2.59\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.641317\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.675277\n\n\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.005851\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.372743\n\n\n\n\n3226 rows × 4 columns\n\n\n\nThe syntax is very easy to understand, although a bit hard to type.\nWith area_df[\"area_sq_km\"], we’re indicating that we want to create a new column called area_sq_km, then area_df[\"area_sq_miles\"] * 2.59 is the expression that computes the values for this new column.\nLet’s add another variable, this time in hectares. The conversion factor is 1 square mile = 259 hectares.\n\n# Convert area to hectares as well\narea_df[\"area_hectares\"] = area_df[\"area_sq_miles\"] * 259\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.641317\n153964.131747\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.675277\n411767.527703\n\n\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.005851\n14300.585058\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.372743\n17537.274254\n\n\n\n\n3226 rows × 5 columns\n\n\n\n\n\n\n\n\n\nPractice\n\n\n\n15.5.1 Practice Q: Area in Acres\nUsing the area_df dataset, create a new column called area_acres by multiplying the area_sq_miles variable by 640. Store the result back into area_df and display the DataFrame.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#modifying-existing-variables",
+    "href": "p_untangled_transform_variables.html#modifying-existing-variables",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.6 Modifying Existing Variables",
+    "text": "15.6 Modifying Existing Variables\nSuppose we want to round the area_sq_km variable to one decimal place. We can call the round method on the area_sq_km column.\n\narea_df[\"area_sq_km\"] = area_df[\"area_sq_km\"].round(1)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n\n\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n\n\n\n\n3226 rows × 5 columns\n\n\n\n\n\n\n\n\n\nPractice\n\n\n\n15.6.1 Practice Q: Rounding area_acres\nUsing the area_df dataset, round the area_acres variable to one decimal place. Update the DataFrame area_df and display it.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#calculations-with-multiple-variables",
+    "href": "p_untangled_transform_variables.html#calculations-with-multiple-variables",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.7 Calculations with Multiple Variables",
+    "text": "15.7 Calculations with Multiple Variables\nWe can create new variables based on multiple existing variables.\nFor example, let’s calculate the population density per square kilometer.\n\narea_df[\"pop_per_sq_km\"] = area_df[\"pop_20\"] / area_df[\"area_sq_km\"]\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n38.241751\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n56.618986\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n212.335664\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n194.196123\n\n\n\n\n3226 rows × 6 columns\n\n\n\nWe could tag on the round method to this output to round the result to one decimal place.\n\narea_df[\"pop_per_sq_km\"] = (area_df[\"pop_20\"] / area_df[\"area_sq_km\"]).round(1)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n38.2\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n56.6\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n212.3\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n194.2\n\n\n\n\n3226 rows × 6 columns\n\n\n\nOr, if you prefer, you can do this in two steps:\n\narea_df[\"pop_per_sq_km\"] = area_df[\"pop_20\"] / area_df[\"area_sq_km\"]\narea_df[\"pop_per_sq_km\"] = area_df[\"pop_per_sq_km\"].round(1)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n0\nAutauga, AL\n594.456107\n58877.0\n1539.6\n153964.131747\n38.2\n\n\n1\nBaldwin, AL\n1589.836014\n233140.0\n4117.7\n411767.527703\n56.6\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n55.214614\n30364.0\n143.0\n14300.585058\n212.3\n\n\n3225\nYauco, PR\n67.711484\n34062.0\n175.4\n17537.274254\n194.2\n\n\n\n\n3226 rows × 6 columns\n\n\n\nAfter calculating the population density, we might want to sort the DataFrame based on this new variable. Let’s sort in descending order.\n\n# Sort by population density in descending order\narea_df = area_df.sort_values(\"pop_per_sq_km\", ascending=False)\narea_df\n\n\n\n\n\n\n\n\ncounty\narea_sq_miles\npop_20\narea_sq_km\narea_hectares\npop_per_sq_km\n\n\n\n\n1863\nNew York, NY\n22.656266\n1687834.0\n58.7\n5867.972888\n28753.6\n\n\n1856\nKings, NY\n69.376570\n2727393.0\n179.7\n17968.531752\n15177.5\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n98\nWrangell-Petersburg, AK\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n2921\nBedford, VA\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n3226 rows × 6 columns\n\n\n\nWe see that New York County has the highest population density in the dataset.\n\n\n\n\n\n\nPractice\n\n\n\n15.7.1 Practice Q: Calculate Foreign-Born Percentage\nUse the counties dataset to calculate the percentage of foreign-born residents in each county. The variable foreign_born_num shows the number of foreign-born residents and pop_20 shows the total population.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#creating-boolean-variables",
+    "href": "p_untangled_transform_variables.html#creating-boolean-variables",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.8 Creating Boolean Variables",
+    "text": "15.8 Creating Boolean Variables\nIt is sometimes useful to create Boolean variables to categorize or flag data based on conditions. Boolean variables are variables that take on only two values: True or False.\nConsider the pop_change_2010_2020 variable in the counties dataset, which shows the percentage change in population between 2010 and 2020.\n\nchanges_df = counties[[\"county\", \"pop_change_2010_2020\", \"pct_emp_change_2010_2021\"]]\nchanges_df\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\n\n\n\n\n0\nAutauga, AL\n7.758700\n9.0\n\n\n1\nBaldwin, AL\n27.159356\n28.2\n\n\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n-19.807069\n0.1\n\n\n3225\nYauco, PR\n-18.721309\n-5.3\n\n\n\n\n3226 rows × 3 columns\n\n\n\nWe might want to create a Boolean variable to flag whether the population increased. For this, let’s set the pop_increase variable to True if the population increased and False otherwise.\nRunning the expression changes_df[\"pop_change_2010_2020\"] &gt; 0 returns a Series of Boolean values:\n\nchanges_df[\"pop_change_2010_2020\"] &gt; 0\n\n0        True\n1        True\n        ...  \n3224    False\n3225    False\nName: pop_change_2010_2020, Length: 3226, dtype: bool\n\n\nWe can assign this Series of Boolean values to the pop_increase variable.\n\nchanges_df[\"pop_increase\"] = changes_df[\"pop_change_2010_2020\"] &gt; 0\nchanges_df\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\n\n\n\n\n0\nAutauga, AL\n7.758700\n9.0\nTrue\n\n\n1\nBaldwin, AL\n27.159356\n28.2\nTrue\n\n\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n-19.807069\n0.1\nFalse\n\n\n3225\nYauco, PR\n-18.721309\n-5.3\nFalse\n\n\n\n\n3226 rows × 4 columns\n\n\n\nSimilarly, we can create a Boolean variable emp_increase for employment change.\n\nchanges_df[\"emp_increase\"] = changes_df[\"pct_emp_change_2010_2021\"] &gt; 0\nchanges_df\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\nemp_increase\n\n\n\n\n0\nAutauga, AL\n7.758700\n9.0\nTrue\nTrue\n\n\n1\nBaldwin, AL\n27.159356\n28.2\nTrue\nTrue\n\n\n...\n...\n...\n...\n...\n...\n\n\n3224\nYabucoa, PR\n-19.807069\n0.1\nFalse\nTrue\n\n\n3225\nYauco, PR\n-18.721309\n-5.3\nFalse\nFalse\n\n\n\n\n3226 rows × 5 columns\n\n\n\nWe can now filter the DataFrame to find counties where the population increased but employment decreased.\n\n# Counties where population increased but employment decreased\npop_up_emp_down = changes_df.query(\"pop_increase == True & emp_increase == False\")\npop_up_emp_down\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\nemp_increase\n\n\n\n\n71\nBethel, AK\n9.716099\n-0.7\nTrue\nFalse\n\n\n75\nDillingham, AK\n0.206313\n-16.1\nTrue\nFalse\n\n\n...\n...\n...\n...\n...\n...\n\n\n3127\nCampbell, WY\n1.935708\n-14.8\nTrue\nFalse\n\n\n3137\nNatrona, WY\n5.970842\n-0.2\nTrue\nFalse\n\n\n\n\n242 rows × 5 columns\n\n\n\nYou could also write this in shorthand like so:\n\n# Counties where population increased but employment decreased\npop_up_emp_down = changes_df.query(\"pop_increase & ~(emp_increase)\")\npop_up_emp_down\n\n\n\n\n\n\n\n\ncounty\npop_change_2010_2020\npct_emp_change_2010_2021\npop_increase\nemp_increase\n\n\n\n\n71\nBethel, AK\n9.716099\n-0.7\nTrue\nFalse\n\n\n75\nDillingham, AK\n0.206313\n-16.1\nTrue\nFalse\n\n\n...\n...\n...\n...\n...\n...\n\n\n3127\nCampbell, WY\n1.935708\n-14.8\nTrue\nFalse\n\n\n3137\nNatrona, WY\n5.970842\n-0.2\nTrue\nFalse\n\n\n\n\n242 rows × 5 columns\n\n\n\nThere are several such counties, which might be of interest for further analysis.\n\n\n\n\n\n\nPractice\n\n\n\n15.8.1 Practice Q: Categorize Counties by Foreign-Born Population\nIn a previous practice question, we calculated the percentage of foreign-born residents in each county. Now, create a Boolean variable foreign_born_pct_gt_30 that is True if the percentage is greater than 30%.\nWhen you’re done, query the DataFrame to show only counties where foreign_born_pct_gt_30 is True. You should get 24 rows.\n\n# Your code here",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#the-copy-on-write-warning",
+    "href": "p_untangled_transform_variables.html#the-copy-on-write-warning",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.9 The Copy-on-Write Warning",
+    "text": "15.9 The Copy-on-Write Warning\nEarlier in this lesson, we enabled “copy-on-write” mode. Let’s see what happens when this feature is disabled.\n\npd.set_option(\"mode.copy_on_write\", False)\n\n# Create a small subset of our data\nsubset = counties.query(\"state == 'AL'\")\n\nsubset\n\n\n\n\n\n\n\n\nstate\ncounty\npop_20\narea_sq_miles\nhh_inc_21\necon_type\nunemp_20\nforeign_born_num\npop_change_2010_2020\npct_emp_change_2010_2021\n\n\n\n\n0\nAL\nAutauga, AL\n58877.0\n594.456107\n66444.0\nNonspecialized\n5.4\n1241.0\n7.758700\n9.0\n\n\n1\nAL\nBaldwin, AL\n233140.0\n1589.836014\n65658.0\nRecreation\n6.2\n7938.0\n27.159356\n28.2\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n65\nAL\nWilcox, AL\n10518.0\n887.857611\n30071.0\nManufacturing\n16.2\n36.0\n-9.168809\n3.8\n\n\n66\nAL\nWinston, AL\n23491.0\n612.998002\n47176.0\nManufacturing\n5.2\n408.0\n-3.855579\n18.1\n\n\n\n\n67 rows × 10 columns\n\n\n\nWhen we attempt to modify the subset, we receive a warning:\n\n# Modify the subset\nsubset['unemp_20'] = subset['unemp_20'].round(0)\n\n/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_28205/317403666.py:2: SettingWithCopyWarning:\n\n\nA value is trying to be set on a copy of a slice from a DataFrame.\nTry using .loc[row_indexer,col_indexer] = value instead\n\nSee the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n\n\n\nWhile we won’t delve deeply into the technical details of this warning (as it involves complex pandas internals), it’s worth noting that the warning includes a link to the pandas documentation. This documentation contains the setting we used at the beginning of our lesson.\nIf you ever need to reference this setting again, you can simply click the link in the warning message to access the documentation. The documentation page also provides more detailed information about this particular issue.\nAlso note that from Pandas 3.0 (probably to be released in 2025) this warning will be removed, as the default behavior will be to copy on write.",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
+  },
+  {
+    "objectID": "p_untangled_transform_variables.html#wrap-up",
+    "href": "p_untangled_transform_variables.html#wrap-up",
+    "title": "15  Transforming Variables in pandas",
+    "section": "15.10 Wrap-Up",
+    "text": "15.10 Wrap-Up\nTransforming data is a fundamental step in any data analysis workflow. pandas makes it straightforward to create and modify variables within your DataFrames using simple and intuitive syntax.\nIn this lesson, you’ve learned how to:\n\nCreate new variables by assigning to new columns.\nModify existing variables.\nPerform calculations involving multiple variables.\nCreate Boolean variables based on conditions.\n\nCongratulations on completing this lesson!",
+    "crumbs": [
+      "Data Manipulation",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Transforming Variables in pandas</span>"
+    ]
   }
 ]

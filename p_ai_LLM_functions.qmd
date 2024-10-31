@@ -91,10 +91,8 @@ recommendation.parsed.city
 Now use this in a dataframe.
 
 ```{python}
-city_df = country_df.assign(
-    city=lambda x: x.country.apply(lambda country: city_rec_clean(country).parsed.city)
-)
-city_df
+country_df['city'] = country_df['country'].apply(lambda country: city_rec_clean(country).parsed.city)
+country_df
 ```
 
 Yaay! 
@@ -134,18 +132,10 @@ print(recommendation.parsed)
 
 ```{python}
 # Use in a dataframe
-city_df = country_df.assign(
-    city=lambda x: x.country.apply(
-        lambda country: city_rec_detail(country).parsed.city
-    ),
-    safety=lambda x: x.country.apply(
-        lambda country: city_rec_detail(country).parsed.safety
-    ),
-    best_season=lambda x: x.country.apply(
-        lambda country: city_rec_detail(country).parsed.best_season.value
-    ),
-)
-city_df
+country_df['city'] = country_df['country'].apply(lambda country: city_rec_detail(country).parsed.city)
+country_df['safety'] = country_df['country'].apply(lambda country: city_rec_detail(country).parsed.safety)
+country_df['best_season'] = country_df['country'].apply(lambda country: city_rec_detail(country).parsed.best_season.value)
+country_df
 ```
 
 # Advanced (optional). Parallel processing. 

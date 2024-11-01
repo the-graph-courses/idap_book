@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Transforming Variables in pandas – Introduction to Data Science with Python</title>
+<title>16&nbsp; Transforming Variables in pandas – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_untangled_case_when.html" rel="next">
+<link href="./p_untangled_recode_variables.html" rel="next">
 <link href="./p_untangled_query_rows.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_transform_variables.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_transform_variables.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -193,6 +193,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Intro to Loops in Python</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_writing_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Intro to Functions and Conditionals</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -207,19 +213,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_data_viz_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_univariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_multivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,25 +242,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_installing_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_using_vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_venv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
   </div>
 </li>
       </ul>
@@ -271,43 +277,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_subset_columns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Subsetting columns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Subsetting columns</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_query_rows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Querying rows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Querying rows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_transform_variables.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_untangled_case_when.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditional assignment with case_when() and np.where()</span></span></a>
+  <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_groupby_agg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_other_grouped_operations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
       </ul>
@@ -322,25 +328,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">15.1</span> Introduction</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">15.2</span> Learning Objectives</a></li>
-  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports"><span class="header-section-number">15.3</span> Imports</a></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"><span class="header-section-number">15.4</span> Dataset</a></li>
-  <li><a href="#creating-new-variables" id="toc-creating-new-variables" class="nav-link" data-scroll-target="#creating-new-variables"><span class="header-section-number">15.5</span> Creating New Variables</a></li>
-  <li><a href="#modifying-existing-variables" id="toc-modifying-existing-variables" class="nav-link" data-scroll-target="#modifying-existing-variables"><span class="header-section-number">15.6</span> Modifying Existing Variables</a></li>
-  <li><a href="#calculations-with-multiple-variables" id="toc-calculations-with-multiple-variables" class="nav-link" data-scroll-target="#calculations-with-multiple-variables"><span class="header-section-number">15.7</span> Calculations with Multiple Variables</a></li>
-  <li><a href="#creating-boolean-variables" id="toc-creating-boolean-variables" class="nav-link" data-scroll-target="#creating-boolean-variables"><span class="header-section-number">15.8</span> Creating Boolean Variables</a></li>
-  <li><a href="#the-copy-on-write-warning" id="toc-the-copy-on-write-warning" class="nav-link" data-scroll-target="#the-copy-on-write-warning"><span class="header-section-number">15.9</span> The Copy-on-Write Warning</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">15.10</span> Wrap-Up</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">16.1</span> Introduction</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">16.2</span> Learning Objectives</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports"><span class="header-section-number">16.3</span> Imports</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"><span class="header-section-number">16.4</span> Dataset</a></li>
+  <li><a href="#creating-new-variables" id="toc-creating-new-variables" class="nav-link" data-scroll-target="#creating-new-variables"><span class="header-section-number">16.5</span> Creating New Variables</a></li>
+  <li><a href="#modifying-existing-variables" id="toc-modifying-existing-variables" class="nav-link" data-scroll-target="#modifying-existing-variables"><span class="header-section-number">16.6</span> Modifying Existing Variables</a></li>
+  <li><a href="#calculations-with-multiple-variables" id="toc-calculations-with-multiple-variables" class="nav-link" data-scroll-target="#calculations-with-multiple-variables"><span class="header-section-number">16.7</span> Calculations with Multiple Variables</a></li>
+  <li><a href="#creating-boolean-variables" id="toc-creating-boolean-variables" class="nav-link" data-scroll-target="#creating-boolean-variables"><span class="header-section-number">16.8</span> Creating Boolean Variables</a></li>
+  <li><a href="#the-copy-on-write-warning" id="toc-the-copy-on-write-warning" class="nav-link" data-scroll-target="#the-copy-on-write-warning"><span class="header-section-number">16.9</span> The Copy-on-Write Warning</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">16.10</span> Wrap-Up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_transform_variables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_transform_variables.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_transform_variables.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></h1>
 </div>
 
 
@@ -357,34 +363,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">15.1</span> Introduction</h2>
+<section id="introduction" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">16.1</span> Introduction</h2>
 <p>In data analysis, one of the most common tasks is transforming variables within your dataset. The pandas library provides straightforward and efficient ways to accomplish this.</p>
 </section>
-<section id="learning-objectives" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">15.2</span> Learning Objectives</h2>
+<section id="learning-objectives" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">16.2</span> Learning Objectives</h2>
 <ul>
 <li>Understand how to create new variables in a DataFrame.</li>
 <li>Learn how to modify existing variables.</li>
 <li>Handle potential issues with modifying variables on views.</li>
 </ul>
 </section>
-<section id="imports" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">15.3</span> Imports</h2>
+<section id="imports" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">16.3</span> Imports</h2>
 <p>First, let’s import the pandas package:</p>
-<div id="5f18ab8b" class="cell" data-execution_count="2">
+<div id="2de99078" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we’ll set an important option that will help us avoid some warnings down the line. Later in the lesson, we’ll discuss this in more detail.</p>
-<div id="03a82434" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"mode.copy_on_write"</span>, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d775a641" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.options.mode.copy_on_write <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="dataset" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="dataset"><span class="header-section-number">15.4</span> Dataset</h2>
+<section id="dataset" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="dataset"><span class="header-section-number">16.4</span> Dataset</h2>
 <p>In this lesson, we’ll use a dataset of United States counties with demographic and economic data. You can download the dataset from this link:<a href="https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip">https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip</a>.</p>
 <p>Once you’ve downloaded the file, unzip it and place the <code>us_counties_data.csv</code> file in the <code>data</code> folder for your project.</p>
-<div id="ff2004c6" class="cell" data-execution_count="4">
+<div id="c443ad7e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>counties <span class="op">=</span> pd.read_csv(<span class="st">"data/us_counties_data.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -494,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>foreign_born_num</code>: Number of foreign-born residents</li>
 </ul>
 <p>Let’s create a small subset of the dataset with just the area and population columns for illustration.</p>
-<div id="dc042e8f" class="cell" data-execution_count="5">
+<div id="17223822" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Small subset for illustration</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>area_df <span class="op">=</span> counties[[<span class="st">"county"</span>, <span class="st">"area_sq_miles"</span>, <span class="st">"pop_20"</span>]]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -550,10 +556,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="creating-new-variables" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="creating-new-variables"><span class="header-section-number">15.5</span> Creating New Variables</h2>
+<section id="creating-new-variables" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="creating-new-variables"><span class="header-section-number">16.5</span> Creating New Variables</h2>
 <p>Suppose we want to convert the area from square miles to square kilometers. Since 1 square mile is approximately 2.59 square kilometers, we can create a new variable <code>area_sq_km</code> by multiplying the <code>area_sq_miles</code> column by 2.59.</p>
-<div id="463b0c1c" class="cell" data-execution_count="6">
+<div id="b44bc149" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"area_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"area_sq_miles"</span>] <span class="op">*</span> <span class="fl">2.59</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -616,7 +622,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The syntax is very easy to understand, although a bit hard to type.</p>
 <p>With <code>area_df["area_sq_km"]</code>, we’re indicating that we want to create a new column called <code>area_sq_km</code>, then <code>area_df["area_sq_miles"] * 2.59</code> is the expression that computes the values for this new column.</p>
 <p>Let’s add another variable, this time in hectares. The conversion factor is 1 square mile = 259 hectares.</p>
-<div id="ea586aeb" class="cell" data-execution_count="7">
+<div id="29f270dc" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert area to hectares as well</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"area_hectares"</span>] <span class="op">=</span> area_df[<span class="st">"area_sq_miles"</span>] <span class="op">*</span> <span class="dv">259</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -692,19 +698,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Practice
 </div>
 </div>
-<section id="practice-q-area-in-acres" class="level3 callout-body-container callout-body" data-number="15.5.1">
-<h3 data-number="15.5.1" class="anchored" data-anchor-id="practice-q-area-in-acres"><span class="header-section-number">15.5.1</span> Practice Q: Area in Acres</h3>
+<section id="practice-q-area-in-acres" class="level3 callout-body-container callout-body" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="practice-q-area-in-acres"><span class="header-section-number">16.5.1</span> Practice Q: Area in Acres</h3>
 <p>Using the <code>area_df</code> dataset, create a new column called <code>area_acres</code> by multiplying the <code>area_sq_miles</code> variable by 640. Store the result back into <code>area_df</code> and display the DataFrame.</p>
-<div id="a0a879bc" class="cell" data-execution_count="8">
+<div id="ddd70140" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="modifying-existing-variables" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="modifying-existing-variables"><span class="header-section-number">15.6</span> Modifying Existing Variables</h2>
+<section id="modifying-existing-variables" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="modifying-existing-variables"><span class="header-section-number">16.6</span> Modifying Existing Variables</h2>
 <p>Suppose we want to round the <code>area_sq_km</code> variable to one decimal place. We can call the <code>round</code> method on the <code>area_sq_km</code> column.</p>
-<div id="1a870286" class="cell" data-execution_count="9">
+<div id="22becb98" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"area_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"area_sq_km"</span>].<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -779,20 +785,20 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-rounding-area_acres" class="level3 callout-body-container callout-body" data-number="15.6.1">
-<h3 data-number="15.6.1" class="anchored" data-anchor-id="practice-q-rounding-area_acres"><span class="header-section-number">15.6.1</span> Practice Q: Rounding <code>area_acres</code></h3>
+<section id="practice-q-rounding-area_acres" class="level3 callout-body-container callout-body" data-number="16.6.1">
+<h3 data-number="16.6.1" class="anchored" data-anchor-id="practice-q-rounding-area_acres"><span class="header-section-number">16.6.1</span> Practice Q: Rounding <code>area_acres</code></h3>
 <p>Using the <code>area_df</code> dataset, round the <code>area_acres</code> variable to one decimal place. Update the DataFrame <code>area_df</code> and display it.</p>
-<div id="8aa4e516" class="cell" data-execution_count="10">
+<div id="b50bc0e4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="calculations-with-multiple-variables" class="level2" data-number="15.7">
-<h2 data-number="15.7" class="anchored" data-anchor-id="calculations-with-multiple-variables"><span class="header-section-number">15.7</span> Calculations with Multiple Variables</h2>
+<section id="calculations-with-multiple-variables" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="calculations-with-multiple-variables"><span class="header-section-number">16.7</span> Calculations with Multiple Variables</h2>
 <p>We can create new variables based on multiple existing variables.</p>
 <p>For example, let’s calculate the population density per square kilometer.</p>
-<div id="9743e56f" class="cell" data-execution_count="11">
+<div id="687b7c56" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"pop_20"</span>] <span class="op">/</span> area_df[<span class="st">"area_sq_km"</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -865,7 +871,7 @@ Practice
 </div>
 </div>
 <p>We could tag on the round method to this output to round the result to one decimal place.</p>
-<div id="bd2fa7f6" class="cell" data-execution_count="12">
+<div id="66690a37" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> (area_df[<span class="st">"pop_20"</span>] <span class="op">/</span> area_df[<span class="st">"area_sq_km"</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -938,7 +944,7 @@ Practice
 </div>
 </div>
 <p>Or, if you prefer, you can do this in two steps:</p>
-<div id="4759ade9" class="cell" data-execution_count="13">
+<div id="7842e047" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"pop_20"</span>] <span class="op">/</span> area_df[<span class="st">"area_sq_km"</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"pop_per_sq_km"</span>].<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1012,7 +1018,7 @@ Practice
 </div>
 </div>
 <p>After calculating the population density, we might want to sort the DataFrame based on this new variable. Let’s sort in descending order.</p>
-<div id="8b772ec6" class="cell" data-execution_count="14">
+<div id="0d64ac6d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by population density in descending order</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>area_df <span class="op">=</span> area_df.sort_values(<span class="st">"pop_per_sq_km"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1095,20 +1101,20 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-calculate-foreign-born-percentage" class="level3 callout-body-container callout-body" data-number="15.7.1">
-<h3 data-number="15.7.1" class="anchored" data-anchor-id="practice-q-calculate-foreign-born-percentage"><span class="header-section-number">15.7.1</span> Practice Q: Calculate Foreign-Born Percentage</h3>
-<p>Use the <code>counties</code> dataset to calculate the percentage of foreign-born residents in each county. The variable <code>foreign_born_num</code> shows the number of foreign-born residents and <code>pop_20</code> shows the total population.</p>
-<div id="6cbf99cb" class="cell" data-execution_count="15">
+<section id="practice-q-calculate-foreign-born-percentage" class="level3 callout-body-container callout-body" data-number="16.7.1">
+<h3 data-number="16.7.1" class="anchored" data-anchor-id="practice-q-calculate-foreign-born-percentage"><span class="header-section-number">16.7.1</span> Practice Q: Calculate Foreign-Born Percentage</h3>
+<p>Use the <code>counties</code> dataset to calculate the percentage of foreign-born residents in each county. The variable <code>foreign_born_num</code> shows the number of foreign-born residents and <code>pop_20</code> shows the total population. Sort the DataFrame in descending order of the percentage of foreign-born residents. Which two counties have the highest percentage of foreign-born residents?</p>
+<div id="a5231259" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="creating-boolean-variables" class="level2" data-number="15.8">
-<h2 data-number="15.8" class="anchored" data-anchor-id="creating-boolean-variables"><span class="header-section-number">15.8</span> Creating Boolean Variables</h2>
+<section id="creating-boolean-variables" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="creating-boolean-variables"><span class="header-section-number">16.8</span> Creating Boolean Variables</h2>
 <p>It is sometimes useful to create Boolean variables to categorize or flag data based on conditions. Boolean variables are variables that take on only two values: <code>True</code> or <code>False</code>.</p>
 <p>Consider the <code>pop_change_2010_2020</code> variable in the <code>counties</code> dataset, which shows the percentage change in population between 2010 and 2020.</p>
-<div id="87ecb8b7" class="cell" data-execution_count="16">
+<div id="4544885f" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>changes_df <span class="op">=</span> counties[[<span class="st">"county"</span>, <span class="st">"pop_change_2010_2020"</span>, <span class="st">"pct_emp_change_2010_2021"</span>]]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>changes_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -1164,7 +1170,7 @@ Practice
 </div>
 <p>We might want to create a Boolean variable to flag whether the population increased. For this, let’s set the <code>pop_increase</code> variable to <code>True</code> if the population increased and <code>False</code> otherwise.</p>
 <p>Running the expression <code>changes_df["pop_change_2010_2020"] &gt; 0</code> returns a Series of Boolean values:</p>
-<div id="c49accc3" class="cell" data-execution_count="17">
+<div id="04a103c9" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>changes_df[<span class="st">"pop_change_2010_2020"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>0        True
@@ -1176,7 +1182,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>We can assign this Series of Boolean values to the <code>pop_increase</code> variable.</p>
-<div id="8ec5ed81" class="cell" data-execution_count="18">
+<div id="dbe7f050" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>changes_df[<span class="st">"pop_increase"</span>] <span class="op">=</span> changes_df[<span class="st">"pop_change_2010_2020"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>changes_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -1237,7 +1243,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>Similarly, we can create a Boolean variable <code>emp_increase</code> for employment change.</p>
-<div id="d6b1b273" class="cell" data-execution_count="19">
+<div id="10e4fa1a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>changes_df[<span class="st">"emp_increase"</span>] <span class="op">=</span> changes_df[<span class="st">"pct_emp_change_2010_2021"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>changes_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -1304,7 +1310,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>We can now filter the DataFrame to find counties where the population increased but employment decreased.</p>
-<div id="d27847c1" class="cell" data-execution_count="20">
+<div id="a540656a" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Counties where population increased but employment decreased</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down <span class="op">=</span> changes_df.query(<span class="st">"pop_increase == True &amp; emp_increase == False"</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1372,7 +1378,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>You could also write this in shorthand like so:</p>
-<div id="7e76d48d" class="cell" data-execution_count="21">
+<div id="e2592897" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Counties where population increased but employment decreased</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down <span class="op">=</span> changes_df.query(<span class="st">"pop_increase &amp; ~(emp_increase)"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1449,20 +1455,20 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 Practice
 </div>
 </div>
-<section id="practice-q-categorize-counties-by-foreign-born-population" class="level3 callout-body-container callout-body" data-number="15.8.1">
-<h3 data-number="15.8.1" class="anchored" data-anchor-id="practice-q-categorize-counties-by-foreign-born-population"><span class="header-section-number">15.8.1</span> Practice Q: Categorize Counties by Foreign-Born Population</h3>
+<section id="practice-q-categorize-counties-by-foreign-born-population" class="level3 callout-body-container callout-body" data-number="16.8.1">
+<h3 data-number="16.8.1" class="anchored" data-anchor-id="practice-q-categorize-counties-by-foreign-born-population"><span class="header-section-number">16.8.1</span> Practice Q: Categorize Counties by Foreign-Born Population</h3>
 <p>In a previous practice question, we calculated the percentage of foreign-born residents in each county. Now, create a Boolean variable <code>foreign_born_pct_gt_30</code> that is <code>True</code> if the percentage is greater than 30%.</p>
 <p>When you’re done, query the DataFrame to show only counties where <code>foreign_born_pct_gt_30</code> is <code>True</code>. You should get 24 rows.</p>
-<div id="a6cf48bf" class="cell" data-execution_count="22">
+<div id="14eddea0" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="the-copy-on-write-warning" class="level2" data-number="15.9">
-<h2 data-number="15.9" class="anchored" data-anchor-id="the-copy-on-write-warning"><span class="header-section-number">15.9</span> The Copy-on-Write Warning</h2>
+<section id="the-copy-on-write-warning" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="the-copy-on-write-warning"><span class="header-section-number">16.9</span> The Copy-on-Write Warning</h2>
 <p>Earlier in this lesson, we enabled “copy-on-write” mode. Let’s see what happens when this feature is disabled.</p>
-<div id="6479333d" class="cell" data-execution_count="23">
+<div id="8892eaf9" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"mode.copy_on_write"</span>, <span class="va">False</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a small subset of our data</span></span>
@@ -1563,11 +1569,11 @@ Practice
 </div>
 </div>
 <p>When we attempt to modify the subset, we receive a warning:</p>
-<div id="709f9b46" class="cell" data-execution_count="24">
+<div id="0dc2740f" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the subset</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>subset[<span class="st">'unemp_20'</span>] <span class="op">=</span> subset[<span class="st">'unemp_20'</span>].<span class="bu">round</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_31717/317403666.py:2: SettingWithCopyWarning:
+<pre><code>/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_61816/317403666.py:2: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -1581,8 +1587,8 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <p>If you ever need to reference this setting again, you can simply click the link in the warning message to access the documentation. The documentation page also provides more detailed information about this particular issue.</p>
 <p>Also note that from Pandas 3.0 (probably to be released in 2025) this warning will be removed, as the default behavior will be to copy on write.</p>
 </section>
-<section id="wrap-up" class="level2" data-number="15.10">
-<h2 data-number="15.10" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">15.10</span> Wrap-Up</h2>
+<section id="wrap-up" class="level2" data-number="16.10">
+<h2 data-number="16.10" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">16.10</span> Wrap-Up</h2>
 <p>Transforming data is a fundamental step in any data analysis workflow. pandas makes it straightforward to create and modify variables within your DataFrames using simple and intuitive syntax.</p>
 <p>In this lesson, you’ve learned how to:</p>
 <ul>
@@ -2020,12 +2026,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./p_untangled_query_rows.html" class="pagination-link" aria-label="Querying rows">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Querying rows</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Querying rows</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_untangled_case_when.html" class="pagination-link" aria-label="Conditional assignment with case_when() and np.where()">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditional assignment with case_when() and np.where()</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./p_untangled_recode_variables.html" class="pagination-link" aria-label="Conditional transformations in pandas">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

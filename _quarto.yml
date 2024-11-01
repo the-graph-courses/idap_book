@@ -26,6 +26,7 @@ book:
         - p_foundations_functions_methods.qmd
         - p_foundations_data_structures.qmd
         - p_foundations_for_loops.qmd
+        - p_foundations_writing_functions.qmd
     - part: "Data Visualization"
       chapters:
         - p_data_on_display_data_viz_types.qmd
@@ -42,7 +43,7 @@ book:
         - p_untangled_subset_columns.qmd
         - p_untangled_query_rows.qmd
         - p_untangled_transform_variables.qmd
-        - p_untangled_case_when.qmd
+        - p_untangled_recode_variables.qmd
         - p_untangled_groupby_agg.qmd
         - p_untangled_other_grouped_operations.qmd
         - p_untangled_pivoting.qmd

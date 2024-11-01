@@ -1,0 +1,319 @@
+---
+title: 'Intro to Functions and Conditionals'
+---
+
+
+```{python}
+import pandas as pd
+pd.options.display.max_rows = 7
+```
+
+## Intro
+
+So far in this course you have mostly used functions written by others. In this lesson, you will learn how to write your own functions in Python.
+
+## Learning Objectives
+
+By the end of this lesson, you will be able to:
+
+1. Create and use your own functions in Python.
+2. Design function arguments and set default values.
+3. Use conditional logic like `if`, `elif`, and `else` within functions.
+
+## Packages
+
+Run the following code to install and load the packages needed for this lesson:
+
+```{python}
+# Import packages
+import pandas as pd
+import numpy as np
+import vega_datasets as vd
+```
+
+## Basics of a Function
+
+Let's start by creating a very simple function. Consider the following function that converts pounds (a unit of weight) to kilograms (another unit of weight):
+
+```{python}
+def pounds_to_kg(pounds):
+    return pounds * 0.4536
+```
+
+If you execute this code, you will create a function named `pounds_to_kg`, which can be used directly in a script or in the console:
+
+```{python}
+print(pounds_to_kg(150))
+```
+
+Let's break down the structure of this first function step by step.
+
+First, a function is created using the `def` keyword, followed by a pair of parentheses and a colon.
+
+```{python}
+# | eval: false
+def function_name():
+    # Function body
+```
+
+Inside the parentheses, we indicate the **arguments** of the function. Our function only takes one argument, which we have decided to name `pounds`. This is the value that we want to convert from pounds to kilograms.
+
+```{python}
+# | eval: false
+def pounds_to_kg(pounds):
+    # Function body
+```
+
+Of course, we could have named this argument anything we wanted. E.g. `p` or `weight`.
+
+The next element, after the colon, is the **body** of the function. This is where we write the code that we want to execute when the function is called.
+
+```{python}
+def pounds_to_kg(pounds):
+    return pounds * 0.4536
+```
+
+We use the `return` statement to specify what value the function should output.
+
+You could also assign the result to a variable and then return that variable:
+```{python}
+def pounds_to_kg(pounds):
+    kg = pounds * 0.4536
+    return kg
+```
+
+This is a bit more wordy, but it makes the function clearer.
+
+We can now use our function like this with a named argument:
+
+```{python}
+pounds_to_kg(pounds=150)
+```
+
+Or without a named argument:
+
+```{python}
+pounds_to_kg(150)
+```
+
+
+To use this in a DataFrame, you can create a new column:
+
+```{python}
+pounds_df = pd.DataFrame({'pounds': [150, 200, 250]})
+pounds_df['kg'] = pounds_to_kg(pounds_df['pounds'])
+pounds_df
+```
+
+And that's it! You have just created and usedyour first function in Python.
+
+::: {.callout-tip title="Practice"}
+### Age in Months Function
+
+Create a simple function called `years_to_months` that transforms age in years to age in months.
+
+Use it on the `riots_df` DataFrame imported below to create a new column called `age_months`:
+
+```{python}
+riots_df = vd.data.la_riots()
+riots_df 
+```
+:::
+
+## Functions with Multiple Arguments
+
+Most functions take multiple arguments rather than just one. Let's look at an example of a function that takes three arguments:
+
+```{python}
+def calc_calories(carb_grams, protein_grams, fat_grams):
+    result = (carb_grams * 4) + (protein_grams * 4) + (fat_grams * 9)
+    return result
+
+calc_calories(carb_grams=50, protein_grams=25, fat_grams=10)
+```
+
+The `calc_calories` function computes the total calories based on the grams of carbohydrates, protein, and fat. Carbohydrates and proteins are estimated to be 4 calories per gram, while fat is estimated to be 9 calories per gram.
+
+If you attempt to use the function without supplying all the arguments, it will yield an error.
+
+```{python}
+# | eval: false
+calc_calories(carb_grams=50, protein_grams=25)
+```
+
+```
+TypeError: calc_calories() missing 1 required positional argument: 'fat_grams'
+```
+
+You can define **default values** for your function's arguments. If an argument is **called** without a **value assigned to it**, then this argument assumes its default value. Let's make all arguments optional by giving them all default values:
+
+```{python}
+def calc_calories(carb_grams=0, protein_grams=0, fat_grams=0):
+    result = (carb_grams * 4) + (protein_grams * 4) + (fat_grams * 9)
+    return result
+```
+
+Now, we can call the function with only some arguments without getting an error:
+
+```{python}
+calc_calories(carb_grams=50, protein_grams=25)
+```
+
+Let's use this on a sample dataset:
+
+```{python}
+food_df = pd.DataFrame({
+    'food': ['Apple', 'Avocado'],
+    'carb_grams': [25, 10],
+    'protein_grams': [0, 1],
+    'fat_grams': [0, 14]
+})
+food_df['calories'] = calc_calories(food_df['carb_grams'], food_df['protein_grams'], food_df['fat_grams'])
+food_df
+```
+
+::: {.callout-tip title="Practice"}
+### BMI Function
+
+Create a function named `calc_bmi` that calculates the Body Mass Index (BMI) for one or more individuals, then apply the function by running the code chunk further below.
+
+```{python}
+# Your code here
+
+```
+
+```{python}
+# | eval: false
+bmi_df = pd.DataFrame({
+    'Weight': [70, 80, 100],  # in kg
+    'Height': [1.7, 1.8, 1.2]  # in meters
+})
+bmi_df['BMI'] = calc_bmi(bmi_df['Weight'], bmi_df['Height'])
+bmi_df
+```
+:::
+
+## Intro to Conditionals: `if`, `elif`, and `else`
+
+Conditional statements allow you to execute code only when certain conditions are met. The basic syntax in Python is:
+
+```{python}
+# | eval: false
+if condition:
+    # Code to execute if condition is True
+elif another_condition:
+    # Code to execute if the previous condition was False and this condition is True
+else:
+    # Code to execute if all previous conditions were False
+```
+
+Let's look at an example of using conditionals within a function. Suppose we want to write a function that classifies a number as positive, negative, or zero.
+
+```{python}
+def class_num(num):
+    if num > 0:
+        return "Positive"
+    elif num < 0:
+        return "Negative"
+    else:
+        return "Zero"
+
+print(class_num(10))    # Output: Positive
+print(class_num(-5))    # Output: Negative
+print(class_num(0))     # Output: Zero
+```
+
+If you try to use this function the way we have done above for, for example the BMI function, you will get an error:    
+
+```{python}
+num_df = pd.DataFrame({'num': [10, -5, 0]})
+num_df
+```
+
+```{python}
+# | eval: false
+num_df['category'] = class_num(num_df['num'])
+```
+
+```
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+```
+
+The reason for this is that if statements are not built to work with series (they are not inherently vectorized); but rather work with single values. To get around this, we can use the `np.vectorize` function to create a vectorized version of the function:
+
+```{python}
+class_num_vec = np.vectorize(class_num)
+num_df['category'] = class_num_vec(num_df['num'])
+num_df
+```
+
+To get more practice with conditionals, let's write a function that categorizes grades into simple categories:
+
+- If the grade is 85 or above, the category is 'Excellent'.
+- If the grade is between 60 and 84, the category is 'Pass'.
+- If the grade is below 60, the category is 'Fail'.
+- If the grade is negative or invalid, return 'Invalid grade'.
+
+```{python}
+def categorize_grade(grade):
+    if grade >= 85 and grade <= 100:
+        return 'Excellent'
+    elif grade >= 60 and grade < 85:
+        return 'Pass'
+    elif grade >= 0 and grade < 60:
+        return 'Fail'
+    else:
+        return 'Invalid grade'
+
+categorize_grade(95)  # Output: Excellent
+```
+
+We can apply this function to a column in a DataFrame but first we need to vectorize it:    
+
+```{python}
+categorize_grade = np.vectorize(categorize_grade)
+```
+
+```{python}
+grades_df = pd.DataFrame({'grade': [95, 82, 76, 65, 58, -5]})
+grades_df['grade_cat'] = categorize_grade(grades_df['grade'])
+grades_df
+```
+
+::: {.callout-tip title="Practice"}
+### Age Categorization Function
+
+Now, try writing a function that categorizes age into different life stages as described earlier. You should use the following criteria:
+
+- If the age is under 18, the category is 'Minor'.
+- If the age is greater than or equal to 18 and less than 65, the category is 'Adult'.
+- If the age is greater than or equal to 65, the category is 'Senior'.
+- If the age is negative or invalid, return 'Invalid age'.
+
+Use it on the `riots_df` DataFrame printed below to create a new column called `Age_Category`.
+
+```{python}
+# Your code here
+
+riots_df = vd.data.la_riots()
+riots_df
+```
+:::
+
+::: {.callout-note title="Side Note"}
+
+### Apply vs Vectorize
+
+Another way to use functions with if statements on a dataframe is to use the `apply` method. Here is how you can do the grade categorization function with `apply`:
+
+```{python}
+grades_df['grade_cat'] = grades_df['grade'].apply(categorize_grade)
+grades_df
+```
+
+The `vectorize` method is easier to use with multiple arguments, but you will encounter the `apply` further down the road.
+:::
+
+## Conclusion
+
+In this lesson, we've introduced the basics of writing functions in Python and how to use conditional statements within those functions. Functions are essential building blocks in programming that allow you to encapsulate code for reuse and better organization. Conditional statements enable your functions to make decisions based on input values or other conditions.

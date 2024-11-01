@@ -31,7 +31,7 @@ import pandas as pd
 Now we'll set an important option that will help us avoid some warnings down the line. Later in the lesson, we'll discuss this in more detail.
 
 ```{python}
-pd.set_option("mode.copy_on_write", True)
+pd.options.mode.copy_on_write = True
 ```
 
 ## Dataset
@@ -161,7 +161,7 @@ We see that New York County has the highest population density in the dataset.
 
 ### Practice Q: Calculate Foreign-Born Percentage
     
-Use the `counties` dataset to calculate the percentage of foreign-born residents in each county. The variable `foreign_born_num` shows the number of foreign-born residents and `pop_20` shows the total population.
+Use the `counties` dataset to calculate the percentage of foreign-born residents in each county. The variable `foreign_born_num` shows the number of foreign-born residents and `pop_20` shows the total population. Sort the DataFrame in descending order of the percentage of foreign-born residents. Which two counties have the highest percentage of foreign-born residents?
 
 ```{python}
 # Your code here

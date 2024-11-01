@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Grouping and summarizing data – Introduction to Data Science with Python</title>
+<title>18&nbsp; Grouping and summarizing data – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./p_untangled_other_grouped_operations.html" rel="next">
-<link href="./p_untangled_case_when.html" rel="prev">
+<link href="./p_untangled_recode_variables.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_groupby_agg.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_groupby_agg.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -193,6 +193,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Intro to Loops in Python</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_writing_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Intro to Functions and Conditionals</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -207,19 +213,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_data_viz_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_univariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_data_on_display_multivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,25 +242,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_installing_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_using_vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_venv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_tools_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
   </div>
 </li>
       </ul>
@@ -271,43 +277,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_subset_columns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Subsetting columns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Subsetting columns</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_query_rows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Querying rows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Querying rows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_transform_variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_untangled_case_when.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditional assignment with case_when() and np.where()</span></span></a>
+  <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_groupby_agg.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_other_grouped_operations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
       </ul>
@@ -322,27 +328,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">17.1</span> Introduction</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">17.2</span> Learning objectives</a></li>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="header-section-number">17.3</span> Libraries</a></li>
-  <li><a href="#the-yaounde-covid-19-dataset" id="toc-the-yaounde-covid-19-dataset" class="nav-link" data-scroll-target="#the-yaounde-covid-19-dataset"><span class="header-section-number">17.4</span> The Yaounde COVID-19 dataset</a></li>
-  <li><a href="#what-are-summary-statistics" id="toc-what-are-summary-statistics" class="nav-link" data-scroll-target="#what-are-summary-statistics"><span class="header-section-number">17.5</span> What are summary statistics?</a></li>
-  <li><a href="#introducing-pandas.dataframe.agg" id="toc-introducing-pandas.dataframe.agg" class="nav-link" data-scroll-target="#introducing-pandas.dataframe.agg"><span class="header-section-number">17.6</span> Introducing <code>pandas.DataFrame.agg()</code></a></li>
-  <li><a href="#grouped-summaries-with-pandas.dataframe.groupby" id="toc-grouped-summaries-with-pandas.dataframe.groupby" class="nav-link" data-scroll-target="#grouped-summaries-with-pandas.dataframe.groupby"><span class="header-section-number">17.7</span> Grouped summaries with <code>pandas.DataFrame.groupby()</code></a></li>
-  <li><a href="#grouping-by-multiple-variables-nested-grouping" id="toc-grouping-by-multiple-variables-nested-grouping" class="nav-link" data-scroll-target="#grouping-by-multiple-variables-nested-grouping"><span class="header-section-number">17.9</span> Grouping by multiple variables (nested grouping)</a></li>
-  <li><a href="#custom-summary-statistics" id="toc-custom-summary-statistics" class="nav-link" data-scroll-target="#custom-summary-statistics"><span class="header-section-number">17.10</span> Custom summary statistics</a></li>
-  <li><a href="#counting-rows-that-meet-a-condition" id="toc-counting-rows-that-meet-a-condition" class="nav-link" data-scroll-target="#counting-rows-that-meet-a-condition"><span class="header-section-number">17.11</span> Counting rows that meet a condition</a></li>
-  <li><a href="#calculate-percentage-shares" id="toc-calculate-percentage-shares" class="nav-link" data-scroll-target="#calculate-percentage-shares"><span class="header-section-number">17.12</span> Calculate percentage shares</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">17.13</span> Wrap up</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">18.1</span> Introduction</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">18.2</span> Learning objectives</a></li>
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="header-section-number">18.3</span> Libraries</a></li>
+  <li><a href="#the-yaounde-covid-19-dataset" id="toc-the-yaounde-covid-19-dataset" class="nav-link" data-scroll-target="#the-yaounde-covid-19-dataset"><span class="header-section-number">18.4</span> The Yaounde COVID-19 dataset</a></li>
+  <li><a href="#what-are-summary-statistics" id="toc-what-are-summary-statistics" class="nav-link" data-scroll-target="#what-are-summary-statistics"><span class="header-section-number">18.5</span> What are summary statistics?</a></li>
+  <li><a href="#introducing-pandas.dataframe.agg" id="toc-introducing-pandas.dataframe.agg" class="nav-link" data-scroll-target="#introducing-pandas.dataframe.agg"><span class="header-section-number">18.6</span> Introducing <code>pandas.DataFrame.agg()</code></a></li>
+  <li><a href="#grouped-summaries-with-pandas.dataframe.groupby" id="toc-grouped-summaries-with-pandas.dataframe.groupby" class="nav-link" data-scroll-target="#grouped-summaries-with-pandas.dataframe.groupby"><span class="header-section-number">18.7</span> Grouped summaries with <code>pandas.DataFrame.groupby()</code></a></li>
+  <li><a href="#grouping-by-multiple-variables-nested-grouping" id="toc-grouping-by-multiple-variables-nested-grouping" class="nav-link" data-scroll-target="#grouping-by-multiple-variables-nested-grouping"><span class="header-section-number">18.9</span> Grouping by multiple variables (nested grouping)</a></li>
+  <li><a href="#custom-summary-statistics" id="toc-custom-summary-statistics" class="nav-link" data-scroll-target="#custom-summary-statistics"><span class="header-section-number">18.10</span> Custom summary statistics</a></li>
+  <li><a href="#counting-rows-that-meet-a-condition" id="toc-counting-rows-that-meet-a-condition" class="nav-link" data-scroll-target="#counting-rows-that-meet-a-condition"><span class="header-section-number">18.11</span> Counting rows that meet a condition</a></li>
+  <li><a href="#calculate-percentage-shares" id="toc-calculate-percentage-shares" class="nav-link" data-scroll-target="#calculate-percentage-shares"><span class="header-section-number">18.12</span> Calculate percentage shares</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">18.13</span> Wrap up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_groupby_agg.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_groupby_agg.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_groupby_agg.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></h1>
 </div>
 
 
@@ -359,13 +365,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">17.1</span> Introduction</h2>
+<section id="introduction" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">18.1</span> Introduction</h2>
 <p>In this lesson, we’ll explore two powerful pandas methods: <code>agg()</code> and <code>groupby()</code>. These tools will enable you to extract summary statistics and perform operations on grouped data effortlessly.</p>
 <p>Let’s dive in and discover how to unlock deeper insights from your data!</p>
 </section>
-<section id="learning-objectives" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">17.2</span> Learning objectives</h2>
+<section id="learning-objectives" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">18.2</span> Learning objectives</h2>
 <ol type="1">
 <li><p>You can use <code>pandas.DataFrame.agg()</code> to extract summary statistics from datasets.</p></li>
 <li><p>You can use <code>pandas.DataFrame.groupby()</code> to group data by one or more variables before performing operations on them.</p></li>
@@ -374,18 +380,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <hr>
 </section>
-<section id="libraries" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="libraries"><span class="header-section-number">17.3</span> Libraries</h2>
+<section id="libraries" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="libraries"><span class="header-section-number">18.3</span> Libraries</h2>
 <p>Run the following lines to import the necessary libraries:</p>
-<div id="2d2c4df3" class="cell" data-execution_count="2">
+<div id="0fce2a50" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="the-yaounde-covid-19-dataset" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="the-yaounde-covid-19-dataset"><span class="header-section-number">17.4</span> The Yaounde COVID-19 dataset</h2>
+<section id="the-yaounde-covid-19-dataset" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="the-yaounde-covid-19-dataset"><span class="header-section-number">18.4</span> The Yaounde COVID-19 dataset</h2>
 <p>In this lesson, we will again use data from the COVID-19 serological survey conducted in Yaounde, Cameroon.</p>
-<div id="bf5d0156" class="cell" data-message="false" data-execution_count="3">
+<div id="2a0f0bbe" class="cell" data-message="false" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>yaounde <span class="op">=</span> pd.read_csv(<span class="st">'data/yaounde_data.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">## A smaller subset of variables</span></span>
@@ -556,16 +562,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can find out more about this dataset here: https://www.nature.com/articles/s41467-021-25946-0</p>
 </section>
-<section id="what-are-summary-statistics" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="what-are-summary-statistics"><span class="header-section-number">17.5</span> What are summary statistics?</h2>
+<section id="what-are-summary-statistics" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="what-are-summary-statistics"><span class="header-section-number">18.5</span> What are summary statistics?</h2>
 <p>A summary statistic is a single value (such as a mean or median) that describes a sequence of values (typically a column in your dataset).</p>
 <p>Computing summary statistics is a very common operation in most data analysis workflows, so it will be important to become fluent in extracting them from your datasets. And for this task, there is no better tool than the pandas method <code>agg()</code>! So let’s see how to use this powerful method.</p>
 </section>
-<section id="introducing-pandas.dataframe.agg" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="introducing-pandas.dataframe.agg"><span class="header-section-number">17.6</span> Introducing <code>pandas.DataFrame.agg()</code></h2>
+<section id="introducing-pandas.dataframe.agg" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="introducing-pandas.dataframe.agg"><span class="header-section-number">18.6</span> Introducing <code>pandas.DataFrame.agg()</code></h2>
 <p>To get started, let’s consider how to get simple summary statistics <em>without</em> using <code>agg()</code>, then we will consider why you <em>should</em> actually use <code>agg()</code>.</p>
 <p>Imagine you were asked to find the mean age of respondents in the <code>yao</code> data frame. You can do this by calling the <code>mean()</code> method on the <code>age</code> column of the <code>yao</code> data frame:</p>
-<div id="b71be806" class="cell" data-execution_count="4">
+<div id="3e65b6a4" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>yao[[<span class="st">"age"</span>]].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>age    29.017508
@@ -575,7 +581,7 @@ dtype: float64</code></pre>
 <p>And that’s it! You now have a simple summary statistic. Extremely easy, right?</p>
 <p>So why do we need <code>agg()</code> to get summary statistics if the process is already so simple without it? We’ll come back to the <em>why</em> question soon. First let’s see <em>how</em> to obtain summary statistics with <code>agg()</code>.</p>
 <p>Going back to the previous example, the correct syntax to get the mean age with <code>agg()</code> would be:</p>
-<div id="7ba718b2" class="cell" data-execution_count="5">
+<div id="45ea05a1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>yao.agg(mean_age<span class="op">=</span>(<span class="st">'age'</span>, <span class="st">'mean'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -600,12 +606,12 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>The anatomy of this syntax is:</p>
-<div id="2a53a25d" class="cell" data-execution_count="6">
+<div id="b189f102" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dataframe.agg(new_column_name<span class="op">=</span>(<span class="st">"COLUMN_TO_SUMMARIZE"</span>, <span class="st">"SUMMARY_FUNCTION"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <p>You can also compute multiple summary statistics in a single <code>agg()</code> statement. For example, if you wanted both the mean and the median age, you could run:</p>
-<div id="e3000436" class="cell" data-execution_count="7">
+<div id="bb558ee9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>yao.agg(mean_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"mean"</span>), median_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"median"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -643,10 +649,10 @@ dtype: float64</code></pre>
 Practice
 </div>
 </div>
-<section id="practice-q-mean-and-median-weight" class="level3 callout-body-container callout-body" data-number="17.6.1">
-<h3 data-number="17.6.1" class="anchored" data-anchor-id="practice-q-mean-and-median-weight"><span class="header-section-number">17.6.1</span> Practice Q: Mean and median weight</h3>
+<section id="practice-q-mean-and-median-weight" class="level3 callout-body-container callout-body" data-number="18.6.1">
+<h3 data-number="18.6.1" class="anchored" data-anchor-id="practice-q-mean-and-median-weight"><span class="header-section-number">18.6.1</span> Practice Q: Mean and median weight</h3>
 <p>Use <code>agg()</code> and the relevant summary functions to obtain the mean and median of respondent weights from the <code>weight_kg</code> variable of the <code>yao</code> data frame.</p>
-<div id="1401c611" class="cell" data-execution_count="8">
+<div id="e97e1be4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -660,29 +666,29 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-min-and-max-height" class="level3 callout-body-container callout-body" data-number="17.6.2">
-<h3 data-number="17.6.2" class="anchored" data-anchor-id="practice-q-min-and-max-height"><span class="header-section-number">17.6.2</span> Practice Q: Min and max height</h3>
+<section id="practice-q-min-and-max-height" class="level3 callout-body-container callout-body" data-number="18.6.2">
+<h3 data-number="18.6.2" class="anchored" data-anchor-id="practice-q-min-and-max-height"><span class="header-section-number">18.6.2</span> Practice Q: Min and max height</h3>
 <p>Use <code>agg()</code> and the relevant summary functions to obtain the minimum and maximum respondent heights from the <code>height_cm</code> variable of the <code>yao</code> data frame. You may need to use a search engine to find out the minimum and maximum functions in Python if you don’t remember them.</p>
-<div id="e62f67af" class="cell" data-execution_count="9">
+<div id="e21a7cf5" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="grouped-summaries-with-pandas.dataframe.groupby" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="grouped-summaries-with-pandas.dataframe.groupby"><span class="header-section-number">17.7</span> Grouped summaries with <code>pandas.DataFrame.groupby()</code></h2>
+<section id="grouped-summaries-with-pandas.dataframe.groupby" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="grouped-summaries-with-pandas.dataframe.groupby"><span class="header-section-number">18.7</span> Grouped summaries with <code>pandas.DataFrame.groupby()</code></h2>
 <p>Now let’s see how to use <code>groupby()</code> to obtain grouped summaries, the primary reason for using <code>agg()</code> in the first place.</p>
 <p>As its name suggests, <code>pandas.DataFrame.groupby()</code> lets you group a data frame by the values in a variable (e.g.&nbsp;male vs female sex). You can then perform operations that are split according to these groups.</p>
 <p>Let’s try to group the <code>yao</code> data frame by sex and observe the effect:</p>
-<div id="cd4274c8" class="cell" data-execution_count="10">
+<div id="83bc982c" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>yao.groupby(<span class="st">"sex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x105b97710&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x10a141d90&gt;</code></pre>
 </div>
 </div>
 <p>Hmm. Apparently nothing happened. We just get a <code>GroupBy</code> object.</p>
 <p>But watch what happens when we chain the <code>groupby()</code> with the <code>agg()</code> call we used in the previous section:</p>
-<div id="5e4666bc" class="cell" data-execution_count="11">
+<div id="883ab981" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"sex"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .agg(mean_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"mean"</span>), median_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"median"</span>))</span>
@@ -724,7 +730,7 @@ Practice
 <p>Now we get a different statistic for each group! The mean age for female respondents is about 29.5, while for male respondents it’s about 28.4.</p>
 <p>As was mentioned earlier, this kind of grouped summary is the primary reason the <code>agg()</code> function is so useful.</p>
 <p>You may notice that there are two header rows. This is because the output has a hierarchical index (called a MultiIndex in pandas). While this can be useful in some cases, it often makes further data manipulation more difficult. We can reset the index to convert the group labels back to a regular column with the <code>reset_index()</code> method.</p>
-<div id="9eb4acce" class="cell" data-execution_count="12">
+<div id="723594eb" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"sex"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .agg(mean_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"mean"</span>), median_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"median"</span>))</span>
@@ -765,7 +771,7 @@ Practice
 <hr>
 <p>Let’s see some more examples.</p>
 <p>Suppose you were asked to obtain the maximum and minimum weights for individuals in different neighborhoods, and also present the number of individuals in each neighborhood. We can write:</p>
-<div id="f19330a4" class="cell" data-execution_count="13">
+<div id="2eb95b0b" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
@@ -849,7 +855,7 @@ Practice
 <p>Great! With just a few code lines you are able to extract quite a lot of information.</p>
 <hr>
 <p>Let’s see one more example for good measure. The variable <code>n_days_miss_work</code> tells us the number of days that respondents missed work due to COVID-like symptoms. Individuals who reported no COVID-like symptoms have an <code>NA</code> for this variable:</p>
-<div id="af469453" class="cell" data-execution_count="14">
+<div id="be6f6f61" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>yao[[<span class="st">'n_days_miss_work'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -899,7 +905,7 @@ Practice
 </div>
 </div>
 <p>To count the total number of work days missed for each sex group, we can write:</p>
-<div id="4eb423a7" class="cell" data-execution_count="15">
+<div id="56bdd6be" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"sex"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .agg(total_days_missed<span class="op">=</span>(<span class="st">"n_days_miss_work"</span>, <span class="st">"sum"</span>))</span>
@@ -947,8 +953,8 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-min-and-max-height-per-sex" class="level3 callout-body-container callout-body" data-number="17.7.1">
-<h3 data-number="17.7.1" class="anchored" data-anchor-id="practice-q-min-and-max-height-per-sex"><span class="header-section-number">17.7.1</span> Practice Q: Min and max height per sex</h3>
+<section id="practice-q-min-and-max-height-per-sex" class="level3 callout-body-container callout-body" data-number="18.7.1">
+<h3 data-number="18.7.1" class="anchored" data-anchor-id="practice-q-min-and-max-height-per-sex"><span class="header-section-number">18.7.1</span> Practice Q: Min and max height per sex</h3>
 <p>Use <code>groupby()</code>, <code>agg()</code>, and the relevant summary functions to obtain the minimum and maximum heights for each sex in the <code>yao</code> data frame, as well as the number of individuals in each sex group.</p>
 <p>Your output should be a DataFrame that looks like this:</p>
 <table class="caption-top table">
@@ -975,7 +981,7 @@ Practice
 </tr>
 </tbody>
 </table>
-<div id="99f23f39" class="cell" data-execution_count="16">
+<div id="a90d5ec8" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -993,7 +999,7 @@ Pro-tip
 <p><strong>Groupby and agg are not always needed</strong></p>
 <p>Sometimes you just want a quick summary of a variable, not per group.</p>
 <p>Remember that there are quick ways to get such statistics. So you do not always need to use <code>groupby()</code> and <code>agg()</code>.</p>
-<div id="a6f82738" class="cell" data-execution_count="17">
+<div id="94246aad" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>yao[<span class="st">'age'</span>].describe() <span class="co"># summary stats for a numeric variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>count    971.000000
@@ -1006,7 +1012,7 @@ max       79.000000
 Name: age, Length: 8, dtype: float64</code></pre>
 </div>
 </div>
-<div id="efd2dab9" class="cell" data-execution_count="18">
+<div id="bf36febc" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>yao[<span class="st">'sex'</span>].describe() <span class="co"># summary stats for a categorical variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>count        971
@@ -1016,7 +1022,7 @@ freq         549
 Name: sex, dtype: object</code></pre>
 </div>
 </div>
-<div id="dc848126" class="cell" data-execution_count="19">
+<div id="75b61677" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>yao[<span class="st">'sex'</span>].value_counts() <span class="co"># count of each category</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>sex
@@ -1025,7 +1031,7 @@ Male      422
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="2744ff5c" class="cell" data-execution_count="20">
+<div id="1fd4e6a0" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>yao.select_dtypes(<span class="bu">object</span>).describe() <span class="co"># summary stats for categorical variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
@@ -1106,7 +1112,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="a045f43f" class="cell" data-execution_count="21">
+<div id="c3fba5cb" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>yao.select_dtypes(np.number).describe() <span class="co"># summary stats for numeric variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
@@ -1198,11 +1204,11 @@ Name: count, dtype: int64</code></pre>
 Watch-out
 </div>
 </div>
-<section id="nan-values-in-agg" class="level2 callout-body-container callout-body" data-number="17.8">
-<h2 data-number="17.8" class="anchored" data-anchor-id="nan-values-in-agg"><span class="header-section-number">17.8</span> NaN values in <code>agg()</code></h2>
+<section id="nan-values-in-agg" class="level2 callout-body-container callout-body" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="nan-values-in-agg"><span class="header-section-number">18.8</span> NaN values in <code>agg()</code></h2>
 <p>When using <code>agg()</code> to compute grouped summary statistics, pay attention to whether your group of interest contains NaN values.</p>
 <p>For example, to get mean weight by smoking status, we can write:</p>
-<div id="670f174a" class="cell" data-execution_count="22">
+<div id="8e3e70f4" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"is_smoker"</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_mean<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="st">"mean"</span>))</span>
@@ -1244,7 +1250,7 @@ Watch-out
 </div>
 <p>But this actually excludes some rows with NaN smoking status from the summary table.</p>
 <p>We can include these individuals in the summary table by setting <code>dropna=False</code> with the <code>groupby()</code> function.</p>
-<div id="685330af" class="cell" data-execution_count="23">
+<div id="79f3cf05" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"is_smoker"</span>, dropna<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_mean<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="st">"mean"</span>))</span>
@@ -1290,7 +1296,7 @@ Watch-out
 </div>
 </div>
 <p>Also recall that you can see how many individuals are in each smoking status group by using the <code>size()</code> function. It is often useful to include this information in your summary table, so that you know how many individuals are behind each summary statistic.</p>
-<div id="e27b7958" class="cell" data-execution_count="24">
+<div id="4cedd4b0" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"is_smoker"</span>, dropna<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_mean<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="st">"mean"</span>), </span>
@@ -1352,8 +1358,8 @@ Watch-out
 Practice
 </div>
 </div>
-<section id="practice-q-mean-weight-by-pregnancy-status" class="level3 callout-body-container callout-body" data-number="17.8.1">
-<h3 data-number="17.8.1" class="anchored" data-anchor-id="practice-q-mean-weight-by-pregnancy-status"><span class="header-section-number">17.8.1</span> Practice Q: Mean weight by pregnancy status</h3>
+<section id="practice-q-mean-weight-by-pregnancy-status" class="level3 callout-body-container callout-body" data-number="18.8.1">
+<h3 data-number="18.8.1" class="anchored" data-anchor-id="practice-q-mean-weight-by-pregnancy-status"><span class="header-section-number">18.8.1</span> Practice Q: Mean weight by pregnancy status</h3>
 <p>Use <code>groupby()</code>, <code>agg()</code>, and the <code>mean()</code> function to obtain the mean weight (kg) by pregnancy status in the <code>yao</code> data frame. Include individuals with NaN pregnancy status in the summary table.</p>
 <p>The output data frame should look something like this:</p>
 <table class="caption-top table">
@@ -1382,17 +1388,17 @@ Practice
 </tr>
 </tbody>
 </table>
-<div id="5988bb99" class="cell" data-execution_count="25">
+<div id="4750000e" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="grouping-by-multiple-variables-nested-grouping" class="level2" data-number="17.9">
-<h2 data-number="17.9" class="anchored" data-anchor-id="grouping-by-multiple-variables-nested-grouping"><span class="header-section-number">17.9</span> Grouping by multiple variables (nested grouping)</h2>
+<section id="grouping-by-multiple-variables-nested-grouping" class="level2" data-number="18.9">
+<h2 data-number="18.9" class="anchored" data-anchor-id="grouping-by-multiple-variables-nested-grouping"><span class="header-section-number">18.9</span> Grouping by multiple variables (nested grouping)</h2>
 <p>It is possible to group a data frame by more than one variable. This is sometimes called “nested” grouping.</p>
 <p>Suppose you want to know the mean age of men and women <em>in each neighbourhood</em>, you could put both <code>sex</code> and <code>neighborhood</code> in the <code>groupby()</code> statement:</p>
-<div id="eade111c" class="cell" data-execution_count="26">
+<div id="283755a7" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    yao</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    .groupby([<span class="st">'sex'</span>, <span class="st">'neighborhood'</span>])</span>
@@ -1464,7 +1470,7 @@ Practice
 </div>
 <p>From this output data frame you can tell that, for example, women from Briqueterie have a mean age of 31.6 years.</p>
 <p>The order of the columns listed in <code>groupby()</code> is interchangeable. So if you run <code>groupby(['neighborhood', 'sex'])</code> instead of <code>groupby(['sex', 'neighborhood'])</code>, you’ll get the same result, although it will be ordered differently:</p>
-<div id="35829f47" class="cell" data-execution_count="27">
+<div id="ed541ccf" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    yao</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    .groupby([<span class="st">'neighborhood'</span>, <span class="st">'sex'</span>])</span>
@@ -1543,8 +1549,8 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-total-bedridden-days-per-age-sex-group" class="level3 callout-body-container callout-body" data-number="17.9.1">
-<h3 data-number="17.9.1" class="anchored" data-anchor-id="practice-q-total-bedridden-days-per-age-sex-group"><span class="header-section-number">17.9.1</span> Practice Q: Total bedridden days per age-sex group</h3>
+<section id="practice-q-total-bedridden-days-per-age-sex-group" class="level3 callout-body-container callout-body" data-number="18.9.1">
+<h3 data-number="18.9.1" class="anchored" data-anchor-id="practice-q-total-bedridden-days-per-age-sex-group"><span class="header-section-number">18.9.1</span> Practice Q: Total bedridden days per age-sex group</h3>
 <p>Use <code>groupby()</code>, <code>agg()</code>, and the <code>sum()</code> function to calculate the total number of bedridden days (from the <code>n_bedridden_days</code> variable) reported by respondents of each age-sex group. For age group, use the <code>age_category_3</code> variable.</p>
 <p>Your output should be a data frame with three columns named as shown below:</p>
 <table class="caption-top table">
@@ -1588,17 +1594,17 @@ Practice
 </tr>
 </tbody>
 </table>
-<div id="4fbf0ad5" class="cell" data-execution_count="28">
+<div id="a8e4c0ea" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="custom-summary-statistics" class="level2" data-number="17.10">
-<h2 data-number="17.10" class="anchored" data-anchor-id="custom-summary-statistics"><span class="header-section-number">17.10</span> Custom summary statistics</h2>
+<section id="custom-summary-statistics" class="level2" data-number="18.10">
+<h2 data-number="18.10" class="anchored" data-anchor-id="custom-summary-statistics"><span class="header-section-number">18.10</span> Custom summary statistics</h2>
 <p>Sometimes, you may want to apply custom summary statistics that aren’t available as built-in functions. In these cases, you can use lambda functions or define your own functions to use with <code>agg()</code>.</p>
 <p>For example, let’s say we want to calculate the range (difference between maximum and minimum) of weights in each neighborhood:</p>
-<div id="f56754f1" class="cell" data-execution_count="29">
+<div id="88d01124" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    yao</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">'neighborhood'</span>)</span>
@@ -1672,20 +1678,20 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-iqr-of-age-by-neighborhood" class="level3 callout-body-container callout-body" data-number="17.10.1">
-<h3 data-number="17.10.1" class="anchored" data-anchor-id="practice-q-iqr-of-age-by-neighborhood"><span class="header-section-number">17.10.1</span> Practice Q: IQR of age by neighborhood</h3>
+<section id="practice-q-iqr-of-age-by-neighborhood" class="level3 callout-body-container callout-body" data-number="18.10.1">
+<h3 data-number="18.10.1" class="anchored" data-anchor-id="practice-q-iqr-of-age-by-neighborhood"><span class="header-section-number">18.10.1</span> Practice Q: IQR of age by neighborhood</h3>
 <p>Find the interquartile range (IQR) of the age variable for each neighborhood. The IQR is the difference between the 75th and 25th percentiles. Your lambda will look like this: <code>lambda x: x.quantile(0.75) - x.quantile(0.25)</code></p>
-<div id="b17c7d6d" class="cell" data-execution_count="30">
+<div id="77bd5149" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="counting-rows-that-meet-a-condition" class="level2" data-number="17.11">
-<h2 data-number="17.11" class="anchored" data-anchor-id="counting-rows-that-meet-a-condition"><span class="header-section-number">17.11</span> Counting rows that meet a condition</h2>
+<section id="counting-rows-that-meet-a-condition" class="level2" data-number="18.11">
+<h2 data-number="18.11" class="anchored" data-anchor-id="counting-rows-that-meet-a-condition"><span class="header-section-number">18.11</span> Counting rows that meet a condition</h2>
 <p>It is sometimes useful to count the rows that meet specific conditions within a group. This can be done with the groupby and agg functions.</p>
 <p>For example, to count the number of people under 18 in each neighborhood, we can write:</p>
-<div id="236849b2" class="cell" data-execution_count="31">
+<div id="b9bacd4e" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    yao</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">'neighborhood'</span>)</span>
@@ -1749,7 +1755,7 @@ Practice
 </div>
 <p>The lambda function <code>(x &lt; 18).sum()</code> counts the number of values in the <code>x</code> series that are less than 18. The <code>x</code> series is the age variable for each neighborhood.</p>
 <p>Let’s broaden our scope and add the number of seniors (65+) to the summary table.</p>
-<div id="1ea2974f" class="cell" data-execution_count="32">
+<div id="ee451bb4" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
@@ -1822,11 +1828,11 @@ Practice
 </div>
 </div>
 </section>
-<section id="calculate-percentage-shares" class="level2" data-number="17.12">
-<h2 data-number="17.12" class="anchored" data-anchor-id="calculate-percentage-shares"><span class="header-section-number">17.12</span> Calculate percentage shares</h2>
+<section id="calculate-percentage-shares" class="level2" data-number="18.12">
+<h2 data-number="18.12" class="anchored" data-anchor-id="calculate-percentage-shares"><span class="header-section-number">18.12</span> Calculate percentage shares</h2>
 <p>We can expand our previous example to calculate the percentage of children and seniors in each neighborhood.</p>
 <p>Calculating such percentage shares is a common task in data analysis.</p>
-<div id="e2056262" class="cell" data-execution_count="33">
+<div id="928a7163" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
@@ -1900,7 +1906,7 @@ Practice
 </div>
 <p>Hopefully the code above is not too confusing. To calculate the percentage of children, we divide the number of children <code>(x &lt; 18).sum()</code> by the total number of individuals in the series, <code>len(x)</code>, and multiply by 100. Likewise for seniors.</p>
 <p>A more concise approach utilizes the fact that the mean of a boolean series represents the proportion of True values:</p>
-<div id="c4cde405" class="cell" data-execution_count="34">
+<div id="1779e76d" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
@@ -1975,7 +1981,7 @@ Practice
 <p>While this method is more efficient, it may be less intuitive. If you find it confusing, feel free to use the more explicit calculation shown earlier.</p>
 <hr>
 <p>As a final example, to count the number and percentage of people with doctorate degrees in each neighborhood, we can write:</p>
-<div id="88dd6139" class="cell" data-execution_count="35">
+<div id="198239b8" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
@@ -2059,8 +2065,8 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-smoker-rate-by-sex-and-age-category" class="level3 callout-body-container callout-body" data-number="17.12.1">
-<h3 data-number="17.12.1" class="anchored" data-anchor-id="practice-q-smoker-rate-by-sex-and-age-category"><span class="header-section-number">17.12.1</span> Practice Q: Smoker rate by sex and age category</h3>
+<section id="practice-q-smoker-rate-by-sex-and-age-category" class="level3 callout-body-container callout-body" data-number="18.12.1">
+<h3 data-number="18.12.1" class="anchored" data-anchor-id="practice-q-smoker-rate-by-sex-and-age-category"><span class="header-section-number">18.12.1</span> Practice Q: Smoker rate by sex and age category</h3>
 <p>Calculate the percentage of people with are smokers (use the <code>is_smoker</code> variable) for each combination of sex and age category (use <code>age_category_3</code>). The output should look like this:</p>
 <table class="caption-top table">
 <thead>
@@ -2104,14 +2110,14 @@ Practice
 </tbody>
 </table>
 <p>Your summary table should show that male adults have the highest smoker rate, followed by male seniors.</p>
-<div id="30f33749" class="cell" data-execution_count="36">
+<div id="407eeb71" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </section>
-<section id="wrap-up" class="level2" data-number="17.13">
-<h2 data-number="17.13" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">17.13</span> Wrap up</h2>
+<section id="wrap-up" class="level2" data-number="18.13">
+<h2 data-number="18.13" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">18.13</span> Wrap up</h2>
 <p>In this lesson, you’ve learned how to obtain quick summary statistics from your data using <code>agg()</code>, group your data using <code>groupby()</code>, and combine <code>groupby()</code> with <code>agg()</code> for powerful data summarization.</p>
 <p>These skills are essential for both exploratory data analysis and preparing data for presentation or plotting. The combination of <code>groupby()</code> and <code>agg()</code> is one of the most common and useful data manipulation techniques in pandas.</p>
 <p>In our next lesson, we’ll explore ways to combine <code>groupby()</code> with other pandas methods.</p>
@@ -2543,13 +2549,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./p_untangled_case_when.html" class="pagination-link" aria-label="Conditional assignment with case_when() and np.where()">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditional assignment with case_when() and np.where()</span></span>
+      <a href="./p_untangled_recode_variables.html" class="pagination-link" aria-label="Conditional transformations in pandas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./p_untangled_other_grouped_operations.html" class="pagination-link" aria-label="Grouped Transformations and Filtering">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

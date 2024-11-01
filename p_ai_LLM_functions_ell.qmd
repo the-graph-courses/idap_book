@@ -48,16 +48,12 @@ for country in countries:
 
 ```{python}
 from concurrent.futures import ThreadPoolExecutor
-import pandas as pd
-
-# Convert to DataFrame first
-countries_df = pd.DataFrame({'country': countries})
 
 # Run in parallel with simplified syntax
 with ThreadPoolExecutor() as executor:
-    countries_df['city_rec'] = list(executor.map(city_rec_vec, countries_df['country']))
+    x = executor.map(city_rec, country_df['country'])
 
-countries_df
+list(x)
 ```
 
 # Use in a dataframe 

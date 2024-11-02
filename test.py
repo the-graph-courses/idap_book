@@ -43,8 +43,7 @@ letter_grades_na
 # Below 3 is "Fail", between 3 and 8 is "Pass", 8 and above is "Distinction", np.nan is "No grade"
 # (you could use cut, but in my experience, students make lots of mistakes with cut. Better to be explicit)
 
-
-## Need to actually teach the students how to define functions cuz I haven't done that yet.
+## 
 num_grades = pd.DataFrame({
     'grade': [1, 5, 2, 3, 10, 7, np.nan]
 })  
@@ -61,5 +60,8 @@ def grade_recoder(g):
     else:
         return 'No match'
 
-num_grades['grade_points'] = num_grades['grade'].apply(grade_recoder)
+# Option 1: Vectorize
+grade_recoder_vec = np.vectorize(grade_recoder)
+
+num_grades['grade_points'] = grade_recoder_vec(num_grades['grade'])
 num_grades

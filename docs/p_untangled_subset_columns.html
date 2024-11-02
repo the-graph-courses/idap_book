@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -381,11 +381,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="14.3" class="anchored" data-anchor-id="about-pandas"><span class="header-section-number">14.3</span> About pandas</h2>
 <p>Pandas is a popular library for data manipulation and analysis. It is designed to make it easy to work with tabular data in Python.</p>
 <p>Install pandas with the following command in your terminal if it is not already installed:</p>
-<div id="8f6c424d" class="cell" data-execution_count="2">
+<div id="7a9d4880" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install pandas </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then import pandas with the following command in your script:</p>
-<div id="c1d41896" class="cell" data-execution_count="3">
+<div id="ccb5d6d7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -396,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To download the dataset, visit this link: <a href="https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_data.zip">https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_data.zip</a></p>
 <p>Then unzip the file and place the <code>yaounde_data.csv</code> file in the <code>data</code> folder in the same directory as your notebook.</p>
 <p>Let’s load and examine the dataset:</p>
-<div id="44dad1fa" class="cell" data-execution_count="4">
+<div id="3bb19519" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>yao <span class="op">=</span> pd.read_csv(<span class="st">"data/yaounde_data.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>yao</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="selecting-columns-with-square-brackets" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="selecting-columns-with-square-brackets"><span class="header-section-number">14.5</span> Selecting columns with square brackets <code>[]</code></h2>
 <p>In pandas, the most common way to select a column is simply to use square brackets <code>[]</code> and the column name. For example, to select the <code>age</code> and <code>sex</code> columns, we type:</p>
-<div id="f0dd8f16" class="cell" data-execution_count="5">
+<div id="7af7c46f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>yao[[<span class="st">"age"</span>, <span class="st">"sex"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -610,12 +610,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Note the double square brackets <code>[[]]</code>. Without it, you will get an error:</p>
-<div id="17443783" class="cell" data-execution_count="6">
+<div id="1591c89c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>yao[<span class="st">"age"</span>, <span class="st">"sex"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>KeyError: ('age', 'sex')</code></pre>
 <p>If you want to select a single column, you <em>may omit the double square brackets</em>, but your output will no longer be a DataFrame. Compare the following:</p>
-<div id="05c31bc0" class="cell" data-execution_count="7">
+<div id="9b7a3183" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>yao[<span class="st">"age"</span>] <span class="co"># does not return a DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0      45
@@ -626,7 +626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Name: age, Length: 971, dtype: int64</code></pre>
 </div>
 </div>
-<div id="04db9f12" class="cell" data-execution_count="8">
+<div id="ff4edc80" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>yao[[<span class="st">"age"</span>]]  <span class="co"># returns a DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -679,7 +679,7 @@ Key Point
 <section id="storing-data-subsets" class="level2 callout-body-container callout-body" data-number="14.6">
 <h2 data-number="14.6" class="anchored" data-anchor-id="storing-data-subsets"><span class="header-section-number">14.6</span> Storing data subsets</h2>
 <p>Note that these selections are not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset with only three columns:</p>
-<div id="15ca1546" class="cell" data-execution_count="9">
+<div id="88f1f6b7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>yao_subset <span class="op">=</span> yao[[<span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"igg_result"</span>]]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>yao_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -734,7 +734,7 @@ Key Point
 </div>
 </div>
 <p>And if we want to overwrite a DataFrame, we can assign the subset back to the original DataFrame. Let’s overwrite the <code>yao_subset</code> DataFrame to have only the <code>age</code> column:</p>
-<div id="32a798af" class="cell" data-execution_count="10">
+<div id="81b2240b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>yao_subset <span class="op">=</span> yao_subset[[<span class="st">"age"</span>]]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>yao_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -793,7 +793,7 @@ Practice
 <ul>
 <li>Use the <code>[]</code> operator to select the “weight_kg” and “height_cm” variables in the <code>yao</code> DataFrame. Assign the result to a new DataFrame called <code>yao_weight_height</code>. Then print this new DataFrame.</li>
 </ul>
-<div id="50882033" class="cell" data-execution_count="11">
+<div id="447071d9" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -816,7 +816,7 @@ Pro tip
 <h2 data-number="14.7" class="anchored" data-anchor-id="excluding-columns-with-drop"><span class="header-section-number">14.7</span> Excluding columns with <code>drop()</code></h2>
 <p>Sometimes it is more useful to drop columns you do not need than to explicitly select the ones that you do need.</p>
 <p>To drop columns, we can use the <code>drop()</code> method with the <code>columns</code> argument. To drop the age column, we type:</p>
-<div id="8943b7ae" class="cell" data-execution_count="12">
+<div id="55476b91" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>yao.drop(columns<span class="op">=</span>[<span class="st">"age"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -978,7 +978,7 @@ Pro tip
 </div>
 </div>
 <p>To drop several columns:</p>
-<div id="7f7f78c2" class="cell" data-execution_count="13">
+<div id="554f363f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>yao.drop(columns<span class="op">=</span>[<span class="st">"age"</span>, <span class="st">"sex"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -1140,7 +1140,7 @@ Pro tip
 </div>
 </div>
 <p>Again, note that this is not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset age and sex dropped:</p>
-<div id="4d086cdb" class="cell" data-execution_count="14">
+<div id="42850ccf" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>yao_subset <span class="op">=</span> yao.drop(columns<span class="op">=</span>[<span class="st">"age"</span>, <span class="st">"sex"</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>yao_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -1316,7 +1316,7 @@ Practice
 <ul>
 <li>From the <code>yao</code> DataFrame, <strong>remove</strong> the columns <code>highest_education</code> and <code>consultation</code>. Assign the result to a new DataFrame called <code>yao_no_education_consultation</code>. Print this new DataFrame.</li>
 </ul>
-<div id="f9e63daa" class="cell" data-execution_count="15">
+<div id="8aea1b23" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1325,7 +1325,7 @@ Practice
 <section id="using-filter-to-select-columns-by-regex" class="level2" data-number="14.8">
 <h2 data-number="14.8" class="anchored" data-anchor-id="using-filter-to-select-columns-by-regex"><span class="header-section-number">14.8</span> Using <code>filter()</code> to select columns by regex</h2>
 <p>The <code>filter()</code> method and its <code>regex</code> argument offer a powerful way to select columns based on patterns in their names. As an example, to select columns containing the string “ig”, we can write:</p>
-<div id="c180884e" class="cell" data-execution_count="16">
+<div id="e467ce3f" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>yao.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">"ig"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
@@ -1404,7 +1404,7 @@ Practice
 </div>
 <p>The argument <code>regex</code> specifies the pattern to match. Regex stands for regular expression and refers to a sequence of characters that define a search pattern.</p>
 <p>To select columns <strong>starting with</strong> the string “ig”, we write:</p>
-<div id="14225242" class="cell" data-execution_count="17">
+<div id="9e962899" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>yao.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">"^ig"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -1453,7 +1453,7 @@ Practice
 </div>
 <p>The symbol <code>^</code> is a regex character that matches the beginning of the string.</p>
 <p>To select columns <strong>ending with</strong> the string “result”, we can write:</p>
-<div id="ce2ebd27" class="cell" data-execution_count="18">
+<div id="fe380ef9" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>yao.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">"result$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
@@ -1528,7 +1528,7 @@ Practice
 <ul>
 <li>Select all columns in the <code>yao</code> DataFrame that start with “is_”. Assign the result to a new DataFrame called <code>yao_is_columns</code>. Then print this new DataFrame.</li>
 </ul>
-<div id="89c1bbe4" class="cell" data-execution_count="19">
+<div id="4ffbeb82" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1537,7 +1537,7 @@ Practice
 <section id="change-column-names-with-rename" class="level2" data-number="14.9">
 <h2 data-number="14.9" class="anchored" data-anchor-id="change-column-names-with-rename"><span class="header-section-number">14.9</span> Change column names with <code>rename()</code></h2>
 <p>We can use the <code>rename()</code> method to change column names:</p>
-<div id="88f63ede" class="cell" data-execution_count="20">
+<div id="dcbbf736" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>yao.rename(columns<span class="op">=</span>{<span class="st">"age"</span>: <span class="st">"patient_age"</span>, <span class="st">"sex"</span>: <span class="st">"patient_sex"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
@@ -1712,7 +1712,7 @@ Practice
 <ul>
 <li>Rename the <code>age_category</code> column in the <code>yao</code> DataFrame to <code>age_cat</code>. Assign the result to a new DataFrame called <code>yao_age_cat</code>. Then print this new DataFrame.</li>
 </ul>
-<div id="0eb50e0d" class="cell" data-execution_count="21">
+<div id="6b9eebe7" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1722,7 +1722,7 @@ Practice
 <h2 data-number="14.10" class="anchored" data-anchor-id="cleaning-messy-column-names"><span class="header-section-number">14.10</span> Cleaning messy column names</h2>
 <p>For cleaning column names, you can use regular expressions with the <code>str.replace()</code> method in pandas.</p>
 <p>Here’s how you can do it on a test DataFrame with messy column names. Messy column names are names with spaces, special characters, or other non-alphanumeric characters.</p>
-<div id="b3fe9826" class="cell" data-execution_count="22">
+<div id="b59680eb" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>test_df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"good_name"</span>: <span class="bu">range</span>(<span class="dv">3</span>), <span class="st">"bad name"</span>: <span class="bu">range</span>(<span class="dv">3</span>), <span class="st">"bad*@name*2"</span>: <span class="bu">range</span>(<span class="dv">3</span>)}</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1766,7 +1766,7 @@ Practice
 </div>
 </div>
 <p>Such column names are not ideal because, for example, we cannot select them with the dot operator the way we can for clean names:</p>
-<div id="d04d3576" class="cell" data-execution_count="23">
+<div id="9422452f" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>test_df.good_name  <span class="co"># this works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>0    0
@@ -1776,19 +1776,19 @@ Name: good_name, dtype: int64</code></pre>
 </div>
 </div>
 <p>But this does not work:</p>
-<div id="434127d7" class="cell" data-execution_count="24">
+<div id="ea4fb9df" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>test_df.bad name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>      test_df.bad name
                  ^
 SyntaxError: invalid syntax</code></pre>
 <p>We can automatically clean such names using the <code>str.replace()</code> method along with regular expressions.</p>
-<div id="e399ea78" class="cell" data-execution_count="25">
+<div id="46e5917d" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>clean_names <span class="op">=</span> test_df.columns.<span class="bu">str</span>.replace(<span class="vs">r'[^a-zA-Z0-9]'</span>, <span class="st">'_'</span>, regex<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The regular expression <code>r'[^a-zA-Z0-9]'</code> matches any character that is not a letter (either uppercase or lowercase) or a digit. The <code>str.replace()</code> method replaces these characters with an underscore (‘_’) to make the column names more legible and usable in dot notation.</p>
 <p>Now we can replace the column names in the DataFrame with the cleaned names:</p>
-<div id="ef999c57" class="cell" data-execution_count="26">
+<div id="2334b8e3" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>test_df.columns <span class="op">=</span> clean_names</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>test_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -1843,7 +1843,7 @@ Practice
 <ul>
 <li>Consider the data frame defined below with messy column names. Use the <code>str.replace()</code> method to clean the column names.</li>
 </ul>
-<div id="fc6bda93" class="cell" data-execution_count="27">
+<div id="87ebc7db" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cleaning_practice <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Aloha"</span>: <span class="bu">range</span>(<span class="dv">3</span>), <span class="st">"Bell Chart"</span>: <span class="bu">range</span>(<span class="dv">3</span>), <span class="st">"Animals@the zoo"</span>: <span class="bu">range</span>(<span class="dv">3</span>)}</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>)</span>

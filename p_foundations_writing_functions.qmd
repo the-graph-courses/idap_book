@@ -175,7 +175,8 @@ food_df
 ::: {.callout-tip title="Practice"}
 ### BMI Function
 
-Create a function named `calc_bmi` that calculates the Body Mass Index (BMI) for one or more individuals, then apply the function by running the code chunk further below.
+Create a function named `calc_bmi` that calculates the Body Mass Index (BMI) for one or more individuals, then apply the function by running the code chunk further below. The formula for BMI is weight (kg) divided by height (m) squared.
+
 
 ```{python}
 # Your code here

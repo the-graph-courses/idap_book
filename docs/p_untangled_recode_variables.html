@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Conditional transformations in pandas – Introduction to Data Science with Python</title>
+<title>17&nbsp; Conditional Transformations of Variables – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_recode_variables.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_recode_variables.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,24 +329,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">17.1</span> Introduction</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">17.2</span> Learning objectives</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">17.2</span> Learning Objectives</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">17.3</span> Packages</a></li>
-  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets"><span class="header-section-number">17.4</span> Datasets</a></li>
-  <li><a href="#introduction-to-case_when" id="toc-introduction-to-case_when" class="nav-link" data-scroll-target="#introduction-to-case_when"><span class="header-section-number">17.5</span> Introduction to <code>case_when()</code></a></li>
-  <li><a href="#a-catch-all-condition" id="toc-a-catch-all-condition" class="nav-link" data-scroll-target="#a-catch-all-condition"><span class="header-section-number">17.7</span> A catch-all condition</a></li>
-  <li><a href="#counting-counties-by-name-characteristics" id="toc-counting-counties-by-name-characteristics" class="nav-link" data-scroll-target="#counting-counties-by-name-characteristics"><span class="header-section-number">17.8</span> Counting counties by name characteristics</a></li>
-  <li><a href="#matching-nans-with-isna" id="toc-matching-nans-with-isna" class="nav-link" data-scroll-target="#matching-nans-with-isna"><span class="header-section-number">17.9</span> Matching NaN’s with <code>isna()</code></a></li>
-  <li><a href="#binary-conditions-np.where" id="toc-binary-conditions-np.where" class="nav-link" data-scroll-target="#binary-conditions-np.where"><span class="header-section-number">17.10</span> Binary conditions: <code>np.where()</code></a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">17.11</span> Wrap up</a></li>
+  <li><a href="#introduction-to-replace" id="toc-introduction-to-replace" class="nav-link" data-scroll-target="#introduction-to-replace"><span class="header-section-number">17.4</span> Introduction to <code>replace()</code></a>
+  <ul class="collapse">
+  <li><a href="#example-expanding-day-names" id="toc-example-expanding-day-names" class="nav-link" data-scroll-target="#example-expanding-day-names"><span class="header-section-number">17.4.1</span> Example: Expanding Day Names</a></li>
+  </ul></li>
+  <li><a href="#handling-missing-values-with-replace" id="toc-handling-missing-values-with-replace" class="nav-link" data-scroll-target="#handling-missing-values-with-replace"><span class="header-section-number">17.5</span> Handling Missing Values with <code>replace()</code></a>
+  <ul class="collapse">
+  <li><a href="#example-replacing-missing-values-in-the-movies-dataset" id="toc-example-replacing-missing-values-in-the-movies-dataset" class="nav-link" data-scroll-target="#example-replacing-missing-values-in-the-movies-dataset"><span class="header-section-number">17.5.1</span> Example: Replacing Missing Values in the Movies Dataset</a></li>
+  <li><a href="#practice-standardize-mpaa-ratings" id="toc-practice-standardize-mpaa-ratings" class="nav-link" data-scroll-target="#practice-standardize-mpaa-ratings"><span class="header-section-number">17.5.2</span> Practice: Standardize MPAA Ratings</a></li>
+  </ul></li>
+  <li><a href="#complex-conditions" id="toc-complex-conditions" class="nav-link" data-scroll-target="#complex-conditions"><span class="header-section-number">17.6</span> Complex Conditions</a>
+  <ul class="collapse">
+  <li><a href="#example-flagging-movies-based-on-gross" id="toc-example-flagging-movies-based-on-gross" class="nav-link" data-scroll-target="#example-flagging-movies-based-on-gross"><span class="header-section-number">17.6.1</span> Example: Flagging Movies Based on Gross</a></li>
+  <li><a href="#practice-flag-movies-based-on-ratings" id="toc-practice-flag-movies-based-on-ratings" class="nav-link" data-scroll-target="#practice-flag-movies-based-on-ratings"><span class="header-section-number">17.6.2</span> Practice: Flag Movies Based on Ratings</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">17.7</span> Wrap-Up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_recode_variables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_recode_variables.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_recode_variables.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional transformations in pandas</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></h1>
 </div>
 
 
@@ -365,294 +373,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">17.1</span> Introduction</h2>
-<p>In the previous lesson, you learned the basics of data transformation using pandas’ <code>assign()</code> method.</p>
-<p>In that lesson, we looked at <em>global</em> transformations; that is, transformations that did the same thing to an entire variable. In this lesson, we will look at how to <em>conditionally</em> manipulate certain rows based on whether or not they meet defined criteria.</p>
-<p>For this, we will mostly use the powerful pandas<code>case_when()</code> method. Note that this was introduced recently, in pandas 2.2, so if you are using an older version of pandas, you will need to upgrade.</p>
-<p>Let’s get started.</p>
+<p>In the previous lesson, you learned the basics of data transformation in pandas.</p>
+<p>In this lesson, we will explore how to <strong>conditionally transform variables</strong> in pandas using methods like <code>replace()</code>, dictionaries, and custom functions. Conditional transformations are essential when you need to recode variables or create new ones based on specific criteria.</p>
+<p>Let’s dive in!</p>
 </section>
 <section id="learning-objectives" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">17.2</span> Learning objectives</h2>
-<ol type="1">
-<li><p>You can transform or create new variables based on conditions using <code>case_when()</code></p></li>
-<li><p>You know how to use a default condition in <code>case_when()</code> to match unmatched cases.</p></li>
-<li><p>You can handle <code>NaN</code> values in <code>case_when()</code> transformations.</p></li>
-<li><p>You understand <code>case_when()</code> conditions priority order.</p></li>
-<li><p>You can use <code>np.where()</code> for binary conditional assignment.</p></li>
-</ol>
+<h2 data-number="17.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">17.2</span> Learning Objectives</h2>
+<p>By the end of this lesson, you will:</p>
+<ul>
+<li>Be able to transform or create new variables based on conditions using <code>replace()</code> and dictionaries.</li>
+<li>Know how to handle <code>NaN</code> values in <code>replace()</code> transformations.</li>
+<li>Be able to define and apply custom functions to recode variables.</li>
+</ul>
 </section>
 <section id="packages" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">17.3</span> Packages</h2>
-<p>This lesson will require pandas and numpy:</p>
-<div id="cc6ca6b6" class="cell" data-execution_count="2">
+<p>This lesson will require <code>pandas</code>, <code>numpy</code>, <code>plotly.express</code>, and <code>vega_datasets</code>:</p>
+<div id="0d713c1f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vega_datasets <span class="im">as</span> vd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="datasets" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="datasets"><span class="header-section-number">17.4</span> Datasets</h2>
-<p>In this lesson, we will use a dataset of counties of the United States with demographic and economic data.</p>
-<p>Below we import it, then add some NAs to the <code>pop_20</code> column, to simulate missing data.</p>
-<div id="cd54c5e6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import and view the dataset</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>counties <span class="op">=</span> pd.read_csv(<span class="st">"data/us_counties_data.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add NAs to the population column</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>counties.loc[counties.index <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>, <span class="st">"pop_20"</span>] <span class="op">=</span> np.nan</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>counties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">state</th>
-<th data-quarto-table-cell-role="th">county</th>
-<th data-quarto-table-cell-role="th">pop_20</th>
-<th data-quarto-table-cell-role="th">area_sq_miles</th>
-<th data-quarto-table-cell-role="th">hh_inc_21</th>
-<th data-quarto-table-cell-role="th">econ_type</th>
-<th data-quarto-table-cell-role="th">unemp_20</th>
-<th data-quarto-table-cell-role="th">foreign_born_num</th>
-<th data-quarto-table-cell-role="th">pop_change_2010_2020</th>
-<th data-quarto-table-cell-role="th">pct_emp_change_2010_2021</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>AL</td>
-<td>Autauga, AL</td>
-<td>NaN</td>
-<td>594.456107</td>
-<td>66444.0</td>
-<td>Nonspecialized</td>
-<td>5.4</td>
-<td>1241.0</td>
-<td>7.758700</td>
-<td>9.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>AL</td>
-<td>Baldwin, AL</td>
-<td>233140.0</td>
-<td>1589.836014</td>
-<td>65658.0</td>
-<td>Recreation</td>
-<td>6.2</td>
-<td>7938.0</td>
-<td>27.159356</td>
-<td>28.2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>AL</td>
-<td>Barbour, AL</td>
-<td>25180.0</td>
-<td>885.008019</td>
-<td>38649.0</td>
-<td>Manufacturing</td>
-<td>7.8</td>
-<td>659.0</td>
-<td>-8.136359</td>
-<td>-13.9</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>PR</td>
-<td>Villalba, PR</td>
-<td>22044.0</td>
-<td>35.636678</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>-15.264833</td>
-<td>-1.2</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>PR</td>
-<td>Yabucoa, PR</td>
-<td>30364.0</td>
-<td>55.214614</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>-19.807069</td>
-<td>0.1</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
-<td>PR</td>
-<td>Yauco, PR</td>
-<td>NaN</td>
-<td>67.711484</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>-18.721309</td>
-<td>-5.3</td>
-</tr>
-</tbody>
-</table>
-
-<p>3226 rows × 10 columns</p>
+<section id="introduction-to-replace" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="introduction-to-replace"><span class="header-section-number">17.4</span> Introduction to <code>replace()</code></h2>
+<p>One common task in data wrangling is to replace values in a column based on certain conditions. The <code>replace()</code> method in pandas is a versatile tool for this purpose.</p>
+<section id="example-expanding-day-names" class="level3" data-number="17.4.1">
+<h3 data-number="17.4.1" class="anchored" data-anchor-id="example-expanding-day-names"><span class="header-section-number">17.4.1</span> Example: Expanding Day Names</h3>
+<p>In the <code>tips</code> dataset, the <code>day</code> column contains abbreviated day names:</p>
+<div id="33216d6c" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>array(['Sun', 'Sat', 'Thur', 'Fri'], dtype=object)</code></pre>
 </div>
 </div>
+<p>Our goal is to replace these abbreviations with the full day names.</p>
+<p>We can create a mapping dictionary that maps the abbreviated names to the full names:</p>
+<div id="a99985cd" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>day_mapping <span class="op">=</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sun"</span>: <span class="st">"Sunday"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sat"</span>: <span class="st">"Saturday"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fri"</span>: <span class="st">"Friday"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Thur"</span>: <span class="st">"Thursday"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The variables in the dataset are:</p>
-<ul>
-<li><code>state</code>, US state</li>
-<li><code>county</code>, US county</li>
-<li><code>pop_20</code>, population estimate for 2020</li>
-<li><code>area_sq_miles</code>, area in square miles</li>
-<li><code>hh_inc_21</code>, median household income for 2021</li>
-<li><code>econ_type</code>, economic type of the county</li>
-<li><code>pop_change_2010_2020</code>, population change between 2010 and 2020</li>
-<li><code>unemp_20</code>, unemployment rate for 2020</li>
-<li><code>pct_emp_change_2010_2021</code>, percentage change in employment between 2010 and 2021</li>
-</ul>
-<p>The variables are collected from a range of sources, including the US Census Bureau, the Bureau of Labor Statistics, and the American Community Survey.</p>
-<p>Let’s also make some subsets of the data to work with.</p>
-<div id="0d401086" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>counties_pop <span class="op">=</span> counties[[<span class="st">"pop_20"</span>]]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counties_income <span class="op">=</span> counties[[<span class="st">"hh_inc_21"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="introduction-to-case_when" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="introduction-to-case_when"><span class="header-section-number">17.5</span> Introduction to <code>case_when()</code></h2>
-<p>To get familiar with <code>case_when()</code>, let’s begin with a simple conditional transformation on the <code>pop_20</code> column of the <code>counties</code> dataset.</p>
-<p>We will make a new column, called “pop_class”, that has the value “Smaller” if the population is below 50,000, and “Larger” if the population is 50,000 or more.</p>
-<div id="f3a652f1" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>counties_pop <span class="op">=</span> counties_pop.assign(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    pop_class<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20.case_when(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">&lt;</span> <span class="dv">50000</span>, <span class="st">"Smaller"</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">&gt;=</span> <span class="dv">50000</span>, <span class="st">"Larger"</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>counties_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">pop_20</th>
-<th data-quarto-table-cell-role="th">pop_class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>233140.0</td>
-<td>Larger</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>25180.0</td>
-<td>Smaller</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>22044.0</td>
-<td>Smaller</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>30364.0</td>
-<td>Smaller</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-</tbody>
-</table>
-
-<p>3226 rows × 2 columns</p>
-</div>
-</div>
-</div>
-<p>The statement <code>case_when([(x.pop_20 &lt; 50000, "Smaller"), (x.pop_20 &gt;= 50000, "Larger")])</code> can be read as: “if <code>pop_20</code> is below 50,000, input ‘Smaller’, else if <code>pop_20</code> is greater than or equal to 50,000, input ‘Larger’”.</p>
-<p>The <code>case_when()</code> syntax may seem a bit foreign. So let’s break it down:</p>
-<ul>
-<li>First, we use the <code>assign()</code> method to create a new column, <code>pop_class</code>.</li>
-<li>Then we use a lambda function to define the <code>pop_class</code> column. Hopefullyou you recall how to write these.</li>
-<li>Then, we use the <code>case_when()</code> method to create the new column.</li>
-<li>Inside the <code>case_when()</code> method, we use a list of tuples.</li>
-<li>Recall that lists are created with square brackets <code>[]</code>.</li>
-<li>Tuples are created with parentheses <code>(itemA, itemB)</code>, with each element in the tuple separated by a comma.</li>
-<li>So the list of tuples is <code>[(conditionA, valueA), (conditionB, valueB)]</code>.</li>
-</ul>
-<hr>
-<p>After creating a new variable with <code>case_when()</code>, you shoul inspect it to make sure the transformation worked as intended.</p>
-<p>Let’s use the <code>value_counts()</code> method to ensure that the numbers and proportions “make sense”:</p>
-<div id="f5f68705" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>counties_pop[<span class="st">"pop_class"</span>].value_counts() <span class="co"># numbers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, we use the <code>replace()</code> method with the mapping dictionary:</p>
+<div id="47491475" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day_full'</span>] <span class="op">=</span> tips[<span class="st">'day'</span>].replace(day_mapping)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tips[[<span class="st">'day'</span>, <span class="st">'day_full'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>pop_class
-Smaller    1773
-Larger      801
-Name: count, dtype: int64</code></pre>
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">day_full</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Sun</td>
+<td>Sunday</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Sun</td>
+<td>Sunday</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sun</td>
+<td>Sunday</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sun</td>
+<td>Sunday</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Sun</td>
+<td>Sunday</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<div id="31746391" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>counties_pop[<span class="st">"pop_class"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>) <span class="co"># proportions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alternatively, we can perform the replacement directly within the <code>replace()</code> method without explicitly defining a dictionary:</p>
+<div id="a7cb4f4b" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day_full'</span>] <span class="op">=</span> tips[<span class="st">'day'</span>].replace({</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sun"</span>: <span class="st">"Sunday"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sat"</span>: <span class="st">"Saturday"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fri"</span>: <span class="st">"Friday"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Thur"</span>: <span class="st">"Thursday"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>tips[[<span class="st">'day'</span>, <span class="st">'day_full'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>pop_class
-Smaller    0.688811
-Larger     0.311189
-Name: proportion, dtype: float64</code></pre>
-</div>
-</div>
-<p>Do these seem reasonable based on the population size of US counties? (Yes!)</p>
-<p>Let’s make it a bit more complex with a third condition for medium-sized counties. Counties with populations from 30,000 to below 100,000 will be labeled “Medium”, and counties with populations of 100,000 and up will be labeled “Large”.</p>
-<div id="a5853f51" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>counties_pop <span class="op">=</span> counties_pop.assign(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    pop_class<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20.case_when(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">&lt;</span> <span class="dv">30000</span>, <span class="st">"Small"</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            ((x.pop_20 <span class="op">&gt;=</span> <span class="dv">30000</span>) <span class="op">&amp;</span> (x.pop_20 <span class="op">&lt;</span> <span class="dv">100000</span>), <span class="st">"Medium"</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">&gt;=</span> <span class="dv">100000</span>, <span class="st">"Large"</span>),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>counties_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -660,54 +484,42 @@ Name: proportion, dtype: float64</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">pop_20</th>
-<th data-quarto-table-cell-role="th">pop_class</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">day_full</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>NaN</td>
-<td>NaN</td>
+<td>Sun</td>
+<td>Sunday</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>233140.0</td>
-<td>Large</td>
+<td>Sun</td>
+<td>Sunday</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>25180.0</td>
-<td>Small</td>
+<td>Sun</td>
+<td>Sunday</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sun</td>
+<td>Sunday</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>22044.0</td>
-<td>Small</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>30364.0</td>
-<td>Medium</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
-<td>NaN</td>
-<td>NaN</td>
+<td data-quarto-table-cell-role="th">4</td>
+<td>Sun</td>
+<td>Sunday</td>
 </tr>
 </tbody>
 </table>
 
-<p>3226 rows × 2 columns</p>
 </div>
 </div>
 </div>
-<p>Note that when we combine multiple conditions with <code>&amp;</code>, we must use parentheses around each condition.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Practice">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -717,394 +529,113 @@ Name: proportion, dtype: float64</code></pre>
 Practice
 </div>
 </div>
-<section id="practice-q-recode-income-class" class="level3 callout-body-container callout-body" data-number="17.5.1">
-<h3 data-number="17.5.1" class="anchored" data-anchor-id="practice-q-recode-income-class"><span class="header-section-number">17.5.1</span> Practice Q: Recode income class</h3>
-<p>The <code>counties_income</code> dataset has a column called <code>hh_inc_21</code> with the median household income in 2021. Make a new column, called <code>income_group</code>, with the following three groups:</p>
+<section id="practice-q-abbreviate-gender" class="level3 callout-body-container callout-body" data-number="17.4.2">
+<h3 data-number="17.4.2" class="anchored" data-anchor-id="practice-q-abbreviate-gender"><span class="header-section-number">17.4.2</span> Practice Q: Abbreviate Gender</h3>
+<p>Using the <code>tips</code> dataset, replace the values in the <code>sex</code> column to abbreviate gender:</p>
 <ul>
-<li>“Below 30k” for counties with income under $30,000</li>
-<li>“30k to 60k” for counties with income between $30,000 and $60,000 (exclusive of 60k)</li>
-<li>“60k and above” for counties with income of $60,000 and up</li>
+<li>Replace <code>"Female"</code> with <code>"F"</code>.</li>
+<li>Replace <code>"Male"</code> with <code>"M"</code>.</li>
 </ul>
-<div id="28f2122e" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the code with your answer:</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Q_income_group <span class="op">=</span> counties_income.assign(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    income_group<span class="op">=</span><span class="kw">lambda</span> x: x.hh_inc_21.case_when(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            (x.hh_inc_21 <span class="op">&lt;</span> <span class="dv">30000</span>, <span class="st">"Below 30k"</span>),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            _________________________________</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            _________________________________</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>Q_income_group[<span class="st">"income_group"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Assign the result to a new column called <code>sex_abbr</code> and display the first few rows.</p>
+<div id="6e208e97" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>Use the <code>value_counts()</code> method to count the proportions of each income group. If you did it correctly, the proportion of counties with median household income below $60,000 should be approximately 60%.</li>
-</ul>
-</section>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Pro-tip">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Pro-tip
-</div>
-</div>
-<section id="denoting-intervals" class="level2 callout-body-container callout-body" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="denoting-intervals"><span class="header-section-number">17.6</span> Denoting intervals</h2>
-<p>When categorizing variables, it’s important to clearly communicate whether each category includes or excludes its boundaries. Here are some common approaches:</p>
-<ol type="1">
-<li>Mathematical notation:
-<ul>
-<li>Use square brackets <code>[]</code> for inclusive bounds and parentheses <code>()</code> for exclusive bounds.</li>
-<li>Example:
-<ul>
-<li>[0, 60,000) : This means under $60,000</li>
-<li>[60,000, 100,000) : This means $60,000 to $99,999</li>
-<li>[100,000, ∞) : This means $100,000 and up. The ∞ symbol stands for infinity.</li>
-</ul></li>
-</ul></li>
-<li>Code-friendly notation:
-<ul>
-<li>Use <code>&gt;=</code> and <code>&lt;=</code> for inclusive bounds.</li>
-<li>Use <code>&gt;</code> and <code>&lt;</code> for exclusive bounds.</li>
-<li>Example:
-<ul>
-<li>x &lt; $60,000 : This means under $60,000</li>
-<li>$60,000 &lt; x &lt; $100,000 : This means $60,000 to $99,999.99…</li>
-<li>x &gt;= $100,000 : This means $100,000 and up</li>
-</ul></li>
-</ul></li>
-<li>Rounded integer ranges (more reader-friendly):
-<ul>
-<li>Round values to integers and use descriptive language.</li>
-<li>Example:
-<ul>
-<li>$0 to $59,999</li>
-<li>$60,000 to $99,999</li>
-<li>$100,000 and up</li>
-</ul></li>
-</ul></li>
-</ol>
-<p>Choose the method that best suits your audience and context.</p>
 </section>
 </div>
 </section>
-<section id="a-catch-all-condition" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="a-catch-all-condition"><span class="header-section-number">17.7</span> A catch-all condition</h2>
-<p>In a <code>case_when()</code> statement, you sometimes want to catch all rows not matched with provided conditions. You can do this with a catch-all condition. This should be something that always returns <code>True</code>. Unfortunately, simply using <code>True</code> as the condition will not work, since we need a <strong>sequence</strong> of True values.</p>
-<p>You could use <code>pd.Series(True, index=df.index)</code> to create a sequence of <code>True</code> values, but perhaps an easier solution is to test whether the values are equal to themselves, using, for example <code>x.pop_20 == x.pop_20</code>:</p>
-<div id="bd7df876" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>counties_pop <span class="op">=</span> counties_pop.assign(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    pop_class<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20.case_when(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            ((x.pop_20 <span class="op">&gt;=</span> <span class="dv">30000</span>) <span class="op">&amp;</span> (x.pop_20 <span class="op">&lt;</span> <span class="dv">100000</span>), <span class="st">"Medium"</span>),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">==</span> x.pop_20, <span class="st">"Other"</span>),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>counties_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="handling-missing-values-with-replace" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="handling-missing-values-with-replace"><span class="header-section-number">17.5</span> Handling Missing Values with <code>replace()</code></h2>
+<p>Sometimes, your dataset may contain missing values (<code>NaN</code> or <code>None</code>), and you may want to replace them with a placeholder or specific value.</p>
+<section id="example-replacing-missing-values-in-the-movies-dataset" class="level3" data-number="17.5.1">
+<h3 data-number="17.5.1" class="anchored" data-anchor-id="example-replacing-missing-values-in-the-movies-dataset"><span class="header-section-number">17.5.1</span> Example: Replacing Missing Values in the Movies Dataset</h3>
+<p>Let’s examine the <code>Creative_Type</code> column in the <code>movies</code> dataset from vega_datasets:</p>
+<div id="ea68dc42" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> vd.data.movies()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">pop_20</th>
-<th data-quarto-table-cell-role="th">pop_class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>233140.0</td>
-<td>Other</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>25180.0</td>
-<td>Other</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>22044.0</td>
-<td>Other</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>30364.0</td>
-<td>Medium</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-</tbody>
-</table>
-
-<p>3226 rows × 2 columns</p>
+<pre><code>Creative_Type
+Contemporary Fiction       1453
+None                        446
+Historical Fiction          350
+                           ... 
+Factual                      49
+Super Hero                   49
+Multiple Creative Types       1
+Name: count, Length: 10, dtype: int64</code></pre>
 </div>
 </div>
+<p>You’ll notice that there are missing values (represented as <code>None</code> in counts). Suppose we decide to replace <code>None</code> and <code>"Multiple Creative Types"</code> with <code>"Unknown/Unclear"</code>.</p>
+<p>We can do this using <code>replace()</code>:</p>
+<div id="59ac65e9" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>] <span class="op">=</span> movies[<span class="st">'Creative_Type'</span>].replace({</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">None</span>: <span class="st">"Unknown/Unclear"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Multiple Creative Types"</span>: <span class="st">"Unknown/Unclear"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This <code>x.pop_20 == x.pop_20</code> condition can be read as “for everything else…”.</p>
-<div class="callout callout-style-default callout-caution callout-titled" title="Watch Out">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Now, let’s verify the replacement:</p>
+<div id="d168c13b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>Creative_Type
+Contemporary Fiction    1453
+Unknown/Unclear          447
+Historical Fiction       350
+                        ... 
+Kids Fiction             141
+Factual                   49
+Super Hero                49
+Name: count, Length: 9, dtype: int64</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Watch Out
-</div>
-</div>
-<section id="order-of-conditions" class="level3 callout-body-container callout-body" data-number="17.7.1">
-<h3 data-number="17.7.1" class="anchored" data-anchor-id="order-of-conditions"><span class="header-section-number">17.7.1</span> Order of conditions</h3>
-<p>It is important to use <code>x.pop_20 == x.pop_20</code> as the <em>final</em> condition in <code>case_when()</code>. If you use it as the first condition, it will take precedence over all others, as seen here:</p>
-<div id="d06866be" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>counties_pop <span class="op">=</span> counties_pop.assign(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    pop_class<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20.case_when(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">==</span> x.pop_20, <span class="st">"Other"</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            ((x.pop_20 <span class="op">&gt;=</span> <span class="dv">30000</span>) <span class="op">&amp;</span> (x.pop_20 <span class="op">&lt;</span> <span class="dv">100000</span>), <span class="st">"Medium"</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>counties_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">pop_20</th>
-<th data-quarto-table-cell-role="th">pop_class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>233140.0</td>
-<td>Other</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>25180.0</td>
-<td>Other</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>22044.0</td>
-<td>Other</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>30364.0</td>
-<td>Other</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-</tbody>
-</table>
-
-<p>3226 rows × 2 columns</p>
-</div>
-</div>
-</div>
-<p>As you can observe, all non-NaN counties are now coded with “Other”, because the <code>x.pop_20 == x.pop_20</code> condition was placed first, and therefore took precedence.</p>
-<p>Statements with case_when are evaluated from top to bottom, so conditions that should be evaluated first should be placed higher in the list.</p>
-</section>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Practice
-</div>
-</div>
-<section id="practice-q-recode-income-class-2" class="level3 callout-body-container callout-body" data-number="17.7.2">
-<h3 data-number="17.7.2" class="anchored" data-anchor-id="practice-q-recode-income-class-2"><span class="header-section-number">17.7.2</span> Practice Q: Recode income class 2</h3>
-<p>Using the <code>counties_income</code> data, and the <code>hh_inc_21</code> column, create a new column called <code>income_class</code> that has the value “Medium income” for counties with median household income from $60,000 to below $100,000 and “Other” for all other counties. (Use a catch-all condition.) Your new dataframe should be called <code>Q_income_class</code>.</p>
-<div id="79f214fb" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="practice-standardize-mpaa-ratings" class="level3 callout-practice" title="Practice" data-number="17.5.2">
+<h3 data-number="17.5.2" class="anchored" data-anchor-id="practice-standardize-mpaa-ratings"><span class="header-section-number">17.5.2</span> Practice: Standardize MPAA Ratings</h3>
+<p>In the <code>movies</code> dataset, the <code>MPAA_Rating</code> column contains movie ratings. Some entries are <code>None</code> or <code>"Not Rated"</code>. Replace these values with <code>"Unrated"</code>.</p>
+<p>Then, use <code>value_counts()</code> to see how many movies are unrated. There should be approximately 699 movies in this category.</p>
+<div id="3b69c78b" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="counting-counties-by-name-characteristics" class="level2" data-number="17.8">
-<h2 data-number="17.8" class="anchored" data-anchor-id="counting-counties-by-name-characteristics"><span class="header-section-number">17.8</span> Counting counties by name characteristics</h2>
-<p>To get more practice with <code>case_when()</code>, let’s explore a fun application of it by analyzing county names.</p>
-<p>We’ll look for counties that have the words “River” or “Rio” (spanish for river) in their names. This may be interesting to know, as these often indicate counties with significant water features.</p>
-<p>First, we’ll use <code>case_when()</code> to create a new column that flags these counties:</p>
-<div id="f1a4adf4" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>counties_names <span class="op">=</span> counties[[<span class="st">"county"</span>]]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>counties_names <span class="op">=</span> counties_names.assign(</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    water_name<span class="op">=</span><span class="kw">lambda</span> x: x.county.case_when(</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            (x.county.<span class="bu">str</span>.contains(<span class="st">"River|Rio"</span>), <span class="st">"River in name"</span>),</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            (x.county <span class="op">==</span> x.county, <span class="st">"Other"</span>),</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>counties_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">county</th>
-<th data-quarto-table-cell-role="th">water_name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Autauga, AL</td>
-<td>Other</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Baldwin, AL</td>
-<td>Other</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Barbour, AL</td>
-<td>Other</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>Villalba, PR</td>
-<td>Other</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>Yabucoa, PR</td>
-<td>Other</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
-<td>Yauco, PR</td>
-<td>Other</td>
-</tr>
-</tbody>
-</table>
-
-<p>3226 rows × 2 columns</p>
+</section>
+<section id="complex-conditions" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="complex-conditions"><span class="header-section-number">17.6</span> Complex Conditions</h2>
+<p>For more complex conditional transformations that cannot be handled with replace(), you can define custom functions and apply them to your DataFrame.</p>
+<section id="example-flagging-movies-based-on-gross" class="level3" data-number="17.6.1">
+<h3 data-number="17.6.1" class="anchored" data-anchor-id="example-flagging-movies-based-on-gross"><span class="header-section-number">17.6.1</span> Example: Flagging Movies Based on Gross</h3>
+<p>Suppose we want to flag movies as “US action movie” or “Global action movie” if they are superhero movies, based on their US and worldwide gross earnings.</p>
+<ul>
+<li>If the US gross and worldwide gross are the same (indicating sales were only in the US), the movie is flagged as a <strong>US action movie</strong>.</li>
+<li>If the worldwide gross is greater than the US gross, the movie is flagged as a <strong>global action movie</strong>.</li>
+<li>Otherwise, the movie is categorized as <strong>Other</strong>.</li>
+</ul>
+<p>We can define a funcion that takes in three arguments and returns the appropriate flag:</p>
+<div id="8f02b174" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function to flag movies based on the conditions</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flag_movie(movie_type, us, worldwide):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> movie_type <span class="op">==</span> <span class="st">'Super Hero'</span> <span class="kw">and</span> us <span class="op">==</span> worldwide:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'US action movie'</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> movie_type <span class="op">==</span> <span class="st">'Super Hero'</span> <span class="kw">and</span> worldwide <span class="op">&gt;</span> us:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Global action movie'</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Other'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p>In this code, we’re using a regular expression <code>"River|Rio"</code> to match either “River” or “Rio” in the county name. The <code>|</code> symbol in regex means “or”. We’re also using our catch-all condition <code>x.county == x.county</code> to label all other counties as “Other”.</p>
-<p>Let’s see how many counties we’ve identified:</p>
-<div id="6f5561b0" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>counties_names[<span class="st">"water_name"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>water_name
-Other            0.99597
-River in name    0.00403
-Name: proportion, dtype: float64</code></pre>
-</div>
-</div>
-<p>Interesting! It looks like about X% of counties have “River” or “Rio” in their name.</p>
-<p>Now, let’s use <code>.query()</code> to keep just those water-related counties:</p>
-<div id="05574df9" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>water_counties <span class="op">=</span> counties_names.query(<span class="st">"water_name == 'Water in name'"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>water_counties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s test it out with a few sets of values:</p>
+<div id="09b8e2dc" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flag_movie(movie_type<span class="op">=</span><span class="st">'Super Hero'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>flag_movie(movie_type<span class="op">=</span><span class="st">'Super Hero'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>flag_movie(movie_type<span class="op">=</span><span class="st">'Comedy'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">county</th>
-<th data-quarto-table-cell-role="th">water_name</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-
+<pre><code>'Other'</code></pre>
 </div>
 </div>
+<p>Now that it works, recall that we need to vectorize this function to apply it to the entire column.</p>
+<div id="f029d58c" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>flag_movie_vec <span class="op">=</span> np.vectorize(flag_movie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Cool! Do you recognize any of these counties?</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Practice
-</div>
-</div>
-<section id="practice-q-find-lake-or-bay-counties" class="level3 callout-body-container callout-body" data-number="17.8.1">
-<h3 data-number="17.8.1" class="anchored" data-anchor-id="practice-q-find-lake-or-bay-counties"><span class="header-section-number">17.8.1</span> Practice Q: Find lake or bay counties</h3>
-<p>In a similar way to what we did with “River” or “Rio”, find counties with “Lake” or “Bay” in their names. Create a new column called <code>lake_bay_name</code> and then use <code>.query()</code> to create a dataframe called <code>lake_bay_counties</code> with only these counties.</p>
-<p>Start with the <code>counties_names</code> dataframe.</p>
-<div id="526e4268" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>How does the proportion of “Lake” or “Bay” counties compare to “River” or “Rio” counties?</p>
-</section>
-</div>
-<p>This example shows how we can use <code>case_when()</code> along with string methods and regular expressions to create meaningful categories based on text data. It’s a powerful way to explore patterns in your dataset!</p>
-</section>
-<section id="matching-nans-with-isna" class="level2" data-number="17.9">
-<h2 data-number="17.9" class="anchored" data-anchor-id="matching-nans-with-isna"><span class="header-section-number">17.9</span> Matching NaN’s with <code>isna()</code></h2>
-<p>As you may have noticed, the <code>pop_20</code> column contains <code>NaN</code> values, and these are not matched with any of the conditions we provided.</p>
-<p>We can match missing values manually with <code>isna()</code>. Below we match <code>NaN</code> populations with <code>isna()</code> and set their population size to “Missing population”:</p>
-<div id="fc87053c" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>counties_pop <span class="op">=</span> counties_pop.assign(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    pop_class<span class="op">=</span><span class="kw">lambda</span> x: x.pop_20.case_when(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">&lt;</span> <span class="dv">50000</span>, <span class="st">"Smaller"</span>),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            (x.pop_20 <span class="op">&gt;=</span> <span class="dv">50000</span>, <span class="st">"Larger"</span>),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            (x.pop_20.isna(), <span class="st">"Missing"</span>),</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>counties_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we can apply it to the entire column:</p>
+<div id="2919fce1" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Action_Flag'</span>] <span class="op">=</span> flag_movie_vec(movies[<span class="st">'Creative_Type'</span>], movies[<span class="st">'US_Gross'</span>], movies[<span class="st">'Worldwide_Gross'</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
@@ -1113,210 +644,207 @@ Practice
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">pop_20</th>
-<th data-quarto-table-cell-role="th">pop_class</th>
+<th data-quarto-table-cell-role="th">Title</th>
+<th data-quarto-table-cell-role="th">US_Gross</th>
+<th data-quarto-table-cell-role="th">Worldwide_Gross</th>
+<th data-quarto-table-cell-role="th">US_DVD_Sales</th>
+<th data-quarto-table-cell-role="th">Production_Budget</th>
+<th data-quarto-table-cell-role="th">Release_Date</th>
+<th data-quarto-table-cell-role="th">MPAA_Rating</th>
+<th data-quarto-table-cell-role="th">Running_Time_min</th>
+<th data-quarto-table-cell-role="th">Distributor</th>
+<th data-quarto-table-cell-role="th">Source</th>
+<th data-quarto-table-cell-role="th">Major_Genre</th>
+<th data-quarto-table-cell-role="th">Creative_Type</th>
+<th data-quarto-table-cell-role="th">Director</th>
+<th data-quarto-table-cell-role="th">Rotten_Tomatoes_Rating</th>
+<th data-quarto-table-cell-role="th">IMDB_Rating</th>
+<th data-quarto-table-cell-role="th">IMDB_Votes</th>
+<th data-quarto-table-cell-role="th">Action_Flag</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
+<td>The Land Girls</td>
+<td>146083.0</td>
+<td>146083.0</td>
 <td>NaN</td>
-<td>Missing</td>
+<td>8000000.0</td>
+<td>Jun 12 1998</td>
+<td>R</td>
+<td>NaN</td>
+<td>Gramercy</td>
+<td>None</td>
+<td>None</td>
+<td>Unknown/Unclear</td>
+<td>None</td>
+<td>NaN</td>
+<td>6.1</td>
+<td>1071.0</td>
+<td>Other</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>233140.0</td>
-<td>Larger</td>
+<td>First Love, Last Rites</td>
+<td>10876.0</td>
+<td>10876.0</td>
+<td>NaN</td>
+<td>300000.0</td>
+<td>Aug 07 1998</td>
+<td>R</td>
+<td>NaN</td>
+<td>Strand</td>
+<td>None</td>
+<td>Drama</td>
+<td>Unknown/Unclear</td>
+<td>None</td>
+<td>NaN</td>
+<td>6.9</td>
+<td>207.0</td>
+<td>Other</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>25180.0</td>
-<td>Smaller</td>
+<td>I Married a Strange Person</td>
+<td>203134.0</td>
+<td>203134.0</td>
+<td>NaN</td>
+<td>250000.0</td>
+<td>Aug 28 1998</td>
+<td>None</td>
+<td>NaN</td>
+<td>Lionsgate</td>
+<td>None</td>
+<td>Comedy</td>
+<td>Unknown/Unclear</td>
+<td>None</td>
+<td>NaN</td>
+<td>6.8</td>
+<td>865.0</td>
+<td>Other</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
 <td>...</td>
 <td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>22044.0</td>
-<td>Smaller</td>
+<td data-quarto-table-cell-role="th">3198</td>
+<td>Zoom</td>
+<td>11989328.0</td>
+<td>12506188.0</td>
+<td>6679409.0</td>
+<td>35000000.0</td>
+<td>Aug 11 2006</td>
+<td>PG</td>
+<td>NaN</td>
+<td>Sony Pictures</td>
+<td>Based on Comic/Graphic Novel</td>
+<td>Adventure</td>
+<td>Super Hero</td>
+<td>Peter Hewitt</td>
+<td>3.0</td>
+<td>3.4</td>
+<td>7424.0</td>
+<td>Global action movie</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>30364.0</td>
-<td>Smaller</td>
+<td data-quarto-table-cell-role="th">3199</td>
+<td>The Legend of Zorro</td>
+<td>45575336.0</td>
+<td>141475336.0</td>
+<td>NaN</td>
+<td>80000000.0</td>
+<td>Oct 28 2005</td>
+<td>PG</td>
+<td>129.0</td>
+<td>Sony Pictures</td>
+<td>Remake</td>
+<td>Adventure</td>
+<td>Historical Fiction</td>
+<td>Martin Campbell</td>
+<td>26.0</td>
+<td>5.7</td>
+<td>21161.0</td>
+<td>Other</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
+<td data-quarto-table-cell-role="th">3200</td>
+<td>The Mask of Zorro</td>
+<td>93828745.0</td>
+<td>233700000.0</td>
 <td>NaN</td>
-<td>Missing</td>
+<td>65000000.0</td>
+<td>Jul 17 1998</td>
+<td>PG-13</td>
+<td>136.0</td>
+<td>Sony Pictures</td>
+<td>Remake</td>
+<td>Adventure</td>
+<td>Historical Fiction</td>
+<td>Martin Campbell</td>
+<td>82.0</td>
+<td>6.7</td>
+<td>4789.0</td>
+<td>Other</td>
 </tr>
 </tbody>
 </table>
 
-<p>3226 rows × 2 columns</p>
+<p>3201 rows × 17 columns</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Practice
-</div>
-</div>
-<section id="practice-q-recode-economic-type" class="level3 callout-body-container callout-body" data-number="17.9.1">
-<h3 data-number="17.9.1" class="anchored" data-anchor-id="practice-q-recode-economic-type"><span class="header-section-number">17.9.1</span> Practice Q: Recode economic type</h3>
-<p>The <code>econ_type</code> column of the <code>counties</code> dataset describes the primary economic activity of the county:</p>
-<div id="5679bf42" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>practice_econ <span class="op">=</span> counties[[<span class="st">"econ_type"</span>]]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>practice_econ.value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To see the distribution of movie categories based on our flag, we can use <code>value_counts()</code>:</p>
+<div id="0cc86e61" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Action_Flag'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
-<pre><code>econ_type               
-Nonspecialized              1237
-Manufacturing                501
-Farming                      444
-Federal/State Government     407
-Recreation                   333
-Mining                       221
-NaN                           83
+<pre><code>Action_Flag
+Other                  3152
+Global action movie      42
+US action movie           7
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<p>Implement the following recoding, storing the new data in a column called <code>econ_type_recode</code>:</p>
+</section>
+<section id="practice-flag-movies-based-on-ratings" class="level3 callout-practice" title="Practice" data-number="17.6.2">
+<h3 data-number="17.6.2" class="anchored" data-anchor-id="practice-flag-movies-based-on-ratings"><span class="header-section-number">17.6.2</span> Practice: Flag Movies Based on Ratings</h3>
+<p>In the <code>movies</code> dataset, flag movies as <strong>Critic-friendly</strong> or <strong>Commercial</strong> based on their Rotten Tomatoes and IMDB ratings.</p>
 <ul>
-<li>Farming, Mining and Manufacturing to “Industry”</li>
-<li>Federal/State Government to “Government”</li>
-<li>Recreation and Nonspecialized to “Other”</li>
-<li>NaNs to “Missing”</li>
+<li>If the Rotten Tomatoes rating is above 80% and the IMDB rating is below 5, the movie is flagged as <strong>Critic-friendly</strong>.</li>
+<li>If the Rotten Tomatoes rating is below 50% and the IMDB rating is above 8, the movie is flagged as <strong>Commercial</strong>.</li>
+<li>Otherwise, the movie is categorized as <strong>Other</strong>.</li>
 </ul>
-<p>To get you started, here is how to recode “Farming, Mining and Manufacturing” to “Industry”:</p>
-<div id="122e05fa" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e0952ed2" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</div>
 </section>
-<section id="binary-conditions-np.where" class="level2" data-number="17.10">
-<h2 data-number="17.10" class="anchored" data-anchor-id="binary-conditions-np.where"><span class="header-section-number">17.10</span> Binary conditions: <code>np.where()</code></h2>
-<p>There is another function similar to <code>case_when()</code> for when we want to apply a binary condition to a variable: <code>np.where()</code>. A binary condition is either <code>True</code> or <code>False</code>.</p>
-<p>Let’s test it out with a simple Series:</p>
-<div id="22429a4e" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>0    1
-1    2
-2    3
-3    4
-4    5
-dtype: int64</code></pre>
-</div>
-</div>
-<div id="c000d56b" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>np.where(x <span class="op">&gt;</span> <span class="dv">3</span>, <span class="st">"Above 3"</span>, <span class="st">"3 or below"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>array(['3 or below', '3 or below', '3 or below', 'Above 3', 'Above 3'],
-      dtype='&lt;U10')</code></pre>
-</div>
-</div>
-<p>As you can see, <code>np.where()</code> returns a new array with the values “Above 3” for all values greater than 3, and “3 or below” for all values less than or equal to 3.</p>
-<p>This is useful when you want to make a quick modification to a variable, and don’t want to type up a whole <code>case_when()</code> statement.</p>
-<p>Let’s try it out on our dataset to classify counties as “Larger” if their population is 50000 or more, and “Smaller” if their population is less than 50000.</p>
-<div id="ea745a39" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>counties_pop <span class="op">=</span> counties_pop.assign(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    pop_class<span class="op">=</span><span class="kw">lambda</span> x: np.where(x.pop_20 <span class="op">&gt;=</span> <span class="dv">50000</span>, <span class="st">"Larger"</span>, <span class="st">"Smaller"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>counties_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">pop_20</th>
-<th data-quarto-table-cell-role="th">pop_class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>NaN</td>
-<td>Smaller</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>233140.0</td>
-<td>Larger</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>25180.0</td>
-<td>Smaller</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3223</td>
-<td>22044.0</td>
-<td>Smaller</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3224</td>
-<td>30364.0</td>
-<td>Smaller</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3225</td>
-<td>NaN</td>
-<td>Smaller</td>
-</tr>
-</tbody>
-</table>
-
-<p>3226 rows × 2 columns</p>
-</div>
-</div>
-</div>
-<p>Nice and easy!</p>
-<p>Since it is only a binary condition, it’s utility is limited, but it can be useful for quick transformations.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Practice
-</div>
-</div>
-<section id="practice-q-recode-income-class-with-np.where" class="level3 callout-body-container callout-body" data-number="17.10.1">
-<h3 data-number="17.10.1" class="anchored" data-anchor-id="practice-q-recode-income-class-with-np.where"><span class="header-section-number">17.10.1</span> Practice Q: Recode income class with np.where()</h3>
-<p>With the <code>counties_income</code> data, make a new column, called <code>income_class</code>, that has the value “Medium income” for counties with median household income between $60,000 and $100,000 (exclusive of 100k) and “Other” for all other counties. Use the <code>np.where()</code> function.</p>
-<div id="9f0e8708" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the code with your answer:</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>Q_income_class <span class="op">=</span> counties_income.assign(</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    income_class<span class="op">=</span><span class="kw">lambda</span> x: np.where(</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Your code here</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</div>
-</section>
-<section id="wrap-up" class="level2" data-number="17.11">
-<h2 data-number="17.11" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">17.11</span> Wrap up</h2>
-<p>Changing or constructing your variables based on conditions on other variables is one of the most repeated data wrangling tasks.</p>
-<p>I hope now that you will feel comfortable using <code>case_when()</code> and <code>np.where()</code> within <code>assign()</code>.</p>
-<p>Soon we will learn more complex pandas operations such as grouping variables and summarizing them.</p>
+<section id="wrap-up" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">17.7</span> Wrap-Up</h2>
+<p>In this lesson, you learned how to conditionally transform variables in pandas using:</p>
+<ul>
+<li>The <code>replace()</code> method with dictionaries to map and replace specific values.</li>
+<li>Handling missing values (<code>NaN</code> or <code>None</code>) during replacements.</li>
+<li>Defining custom functions and applying them to handle complex conditions.</li>
+</ul>
+<p>These techniques are powerful tools for data cleaning and preprocessing, allowing you to reshape your data to meet your analysis needs.</p>
 <p>See you next time!</p>
 
 

@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./p_ai_LLM_functions.html" rel="next">
 <link href="./p_untangled_other_grouped_operations.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -293,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link">
+  <a href="./p_untangled_conditional_transforms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
   </div>
 </li>
@@ -313,6 +314,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using LLMs in Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions_structured.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -360,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="9fd2f5d9" class="cell" data-execution_count="1">
+<div id="7a49ca09" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pd.options.display.max_rows <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -648,7 +672,7 @@ Practice
 </div>
 <div class="callout-body-container callout-body">
 <p>Consider the mock dataset created below:</p>
-<div id="47a60240" class="cell" data-execution_count="2">
+<div id="7e85b78e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.DataFrame(</span>
@@ -703,7 +727,7 @@ Practice
 </div>
 </div>
 <p>Is this data in a wide or long format?</p>
-<div id="c92fcea7" class="cell" data-execution_count="3">
+<div id="b451dc7b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -718,7 +742,7 @@ Practice
 <h2 data-number="20.5" class="anchored" data-anchor-id="pivoting-wide-to-long"><span class="header-section-number">20.5</span> Pivoting wide to long</h2>
 <p>To practice pivoting from a wide to a long format, we’ll consider data from Our World in Data on fossil fuel consumption per capita. You can find the data <a href="https://ourworldindata.org/grapher/fossil-fuels-per-capita">here</a>.</p>
 <p>Below, we read in and view this data on fossil fuel consumption per capita:</p>
-<div id="1c46cd6d" class="cell" data-execution_count="4">
+<div id="bc849038" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fuels_wide <span class="op">=</span> pd.read_csv(<span class="st">"data/oil_per_capita_wide.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fuels_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -870,7 +894,7 @@ Practice
 </div>
 <p>We observe that each observational unit (each country) occupies only one row, with the repeated measurements of fossil fuel consumption (in Kilowatt-hour equivalents) spread out across multiple columns. Hence this dataset is in a wide format.</p>
 <p>To convert to a long format, we can use the convenient <code>melt</code> function. Within <code>melt</code> we define which columns we want to pivot:</p>
-<div id="13e7e2b4" class="cell" data-execution_count="5">
+<div id="23e1d75f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(fuels_wide</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> .melt(id_vars<span class="op">=</span>[<span class="st">'Entity'</span>, <span class="st">'Code'</span>], </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:])</span>
@@ -981,7 +1005,7 @@ Practice
 <li><code>value_vars</code> is the column(s) that will be pivoted. In this case, it’s the years columns.</li>
 </ul>
 <p>The years are now indicated in the variable <code>variable</code>, and all the consumption values occupy a single variable, <code>value</code>.We may wish to rename the <code>variable</code> column to <code>year</code>, and the <code>value</code> column to <code>oil_consumption</code>. This can be done directly in the <code>melt</code> function:</p>
-<div id="cffa7a39" class="cell" data-execution_count="6">
+<div id="9d869c9c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(fuels_wide</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> .melt(id_vars<span class="op">=</span>[<span class="st">'Entity'</span>, <span class="st">'Code'</span>], </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>       value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:],</span>
@@ -1088,7 +1112,7 @@ Practice
 </div>
 </div>
 <p>You may also want to remove the <code>y_</code> in front of each year. This can be achieved with as string operation. We’ll also arrange the data by country and year:</p>
-<div id="433e1b6f" class="cell" data-execution_count="7">
+<div id="0978e021" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    fuels_wide.melt(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        id_vars<span class="op">=</span>[<span class="st">"Entity"</span>, <span class="st">"Code"</span>],</span>
@@ -1204,7 +1228,7 @@ Practice
 <li>We used the <code>sort_values</code> function to sort the data by country and year.</li>
 </ul>
 <p>Now we have a clean, long dataset; great! For later use, let’s now store this data:</p>
-<div id="41eec4da" class="cell" data-execution_count="8">
+<div id="4b3f54a3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fuels_long <span class="op">=</span> (</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    fuels_wide.melt(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        id_vars<span class="op">=</span>[<span class="st">"Entity"</span>, <span class="st">"Code"</span>],</span>
@@ -1227,7 +1251,7 @@ Practice
 </div>
 <div class="callout-body-container callout-body">
 <p>For this practice question, you will use the <code>euro_births_wide</code> dataset from <a href="https://ec.europa.eu/eurostat/databrowser/view/tps00204/default/table">Eurostat</a>. It shows the annual number of births in 50 European countries:</p>
-<div id="25fd4a78" class="cell" data-execution_count="9">
+<div id="785c2859" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>euro_births_wide <span class="op">=</span> pd.read_csv(<span class="st">"data/euro_births_wide.csv"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>euro_births_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -1378,7 +1402,7 @@ Practice
 </div>
 </div>
 <p>The data is in a wide format. Convert it to a long format data frame that has the following column names: “country”, “year” and “births_count”</p>
-<div id="0afbc539" class="cell" data-execution_count="10">
+<div id="eba7dccd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -1391,7 +1415,7 @@ Practice
 <p>While wide data tends to come from external sources (as we have seen above), long data on the other hand, is likely to be created by <em>you</em> while data wrangling, especially in the course of grouped aggregations.</p>
 <p>Let’s see an example of this now.</p>
 <p>We will use a dataset of contracts granted by the city of Chicago in the years 2020 to 2023. You can find more information about the data <a href="https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5/">here</a>. Below we import the data and do some data processing to prepare it for analysis.</p>
-<div id="a2dadb6e" class="cell" data-execution_count="11">
+<div id="d10bcaca" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>contracts_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/chicago_contracts_20_23.csv"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>contracts <span class="op">=</span> (</span>
@@ -1682,7 +1706,7 @@ Practice
 </div>
 <p>Each row corresponds to one contract, and we have each contract’s id number, the year in which they were granted, the amount of the contract, and the vendor’s name and address, among other variables.</p>
 <p>Now, consider the following grouped summary of the <code>contracts</code> dataset, which shows the number of contracts by state of the vendor in each year:</p>
-<div id="06c44125" class="cell" data-execution_count="12">
+<div id="6902a0f2" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>contracts_summary <span class="op">=</span> (</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    contracts.groupby([<span class="st">"state"</span>, <span class="st">"year_of_contract"</span>]).size().reset_index(name<span class="op">=</span><span class="st">"n"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1779,7 +1803,7 @@ Practice
 <p>So, as you now see, long data often can arrive as an output of grouped summaries, among other data manipulations.</p>
 <p>Now, let’s see how to convert such long data into a wide format with <code>pivot</code>.</p>
 <p>The code is quite straightforward:</p>
-<div id="42e3fffb" class="cell" data-execution_count="13">
+<div id="fbbbce83" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    contracts_summary.pivot(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="st">"state"</span>, columns<span class="op">=</span><span class="st">"year_of_contract"</span>, values<span class="op">=</span><span class="st">"n"</span></span>
@@ -1903,7 +1927,7 @@ Practice
 <li><code>values</code> specifies which values will become the core of the wide data format. In our case, it’s the number of contracts. data format.</li>
 </ul>
 <p>You might also want to have the <em>years</em> be your primary observational/statistical unit, with each year occupying one row. This can be carried out similarly to the above example, but with <code>year_of_contract</code> as the index and <code>state</code> as the columns:</p>
-<div id="0af8abbe" class="cell" data-execution_count="14">
+<div id="a07790ac" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    contracts_summary.pivot(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="st">"year_of_contract"</span>, columns<span class="op">=</span><span class="st">"state"</span>, values<span class="op">=</span><span class="st">"n"</span></span>
@@ -2057,7 +2081,7 @@ Practice
 <div class="callout-body-container callout-body">
 <p>The <code>population</code> dataset shows the populations of 219 countries over time.</p>
 <p>Pivot this data into a wide format. Your answer should have 20 columns and 219 rows.</p>
-<div id="e85cfdd1" class="cell" data-execution_count="15">
+<div id="6a6ae819" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> pd.read_csv(<span class="st">"data/tidyr_population.csv"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -2147,7 +2171,7 @@ Practice
 </div>
 </div>
 </div>
-<div id="b9fae584" class="cell" data-execution_count="16">
+<div id="1c48b82d" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -2595,6 +2619,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./p_ai_LLM_functions.html" class="pagination-link" aria-label="Using LLMs in Python for Text Generation">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

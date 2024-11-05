@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_untangled_recode_variables.html" rel="next">
+<link href="./p_untangled_conditional_transforms.html" rel="next">
 <link href="./p_untangled_query_rows.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link">
+  <a href="./p_untangled_conditional_transforms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
   </div>
 </li>
@@ -314,6 +314,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using LLMs in Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions_structured.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,11 +401,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="imports" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">16.3</span> Imports</h2>
 <p>First, let’s import the pandas package:</p>
-<div id="0d91ec80" class="cell" data-execution_count="2">
+<div id="4691beca" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we’ll set an important option that will help us avoid some warnings down the line. Later in the lesson, we’ll discuss this in more detail.</p>
-<div id="c02414ff" class="cell" data-execution_count="3">
+<div id="fa923b5e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.options.mode.copy_on_write <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -390,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="16.4" class="anchored" data-anchor-id="dataset"><span class="header-section-number">16.4</span> Dataset</h2>
 <p>In this lesson, we’ll use a dataset of United States counties with demographic and economic data. You can download the dataset from this link:<a href="https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip">https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip</a>.</p>
 <p>Once you’ve downloaded the file, unzip it and place the <code>us_counties_data.csv</code> file in the <code>data</code> folder for your project.</p>
-<div id="9de15703" class="cell" data-execution_count="4">
+<div id="32932ffc" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>counties <span class="op">=</span> pd.read_csv(<span class="st">"data/us_counties_data.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -500,7 +523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>foreign_born_num</code>: Number of foreign-born residents</li>
 </ul>
 <p>Let’s create a small subset of the dataset with just the area and population columns for illustration.</p>
-<div id="4ffc182f" class="cell" data-execution_count="5">
+<div id="214df559" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Small subset for illustration</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>area_df <span class="op">=</span> counties[[<span class="st">"county"</span>, <span class="st">"area_sq_miles"</span>, <span class="st">"pop_20"</span>]]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -559,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="creating-new-variables" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="creating-new-variables"><span class="header-section-number">16.5</span> Creating New Variables</h2>
 <p>Suppose we want to convert the area from square miles to square kilometers. Since 1 square mile is approximately 2.59 square kilometers, we can create a new variable <code>area_sq_km</code> by multiplying the <code>area_sq_miles</code> column by 2.59.</p>
-<div id="b4746595" class="cell" data-execution_count="6">
+<div id="ee6b67d7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"area_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"area_sq_miles"</span>] <span class="op">*</span> <span class="fl">2.59</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -622,7 +645,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The syntax is very easy to understand, although a bit hard to type.</p>
 <p>With <code>area_df["area_sq_km"]</code>, we’re indicating that we want to create a new column called <code>area_sq_km</code>, then <code>area_df["area_sq_miles"] * 2.59</code> is the expression that computes the values for this new column.</p>
 <p>Let’s add another variable, this time in hectares. The conversion factor is 1 square mile = 259 hectares.</p>
-<div id="ad57c538" class="cell" data-execution_count="7">
+<div id="234189f3" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert area to hectares as well</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"area_hectares"</span>] <span class="op">=</span> area_df[<span class="st">"area_sq_miles"</span>] <span class="op">*</span> <span class="dv">259</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -701,7 +724,7 @@ Practice
 <section id="practice-q-area-in-acres" class="level3 callout-body-container callout-body" data-number="16.5.1">
 <h3 data-number="16.5.1" class="anchored" data-anchor-id="practice-q-area-in-acres"><span class="header-section-number">16.5.1</span> Practice Q: Area in Acres</h3>
 <p>Using the <code>area_df</code> dataset, create a new column called <code>area_acres</code> by multiplying the <code>area_sq_miles</code> variable by 640. Store the result back into <code>area_df</code> and display the DataFrame.</p>
-<div id="94d69394" class="cell" data-execution_count="8">
+<div id="f4c3fd0a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -710,7 +733,7 @@ Practice
 <section id="modifying-existing-variables" class="level2" data-number="16.6">
 <h2 data-number="16.6" class="anchored" data-anchor-id="modifying-existing-variables"><span class="header-section-number">16.6</span> Modifying Existing Variables</h2>
 <p>Suppose we want to round the <code>area_sq_km</code> variable to one decimal place. We can call the <code>round</code> method on the <code>area_sq_km</code> column.</p>
-<div id="77c254a2" class="cell" data-execution_count="9">
+<div id="381d283f" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"area_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"area_sq_km"</span>].<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -788,7 +811,7 @@ Practice
 <section id="practice-q-rounding-area_acres" class="level3 callout-body-container callout-body" data-number="16.6.1">
 <h3 data-number="16.6.1" class="anchored" data-anchor-id="practice-q-rounding-area_acres"><span class="header-section-number">16.6.1</span> Practice Q: Rounding <code>area_acres</code></h3>
 <p>Using the <code>area_df</code> dataset, round the <code>area_acres</code> variable to one decimal place. Update the DataFrame <code>area_df</code> and display it.</p>
-<div id="18980a98" class="cell" data-execution_count="10">
+<div id="58cf424e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -798,7 +821,7 @@ Practice
 <h2 data-number="16.7" class="anchored" data-anchor-id="calculations-with-multiple-variables"><span class="header-section-number">16.7</span> Calculations with Multiple Variables</h2>
 <p>We can create new variables based on multiple existing variables.</p>
 <p>For example, let’s calculate the population density per square kilometer.</p>
-<div id="11713c27" class="cell" data-execution_count="11">
+<div id="91185505" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"pop_20"</span>] <span class="op">/</span> area_df[<span class="st">"area_sq_km"</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -871,7 +894,7 @@ Practice
 </div>
 </div>
 <p>We could tag on the round method to this output to round the result to one decimal place.</p>
-<div id="5b13535c" class="cell" data-execution_count="12">
+<div id="6d3f4928" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> (area_df[<span class="st">"pop_20"</span>] <span class="op">/</span> area_df[<span class="st">"area_sq_km"</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -944,7 +967,7 @@ Practice
 </div>
 </div>
 <p>Or, if you prefer, you can do this in two steps:</p>
-<div id="f1b2b0ee" class="cell" data-execution_count="13">
+<div id="a3758c16" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"pop_20"</span>] <span class="op">/</span> area_df[<span class="st">"area_sq_km"</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>area_df[<span class="st">"pop_per_sq_km"</span>] <span class="op">=</span> area_df[<span class="st">"pop_per_sq_km"</span>].<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1018,7 +1041,7 @@ Practice
 </div>
 </div>
 <p>After calculating the population density, we might want to sort the DataFrame based on this new variable. Let’s sort in descending order.</p>
-<div id="5c5daa04" class="cell" data-execution_count="14">
+<div id="f288d8f8" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by population density in descending order</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>area_df <span class="op">=</span> area_df.sort_values(<span class="st">"pop_per_sq_km"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>area_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1104,7 +1127,7 @@ Practice
 <section id="practice-q-calculate-foreign-born-percentage" class="level3 callout-body-container callout-body" data-number="16.7.1">
 <h3 data-number="16.7.1" class="anchored" data-anchor-id="practice-q-calculate-foreign-born-percentage"><span class="header-section-number">16.7.1</span> Practice Q: Calculate Foreign-Born Percentage</h3>
 <p>Use the <code>counties</code> dataset to calculate the percentage of foreign-born residents in each county. The variable <code>foreign_born_num</code> shows the number of foreign-born residents and <code>pop_20</code> shows the total population. Sort the DataFrame in descending order of the percentage of foreign-born residents. Which two counties have the highest percentage of foreign-born residents?</p>
-<div id="f9ca767b" class="cell" data-execution_count="15">
+<div id="c68b8362" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1114,7 +1137,7 @@ Practice
 <h2 data-number="16.8" class="anchored" data-anchor-id="creating-boolean-variables"><span class="header-section-number">16.8</span> Creating Boolean Variables</h2>
 <p>It is sometimes useful to create Boolean variables to categorize or flag data based on conditions. Boolean variables are variables that take on only two values: <code>True</code> or <code>False</code>.</p>
 <p>Consider the <code>pop_change_2010_2020</code> variable in the <code>counties</code> dataset, which shows the percentage change in population between 2010 and 2020.</p>
-<div id="41db8129" class="cell" data-execution_count="16">
+<div id="82ee6c0e" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>changes_df <span class="op">=</span> counties[[<span class="st">"county"</span>, <span class="st">"pop_change_2010_2020"</span>, <span class="st">"pct_emp_change_2010_2021"</span>]]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>changes_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -1170,7 +1193,7 @@ Practice
 </div>
 <p>We might want to create a Boolean variable to flag whether the population increased. For this, let’s set the <code>pop_increase</code> variable to <code>True</code> if the population increased and <code>False</code> otherwise.</p>
 <p>Running the expression <code>changes_df["pop_change_2010_2020"] &gt; 0</code> returns a Series of Boolean values:</p>
-<div id="5f9aa359" class="cell" data-execution_count="17">
+<div id="2905e78b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>changes_df[<span class="st">"pop_change_2010_2020"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>0        True
@@ -1182,7 +1205,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>We can assign this Series of Boolean values to the <code>pop_increase</code> variable.</p>
-<div id="91d268b9" class="cell" data-execution_count="18">
+<div id="2abb28db" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>changes_df[<span class="st">"pop_increase"</span>] <span class="op">=</span> changes_df[<span class="st">"pop_change_2010_2020"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>changes_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -1243,7 +1266,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>Similarly, we can create a Boolean variable <code>emp_increase</code> for employment change.</p>
-<div id="983783af" class="cell" data-execution_count="19">
+<div id="7187b1ac" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>changes_df[<span class="st">"emp_increase"</span>] <span class="op">=</span> changes_df[<span class="st">"pct_emp_change_2010_2021"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>changes_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -1310,7 +1333,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>We can now filter the DataFrame to find counties where the population increased but employment decreased.</p>
-<div id="a5ab2c0a" class="cell" data-execution_count="20">
+<div id="683a635b" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Counties where population increased but employment decreased</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down <span class="op">=</span> changes_df.query(<span class="st">"pop_increase == True &amp; emp_increase == False"</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1378,7 +1401,7 @@ Name: pop_change_2010_2020, Length: 3226, dtype: bool</code></pre>
 </div>
 </div>
 <p>You could also write this in shorthand like so:</p>
-<div id="7da63799" class="cell" data-execution_count="21">
+<div id="9555fb14" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Counties where population increased but employment decreased</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down <span class="op">=</span> changes_df.query(<span class="st">"pop_increase &amp; ~(emp_increase)"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>pop_up_emp_down</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1459,7 +1482,7 @@ Practice
 <h3 data-number="16.8.1" class="anchored" data-anchor-id="practice-q-categorize-counties-by-foreign-born-population"><span class="header-section-number">16.8.1</span> Practice Q: Categorize Counties by Foreign-Born Population</h3>
 <p>In a previous practice question, we calculated the percentage of foreign-born residents in each county. Now, create a Boolean variable <code>foreign_born_pct_gt_30</code> that is <code>True</code> if the percentage is greater than 30%.</p>
 <p>When you’re done, query the DataFrame to show only counties where <code>foreign_born_pct_gt_30</code> is <code>True</code>. You should get 24 rows.</p>
-<div id="f9e77ff8" class="cell" data-execution_count="22">
+<div id="39e9af76" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1468,7 +1491,7 @@ Practice
 <section id="the-copy-on-write-warning" class="level2" data-number="16.9">
 <h2 data-number="16.9" class="anchored" data-anchor-id="the-copy-on-write-warning"><span class="header-section-number">16.9</span> The Copy-on-Write Warning</h2>
 <p>Earlier in this lesson, we enabled “copy-on-write” mode. Let’s see what happens when this feature is disabled.</p>
-<div id="9bf17499" class="cell" data-execution_count="23">
+<div id="d61be3de" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"mode.copy_on_write"</span>, <span class="va">False</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a small subset of our data</span></span>
@@ -1569,11 +1592,11 @@ Practice
 </div>
 </div>
 <p>When we attempt to modify the subset, we receive a warning:</p>
-<div id="a22c2a8e" class="cell" data-execution_count="24">
+<div id="a97ac298" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the subset</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>subset[<span class="st">'unemp_20'</span>] <span class="op">=</span> subset[<span class="st">'unemp_20'</span>].<span class="bu">round</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_74258/317403666.py:2: SettingWithCopyWarning:
+<pre><code>/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_66120/317403666.py:2: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -2030,7 +2053,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_untangled_recode_variables.html" class="pagination-link" aria-label="Conditional Transformations of Variables">
+      <a href="./p_untangled_conditional_transforms.html" class="pagination-link" aria-label="Conditional Transformations of Variables">
         <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

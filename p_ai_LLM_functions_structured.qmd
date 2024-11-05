@@ -1,0 +1,351 @@
+---
+title: "Using LLMs in Python – Working with Structured Outputs"
+---
+
+
+In this tutorial, we'll delve into how to work with structured outputs from OpenAI's LLMs using Pydantic models. We'll learn how to define expected response formats, parse the LLM outputs into structured data, and integrate this into our data processing workflows.
+
+## Prerequisites
+
+Before starting this tutorial, ensure that you have completed the previous tutorial on basic text generation using LLMs in Python. You should be familiar with setting up the OpenAI client, defining helper functions, and working with variable inputs and DataFrames.
+
+Run the following code to set up the OpenAI client and import the necessary libraries:
+
+```{python}
+import os
+from openai import OpenAI
+import numpy as np
+import pandas as pd
+
+# Initialize the OpenAI client with your API key
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),  # This is the default and can be omitted
+)
+```
+
+And let's define a dataframe with some countries:
+
+```{python}
+countries = ["Nigeria", "Chile", "France", "Canada"]
+country_df = pd.DataFrame({"country": countries})
+country_df
+```
+
+And let's define the chat helperfunction from the last lesson:
+
+```{python}
+def llm_chat(message):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": message}]
+    )
+    return response.choices[0].message.content
+```
+
+## Structured Outputs
+
+In the last lesson, we wrote a function that took a country name as input and returned the most tourist-friendly cities in that country. 
+
+```{python}
+def city_rec(country):
+    prompt = f"What is the most tourist-friendly city in {country}?"
+    response = llm_chat(message=prompt)
+    return response
+
+city_rec_vec = np.vectorize(city_rec)
+```
+
+
+Let's test this function:
+
+```{python}
+city_rec_vec(country_df['country'])
+```
+
+However, what if we want to extract JUST the city name and no other text. One way to do this is is to tell (or beg!) the LLM to return the city name in all capital letters. But this does not always work.
+
+To ensure reliable data extraction, we can define structured outputs using Pydantic models.
+
+First, let's define a helper function that takes a prompt and a Pydantic model, and returns the parsed response. This function encapsulates the boilerplate code required to make API calls with structured outputs.
+
+```{python}
+from pydantic import BaseModel
+
+def llm_structured(message, response_format: BaseModel):
+    completion = client.beta.chat.completions.parse(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": message}],
+        response_format=response_format,
+    )
+    parsed_response = completion.choices[0].message
+    if getattr(parsed_response, 'refusal', None):
+        print(f"Model refused to provide an answer: {parsed_response.refusal}")
+        return None
+    else:
+        return parsed_response.parsed
+```
+
+**Note**: The function `llm_structured` uses `client.beta.chat.completions.parse`, which a newer addition to the OpenAI API. When this feature comes out of beta, this code may need to be updated (likely by just removing the `beta` prefix).
+
+Now, we'll define a Pydantic model for our expected output. Pydantic allows us to define data models with type annotations, which can be used for data validation and parsing.
+
+```{python}
+from pydantic import BaseModel
+
+class Recommendation(BaseModel):
+    city: str
+```
+
+This model specifies that we expect the response to contain a single field `city`, which is a string.
+
+Now, we can update our `city_rec` function to parse the response accordingly.
+
+```{python}
+def city_rec_structured(country):
+    prompt = f"What is the most tourist-friendly city in {country}?"
+    response = llm_structured(message=prompt, response_format=Recommendation)
+    return response.city
+```
+
+Let's test this function:
+
+```{python}
+city_rec_structured("Brazil")
+```
+
+
+
+We can also create a vectorized version to apply to a list of countries or a column in a DataFrame:
+
+```{python}
+# Vectorize the function
+city_rec_structured_vec = np.vectorize(city_rec_structured)
+
+# Apply to the DataFrame
+country_df['city'] = city_rec_structured_vec(country_df['country'])
+print(country_df)
+```
+
+Now, the `city` column contains the structured output from the LLM.
+
+**Practice Question**
+
+*Question*: Create a new function called `get_local_dish_structured` that takes a country name as input and returns the most famous local dish from that country. Then create a vectorized version and apply it to the `country_df` DataFrame to add a new 'local_dish' column.
+
+*Solution*:
+
+First, define a Pydantic model for the expected output:
+
+```{python}
+class DishRecommendation(BaseModel):
+    dish: str
+```
+
+Then, define the function:
+
+```{python}
+def get_local_dish_structured(country):
+    prompt = f"What is the most famous local dish from {country}?"
+    response = llm_structured(message=prompt, response_format=DishRecommendation)
+    return response.dish
+```
+
+Vectorize the function:
+
+```{python}
+get_local_dish_structured_vec = np.vectorize(get_local_dish_structured)
+```
+
+Apply it to the DataFrame:
+
+```{python}
+country_df['local_dish'] = get_local_dish_structured_vec(country_df['country'])
+print(country_df)
+```
+
+## Adding Detailed Descriptions to Models
+
+You can also add detailed descriptions to your Pydantic models to guide the LLM in formatting the response. For example, let's specify that we want the city name to be provided in all capital letters.
+
+```{python}
+from pydantic import Field
+
+class Recommendation(BaseModel):
+    city: str = Field(description="The name of the city in all capital letters")
+```
+
+And redefine our function:
+
+```{python}
+def city_rec_structured_caps(country):
+    prompt = f"What is the most tourist-friendly city in {country}?"
+    response = llm_structured(message=prompt, response_format=Recommendation)
+    return response.city
+```
+
+Test the function:
+
+```{python}
+city_rec_structured_caps("Brazil")
+```
+
+## Defining Extended Structured Output Models
+
+Let's expand our recommendations to include more information, such as safety ratings and the typical cost level for tourists. We'll define a more comprehensive Pydantic model for structured outputs.
+
+First, import the necessary classes:
+
+```{python}
+from pydantic import BaseModel, Field
+from enum import Enum
+```
+
+Define an `Enum` class for the cost levels:
+
+```{python}
+class CostLevel(str, Enum):
+    budget = "Budget-friendly"
+    moderate = "Moderate cost"
+    expensive = "Expensive"
+```
+
+Define the extended model:
+
+```{python}
+class RecommendationDetail(BaseModel):
+    city: str
+    safety: int = Field(description="Safety rating out of 10")
+    cost: CostLevel = Field(description="The typical cost level for tourists")
+```
+
+Now we can define a function that returns a structured response:
+
+```{python}
+def city_rec_detail(country):
+    prompt = (f"What is the most tourist-friendly city in {country}? "
+              "Provide the city name, a safety rating out of 10, and the typical cost level for tourists.")
+    parsed = llm_structured(prompt, RecommendationDetail)
+    return {
+        'city': parsed.city,
+        'safety': parsed.safety,
+        'cost': parsed.cost.value
+    }
+```
+
+Vectorize the function:
+
+```{python}
+city_rec_detail_vec = np.vectorize(city_rec_detail)
+```
+
+Example usage:
+
+```{python}
+# Example usage
+recommendation = city_rec_detail_vec("United Kingdom")
+print(recommendation)
+```
+
+
+Apply to the DataFrame:
+
+```{python}
+# Apply to the DataFrame
+results = city_rec_detail_vec(country_df['country'])
+print(results)
+
+# Convert to DataFrame
+results_df = pd.DataFrame(results.tolist())
+print(results_df)
+
+# Join back to original DataFrame
+country_df_joined = pd.concat([country_df, results_df], axis=1)
+print(country_df_joined)
+```
+
+Now we can convert that output into a DataFrame:
+
+```{python}
+results_df = pd.DataFrame(results.tolist())
+print(results_df)
+```
+
+Join it back to the original DataFrame:
+
+```{python}
+country_df_joined = pd.concat([country_df, results_df], axis=1)
+print(country_df_joined)
+```
+
+**Practice Question**
+
+*Question*: Create a new function called `local_dish_detail` that takes a country name as input and returns the LLM's guess of the most famous local dish from that country, whether it's spicy ("Spicy" or "Not spicy"), an ease of cooking rating (out of 10), and a cost level (Budget, Moderate, or Expensive). Then create a vectorized version and apply it to the `country_df` DataFrame to add a new 'local_dish_detail' column.
+
+*Solution*:
+
+First, define the necessary classes:
+
+```{python}
+class Spiciness(str, Enum):
+    spicy = "Spicy"
+    not_spicy = "Not spicy"
+
+class DishCostLevel(str, Enum):
+    budget = "Budget"
+    moderate = "Moderate"
+    expensive = "Expensive"
+
+class LocalDishDetail(BaseModel):
+    dish: str
+    spiciness: Spiciness = Field(description="Is the dish spicy or not spicy?")
+    ease_of_cooking: int = Field(description="Ease of cooking rating out of 10")
+    cost: DishCostLevel = Field(description="Cost level: Budget, Moderate, or Expensive")
+```
+
+Define the function:
+
+```{python}
+def local_dish_detail(country):
+    prompt = (f"What is the most famous local dish from {country}? "
+              "Provide the dish name, whether it's spicy or not spicy, an ease of cooking rating out of 10, "
+              "and a cost level (Budget, Moderate, or Expensive).")
+    parsed = llm_structured(prompt, LocalDishDetail)
+    return {
+        'dish': parsed.dish,
+        'spiciness': parsed.spiciness.value,
+        'ease_of_cooking': parsed.ease_of_cooking,
+        'cost': parsed.cost.value
+    }
+```
+
+Vectorize the function:
+
+```{python}
+local_dish_detail_vec = np.vectorize(local_dish_detail)
+```
+
+Apply it to the DataFrame:
+
+```{python}
+# Apply to the DataFrame
+dish_details = local_dish_detail_vec(country_df['country'])
+dish_details_df = pd.DataFrame(dish_details.tolist())
+country_df = pd.concat([country_df, dish_details_df], axis=1)
+print(country_df)
+```
+
+This adds the detailed local dish information to your DataFrame.
+
+---
+
+By following this tutorial, you have learned how to:
+
+- Define Pydantic models to specify expected response formats.
+- Use these models to parse structured outputs from the LLM.
+- Integrate structured data into your pandas DataFrame workflows.
+
+# Thing to try later
+
+- Try using parallel processing to speed up your LLM calls.
+- Try parsing PDF documents and extracting structured data from them.
+- Try automating some emails using LLMs. You can return a subject, recipient, and body. 

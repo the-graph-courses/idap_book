@@ -291,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link">
+  <a href="./p_untangled_conditional_transforms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
   </div>
 </li>
@@ -311,6 +311,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using LLMs in Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions_structured.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now create a new script and call it <code>test_cowsay.py</code>.</p>
 <p>Type <code>print(2 + 2)</code> in the file then run it by clicking the run button to make sure everything is working.</p>
 <p>Next, let’s try to import a package we haven’t installed yet. Add the following line to your file:</p>
-<div id="2fb52cde" class="cell" data-execution_count="1">
+<div id="c8043e8e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cowsay.cow(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -456,7 +479,7 @@ pip install cowsay</code></pre>
 <ol type="1">
 <li><p>Open your previous workspace <code>my_first_workspace</code> with the File &gt; Open Folder menu option.</p></li>
 <li><p>Create a Python file and try to use the <code>cowsay</code> package:</p>
-<p>::: {#758198e3 .cell execution_count=2} <code>{.python .cell-code}  import cowsay</code> :::</p></li>
+<p>::: {#539b2612 .cell execution_count=2} <code>{.python .cell-code}  import cowsay</code> :::</p></li>
 </ol>
 <p>This will probably not work because <code>cowsay</code> is not installed in that environment. If it does work, it means you have <code>cowsay</code> installed globally, which is okay.</p>
 <p>Now, let’s return to our main folder/workspace. This is where you’ll conduct most of your analysis for this course.</p>

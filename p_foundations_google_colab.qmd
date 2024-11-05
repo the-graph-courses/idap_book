@@ -2,16 +2,16 @@
 title: 'Introduction to Google Colab'
 ---
 
-## Learning objectives
+## Learning Objectives
 
-1. Understand what Google Colab is and its advantages for data science and AI
-2. Learn how to access and navigate Google Colab
-3. Create and manage notebooks in Google Colab
-4. Run Python code in Colab cells
-5. Use text cells for explanations and formatting
-6. Import and use pre-installed libraries for data analysis
-7. Import and use data to perform analysis
-7. Share Colab notebooks
+- Understand what Google Colab is and its advantages for data science and AI
+- Learn how to access and navigate Google Colab
+- Create and manage notebooks in Google Colab
+- Run Python code in Colab cells
+- Use text cells for explanations and formatting
+- Import and use pre-installed libraries for data analysis
+- Import and use data to perform analysis
+- Share Colab notebooks
 
 ## Introduction
 
@@ -19,11 +19,13 @@ Google Collaboratory, or Colab for short, is a free online platform that allows 
 
 Some limitations if you're running heavy workload though. Can get timeout. But for beginner data analysts, it's perfect and free.
 
-## Getting Started with Colab
+Note that this document is a summary of the video, rather than a replacement. You should watch the video for a more complete experience.
 
-1. Search for "Google Colab" in your browser
-2. Usually the first option. Currently, it's colab.research.google.com, but it may change in the future.
-3. Sign in with your Google account (create a Gmail account if you don't have one)
+## Getting Started With Colab
+
+- Search for "Google Colab" in your favorite search engine. 
+- Usually the first result will be the correct one. Currently, it's colab.research.google.com, but it may change in the future.
+- Sign in with your Google account (create a Gmail account if you don't have one)
 
 ## Creating and Managing Notebooks
 
@@ -31,53 +33,59 @@ Some limitations if you're running heavy workload though. Can get timeout. But f
 - Create a new notebook: File > New Notebook
 - Rename your notebook for better organization
 
-## Working with Code Cells
+## Working With Code Cells
 
+- There should be a button at the top left that allows you to add code or text cells
 - Code cells are where you write and execute Python code
-- Type 1 + 1 in a cell then run it
+- Type ``1 + 1 in a cell then run it
 - Run a cell by clicking the play button or using keyboard shortcuts:
-  - Command + Enter: Run the current cell
-  - Shift + Enter: Run the current cell and create a new one below
-- Try to get comfortable with keyboard shortcuts
+  - `Command + Enter` on Mac or `Ctrl + Enter` on Windows: Run the current cell
+  - `Shift + Enter`: Run the current cell and create a new one below
+- Try to get comfortable with the keyboard shortcuts
+- Your code cell may take a while to run the first time, as the Python engine needs to be initialized
+- When you run a cell, the final output is displayed below the cell
+- To see multiple outputs, explicitly print them with `print()` For example:
 
-
-- May take a while to run the first time. See it's using Python
-- Can change runtime to R actually
-
-
-
-
-- When you run a cell, the output is displayed below the cell
-- To see multiple outputs, explicitly print them
+```python
+print(1)
+print(2)
+```
 
 ## Text Cells
 
 - Use text cells for explanations and titles
-- The toolbar makes formatting easy, but pay attention to the generated markdown
+- The toolbar above the text cell allows you to format text, but pay attention to the generated markdown
 
-## Example of working with data
+## Example of Working With Data
 
-1. Click on the files tab to see the sample_data folder
-2. Import the California housing test dataset:
+- Click on the Files tab to see the "sample_data" folder
+- Import the California housing test dataset:
+
 ```python
 import pandas
 housing_data = pandas.read_csv("/content/sample_data/california_housing_test.csv")
+housing_data.describe()
 ```
-3. View the dataset by typing `housing_data` in a cell and running it
+- View the dataset by typing `housing_data` in a cell and running it
 
-## Practice
+## Practice Q: Importing Data
 
-Import the train dataset and repeat the process
+- Import the "california_housing_train" dataset
+- Use the `describe()` function to get a summary of the dataset
 
-## Getting data from your Drive
+## Getting Data From Your Drive
 
-1. Search for "[your city] housing filetype:csv" on Google
-2. Download the file
-3. In the files tab, click the button to mount your drive
-4. Create a folder and upload the downloaded file
-5. Import it with pandas as before
+- In the Files tab, click the button to mount your drive
+- Create a folder and upload a CSV file from your computer to the folder
+- We can import the data with pandas as before
 
-## Where is your notebook saved?
+
+## Practice Q: Importing Data
+
+- Import a CSV file you uploaded to your drive
+- Use the `describe()` function to get a summary of the dataset
+
+## Where Is Your Notebook Saved?
 
 - All work is automatically saved to your Google Drive
 - Access your notebooks at drive.google.com in the "Colab Notebooks" folder
@@ -90,4 +98,4 @@ Import the train dataset and repeat the process
 
 ## Conclusion
 
-Google Colab provides a powerful, accessible platform for data science and AI projects. Its pre-configured environment, free access to hardware accelerators, and easy sharing features make it an excellent choice for beginners and experienced practitioners alike.
+Google Colab provides a powerful, accessible platform for data science and AI projects. Its pre-configured environment and easy sharing features make it an excellent way to get started with data analysis.

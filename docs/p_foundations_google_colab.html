@@ -291,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link">
+  <a href="./p_untangled_conditional_transforms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
   </div>
 </li>
@@ -315,6 +315,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using LLMs in Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions_structured.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -325,18 +348,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning objectives</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.2</span> Introduction</a></li>
-  <li><a href="#getting-started-with-colab" id="toc-getting-started-with-colab" class="nav-link" data-scroll-target="#getting-started-with-colab"><span class="header-section-number">1.3</span> Getting Started with Colab</a></li>
+  <li><a href="#getting-started-with-colab" id="toc-getting-started-with-colab" class="nav-link" data-scroll-target="#getting-started-with-colab"><span class="header-section-number">1.3</span> Getting Started With Colab</a></li>
   <li><a href="#creating-and-managing-notebooks" id="toc-creating-and-managing-notebooks" class="nav-link" data-scroll-target="#creating-and-managing-notebooks"><span class="header-section-number">1.4</span> Creating and Managing Notebooks</a></li>
-  <li><a href="#working-with-code-cells" id="toc-working-with-code-cells" class="nav-link" data-scroll-target="#working-with-code-cells"><span class="header-section-number">1.5</span> Working with Code Cells</a></li>
+  <li><a href="#working-with-code-cells" id="toc-working-with-code-cells" class="nav-link" data-scroll-target="#working-with-code-cells"><span class="header-section-number">1.5</span> Working With Code Cells</a></li>
   <li><a href="#text-cells" id="toc-text-cells" class="nav-link" data-scroll-target="#text-cells"><span class="header-section-number">1.6</span> Text Cells</a></li>
-  <li><a href="#example-of-working-with-data" id="toc-example-of-working-with-data" class="nav-link" data-scroll-target="#example-of-working-with-data"><span class="header-section-number">1.7</span> Example of working with data</a></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">1.8</span> Practice</a></li>
-  <li><a href="#getting-data-from-your-drive" id="toc-getting-data-from-your-drive" class="nav-link" data-scroll-target="#getting-data-from-your-drive"><span class="header-section-number">1.9</span> Getting data from your Drive</a></li>
-  <li><a href="#where-is-your-notebook-saved" id="toc-where-is-your-notebook-saved" class="nav-link" data-scroll-target="#where-is-your-notebook-saved"><span class="header-section-number">1.10</span> Where is your notebook saved?</a></li>
-  <li><a href="#sharing-and-collaborating" id="toc-sharing-and-collaborating" class="nav-link" data-scroll-target="#sharing-and-collaborating"><span class="header-section-number">1.11</span> Sharing and Collaborating</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.12</span> Conclusion</a></li>
+  <li><a href="#example-of-working-with-data" id="toc-example-of-working-with-data" class="nav-link" data-scroll-target="#example-of-working-with-data"><span class="header-section-number">1.7</span> Example of Working With Data</a></li>
+  <li><a href="#practice-q-importing-data" id="toc-practice-q-importing-data" class="nav-link" data-scroll-target="#practice-q-importing-data"><span class="header-section-number">1.8</span> Practice Q: Importing Data</a></li>
+  <li><a href="#getting-data-from-your-drive" id="toc-getting-data-from-your-drive" class="nav-link" data-scroll-target="#getting-data-from-your-drive"><span class="header-section-number">1.9</span> Getting Data From Your Drive</a></li>
+  <li><a href="#practice-q-importing-data-1" id="toc-practice-q-importing-data-1" class="nav-link" data-scroll-target="#practice-q-importing-data-1"><span class="header-section-number">1.10</span> Practice Q: Importing Data</a></li>
+  <li><a href="#where-is-your-notebook-saved" id="toc-where-is-your-notebook-saved" class="nav-link" data-scroll-target="#where-is-your-notebook-saved"><span class="header-section-number">1.11</span> Where Is Your Notebook Saved?</a></li>
+  <li><a href="#sharing-and-collaborating" id="toc-sharing-and-collaborating" class="nav-link" data-scroll-target="#sharing-and-collaborating"><span class="header-section-number">1.12</span> Sharing and Collaborating</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.13</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_foundations_google_colab.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -363,8 +387,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="learning-objectives" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning objectives</h2>
-<ol type="1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+<ul>
 <li>Understand what Google Colab is and its advantages for data science and AI</li>
 <li>Learn how to access and navigate Google Colab</li>
 <li>Create and manage notebooks in Google Colab</li>
@@ -373,20 +397,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Import and use pre-installed libraries for data analysis</li>
 <li>Import and use data to perform analysis</li>
 <li>Share Colab notebooks</li>
-</ol>
+</ul>
 </section>
 <section id="introduction" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.2</span> Introduction</h2>
 <p>Google Collaboratory, or Colab for short, is a free online platform that allows you to work with Python or R code in your browser. It’s a great way to get started with Python, as you don’t have to install anything on your computer.</p>
 <p>Some limitations if you’re running heavy workload though. Can get timeout. But for beginner data analysts, it’s perfect and free.</p>
+<p>Note that this document is a summary of the video, rather than a replacement. You should watch the video for a more complete experience.</p>
 </section>
 <section id="getting-started-with-colab" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="getting-started-with-colab"><span class="header-section-number">1.3</span> Getting Started with Colab</h2>
-<ol type="1">
-<li>Search for “Google Colab” in your browser</li>
-<li>Usually the first option. Currently, it’s colab.research.google.com, but it may change in the future.</li>
+<h2 data-number="1.3" class="anchored" data-anchor-id="getting-started-with-colab"><span class="header-section-number">1.3</span> Getting Started With Colab</h2>
+<ul>
+<li>Search for “Google Colab” in your favorite search engine.</li>
+<li>Usually the first result will be the correct one. Currently, it’s colab.research.google.com, but it may change in the future.</li>
 <li>Sign in with your Google account (create a Gmail account if you don’t have one)</li>
-</ol>
+</ul>
 </section>
 <section id="creating-and-managing-notebooks" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="creating-and-managing-notebooks"><span class="header-section-number">1.4</span> Creating and Managing Notebooks</h2>
@@ -397,73 +422,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="working-with-code-cells" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="working-with-code-cells"><span class="header-section-number">1.5</span> Working with Code Cells</h2>
+<h2 data-number="1.5" class="anchored" data-anchor-id="working-with-code-cells"><span class="header-section-number">1.5</span> Working With Code Cells</h2>
 <ul>
-<li><p>Code cells are where you write and execute Python code</p></li>
-<li><p>Type 1 + 1 in a cell then run it</p></li>
-<li><p>Run a cell by clicking the play button or using keyboard shortcuts:</p>
+<li>There should be a button at the top left that allows you to add code or text cells</li>
+<li>Code cells are where you write and execute Python code</li>
+<li>Type ``1 + 1 in a cell then run it</li>
+<li>Run a cell by clicking the play button or using keyboard shortcuts:
 <ul>
-<li>Command + Enter: Run the current cell</li>
-<li>Shift + Enter: Run the current cell and create a new one below</li>
+<li><code>Command + Enter</code> on Mac or <code>Ctrl + Enter</code> on Windows: Run the current cell</li>
+<li><code>Shift + Enter</code>: Run the current cell and create a new one below</li>
 </ul></li>
-<li><p>Try to get comfortable with keyboard shortcuts</p></li>
-<li><p>May take a while to run the first time. See it’s using Python</p></li>
-<li><p>Can change runtime to R actually</p></li>
-<li><p>When you run a cell, the output is displayed below the cell</p></li>
-<li><p>To see multiple outputs, explicitly print them</p></li>
+<li>Try to get comfortable with the keyboard shortcuts</li>
+<li>Your code cell may take a while to run the first time, as the Python engine needs to be initialized</li>
+<li>When you run a cell, the final output is displayed below the cell</li>
+<li>To see multiple outputs, explicitly print them with <code>print()</code> For example:</li>
 </ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="text-cells" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="text-cells"><span class="header-section-number">1.6</span> Text Cells</h2>
 <ul>
 <li>Use text cells for explanations and titles</li>
-<li>The toolbar makes formatting easy, but pay attention to the generated markdown</li>
+<li>The toolbar above the text cell allows you to format text, but pay attention to the generated markdown</li>
 </ul>
 </section>
 <section id="example-of-working-with-data" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="example-of-working-with-data"><span class="header-section-number">1.7</span> Example of working with data</h2>
-<ol type="1">
-<li>Click on the files tab to see the sample_data folder</li>
+<h2 data-number="1.7" class="anchored" data-anchor-id="example-of-working-with-data"><span class="header-section-number">1.7</span> Example of Working With Data</h2>
+<ul>
+<li>Click on the Files tab to see the “sample_data” folder</li>
 <li>Import the California housing test dataset:</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>housing_data <span class="op">=</span> pandas.read_csv(<span class="st">"/content/sample_data/california_housing_test.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>housing_data <span class="op">=</span> pandas.read_csv(<span class="st">"/content/sample_data/california_housing_test.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>housing_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
 <li>View the dataset by typing <code>housing_data</code> in a cell and running it</li>
-</ol>
+</ul>
 </section>
-<section id="practice" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="practice"><span class="header-section-number">1.8</span> Practice</h2>
-<p>Import the train dataset and repeat the process</p>
+<section id="practice-q-importing-data" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="practice-q-importing-data"><span class="header-section-number">1.8</span> Practice Q: Importing Data</h2>
+<ul>
+<li>Import the “california_housing_train” dataset</li>
+<li>Use the <code>describe()</code> function to get a summary of the dataset</li>
+</ul>
 </section>
 <section id="getting-data-from-your-drive" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="getting-data-from-your-drive"><span class="header-section-number">1.9</span> Getting data from your Drive</h2>
-<ol type="1">
-<li>Search for “[your city] housing filetype:csv” on Google</li>
-<li>Download the file</li>
-<li>In the files tab, click the button to mount your drive</li>
-<li>Create a folder and upload the downloaded file</li>
-<li>Import it with pandas as before</li>
-</ol>
+<h2 data-number="1.9" class="anchored" data-anchor-id="getting-data-from-your-drive"><span class="header-section-number">1.9</span> Getting Data From Your Drive</h2>
+<ul>
+<li>In the Files tab, click the button to mount your drive</li>
+<li>Create a folder and upload a CSV file from your computer to the folder</li>
+<li>We can import the data with pandas as before</li>
+</ul>
 </section>
-<section id="where-is-your-notebook-saved" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="where-is-your-notebook-saved"><span class="header-section-number">1.10</span> Where is your notebook saved?</h2>
+<section id="practice-q-importing-data-1" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="practice-q-importing-data-1"><span class="header-section-number">1.10</span> Practice Q: Importing Data</h2>
+<ul>
+<li>Import a CSV file you uploaded to your drive</li>
+<li>Use the <code>describe()</code> function to get a summary of the dataset</li>
+</ul>
+</section>
+<section id="where-is-your-notebook-saved" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="where-is-your-notebook-saved"><span class="header-section-number">1.11</span> Where Is Your Notebook Saved?</h2>
 <ul>
 <li>All work is automatically saved to your Google Drive</li>
 <li>Access your notebooks at drive.google.com in the “Colab Notebooks” folder</li>
 </ul>
 </section>
-<section id="sharing-and-collaborating" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="sharing-and-collaborating"><span class="header-section-number">1.11</span> Sharing and Collaborating</h2>
+<section id="sharing-and-collaborating" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="sharing-and-collaborating"><span class="header-section-number">1.12</span> Sharing and Collaborating</h2>
 <ul>
 <li>Share notebooks with a link, giving viewer or editor access</li>
 <li>Access notebooks later from your Google Drive</li>
 <li>Download notebooks in various formats (ipynb, py)</li>
 </ul>
 </section>
-<section id="conclusion" class="level2" data-number="1.12">
-<h2 data-number="1.12" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">1.12</span> Conclusion</h2>
-<p>Google Colab provides a powerful, accessible platform for data science and AI projects. Its pre-configured environment, free access to hardware accelerators, and easy sharing features make it an excellent choice for beginners and experienced practitioners alike.</p>
+<section id="conclusion" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">1.13</span> Conclusion</h2>
+<p>Google Colab provides a powerful, accessible platform for data science and AI projects. Its pre-configured environment and easy sharing features make it an excellent way to get started with data analysis.</p>
 
 
 </section>

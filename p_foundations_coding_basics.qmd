@@ -2,7 +2,7 @@
 title: 'Coding basics'
 ---
 
-## Learning objectives 
+## Learning Objectives 
 
 1. You can write and use comments in Python (single-line and multi-line).
 2. You know how to use Python as a calculator for basic arithmetic operations and understand the order of operations.
@@ -34,7 +34,7 @@ You use the symbol `#`, pronounced "hash" or "pound", to start a comment. Anythi
 2 + 2
 ```
 
-If we just tried to write Addition above the code, it would cause an error:
+If we just tried to write `Addition` above the code, it would cause an error:
 
 ```{python}
 # | eval: False
@@ -86,7 +86,7 @@ Below we add two numbers
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Commenting in Python
+## Practice Q: Commenting in Python
 
 Which of the following code chunks are valid ways to comment code in Python?
 
@@ -112,7 +112,7 @@ Check your answer by trying to run each code chunk.
 
 :::
 
-## Python as a calculator
+## Python as a Calculator
 
 As you have already seen, Python works as a calculator in standard ways. 
 
@@ -148,7 +148,7 @@ There are a few other operators you may come across. For example, `%` is the mod
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Modulo and floor division
+## Practice Q: Modulo and Floor Division
 
 Guess the result of the following code chunks then run them to check your answer:
 
@@ -164,7 +164,7 @@ Guess the result of the following code chunks then run them to check your answer
 
 :::
 
-### Order of operations
+## Order of Operations
 
 Python obeys the standard PEMDAS order of operations (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction). 
 
@@ -177,7 +177,7 @@ For example, multiplication is evaluated before addition, so below the result is
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Evaluating arithmetic expressions
+## Practice Q: Evaluating Arithmetic Expressions
 
 Which, if any, of the following code chunks will evaluate to `10`?
 
@@ -193,7 +193,7 @@ Which, if any, of the following code chunks will evaluate to `10`?
 
 :::
 
-### Using the math library
+## Using the Math Library
 
 We can also use the `math` library to do more complex mathematical operations. For example, we can use the `math.sqrt` function to calculate the square root of a number.
 
@@ -219,7 +219,7 @@ We will learn more about functions later.
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Using the math library
+## Practice Q: Using the Math Library
 
 Using the `math` library, calculate the square root of 81.
 
@@ -229,7 +229,7 @@ Write your code below and run it to check your answers:
 # Your code here
 ```
 
-### Q: Describing the use of the random library
+## Practice Q: Describing the Use of the Random Library
 
 Consider the following code, which generates a random number between 1 and 10:
 
@@ -242,13 +242,43 @@ In that code, identify the library, the function, and the argument(s) to the fun
 
 :::
 
-## Spacing in code
+## Spacing in Code
 
 Good spacing makes your code easier to read. In Python, two simple spacing practices can greatly improve your code's readability: using blank lines and adding spaces around operators.
 
-### Blank Lines
+## Indentation
 
-Use blank lines to separate different parts of your code:
+Python uses indentation to indicate the start and end of loops, functions, and other blocks of code. We'll look at this more in later lessons.
+
+For now, one thing to watch out for is to avoid accidentally including a space before your code
+
+For example, consider the following code chunk:
+
+```{python}
+# | eval: false
+import math
+# Get the square root of 100
+ math.sqrt(100)
+```
+
+Trying to run this code will cause an error:
+
+```
+IndentationError: unexpected indent
+```
+
+This is due to the space before the `math.sqrt` function. We can fix this by removing the space.
+
+```{python}
+# | eval: false
+import math
+# Get the square root of 100
+math.sqrt(100)
+```
+
+## Blank Lines
+
+Use blank lines to separate different parts of your code.
 
 For example, consider the following code chunk:
 
@@ -278,7 +308,7 @@ print(result)
 
 Blank lines help organize your code into logical sections, similar to paragraphs in writing. 
 
-### Spaces around operators
+## Spaces Around Operators
 
 Adding spaces around mathematical operators improves readability:
 
@@ -304,8 +334,6 @@ print(1, 2, 3)
 This practice follows the convention in written English, where we put a space after a comma. It makes lists of items in your code easier to read.
 
 ## Variables in Python
-
-### Create a variable
 
 As you have seen, to store a value for future use in Python, we assign it to a *variable* with the *assignment operator*, `=`.
 
@@ -340,14 +368,37 @@ After we run this code, we would say, in Python terms, that "the value of the `f
 
 A text value like "Joanna" is called a **string**, while a number like 20 is called an **integer**. If the number has a decimal point, it is called a **float**, which is short for "floating-point number".
 
+Below are these three types of variables:
+
+```{python}
+# string variable
+first_name = "Joanna"
+
+# integer variable
+age = 5
+
+# float variable
+height = 1.4
+```
+
+You can check the type of a variable using the `type()` function.
+
+```{python}
+print(type(first_name))
+print(type(age))
+print(type(height))
+```
+
 :::
 
 ::: {.callout-note title='Vocab'}
+
 **Variable**: A named container that can hold a value. In Python, variables can store different types of data, including numbers, strings, and more complex objects.
+
 :::
 
 
-### Reassigning Variables
+## Reassigning Variables
 
 Reassigning a variable is like changing the contents of a container.
 
@@ -369,7 +420,7 @@ You can print the variable to observe the change:
 first_name
 ```
 
-### Working with Variables
+## Working with Variables
 
 Most of your time in Python will be spent manipulating variables. Let's see some quick examples.
 
@@ -408,7 +459,7 @@ full_name
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Variable assignment and manipulation
+## Practice Q: Variable Assignment and Manipulation
 
 Consider the code below. What is the value of the `answer` variable? Think about it, then run the code to check your answer.
 
@@ -422,7 +473,7 @@ answer
 :::
 
 
-### Getting User Input
+## Getting User Input
 
 Though it's not used often in data analysis, the `input()` function from Python is a cool Python feature that you should know about. It allows you to get input from the user.
 
@@ -466,14 +517,14 @@ There are 4 letters in your name
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Using input()
+## Practice Q: Using Input()
 
-Write a short program that asks the user for their favorite color and then prints a message saying "Your favorite color is [color]!". Test your program by running it and entering a color.
+Write a short program that asks the user for their favorite color and then prints a message saying "xx color is my favorite color too!", where xx is the color they entered. Test your program by running it and entering a color.
 
 :::
 
 
-### Common Error with Variables
+## Common Error with Variables
 
 One of the most common errors you'll encounter when working with variables in Python is the `NameError`. This occurs when you try to use a variable that hasn't been defined yet. For example:
 
@@ -512,7 +563,7 @@ At the start though, it's good to try to spot and fix errors yourself.
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Debugging variable errors
+## Practice Q: Debugging Variable Errors
 
 The code below returns an error. Why? (Look carefully)
 
@@ -528,7 +579,7 @@ Hint: look at the variable names. Are they consistent?
 
 :::
 
-### Naming Variables
+## Naming Variables
 
 > There are only ***two hard things*** in Computer Science: cache invalidation and ***naming things***.
 >
@@ -591,7 +642,7 @@ While we recommend snake_case for variable names in Python, you might see other 
 
 ::: {.callout-tip title='Practice'}
 
-### Q: Valid variable naming conventions
+## Practice Q: Valid Variable Naming Conventions
 
 Which of the following variable names are valid in Python? Try to determine this without running the code, then check your answers by attempting to run each line. 
 
@@ -610,7 +661,7 @@ _secret_code = 42
 
 :::
 
-## Wrap-up
+## Wrap-Up
 
 In this lesson, we've covered the fundamental building blocks of Python programming:
 

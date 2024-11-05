@@ -1,206 +1,161 @@
+---
+title: "Using LLMs in Python for Text Generation"
+--- 
 
+In this tutorial, we'll explore how to leverage Large Language Models (LLMs) to generate text using OpenAI's API. We'll use the `gpt-4o-mini` model to generate responses to fixed and variable prompts, optimize our code with helper functions and vectorization, and handle data using pandas DataFrames.
 
+## Setting Up the OpenAI Client
+
+First, we need to set up the OpenAI client using your API key. Ensure you have your API key stored securely, for example, in an environment variable called `OPENAI_API_KEY` within a `.env` file.
 
 ```{python}
-import ell
-import openai
 import os
-import numpy as np
-my_client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
+from openai import OpenAI
 
+# Initialize the OpenAI client with your API key
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),  # This is the default and can be omitted
+)
 ```
 
-# Fixed Questions 
+
+Alternatively, you can pass your API key directly when initializing the client, but be cautious not to expose it in your code, especially if you plan to share or publish it.
+
+## Defining Helper Functions
+
+To simplify our code and avoid repetition, we'll define a helper function for making API calls. API calls often contain boilerplate code, so encapsulating this logic in a function makes our code cleaner and more maintainable.
+
+If you ever forget how to structure the API calls, refer to the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/introduction) or search for "OpenAI Python API example" online.
+
+Here's how we can define the `llm_chat` function:
 
 ```{python}
-@ell.simple(model="gpt-4o-mini", client=my_client)
-def chat(message):
-    return message
+def llm_chat(message):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": message}]
+    )
+    return response.choices[0].message.content
 ```
 
-```{python}
-response = chat("What is the most tourist-friendly city in France?")
-```
+This function takes a `message` as input, sends it to the LLM, and returns the generated response. The `model` parameter specifies which model to use—in this case, `gpt-4o-mini`.
 
-Print for better readability.
+## Fixed Questions
+
+Let's start by sending a fixed question to the `gpt-4o-mini` model and retrieving a response.
+
 ```{python}
+# Example usage
+response = llm_chat("What is the most tourist-friendly city in France?")
 print(response)
 ```
 
-# Variable Questions 
+This code sends the question to the model and prints the response. You should see an answer like "Paris" or a similar response.
+
+**Practice Question**
+
+*Question*: Use the `llm_chat` function to ask the model for the most tourist-friendly city in Brazil.
+
+*Solution*:
 
 ```{python}
-countries = ["Nigeria", "Chile", "France", "Canada"]
+response = llm_chat("What is the most tourist-friendly city in Brazil?")
+print(response)
+```
 
+## Variable Questions
 
-@ell.simple(model="gpt-4o-mini", client=my_client)
+Often, you'll want to generate responses based on varying inputs. Let's create a function that takes a country as input and asks the model for the most tourist-friendly city in that country.
+
+```{python}
 def city_rec(country):
-    return f"What is the most tourist-friendly city in {country}?"
+    prompt = f"What is the most tourist-friendly city in {country}?"
+    return llm_chat(prompt)
+```
 
+Now, you can get recommendations for different countries by calling `city_rec("Country Name")`.
+
+However, if we try to use this function on a list of countries directly, it won't process each country individually. Instead, it will attempt to concatenate the list into a single string, which isn't the desired behavior.
+
+```{python}
+# Incorrect usage
+countries = ["Nigeria", "Chile", "France", "Canada"]
+response = city_rec(countries)
+```
+
+This will likely result in an error or an unexpected prompt like "What is the most tourist-friendly city in ['Nigeria', 'Chile', 'France', 'Canada']?"
+
+To process each country individually, we can use NumPy's `vectorize` function. This function transforms `city_rec` so that it can accept arrays (like lists or NumPy arrays) and apply the function element-wise.
+
+```{python}
+import numpy as np
+
+# Vectorize the function
 city_rec_vec = np.vectorize(city_rec)
+
+# Apply the function to each country
+countries = ["Nigeria", "Chile", "France", "Canada"]
+cities = city_rec_vec(countries)
+cities
 ```
 
+This code will output an array of city recommendations corresponding to each country.
+
+**Practice Question**
+
+*Question*: Given a list of countries `["Japan", "Australia", "Brazil"]`, use the `city_rec_vec` function to get the most tourist-friendly cities in each country.
+
+*Solution*:
+
 ```{python}
-for country in countries:
-    print(city_rec(country))
+countries = ["Japan", "Australia", "Brazil"]
+cities = city_rec_vec(countries)
+cities
 ```
 
+## Working with DataFrames
+
+Handling data in bulk is streamlined using pandas DataFrames. Let's create a DataFrame that we'll use throughout our examples.
 
 ```{python}
-from concurrent.futures import ThreadPoolExecutor
 import pandas as pd
 
-# Convert to DataFrame first
-countries_df = pd.DataFrame({'country': countries})
-
-# Run in parallel with simplified syntax
-with ThreadPoolExecutor() as executor:
-    countries_df['city_rec'] = list(executor.map(city_rec_vec, countries_df['country']))
-
-countries_df
-```
-
-# Use in a dataframe 
-
-```{python}
-import pandas as pd
+# Create a DataFrame of countries
+countries = ["United Kingdom", "Japan", "Brazil", "France"]
 country_df = pd.DataFrame({"country": countries})
 country_df
 ```
 
-
-Using the vectorize method:
-
-```{python}
-country_df['city'] = city_rec_vec(country_df['country'])
-```
-
-Or using the apply method:
-
+Now, we can apply the vectorized city recommendations to our DataFrame.
 
 ```{python}
-country_df['city'] = country_df['country'].apply(city_rec)
+# Apply the vectorized function to the DataFrame
+country_df['city_rec'] = city_rec_vec(country_df['country'])
 country_df
 ```
 
+This adds a new column `city_rec` with the recommended city for each country.
 
-# Two variables
+**Practice Question**
+
+*Question*: Modify the `get_local_dishes` function to take a country name as input and return some of the most famous local dishes from that country. Then apply it to the `country_df` DataFrame to add a column with the most famous local dishes for each country.
+
+*Solution*:
 
 ```{python}
-import ell
-import openai
-import os
-import numpy as np
-import pandas as pd
-
-my_client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
-
-# Define the variables
-attraction_types = ["restaurant", "hotel"]
-cities = ["Paris", "Tokyo", "New York"]
-
-# Create function that takes two parameters
-@ell.simple(model="gpt-4o-mini", client=my_client)
-def attraction_rec(attraction_type, city):
-    return f"What is the best {attraction_type} to visit in {city}?"
+def get_local_dishes(country):
+    prompt = f"What are some of the most famous local dishes from {country}?"
+    return llm_chat(prompt)
 
 # Vectorize the function
-attraction_rec_vec = np.vectorize(attraction_rec)
+get_local_dishes_vec = np.vectorize(get_local_dishes)
 
-# Create dataframe with all combinations
-df = pd.DataFrame([(type, city) for type in attraction_types for city in cities],
-                 columns=['attraction_type', 'city'])
-
-# Apply vectorized function
-df['recommendation'] = attraction_rec_vec(df['attraction_type'], df['city'])
-df
-
-
-# Or using the apply method:
-
-df['recommendation'] = df.apply(lambda row: attraction_rec(row['attraction_type'], row['city']), axis=1)
-df
-```
-
-
-# Structured outputs
-
-UNtil recently, to get structured outputs, you would beg the model saying PLEASE RETURN ONE WORD ONLY AND THIS MUST BE A CITY AND IT MUST CONTAIN NO NUMBERS... And so on. But significantly easier these days. 
-
-With structured outputs, you define the output format. 
-
-```{python}
-from pydantic import BaseModel, Field
-
-
-# Define the structured output model
-class Rec(BaseModel):
-    city: str = Field(description="The name of the city")
-
-
-# Define the function with structured output
-@ell.complex(model="gpt-4o-mini", client=my_client, response_format=Rec)
-def city_rec_clean(country):
-    return f"What is the most tourist-friendly city in {country}?"
-```
-
-```{python}
-recommendation = city_rec_clean("United Kingdom")
-recommendation
-```
-
-```{python}
-recommendation.parsed.city
-```
-
-Now use this in a dataframe.
-
-```{python}
-country_df['city'] = country_df['country'].apply(lambda country: city_rec_clean(country).parsed.city)
+# Apply to the DataFrame
+country_df['local_dishes'] = get_local_dishes_vec(country_df['country'])
 country_df
 ```
 
-Yaay! 
 
-Now let's get more information about the city. Rating out of 5. And best season to visit (FIX the options to be only 4 seasons).
+# Wrap Up
 
-
-```{python}
-from pydantic import BaseModel, Field
-from enum import Enum
-
-
-class Season(str, Enum):
-    spring = "Spring (Feb to May)"
-    summer = "Summer (June to August)"
-    autumn = "Autumn (September to November)"
-    winter = "Winter (December to February)"
-
-
-class RecDetail(BaseModel):
-    city: str = Field(description="The name of the city")
-    safety: int = Field(description="Safety rating out of 10")
-    best_season: Season = Field(description="Best season to visit")
-
-
-@ell.complex(model="gpt-4o-mini", client=my_client, response_format=RecDetail)
-def city_rec_detail(country):
-    return f"""What is the most tourist-friendly city in {country}? 
-    Provide the city name, a safety rating, and the best season to visit."""
-```
-
-```{python}
-# Test the function with a country
-recommendation = city_rec_detail("United Kingdom")
-print(recommendation.parsed)
-```
-
-```{python}
-# Use in a dataframe
-country_df['city'] = country_df['country'].apply(lambda country: city_rec_detail(country).parsed.city)
-country_df['safety'] = country_df['country'].apply(lambda country: city_rec_detail(country).parsed.safety)
-country_df['best_season'] = country_df['country'].apply(lambda country: city_rec_detail(country).parsed.best_season.value)
-country_df
-```
-
-# Advanced (optional). Parallel processing. 
+In this tutorial, we've learned how to use LLMs for text generation, how to handle structured outputs, and how to work with DataFrames. This knowledge will be useful for a wide range of applications, from simple chatbots to complex data analysis workflows.

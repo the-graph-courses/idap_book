@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Conditional Transformations of Variables – Introduction to Data Science with Python</title>
+<title>21&nbsp; Using LLMs in Python for Text Generation – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_untangled_groupby_agg.html" rel="next">
-<link href="./p_untangled_transform_variables.html" rel="prev">
+<link href="./p_ai_LLM_functions_structured.html" rel="next">
+<link href="./p_untangled_pivoting.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_recode_variables.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_ai_LLM_functions.html">Using LLMs in Python</a></li><li class="breadcrumb-item"><a href="./p_ai_LLM_functions.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./p_untangled_recode_variables.html" class="sidebar-item-text sidebar-link active">
+  <a href="./p_untangled_conditional_transforms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
   </div>
 </li>
@@ -318,6 +318,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using LLMs in Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions_structured.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -328,33 +351,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">17.1</span> Introduction</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">17.2</span> Learning Objectives</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">17.3</span> Packages</a></li>
-  <li><a href="#introduction-to-replace" id="toc-introduction-to-replace" class="nav-link" data-scroll-target="#introduction-to-replace"><span class="header-section-number">17.4</span> Introduction to <code>replace()</code></a>
-  <ul class="collapse">
-  <li><a href="#example-expanding-day-names" id="toc-example-expanding-day-names" class="nav-link" data-scroll-target="#example-expanding-day-names"><span class="header-section-number">17.4.1</span> Example: Expanding Day Names</a></li>
-  </ul></li>
-  <li><a href="#handling-missing-values-with-replace" id="toc-handling-missing-values-with-replace" class="nav-link" data-scroll-target="#handling-missing-values-with-replace"><span class="header-section-number">17.5</span> Handling Missing Values with <code>replace()</code></a>
-  <ul class="collapse">
-  <li><a href="#example-replacing-missing-values-in-the-movies-dataset" id="toc-example-replacing-missing-values-in-the-movies-dataset" class="nav-link" data-scroll-target="#example-replacing-missing-values-in-the-movies-dataset"><span class="header-section-number">17.5.1</span> Example: Replacing Missing Values in the Movies Dataset</a></li>
-  <li><a href="#practice-standardize-mpaa-ratings" id="toc-practice-standardize-mpaa-ratings" class="nav-link" data-scroll-target="#practice-standardize-mpaa-ratings"><span class="header-section-number">17.5.2</span> Practice: Standardize MPAA Ratings</a></li>
-  </ul></li>
-  <li><a href="#complex-conditions" id="toc-complex-conditions" class="nav-link" data-scroll-target="#complex-conditions"><span class="header-section-number">17.6</span> Complex Conditions</a>
-  <ul class="collapse">
-  <li><a href="#example-flagging-movies-based-on-gross" id="toc-example-flagging-movies-based-on-gross" class="nav-link" data-scroll-target="#example-flagging-movies-based-on-gross"><span class="header-section-number">17.6.1</span> Example: Flagging Movies Based on Gross</a></li>
-  <li><a href="#practice-flag-movies-based-on-ratings" id="toc-practice-flag-movies-based-on-ratings" class="nav-link" data-scroll-target="#practice-flag-movies-based-on-ratings"><span class="header-section-number">17.6.2</span> Practice: Flag Movies Based on Ratings</a></li>
-  </ul></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">17.7</span> Wrap-Up</a></li>
+  <li><a href="#setting-up-the-openai-client" id="toc-setting-up-the-openai-client" class="nav-link active" data-scroll-target="#setting-up-the-openai-client"><span class="header-section-number">21.1</span> Setting Up the OpenAI Client</a></li>
+  <li><a href="#defining-helper-functions" id="toc-defining-helper-functions" class="nav-link" data-scroll-target="#defining-helper-functions"><span class="header-section-number">21.2</span> Defining Helper Functions</a></li>
+  <li><a href="#fixed-questions" id="toc-fixed-questions" class="nav-link" data-scroll-target="#fixed-questions"><span class="header-section-number">21.3</span> Fixed Questions</a></li>
+  <li><a href="#variable-questions" id="toc-variable-questions" class="nav-link" data-scroll-target="#variable-questions"><span class="header-section-number">21.4</span> Variable Questions</a></li>
+  <li><a href="#working-with-dataframes" id="toc-working-with-dataframes" class="nav-link" data-scroll-target="#working-with-dataframes"><span class="header-section-number">21.5</span> Working with DataFrames</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">22</span> Wrap Up</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_recode_variables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_ai_LLM_functions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_recode_variables.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_ai_LLM_functions.html">Using LLMs in Python</a></li><li class="breadcrumb-item"><a href="./p_ai_LLM_functions.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></h1>
 </div>
 
 
@@ -371,112 +382,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">17.1</span> Introduction</h2>
-<p>In the previous lesson, you learned the basics of data transformation in pandas.</p>
-<p>In this lesson, we will explore how to <strong>conditionally transform variables</strong> in pandas using methods like <code>replace()</code>, dictionaries, and custom functions. Conditional transformations are essential when you need to recode variables or create new ones based on specific criteria.</p>
-<p>Let’s dive in!</p>
+<p>In this tutorial, we’ll explore how to leverage Large Language Models (LLMs) to generate text using OpenAI’s API. We’ll use the <code>gpt-4o-mini</code> model to generate responses to fixed and variable prompts, optimize our code with helper functions and vectorization, and handle data using pandas DataFrames.</p>
+<section id="setting-up-the-openai-client" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="setting-up-the-openai-client"><span class="header-section-number">21.1</span> Setting Up the OpenAI Client</h2>
+<p>First, we need to set up the OpenAI client using your API key. Ensure you have your API key stored securely, for example, in an environment variable called <code>OPENAI_API_KEY</code> within a <code>.env</code> file.</p>
+<div id="5cef8d44" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the OpenAI client with your API key</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.environ.get(<span class="st">"OPENAI_API_KEY"</span>),  <span class="co"># This is the default and can be omitted</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alternatively, you can pass your API key directly when initializing the client, but be cautious not to expose it in your code, especially if you plan to share or publish it.</p>
 </section>
-<section id="learning-objectives" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">17.2</span> Learning Objectives</h2>
-<p>By the end of this lesson, you will:</p>
-<ul>
-<li>Be able to transform or create new variables based on conditions using <code>replace()</code> and dictionaries.</li>
-<li>Know how to handle <code>NaN</code> values in <code>replace()</code> transformations.</li>
-<li>Be able to define and apply custom functions to recode variables.</li>
-</ul>
+<section id="defining-helper-functions" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="defining-helper-functions"><span class="header-section-number">21.2</span> Defining Helper Functions</h2>
+<p>To simplify our code and avoid repetition, we’ll define a helper function for making API calls. API calls often contain boilerplate code, so encapsulating this logic in a function makes our code cleaner and more maintainable.</p>
+<p>If you ever forget how to structure the API calls, refer to the <a href="https://platform.openai.com/docs/api-reference/introduction">OpenAI API documentation</a> or search for “OpenAI Python API example” online.</p>
+<p>Here’s how we can define the <code>llm_chat</code> function:</p>
+<div id="79ea453d" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> llm_chat(message):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function takes a <code>message</code> as input, sends it to the LLM, and returns the generated response. The <code>model</code> parameter specifies which model to use—in this case, <code>gpt-4o-mini</code>.</p>
 </section>
-<section id="packages" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">17.3</span> Packages</h2>
-<p>This lesson will require <code>pandas</code>, <code>numpy</code>, <code>plotly.express</code>, and <code>vega_datasets</code>:</p>
-<div id="0d713c1f" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vega_datasets <span class="im">as</span> vd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="fixed-questions" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="fixed-questions"><span class="header-section-number">21.3</span> Fixed Questions</h2>
+<p>Let’s start by sending a fixed question to the <code>gpt-4o-mini</code> model and retrieving a response.</p>
+<div id="1c442e04" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> llm_chat(<span class="st">"What is the most tourist-friendly city in France?"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Paris is often regarded as the most tourist-friendly city in France. Known as the "City of Light," it offers a wide range of attractions, including iconic landmarks like the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. Paris also has excellent public transportation, including the Metro, which makes it easy for tourists to navigate the city. Additionally, the city is rich in culture, dining options, and shopping experiences, catering to a diverse array of interests. Other cities in France, like Nice and Lyon, are also popular among tourists, but Paris tends to attract the highest number of visitors each year.</code></pre>
+</div>
+</div>
+<p>This code sends the question to the model and prints the response. You should see an answer like “Paris” or a similar response.</p>
+<p><strong>Practice Question</strong></p>
+<p><em>Question</em>: Use the <code>llm_chat</code> function to ask the model for the most tourist-friendly city in Brazil.</p>
+<p><em>Solution</em>:</p>
+<div id="624b24b1" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> llm_chat(<span class="st">"What is the most tourist-friendly city in Brazil?"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rio de Janeiro is often considered the most tourist-friendly city in Brazil. It is famous for its stunning beaches, iconic landmarks like the Christ the Redeemer statue and Sugarloaf Mountain, vibrant culture, and lively atmosphere. The city offers a range of activities for visitors, from exploring the historic neighborhoods of Santa Teresa and Lapa to enjoying the nightlife in Copacabana and Ipanema. Additionally, Rio hosts numerous festivals, including the famous Carnival, which attracts tourists from around the world. Other cities like São Paulo and Salvador also have their unique attractions, but Rio's combination of natural beauty, cultural richness, and accessibility makes it particularly appealing to tourists.</code></pre>
+</div>
 </div>
 </section>
-<section id="introduction-to-replace" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="introduction-to-replace"><span class="header-section-number">17.4</span> Introduction to <code>replace()</code></h2>
-<p>One common task in data wrangling is to replace values in a column based on certain conditions. The <code>replace()</code> method in pandas is a versatile tool for this purpose.</p>
-<section id="example-expanding-day-names" class="level3" data-number="17.4.1">
-<h3 data-number="17.4.1" class="anchored" data-anchor-id="example-expanding-day-names"><span class="header-section-number">17.4.1</span> Example: Expanding Day Names</h3>
-<p>In the <code>tips</code> dataset, the <code>day</code> column contains abbreviated day names:</p>
-<div id="33216d6c" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array(['Sun', 'Sat', 'Thur', 'Fri'], dtype=object)</code></pre>
+<section id="variable-questions" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="variable-questions"><span class="header-section-number">21.4</span> Variable Questions</h2>
+<p>Often, you’ll want to generate responses based on varying inputs. Let’s create a function that takes a country as input and asks the model for the most tourist-friendly city in that country.</p>
+<div id="84b6f313" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec(country):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> llm_chat(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Now, you can get recommendations for different countries by calling <code>city_rec("Country Name")</code>.</p>
+<p>However, if we try to use this function on a list of countries directly, it won’t process each country individually. Instead, it will attempt to concatenate the list into a single string, which isn’t the desired behavior.</p>
+<div id="d7ff2efd" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Incorrect usage</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> [<span class="st">"Nigeria"</span>, <span class="st">"Chile"</span>, <span class="st">"France"</span>, <span class="st">"Canada"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> city_rec(countries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Our goal is to replace these abbreviations with the full day names.</p>
-<p>We can create a mapping dictionary that maps the abbreviated names to the full names:</p>
-<div id="a99985cd" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>day_mapping <span class="op">=</span> {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sun"</span>: <span class="st">"Sunday"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sat"</span>: <span class="st">"Saturday"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fri"</span>: <span class="st">"Friday"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Thur"</span>: <span class="st">"Thursday"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now, we use the <code>replace()</code> method with the mapping dictionary:</p>
-<div id="47491475" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day_full'</span>] <span class="op">=</span> tips[<span class="st">'day'</span>].replace(day_mapping)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tips[[<span class="st">'day'</span>, <span class="st">'day_full'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">day</th>
-<th data-quarto-table-cell-role="th">day_full</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Sun</td>
-<td>Sunday</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Sun</td>
-<td>Sunday</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Sun</td>
-<td>Sunday</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Sun</td>
-<td>Sunday</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Sun</td>
-<td>Sunday</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Alternatively, we can perform the replacement directly within the <code>replace()</code> method without explicitly defining a dictionary:</p>
-<div id="a7cb4f4b" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day_full'</span>] <span class="op">=</span> tips[<span class="st">'day'</span>].replace({</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sun"</span>: <span class="st">"Sunday"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sat"</span>: <span class="st">"Saturday"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fri"</span>: <span class="st">"Friday"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Thur"</span>: <span class="st">"Thursday"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>tips[[<span class="st">'day'</span>, <span class="st">'day_full'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will likely result in an error or an unexpected prompt like “What is the most tourist-friendly city in [‘Nigeria’, ‘Chile’, ‘France’, ‘Canada’]?”</p>
+<p>To process each country individually, we can use NumPy’s <code>vectorize</code> function. This function transforms <code>city_rec</code> so that it can accept arrays (like lists or NumPy arrays) and apply the function element-wise.</p>
+<div id="ad4bae03" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize the function</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>city_rec_vec <span class="op">=</span> np.vectorize(city_rec)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to each country</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> [<span class="st">"Nigeria"</span>, <span class="st">"Chile"</span>, <span class="st">"France"</span>, <span class="st">"Canada"</span>]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>cities <span class="op">=</span> city_rec_vec(countries)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>array(['Lagos is often considered the most tourist-friendly city in Nigeria. As the largest city in the country, it offers a vibrant mix of culture, entertainment, and activities. Visitors can explore its beautiful beaches, such as Tarkwa Bay and Elegushi Beach, enjoy the lively nightlife, and experience the local music scene. Additionally, Lagos hosts numerous festivals, art exhibitions, and markets that showcase Nigerian culture and heritage.\n\nOther cities like Abuja, the capital, and Port Harcourt also offer unique experiences, but Lagos generally provides the most diverse range of attractions for tourists.',
+       'The most tourist-friendly city in Chile is often considered to be Santiago, the capital. Santiago offers a mix of modern amenities, cultural attractions, and easy access to nearby destinations. Visitors can explore historical neighborhoods like Bellavista, enjoy museums and parks, and experience the vibrant local cuisine.\n\nIn addition to Santiago, other cities like Valparaíso and Pucon are also popular among tourists. Valparaíso is known for its colorful houses, artistic scene, and picturesque coastal views, while Pucon is famous for its outdoor activities, including hiking, skiing, and hot springs.\n\nUltimately, the best city for a tourist-friendly experience may depend on what type of activities and experiences one is seeking.',
+       'While France has many cities that are friendly to tourists, Paris is often considered the most tourist-friendly city in the country. It offers a wealth of attractions such as the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral, along with excellent public transportation, numerous English-speaking services, and a wide range of accommodations and dining options. \n\nHowever, cities like Nice, Lyon, and Bordeaux also have their unique charms and tourist amenities, making them popular choices for travelers. Each city has its own attractions and experiences to offer, so the "most tourist-friendly" designation can vary based on personal preferences and interests.',
+       'Determining the "most tourist-friendly city" in Canada can be subjective, as it often depends on individual preferences and interests. However, several cities are frequently considered very welcoming and accommodating to tourists:\n\n1. **Toronto**: As Canada’s largest city, Toronto offers a diverse range of attractions, including the CN Tower, Royal Ontario Museum, and vibrant neighborhoods. The city\'s multicultural population makes it easy for visitors to find familiar cuisines and cultural experiences.\n\n2. **Vancouver**: Known for its stunning natural scenery, including mountains and ocean, Vancouver provides plenty of outdoor activities like hiking, skiing, and beach-related fun. The city also has a very walkable downtown area and excellent public transportation.\n\n3. **Quebec City**: With its rich history and European charm, Quebec City is a favorite for those interested in culture and history. The cobblestone streets of Old Quebec, a UNESCO World Heritage Site, offer a picturesque experience.\n\n4. **Montreal**: This city is known for its vibrant arts scene, festivals, and diverse neighborhoods. Montreal is particularly tourist-friendly in terms of bilingualism (English and French) and welcoming atmosphere.\n\n5. **Victoria**: The capital of British Columbia is known for its beautiful gardens, historical architecture, and breezy coastal ambiance. Victoria is relatively small, making it easy for tourists to explore on foot.\n\nEach of these cities has its unique charm and offerings, making them all tourist-friendly in their own right. Ultimately, the best choice depends on the experiences a visitor is seeking.'],
+      dtype='&lt;U1633')</code></pre>
+</div>
+</div>
+<p>This code will output an array of city recommendations corresponding to each country.</p>
+<p><strong>Practice Question</strong></p>
+<p><em>Question</em>: Given a list of countries <code>["Japan", "Australia", "Brazil"]</code>, use the <code>city_rec_vec</code> function to get the most tourist-friendly cities in each country.</p>
+<p><em>Solution</em>:</p>
+<div id="3bb2077d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> [<span class="st">"Japan"</span>, <span class="st">"Australia"</span>, <span class="st">"Brazil"</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cities <span class="op">=</span> city_rec_vec(countries)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>array(["Tokyo is often considered the most tourist-friendly city in Japan. It combines modern infrastructure with rich cultural experiences, making it accessible for international visitors. The city offers extensive public transportation, including trains and subways, that are often available in English, making navigation easier. \n\nTokyo features a diverse range of attractions, from historical sites like the Senso-ji Temple and the Meiji Shrine to modern landmarks like the Tokyo Skytree and various shopping districts such as Shibuya and Harajuku. Additionally, the city's many museums, parks, and culinary options cater to a wide variety of interests. \n\nOther cities like Kyoto and Osaka are also very tourist-friendly, each offering unique experiences and attractions. However, Tokyo’s combination of amenities, accessibility, and variety typically makes it a top choice for tourists.",
+       'Sydney is often regarded as the most tourist-friendly city in Australia. It boasts iconic landmarks such as the Sydney Opera House and the Sydney Harbour Bridge, as well as beautiful beaches like Bondi and Manly. The city offers a wide array of attractions, including museums, art galleries, and vibrant neighborhoods. Sydney is also known for its excellent public transportation system, making it easy for visitors to navigate the city. Additionally, the hospitable culture and diverse culinary scene contribute to a welcoming atmosphere for tourists. Other cities, such as Melbourne and Brisbane, also offer great experiences but Sydney tends to be the most popular choice for international visitors.',
+       'While there are many beautiful and tourist-friendly cities in Brazil, **Rio de Janeiro** is often considered the most tourist-friendly. It offers a vibrant mix of stunning beaches, iconic landmarks such as the Christ the Redeemer statue and Sugarloaf Mountain, and a rich cultural scene with music, dance, and festivals like Carnaval.\n\nAnother notable mention is **São Paulo**, which, while larger and more cosmopolitan, has a lot to offer in terms of art, cuisine, and nightlife. Additionally, **Salvador** is known for its rich Afro-Brazilian culture and historic architecture, making it very appealing to tourists.\n\nUltimately, the "most tourist-friendly" city can depend on personal interests, including nature, culture, or nightlife. Each city offers unique experiences for visitors.'],
+      dtype='&lt;U883')</code></pre>
+</div>
+</div>
+</section>
+<section id="working-with-dataframes" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="working-with-dataframes"><span class="header-section-number">21.5</span> Working with DataFrames</h2>
+<p>Handling data in bulk is streamlined using pandas DataFrames. Let’s create a DataFrame that we’ll use throughout our examples.</p>
+<div id="b8ecd6d3" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame of countries</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> [<span class="st">"United Kingdom"</span>, <span class="st">"Japan"</span>, <span class="st">"Brazil"</span>, <span class="st">"France"</span>]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>country_df <span class="op">=</span> pd.DataFrame({<span class="st">"country"</span>: countries})</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>country_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -484,35 +504,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">day</th>
-<th data-quarto-table-cell-role="th">day_full</th>
+<th data-quarto-table-cell-role="th">country</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>Sun</td>
-<td>Sunday</td>
+<td>United Kingdom</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>Sun</td>
-<td>Sunday</td>
+<td>Japan</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>Sun</td>
-<td>Sunday</td>
+<td>Brazil</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>Sun</td>
-<td>Sunday</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Sun</td>
-<td>Sunday</td>
+<td>France</td>
 </tr>
 </tbody>
 </table>
@@ -520,123 +530,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Practice
-</div>
-</div>
-<section id="practice-q-abbreviate-gender" class="level3 callout-body-container callout-body" data-number="17.4.2">
-<h3 data-number="17.4.2" class="anchored" data-anchor-id="practice-q-abbreviate-gender"><span class="header-section-number">17.4.2</span> Practice Q: Abbreviate Gender</h3>
-<p>Using the <code>tips</code> dataset, replace the values in the <code>sex</code> column to abbreviate gender:</p>
-<ul>
-<li>Replace <code>"Female"</code> with <code>"F"</code>.</li>
-<li>Replace <code>"Male"</code> with <code>"M"</code>.</li>
-</ul>
-<p>Assign the result to a new column called <code>sex_abbr</code> and display the first few rows.</p>
-<div id="6e208e97" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</div>
-</section>
-</section>
-<section id="handling-missing-values-with-replace" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="handling-missing-values-with-replace"><span class="header-section-number">17.5</span> Handling Missing Values with <code>replace()</code></h2>
-<p>Sometimes, your dataset may contain missing values (<code>NaN</code> or <code>None</code>), and you may want to replace them with a placeholder or specific value.</p>
-<section id="example-replacing-missing-values-in-the-movies-dataset" class="level3" data-number="17.5.1">
-<h3 data-number="17.5.1" class="anchored" data-anchor-id="example-replacing-missing-values-in-the-movies-dataset"><span class="header-section-number">17.5.1</span> Example: Replacing Missing Values in the Movies Dataset</h3>
-<p>Let’s examine the <code>Creative_Type</code> column in the <code>movies</code> dataset from vega_datasets:</p>
-<div id="ea68dc42" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> vd.data.movies()</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>Creative_Type
-Contemporary Fiction       1453
-None                        446
-Historical Fiction          350
-                           ... 
-Factual                      49
-Super Hero                   49
-Multiple Creative Types       1
-Name: count, Length: 10, dtype: int64</code></pre>
-</div>
-</div>
-<p>You’ll notice that there are missing values (represented as <code>None</code> in counts). Suppose we decide to replace <code>None</code> and <code>"Multiple Creative Types"</code> with <code>"Unknown/Unclear"</code>.</p>
-<p>We can do this using <code>replace()</code>:</p>
-<div id="59ac65e9" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>] <span class="op">=</span> movies[<span class="st">'Creative_Type'</span>].replace({</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">None</span>: <span class="st">"Unknown/Unclear"</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Multiple Creative Types"</span>: <span class="st">"Unknown/Unclear"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now, let’s verify the replacement:</p>
-<div id="d168c13b" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>Creative_Type
-Contemporary Fiction    1453
-Unknown/Unclear          447
-Historical Fiction       350
-                        ... 
-Kids Fiction             141
-Factual                   49
-Super Hero                49
-Name: count, Length: 9, dtype: int64</code></pre>
-</div>
-</div>
-</section>
-<section id="practice-standardize-mpaa-ratings" class="level3 callout-practice" title="Practice" data-number="17.5.2">
-<h3 data-number="17.5.2" class="anchored" data-anchor-id="practice-standardize-mpaa-ratings"><span class="header-section-number">17.5.2</span> Practice: Standardize MPAA Ratings</h3>
-<p>In the <code>movies</code> dataset, the <code>MPAA_Rating</code> column contains movie ratings. Some entries are <code>None</code> or <code>"Not Rated"</code>. Replace these values with <code>"Unrated"</code>.</p>
-<p>Then, use <code>value_counts()</code> to see how many movies are unrated. There should be approximately 699 movies in this category.</p>
-<div id="3b69c78b" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="complex-conditions" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="complex-conditions"><span class="header-section-number">17.6</span> Complex Conditions</h2>
-<p>For more complex conditional transformations that cannot be handled with replace(), you can define custom functions and apply them to your DataFrame.</p>
-<section id="example-flagging-movies-based-on-gross" class="level3" data-number="17.6.1">
-<h3 data-number="17.6.1" class="anchored" data-anchor-id="example-flagging-movies-based-on-gross"><span class="header-section-number">17.6.1</span> Example: Flagging Movies Based on Gross</h3>
-<p>Suppose we want to flag movies as “US action movie” or “Global action movie” if they are superhero movies, based on their US and worldwide gross earnings.</p>
-<ul>
-<li>If the US gross and worldwide gross are the same (indicating sales were only in the US), the movie is flagged as a <strong>US action movie</strong>.</li>
-<li>If the worldwide gross is greater than the US gross, the movie is flagged as a <strong>global action movie</strong>.</li>
-<li>Otherwise, the movie is categorized as <strong>Other</strong>.</li>
-</ul>
-<p>We can define a funcion that takes in three arguments and returns the appropriate flag:</p>
-<div id="8f02b174" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function to flag movies based on the conditions</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flag_movie(movie_type, us, worldwide):</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> movie_type <span class="op">==</span> <span class="st">'Super Hero'</span> <span class="kw">and</span> us <span class="op">==</span> worldwide:</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'US action movie'</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> movie_type <span class="op">==</span> <span class="st">'Super Hero'</span> <span class="kw">and</span> worldwide <span class="op">&gt;</span> us:</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Global action movie'</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Other'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Let’s test it out with a few sets of values:</p>
-<div id="09b8e2dc" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flag_movie(movie_type<span class="op">=</span><span class="st">'Super Hero'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>flag_movie(movie_type<span class="op">=</span><span class="st">'Super Hero'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">200</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>flag_movie(movie_type<span class="op">=</span><span class="st">'Comedy'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>'Other'</code></pre>
-</div>
-</div>
-<p>Now that it works, recall that we need to vectorize this function to apply it to the entire column.</p>
-<div id="f029d58c" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>flag_movie_vec <span class="op">=</span> np.vectorize(flag_movie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now we can apply it to the entire column:</p>
-<div id="2919fce1" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Action_Flag'</span>] <span class="op">=</span> flag_movie_vec(movies[<span class="st">'Creative_Type'</span>], movies[<span class="st">'US_Gross'</span>], movies[<span class="st">'Worldwide_Gross'</span>])</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<p>Now, we can apply the vectorized city recommendations to our DataFrame.</p>
+<div id="2ccc4bd2" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the vectorized function to the DataFrame</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>country_df[<span class="st">'city_rec'</span>] <span class="op">=</span> city_rec_vec(country_df[<span class="st">'country'</span>])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>country_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
@@ -644,208 +543,100 @@ Name: count, Length: 9, dtype: int64</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Title</th>
-<th data-quarto-table-cell-role="th">US_Gross</th>
-<th data-quarto-table-cell-role="th">Worldwide_Gross</th>
-<th data-quarto-table-cell-role="th">US_DVD_Sales</th>
-<th data-quarto-table-cell-role="th">Production_Budget</th>
-<th data-quarto-table-cell-role="th">Release_Date</th>
-<th data-quarto-table-cell-role="th">MPAA_Rating</th>
-<th data-quarto-table-cell-role="th">Running_Time_min</th>
-<th data-quarto-table-cell-role="th">Distributor</th>
-<th data-quarto-table-cell-role="th">Source</th>
-<th data-quarto-table-cell-role="th">Major_Genre</th>
-<th data-quarto-table-cell-role="th">Creative_Type</th>
-<th data-quarto-table-cell-role="th">Director</th>
-<th data-quarto-table-cell-role="th">Rotten_Tomatoes_Rating</th>
-<th data-quarto-table-cell-role="th">IMDB_Rating</th>
-<th data-quarto-table-cell-role="th">IMDB_Votes</th>
-<th data-quarto-table-cell-role="th">Action_Flag</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">city_rec</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>The Land Girls</td>
-<td>146083.0</td>
-<td>146083.0</td>
-<td>NaN</td>
-<td>8000000.0</td>
-<td>Jun 12 1998</td>
-<td>R</td>
-<td>NaN</td>
-<td>Gramercy</td>
-<td>None</td>
-<td>None</td>
-<td>Unknown/Unclear</td>
-<td>None</td>
-<td>NaN</td>
-<td>6.1</td>
-<td>1071.0</td>
-<td>Other</td>
+<td>United Kingdom</td>
+<td>While several cities in the United Kingdom are...</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>First Love, Last Rites</td>
-<td>10876.0</td>
-<td>10876.0</td>
-<td>NaN</td>
-<td>300000.0</td>
-<td>Aug 07 1998</td>
-<td>R</td>
-<td>NaN</td>
-<td>Strand</td>
-<td>None</td>
-<td>Drama</td>
-<td>Unknown/Unclear</td>
-<td>None</td>
-<td>NaN</td>
-<td>6.9</td>
-<td>207.0</td>
-<td>Other</td>
+<td>Japan</td>
+<td>While several cities in Japan are known for be...</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>I Married a Strange Person</td>
-<td>203134.0</td>
-<td>203134.0</td>
-<td>NaN</td>
-<td>250000.0</td>
-<td>Aug 28 1998</td>
-<td>None</td>
-<td>NaN</td>
-<td>Lionsgate</td>
-<td>None</td>
-<td>Comedy</td>
-<td>Unknown/Unclear</td>
-<td>None</td>
-<td>NaN</td>
-<td>6.8</td>
-<td>865.0</td>
-<td>Other</td>
+<td>Brazil</td>
+<td>One of the most tourist-friendly cities in Bra...</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3198</td>
-<td>Zoom</td>
-<td>11989328.0</td>
-<td>12506188.0</td>
-<td>6679409.0</td>
-<td>35000000.0</td>
-<td>Aug 11 2006</td>
-<td>PG</td>
-<td>NaN</td>
-<td>Sony Pictures</td>
-<td>Based on Comic/Graphic Novel</td>
-<td>Adventure</td>
-<td>Super Hero</td>
-<td>Peter Hewitt</td>
-<td>3.0</td>
-<td>3.4</td>
-<td>7424.0</td>
-<td>Global action movie</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3199</td>
-<td>The Legend of Zorro</td>
-<td>45575336.0</td>
-<td>141475336.0</td>
-<td>NaN</td>
-<td>80000000.0</td>
-<td>Oct 28 2005</td>
-<td>PG</td>
-<td>129.0</td>
-<td>Sony Pictures</td>
-<td>Remake</td>
-<td>Adventure</td>
-<td>Historical Fiction</td>
-<td>Martin Campbell</td>
-<td>26.0</td>
-<td>5.7</td>
-<td>21161.0</td>
-<td>Other</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3200</td>
-<td>The Mask of Zorro</td>
-<td>93828745.0</td>
-<td>233700000.0</td>
-<td>NaN</td>
-<td>65000000.0</td>
-<td>Jul 17 1998</td>
-<td>PG-13</td>
-<td>136.0</td>
-<td>Sony Pictures</td>
-<td>Remake</td>
-<td>Adventure</td>
-<td>Historical Fiction</td>
-<td>Martin Campbell</td>
-<td>82.0</td>
-<td>6.7</td>
-<td>4789.0</td>
-<td>Other</td>
+<td data-quarto-table-cell-role="th">3</td>
+<td>France</td>
+<td>Paris is widely regarded as the most tourist-f...</td>
 </tr>
 </tbody>
 </table>
 
-<p>3201 rows × 17 columns</p>
 </div>
 </div>
 </div>
-<p>To see the distribution of movie categories based on our flag, we can use <code>value_counts()</code>:</p>
-<div id="0cc86e61" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Action_Flag'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<pre><code>Action_Flag
-Other                  3152
-Global action movie      42
-US action movie           7
-Name: count, dtype: int64</code></pre>
+<p>This adds a new column <code>city_rec</code> with the recommended city for each country.</p>
+<p><strong>Practice Question</strong></p>
+<p><em>Question</em>: Modify the <code>get_local_dishes</code> function to take a country name as input and return some of the most famous local dishes from that country. Then apply it to the <code>country_df</code> DataFrame to add a column with the most famous local dishes for each country.</p>
+<p><em>Solution</em>:</p>
+<div id="d8facad3" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_local_dishes(country):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What are some of the most famous local dishes from </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> llm_chat(prompt)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize the function</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>get_local_dishes_vec <span class="op">=</span> np.vectorize(get_local_dishes)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to the DataFrame</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>country_df[<span class="st">'local_dishes'</span>] <span class="op">=</span> get_local_dishes_vec(country_df[<span class="st">'country'</span>])</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>country_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">city_rec</th>
+<th data-quarto-table-cell-role="th">local_dishes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>United Kingdom</td>
+<td>While several cities in the United Kingdom are...</td>
+<td>The United Kingdom is known for a variety of t...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Japan</td>
+<td>While several cities in Japan are known for be...</td>
+<td>Japan is renowned for its diverse and regional...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Brazil</td>
+<td>One of the most tourist-friendly cities in Bra...</td>
+<td>Brazil boasts a rich and diverse culinary land...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>France</td>
+<td>Paris is widely regarded as the most tourist-f...</td>
+<td>France is renowned for its diverse and rich cu...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </section>
-<section id="practice-flag-movies-based-on-ratings" class="level3 callout-practice" title="Practice" data-number="17.6.2">
-<h3 data-number="17.6.2" class="anchored" data-anchor-id="practice-flag-movies-based-on-ratings"><span class="header-section-number">17.6.2</span> Practice: Flag Movies Based on Ratings</h3>
-<p>In the <code>movies</code> dataset, flag movies as <strong>Critic-friendly</strong> or <strong>Commercial</strong> based on their Rotten Tomatoes and IMDB ratings.</p>
-<ul>
-<li>If the Rotten Tomatoes rating is above 80% and the IMDB rating is below 5, the movie is flagged as <strong>Critic-friendly</strong>.</li>
-<li>If the Rotten Tomatoes rating is below 50% and the IMDB rating is above 8, the movie is flagged as <strong>Commercial</strong>.</li>
-<li>Otherwise, the movie is categorized as <strong>Other</strong>.</li>
-</ul>
-<div id="e0952ed2" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="wrap-up" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">17.7</span> Wrap-Up</h2>
-<p>In this lesson, you learned how to conditionally transform variables in pandas using:</p>
-<ul>
-<li>The <code>replace()</code> method with dictionaries to map and replace specific values.</li>
-<li>Handling missing values (<code>NaN</code> or <code>None</code>) during replacements.</li>
-<li>Defining custom functions and applying them to handle complex conditions.</li>
-</ul>
-<p>These techniques are powerful tools for data cleaning and preprocessing, allowing you to reshape your data to meet your analysis needs.</p>
-<p>See you next time!</p>
+<section id="wrap-up" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> Wrap Up</h1>
+<p>In this tutorial, we’ve learned how to use LLMs for text generation, how to handle structured outputs, and how to work with DataFrames. This knowledge will be useful for a wide range of applications, from simple chatbots to complex data analysis workflows.</p>
 
 
 </section>
@@ -1273,13 +1064,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./p_untangled_transform_variables.html" class="pagination-link" aria-label="Transforming Variables in pandas">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></span>
+      <a href="./p_untangled_pivoting.html" class="pagination-link" aria-label="Reshaping data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reshaping data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_untangled_groupby_agg.html" class="pagination-link" aria-label="Grouping and summarizing data">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./p_ai_LLM_functions_structured.html" class="pagination-link" aria-label="Using LLMs in Python – Working with Structured Outputs">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1291,7 +1082,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_recode_variables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_ai_LLM_functions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

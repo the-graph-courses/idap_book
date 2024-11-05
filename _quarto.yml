@@ -43,10 +43,14 @@ book:
         - p_untangled_subset_columns.qmd
         - p_untangled_query_rows.qmd
         - p_untangled_transform_variables.qmd
-        - p_untangled_recode_variables.qmd
+        - p_untangled_conditional_transforms.qmd
         - p_untangled_groupby_agg.qmd
         - p_untangled_other_grouped_operations.qmd
         - p_untangled_pivoting.qmd
+    - part: "Using LLMs in Python"
+      chapters:
+        - p_ai_LLM_functions.qmd
+        - p_ai_LLM_functions_structured.qmd
 
     ## Use the below for PDF render
     # - p_foundations_google_colab.qmd

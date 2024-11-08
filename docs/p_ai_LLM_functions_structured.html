@@ -385,23 +385,172 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="22.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">22.1</span> Prerequisites</h2>
 <p>Before starting this tutorial, ensure that you have completed the previous tutorial on basic text generation using LLMs in Python. You should be familiar with setting up the OpenAI client, defining helper functions, and working with variable inputs and DataFrames.</p>
 <p>Run the following code to set up the OpenAI client and import the necessary libraries:</p>
-<div id="529761a2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the OpenAI client with your API key</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.environ.get(<span class="st">"OPENAI_API_KEY"</span>),  <span class="co"># This is the default and can be omitted</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b4fabe38" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://simple.wikipedia.org/w/api.php?action=query&amp;format=json&amp;prop=extracts&amp;titles=Italy&amp;explaintext=1"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> urllib.request.urlopen(url)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> json.loads(response.read())</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> content[<span class="st">'query'</span>][<span class="st">'pages'</span>].popitem()[<span class="dv">1</span>][<span class="st">'extract'</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Italy (Italian: Italia [iˈtaːlja]) is a country in Southern Europe with small island territories in North Africa. It is a member of the European Union. Its official name is the Italian Republic (Italian: Repubblica Italiana). The Italian flag is green, white and red. Italy is a democratic republic. 
+Italy is a founding member of the European Union. In 2022, Italy's president is Sergio Mattarella. Its prime minister is Giorgia Meloni. Italy is also a member of the G7, as it has the eighth largest gross domestic product in the world.
+Italy has become famous for its wine and food. Some foods are different between regions. Famous dishes include various types of pasta, pizza, and grapes. Olives are also often used.
+Before 1861, Italy was made up of smaller kingdoms and city-states.
+The country's capital, Rome, is one of the most famous cities in the world. It was the capital of the Roman Empire. Other famous cities in Italy include Venice, Naples, Turin, Genoa, Florence, Palermo, and Milan.
+
+
+== Geography ==
+
+Italy is a peninsula. It is surrounded by the sea on all of its sides except its north side. Northern Italy is separated from France, Switzerland, and Austria by the Alps, a chain of mountains. Mont Blanc (Monte Bianco in Italian or white mountain in English), the highest mountain in Western Europe, is in this chain. The second important chain of mountains in Italy is the Apennines (Italian: Appennini), which are in central and southern Italy.
+
+The Po River is the longest river in Italy. It flows through 5 cities: Turin, Piacenza, Cremona, and Ferrara. The Tiber River runs through the city of Rome.
+Northern Italy has some of the biggest lakes in the country, such as Lake Garda, Lake Como, Lake Maggiore and Lake Iseo. Because it is surrounded by the sea, Italy has a very long coast, which brings tourists from all over the world. Tourists also come to see Italy's historical places.
+The country has a number of islands, the biggest of which are Sicily and Sardinia, which can be reached by ship or aircraft. Italy has a border at sea with Libya to the south.
+
+
+=== Political geography ===
+The capital of Italy is Rome. This is where the Roman Empire started. Other large cities in Italy include Milan, Naples, Turin, Florence, Palermo, and Venice.
+Two enclaves (separate countries) are located within Italy. They are San Marino, which is surrounded by Northern Italy, and the Vatican City, which is surrounded by the city of Rome. Vatican City is also the only enclave in the world to also be surrounded by a city.
+
+
+== Climate ==
+Italy has both an oceanic climate and continental climate. 
+The highest temperature ever recorded in Italy was 47.0 °C (116.6 °F) on 25 June 2007 in Foggia. 
+The lowest temperature ever recorded in Italy was −49.6 °C (−57.3 °F) on 10 February 2013 at Pale di San Martino 
+
+
+== People and culture ==
+
+People from Italy are called Italians. Even if an Italian were to leave Italy, it is possible that their descendants could also claim Italian citizenship. This is because of Italian nationality law relying mostly on ius sanguinis, or "right of blood" in Latin. Almost all Italians are Christians. Most of these are Roman Catholics. Roman Catholicism is based in the Vatican City, which is home to its leader, the Pope.
+The population of Italy is about 60 million people. Almost 3 million of them live in Rome, and 1.5 million in Milan. As of December 2015, over 5 million foreigners were living in Italy, which is 8.3% of the total population.
+The official language of Italy is Italian. German, Slovenian, French, and a few others are also recognized. People also speak dialects of Italian such as Sicilian and Sardinian. There are many different dialects spoken in Italy. They vary between regions and sometimes between provinces.
+The people of Italy are mostly descendant from the ancient Romans.
+Italy is home to more World Heritage Sites than any other country in the world. These sites are culturally important and valued according to UNESCO. About 60% of the works of art of the world are in Italy. Italy is also a big wine producer. In 2005, it made over 5 million tonnes of wine.
+Linguistic minorities in Italy include Sardu-speakers 1 million, Tyrolese German-speakers 350,000, Albanians 70,000 – 100,000, Slovenes 60,000, Franco-Provençal-speakers 50,000 – 70,000, Occitans 20,000 – 40,000, Ladins 30,000, Catalans 15,000, Greek-speakers 12,000 and Croatians 3,000, as well as Friulians 600,000. The Roma community in Italy is one of the largest ethnic minorities in the country. Italy has a growing immigrant population. This foreign population includes Romanians 1,190,100, Albanians 440,500, Moroccans 416,500, Ukrainians 237,000, Chinese 290,700, Filipinos 167,900 and Indians 151,800.
+
+
+=== Food ===
+A partial list of famous Italian foods include pasta, pizza, risotto, polenta, and gnocchi.  
+
+
+=== Art ===
+Many notable artists were from Italy. They include:
+
+Michelangelo Merisi da Caravaggio, painter
+Donatello, sculptor
+Leonardo da Vinci, painter
+Michelangelo, sculptor and painter
+Amedeo Modigliani, painter
+Raphael, painter
+Titian, painter
+
+
+== Economy ==
+Italy has a modern social welfare system. The labor market is very strong. Many foreigners, especially from Romania, work in Italy where the wages are much higher.
+Italy's modern society has been built up through loans. Now the country has a very high debt of 1.9 trillion euros or 120% of the country's total GDP. 
+
+
+== Religion ==
+
+Most people in Italy are Roman Catholics, but the Catholic Church is no longer officially the state religion. Around 50% of the people said they were Roman Catholic.
+Only about a third said they were active members (40%). There are also other Christian groups in Italy, with more than 700,000 Eastern Orthodox Christians. 180,000 of them belong to the Greek Orthodox Church.
+550,000 are Pentecostals and Evangelicals (0.8%). 235,685 Jehovah's Witnesses (0.4%), 30,000 Waldensians, 25,000 Seventh-day Adventists, 22,000 Mormons, 20,000 Baptists, 7,000 Lutherans, 4,000 Methodists.
+
+The country's oldest religious minority is the Jewish community. It has about 45,000 people. It is no longer the largest non-Christian group.  There are also about 50,000 Buddhists 70,000 Muslims and 70,000 Hindus in Italy.
+
+
+== Major cities ==
+Rome
+Venice
+Milan
+Naples
+Turin
+Florence
+Bologna
+Palermo
+Trieste
+Bari
+
+
+== Regions ==
+Italy has 20 regions (Italian: regioni). Every region is divided into provinces.
+There are 20 regions. Five of them have a special status, called autonomous. This means that they can make certain local laws more easily. These regions are marked with an asterisk (*) below.  
+
+
+== Politics ==
+
+The head of state is Sergio Mattarella. He became President of the Italian Republic in February 2015. The first president was Enrico De Nicola.
+The head of government is Giorgia Meloni. She became Prime Minister on October 22, 2022, the first woman in that role. She succeeded Mario Draghi. Draghi's cabinet, fell after support for his coalition fell.
+Italy was one of the first members of the European Union. In 2002 along with 11 other European countries, it changed to using the euro as its official currency. Before this, the Italian lira had been used since 1861.
+Anyone who wants to be President of Italy must have Italian citizenship, be at least 50 years old, and must be able to uphold political and civil rights.
+
+
+== History ==
+
+The capital of Italy is Rome. Rome was founded in 753 BC. It was a separate state well known as Roman Kingdom firstly, Roman Republic and Roman Empire later. It conquered various neighbors including the Etruscan civilization in the north and the states in the south known as Magna Graecia.
+Before 1861, Italy was not a state. The area included a group of separate states that were ruled by other countries (such as Austria, France, and Spain). In the 1850s, the Earl of Camillo Benso, Count of Cavour was the head of government of the "State of Sardinia". He talked to the Austrians in Lombardy and Veneto and said they should create a Northern Italian state. This happened, but other Central and Southern Italian states also joined Piedmont to create a bigger state.
+
+
+=== Kingdom of Italy ===
+
+In 1860, Giuseppe Garibaldi took control of Sicily, creating the Kingdom of Italy in 1861. Victor Emmanuel II was made the king. In 1861, Latium and Veneto were still not part of Italy, because they were ruled by the Pope and Austrian Empire.
+Veneto was made part of Italy in 1866 after a war with Austria. Italian soldiers won Latium in 1870. That was when they took away the Pope's power. The Pope, who was angry, said that he was a prisoner to keep Catholic people from being active in politics. That was the year of Italian unification.
+Italy participated in World War I. It was an ally of Great Britain, France, and Russia against the Central Powers. Almost all of Italy's fighting was on the Eastern border, near Austria. After the "Caporetto defeat", Italy thought they would lose the war. But, in 1918, the Central Powers surrendered. Italy gained the Trentino-South Tyrol, which once was owned by Austria.
+
+
+=== Fascist Italy ===
+In 1922, a new Italian government started. It was ruled by Benito Mussolini, the leader of Fascism in Italy. He became head of government and dictator, calling himself "Il Duce" (which means "leader" in Italian). He became friends with German dictator Adolf Hitler. Germany, Japan, and Italy became the Axis Powers. In 1940, they entered World War II together against France, Great Britain, and later the Soviet Union. During the war, Italy controlled most of the Mediterranean Sea.
+On July 25, 1943, Mussolini was removed by the Great Council of Fascism. On September 8, 1943, Badoglio said that the war as an ally of Germany was ended. Italy started fighting as an ally of France and the UK, but Italian soldiers did not know whom to shoot. In Northern Italy, a movement called Resistenza started to fight against the German invaders. On April 25, 1945, much of Italy became free, while Mussolini tried to make a small Northern Italian fascist state called the Republic of Salò. The fascist state failed and Mussolini tried to flee to Switzerland and escape to Francoist Spain, but he was captured by Italian partisans. On 28 April 1945 Mussolini was executed by a partisan.
+
+
+=== After World War Two ===
+The state became a republic on June 2, 1946. For the first time, women were able to vote. The Italian people ended the Savoia dynasty and adopted a republican form of government.
+In February of 1947, Italy signed a peace treaty with the Allies. They lost all the colonies and some territorial areas (Istria and parts of Dalmatia).
+Since then Italy has joined NATO and the European Community (as a founding member). It is one of the seven biggest industrial economies in the world.
+
+
+== Transportation ==
+
+The railway network in Italy totals 16,627 kilometres (10,332 miles). It is the 17th longest in the world. High speed trains include ETR-class trains which travel at speeds of up to 300 km/h (190 mph).
+
+
+== Related pages ==
+Italy at the Olympics
+Italy national football team
+Italian cuisine
+Italophilia
+Italian Mare Nostrum
+List of rivers of Italy
+
+
+== References ==
+
+
+== Other websites ==
+
+Official tourism website</code></pre>
+</div>
+</div>
+<div id="76b8c414" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the OpenAI client with your API key</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.environ.get(<span class="st">"OPENAI_API_KEY"</span>),  <span class="co"># This is the default and can be omitted</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And let’s define a dataframe with some countries:</p>
-<div id="7792ec86" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> [<span class="st">"Nigeria"</span>, <span class="st">"Chile"</span>, <span class="st">"France"</span>, <span class="st">"Canada"</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>country_df <span class="op">=</span> pd.DataFrame({<span class="st">"country"</span>: countries})</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>country_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div id="50e62dc1" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> [<span class="st">"Nigeria"</span>, <span class="st">"Chile"</span>, <span class="st">"France"</span>, <span class="st">"Canada"</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>country_df <span class="op">=</span> pd.DataFrame({<span class="st">"country"</span>: countries})</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>country_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -436,87 +585,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>And let’s define the chat helperfunction from the last lesson:</p>
-<div id="7d1cee43" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> llm_chat(message):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1993dba3" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> llm_chat(message):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="structured-outputs" class="level2" data-number="22.2">
 <h2 data-number="22.2" class="anchored" data-anchor-id="structured-outputs"><span class="header-section-number">22.2</span> Structured Outputs</h2>
 <p>In the last lesson, we wrote a function that took a country name as input and returned the most tourist-friendly cities in that country.</p>
-<div id="7447cfd2" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec(country):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_chat(message<span class="op">=</span>prompt)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>city_rec_vec <span class="op">=</span> np.vectorize(city_rec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d65acb30" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec(country):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_chat(message<span class="op">=</span>prompt)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>city_rec_vec <span class="op">=</span> np.vectorize(city_rec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s test this function:</p>
-<div id="133d55c2" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>city_rec_vec(country_df[<span class="st">'country'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>array(['Lagos is widely regarded as the most tourist-friendly city in Nigeria. As the largest city in the country, it offers a vibrant mix of culture, entertainment, and attractions. Visitors can enjoy beautiful beaches, such as Tarkwa Bay and Elegushi Beach, explore rich cultural heritage at places like the National Museum and Nike Art Gallery, and experience the lively markets and nightlife. Additionally, Lagos has a range of accommodations, dining options, and activities that cater to various interests, making it an appealing destination for tourists. Other cities, like Abuja and Port Harcourt, also offer unique attractions, but Lagos stands out for its dynamic atmosphere.',
-       'The most tourist-friendly city in Chile is often considered to be Santiago, the capital. Santiago serves as a major gateway for visitors to the country and offers a mix of modern amenities, cultural attractions, and access to outdoor activities. \n\nIn addition to Santiago, other cities like Valparaíso, known for its colorful hillside architecture and coastal charm, and Punta Arenas, which is a starting point for trips to Patagonia, are also popular among tourists. Each of these cities provides distinct experiences that cater to various interests, from culture and history to nature and adventure.',
-       'Paris is often considered the most tourist-friendly city in France. It is renowned for its rich history, iconic landmarks such as the Eiffel Tower, Notre-Dame Cathedral, and the Louvre Museum, as well as its vibrant culture and cuisine. The city offers extensive public transportation options, including buses and the Metro, making it easy for visitors to navigate. Additionally, Paris is well-equipped with tourist services, including information centers, guided tours, and multilingual staff, enhancing the overall experience for travelers. Other cities like Nice, Lyon, and Lyon also attract tourists, but Paris remains the most popular destination.',
-       'While opinions on the "most tourist-friendly city" in Canada can vary, many travelers often cite **Vancouver** as a top choice. Its stunning natural scenery, diverse culture, and numerous attractions make it highly appealing. \n\nOther cities that are also considered tourist-friendly include:\n\n- **Toronto**: The largest city in Canada, known for its iconic skyline, diverse neighborhoods, and numerous cultural attractions, including museums, galleries, and theaters.\n\n- **Montreal**: Renowned for its vibrant arts scene, rich history, and European charm, Montreal offers a unique blend of culture and cuisine.\n\n- **Quebec City**: Known for its well-preserved historical architecture and European ambiance, Quebec City is a UNESCO World Heritage Site that attracts many visitors.\n\n- **Ottawa**: As the capital city, Ottawa offers many national museums, historical sites, and beautiful parks, making it friendly for tourists.\n\nUltimately, the best choice may depend on personal interests, such as nature, culture, food, or history.'],
-      dtype='&lt;U1030')</code></pre>
+<div id="7999c959" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>city_rec_vec(country_df[<span class="st">'country'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array(["Lagos is often considered the most tourist-friendly city in Nigeria. As the country's largest city and a major cultural and economic hub, Lagos offers a vibrant atmosphere with numerous attractions. Tourists can explore beautiful beaches like Tarkwa Bay and Lekki Beach, visit the National Museum, experience the rich cultural scene through music and art in places like the Nike Art Gallery, and enjoy diverse cuisine at local restaurants and food markets.\n\nAdditionally, Lagos is well-connected, making it easier for visitors to navigate the city and access various attractions. Other cities like Abuja, the capital, and Calabar, known for its festivals, also attract tourists but may not have the same level of infrastructure and activity as Lagos.",
+       "Santiago, the capital of Chile, is often considered the most tourist-friendly city in the country. It offers a blend of modern and historic attractions, easy access to public transportation, a variety of restaurants, and vibrant neighborhoods. Visitors can explore landmarks like Plaza de Armas, the Metropolitan Cathedral, and the San Cristóbal Hill for panoramic views of the city.\n\nAnother popular tourist-friendly destination is Valparaíso, known for its colorful houses, artistic vibe, and coastal views. It's a UNESCO World Heritage site with a rich cultural scene, making it a favorite for those seeking a unique experience outside of the capital.\n\nOverall, while Santiago is the most convenient starting point for many travelers, both cities provide a welcoming atmosphere for tourists.",
+       'Paris is often considered the most tourist-friendly city in France due to its rich history, iconic landmarks, and extensive amenities for visitors. The city is home to famous attractions such as the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral, as well as charming neighborhoods like Montmartre and Le Marais. \n\nParis has well-developed public transportation, including buses and an extensive metro system, making it easy for tourists to navigate the city. Additionally, the abundance of hotels, restaurants, and tourist services caters to various tastes and budgets. \n\nOther cities in France, such as Nice, Lyon, and Marseille, also offer great experiences for tourists but Paris remains the top choice for many due to its combination of culture, history, and accessibility.',
+       'While "most tourist-friendly" can be subjective and dependent on personal preferences, many people consider **Vancouver** to be one of the most tourist-friendly cities in Canada. Its stunning natural scenery, diverse cultural offerings, and numerous attractions make it a popular destination. \n\nVancouver offers easy access to outdoor activities, like hiking and skiing, alongside urban attractions such as Stanley Park, Granville Island, and a variety of museums and galleries. Additionally, the city\'s public transportation system is convenient, making it easy for visitors to explore.\n\nOther contenders for tourist-friendly cities in Canada include **Toronto**, known for its multicultural vibe and iconic sites like the CN Tower and Royal Ontario Museum, and **Montreal**, which offers a unique blend of history, arts, and gastronomy. Each city has its distinct charm, so the best choice may depend on your interests.'],
+      dtype='&lt;U921')</code></pre>
 </div>
 </div>
 <p>However, what if we want to extract JUST the city name and no other text. One way to do this is is to tell (or beg!) the LLM to return the city name in all capital letters. But this does not always work.</p>
 <p>To ensure reliable data extraction, we can define structured outputs using Pydantic models.</p>
 <p>First, let’s define a helper function that takes a prompt and a Pydantic model, and returns the parsed response. This function encapsulates the boilerplate code required to make API calls with structured outputs.</p>
-<div id="454c2b85" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> llm_structured(message, response_format: BaseModel):</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    completion <span class="op">=</span> client.beta.chat.completions.parse(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}],</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        response_format<span class="op">=</span>response_format,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    parsed_response <span class="op">=</span> completion.choices[<span class="dv">0</span>].message</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">getattr</span>(parsed_response, <span class="st">'refusal'</span>, <span class="va">None</span>):</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Model refused to provide an answer: </span><span class="sc">{</span>parsed_response<span class="sc">.</span>refusal<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> parsed_response.parsed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="51f682c4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> llm_structured(message, response_format: BaseModel):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    completion <span class="op">=</span> client.beta.chat.completions.parse(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}],</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        response_format<span class="op">=</span>response_format,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    parsed_response <span class="op">=</span> completion.choices[<span class="dv">0</span>].message</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">getattr</span>(parsed_response, <span class="st">'refusal'</span>, <span class="va">None</span>):</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Model refused to provide an answer: </span><span class="sc">{</span>parsed_response<span class="sc">.</span>refusal<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> parsed_response.parsed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Note</strong>: The function <code>llm_structured</code> uses <code>client.beta.chat.completions.parse</code>, which a newer addition to the OpenAI API. When this feature comes out of beta, this code may need to be updated (likely by just removing the <code>beta</code> prefix).</p>
 <p>Now, we’ll define a Pydantic model for our expected output. Pydantic allows us to define data models with type annotations, which can be used for data validation and parsing.</p>
-<div id="461cddee" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Recommendation(BaseModel):</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    city: <span class="bu">str</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="eb8d2536" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Recommendation(BaseModel):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    city: <span class="bu">str</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This model specifies that we expect the response to contain a single field <code>city</code>, which is a string.</p>
 <p>Now, we can update our <code>city_rec</code> function to parse the response accordingly.</p>
-<div id="ed289ca0" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec_structured(country):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_structured(message<span class="op">=</span>prompt, response_format<span class="op">=</span>Recommendation)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.city</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="66d458cd" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec_structured(country):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_structured(message<span class="op">=</span>prompt, response_format<span class="op">=</span>Recommendation)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.city</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s test this function:</p>
-<div id="1837e81b" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>city_rec_structured(<span class="st">"Brazil"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div id="a391a585" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>city_rec_structured(<span class="st">"Brazil"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>'Rio de Janeiro'</code></pre>
 </div>
 </div>
 <p>We can also create a vectorized version to apply to a list of countries or a column in a DataFrame:</p>
-<div id="5742f872" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize the function</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>city_rec_structured_vec <span class="op">=</span> np.vectorize(city_rec_structured)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to the DataFrame</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>country_df[<span class="st">'city'</span>] <span class="op">=</span> city_rec_structured_vec(country_df[<span class="st">'country'</span>])</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ae51326e" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize the function</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>city_rec_structured_vec <span class="op">=</span> np.vectorize(city_rec_structured)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to the DataFrame</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>country_df[<span class="st">'city'</span>] <span class="op">=</span> city_rec_structured_vec(country_df[<span class="st">'country'</span>])</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   country       city
 0  Nigeria      Lagos
@@ -530,25 +679,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Question</em>: Create a new function called <code>get_local_dish_structured</code> that takes a country name as input and returns the most famous local dish from that country. Then create a vectorized version and apply it to the <code>country_df</code> DataFrame to add a new ‘local_dish’ column.</p>
 <p><em>Solution</em>:</p>
 <p>First, define a Pydantic model for the expected output:</p>
-<div id="ae4cbcfc" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DishRecommendation(BaseModel):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    dish: <span class="bu">str</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="71593e77" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DishRecommendation(BaseModel):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    dish: <span class="bu">str</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, define the function:</p>
-<div id="c584b328" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_local_dish_structured(country):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most famous local dish from </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_structured(message<span class="op">=</span>prompt, response_format<span class="op">=</span>DishRecommendation)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.dish</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="57a24349" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_local_dish_structured(country):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most famous local dish from </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_structured(message<span class="op">=</span>prompt, response_format<span class="op">=</span>DishRecommendation)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.dish</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vectorize the function:</p>
-<div id="5af9968b" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>get_local_dish_structured_vec <span class="op">=</span> np.vectorize(get_local_dish_structured)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="30615681" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>get_local_dish_structured_vec <span class="op">=</span> np.vectorize(get_local_dish_structured)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Apply it to the DataFrame:</p>
-<div id="f54493de" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>country_df[<span class="st">'local_dish'</span>] <span class="op">=</span> get_local_dish_structured_vec(country_df[<span class="st">'country'</span>])</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f792e13c" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>country_df[<span class="st">'local_dish'</span>] <span class="op">=</span> get_local_dish_structured_vec(country_df[<span class="st">'country'</span>])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   country       city        local_dish
 0  Nigeria      Lagos       Jollof Rice
@@ -561,23 +710,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="adding-detailed-descriptions-to-models" class="level2" data-number="22.3">
 <h2 data-number="22.3" class="anchored" data-anchor-id="adding-detailed-descriptions-to-models"><span class="header-section-number">22.3</span> Adding Detailed Descriptions to Models</h2>
 <p>You can also add detailed descriptions to your Pydantic models to guide the LLM in formatting the response. For example, let’s specify that we want the city name to be provided in all capital letters.</p>
-<div id="d0387766" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> Field</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Recommendation(BaseModel):</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    city: <span class="bu">str</span> <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"The name of the city in all capital letters"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8ee0ab83" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> Field</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Recommendation(BaseModel):</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    city: <span class="bu">str</span> <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"The name of the city in all capital letters"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And redefine our function:</p>
-<div id="fad7959b" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec_structured_caps(country):</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_structured(message<span class="op">=</span>prompt, response_format<span class="op">=</span>Recommendation)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.city</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7647bc5a" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec_structured_caps(country):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_structured(message<span class="op">=</span>prompt, response_format<span class="op">=</span>Recommendation)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.city</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Test the function:</p>
-<div id="0b9bcfda" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>city_rec_structured_caps(<span class="st">"Brazil"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div id="01c427a0" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>city_rec_structured_caps(<span class="st">"Brazil"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>'RIO DE JANEIRO'</code></pre>
 </div>
 </div>
@@ -586,100 +735,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="22.4" class="anchored" data-anchor-id="defining-extended-structured-output-models"><span class="header-section-number">22.4</span> Defining Extended Structured Output Models</h2>
 <p>Let’s expand our recommendations to include more information, such as safety ratings and the typical cost level for tourists. We’ll define a more comprehensive Pydantic model for structured outputs.</p>
 <p>First, import the necessary classes:</p>
-<div id="5c6dd517" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel, Field</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> enum <span class="im">import</span> Enum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="10b43867" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel, Field</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> enum <span class="im">import</span> Enum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Define an <code>Enum</code> class for the cost levels:</p>
-<div id="236bcfaf" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CostLevel(<span class="bu">str</span>, Enum):</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    budget <span class="op">=</span> <span class="st">"Budget-friendly"</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    moderate <span class="op">=</span> <span class="st">"Moderate cost"</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    expensive <span class="op">=</span> <span class="st">"Expensive"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c3137049" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CostLevel(<span class="bu">str</span>, Enum):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    budget <span class="op">=</span> <span class="st">"Budget-friendly"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    moderate <span class="op">=</span> <span class="st">"Moderate cost"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    expensive <span class="op">=</span> <span class="st">"Expensive"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Define the extended model:</p>
-<div id="338d427d" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecommendationDetail(BaseModel):</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    city: <span class="bu">str</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    safety: <span class="bu">int</span> <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Safety rating out of 10"</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    cost: CostLevel <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"The typical cost level for tourists"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ff1e315e" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecommendationDetail(BaseModel):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    city: <span class="bu">str</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    safety: <span class="bu">int</span> <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Safety rating out of 10"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    cost: CostLevel <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"The typical cost level for tourists"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can define a function that returns a structured response:</p>
-<div id="4990b517" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec_detail(country):</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> (<span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">? "</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Provide the city name, a safety rating out of 10, and the typical cost level for tourists."</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    parsed <span class="op">=</span> llm_structured(prompt, RecommendationDetail)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'city'</span>: parsed.city,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'safety'</span>: parsed.safety,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'cost'</span>: parsed.cost.value</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f8011b89" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec_detail(country):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> (<span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">? "</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Provide the city name, a safety rating out of 10, and the typical cost level for tourists."</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    parsed <span class="op">=</span> llm_structured(prompt, RecommendationDetail)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'city'</span>: parsed.city,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'safety'</span>: parsed.safety,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'cost'</span>: parsed.cost.value</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vectorize the function:</p>
-<div id="96201362" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>city_rec_detail_vec <span class="op">=</span> np.vectorize(city_rec_detail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3a6ac017" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>city_rec_detail_vec <span class="op">=</span> np.vectorize(city_rec_detail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example usage:</p>
-<div id="3c405b9f" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>recommendation <span class="op">=</span> city_rec_detail_vec(<span class="st">"United Kingdom"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(recommendation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="12ddd114" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>recommendation <span class="op">=</span> city_rec_detail_vec(<span class="st">"United Kingdom"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(recommendation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'city': 'Edinburgh', 'safety': 9, 'cost': 'Moderate cost'}</code></pre>
+<pre><code>{'city': 'Edinburgh', 'safety': 8, 'cost': 'Moderate cost'}</code></pre>
 </div>
 </div>
 <p>Apply to the DataFrame:</p>
-<div id="54917e18" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to the DataFrame</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> city_rec_detail_vec(country_df[<span class="st">'country'</span>])</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame(results.tolist())</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Join back to original DataFrame</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>country_df_joined <span class="op">=</span> pd.concat([country_df, results_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a871d341" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to the DataFrame</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> city_rec_detail_vec(country_df[<span class="st">'country'</span>])</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame(results.tolist())</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Join back to original DataFrame</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>country_df_joined <span class="op">=</span> pd.concat([country_df, results_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[{'city': 'Lagos', 'safety': 6, 'cost': 'Moderate cost'}
  {'city': 'Santiago', 'safety': 8, 'cost': 'Moderate cost'}
- {'city': 'Paris', 'safety': 7, 'cost': 'Moderate cost'}
+ {'city': 'Paris', 'safety': 8, 'cost': 'Moderate cost'}
  {'city': 'Vancouver', 'safety': 8, 'cost': 'Moderate cost'}]
         city  safety           cost
 0      Lagos       6  Moderate cost
 1   Santiago       8  Moderate cost
-2      Paris       7  Moderate cost
+2      Paris       8  Moderate cost
 3  Vancouver       8  Moderate cost
    country       city        local_dish       city  safety           cost
 0  Nigeria      Lagos       Jollof Rice      Lagos       6  Moderate cost
 1    Chile   Santiago  Pastel de Choclo   Santiago       8  Moderate cost
-2   France      Paris        Coq au Vin      Paris       7  Moderate cost
+2   France      Paris        Coq au Vin      Paris       8  Moderate cost
 3   Canada  Vancouver           Poutine  Vancouver       8  Moderate cost</code></pre>
 </div>
 </div>
 <p>Now we can convert that output into a DataFrame:</p>
-<div id="11ecb287" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame(results.tolist())</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d283b5ab" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame(results.tolist())</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        city  safety           cost
 0      Lagos       6  Moderate cost
 1   Santiago       8  Moderate cost
-2      Paris       7  Moderate cost
+2      Paris       8  Moderate cost
 3  Vancouver       8  Moderate cost</code></pre>
 </div>
 </div>
 <p>Join it back to the original DataFrame:</p>
-<div id="650023e6" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>country_df_joined <span class="op">=</span> pd.concat([country_df, results_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3ef66ab4" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>country_df_joined <span class="op">=</span> pd.concat([country_df, results_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   country       city        local_dish       city  safety           cost
 0  Nigeria      Lagos       Jollof Rice      Lagos       6  Moderate cost
 1    Chile   Santiago  Pastel de Choclo   Santiago       8  Moderate cost
-2   France      Paris        Coq au Vin      Paris       7  Moderate cost
+2   France      Paris        Coq au Vin      Paris       8  Moderate cost
 3   Canada  Vancouver           Poutine  Vancouver       8  Moderate cost</code></pre>
 </div>
 </div>
@@ -687,47 +836,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Question</em>: Create a new function called <code>local_dish_detail</code> that takes a country name as input and returns the LLM’s guess of the most famous local dish from that country, whether it’s spicy (“Spicy” or “Not spicy”), an ease of cooking rating (out of 10), and a cost level (Budget, Moderate, or Expensive). Then create a vectorized version and apply it to the <code>country_df</code> DataFrame to add a new ‘local_dish_detail’ column.</p>
 <p><em>Solution</em>:</p>
 <p>First, define the necessary classes:</p>
-<div id="f1bfa7c9" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Spiciness(<span class="bu">str</span>, Enum):</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    spicy <span class="op">=</span> <span class="st">"Spicy"</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    not_spicy <span class="op">=</span> <span class="st">"Not spicy"</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DishCostLevel(<span class="bu">str</span>, Enum):</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    budget <span class="op">=</span> <span class="st">"Budget"</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    moderate <span class="op">=</span> <span class="st">"Moderate"</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    expensive <span class="op">=</span> <span class="st">"Expensive"</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LocalDishDetail(BaseModel):</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    dish: <span class="bu">str</span></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    spiciness: Spiciness <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Is the dish spicy or not spicy?"</span>)</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    ease_of_cooking: <span class="bu">int</span> <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Ease of cooking rating out of 10"</span>)</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    cost: DishCostLevel <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Cost level: Budget, Moderate, or Expensive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8b628fef" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Spiciness(<span class="bu">str</span>, Enum):</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    spicy <span class="op">=</span> <span class="st">"Spicy"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    not_spicy <span class="op">=</span> <span class="st">"Not spicy"</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DishCostLevel(<span class="bu">str</span>, Enum):</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    budget <span class="op">=</span> <span class="st">"Budget"</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    moderate <span class="op">=</span> <span class="st">"Moderate"</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    expensive <span class="op">=</span> <span class="st">"Expensive"</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LocalDishDetail(BaseModel):</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    dish: <span class="bu">str</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>    spiciness: Spiciness <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Is the dish spicy or not spicy?"</span>)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>    ease_of_cooking: <span class="bu">int</span> <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Ease of cooking rating out of 10"</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    cost: DishCostLevel <span class="op">=</span> Field(description<span class="op">=</span><span class="st">"Cost level: Budget, Moderate, or Expensive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Define the function:</p>
-<div id="0aeb716a" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> local_dish_detail(country):</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> (<span class="ss">f"What is the most famous local dish from </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">? "</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Provide the dish name, whether it's spicy or not spicy, an ease of cooking rating out of 10, "</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"and a cost level (Budget, Moderate, or Expensive)."</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    parsed <span class="op">=</span> llm_structured(prompt, LocalDishDetail)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'dish'</span>: parsed.dish,</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'spiciness'</span>: parsed.spiciness.value,</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ease_of_cooking'</span>: parsed.ease_of_cooking,</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'cost'</span>: parsed.cost.value</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d56adba2" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> local_dish_detail(country):</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> (<span class="ss">f"What is the most famous local dish from </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">? "</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Provide the dish name, whether it's spicy or not spicy, an ease of cooking rating out of 10, "</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"and a cost level (Budget, Moderate, or Expensive)."</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    parsed <span class="op">=</span> llm_structured(prompt, LocalDishDetail)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'dish'</span>: parsed.dish,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'spiciness'</span>: parsed.spiciness.value,</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ease_of_cooking'</span>: parsed.ease_of_cooking,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'cost'</span>: parsed.cost.value</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vectorize the function:</p>
-<div id="8948170b" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>local_dish_detail_vec <span class="op">=</span> np.vectorize(local_dish_detail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0590ee56" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>local_dish_detail_vec <span class="op">=</span> np.vectorize(local_dish_detail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Apply it to the DataFrame:</p>
-<div id="21f57c91" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to the DataFrame</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dish_details <span class="op">=</span> local_dish_detail_vec(country_df[<span class="st">'country'</span>])</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>dish_details_df <span class="op">=</span> pd.DataFrame(dish_details.tolist())</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>country_df <span class="op">=</span> pd.concat([country_df, dish_details_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="efb25dcb" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to the DataFrame</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>dish_details <span class="op">=</span> local_dish_detail_vec(country_df[<span class="st">'country'</span>])</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>dish_details_df <span class="op">=</span> pd.DataFrame(dish_details.tolist())</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>country_df <span class="op">=</span> pd.concat([country_df, dish_details_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   country       city        local_dish              dish  spiciness  \
 0  Nigeria      Lagos       Jollof Rice       Jollof Rice      Spicy   
@@ -738,7 +887,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    ease_of_cooking      cost  
 0                7  Moderate  
 1                6  Moderate  
-2                7  Moderate  
+2                6  Moderate  
 3                5    Budget  </code></pre>
 </div>
 </div>

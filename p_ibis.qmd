@@ -1,0 +1,203 @@
+
+```{python}
+import ibis
+import ibis.selectors as s
+from ibis import _
+ibis.options.interactive = True
+
+
+starwars = ibis.examples.starwars.fetch()
+starwars
+```
+
+
+
+```{python}
+# Assuming the data is already loaded into an ibis table called 'starwars'
+
+import ibis
+from ibis import _
+import ibis.selectors as s
+
+starwars = ibis.examples.starwars.fetch()
+
+starwars_filtered = (
+    starwars.select(s.cols("name", "height", "mass", "species"))
+    .rename(mass_kg="mass")
+    .filter(_.species == "Human")
+    .mutate(
+        height_m=_.height / 100,
+        bmi=_.mass_kg / (_.height_m**2),
+        bmi_category=_.bmi.cases(
+            (_.bmi < 18.5, "Underweight"),
+            (_.bmi >= 18.5 & _.bmi < 25, "Normal weight"),
+            (_.bmi >= 25, "Overweight"),
+        ),
+    )
+)
+starwars_filtered
+
+```
+
+
+```{python}
+import polars as pl
+import polars as pl
+
+starwars_filtered = (
+    starwars
+    .select(['name', 'height', 'mass', 'species'])
+    .filter(pl.col('species') == 'Human')
+    .with_columns([
+        (pl.col('height') / 100).alias('height_m'),
+        (pl.col('mass') / (pl.col('height') / 100)**2).alias('bmi')
+    ])
+    .rename({'mass': 'mass_kg'})
+    .with_columns([
+        pl.when(pl.col('bmi') < 18.5)
+          .then('Underweight')
+          .when((pl.col('bmi') >= 18.5) & (pl.col('bmi') < 25))
+          .then('Normal weight')
+          .otherwise('Overweight')
+          .alias('bmi_category')
+    ])
+)
+
+
+```
+
+
+
+```{python}
+import polars as pl
+
+# Create sample data
+df = pl.DataFrame(
+    {
+        "name": ["Luke Skywalker", "Darth Vader", "Leia Organa", "Han Solo"],
+        "height": [172, 202, 150, 180],
+        "mass": [77, 136, 49, 80],
+        "species": ["Human"] * 4,
+    }
+)
+
+# Fixed operations
+result = (
+    df.select(["name", "height", "mass", "species"])
+    .rename({"mass": "mass_kg"})
+    .with_columns(
+        height_m=pl.col("height") / 100,  # Create height_m first
+    )
+    .with_columns(
+        bmi=pl.col("mass_kg") / (pl.col("height_m") ** 2),  # Now create BMI
+    )
+    .with_columns(
+        bmi_category=pl.when(pl.col("bmi") < 18.5)
+        .then("Underweight")
+        .when(pl.col("bmi") < 25)
+        .then("Normal weight")
+        .otherwise("Overweight")
+    )
+)
+
+print(result)
+
+
+```
+
+
+```{python}
+import polars as pl
+
+# Sample DataFrame
+data = {
+    "name": [
+        "Luke Skywalker",
+        "C-3PO",
+        "Darth Vader",
+        "Leia Organa",
+        "Owen Lars",
+        "Beru Whitesun lars",
+        "R5-D4",
+        "Biggs Darklighter",
+        "Obi-Wan Kenobi",
+    ],
+    "height": [172, 167, 202, 150, 178, 165, 97, 183, 182],
+    "mass": [77.0, 75.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.0],
+    "species": [
+        "Human",
+        "Droid",
+        "Human",
+        "Human",
+        "Human",
+        "Human",
+        "Droid",
+        "Human",
+        "Human",
+    ],
+}
+df = pl.DataFrame(data)
+
+filtered_df = (
+    df.select(["name", "height", "mass", "species"])
+    .rename({"mass": "mass_kg"})
+    .filter(pl.col("species") == "Human")
+    .with_columns(
+        height_m=pl.col("height") / 100,
+        bmi=pl.col("mass_kg") / (pl.col("height_m") ** 2),
+        bmi_category=pl.when(pl.col("bmi") < 18.5)
+        .then("Underweight")
+        .when((pl.col("bmi") >= 18.5) & (pl.col("bmi") < 25))
+        .then("Normal weight")
+        .otherwise(
+            "Overweight"
+        ),  # Removed an unnecessary .when for brevity. Assumes anything not underweight or normal is overweight.
+    )
+)
+
+print(filtered_df)
+
+
+```
+
+
+
+```{python}
+import polars as pl
+
+# Sample data similar to the starwars dataset
+data = {
+    "name": ["Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Organa"],
+    "height": [172, 167, 96, 202, 150],
+    "mass": [77, 75, 32, 136, 49],
+    "species": ["Human", "Droid", "Droid", "Human", "Human"],
+}
+
+# Create a Polars DataFrame
+starwars = pl.DataFrame(data)
+
+# Filter and transform the data
+starwars_filtered = (
+    starwars.select(["name", "height", "mass", "species"])
+    .rename({"mass": "mass_kg"})
+    .filter(pl.col("species") == "Human")
+    .with_columns(
+        [
+            (pl.col("height") / 100).alias("height_m"),
+            (pl.col("mass_kg") / (pl.col("height") / 100) ** 2).alias("bmi"),
+        ]
+    )
+    .with_columns(
+        pl.when(pl.col("bmi") < 18.5)
+        .then("Underweight")
+        .when((pl.col("bmi") >= 18.5) & (pl.col("bmi") < 25))
+        .then("Normal weight")
+        .when(pl.col("bmi") >= 25)
+        .then("Overweight")
+        .alias("bmi_category")
+    )
+)
+
+starwars_filtered
+
+```

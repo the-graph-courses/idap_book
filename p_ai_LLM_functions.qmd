@@ -1,25 +1,33 @@
 ---
 title: "Using LLMs in Python for Text Generation"
---- 
+---
+
+## Intro
 
 In this tutorial, we'll explore how to leverage Large Language Models (LLMs) to generate text using OpenAI's API. We'll use the `gpt-4o-mini` model to generate responses to fixed and variable prompts, optimize our code with helper functions and vectorization, and handle data using pandas DataFrames.
 
+## Learning Objectives
+
+- Set up the OpenAI client
+- Define helper functions
+- Use vectorization to apply functions to arrays
+
 ## Setting Up the OpenAI Client
 
-First, we need to set up the OpenAI client using your API key. Ensure you have your API key stored securely, for example, in an environment variable called `OPENAI_API_KEY` within a `.env` file.
+First, we need to set up the OpenAI client using your API key. Ensure you have your API key stored in an environment variable called `OPENAI_API_KEY` within a `.env` file.
 
 ```{python}
 import os
 from openai import OpenAI
 
+# Set up the OpenAI API key
 # Initialize the OpenAI client with your API key
 client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),  # This is the default and can be omitted
+    api_key=os.environ.get("OPENAI_API_KEY"),
 )
 ```
 
-
-Alternatively, you can pass your API key directly when initializing the client, but be cautious not to expose it in your code, especially if you plan to share or publish it.
+Alternatively, you can pass your API key directly when setting the `api_key`, but be cautious not to expose it in your code, especially if you plan to share or publish it.
 
 ## Defining Helper Functions
 
@@ -32,13 +40,12 @@ Here's how we can define the `llm_chat` function:
 ```{python}
 def llm_chat(message):
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": message}]
+        model="gpt-4o-mini", messages=[{"role": "user", "content": message}]
     )
     return response.choices[0].message.content
 ```
 
-This function takes a `message` as input, sends it to the LLM, and returns the generated response. The `model` parameter specifies which model to use—in this case, `gpt-4o-mini`.
+This function takes a `message` as input, sends it to the LLM, and returns the generated response. The `model` parameter specifies which model to use—in this case, `gpt-4o-mini`. We use this model for its balance of quality, speed, and cost. If you want a more performant model, you can use `gpt-4o` but be careful not to exceed your API quota.
 
 ## Fixed Questions
 
@@ -50,18 +57,25 @@ response = llm_chat("What is the most tourist-friendly city in France?")
 print(response)
 ```
 
-This code sends the question to the model and prints the response. You should see an answer like "Paris" or a similar response.
 
-**Practice Question**
+::: {.callout-practice title="Practice"}
 
-*Question*: Use the `llm_chat` function to ask the model for the most tourist-friendly city in Brazil.
+## Practice Q: Get tourist-friendly city in Brazil
 
-*Solution*:
+Use the `llm_chat` function to ask the model for the most tourist-friendly city in Brazil.
 
 ```{python}
+# Your code here
+```
+
+```{python}
+# | eval: false 
+# | echo: false
 response = llm_chat("What is the most tourist-friendly city in Brazil?")
 print(response)
 ```
+
+:::
 
 ## Variable Questions
 
@@ -75,15 +89,18 @@ def city_rec(country):
 
 Now, you can get recommendations for different countries by calling `city_rec("Country Name")`.
 
-However, if we try to use this function on a list of countries directly, it won't process each country individually. Instead, it will attempt to concatenate the list into a single string, which isn't the desired behavior.
+However, if we try to use this function on a list of countries or a DataFrame column directly, it won't process each country individually. Instead, it will attempt to concatenate the list into a single string, which isn't the desired behavior.
 
 ```{python}
-# Incorrect usage
-countries = ["Nigeria", "Chile", "France", "Canada"]
-response = city_rec(countries)
-```
+import pandas as pd
 
-This will likely result in an error or an unexpected prompt like "What is the most tourist-friendly city in ['Nigeria', 'Chile', 'France', 'Canada']?"
+# Incorrect usage
+country_df = pd.DataFrame({"country": ["Nigeria", "Chile", "France", "Canada"]})
+
+response = city_rec(country_df["country"])
+
+print(response)
+```
 
 To process each country individually, we can use NumPy's `vectorize` function. This function transforms `city_rec` so that it can accept arrays (like lists or NumPy arrays) and apply the function element-wise.
 
@@ -94,55 +111,26 @@ import numpy as np
 city_rec_vec = np.vectorize(city_rec)
 
 # Apply the function to each country
-countries = ["Nigeria", "Chile", "France", "Canada"]
-cities = city_rec_vec(countries)
-cities
-```
-
-This code will output an array of city recommendations corresponding to each country.
-
-**Practice Question**
-
-*Question*: Given a list of countries `["Japan", "Australia", "Brazil"]`, use the `city_rec_vec` function to get the most tourist-friendly cities in each country.
-
-*Solution*:
-
-```{python}
-countries = ["Japan", "Australia", "Brazil"]
-cities = city_rec_vec(countries)
-cities
-```
-
-## Working with DataFrames
-
-Handling data in bulk is streamlined using pandas DataFrames. Let's create a DataFrame that we'll use throughout our examples.
-
-```{python}
-import pandas as pd
-
-# Create a DataFrame of countries
-countries = ["United Kingdom", "Japan", "Brazil", "France"]
-country_df = pd.DataFrame({"country": countries})
+country_df["city_rec"] = city_rec_vec(country_df["country"])
 country_df
 ```
 
-Now, we can apply the vectorized city recommendations to our DataFrame.
+This code will output a DataFrame with a new column `city_rec` containing city recommendations corresponding to each country.
+
+::: {.callout-practice title="Practice"}
+
+### Practice Q: Get local dishes
+
+Create a function called `get_local_dishes` that takes a country name as input and returns some of the most famous local dishes from that country. Then, vectorize this function and apply it to the `country_df` DataFrame to add a column with local dish recommendations for each country.
+
 
 ```{python}
-# Apply the vectorized function to the DataFrame
-country_df['city_rec'] = city_rec_vec(country_df['country'])
-country_df
+# Your code here
 ```
 
-This adds a new column `city_rec` with the recommended city for each country.
-
-**Practice Question**
-
-*Question*: Modify the `get_local_dishes` function to take a country name as input and return some of the most famous local dishes from that country. Then apply it to the `country_df` DataFrame to add a column with the most famous local dishes for each country.
-
-*Solution*:
-
 ```{python}
+# | echo: false
+# | eval: false
 def get_local_dishes(country):
     prompt = f"What are some of the most famous local dishes from {country}?"
     return llm_chat(prompt)
@@ -155,7 +143,86 @@ country_df['local_dishes'] = get_local_dishes_vec(country_df['country'])
 country_df
 ```
 
+:::
 
-# Wrap Up
+## Movie Dataset Use Case
 
-In this tutorial, we've learned how to use LLMs for text generation, how to handle structured outputs, and how to work with DataFrames. This knowledge will be useful for a wide range of applications, from simple chatbots to complex data analysis workflows.
+In this example, we'll write a prompt that takes in the `Title`, `Worldwide_Gross`, `Production_Budget`, and `IMDB_Rating` of a movie, and returns a paragraph summarizing the performance of the movie in terms of its financial success and reception by critics and audiences. This kind of prompt might be useful for automated reports of data of many types.
+
+```{python}
+import pandas as pd
+import vega_datasets as vd
+
+# Load the movies dataset
+movies = vd.data.movies().head()  # Use only the first 5 rows to save API credits
+movies
+```
+
+Now, let's define a function that creates a prompt using these columns and returns the generated summary.
+
+```{python}
+def summarize_movie(title, worldwide_gross, budget, imdb_rating):
+    prompt = f"""Provide a brief summary of the performance of the movie '{title}'. The movie had a worldwide gross of {worldwide_gross}, a production budget of {budget}, and an IMDb rating of {imdb_rating}. Summarize how much it made compared to its budget and how it was received by critics and audiences."""
+    return llm_chat(prompt)
+
+# Vectorize the function
+summarize_movie_vec = np.vectorize(summarize_movie)
+
+# Apply the function to the DataFrame
+movies['summary'] = summarize_movie_vec(
+    movies['Title'],
+    movies['Worldwide_Gross'],
+    movies['Production_Budget'],
+    movies['IMDB_Rating']
+)
+
+movies[['Title', 'summary']]
+```
+
+This will add a new column `summary` to the `movies` DataFrame containing the generated summaries.
+
+::: {.callout-practice title="Practice"}
+
+## Practice Q: Generate interview questions
+
+Consider the linkedin jobs dataset imported below. This dataset contains data analyst job listings from LinkedIn in November 2022. It was compiled by scraping LinkedIn's job search results. You can see the project [here](https://github.com/MNC-Aubin/Jobs-scrapping-and-Data-analysis).
+
+Create a function called `generate_interview_questions` that takes in the `title` and `description` of a job and returns two technical questions to prepare for an interview for this job. Use it on only the head of the DataFrame (first 5 rows).
+
+```{python}
+# Load the dataset
+jobs = pd.read_csv("data/linkedin_data_jobs_nov_2022.csv").head()
+
+jobs
+```
+
+```{python}
+# Your code here
+```
+
+
+```{python}
+# | echo: false
+# | eval: false
+def generate_interview_questions(title, description):
+    prompt = f"""Given the job title '{title}' and the following job description:\n{description}\nGenerate two technical interview questions that a candidate should prepare for."""
+    return llm_chat(prompt)
+
+
+# Vectorize the function
+generate_interview_questions_vec = np.vectorize(generate_interview_questions)
+
+# Apply the function to the DataFrame
+jobs["interview_questions"] = generate_interview_questions_vec(
+    jobs["title"], jobs["description"]
+)
+jobs[["title", "interview_questions"]]
+```
+
+:::
+
+## Wrap-up
+
+In this tutorial, we learned the basics of using OpenAI's LLMs in Python for text generation, created helper functions, and applied these functions to datasets using vectorization.
+
+In the next lesson, we'll look at structured outputs that allow us to specify the format of the response we want from the LLM. We'll use this to extract structured data from unstructured text, a common task in data analysis.

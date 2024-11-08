@@ -12,6 +12,17 @@ Before starting this tutorial, ensure that you have completed the previous tutor
 Run the following code to set up the OpenAI client and import the necessary libraries:
 
 ```{python}
+import urllib.request
+import json
+
+url = "https://simple.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=Italy&explaintext=1"
+response = urllib.request.urlopen(url)
+content = json.loads(response.read())
+text = content['query']['pages'].popitem()[1]['extract']
+print(text)
+```
+
+```{python}
 import os
 from openai import OpenAI
 import numpy as np

@@ -5,3 +5,5 @@
 .Ruserdata
 
 /.quarto/
+
+local_settings.py

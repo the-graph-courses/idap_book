@@ -6,7 +6,6 @@
 
 /.quarto/
 
-local_settings.pylocal_settings.py
 __pycache__
 local_settings.py
-__pycache__
+

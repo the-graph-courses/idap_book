@@ -2179,7 +2179,7 @@
     "href": "p_ai_LLM_functions.html",
     "title": "21  Using LLMs in Python for Text Generation",
     "section": "",
-    "text": "21.1 Setting Up the OpenAI Client\nFirst, we need to set up the OpenAI client using your API key. Ensure you have your API key stored securely, for example, in an environment variable called OPENAI_API_KEY within a .env file.\nimport os\nfrom openai import OpenAI\n\n# Set up the OpenAI API key\n# Initialize the OpenAI client with your API key\nclient = OpenAI(\n    api_key=os.environ.get(\"OPENAI_API_KEY\"),\n)\nAlternatively, you can pass your API key directly when setting the api_key, but be cautious not to expose it in your code, especially if you plan to share or publish it.",
+    "text": "21.1 Intro\nIn this tutorial, we’ll explore how to leverage Large Language Models (LLMs) to generate text using OpenAI’s API. We’ll use the gpt-4o-mini model to generate responses to fixed and variable prompts, optimize our code with helper functions and vectorization, and handle data using pandas DataFrames.",
     "crumbs": [
       "Using LLMs in Python",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
@@ -2189,8 +2189,8 @@
     "objectID": "p_ai_LLM_functions.html#defining-helper-functions",
     "href": "p_ai_LLM_functions.html#defining-helper-functions",
     "title": "21  Using LLMs in Python for Text Generation",
-    "section": "21.2 Defining Helper Functions",
-    "text": "21.2 Defining Helper Functions\nTo simplify our code and avoid repetition, we’ll define a helper function for making API calls. API calls often contain boilerplate code, so encapsulating this logic in a function makes our code cleaner and more maintainable.\nIf you ever forget how to structure the API calls, refer to the OpenAI API documentation or search for “OpenAI Python API example” online.\nHere’s how we can define the llm_chat function:\n\ndef llm_chat(message):\n    response = client.chat.completions.create(\n        model=\"gpt-4o-mini\", messages=[{\"role\": \"user\", \"content\": message}]\n    )\n    return response.choices[0].message.content\n\nThis function takes a message as input, sends it to the LLM, and returns the generated response. The model parameter specifies which model to use—in this case, gpt-4o-mini.",
+    "section": "21.5 Defining Helper Functions",
+    "text": "21.5 Defining Helper Functions\nTo simplify our code and avoid repetition, we’ll define a helper function for making API calls. API calls contain a lot of boilerplate code, so encapsulating this logic in a function makes our code cleaner and more maintainable.\nIf you ever forget how to structure the API calls, refer to the OpenAI API documentation or search for “OpenAI Python API example” online.\nHere’s how we can define the llm_chat function:\n\ndef llm_chat(message):\n    response = client.chat.completions.create(\n        model=\"gpt-4o-mini\", messages=[{\"role\": \"user\", \"content\": message}]\n    )\n    return response.choices[0].message.content\n\nThis function takes a message as input, sends it to the LLM, and returns the generated response. The model parameter specifies which model to use—in this case, gpt-4o-mini. We use this model for its balance of quality, speed, and cost. If you want a more performant model, you can use gpt-4o but be careful not to exceed your API quota.",
     "crumbs": [
       "Using LLMs in Python",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
@@ -2200,8 +2200,8 @@
     "objectID": "p_ai_LLM_functions.html#fixed-questions",
     "href": "p_ai_LLM_functions.html#fixed-questions",
     "title": "21  Using LLMs in Python for Text Generation",
-    "section": "21.3 Fixed Questions",
-    "text": "21.3 Fixed Questions\nLet’s start by sending a fixed question to the gpt-4o-mini model and retrieving a response.\n\n# Example usage\nresponse = llm_chat(\"What is the most tourist-friendly city in France?\")\nresponse\n\n'Paris is often considered the most tourist-friendly city in France. Known as the \"City of Light,\" it offers a wealth of attractions, including world-famous landmarks like the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. The city\\'s extensive public transport system, including buses and the Metro, makes it easy for visitors to navigate. Additionally, many people in the hospitality sector speak English, and there are a variety of services tailored for tourists. Beyond Paris, cities like Nice, Lyon, and Marseille also attract tourists and offer their own unique charm and amenities.'\n\n\nThis code sends the question to the model and prints the response. You should see an answer like “Paris” or a similar response.",
+    "section": "21.6 Fixed Questions",
+    "text": "21.6 Fixed Questions\nLet’s start by sending a fixed question to the gpt-4o-mini model and retrieving a response.\n\n# Example usage\nresponse = llm_chat(\"What is the most tourist-friendly city in France?\")\nprint(response)\n\nParis is often considered the most tourist-friendly city in France. Known as the \"City of Light,\" it offers a wealth of attractions, including iconic landmarks like the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. The city's extensive public transportation system, including the Metro, makes it easy for visitors to navigate. Additionally, Paris is rich in culture, dining options, and shopping, catering to a wide range of interests. Other cities in France, such as Nice, Lyon, and Marseille, are also popular with tourists, but Paris generally attracts the most visitors due to its global appeal and numerous attractions.",
     "crumbs": [
       "Using LLMs in Python",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
@@ -2310,8 +2310,96 @@
     "objectID": "p_ai_LLM_functions.html#wrap-up",
     "href": "p_ai_LLM_functions.html#wrap-up",
     "title": "21  Using LLMs in Python for Text Generation",
-    "section": "21.8 Wrap-up",
-    "text": "21.8 Wrap-up\nIn this tutorial, we learned how to use OpenAI’s LLMs in Python for text generation, create helper functions to streamline our API calls, and apply these functions to datasets using vectorization.\nIn the next lesson, we’ll look at structured outputs that allow us to specify the format of the response we want from the LLM. We’ll use this to extract structured data from unstructured text and integrate it into our applications.",
+    "section": "21.12 Wrap-up",
+    "text": "21.12 Wrap-up\nIn this tutorial, we learned the basics of using OpenAI’s LLMs in Python for text generation, created helper functions, and applied these functions to datasets using vectorization.\nIn the next lesson, we’ll look at structured outputs that allow us to specify the format of the response we want from the LLM. We’ll use this to extract structured data from unstructured text, a common task in data analysis.",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#learning-objectives",
+    "href": "p_ai_LLM_functions.html#learning-objectives",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.2 Learning Objectives",
+    "text": "21.2 Learning Objectives\n\nSet up the OpenAI client\nDefine and use simple functions to generate text\nUse vectorization to apply functions to DataFrames",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#setting-up-the-openai-client",
+    "href": "p_ai_LLM_functions.html#setting-up-the-openai-client",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.3 Setting Up the OpenAI Client",
+    "text": "21.3 Setting Up the OpenAI Client\nFirst, we need to set up the OpenAI client using your API key. Here, we store the key in a file called local_settings.py, then import it into our script.\n\nfrom openai import OpenAI\nimport pandas as pd\nimport numpy as np\nfrom local_settings import OPENAI_KEY\n\n# Set up the OpenAI API key\n# Initialize the OpenAI client with your API key\nclient = OpenAI(api_key=OPENAI_KEY)\n\nAlternatively, you can pass your API key directly when setting the api_key, but be cautious not to expose it in your code, especially if you plan to share or publish it.",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#making-an-api-call",
+    "href": "p_ai_LLM_functions.html#making-an-api-call",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.4 Making an API Call",
+    "text": "21.4 Making an API Call\nLet’s make an API call to the gpt-4o-mini model to generate a response to a prompt.\n\nresponse = client.chat.completions.create(\n    model=\"gpt-4o-mini\", messages=[{\"role\": \"user\", \"content\": \"What is the most tourist-friendly city in France?\"}]\n)\nprint(response.choices[0].message.content)\n\nParis is often considered the most tourist-friendly city in France. The capital offers a wealth of attractions, including iconic landmarks like the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. Its extensive public transportation system makes it easy to navigate, and many people speak English, which can be helpful for international visitors. Additionally, Paris is known for its vibrant cultural scene, diverse dining options, and numerous shops. Other cities in France, such as Nice, Lyon, and Bordeaux, are also popular with tourists, but Paris tends to be the most visited and well-equipped for tourists.",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#practice-q-get-tourist-friendly-city-in-brazil",
+    "href": "p_ai_LLM_functions.html#practice-q-get-tourist-friendly-city-in-brazil",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.7 Practice Q: Get tourist-friendly city in Brazil",
+    "text": "21.7 Practice Q: Get tourist-friendly city in Brazil\nUse the llm_chat function to ask the model for the most tourist-friendly city in Brazil. Store the response in a variable called rec_brazil. Print the response.\n\n# Your code here",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#variables-as-prompt-inputs",
+    "href": "p_ai_LLM_functions.html#variables-as-prompt-inputs",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.8 Variables as Prompt Inputs",
+    "text": "21.8 Variables as Prompt Inputs\nOften, you’ll want to generate responses based on varying inputs. Let’s create a function that takes a country as input and asks the model for the most tourist-friendly city in that country.\n\ndef city_rec(country):\n    prompt = f\"What is the most tourist-friendly city in {country}?\"\n    return llm_chat(prompt)\n\nNow, you can get recommendations for different countries by calling city_rec(\"Country Name\"):\n\ncity_rec(\"Nigeria\")\n\n'Lagos is often considered the most tourist-friendly city in Nigeria. As the largest city in the country and one of the most populous urban areas in Africa, Lagos offers a vibrant mix of cultures, attractions, and activities. Tourists can enjoy beautiful beaches, bustling markets, a thriving nightlife, and rich cultural experiences, including museums, art galleries, music, and festivals. \\n\\nAdditionally, cities like Abuja, the capital city, and Port Harcourt also offer unique experiences and can be friendly to tourists, but Lagos remains the most prominent in terms of tourist infrastructure and attractions.'\n\n\nHowever, if we try to use this function on a list of countries or a DataFrame column directly, it won’t process each country individually. Instead, it will attempt to concatenate the list into a single string, which isn’t the desired behavior.\n\n# Incorrect usage\ncountry_df = pd.DataFrame({\"country\": [\"Nigeria\", \"Chile\", \"France\", \"Canada\"]})\n\nresponse = city_rec(country_df[\"country\"])\n\nprint(response)\n\nDetermining the \"most tourist-friendly city\" can be subjective, as it depends on various factors such as infrastructure, hospitality, cultural attractions, safety, and accessibility. However, I can offer some general insights about cities in each of the countries you specified:\n\n1. **Nigeria**: Lagos is the most populous city and a major cultural hub, but it may not be considered very tourist-friendly due to issues like safety and infrastructure.\n\n2. **Chile**: Santiago is a vibrant city with a rich culture, good public transport, and access to stunning natural landscapes. It is generally considered tourist-friendly.\n\n3. **France**: Paris is one of the world's most famous tourist destinations, known for its attractions, hospitality, and extensive public transport system, making it highly tourist-friendly.\n\n4. **Canada**: Cities like Toronto and Vancouver are considered very welcoming for tourists, with diverse attractions, safety, and excellent public services.\n\nBased on these insights, **Paris, France** is often regarded as the most tourist-friendly city among the options provided, thanks to its extensive amenities and attractions for international visitors.\n\n\nTo process each country individually, we can use NumPy’s vectorize function. This function transforms city_rec so that it can accept arrays (like lists or NumPy arrays) and apply the function element-wise.\n\n# Vectorize the function\ncity_rec_vec = np.vectorize(city_rec)\n\n# Apply the function to each country\ncountry_df[\"city_rec\"] = city_rec_vec(country_df[\"country\"])\ncountry_df\n\n\n\n\n\n\n\n\ncountry\ncity_rec\n\n\n\n\n0\nNigeria\nLagos is often considered the most tourist-fri...\n\n\n1\nChile\nSantiago is often considered the most tourist-...\n\n\n2\nFrance\nWhile France has many cities that are popular ...\n\n\n3\nCanada\nWhile several Canadian cities are known for be...\n\n\n\n\n\n\n\nThis code will output a DataFrame with a new column city_rec containing city recommendations corresponding to each country.",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#practice-q-get-local-dishes",
+    "href": "p_ai_LLM_functions.html#practice-q-get-local-dishes",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.9 Practice Q: Get local dishes",
+    "text": "21.9 Practice Q: Get local dishes\nCreate a function called get_local_dishes that takes a country name as input and returns some of the most famous local dishes from that country. Then, vectorize this function and apply it to the country_df DataFrame to add a column with local dish recommendations for each country.\n\n# Your code here",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#automated-summary-movies-dataset",
+    "href": "p_ai_LLM_functions.html#automated-summary-movies-dataset",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.10 Automated Summary: Movies Dataset",
+    "text": "21.10 Automated Summary: Movies Dataset\nIn this example, we’ll use the movies dataset from vega_datasets to generate automated summaries for each movie. We’ll convert each movie’s data into a dictionary and use it as input for the LLM to generate a one-paragraph performance summary.\nFirst, let’s load the movies dataset and preview the first few rows:\n\nimport pandas as pd\nimport vega_datasets as vd\n\n# Load the movies dataset\nmovies = vd.data.movies().head()  # Using only the first 5 rows to conserve API credits\nmovies\n\n\n\n\n\n\n\n\nTitle\nUS_Gross\nWorldwide_Gross\nUS_DVD_Sales\nProduction_Budget\nRelease_Date\nMPAA_Rating\nRunning_Time_min\nDistributor\nSource\nMajor_Genre\nCreative_Type\nDirector\nRotten_Tomatoes_Rating\nIMDB_Rating\nIMDB_Votes\n\n\n\n\n0\nThe Land Girls\n146083.0\n146083.0\nNaN\n8000000.0\nJun 12 1998\nR\nNaN\nGramercy\nNone\nNone\nNone\nNone\nNaN\n6.1\n1071.0\n\n\n1\nFirst Love, Last Rites\n10876.0\n10876.0\nNaN\n300000.0\nAug 07 1998\nR\nNaN\nStrand\nNone\nDrama\nNone\nNone\nNaN\n6.9\n207.0\n\n\n2\nI Married a Strange Person\n203134.0\n203134.0\nNaN\n250000.0\nAug 28 1998\nNone\nNaN\nLionsgate\nNone\nComedy\nNone\nNone\nNaN\n6.8\n865.0\n\n\n3\nLet's Talk About Sex\n373615.0\n373615.0\nNaN\n300000.0\nSep 11 1998\nNone\nNaN\nFine Line\nNone\nComedy\nNone\nNone\n13.0\nNaN\nNaN\n\n\n4\nSlam\n1009819.0\n1087521.0\nNaN\n1000000.0\nOct 09 1998\nR\nNaN\nTrimark\nOriginal Screenplay\nDrama\nContemporary Fiction\nNone\n62.0\n3.4\n165.0\n\n\n\n\n\n\n\nNext, we’ll convert each row of the DataFrame into a dictionary. This will be useful for passing the data to the LLM.\n\n# Convert each movie's data into a dictionary\nmovies.to_dict(orient=\"records\")\n\n[{'Title': 'The Land Girls',\n  'US_Gross': 146083.0,\n  'Worldwide_Gross': 146083.0,\n  'US_DVD_Sales': nan,\n  'Production_Budget': 8000000.0,\n  'Release_Date': 'Jun 12 1998',\n  'MPAA_Rating': 'R',\n  'Running_Time_min': nan,\n  'Distributor': 'Gramercy',\n  'Source': None,\n  'Major_Genre': None,\n  'Creative_Type': None,\n  'Director': None,\n  'Rotten_Tomatoes_Rating': nan,\n  'IMDB_Rating': 6.1,\n  'IMDB_Votes': 1071.0},\n {'Title': 'First Love, Last Rites',\n  'US_Gross': 10876.0,\n  'Worldwide_Gross': 10876.0,\n  'US_DVD_Sales': nan,\n  'Production_Budget': 300000.0,\n  'Release_Date': 'Aug 07 1998',\n  'MPAA_Rating': 'R',\n  'Running_Time_min': nan,\n  'Distributor': 'Strand',\n  'Source': None,\n  'Major_Genre': 'Drama',\n  'Creative_Type': None,\n  'Director': None,\n  'Rotten_Tomatoes_Rating': nan,\n  'IMDB_Rating': 6.9,\n  'IMDB_Votes': 207.0},\n {'Title': 'I Married a Strange Person',\n  'US_Gross': 203134.0,\n  'Worldwide_Gross': 203134.0,\n  'US_DVD_Sales': nan,\n  'Production_Budget': 250000.0,\n  'Release_Date': 'Aug 28 1998',\n  'MPAA_Rating': None,\n  'Running_Time_min': nan,\n  'Distributor': 'Lionsgate',\n  'Source': None,\n  'Major_Genre': 'Comedy',\n  'Creative_Type': None,\n  'Director': None,\n  'Rotten_Tomatoes_Rating': nan,\n  'IMDB_Rating': 6.8,\n  'IMDB_Votes': 865.0},\n {'Title': \"Let's Talk About Sex\",\n  'US_Gross': 373615.0,\n  'Worldwide_Gross': 373615.0,\n  'US_DVD_Sales': nan,\n  'Production_Budget': 300000.0,\n  'Release_Date': 'Sep 11 1998',\n  'MPAA_Rating': None,\n  'Running_Time_min': nan,\n  'Distributor': 'Fine Line',\n  'Source': None,\n  'Major_Genre': 'Comedy',\n  'Creative_Type': None,\n  'Director': None,\n  'Rotten_Tomatoes_Rating': 13.0,\n  'IMDB_Rating': nan,\n  'IMDB_Votes': nan},\n {'Title': 'Slam',\n  'US_Gross': 1009819.0,\n  'Worldwide_Gross': 1087521.0,\n  'US_DVD_Sales': nan,\n  'Production_Budget': 1000000.0,\n  'Release_Date': 'Oct 09 1998',\n  'MPAA_Rating': 'R',\n  'Running_Time_min': nan,\n  'Distributor': 'Trimark',\n  'Source': 'Original Screenplay',\n  'Major_Genre': 'Drama',\n  'Creative_Type': 'Contemporary Fiction',\n  'Director': None,\n  'Rotten_Tomatoes_Rating': 62.0,\n  'IMDB_Rating': 3.4,\n  'IMDB_Votes': 165.0}]\n\n\nLet’s store this new column in the DataFrame:\n\nmovies[\"full_dict\"] = movies.to_dict(orient=\"records\")\nmovies\n\n\n\n\n\n\n\n\nTitle\nUS_Gross\nWorldwide_Gross\nUS_DVD_Sales\nProduction_Budget\nRelease_Date\nMPAA_Rating\nRunning_Time_min\nDistributor\nSource\nMajor_Genre\nCreative_Type\nDirector\nRotten_Tomatoes_Rating\nIMDB_Rating\nIMDB_Votes\nfull_dict\n\n\n\n\n0\nThe Land Girls\n146083.0\n146083.0\nNaN\n8000000.0\nJun 12 1998\nR\nNaN\nGramercy\nNone\nNone\nNone\nNone\nNaN\n6.1\n1071.0\n{'Title': 'The Land Girls', 'US_Gross': 146083...\n\n\n1\nFirst Love, Last Rites\n10876.0\n10876.0\nNaN\n300000.0\nAug 07 1998\nR\nNaN\nStrand\nNone\nDrama\nNone\nNone\nNaN\n6.9\n207.0\n{'Title': 'First Love, Last Rites', 'US_Gross'...\n\n\n2\nI Married a Strange Person\n203134.0\n203134.0\nNaN\n250000.0\nAug 28 1998\nNone\nNaN\nLionsgate\nNone\nComedy\nNone\nNone\nNaN\n6.8\n865.0\n{'Title': 'I Married a Strange Person', 'US_Gr...\n\n\n3\nLet's Talk About Sex\n373615.0\n373615.0\nNaN\n300000.0\nSep 11 1998\nNone\nNaN\nFine Line\nNone\nComedy\nNone\nNone\n13.0\nNaN\nNaN\n{'Title': 'Let's Talk About Sex', 'US_Gross': ...\n\n\n4\nSlam\n1009819.0\n1087521.0\nNaN\n1000000.0\nOct 09 1998\nR\nNaN\nTrimark\nOriginal Screenplay\nDrama\nContemporary Fiction\nNone\n62.0\n3.4\n165.0\n{'Title': 'Slam', 'US_Gross': 1009819.0, 'Worl...\n\n\n\n\n\n\n\nNow, let’s define a function movie_performance that takes a movie’s data dictionary, constructs a prompt, and calls the llm_chat function to get a summary:\n\ndef movie_performance(movie_data):\n    prompt = f\"Considering the following data on this movie {movie_data}, provide a one-paragraph summary of its performance for my report.\"\n    return llm_chat(prompt)\n\nWe’ll vectorize this function so we can apply it to the entire full_dict column:\n\nimport numpy as np\n\n# Vectorize the function to apply it to the DataFrame\nmovie_performance_vec = np.vectorize(movie_performance)\n\nLet’s test our function with an example:\n\n# Example usage\nmovie_performance(\"Name: Kene's Movie, Sales: 100,000 USD\")\n\n\"Kene's Movie has demonstrated a strong market performance, generating sales totaling $100,000 USD. This figure reflects a positive reception among audiences, suggesting that the film has effectively engaged its target demographic and optimized its distribution strategy. The sales performance can be indicative of both viewer interest and effective marketing efforts, positioning Kene's Movie as a notable contender in its genre. Overall, the financial results underscore the film's potential for ongoing success and may also create opportunities for future projects involving similar themes or talent.\"\n\n\nFinally, we’ll apply the vectorized function to generate summaries for each movie:\n\n# Generate summaries for each movie\nmovies[\"llm_summary\"] = movie_performance_vec(movies[\"full_dict\"])\n\nYou can now save the DataFrame with the generated summaries to a CSV file:\n\n# Save the results to a CSV file\nmovies.to_csv(\"movies_output.csv\", index=False)\n\nThis approach allows you to generate detailed summaries for each movie based on its full set of data, which can be incredibly useful for automated reporting and data analysis.",
+    "crumbs": [
+      "Using LLMs in Python",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"
+    ]
+  },
+  {
+    "objectID": "p_ai_LLM_functions.html#practice-q-weather-summary",
+    "href": "p_ai_LLM_functions.html#practice-q-weather-summary",
+    "title": "21  Using LLMs in Python for Text Generation",
+    "section": "21.11 Practice Q: Weather Summary",
+    "text": "21.11 Practice Q: Weather Summary\nUsing the first 5 rows of the seattle_weather dataset from vega_datasets, create a function that takes all weather columns for a particular day and generates a summary of the weather conditions for that day. The function should use the LLM to generate a one-paragraph summary for a report, considering the data provided. Store the function in a column called weather_summary.\n\nweather = vd.data.seattle_weather().head()\nweather\n\n\n\n\n\n\n\n\ndate\nprecipitation\ntemp_max\ntemp_min\nwind\nweather\n\n\n\n\n0\n2012-01-01\n0.0\n12.8\n5.0\n4.7\ndrizzle\n\n\n1\n2012-01-02\n10.9\n10.6\n2.8\n4.5\nrain\n\n\n2\n2012-01-03\n0.8\n11.7\n7.2\n2.3\nrain\n\n\n3\n2012-01-04\n20.3\n12.2\n5.6\n4.7\nrain\n\n\n4\n2012-01-05\n1.3\n8.9\n2.8\n6.1\nrain",
     "crumbs": [
       "Using LLMs in Python",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Using LLMs in Python for Text Generation</span>"

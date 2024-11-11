@@ -1,4 +1,11 @@
 
+```{python}
+import vega_datasets as vd 
+import pandas as pd
+
+vd.data.movies().to_csv("movies.csv")
+```
+
 ## Setting category order
 
 When working with categorical data, especially for visualization or certain types of statistical analysis, we often need to specify a particular order for the categories. By default, pandas will typically sort categories alphabetically or by their frequency. However, this may not always be the most meaningful or useful order for your analysis.

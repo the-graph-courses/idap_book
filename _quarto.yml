@@ -50,7 +50,6 @@ book:
     - part: "Using LLMs in Python"
       chapters:
         - p_ai_LLM_functions.qmd
-        - p_ai_LLM_functions_structured.qmd
 
     ## Use the below for PDF render
     # - p_foundations_google_colab.qmd

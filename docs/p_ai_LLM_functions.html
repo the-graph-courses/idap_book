@@ -64,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./p_ai_LLM_functions_structured.html" rel="next">
 <link href="./p_untangled_pivoting.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -333,12 +332,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./p_ai_LLM_functions_structured.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -403,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setting-up-the-openai-client" class="level2" data-number="21.3">
 <h2 data-number="21.3" class="anchored" data-anchor-id="setting-up-the-openai-client"><span class="header-section-number">21.3</span> Setting Up the OpenAI Client</h2>
 <p>First, we need to set up the OpenAI client using your API key. Here, we store the key in a file called <code>local_settings.py</code>, then import it into our script.</p>
-<div id="69c709f0" class="cell" data-execution_count="1">
+<div id="c32d15b4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -418,13 +411,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="making-an-api-call" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="making-an-api-call"><span class="header-section-number">21.4</span> Making an API Call</h2>
 <p>Let’s make an API call to the <code>gpt-4o-mini</code> model to generate a response to a prompt.</p>
-<div id="ced6369b" class="cell" data-execution_count="2">
+<div id="c6e58402" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>, messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What is the most tourist-friendly city in France?"</span>}]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Paris is often considered the most tourist-friendly city in France. Known as the "City of Light," it offers a wealth of attractions, including iconic landmarks such as the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. The city's extensive public transportation system, including buses and the metro, makes it easy for visitors to navigate. Additionally, Paris is home to numerous restaurants, cafés, and shops that cater to tourists. The cosmopolitan atmosphere, rich history, and vibrant culture further enhance its appeal to travelers from around the world. Other cities like Nice, Lyon, and Marseille also attract tourists but may not have the same level of international recognition as Paris.</code></pre>
+<pre><code>While opinions on the "most tourist-friendly" city in France can vary, Paris is often considered the top contender due to its extensive amenities, well-developed infrastructure, and abundance of attractions. The city offers a wide range of resources for tourists, including:
+
+1. **Landmarks**: Iconic sights such as the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral.
+2. **Public Transportation**: A comprehensive metro and bus system that makes it easy to navigate the city.
+3. **Cultural Experiences**: Numerous museums, galleries, restaurants, and theaters that showcase French culture and cuisine.
+4. **Accommodations**: A variety of lodging options to suit different budgets.
+5. **Multilingual Services**: Many tourist information centers and accommodations have staff who speak multiple languages.
+
+Other cities like Nice, Lyon, and Marseille are also very tourist-friendly and offer unique experiences, but Paris remains the most renowned and visited city in France.</code></pre>
 </div>
 </div>
 </section>
@@ -433,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To simplify our code and avoid repetition, we’ll define a helper function for making API calls. API calls contain a lot of boilerplate code, so encapsulating this logic in a function makes our code cleaner and more maintainable.</p>
 <p>If you ever forget how to structure the API calls, refer to the <a href="https://platform.openai.com/docs/api-reference/introduction">OpenAI API documentation</a> or search for “OpenAI Python API example” online.</p>
 <p>Here’s how we can define the <code>llm_chat</code> function:</p>
-<div id="41b3f465" class="cell" data-execution_count="3">
+<div id="019dd0ec" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> llm_chat(message):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>, messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
@@ -445,39 +446,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fixed-questions" class="level2" data-number="21.6">
 <h2 data-number="21.6" class="anchored" data-anchor-id="fixed-questions"><span class="header-section-number">21.6</span> Fixed Questions</h2>
 <p>Let’s start by sending a fixed question to the <code>gpt-4o-mini</code> model and retrieving a response.</p>
-<div id="80c44f8d" class="cell" data-execution_count="4">
+<div id="0814c195" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> llm_chat(<span class="st">"What is the most tourist-friendly city in France?"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Paris is often considered the most tourist-friendly city in France. As the capital and a major global city, it offers a wealth of attractions, including iconic landmarks like the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. Paris is well-equipped to handle tourists, with extensive public transportation, numerous hotels, restaurants, and services catering to visitors. The city also provides a vibrant cultural scene, with plenty of events, festivals, and diverse neighborhoods to explore. While other cities like Nice, Lyon, and Marseille also attract tourists, Paris remains the top destination for its unique blend of history, culture, and accessibility.</code></pre>
+<pre><code>While opinions on the "most tourist-friendly" city in France can vary, Paris often ranks at the top due to its abundance of attractions, diverse accommodations, excellent public transportation, and multilingual services. Major landmarks like the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral draw millions of visitors each year. 
+
+However, other cities like Nice, Lyon, and Bordeaux are also very tourist-friendly, offering beautiful sights, rich history, and a welcoming atmosphere. Each city has its own unique charm and experiences, so the best choice can depend on individual preferences and interests.</code></pre>
 </div>
 </div>
 </section>
 <section id="practice-q-get-tourist-friendly-city-in-brazil" class="level2 callout-practice" title="Practice" data-number="21.7">
 <h2 data-number="21.7" class="anchored" data-anchor-id="practice-q-get-tourist-friendly-city-in-brazil"><span class="header-section-number">21.7</span> Practice Q: Get tourist-friendly city in Brazil</h2>
 <p>Use the <code>llm_chat</code> function to ask the model for the most tourist-friendly city in Brazil. Store the response in a variable called <code>rec_brazil</code>. Print the response.</p>
-<div id="555901e7" class="cell" data-execution_count="5">
+<div id="700ddff7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="variables-as-prompt-inputs" class="level2" data-number="21.8">
 <h2 data-number="21.8" class="anchored" data-anchor-id="variables-as-prompt-inputs"><span class="header-section-number">21.8</span> Variables as Prompt Inputs</h2>
 <p>Often, you’ll want to generate responses based on varying inputs. Let’s create a function that takes a country as input and asks the model for the most tourist-friendly city in that country.</p>
-<div id="cc5a084b" class="cell" data-execution_count="7">
+<div id="3d5244b4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> city_rec(country):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"What is the most tourist-friendly city in </span><span class="sc">{</span>country<span class="sc">}</span><span class="ss">?"</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> llm_chat(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, you can get recommendations for different countries by calling <code>city_rec("Country Name")</code>:</p>
-<div id="bdc98fa9" class="cell" data-execution_count="8">
+<div id="1047c840" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>city_rec(<span class="st">"Nigeria"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
-<pre><code>"Lagos is often considered the most tourist-friendly city in Nigeria. As the country's largest city and its economic hub, Lagos offers a wide range of attractions, including beautiful beaches, vibrant nightlife, cultural sites, and a diverse array of restaurants. Tourists can explore landmarks like the National Museum, Lekki Conservation Centre, and the Nike Art Gallery, as well as enjoy local markets and street food.\n\nAdditionally, Lagos has a range of accommodations, tourist services, and activities catering to both local and international visitors, making it a popular starting point for exploring Nigeria. Other notable cities for tourism include Abuja, the capital, with its modern architecture and parks, and Port Harcourt, known for its natural attractions. However, Lagos generally stands out for its dynamic atmosphere and variety of experiences."</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>"Lagos is often considered the most tourist-friendly city in Nigeria. It is the country's largest city and a major commercial hub, offering a vibrant mix of culture, nightlife, and entertainment. Visitors can enjoy beautiful beaches, shopping, local markets, and a variety of dining options that showcase Nigerian cuisine. Additionally, Lagos has numerous attractions, such as the Nike Art Gallery, Lekki Conservation Centre, and the National Museum. Other cities, like Abuja (the capital) and Port Harcourt, also offer tourist-friendly experiences, but Lagos remains the most popular destination for travelers due to its energy and diverse offerings."</code></pre>
 </div>
 </div>
 <p>However, if we try to use this function on a list of countries or a DataFrame column directly, it won’t process each country individually. Instead, it will attempt to concatenate the list into a single string, which isn’t the desired behavior.</p>
-<div id="5d450ba4" class="cell" data-execution_count="9">
+<div id="3fbf257f" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Incorrect usage</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>country_df <span class="op">=</span> pd.DataFrame({<span class="st">"country"</span>: [<span class="st">"Nigeria"</span>, <span class="st">"Chile"</span>, <span class="st">"France"</span>, <span class="st">"Canada"</span>]})</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -485,25 +488,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Determining the "most tourist-friendly" city among the options you've provided can be subjective, as it often depends on various factors such as infrastructure, safety, hospitality, and attractions. However, based on general perceptions and tourism rankings:
+<pre><code>Determining the "most tourist-friendly" city can be subjective and varies based on personal preferences and experiences; however, based on various global tourism rankings and traveler feedback, here are some insights for each of the listed countries:
 
-1. **Nigeria**: Lagos is a major city that attracts tourists but can have challenges related to infrastructure and safety.
-2. **Chile**: Santiago is a vibrant city with many cultural attractions and good infrastructure for tourists.
-3. **France**: Paris is one of the most popular tourist destinations in the world, known for its rich history, culture, and amenities for visitors.
-4. **Canada**: Cities like Toronto and Vancouver are well-known for being welcoming to tourists, with plenty of attractions and good public services.
+1. **Nigeria**: Lagos is the largest city and a significant cultural center, but it may not be considered the most tourist-friendly due to issues like safety and infrastructure.
 
-Overall, **Paris, France**, often ranks as one of the most tourist-friendly cities globally due to its extensive transportation options, numerous attractions, and hospitality.</code></pre>
+2. **Chile**: Santiago is the capital and offers a mix of urban and cultural experiences, making it relatively tourist-friendly with good amenities.
+
+3. **France**: Paris is one of the most popular tourist destinations in the world, known for its infrastructure, cultural attractions, and ease of travel for tourists.
+
+4. **Canada**: Cities like Toronto and Vancouver are considered very tourist-friendly, with a diverse culture, friendly locals, and excellent public services.
+
+Overall, **Paris, France** would likely be seen as the most tourist-friendly city among the options listed due to its global appeal, established tourism infrastructure, and wealth of attractions.</code></pre>
 </div>
 </div>
 <p>To process each country individually, we can use NumPy’s <code>vectorize</code> function. This function transforms <code>city_rec</code> so that it can accept arrays (like lists or NumPy arrays) and apply the function element-wise.</p>
-<div id="8be26c3f" class="cell" data-execution_count="10">
+<div id="0e8e98fb" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize the function</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>city_rec_vec <span class="op">=</span> np.vectorize(city_rec)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to each country</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>country_df[<span class="st">"city_rec"</span>] <span class="op">=</span> city_rec_vec(country_df[<span class="st">"country"</span>])</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>country_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -524,17 +530,17 @@ Overall, **Paris, France**, often ranks as one of the most tourist-friendly citi
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>Chile</td>
-<td>Santiago, the capital city of Chile, is often ...</td>
+<td>Santiago, the capital of Chile, is often consi...</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>France</td>
-<td>Paris is often considered the most tourist-fri...</td>
+<td>Paris is widely regarded as the most tourist-f...</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>Canada</td>
-<td>While there are many cities in Canada that are...</td>
+<td>While "most tourist-friendly city" can be subj...</td>
 </tr>
 </tbody>
 </table>
@@ -547,7 +553,7 @@ Overall, **Paris, France**, often ranks as one of the most tourist-friendly citi
 <section id="practice-q-get-local-dishes" class="level2 callout-practice" title="Practice" data-number="21.9">
 <h2 data-number="21.9" class="anchored" data-anchor-id="practice-q-get-local-dishes"><span class="header-section-number">21.9</span> Practice Q: Get local dishes</h2>
 <p>Create a function called <code>get_local_dishes</code> that takes a country name as input and returns some of the most famous local dishes from that country. Then, vectorize this function and apply it to the <code>country_df</code> DataFrame to add a column with local dish recommendations for each country.</p>
-<div id="25d81399" class="cell" data-execution_count="11">
+<div id="422fdaae" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -555,14 +561,14 @@ Overall, **Paris, France**, often ranks as one of the most tourist-friendly citi
 <h2 data-number="21.10" class="anchored" data-anchor-id="automated-summary-movies-dataset"><span class="header-section-number">21.10</span> Automated Summary: Movies Dataset</h2>
 <p>In this example, we’ll use the movies dataset from <code>vega_datasets</code> to generate automated summaries for each movie. We’ll convert each movie’s data into a dictionary and use it as input for the LLM to generate a one-paragraph performance summary.</p>
 <p>First, let’s load the movies dataset and preview the first few rows:</p>
-<div id="d79072bd" class="cell" data-execution_count="13">
+<div id="7ed9defb" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vega_datasets <span class="im">as</span> vd</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the movies dataset</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> vd.data.movies().head()  <span class="co"># Using only the first 5 rows to conserve API credits</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
@@ -691,10 +697,10 @@ Overall, **Paris, France**, often ranks as one of the most tourist-friendly citi
 </div>
 </div>
 <p>Next, we’ll convert each row of the DataFrame into a dictionary. This will be useful for passing the data to the LLM.</p>
-<div id="ec44a853" class="cell" data-execution_count="14">
+<div id="6eeee284" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert each movie's data into a dictionary</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>movies.to_dict(orient<span class="op">=</span><span class="st">"records"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>[{'Title': 'The Land Girls',
   'US_Gross': 146083.0,
   'Worldwide_Gross': 146083.0,
@@ -778,10 +784,10 @@ Overall, **Paris, France**, often ranks as one of the most tourist-friendly citi
 </div>
 </div>
 <p>Let’s store this new column in the DataFrame:</p>
-<div id="bec1f273" class="cell" data-execution_count="15">
+<div id="20cddee8" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">"full_dict"</span>] <span class="op">=</span> movies.to_dict(orient<span class="op">=</span><span class="st">"records"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -916,33 +922,33 @@ Overall, **Paris, France**, often ranks as one of the most tourist-friendly citi
 </div>
 </div>
 <p>Now, let’s define a function <code>movie_performance</code> that takes a movie’s data dictionary, constructs a prompt, and calls the <code>llm_chat</code> function to get a summary:</p>
-<div id="1c00f0c5" class="cell" data-execution_count="16">
+<div id="b9bef71d" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> movie_performance(movie_data):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Considering the following data on this movie </span><span class="sc">{</span>movie_data<span class="sc">}</span><span class="ss">, provide a one-paragraph summary of its performance for my report."</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> llm_chat(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We’ll vectorize this function so we can apply it to the entire <code>full_dict</code> column:</p>
-<div id="ff2832ce" class="cell" data-execution_count="17">
+<div id="3e8980a0" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize the function to apply it to the DataFrame</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>movie_performance_vec <span class="op">=</span> np.vectorize(movie_performance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s test our function with an example:</p>
-<div id="042dc940" class="cell" data-execution_count="18">
+<div id="0ed38b26" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>movie_performance(<span class="st">"Name: Kene's Movie, Sales: 100,000 USD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
-<pre><code>"Kene's Movie has demonstrated a solid performance with total sales reaching $100,000 USD. This figure indicates a strong reception in the market, reflecting the film's appeal to its target audience. Such sales figures suggest that the movie was well-promoted and resonated positively with viewers, contributing to its financial success. This level of revenue also positions Kene's Movie favorably within its genre, making it a noteworthy contender among recent releases. Overall, the film has achieved a significant milestone in its commercial journey."</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>"Kene's Movie has demonstrated a commendable performance in the market with total sales reaching $100,000 USD. This figure indicates a strong reception and interest from audiences, potentially reflecting effective marketing strategies and favorable reviews. The sales performance can serve as a positive indicator of the film's appeal, suggesting it has successfully resonated with its target demographic. Overall, the financial results underline Kene's Movie as a noteworthy contender in its release period, contributing to the broader landscape of current cinematic offerings."</code></pre>
 </div>
 </div>
 <p>Finally, we’ll apply the vectorized function to generate summaries for each movie:</p>
-<div id="e199ed90" class="cell" data-execution_count="19">
+<div id="4a796a87" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate summaries for each movie</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">"llm_summary"</span>] <span class="op">=</span> movie_performance_vec(movies[<span class="st">"full_dict"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can now save the DataFrame with the generated summaries to a CSV file:</p>
-<div id="56313ba7" class="cell" data-execution_count="20">
+<div id="009b75ca" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results to a CSV file</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>movies.to_csv(<span class="st">"movies_output.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -951,10 +957,10 @@ Overall, **Paris, France**, often ranks as one of the most tourist-friendly citi
 <section id="practice-q-weather-summary" class="level2 callout-practice" title="Practice" data-number="21.11">
 <h2 data-number="21.11" class="anchored" data-anchor-id="practice-q-weather-summary"><span class="header-section-number">21.11</span> Practice Q: Weather Summary</h2>
 <p>Using the first 5 rows of the <code>seattle_weather</code> dataset from <code>vega_datasets</code>, create a function that takes all weather columns for a particular day and generates a summary of the weather conditions for that day. The function should use the LLM to generate a one-paragraph summary for a report, considering the data provided. Store the function in a column called <code>weather_summary</code>.</p>
-<div id="d9fd7ffb" class="cell" data-execution_count="21">
+<div id="e592a9c9" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>weather <span class="op">=</span> vd.data.seattle_weather().head()</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
 
@@ -1459,9 +1465,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./p_ai_LLM_functions_structured.html" class="pagination-link" aria-label="Using LLMs in Python – Working with Structured Outputs">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Using LLMs in Python – Working with Structured Outputs</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

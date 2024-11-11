@@ -9,29 +9,41 @@ In this tutorial, we'll explore how to leverage Large Language Models (LLMs) to 
 ## Learning Objectives
 
 - Set up the OpenAI client
-- Define helper functions
-- Use vectorization to apply functions to arrays
+- Define and use simple functions to generate text
+- Use vectorization to apply functions to DataFrames
 
 ## Setting Up the OpenAI Client
 
-First, we need to set up the OpenAI client using your API key. Ensure you have your API key stored in an environment variable called `OPENAI_API_KEY` within a `.env` file.
+First, we need to set up the OpenAI client using your API key. Here, we store the key in a file called `local_settings.py`, then import it into our script.
 
 ```{python}
-import os
 from openai import OpenAI
+import pandas as pd
+import numpy as np
+from local_settings import OPENAI_KEY
 
 # Set up the OpenAI API key
 # Initialize the OpenAI client with your API key
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
+client = OpenAI(api_key=OPENAI_KEY)
 ```
 
 Alternatively, you can pass your API key directly when setting the `api_key`, but be cautious not to expose it in your code, especially if you plan to share or publish it.
 
+## Making an API Call
+
+Let's make an API call to the `gpt-4o-mini` model to generate a response to a prompt.
+
+```{python}
+response = client.chat.completions.create(
+    model="gpt-4o-mini", messages=[{"role": "user", "content": "What is the most tourist-friendly city in France?"}]
+)
+print(response.choices[0].message.content)
+```
+
+
 ## Defining Helper Functions
 
-To simplify our code and avoid repetition, we'll define a helper function for making API calls. API calls often contain boilerplate code, so encapsulating this logic in a function makes our code cleaner and more maintainable.
+To simplify our code and avoid repetition, we'll define a helper function for making API calls. API calls contain a lot of boilerplate code, so encapsulating this logic in a function makes our code cleaner and more maintainable.
 
 If you ever forget how to structure the API calls, refer to the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/introduction) or search for "OpenAI Python API example" online.
 
@@ -62,7 +74,7 @@ print(response)
 
 ## Practice Q: Get tourist-friendly city in Brazil
 
-Use the `llm_chat` function to ask the model for the most tourist-friendly city in Brazil.
+Use the `llm_chat` function to ask the model for the most tourist-friendly city in Brazil. Store the response in a variable called `rec_brazil`. Print the response.
 
 ```{python}
 # Your code here
@@ -77,7 +89,7 @@ print(response)
 
 :::
 
-## Variable Questions
+## Variables as Prompt Inputs
 
 Often, you'll want to generate responses based on varying inputs. Let's create a function that takes a country as input and asks the model for the most tourist-friendly city in that country.
 
@@ -87,12 +99,15 @@ def city_rec(country):
     return llm_chat(prompt)
 ```
 
-Now, you can get recommendations for different countries by calling `city_rec("Country Name")`.
+Now, you can get recommendations for different countries by calling `city_rec("Country Name")`:
+
+```{python}
+city_rec("Nigeria")
+```
 
 However, if we try to use this function on a list of countries or a DataFrame column directly, it won't process each country individually. Instead, it will attempt to concatenate the list into a single string, which isn't the desired behavior.
 
 ```{python}
-import pandas as pd
 
 # Incorrect usage
 country_df = pd.DataFrame({"country": ["Nigeria", "Chile", "France", "Canada"]})
@@ -105,8 +120,6 @@ print(response)
 To process each country individually, we can use NumPy's `vectorize` function. This function transforms `city_rec` so that it can accept arrays (like lists or NumPy arrays) and apply the function element-wise.
 
 ```{python}
-import numpy as np
-
 # Vectorize the function
 city_rec_vec = np.vectorize(city_rec)
 
@@ -119,10 +132,9 @@ This code will output a DataFrame with a new column `city_rec` containing city r
 
 ::: {.callout-practice title="Practice"}
 
-### Practice Q: Get local dishes
+## Practice Q: Get local dishes
 
 Create a function called `get_local_dishes` that takes a country name as input and returns some of the most famous local dishes from that country. Then, vectorize this function and apply it to the `country_df` DataFrame to add a column with local dish recommendations for each country.
-
 
 ```{python}
 # Your code here
@@ -145,79 +157,116 @@ country_df
 
 :::
 
-## Movie Dataset Use Case
+## Automated Summary: Movies Dataset
 
-In this example, we'll write a prompt that takes in the `Title`, `Worldwide_Gross`, `Production_Budget`, and `IMDB_Rating` of a movie, and returns a paragraph summarizing the performance of the movie in terms of its financial success and reception by critics and audiences. This kind of prompt might be useful for automated reports of data of many types.
+In this example, we'll use the movies dataset from `vega_datasets` to generate automated summaries for each movie. We'll convert each movie's data into a dictionary and use it as input for the LLM to generate a one-paragraph performance summary.
+
+First, let's load the movies dataset and preview the first few rows:
 
 ```{python}
 import pandas as pd
 import vega_datasets as vd
 
 # Load the movies dataset
-movies = vd.data.movies().head()  # Use only the first 5 rows to save API credits
+movies = vd.data.movies().head()  # Using only the first 5 rows to conserve API credits
 movies
 ```
 
-Now, let's define a function that creates a prompt using these columns and returns the generated summary.
+Next, we'll convert each row of the DataFrame into a dictionary. This will be useful for passing the data to the LLM.
 
 ```{python}
-def summarize_movie(title, worldwide_gross, budget, imdb_rating):
-    prompt = f"""Provide a brief summary of the performance of the movie '{title}'. The movie had a worldwide gross of {worldwide_gross}, a production budget of {budget}, and an IMDb rating of {imdb_rating}. Summarize how much it made compared to its budget and how it was received by critics and audiences."""
-    return llm_chat(prompt)
-
-# Vectorize the function
-summarize_movie_vec = np.vectorize(summarize_movie)
-
-# Apply the function to the DataFrame
-movies['summary'] = summarize_movie_vec(
-    movies['Title'],
-    movies['Worldwide_Gross'],
-    movies['Production_Budget'],
-    movies['IMDB_Rating']
-)
-
-movies[['Title', 'summary']]
+# Convert each movie's data into a dictionary
+movies.to_dict(orient="records")
 ```
 
-This will add a new column `summary` to the `movies` DataFrame containing the generated summaries.
+Let's store this new column in the DataFrame:
+
+```{python}
+movies["full_dict"] = movies.to_dict(orient="records")
+movies
+```
+
+Now, let's define a function `movie_performance` that takes a movie's data dictionary, constructs a prompt, and calls the `llm_chat` function to get a summary:
+
+```{python}
+def movie_performance(movie_data):
+    prompt = f"Considering the following data on this movie {movie_data}, provide a one-paragraph summary of its performance for my report."
+    return llm_chat(prompt)
+```
+
+We'll vectorize this function so we can apply it to the entire `full_dict` column:
+
+```{python}
+import numpy as np
+
+# Vectorize the function to apply it to the DataFrame
+movie_performance_vec = np.vectorize(movie_performance)
+```
+
+Let's test our function with an example:
+
+```{python}
+# Example usage
+movie_performance("Name: Kene's Movie, Sales: 100,000 USD")
+```
+
+Finally, we'll apply the vectorized function to generate summaries for each movie:
+
+```{python}
+# Generate summaries for each movie
+movies["llm_summary"] = movie_performance_vec(movies["full_dict"])
+```
+
+You can now save the DataFrame with the generated summaries to a CSV file:
+
+```{python}
+# Save the results to a CSV file
+movies.to_csv("movies_output.csv", index=False)
+```
+
+This approach allows you to generate detailed summaries for each movie based on its full set of data, which can be incredibly useful for automated reporting and data analysis.
 
 ::: {.callout-practice title="Practice"}
 
-## Practice Q: Generate interview questions
 
-Consider the linkedin jobs dataset imported below. This dataset contains data analyst job listings from LinkedIn in November 2022. It was compiled by scraping LinkedIn's job search results. You can see the project [here](https://github.com/MNC-Aubin/Jobs-scrapping-and-Data-analysis).
+## Practice Q: Weather Summary
 
-Create a function called `generate_interview_questions` that takes in the `title` and `description` of a job and returns two technical questions to prepare for an interview for this job. Use it on only the head of the DataFrame (first 5 rows).
-
-```{python}
-# Load the dataset
-jobs = pd.read_csv("data/linkedin_data_jobs_nov_2022.csv").head()
-
-jobs
-```
+Using the first 5 rows of the `seattle_weather` dataset from `vega_datasets`, create a function that takes all weather columns for a particular day and generates a summary of the weather conditions for that day. The function should use the LLM to generate a one-paragraph summary for a report, considering the data provided. Store the function in a column called `weather_summary`.
 
 ```{python}
-# Your code here
+weather = vd.data.seattle_weather().head()
+weather
 ```
-
 
 ```{python}
 # | echo: false
 # | eval: false
-def generate_interview_questions(title, description):
-    prompt = f"""Given the job title '{title}' and the following job description:\n{description}\nGenerate two technical interview questions that a candidate should prepare for."""
+# Solution
+# Step 1: Load the dataset
+weather = vd.data.seattle_weather().head()
+
+
+# Step 2: Convert each row into a dictionary and add it to the DataFrame
+weather_dicts = weather.to_dict(orient="records")
+weather["full_dict"] = weather_dicts
+
+
+# Step 3: Define the function to generate summaries
+def weather_summary(weather_data):
+    prompt = (
+        f"Considering the following weather data: {weather_data}, "
+        "provide a one-paragraph summary of the weather conditions for my report."
+    )
     return llm_chat(prompt)
 
 
-# Vectorize the function
-generate_interview_questions_vec = np.vectorize(generate_interview_questions)
+# Step 4: Vectorize the function
+weather_summary_vec = np.vectorize(weather_summary)
 
-# Apply the function to the DataFrame
-jobs["interview_questions"] = generate_interview_questions_vec(
-    jobs["title"], jobs["description"]
-)
-jobs[["title", "interview_questions"]]
+# Step 5: Apply the function to generate summaries
+weather["summary"] = weather_summary_vec(weather["full_dict"])
 ```
+
 
 :::
 

@@ -406,9 +406,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-yaounde-covid-19-dataset" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="the-yaounde-covid-19-dataset"><span class="header-section-number">15.3</span> The Yaounde COVID-19 dataset</h2>
 <p>In this lesson, we will again use the data from the COVID-19 serological survey conducted in Yaounde, Cameroon.</p>
+<p>You can download the dataset from this link: <a href="https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_data.csv">yaounde_data.csv</a></p>
 <p>You can find out more about this dataset here: https://www.nature.com/articles/s41467-021-25946-0</p>
 <p>Let’s load the data into a pandas DataFrame.</p>
-<div id="63aee6b2" class="cell" data-execution_count="2">
+<div id="94f0f9b0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>yaounde <span class="op">=</span> pd.read_csv(<span class="st">"data/yaounde_data.csv"</span>)</span>
@@ -524,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introducing-query" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="introducing-query"><span class="header-section-number">15.4</span> Introducing <code>query()</code></h2>
 <p>We can use the <code>query()</code> method to keep rows that satisfy a set of conditions. Let’s take a look at a simple example. If we want to keep just the male records, we run:</p>
-<div id="bfe8cd1e" class="cell" data-execution_count="3">
+<div id="9cbaa7ac" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">'sex == "Male"'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -622,7 +623,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As you can see, the <code>query()</code> syntax is quite simple. (It may be a bit surprising to have to put code in quotes, but it is quite readable.)</p>
 <p>Note the use of double equals (<code>==</code>) instead of single equals (<code>=</code>) there. The <code>==</code> sign tests for equality, while the single equals sign assigns a value. This is a common source of errors when you are a beginner, so watch out for it.</p>
 <p>We can chain <code>query()</code> with <code>shape[0]</code> to count the number of male respondents.</p>
-<div id="55fcc611" class="cell" data-execution_count="4">
+<div id="7ad644cc" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">'sex == "Male"'</span>).shape[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>422</code></pre>
@@ -640,19 +641,19 @@ Reminder
 <div class="callout-body-container callout-body">
 <p>The <code>shape</code> property returns the number of rows and columns in a DataFrame. The first element, <code>shape[0]</code>, is the number of rows, and the second element, <code>shape[1]</code>, is the number of columns.</p>
 <p>For example:</p>
-<div id="eb5b7af4" class="cell" data-execution_count="5">
+<div id="f972d79d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>yao.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>(971, 10)</code></pre>
 </div>
 </div>
-<div id="8107f042" class="cell" data-execution_count="6">
+<div id="4e42b0a0" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>yao.shape[<span class="dv">0</span>] <span class="co"># rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>971</code></pre>
 </div>
 </div>
-<div id="559ec86d" class="cell" data-execution_count="7">
+<div id="38834047" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>yao.shape[<span class="dv">1</span>]  <span class="co"># columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>10</code></pre>
@@ -671,7 +672,7 @@ Key Point
 </div>
 <div class="callout-body-container callout-body">
 <p>Note that these subsets are not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset of male respondents:</p>
-<div id="1319759a" class="cell" data-execution_count="8">
+<div id="6c8d6f5c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>yao_male <span class="op">=</span> yao.query(<span class="st">'sex == "Male"'</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>yao_male</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -782,7 +783,7 @@ Practice
 <section id="practice-q-subset-for-pregnant-respondents" class="level3 callout-body-container callout-body" data-number="15.4.1">
 <h3 data-number="15.4.1" class="anchored" data-anchor-id="practice-q-subset-for-pregnant-respondents"><span class="header-section-number">15.4.1</span> Practice Q: Subset for Pregnant Respondents</h3>
 <p>Subset the <code>yao</code> data frame to respondents who were pregnant during the survey (The <code>is_pregnant</code> column contains “Yes”, “No” or NaN). Assign the result to a new DataFrame called <code>yao_pregnant</code>. Then print this new DataFrame. There should be 24 rows.</p>
-<div id="6021b67e" class="cell" data-execution_count="9">
+<div id="5d8f86be" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -828,7 +829,7 @@ Practice
 </tbody>
 </table>
 <p>Let’s see how to use these with <code>query()</code>:</p>
-<div id="0f293af9" class="cell" data-execution_count="10">
+<div id="bab30182" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">'sex == "Female"'</span>)  <span class="co"># keep rows where `sex` is female</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">'sex != "Male"'</span>)  <span class="co"># keep rows where `sex` is not "Male"</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"age &lt; 6"</span>)  <span class="co"># keep respondents under 6</span></span>
@@ -943,7 +944,7 @@ Practice
 <ul>
 <li>From <code>yao</code>, keep only respondents who were children (under 18). Assign the result to a new DataFrame called <code>yao_children</code>. There should be 291 rows.</li>
 </ul>
-<div id="3fc7afbc" class="cell" data-execution_count="11">
+<div id="99272f7e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -962,7 +963,7 @@ Practice
 <ul>
 <li>With <code>isin()</code>, keep only respondents who live in the “Carriere” or “Ekoudou” neighborhoods. Assign the result to a new DataFrame called <code>yao_carriere_ekoudou</code>. There should be 426 rows.</li>
 </ul>
-<div id="42042ad3" class="cell" data-execution_count="12">
+<div id="92153a4e" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -972,7 +973,7 @@ Practice
 <h2 data-number="15.6" class="anchored" data-anchor-id="accessing-external-variables-in-query"><span class="header-section-number">15.6</span> Accessing external variables in <code>query()</code></h2>
 <p>The <code>query()</code> method allows you to access variables outside the DataFrame using the <code>@</code> symbol. This is useful when you want to use dynamic values in your query conditions.</p>
 <p>For example, say you have the variable <code>min_age</code> that you want to use in your query. You can do this as follows:</p>
-<div id="2d3746cc" class="cell" data-execution_count="13">
+<div id="8011d5b0" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>min_age <span class="op">=</span> <span class="dv">25</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Query using external variables</span></span>
@@ -1085,7 +1086,7 @@ Practice
 <ul>
 <li>From <code>yao</code>, keep respondents who are less than or equal to the variable <code>max_age</code>, defined below. Assign the result to a new DataFrame called <code>yao_young</code>. There should be 590 rows.</li>
 </ul>
-<div id="b5633d7a" class="cell" data-execution_count="14">
+<div id="bcca9af5" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>max_age <span class="op">=</span> <span class="dv">30</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1096,7 +1097,7 @@ Practice
 <h2 data-number="15.7" class="anchored" data-anchor-id="combining-conditions-with-and"><span class="header-section-number">15.7</span> Combining conditions with <code>&amp;</code> and <code>|</code></h2>
 <p>We can pass multiple conditions to <code>query()</code> using <code>&amp;</code> (the “ampersand” symbol) for AND and <code>|</code> (the “vertical bar” or “pipe” symbol) for OR.</p>
 <p>For example, to keep respondents who are either younger than 18 OR older than 65, we can write:</p>
-<div id="9cc269dc" class="cell" data-execution_count="15">
+<div id="5f8d386c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"age &lt; 18 | age &gt; 65"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -1192,7 +1193,7 @@ Practice
 </div>
 </div>
 <p>To keep respondents who are pregnant and are ex-smokers, we write:</p>
-<div id="f908759e" class="cell" data-execution_count="16">
+<div id="92c074c7" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">'is_pregnant == "Yes" &amp; is_smoker == "Ex-smoker"'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
@@ -1235,7 +1236,7 @@ Practice
 </div>
 </div>
 <p>To keep all respondents who are pregnant or ex-smokers, we write:</p>
-<div id="2628d38f" class="cell" data-execution_count="17">
+<div id="f0e29002" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">'is_pregnant == "Yes" | is_smoker == "Ex-smoker"'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
@@ -1341,7 +1342,7 @@ Side note
 </div>
 <div class="callout-body-container callout-body">
 <p>To get the unique values in a column, you can use the <code>value_counts()</code> method.</p>
-<div id="3cf5c45b" class="cell" data-execution_count="18">
+<div id="b29bfcbe" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>yao.is_smoker.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>is_smoker
@@ -1365,7 +1366,7 @@ Practice
 <section id="practice-q-subset-for-igg-positive-men" class="level3 callout-body-container callout-body" data-number="15.7.1">
 <h3 data-number="15.7.1" class="anchored" data-anchor-id="practice-q-subset-for-igg-positive-men"><span class="header-section-number">15.7.1</span> Practice Q: Subset for IgG Positive Men</h3>
 <p>Subset <code>yao</code> to only keep men who tested IgG positive. Assign the result to a new DataFrame called <code>yao_igg_positive_men</code>. There should be 148 rows after your query. Think carefully about whether to use <code>&amp;</code> or <code>|</code>.</p>
-<div id="e6b1edfe" class="cell" data-execution_count="19">
+<div id="30428883" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1375,7 +1376,7 @@ Practice
 <h2 data-number="15.8" class="anchored" data-anchor-id="negating-conditions-with-the-operator"><span class="header-section-number">15.8</span> Negating conditions with the <code>~</code> operator</h2>
 <p>To negate conditions in <code>query()</code>, we use the <code>~</code> operator (pronounced “tilde”).</p>
 <p>Let’s use this to drop respondents who are students:</p>
-<div id="15b0eac3" class="cell" data-execution_count="20">
+<div id="8b2e80bd" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">'~ (occupation == "Student")'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
@@ -1473,7 +1474,7 @@ Practice
 <p>Notice that we have to enclose the condition in parentheses.</p>
 <p>We can also enclose multiple conditions in parentheses.</p>
 <p>Imagine we want to give out a drug, but since it is a strong drug, we don’t want children or lightweight (under 30kg) respondents to take it. First, we can write a query to select the children and these light respondents:</p>
-<div id="a916da3b" class="cell" data-execution_count="21">
+<div id="a1d19b19" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"age &lt; 18 | weight_kg &lt; 30"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
@@ -1569,7 +1570,7 @@ Practice
 </div>
 </div>
 <p>Now to drop these individuals, we can negate the condition with <code>~</code>:</p>
-<div id="8f96c8ce" class="cell" data-execution_count="22">
+<div id="15a5b22c" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"~ (age &lt; 18 | weight_kg &lt; 30)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
@@ -1665,7 +1666,7 @@ Practice
 </div>
 </div>
 <p>This could also be written as:</p>
-<div id="b95150dc" class="cell" data-execution_count="23">
+<div id="881c2bb8" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"age &gt;= 18 &amp; weight_kg &gt;= 30"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
@@ -1773,7 +1774,7 @@ Practice
 <section id="practice-q-drop-smokers-and-drop-those-over-50" class="level3 callout-body-container callout-body" data-number="15.8.1">
 <h3 data-number="15.8.1" class="anchored" data-anchor-id="practice-q-drop-smokers-and-drop-those-over-50"><span class="header-section-number">15.8.1</span> Practice Q: Drop Smokers and drop those over 50</h3>
 <p>We want to avoid giving a drug to older individuals and smokers. From <code>yao</code>, drop respondents that are either above 50 or who are smokers. Use <code>~</code> to negate the conditions. Assign the result to a new DataFrame called <code>yao_dropped</code>. Your output should have 810 rows.</p>
-<div id="bf9e29b4" class="cell" data-execution_count="24">
+<div id="0b647c98" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1783,12 +1784,12 @@ Practice
 <h2 data-number="15.9" class="anchored" data-anchor-id="nan-values"><span class="header-section-number">15.9</span> <code>NaN</code> values</h2>
 <p>The relational operators introduced so far do not work with null values like <code>NaN</code>.</p>
 <p>For example, the <code>is_pregnant</code> column contains (NA) values for men. To keep the rows with missing <code>is_pregnant</code> values, we could try writing:</p>
-<div id="03c03e32" class="cell" data-execution_count="25">
+<div id="a51c6ec6" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"is_pregnant == NaN"</span>)  <span class="co"># does not work</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But this will not work. This is because <code>NaN</code> is a non-existent value. So the system cannot evaluate whether it is “equal to” or “not equal to” anything.</p>
 <p>Instead, we can use the <code>isna()</code> method to select rows with missing values:</p>
-<div id="e971a537" class="cell" data-execution_count="26">
+<div id="07c5baa8" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"is_pregnant.isna()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <div>
@@ -1884,7 +1885,7 @@ Practice
 </div>
 </div>
 <p>Or we can select rows that are not missing with <code>notna()</code>:</p>
-<div id="4dc2eabf" class="cell" data-execution_count="27">
+<div id="db356a18" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"is_pregnant.notna()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
@@ -1991,7 +1992,7 @@ Practice
 <section id="practice-q-keep-missing-smoking-status" class="level3 callout-body-container callout-body" data-number="15.9.1">
 <h3 data-number="15.9.1" class="anchored" data-anchor-id="practice-q-keep-missing-smoking-status"><span class="header-section-number">15.9.1</span> Practice Q: Keep Missing Smoking Status</h3>
 <p>From the <code>yao</code> dataset, keep all the respondents who had NA records for the report of their smoking status.</p>
-<div id="d3bc94e0" class="cell" data-execution_count="28">
+<div id="8e30e52f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -2001,7 +2002,7 @@ Practice
 <h2 data-number="15.10" class="anchored" data-anchor-id="querying-based-on-string-patterns"><span class="header-section-number">15.10</span> Querying Based on String Patterns</h2>
 <p>Sometimes, we need to filter our data based on whether a string column contains a certain substring. This is particularly useful when dealing with multi-answer type variables, where responses may contain multiple values separated by delimiters. Let’s explore this using the <code>occupation</code> column in our dataset.</p>
 <p>First, let’s take a look at the unique values in the <code>occupation</code> column:</p>
-<div id="b38df222" class="cell" data-execution_count="29">
+<div id="854ca28c" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>yao.occupation.value_counts().to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>{'Student': 383,
@@ -2038,7 +2039,7 @@ Practice
 <section id="basic-string-containment" class="level3" data-number="15.10.1">
 <h3 data-number="15.10.1" class="anchored" data-anchor-id="basic-string-containment"><span class="header-section-number">15.10.1</span> Basic String Containment</h3>
 <p>To find all respondents who are students (either solely or in combination with other occupations), we can use:</p>
-<div id="811d225b" class="cell" data-execution_count="30">
+<div id="05a33e1d" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"occupation.str.contains('Student')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <div>
@@ -2138,7 +2139,7 @@ Practice
 <section id="negating-string-containment" class="level3" data-number="15.10.2">
 <h3 data-number="15.10.2" class="anchored" data-anchor-id="negating-string-containment"><span class="header-section-number">15.10.2</span> Negating String Containment</h3>
 <p>To find respondents who are not students (i.e., their occupation does not contain “Student”), you can use the <code>~</code> operator:</p>
-<div id="a660320f" class="cell" data-execution_count="31">
+<div id="60a920d0" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"~occupation.str.contains('Student')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <div>
@@ -2237,7 +2238,7 @@ Practice
 <section id="using-with-string-containment" class="level3" data-number="15.10.3">
 <h3 data-number="15.10.3" class="anchored" data-anchor-id="using-with-string-containment"><span class="header-section-number">15.10.3</span> Using <code>|</code> with string containment</h3>
 <p>To find respondents who are students or farmers, we can use:</p>
-<div id="c0b46899" class="cell" data-execution_count="32">
+<div id="bd0bfe4c" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>yao.query(<span class="st">"occupation.str.contains('Student|Farmer')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <div>
@@ -2345,7 +2346,7 @@ Practice
 <h3 data-number="15.10.4" class="anchored" data-anchor-id="practice-q-symptoms"><span class="header-section-number">15.10.4</span> Practice Q: Symptoms</h3>
 <p>The symptoms column contains a list of symptoms that respondents reported.</p>
 <p>Query <code>yao</code> to find respondents who reported “Cough” or “Fever” as symptoms. Your answer should have 219 rows.</p>
-<div id="0649cc46" class="cell" data-execution_count="33">
+<div id="1dcf095c" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>

@@ -15,7 +15,9 @@ pd.options.display.max_rows = 7
 
 In this lesson, we'll explore two powerful pandas methods: `agg()` and `groupby()`. These tools will enable you to extract summary statistics and perform operations on grouped data effortlessly. 
 
-Let's dive in and discover how to unlock deeper insights from your data!
+A summary statistic is a single value (such as a mean or median) that describes a sequence of values (typically a column in your dataset). 
+
+Let's see how to use these!
 
 ## Learning objectives
 
@@ -25,7 +27,11 @@ Let's dive in and discover how to unlock deeper insights from your data!
 
 3.  You can use `sum()` together with `groupby()`-`agg()` to count rows that meet a condition.
 
-4. You can pass custom functions to `agg()` to compute summary statistics.
+4.  You can pass custom functions to `agg()` to compute summary statistics.
+
+5.  You can group by multiple variables to create nested summaries.
+
+6.  You can calculate proportions within groups using custom lambda functions.
 
 ------------------------------------------------------------------------
 
@@ -40,35 +46,25 @@ import numpy as np
 
 ## The Yaounde COVID-19 dataset
 
-In this lesson, we will again use data from the COVID-19 serological survey conducted in Yaounde, Cameroon.
+In this lesson, we will again use a subset of data from the COVID-19 serological survey conducted in Yaounde, Cameroon.
+
+You can download the dataset from this link: [yaounde_mini.csv](https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_mini.zip)
 
 ```{python}
-#| message: false
+# | message: false
 
-yaounde = pd.read_csv('data/yaounde_data.csv')
-
-## A smaller subset of variables
-yao = yaounde[['age', 'age_category_3', 'sex', 'weight_kg', 'height_cm',
-               'neighborhood', 'is_smoker', 'is_pregnant', 'occupation',
-               'treatment_combinations', 'symptoms', 'n_days_miss_work', 'n_bedridden_days',
-               'highest_education', 'igg_result']]
-
+yao = pd.read_csv("data/yaounde_mini.csv")
 yao
 ```
 
 You can find out more about this dataset here: https://www.nature.com/articles/s41467-021-25946-0
-
-## What are summary statistics?
-
-A summary statistic is a single value (such as a mean or median) that describes a sequence of values (typically a column in your dataset). 
-
-Computing summary statistics is a very common operation in most data analysis workflows, so it will be important to become fluent in extracting them from your datasets. And for this task, there is no better tool than the pandas method `agg()`! So let's see how to use this powerful method.
 
 ## Introducing `pandas.DataFrame.agg()`
 
 To get started, let's consider how to get simple summary statistics *without* using `agg()`, then we will consider why you *should* actually use `agg()`.
 
 Imagine you were asked to find the mean age of respondents in the `yao` data frame. You can do this by calling the `mean()` method on the `age` column of the `yao` data frame:
+
 ```{python}
 yao[["age"]].mean()
 ```
@@ -226,37 +222,6 @@ Your output should be a DataFrame that looks like this:
 
 :::
 
-::: {.callout-note title='Pro-tip'}
-
-**Groupby and agg are not always needed**
-
-Sometimes you just want a quick summary of a variable, not per group. 
-
-Remember that there are quick ways to get such statistics. So you do not always need to use `groupby()` and `agg()`.
-
-```{python}
-yao['age'].describe() # summary stats for a numeric variable
-```
-
-```{python}
-yao['sex'].describe() # summary stats for a categorical variable
-```
-
-```{python}
-yao['sex'].value_counts() # count of each category
-```
-
-```{python}
-yao.select_dtypes(object).describe() # summary stats for categorical variables
-```
-
-```{python}
-yao.select_dtypes(np.number).describe() # summary stats for numeric variables
-```
-
-
-:::
-
 ::: {.callout-warning title='Watch-out'}
 
 ## NaN values in `agg()`
@@ -373,18 +338,52 @@ Your output should be a data frame with three columns named as shown below:
 
 ## Custom summary statistics
 
-Sometimes, you may want to apply custom summary statistics that aren't available as built-in functions. In these cases, you can use lambda functions or define your own functions to use with `agg()`.
+### Lambda functions
 
-For example, let's say we want to calculate the range (difference between maximum and minimum) of weights in each neighborhood:
+Before we dive into custom summary statistics, let's briefly introduce lambda functions. Lambda functions in Python are small, anonymous functions defined with the `lambda` keyword. They can have any number of input parameters but only one expression. The expression is evaluated and returned when the lambda function is called.
+
+Lambda functions are often used for short, throwaway functions that are not complex enough to warrant a full function definition. They are particularly useful in data manipulation tasks where you need to apply a simple operation to a dataset.
+
+For example, consider a function that calculates the range (difference between the maximum and minimum) of a list. You could define it using a regular function like this:
+
+```{python}
+def range_func(x):
+    return max(x) - min(x)
+
+print(range_func([1, 2, 3, 4]))  # Output: 3
+```
+
+Alternatively, you can achieve the same result using a lambda function:
+
+```{python}
+range_func = lambda x: max(x) - min(x)
+print(range_func([1, 2, 3, 4]))  # Output: 3
+```
+
+Now, let's see how we can use lambda functions to apply custom summary statistics in our data analysis.
+
+For example, let's say we want to calculate the range of weights in each neighborhood. We could do this with our `range_func` function:
 
 ```{python}
 (
-    yao
-    .groupby('neighborhood')
-    .agg(weight_range=('weight_kg', lambda x: x.max() - x.min()))
+    yao.groupby("neighborhood")
+    .agg(weight_range=("weight_kg", range_func))
     .reset_index()
 )
 ```
+
+Notice that we did not wrap `range_func` in quotes. Only built-in functions are wrapped in quotes.
+
+Now, instead of calling `range_func` we can use a lambda function directly in the `agg()` call:
+
+```{python}
+(
+    yao.groupby("neighborhood")
+    .agg(weight_range=("weight_kg", lambda x: x.max() - x.min()))
+    .reset_index()
+)
+```
+
 
 Notice that we still provide a tuple to the `agg()` function, `('weight_kg', lambda x: x.max() - x.min())`, but the second element of the tuple is a lambda function.
 
@@ -421,7 +420,6 @@ For example, to count the number of people under 18 in each neighborhood, we can
 
 The lambda function `(x < 18).sum()` counts the number of values in the `x` series that are less than 18. The `x` series is the age variable for each neighborhood.
 
-
 Let's broaden our scope and add the number of seniors (65+) to the summary table.
 ```{python}
 (
@@ -435,39 +433,22 @@ Let's broaden our scope and add the number of seniors (65+) to the summary table
 ```
 
 
-## Calculate percentage shares
+## Calculate proportions
 
-We can expand our previous example to calculate the percentage of children and seniors in each neighborhood.
+We can expand our previous example to calculate the proportion of children and seniors in each neighborhood.
 
-Calculating such percentage shares is a common task in data analysis.
-
-```{python}
-(
-    yao.groupby("neighborhood")
-    .agg(
-        children_percent=("age", lambda x: (x < 18).sum() / len(x) * 100),
-        seniors_percent=("age", lambda x: (x >= 65).sum() / len(x) * 100),
-    )
-    .reset_index()
-)
-```
-
-Hopefully the code above is not too confusing. To calculate the percentage of children, we divide the number of children `(x < 18).sum()` by the total number of individuals in the series, `len(x)`, and multiply by 100. Likewise for seniors.
-
-A more concise approach utilizes the fact that the mean of a boolean series represents the proportion of True values:
+Calculating such proportions is a common task in data analysis.
 
 ```{python}
 (
     yao.groupby("neighborhood")
     .agg(
-        children_percent=("age", lambda x: (x < 18).mean() * 100),
-        seniors_percent=("age", lambda x: (x >= 65).mean() * 100),
+        children_prop=("age", lambda x: (x < 18).sum() / len(x)),
+        seniors_prop=("age", lambda x: (x >= 65).sum() / len(x)),
     )
     .reset_index()
 )
 ```
-
-While this method is more efficient, it may be less intuitive. If you find it confusing, feel free to use the more explicit calculation shown earlier.
 
 ------------------------------------------------------------------------
 
@@ -477,11 +458,8 @@ As a final example, to count the number and percentage of people with doctorate 
 (
     yao.groupby("neighborhood")
     .agg(
-        count_w_doctorates=("highest_education", lambda x: (x == "Doctorate").sum()),
-        pct_in_neighborhood_w_doctorates=(
-            "highest_education",
-            lambda x: (x == "Doctorate").mean() * 100,
-        ),
+        count_phd=("highest_education", lambda x: (x == "Doctorate").sum()),
+        prop_phd=("highest_education", lambda x: (x == "Doctorate").sum() / len(x)),
     )
     .reset_index()
 )
@@ -489,18 +467,18 @@ As a final example, to count the number and percentage of people with doctorate 
 
 ::: {.callout-tip title='Practice'}
 
-### Practice Q: Smoker rate by sex and age category
+### Practice Q: Smoker proportion by sex and age category
 
-Calculate the percentage of people with are smokers (use the `is_smoker` variable) for each combination of sex and age category (use `age_category_3`). The output should look like this:
+Calculate the proportion of people with are smokers (use the `is_smoker` variable) for each combination of sex and age category (use `age_category_3`). The output should look like this:
 
-| sex    | age_category_3 | smoker_rate |
-|--------|----------------|---------------|
-| Female | Adult          |               |
-| Female | Child          |               |
-| Female | Senior         |               |
-| Male   | Adult          |               |
-| Male   | Child          |               |
-| Male   | Senior         |               |
+| sex    | age_category_3 | smoker_prop |   
+|--------|----------------|-------------|
+| Female | Adult          |             |
+| Female | Child          |             |
+| Female | Senior         |             |
+| Male   | Adult          |             |
+| Male   | Child          |             |
+| Male   | Senior         |             |
 
 
 Your summary table should show that male adults have the highest smoker rate, followed by male seniors. 

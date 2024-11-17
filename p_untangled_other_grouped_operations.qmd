@@ -1,5 +1,6 @@
 ---
-title: 'Grouped Transformations and Filtering'
+
+title: 'Group-Level Data Transformations in Pandas'
 ---
 
 ```{python}
@@ -7,258 +8,434 @@ title: 'Grouped Transformations and Filtering'
 # Setup
 import pandas as pd
 import numpy as np
-
+import vega_datasets as vd
+import plotly.express as px
 pd.options.display.max_rows = 7
 ```
 
-## Introduction to Grouped Operations
+## Introduction
 
-Data wrangling often involves applying the same operations separately to different groups within the data. In this lesson, we'll learn how to use `groupby()` with `transform()` and `assign()` to conduct grouped transformations on a DataFrame.
+In our previous lessons, you've learned how to perform basic data manipulation and aggregation using pandas. Now, we'll take a step further by exploring **group-level data transformations**. These operations allow you to compute statistics and perform calculations within specific groups in your dataset.
+
+Group-level transformations are powerful tools for data analysis, enabling you to uncover patterns and insights that might be hidden when looking at the data as a whole. By the end of this lesson, you'll be equipped with techniques to perform sophisticated analyses within subsets of your data.
 
 ## Learning Objectives
 
-1. You can use `groupby()` with `transform()` and `assign()` to conduct grouped operations on a DataFrame.
+By the end of this lesson, you will:
 
-## Required Packages
+- Add group-level summary statistics as new columns using `transform()`.
+- Count values within groups using `value_counts()`.
+- Calculate rankings within groups.
+- Compute cumulative sums within groups.
+- Sort data within groups to extract minimum, maximum, and top N values.
 
-This lesson requires pandas and numpy:
+## Packages and Data
+
+This lesson will require `pandas`, `numpy`, `plotly.express`, and `vega_datasets`:
 
 ```{python}
 import pandas as pd
 import numpy as np
+import vega_datasets as vd
+import plotly.express as px
 ```
 
-## Simple Toy Dataset
+We'll use the `seattle_2012` dataset for our examples and the `tips` dataset for practice questions.
 
-Let's start with a simple toy dataset to illustrate the concepts:
+### Loading and Preparing `seattle_2012` Data
 
 ```{python}
-# Create a simple toy dataset
-toy_data = pd.DataFrame(
-    {
-        "year": [2022, 2022, 2023, 2023],
-        "month": ["Jan", "Feb", "Jan", "Feb"],
-        "sales": [2, 4, 6, 8],
-    }
-)
+import vega_datasets as vd
+seattle_weather = vd.data.seattle_weather()
 
-print(toy_data)
+# Select just 2012 data using query and add a month column
+seattle_2012 = seattle_weather.query("date.dt.year == 2012").copy()
+seattle_2012['month'] = seattle_2012['date'].dt.strftime('%B')
+seattle_2012
 ```
 
-### Regular `assign()` Call
-
-Let's add a column with the mean sales for the entire dataset, then calculate the difference between each month's sales and the mean sales:
+### Loading the `tips` Dataset for Practice
 
 ```{python}
-toy_data.assign(
-    mean_sales=lambda x: x.sales.mean(), 
-    sales_diff=lambda x: x.sales - x.mean_sales
-)
+import plotly.express as px
+tips = px.data.tips()
+tips
 ```
 
-In this example, the `mean_sales` column contains the mean sales value for the entire dataset (5), repeated in each row. The `sales_diff` column shows the difference between each month's sales and the overall mean sales.
+## 1. Adding Group-Level Summary Statistics Using `transform()`
 
-### Grouped `assign()` Call
+Calculating summary statistics like mean, median, or standard deviation is a common task. Sometimes, we need these statistics at a group level and want to add them as new columns to our DataFrame.
 
-But we might want to see how each month's sales compare to the mean sales for that year. 
+### Computing Overall Mean
+
+Before diving into group-level calculations, let's recall how to compute an overall statistic.
 
 ```{python}
-toy_data.assign(
-    mean_sales=lambda x: x.groupby("year").sales.mean(),
-    sales_diff=lambda x: x.sales - x.mean_sales
-)
+# Overall mean of precipitation
+overall_mean_precip = seattle_2012['precipitation'].mean()
+print(f"Overall Mean Precipitation: {overall_mean_precip:.2f}")
 ```
 
-Now we have the mean sales for year 2022 as 3 and for year 2023 as 7. and the sales_diff column shows how far each month's sales are from the mean sales for that year.
+### Group-Level Mean Using `groupby()`
 
-Let's break down the code, especially the first line:
-
-- Within the assign method, we initiate the `mean_sales` column
-- Then we pass the lambda function to the `mean_sales` column
-- The lambda function takes the dataframe, denoted `x` as input, groups it by `year` (`x.groupby("year")`), then pulls out the `sales` column (`x.groupby("year").sales`) then to compute the mean for each year, we use the `transform()` method (`x.groupby("year").sales.transform("mean")`).
-
-## Real Dataset: Austin Housing
-
-Now let's apply these concepts to a real dataset. We'll use the `housing` dataset containing housing sales data for Austin, Texas:
+To compute the mean precipitation for each month:
 
 ```{python}
-housing = pd.read_csv("data/austinhousing.csv", usecols=["year", "month", "sales"])
-
-## Display first few rows of the dataset
-housing
+# Mean precipitation per month
+mean_precip_per_month = seattle_2012.groupby('month')['precipitation'].mean().reset_index()
+mean_precip_per_month
 ```
 
-### Regular `assign()` Call
+### Adding Group-Level Mean as a New Column with `transform()`
 
-Let's add a column with the mean sales for the entire dataset, then calculate the difference between each month's sales and the mean sales:
+To add this group-level mean back to the original DataFrame:
 
 ```{python}
-housing.assign(
-    mean_sales=lambda x: x.sales.mean(), 
-    sales_diff=lambda x: x.sales - x.mean_sales
-)
+# Add mean precipitation per month as a new column
+seattle_2012['prep_mean_month'] = seattle_2012.groupby('month')['precipitation'].transform('mean')
+seattle_2012[['date', 'month', 'precipitation', 'prep_mean_month']].head()
 ```
 
-In this example, the `mean_sales` column contains the mean sales value for the entire dataset, repeated in each row. The `sales_diff` column shows the difference between each month's sales and the overall mean sales.
+Now, each row has a new column `prep_mean_month` that shows the average `precipitation` for that row's month.
 
-### Grouped `assign()` Call
+### Other Summary Statistics
 
-Now, let's add a column with the mean sales for each year, and then calculate the difference between each month's sales and the mean sales for that year:
+You can compute other statistics similarly:
+
+- **Median**:
+
+  ```{python}
+  seattle_2012['prep_median_month'] = seattle_2012.groupby('month')['precipitation'].transform('median')
+  ```
+
+- **Standard Deviation**:
+
+  ```{python}
+  seattle_2012['prep_std_month'] = seattle_2012.groupby('month')['precipitation'].transform('std')
+  ```
+
+### Example: Calculating Precipitation Range per Month
+
+Suppose we want to know the range of `precipitation` within each month.
 
 ```{python}
-housing.assign(
-    mean_sales=lambda x: x.groupby("year").sales.transform("mean"),
-    sales_diff=lambda x: x.sales - x.mean_sales
-)
+# Define a function to compute range
+def prep_range(x):
+    return x.max() - x.min()
+
+# Add precipitation range per month as a new column
+seattle_2012['prep_range_month'] = seattle_2012.groupby('month')['precipitation'].transform(prep_range)
+seattle_2012[['date', 'month', 'precipitation', 'prep_range_month']].head()
 ```
 
-Here's what's happening:
-- Within the `assign()` method, we group by year and use `transform("mean")` to compute the mean sales for each year.
-- The `mean_sales` column now contains the mean sales for each year, repeated in each row of that year.
-- The `sales_diff` column shows how far each month's sales are from the mean sales for that year, allowing us to see which months are high and low performers within each year.
+### Practice Questions
 
-This grouped approach allows us to compare sales within each year, accounting for overall trends or differences between years.
+::: {.callout-practice title="Practice Q1: Add Group-Level Tip Mean"}
 
-::: {.callout-tip title='Practice'}
-
-### Practice Q: Compute Mean Temperature for Each Day
-
-With the `gibraltar` dataframe, group by the date of measurement, then in a new variable called `mean_temp`, compute the mean temperature for each day. Store the result in a new dataframe called `mean_temp_question`.
+Using the `tips` dataset, add a new column `mean_tip_sex` that contains the mean tip amount for each sex (`Male` or `Female`).
 
 ```{python}
-# | eval: false
-## Complete the code with your answer:
-mean_temp_question = gibraltar.assign(
-    mean_temp=___________________________________-
-)
-
-mean_temp_question
+# Your code here:
+tips['mean_tip_sex'] = tips.groupby('sex')['tip'].transform('mean')
+tips[['sex', 'tip', 'mean_tip_sex']].head()
 ```
 
 :::
 
-### More Examples of Grouped Transformations
+::: {.callout-practice title="Practice Q2: Add Group-Level Total Bill Standard Deviation"}
 
-#### Rank Sales Within Each Year
-
-Now let's look at another example. We can add a column that ranks the sales volume for each year.
+In the `tips` dataset, add a new column `std_total_bill_day` that shows the standard deviation of `total_bill` for each day.
 
 ```{python}
-housing.assign(sales_rank=housing.groupby("year").sales.rank(ascending=False))
-```
-
-In this example, we're creating a new column `sales_rank` that ranks the `sales` column in descending order within each year group. This allows us to see which months had the highest sales for each year.
-
-These examples demonstrate how we can use grouped operations to perform more nuanced analyses on our data, allowing us to uncover patterns and insights within specific subgroups of our dataset.
-
-
-#### Cumulative Sales Column
-
-Let's add a column that shows the cumulative sales for each year, adding up the sales for each month within the year.
-
-```{python}
-housing.assign(
-    cumulative_sales=housing.groupby("year").sales.transform("cumsum")
-)
-```
-
-#### Percent of Yearly Sales Done Each Month
-
-We can calculate the percent of sales done each month for that year.
-
-```{python}
-housing.assign(
-    percent_sales=lambda x: 100 * x.sales / x.groupby("year").sales.transform("sum")
-)
-```
-
-::: {.callout-tip title='Practice'}
-
-### Practice Q: Cumulative Listings Column
-
-With the `housing` dataframe, group by `year`, then create a cumulative listings column for each year.
-
-```{python}
-# Your code here
-```
-:::
-
-## Grouped Filtering with `query()`
-
-To query per group, it is usually better to create a relevant column with `groupby()` and `transform()`, then use `query()` on the resulting dataframe to filter data.
-
-### Filter for Month with Highest Sales Volume per Year
-
-For example, if we want to filter the data for the month with the highest sales volume per year group (the month with the highest sales volume for each year), we can use `groupby()` with `transform()` to first create a column with the max sales volume per year, then ungroup and filter.
-
-```{python}
-(
-housing
-  .assign(max_sales=housing.groupby("year").sales.transform("max"))
-  .query("sales == max_sales")
-)
-```
-
-We can drop the `max_sales` column if we want to at the end.
-
-```{python}
-(
-housing
-  .assign(max_sales=housing.groupby("year").sales.transform("max"))
-  .query("sales == max_sales")
-  .drop(columns=["max_sales"])
-)
-```
-
-::: {.callout-tip title='Practice'}
-
-### Practice Q: Filter for Time of Day with Highest Wind Speed
-
-With the `gibraltar` dataframe created above, group by the date of measurement, calculate the time of day with the highest recorded wind speed `wind_speed` for each day, then filter the dataframe to keep only the rows with the highest wind speed for each day.
-
-Note that for some days, there may be a tie in the highest wind speed.
-
-```{python}
-# Your code here
-```
-:::
-
-### Month with the Most "Typical" Sales
-
-We can also use `groupby()` with `transform()` to find the month with the most "typical" sales. We'll use the mean sales volume for each year as the "typical" sales volume, then get the month with the closest sales to that.
-
-```{python}
-(
-housing
-  .assign(
-    mean_sales=housing.groupby("year").sales.transform("mean"),
-    sales_diff_abs=lambda x: (x.sales - x.mean_sales).abs()
-    )
-  .sort_values("sales_diff_abs")
-  .groupby("year")
-  .first()
-)
-```
-
-::: {.callout-tip title='Practice'}
-
-### Practice Q: Filter for Times with Above Mean Temperature
-
-Group the `gibraltar` dataframe by `date`, then use `apply()`, `assign()`, and `query()` as needed to subset to only times when the temperature is above the mean temperature for that day. You should have 698 rows in the output.
-
-```{python}
-# Your code here
+# Your code here:
+tips['std_total_bill_day'] = tips.groupby('day')['total_bill'].transform('std')
+tips[['day', 'total_bill', 'std_total_bill_day']].head()
 ```
 
 :::
 
-## Wrap Up
+## 2. Counting Values Within Groups Using `value_counts()`
 
-In this lesson, we explored powerful techniques for grouped operations in pandas:
+Counting occurrences of categorical variables within groups can reveal interesting patterns.
 
-1. Using `groupby()` with `transform()` and `assign()` for grouped transformations
-2. Combining `groupby()`, `transform()`, and `query()` for grouped filtering
+### Overall `value_counts()`
 
-These methods significantly enhance our ability to analyze and manipulate data within specific groups.
+First, let's recall how `value_counts()` works on the entire DataFrame.
 
-Congratulations on making it through!
+```{python}
+# Count of weather types
+seattle_2012['weather'].value_counts()
+```
+
+### Using `groupby()` with `value_counts()`
+
+To count weather types within each month:
+
+```{python}
+# Counts of weather types per month
+weather_counts = seattle_2012.groupby('month')['weather'].value_counts()
+weather_counts
+```
+
+This returns a Series with a MultiIndex.
+
+### Converting to DataFrame
+
+To make it more readable:
+
+```{python}
+# Reset index to convert MultiIndex to columns
+weather_counts = weather_counts.reset_index(name='count')
+weather_counts.head()
+```
+
+### Example: Counting Days of Each Weather Type per Month
+
+```{python}
+# Pivot the data for better visualization
+weather_pivot = weather_counts.pivot(index='month', columns='weather', values='count').fillna(0)
+weather_pivot
+```
+
+### Practice Questions
+
+::: {.callout-practice title="Practice Q1: Count Smokers and Non-Smokers by Day"}
+
+Using the `tips` dataset, count the number of smokers and non-smokers for each day.
+
+```{python}
+# Your code here:
+smoker_counts = tips.groupby('day')['smoker'].value_counts().reset_index(name='count')
+smoker_counts
+```
+
+:::
+
+::: {.callout-practice title="Practice Q2: Count Time of Day per Sex"}
+
+In the `tips` dataset, count how many times each sex (`Male`, `Female`) appears in each time category (`Lunch`, `Dinner`).
+
+```{python}
+# Your code here:
+sex_time_counts = tips.groupby('sex')['time'].value_counts().reset_index(name='count')
+sex_time_counts
+```
+
+:::
+
+## 3. Calculating Rankings Within Groups
+
+Ranking data within groups helps identify relative positions, like top performers in each category.
+
+### Overall Ranking
+
+Without grouping, we can rank the entire DataFrame.
+
+```{python}
+# Rank dates by precipitation
+seattle_2012['prep_rank'] = seattle_2012['precipitation'].rank(method='dense', ascending=False)
+seattle_2012[['date', 'precipitation', 'prep_rank']].sort_values('prep_rank').head()
+```
+
+### Group-Level Ranking
+
+To rank precipitation within each month:
+
+```{python}
+# Rank precipitation within each month
+seattle_2012['prep_rank_month'] = seattle_2012.groupby('month')['precipitation'].rank(method='dense', ascending=False)
+seattle_2012[['date', 'month', 'precipitation', 'prep_rank_month']].sort_values(['month', 'prep_rank_month']).head(15)
+```
+
+### Example: Ranking Precipitation Within Months
+
+Suppose we want to see how each day's precipitation ranks within its month.
+
+```{python}
+# Rank precipitation within each month
+seattle_2012['prep_rank_month'] = seattle_2012.groupby('month')['precipitation'].rank(method='dense', ascending=False)
+seattle_2012[['date', 'month', 'precipitation', 'prep_rank_month']].sort_values(['month', 'prep_rank_month']).head(15)
+```
+
+### Practice Questions
+
+::: {.callout-practice title="Practice Q1: Rank Tips by Day"}
+
+Using the `tips` dataset, rank the tips within each day (`Sun`, `Sat`, etc.), adding a new column `tip_rank_day`.
+
+```{python}
+# Your code here:
+tips['tip_rank_day'] = tips.groupby('day')['tip'].rank(method='dense', ascending=False)
+tips[['day', 'tip', 'tip_rank_day']].sort_values(['day', 'tip_rank_day']).head()
+```
+
+:::
+
+::: {.callout-practice title="Practice Q2: Rank Total Bill by Size"}
+
+In the `tips` dataset, rank the `total_bill` within each `size` (number of people at the table), adding a new column `bill_rank_size`.
+
+```{python}
+# Your code here:
+tips['bill_rank_size'] = tips.groupby('size')['total_bill'].rank(method='dense', ascending=False)
+tips[['size', 'total_bill', 'bill_rank_size']].sort_values(['size', 'bill_rank_size']).head()
+```
+
+:::
+
+## 4. Computing Cumulative Sums Within Groups
+
+Cumulative sums help track running totals within groups.
+
+### Overall Cumulative Sum
+
+Without grouping:
+
+```{python}
+# Cumulative sum of precipitation
+seattle_2012['prep_cumsum'] = seattle_2012['precipitation'].cumsum()
+seattle_2012[['date', 'precipitation', 'prep_cumsum']].head()
+```
+
+### Group-Level Cumulative Sum
+
+To compute cumulative precipitation within each month:
+
+```{python}
+# Cumulative precipitation per month
+seattle_2012['prep_cumsum_month'] = seattle_2012.groupby('month')['precipitation'].cumsum()
+seattle_2012[['date', 'month', 'precipitation', 'prep_cumsum_month']].head()
+```
+
+### Example: Cumulative Precipitation Difference from Monthly Mean
+
+Suppose we want the cumulative difference between `precipitation` and the monthly mean `precipitation`.
+
+```{python}
+# First, calculate the difference
+seattle_2012['prep_diff'] = seattle_2012['precipitation'] - seattle_2012['prep_mean_month']
+
+# Then, compute cumulative sum within each month
+seattle_2012['prep_diff_cumsum_month'] = seattle_2012.groupby('month')['prep_diff'].cumsum()
+seattle_2012[['date', 'month', 'prep_diff', 'prep_diff_cumsum_month']].head()
+```
+
+### Practice Questions
+
+::: {.callout-practice title="Practice Q1: Cumulative Tip Amount by Day"}
+
+Using the `tips` dataset, compute the cumulative sum of `tip` for each `day`, adding a new column `cumulative_tip_day`.
+
+```{python}
+# Your code here:
+tips['cumulative_tip_day'] = tips.groupby('day')['tip'].cumsum()
+tips[['day', 'tip', 'cumulative_tip_day']].head()
+```
+
+:::
+
+::: {.callout-practice title="Practice Q2: Cumulative Total Bill by Time"}
+
+In the `tips` dataset, compute the cumulative sum of `total_bill` for each `time` (`Lunch`, `Dinner`), adding a new column `cumulative_bill_time`.
+
+```{python}
+# Your code here:
+tips['cumulative_bill_time'] = tips.groupby('time')['total_bill'].cumsum()
+tips[['time', 'total_bill', 'cumulative_bill_time']].head()
+```
+
+:::
+
+## 5. Sorting Data Within Groups to Extract Extremes
+
+Sorting within groups allows us to find minimums, maximums, or top N values in each group.
+
+### Overall Sorting
+
+Without grouping:
+
+```{python}
+# Sort by precipitation descending
+seattle_2012_sorted = seattle_2012.sort_values('precipitation', ascending=False)
+seattle_2012_sorted[['date', 'precipitation']].head()
+```
+
+### Sorting Within Groups
+
+To sort precipitation within each month:
+
+```{python}
+# Sort precipitation within each month
+seattle_sorted_month = seattle_2012.groupby('month', group_keys=False).apply(lambda x: x.sort_values('precipitation', ascending=False))
+seattle_sorted_month[['date', 'month', 'precipitation']].head(15)
+```
+
+### Extracting Top N Values Within Groups
+
+Suppose we want the top 3 days with the highest precipitation in each month.
+
+```{python}
+# Add rank within month
+seattle_2012['prep_rank_month'] = seattle_2012.groupby('month')['precipitation'].rank(method='first', ascending=False)
+
+# Filter top 3
+top_3_precip_days = seattle_2012[seattle_2012['prep_rank_month'] <= 3]
+top_3_precip_days[['date', 'month', 'precipitation', 'prep_rank_month']].sort_values(['month', 'prep_rank_month'])
+```
+
+### Finding Minimum Values Within Groups
+
+Similarly, to find the days with the lowest precipitation:
+
+```{python}
+# Add rank within month
+seattle_2012['prep_rank_month_asc'] = seattle_2012.groupby('month')['precipitation'].rank(method='first', ascending=True)
+
+# Filter top 3 days with least precipitation
+top_3_low_prep_days = seattle_2012[seattle_2012['prep_rank_month_asc'] <= 3]
+top_3_low_prep_days[['date', 'month', 'precipitation', 'prep_rank_month_asc']].sort_values(['month', 'prep_rank_month_asc'])
+```
+
+### Practice Questions
+
+::: {.callout-practice title="Practice Q1: Top 2 Highest Tips per Day"}
+
+Using the `tips` dataset, find the top 2 highest tips for each `day`.
+
+```{python}
+# Your code here:
+tips['tip_rank_day'] = tips.groupby('day')['tip'].rank(method='first', ascending=False)
+top_2_tips_per_day = tips[tips['tip_rank_day'] <= 2]
+top_2_tips_per_day[['day', 'tip', 'tip_rank_day']].sort_values(['day', 'tip_rank_day'])
+```
+
+:::
+
+::: {.callout-practice title="Practice Q2: Lowest Total Bills per Size"}
+
+In the `tips` dataset, find the lowest 3 `total_bill` amounts for each `size` (table size).
+
+```{python}
+# Your code here:
+tips['bill_rank_size'] = tips.groupby('size')['total_bill'].rank(method='first', ascending=True)
+lowest_3_bills_per_size = tips[tips['bill_rank_size'] <= 3]
+lowest_3_bills_per_size[['size', 'total_bill', 'bill_rank_size']].sort_values(['size', 'bill_rank_size'])
+```
+
+:::
+
+## Wrap-Up
+
+In this lesson, you've learned how to perform various **group-level data transformations** in pandas:
+
+- **Adding Group-Level Summary Statistics**: Using `transform()` to add mean, median, standard deviation, or custom calculations as new columns.
+- **Counting Values Within Groups**: Combining `groupby()` with `value_counts()` to count occurrences of categorical variables within groups.
+- **Calculating Rankings Within Groups**: Ranking data within groups to find relative positions.
+- **Computing Cumulative Sums Within Groups**: Tracking running totals or cumulative differences within groups.
+- **Sorting Data Within Groups to Extract Extremes**: Sorting within groups to find minimums, maximums, or top N values.
+
+These techniques are invaluable for data analysis, allowing you to gain deeper insights by examining patterns and statistics within specific subsets of your data.
+
+Continue practicing these operations with different datasets to solidify your understanding and enhance your data manipulation skills.
+
+See you next time!

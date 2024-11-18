@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Grouped Transformations and Filtering – Introduction to Data Science with Python</title>
+<title>19&nbsp; Group-Level Data Transformations in Pandas – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_other_grouped_operations.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -345,35 +345,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-to-grouped-operations" id="toc-introduction-to-grouped-operations" class="nav-link active" data-scroll-target="#introduction-to-grouped-operations"><span class="header-section-number">19.1</span> Introduction to Grouped Operations</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">19.1</span> Introduction</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">19.2</span> Learning Objectives</a></li>
-  <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages"><span class="header-section-number">19.3</span> Required Packages</a></li>
-  <li><a href="#simple-toy-dataset" id="toc-simple-toy-dataset" class="nav-link" data-scroll-target="#simple-toy-dataset"><span class="header-section-number">19.4</span> Simple Toy Dataset</a>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports"><span class="header-section-number">19.3</span> Imports</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">19.4</span> Data</a></li>
+  <li><a href="#adding-group-level-summary-statistics-using-transform" id="toc-adding-group-level-summary-statistics-using-transform" class="nav-link" data-scroll-target="#adding-group-level-summary-statistics-using-transform"><span class="header-section-number">19.5</span> Adding Group-Level Summary Statistics Using <code>transform()</code></a></li>
+  <li><a href="#counting-values-within-groups-using-value_counts" id="toc-counting-values-within-groups-using-value_counts" class="nav-link" data-scroll-target="#counting-values-within-groups-using-value_counts"><span class="header-section-number">19.7</span> Counting Values Within Groups Using <code>value_counts()</code></a></li>
+  <li><a href="#counting-values-that-meet-a-condition" id="toc-counting-values-that-meet-a-condition" class="nav-link" data-scroll-target="#counting-values-that-meet-a-condition"><span class="header-section-number">19.9</span> Counting Values that Meet a Condition</a></li>
+  <li><a href="#computing-cumulative-sums-within-groups" id="toc-computing-cumulative-sums-within-groups" class="nav-link" data-scroll-target="#computing-cumulative-sums-within-groups"><span class="header-section-number">19.11</span> Computing Cumulative Sums Within Groups</a>
   <ul class="collapse">
-  <li><a href="#regular-assign-call" id="toc-regular-assign-call" class="nav-link" data-scroll-target="#regular-assign-call"><span class="header-section-number">19.4.1</span> Regular <code>assign()</code> Call</a></li>
-  <li><a href="#grouped-assign-call" id="toc-grouped-assign-call" class="nav-link" data-scroll-target="#grouped-assign-call"><span class="header-section-number">19.4.2</span> Grouped <code>assign()</code> Call</a></li>
+  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">19.11.1</span> Practice Questions</a></li>
   </ul></li>
-  <li><a href="#real-dataset-austin-housing" id="toc-real-dataset-austin-housing" class="nav-link" data-scroll-target="#real-dataset-austin-housing"><span class="header-section-number">19.5</span> Real Dataset: Austin Housing</a>
+  <li><a href="#sorting-data-within-groups" id="toc-sorting-data-within-groups" class="nav-link" data-scroll-target="#sorting-data-within-groups"><span class="header-section-number">19.12</span> Sorting Data Within Groups</a>
   <ul class="collapse">
-  <li><a href="#regular-assign-call-1" id="toc-regular-assign-call-1" class="nav-link" data-scroll-target="#regular-assign-call-1"><span class="header-section-number">19.5.1</span> Regular <code>assign()</code> Call</a></li>
-  <li><a href="#grouped-assign-call-1" id="toc-grouped-assign-call-1" class="nav-link" data-scroll-target="#grouped-assign-call-1"><span class="header-section-number">19.5.2</span> Grouped <code>assign()</code> Call</a></li>
-  <li><a href="#more-examples-of-grouped-transformations" id="toc-more-examples-of-grouped-transformations" class="nav-link" data-scroll-target="#more-examples-of-grouped-transformations"><span class="header-section-number">19.5.4</span> More Examples of Grouped Transformations</a></li>
+  <li><a href="#practice-questions-1" id="toc-practice-questions-1" class="nav-link" data-scroll-target="#practice-questions-1"><span class="header-section-number">19.12.1</span> Practice Questions</a></li>
   </ul></li>
-  <li><a href="#grouped-filtering-with-query" id="toc-grouped-filtering-with-query" class="nav-link" data-scroll-target="#grouped-filtering-with-query"><span class="header-section-number">19.6</span> Grouped Filtering with <code>query()</code></a>
-  <ul class="collapse">
-  <li><a href="#filter-for-month-with-highest-sales-volume-per-year" id="toc-filter-for-month-with-highest-sales-volume-per-year" class="nav-link" data-scroll-target="#filter-for-month-with-highest-sales-volume-per-year"><span class="header-section-number">19.6.1</span> Filter for Month with Highest Sales Volume per Year</a></li>
-  <li><a href="#month-with-the-most-typical-sales" id="toc-month-with-the-most-typical-sales" class="nav-link" data-scroll-target="#month-with-the-most-typical-sales"><span class="header-section-number">19.6.3</span> Month with the Most “Typical” Sales</a></li>
-  </ul></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">19.7</span> Wrap Up</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">19.13</span> Wrap-Up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_other_grouped_operations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></h1>
 </div>
 
 
@@ -390,54 +386,153 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction-to-grouped-operations" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="introduction-to-grouped-operations"><span class="header-section-number">19.1</span> Introduction to Grouped Operations</h2>
-<p>Data wrangling often involves applying the same operations separately to different groups within the data. In this lesson, we’ll learn how to use <code>groupby()</code> with <code>transform()</code> and <code>assign()</code> to conduct grouped transformations on a DataFrame.</p>
+<section id="introduction" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">19.1</span> Introduction</h2>
+<p>In our previous lessons, you’ve learned how to perform basic data manipulation and aggregation using pandas. Now, we’ll take a step further by exploring some additional useful <strong>group data transformations</strong>. These operations allow you to compute statistics and perform calculations within specific groups in your dataset.</p>
 </section>
 <section id="learning-objectives" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">19.2</span> Learning Objectives</h2>
-<ol type="1">
-<li>You can use <code>groupby()</code> with <code>transform()</code> and <code>assign()</code> to conduct grouped operations on a DataFrame.</li>
-</ol>
+<p>By the end of this lesson, you will:</p>
+<ul>
+<li>Add group-level summary statistics as new columns using <code>transform()</code>.</li>
+<li>Count values within groups using <code>value_counts()</code>.</li>
+<li>Compute cumulative sums within groups.</li>
+<li>Sort data within groups to extract minimum, maximum, and top N values.</li>
+</ul>
 </section>
-<section id="required-packages" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="required-packages"><span class="header-section-number">19.3</span> Required Packages</h2>
-<p>This lesson requires pandas and numpy:</p>
-<div id="d2e758b1" class="cell" data-execution_count="2">
+<section id="imports" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">19.3</span> Imports</h2>
+<p>This lesson will require <code>pandas</code>, <code>numpy</code>, <code>plotly.express</code>, and <code>vega_datasets</code>:</p>
+<div id="713c9869" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vega_datasets <span class="im">as</span> vd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> calendar <span class="im">as</span> cal</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>) <span class="co">## There is a class of warnings that come up when working with categorical data that we can ignore</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="simple-toy-dataset" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="simple-toy-dataset"><span class="header-section-number">19.4</span> Simple Toy Dataset</h2>
-<p>Let’s start with a simple toy dataset to illustrate the concepts:</p>
-<div id="5a108c28" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple toy dataset</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>toy_data <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"year"</span>: [<span class="dv">2022</span>, <span class="dv">2022</span>, <span class="dv">2023</span>, <span class="dv">2023</span>],</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"month"</span>: [<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Jan"</span>, <span class="st">"Feb"</span>],</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sales"</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>],</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(toy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   year month  sales
-0  2022   Jan      2
-1  2022   Feb      4
-2  2023   Jan      6
-3  2023   Feb      8</code></pre>
+<section id="data" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="data"><span class="header-section-number">19.4</span> Data</h2>
+<p>We’ll use the <code>seattle_2012</code> dataset for our examples.</p>
+<div id="4b3c71ae" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>seattle_weather <span class="op">=</span> vd.data.seattle_weather()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Select just 2012 data using query and add a month column</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>seattle_2012 <span class="op">=</span> seattle_weather.query(<span class="st">"date.dt.year == 2012"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">"month"</span>] <span class="op">=</span> pd.Categorical(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    seattle_2012[<span class="st">"date"</span>].dt.strftime(<span class="st">"%B"</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    categories<span class="op">=</span><span class="bu">list</span>(cal.month_name[<span class="dv">1</span>:]),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ordered<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">temp_max</th>
+<th data-quarto-table-cell-role="th">temp_min</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+<th data-quarto-table-cell-role="th">month</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2012-01-01</td>
+<td>0.0</td>
+<td>12.8</td>
+<td>5.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+<td>January</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2012-01-02</td>
+<td>10.9</td>
+<td>10.6</td>
+<td>2.8</td>
+<td>4.5</td>
+<td>rain</td>
+<td>January</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2012-01-03</td>
+<td>0.8</td>
+<td>11.7</td>
+<td>7.2</td>
+<td>2.3</td>
+<td>rain</td>
+<td>January</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>1.5</td>
+<td>5.0</td>
+<td>3.3</td>
+<td>1.7</td>
+<td>rain</td>
+<td>December</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>0.0</td>
+<td>4.4</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+<td>December</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>0.0</td>
+<td>3.3</td>
+<td>-1.1</td>
+<td>2.0</td>
+<td>drizzle</td>
+<td>December</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 7 columns</p>
 </div>
 </div>
-<section id="regular-assign-call" class="level3" data-number="19.4.1">
-<h3 data-number="19.4.1" class="anchored" data-anchor-id="regular-assign-call"><span class="header-section-number">19.4.1</span> Regular <code>assign()</code> Call</h3>
-<p>Let’s add a column with the mean sales for the entire dataset, then calculate the difference between each month’s sales and the mean sales:</p>
-<div id="3216d293" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>toy_data.assign(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    mean_sales<span class="op">=</span><span class="kw">lambda</span> x: x.sales.mean(), </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    sales_diff<span class="op">=</span><span class="kw">lambda</span> x: x.sales <span class="op">-</span> x.mean_sales</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can increase the number of rows that pandas displays using <code>pd.options.display.max_rows</code>. Let’s set it to 20 for this lesson:</p>
+<div id="b152530e" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.options.display.max_rows <span class="op">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="adding-group-level-summary-statistics-using-transform" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="adding-group-level-summary-statistics-using-transform"><span class="header-section-number">19.5</span> Adding Group-Level Summary Statistics Using <code>transform()</code></h2>
+<p>In the previous lesson, you learned how to calculate summary statistics like mean, median, or standard deviation using <code>agg()</code>.</p>
+<p>For example, to compute the mean precipitation (rain + snow) for each month, you could use:</p>
+<div id="6d89fd64" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">'month'</span>).agg(mean_precip <span class="op">=</span> (<span class="st">'precipitation'</span>, <span class="st">'mean'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
@@ -446,62 +541,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">mean_precip</th>
+</tr>
+<tr class="odd">
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">mean_sales</th>
-<th data-quarto-table-cell-role="th">sales_diff</th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>2022</td>
-<td>Jan</td>
-<td>2</td>
-<td>5.0</td>
-<td>-3.0</td>
+<td data-quarto-table-cell-role="th">January</td>
+<td>5.590323</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>2022</td>
-<td>Feb</td>
-<td>4</td>
-<td>5.0</td>
-<td>-1.0</td>
+<td data-quarto-table-cell-role="th">February</td>
+<td>3.182759</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>2023</td>
-<td>Jan</td>
-<td>6</td>
-<td>5.0</td>
-<td>1.0</td>
+<td data-quarto-table-cell-role="th">March</td>
+<td>5.903226</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>2023</td>
-<td>Feb</td>
-<td>8</td>
-<td>5.0</td>
-<td>3.0</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">October</td>
+<td>5.493548</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">November</td>
+<td>7.016667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">December</td>
+<td>5.612903</td>
 </tr>
 </tbody>
 </table>
 
+<p>12 rows × 1 columns</p>
 </div>
 </div>
 </div>
-<p>In this example, the <code>mean_sales</code> column contains the mean sales value for the entire dataset (5), repeated in each row. The <code>sales_diff</code> column shows the difference between each month’s sales and the overall mean sales.</p>
-</section>
-<section id="grouped-assign-call" class="level3" data-number="19.4.2">
-<h3 data-number="19.4.2" class="anchored" data-anchor-id="grouped-assign-call"><span class="header-section-number">19.4.2</span> Grouped <code>assign()</code> Call</h3>
-<p>But we might want to see how each month’s sales compare to the mean sales for that year.</p>
-<div id="28296ac7" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>toy_data.assign(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    mean_sales<span class="op">=</span><span class="kw">lambda</span> x: x.groupby(<span class="st">"year"</span>).sales.mean(),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    sales_diff<span class="op">=</span><span class="kw">lambda</span> x: x.sales <span class="op">-</span> x.mean_sales</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sometimes, we want to add these group-level statistics as new columns to our original DataFrame. We can’t do this directly with the <code>agg()</code> output:</p>
+<div id="ed3e5b01" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Does not work</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">'mean_precip'</span>] <span class="op">=</span> seattle_2012.groupby(<span class="st">'month'</span>).agg(mean_precip <span class="op">=</span> (<span class="st">'precipitation'</span>, <span class="st">'mean'</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -510,69 +597,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">temp_max</th>
+<th data-quarto-table-cell-role="th">temp_min</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">mean_sales</th>
-<th data-quarto-table-cell-role="th">sales_diff</th>
+<th data-quarto-table-cell-role="th">mean_precip</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>2022</td>
-<td>Jan</td>
-<td>2</td>
-<td>NaN</td>
+<td>2012-01-01</td>
+<td>0.0</td>
+<td>12.8</td>
+<td>5.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+<td>January</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2022</td>
-<td>Feb</td>
-<td>4</td>
-<td>NaN</td>
+<td>2012-01-02</td>
+<td>10.9</td>
+<td>10.6</td>
+<td>2.8</td>
+<td>4.5</td>
+<td>rain</td>
+<td>January</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>2023</td>
-<td>Jan</td>
-<td>6</td>
-<td>NaN</td>
+<td>2012-01-03</td>
+<td>0.8</td>
+<td>11.7</td>
+<td>7.2</td>
+<td>2.3</td>
+<td>rain</td>
+<td>January</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>2023</td>
-<td>Feb</td>
-<td>8</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>1.5</td>
+<td>5.0</td>
+<td>3.3</td>
+<td>1.7</td>
+<td>rain</td>
+<td>December</td>
 <td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>0.0</td>
+<td>4.4</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+<td>December</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>0.0</td>
+<td>3.3</td>
+<td>-1.1</td>
+<td>2.0</td>
+<td>drizzle</td>
+<td>December</td>
 <td>NaN</td>
 </tr>
 </tbody>
 </table>
 
+<p>366 rows × 8 columns</p>
 </div>
 </div>
 </div>
-<p>Now we have the mean sales for year 2022 as 3 and for year 2023 as 7. and the sales_diff column shows how far each month’s sales are from the mean sales for that year.</p>
-<p>Let’s break down the code, especially the first line:</p>
-<ul>
-<li>Within the assign method, we initiate the <code>mean_sales</code> column</li>
-<li>Then we pass the lambda function to the <code>mean_sales</code> column</li>
-<li>The lambda function takes the dataframe, denoted <code>x</code> as input, groups it by <code>year</code> (<code>x.groupby("year")</code>), then pulls out the <code>sales</code> column (<code>x.groupby("year").sales</code>) then to compute the mean for each year, we use the <code>transform()</code> method (<code>x.groupby("year").sales.transform("mean")</code>).</li>
-</ul>
-</section>
-</section>
-<section id="real-dataset-austin-housing" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="real-dataset-austin-housing"><span class="header-section-number">19.5</span> Real Dataset: Austin Housing</h2>
-<p>Now let’s apply these concepts to a real dataset. We’ll use the <code>housing</code> dataset containing housing sales data for Austin, Texas:</p>
-<div id="efe816fb" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>housing <span class="op">=</span> pd.read_csv(<span class="st">"data/austinhousing.csv"</span>, usecols<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"sales"</span>])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Display first few rows of the dataset</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>housing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But we can do this using <code>transform()</code>. <code>transform()</code> reshapes the output to match the original DataFrame’s shape, allowing us to add the group-level statistics as new columns.</p>
+<div id="e182f57a" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">'mean_precip_month'</span>] <span class="op">=</span> seattle_2012.groupby(<span class="st">'month'</span>)[<span class="st">'precipitation'</span>].transform(<span class="st">'mean'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -581,69 +704,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">temp_max</th>
+<th data-quarto-table-cell-role="th">temp_min</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
+<th data-quarto-table-cell-role="th">mean_precip</th>
+<th data-quarto-table-cell-role="th">mean_precip_month</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>2000</td>
-<td>1</td>
-<td>1025</td>
+<td>2012-01-01</td>
+<td>0.0</td>
+<td>12.8</td>
+<td>5.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2000</td>
-<td>2</td>
-<td>1277</td>
+<td>2012-01-02</td>
+<td>10.9</td>
+<td>10.6</td>
+<td>2.8</td>
+<td>4.5</td>
+<td>rain</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>2000</td>
-<td>3</td>
-<td>1603</td>
+<td>2012-01-03</td>
+<td>0.8</td>
+<td>11.7</td>
+<td>7.2</td>
+<td>2.3</td>
+<td>rain</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
 <td>...</td>
 <td>...</td>
 <td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">184</td>
-<td>2015</td>
-<td>5</td>
-<td>2999</td>
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>1.5</td>
+<td>5.0</td>
+<td>3.3</td>
+<td>1.7</td>
+<td>rain</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">185</td>
-<td>2015</td>
-<td>6</td>
-<td>3301</td>
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>0.0</td>
+<td>4.4</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>0.0</td>
+<td>3.3</td>
+<td>-1.1</td>
+<td>2.0</td>
+<td>drizzle</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
 </tr>
 </tbody>
 </table>
 
-<p>187 rows × 3 columns</p>
+<p>366 rows × 9 columns</p>
 </div>
 </div>
 </div>
-<section id="regular-assign-call-1" class="level3" data-number="19.5.1">
-<h3 data-number="19.5.1" class="anchored" data-anchor-id="regular-assign-call-1"><span class="header-section-number">19.5.1</span> Regular <code>assign()</code> Call</h3>
-<p>Let’s add a column with the mean sales for the entire dataset, then calculate the difference between each month’s sales and the mean sales:</p>
-<div id="dcfaa5b9" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>housing.assign(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    mean_sales<span class="op">=</span><span class="kw">lambda</span> x: x.sales.mean(), </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    sales_diff<span class="op">=</span><span class="kw">lambda</span> x: x.sales <span class="op">-</span> x.mean_sales</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we can, for example, calculate the difference between the actual precipitation and the average precipitation for that month:</p>
+<div id="0f181b60" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">'precip_diff_from_mean'</span>] <span class="op">=</span> seattle_2012[<span class="st">'precipitation'</span>] <span class="op">-</span> seattle_2012[<span class="st">'mean_precip_month'</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -652,37 +819,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">temp_max</th>
+<th data-quarto-table-cell-role="th">temp_min</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">mean_sales</th>
-<th data-quarto-table-cell-role="th">sales_diff</th>
+<th data-quarto-table-cell-role="th">mean_precip</th>
+<th data-quarto-table-cell-role="th">mean_precip_month</th>
+<th data-quarto-table-cell-role="th">precip_diff_from_mean</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>2000</td>
-<td>1</td>
-<td>1025</td>
-<td>1996.68984</td>
-<td>-971.68984</td>
+<td>2012-01-01</td>
+<td>0.0</td>
+<td>12.8</td>
+<td>5.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
+<td>-5.590323</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2000</td>
-<td>2</td>
-<td>1277</td>
-<td>1996.68984</td>
-<td>-719.68984</td>
+<td>2012-01-02</td>
+<td>10.9</td>
+<td>10.6</td>
+<td>2.8</td>
+<td>4.5</td>
+<td>rain</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
+<td>5.309677</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>2000</td>
-<td>3</td>
-<td>1603</td>
-<td>1996.68984</td>
-<td>-393.68984</td>
+<td>2012-01-03</td>
+<td>0.8</td>
+<td>11.7</td>
+<td>7.2</td>
+<td>2.3</td>
+<td>rain</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
+<td>-4.790323</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
@@ -691,48 +878,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>...</td>
 <td>...</td>
 <td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">184</td>
-<td>2015</td>
-<td>5</td>
-<td>2999</td>
-<td>1996.68984</td>
-<td>1002.31016</td>
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>1.5</td>
+<td>5.0</td>
+<td>3.3</td>
+<td>1.7</td>
+<td>rain</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
+<td>-4.112903</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">185</td>
-<td>2015</td>
-<td>6</td>
-<td>3301</td>
-<td>1996.68984</td>
-<td>1304.31016</td>
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>0.0</td>
+<td>4.4</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
+<td>-5.612903</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
-<td>1996.68984</td>
-<td>1469.31016</td>
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>0.0</td>
+<td>3.3</td>
+<td>-1.1</td>
+<td>2.0</td>
+<td>drizzle</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
+<td>-5.612903</td>
 </tr>
 </tbody>
 </table>
 
-<p>187 rows × 5 columns</p>
+<p>366 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<p>In this example, the <code>mean_sales</code> column contains the mean sales value for the entire dataset, repeated in each row. The <code>sales_diff</code> column shows the difference between each month’s sales and the overall mean sales.</p>
-</section>
-<section id="grouped-assign-call-1" class="level3" data-number="19.5.2">
-<h3 data-number="19.5.2" class="anchored" data-anchor-id="grouped-assign-call-1"><span class="header-section-number">19.5.2</span> Grouped <code>assign()</code> Call</h3>
-<p>Now, let’s add a column with the mean sales for each year, and then calculate the difference between each month’s sales and the mean sales for that year:</p>
-<div id="0ece3694" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>housing.assign(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    mean_sales<span class="op">=</span><span class="kw">lambda</span> x: x.groupby(<span class="st">"year"</span>).sales.transform(<span class="st">"mean"</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    sales_diff<span class="op">=</span><span class="kw">lambda</span> x: x.sales <span class="op">-</span> x.mean_sales</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can compute other statistics similarly. For example, to compute the median precipitation for each month, you could use:</p>
+<div id="37d0e350" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">'prep_median_month'</span>] <span class="op">=</span> seattle_2012.groupby(<span class="st">'month'</span>)[<span class="st">'precipitation'</span>].transform(<span class="st">'median'</span>)    </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -741,37 +942,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">temp_max</th>
+<th data-quarto-table-cell-role="th">temp_min</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">mean_sales</th>
-<th data-quarto-table-cell-role="th">sales_diff</th>
+<th data-quarto-table-cell-role="th">mean_precip</th>
+<th data-quarto-table-cell-role="th">mean_precip_month</th>
+<th data-quarto-table-cell-role="th">precip_diff_from_mean</th>
+<th data-quarto-table-cell-role="th">prep_median_month</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>2000</td>
-<td>1</td>
-<td>1025</td>
-<td>1551.750000</td>
-<td>-526.750000</td>
+<td>2012-01-01</td>
+<td>0.0</td>
+<td>12.8</td>
+<td>5.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
+<td>-5.590323</td>
+<td>3.0</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2000</td>
-<td>2</td>
-<td>1277</td>
-<td>1551.750000</td>
-<td>-274.750000</td>
+<td>2012-01-02</td>
+<td>10.9</td>
+<td>10.6</td>
+<td>2.8</td>
+<td>4.5</td>
+<td>rain</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
+<td>5.309677</td>
+<td>3.0</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>2000</td>
-<td>3</td>
-<td>1603</td>
-<td>1551.750000</td>
-<td>51.250000</td>
+<td>2012-01-03</td>
+<td>0.8</td>
+<td>11.7</td>
+<td>7.2</td>
+<td>2.3</td>
+<td>rain</td>
+<td>January</td>
+<td>NaN</td>
+<td>5.590323</td>
+<td>-4.790323</td>
+<td>3.0</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
@@ -780,40 +1005,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>...</td>
 <td>...</td>
 <td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">184</td>
-<td>2015</td>
-<td>5</td>
-<td>2999</td>
-<td>2696.857143</td>
-<td>302.142857</td>
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>1.5</td>
+<td>5.0</td>
+<td>3.3</td>
+<td>1.7</td>
+<td>rain</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
+<td>-4.112903</td>
+<td>3.3</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">185</td>
-<td>2015</td>
-<td>6</td>
-<td>3301</td>
-<td>2696.857143</td>
-<td>604.142857</td>
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>0.0</td>
+<td>4.4</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
+<td>-5.612903</td>
+<td>3.3</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
-<td>2696.857143</td>
-<td>769.142857</td>
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>0.0</td>
+<td>3.3</td>
+<td>-1.1</td>
+<td>2.0</td>
+<td>drizzle</td>
+<td>December</td>
+<td>NaN</td>
+<td>5.612903</td>
+<td>-5.612903</td>
+<td>3.3</td>
 </tr>
 </tbody>
 </table>
 
-<p>187 rows × 5 columns</p>
+<p>366 rows × 11 columns</p>
 </div>
 </div>
 </div>
-<p>Here’s what’s happening: - Within the <code>assign()</code> method, we group by year and use <code>transform("mean")</code> to compute the mean sales for each year. - The <code>mean_sales</code> column now contains the mean sales for each year, repeated in each row of that year. - The <code>sales_diff</code> column shows how far each month’s sales are from the mean sales for that year, allowing us to see which months are high and low performers within each year.</p>
-<p>This grouped approach allows us to compare sales within each year, accounting for overall trends or differences between years.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Practice">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -823,27 +1070,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Practice
 </div>
 </div>
-<section id="practice-q-compute-mean-temperature-for-each-day" class="level3 callout-body-container callout-body" data-number="19.5.3">
-<h3 data-number="19.5.3" class="anchored" data-anchor-id="practice-q-compute-mean-temperature-for-each-day"><span class="header-section-number">19.5.3</span> Practice Q: Compute Mean Temperature for Each Day</h3>
-<p>With the <code>gibraltar</code> dataframe, group by the date of measurement, then in a new variable called <code>mean_temp</code>, compute the mean temperature for each day. Store the result in a new dataframe called <code>mean_temp_question</code>.</p>
-<div id="d0724723" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Complete the code with your answer:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mean_temp_question <span class="op">=</span> gibraltar.assign(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    mean_temp<span class="op">=</span>___________________________________<span class="op">-</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>mean_temp_question</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</div>
-</section>
-<section id="more-examples-of-grouped-transformations" class="level3" data-number="19.5.4">
-<h3 data-number="19.5.4" class="anchored" data-anchor-id="more-examples-of-grouped-transformations"><span class="header-section-number">19.5.4</span> More Examples of Grouped Transformations</h3>
-<section id="rank-sales-within-each-year" class="level4" data-number="19.5.4.1">
-<h4 data-number="19.5.4.1" class="anchored" data-anchor-id="rank-sales-within-each-year"><span class="header-section-number">19.5.4.1</span> Rank Sales Within Each Year</h4>
-<p>Now let’s look at another example. We can add a column that ranks the sales volume for each year.</p>
-<div id="595c69d6" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>housing.assign(sales_rank<span class="op">=</span>housing.groupby(<span class="st">"year"</span>).sales.rank(ascending<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="practice-q-mean-tip-amount-by-sex" class="level2 callout-body-container callout-body" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="practice-q-mean-tip-amount-by-sex"><span class="header-section-number">19.6</span> Practice Q: Mean tip amount by sex</h2>
+<p>Using the <code>tips</code> dataset, add a new column <code>mean_tip_day</code> that contains the mean tip amount for each day (<code>Sun</code>, <code>Sat</code>, etc.), then calculate the difference between each person’s tip and the mean tip for that day.</p>
+<div id="7650420b" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>tips</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -852,33 +1085,45 @@ Practice
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">sales_rank</th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>2000</td>
-<td>1</td>
-<td>1025</td>
-<td>12.0</td>
+<td>16.99</td>
+<td>1.01</td>
+<td>Female</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2000</td>
-<td>2</td>
-<td>1277</td>
-<td>10.0</td>
+<td>10.34</td>
+<td>1.66</td>
+<td>Male</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>3</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>2000</td>
+<td>21.01</td>
+<td>3.50</td>
+<td>Male</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
 <td>3</td>
-<td>1603</td>
-<td>5.0</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
@@ -886,45 +1131,58 @@ Practice
 <td>...</td>
 <td>...</td>
 <td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">184</td>
-<td>2015</td>
-<td>5</td>
-<td>2999</td>
-<td>3.0</td>
+<td data-quarto-table-cell-role="th">241</td>
+<td>22.67</td>
+<td>2.00</td>
+<td>Male</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">185</td>
-<td>2015</td>
-<td>6</td>
-<td>3301</td>
-<td>2.0</td>
+<td data-quarto-table-cell-role="th">242</td>
+<td>17.82</td>
+<td>1.75</td>
+<td>Male</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
-<td>1.0</td>
+<td data-quarto-table-cell-role="th">243</td>
+<td>18.78</td>
+<td>3.00</td>
+<td>Female</td>
+<td>No</td>
+<td>Thur</td>
+<td>Dinner</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
 
-<p>187 rows × 4 columns</p>
+<p>244 rows × 7 columns</p>
 </div>
 </div>
 </div>
-<p>In this example, we’re creating a new column <code>sales_rank</code> that ranks the <code>sales</code> column in descending order within each year group. This allows us to see which months had the highest sales for each year.</p>
-<p>These examples demonstrate how we can use grouped operations to perform more nuanced analyses on our data, allowing us to uncover patterns and insights within specific subgroups of our dataset.</p>
+<p>The first few rows of your output data should look something like this:</p>
+<pre><code>total_bill   tip    sex     smoker   day   time     size   mean_tip_sex   tip_diff_from_mean
+16.99        1.01   Female  No       Sun   Dinner   2      2.833448       -1.823448
+10.34        1.66   Male    No       Sun   Dinner   3      3.089618       -1.429618  
+21.01        3.50   Male    No       Sun   Dinner   3      3.089618        0.410382</code></pre>
 </section>
-<section id="cumulative-sales-column" class="level4" data-number="19.5.4.2">
-<h4 data-number="19.5.4.2" class="anchored" data-anchor-id="cumulative-sales-column"><span class="header-section-number">19.5.4.2</span> Cumulative Sales Column</h4>
-<p>Let’s add a column that shows the cumulative sales for each year, adding up the sales for each month within the year.</p>
-<div id="e3de3bb0" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>housing.assign(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    cumulative_sales<span class="op">=</span>housing.groupby(<span class="st">"year"</span>).sales.transform(<span class="st">"cumsum"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s reinitialize the <code>seattle_2012</code> DataFrame to a smaller set of columns:</p>
+<div id="4a8ea6ae" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>seattle_2012 <span class="op">=</span> seattle_2012[[<span class="st">'date'</span>, <span class="st">'month'</span>, <span class="st">'precipitation'</span>, <span class="st">'wind'</span>, <span class="st">'weather'</span>]]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -933,33 +1191,37 @@ Practice
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">date</th>
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">cumulative_sales</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>2000</td>
-<td>1</td>
-<td>1025</td>
-<td>1025</td>
+<td>2012-01-01</td>
+<td>January</td>
+<td>0.0</td>
+<td>4.7</td>
+<td>drizzle</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2000</td>
-<td>2</td>
-<td>1277</td>
-<td>2302</td>
+<td>2012-01-02</td>
+<td>January</td>
+<td>10.9</td>
+<td>4.5</td>
+<td>rain</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>2000</td>
-<td>3</td>
-<td>1603</td>
-<td>3905</td>
+<td>2012-01-03</td>
+<td>January</td>
+<td>0.8</td>
+<td>2.3</td>
+<td>rain</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
@@ -967,225 +1229,89 @@ Practice
 <td>...</td>
 <td>...</td>
 <td>...</td>
+<td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">184</td>
-<td>2015</td>
-<td>5</td>
-<td>2999</td>
-<td>12111</td>
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>December</td>
+<td>1.5</td>
+<td>1.7</td>
+<td>rain</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">185</td>
-<td>2015</td>
-<td>6</td>
-<td>3301</td>
-<td>15412</td>
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>December</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
-<td>18878</td>
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>drizzle</td>
 </tr>
 </tbody>
 </table>
 
-<p>187 rows × 4 columns</p>
+<p>366 rows × 5 columns</p>
 </div>
 </div>
 </div>
 </section>
-<section id="percent-of-yearly-sales-done-each-month" class="level4" data-number="19.5.4.3">
-<h4 data-number="19.5.4.3" class="anchored"><span class="header-section-number">19.5.4.3</span> Percent of Yearly Sales Done Each Month</h4>
-<p>We can calculate the percent of sales done each month for that year.</p>
-<div id="00b7dd6f" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>housing.assign(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    percent_sales<span class="op">=</span><span class="kw">lambda</span> x: <span class="dv">100</span> <span class="op">*</span> x.sales <span class="op">/</span> x.groupby(<span class="st">"year"</span>).sales.transform(<span class="st">"sum"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="counting-values-within-groups-using-value_counts" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="counting-values-within-groups-using-value_counts"><span class="header-section-number">19.7</span> Counting Values Within Groups Using <code>value_counts()</code></h2>
+<p>Counting occurrences of categorical variables within groups can reveal interesting patterns, and you often need to do this after using <code>groupby()</code>.</p>
+<p>First, let’s recall how <code>value_counts()</code> works on the entire DataFrame.</p>
+<div id="e4de5fcd" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count of weather types</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">"weather"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">percent_sales</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>2000</td>
-<td>1</td>
-<td>1025</td>
-<td>5.504538</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>2000</td>
-<td>2</td>
-<td>1277</td>
-<td>6.857849</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>2000</td>
-<td>3</td>
-<td>1603</td>
-<td>8.608560</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">184</td>
-<td>2015</td>
-<td>5</td>
-<td>2999</td>
-<td>15.886217</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">185</td>
-<td>2015</td>
-<td>6</td>
-<td>3301</td>
-<td>17.485962</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
-<td>18.359996</td>
-</tr>
-</tbody>
-</table>
-
-<p>187 rows × 4 columns</p>
+<pre><code>weather
+rain       191
+sun        118
+drizzle     31
+snow        21
+fog          5
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
+<p>We can add <code>normalize=True</code> to get proportions:</p>
+<div id="3245ac39" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">'weather'</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>weather
+rain       0.521858
+sun        0.322404
+drizzle    0.084699
+snow       0.057377
+fog        0.013661
+Name: proportion, dtype: float64</code></pre>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Practice
-</div>
-</div>
-<section id="practice-q-cumulative-listings-column" class="level3 callout-body-container callout-body" data-number="19.5.5">
-<h3 data-number="19.5.5" class="anchored" data-anchor-id="practice-q-cumulative-listings-column"><span class="header-section-number">19.5.5</span> Practice Q: Cumulative Listings Column</h3>
-<p>With the <code>housing</code> dataframe, group by <code>year</code>, then create a cumulative listings column for each year.</p>
-<div id="cb68d66a" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</div>
-</section>
-</section>
-</section>
-<section id="grouped-filtering-with-query" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="grouped-filtering-with-query"><span class="header-section-number">19.6</span> Grouped Filtering with <code>query()</code></h2>
-<p>To query per group, it is usually better to create a relevant column with <code>groupby()</code> and <code>transform()</code>, then use <code>query()</code> on the resulting dataframe to filter data.</p>
-<section id="filter-for-month-with-highest-sales-volume-per-year" class="level3" data-number="19.6.1">
-<h3 data-number="19.6.1" class="anchored" data-anchor-id="filter-for-month-with-highest-sales-volume-per-year"><span class="header-section-number">19.6.1</span> Filter for Month with Highest Sales Volume per Year</h3>
-<p>For example, if we want to filter the data for the month with the highest sales volume per year group (the month with the highest sales volume for each year), we can use <code>groupby()</code> with <code>transform()</code> to first create a column with the max sales volume per year, then ungroup and filter.</p>
-<div id="4876826c" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>housing</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  .assign(max_sales<span class="op">=</span>housing.groupby(<span class="st">"year"</span>).sales.transform(<span class="st">"max"</span>))</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  .query(<span class="st">"sales == max_sales"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, to count weather types within each month, we first group by <code>month</code>, then subset the <code>weather</code> column and apply <code>value_counts()</code> to it.</p>
+<div id="7ac48b7b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Counts of weather types per month</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">'month'</span>)[<span class="st">'weather'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">max_sales</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>2000</td>
-<td>5</td>
-<td>1980</td>
-<td>1980</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">18</td>
-<td>2001</td>
-<td>7</td>
-<td>1871</td>
-<td>1871</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">28</td>
-<td>2002</td>
-<td>5</td>
-<td>1931</td>
-<td>1931</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">162</td>
-<td>2013</td>
-<td>7</td>
-<td>3376</td>
-<td>3376</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">173</td>
-<td>2014</td>
-<td>6</td>
-<td>3195</td>
-<td>3195</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
-<td>3466</td>
-</tr>
-</tbody>
-</table>
-
-<p>16 rows × 4 columns</p>
+<pre><code>month     weather
+January   rain       18
+          snow        7
+          sun         4
+                     ..
+December  drizzle     2
+          sun         1
+          fog         0
+Name: count, Length: 60, dtype: int64</code></pre>
 </div>
 </div>
-</div>
-<p>We can drop the <code>max_sales</code> column if we want to at the end.</p>
-<div id="3a0a341f" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>housing</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  .assign(max_sales<span class="op">=</span>housing.groupby(<span class="st">"year"</span>).sales.transform(<span class="st">"max"</span>))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  .query(<span class="st">"sales == max_sales"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  .drop(columns<span class="op">=</span>[<span class="st">"max_sales"</span>])</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This returns a Series with a MultiIndex, which can be converted to a regular DataFrame with <code>reset_index()</code>:</p>
+<div id="61585dbd" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">'month'</span>)[<span class="st">'weather'</span>].value_counts().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -1194,29 +1320,29 @@ Practice
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year</th>
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
+<th data-quarto-table-cell-role="th">weather</th>
+<th data-quarto-table-cell-role="th">count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>2000</td>
-<td>5</td>
-<td>1980</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>January</td>
+<td>rain</td>
+<td>18</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">18</td>
-<td>2001</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>January</td>
+<td>snow</td>
 <td>7</td>
-<td>1871</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">28</td>
-<td>2002</td>
-<td>5</td>
-<td>1931</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>January</td>
+<td>sun</td>
+<td>4</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
@@ -1225,27 +1351,27 @@ Practice
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">162</td>
-<td>2013</td>
-<td>7</td>
-<td>3376</td>
+<td data-quarto-table-cell-role="th">57</td>
+<td>December</td>
+<td>drizzle</td>
+<td>2</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">173</td>
-<td>2014</td>
-<td>6</td>
-<td>3195</td>
+<td data-quarto-table-cell-role="th">58</td>
+<td>December</td>
+<td>sun</td>
+<td>1</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">186</td>
-<td>2015</td>
-<td>7</td>
-<td>3466</td>
+<td data-quarto-table-cell-role="th">59</td>
+<td>December</td>
+<td>fog</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
 
-<p>16 rows × 3 columns</p>
+<p>60 rows × 3 columns</p>
 </div>
 </div>
 </div>
@@ -1258,31 +1384,134 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-filter-for-time-of-day-with-highest-wind-speed" class="level3 callout-body-container callout-body" data-number="19.6.2">
-<h3 data-number="19.6.2" class="anchored" data-anchor-id="practice-q-filter-for-time-of-day-with-highest-wind-speed"><span class="header-section-number">19.6.2</span> Practice Q: Filter for Time of Day with Highest Wind Speed</h3>
-<p>With the <code>gibraltar</code> dataframe created above, group by the date of measurement, calculate the time of day with the highest recorded wind speed <code>wind_speed</code> for each day, then filter the dataframe to keep only the rows with the highest wind speed for each day.</p>
-<p>Note that for some days, there may be a tie in the highest wind speed.</p>
-<div id="aa729160" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="practice-q-count-smokers-and-non-smokers-by-day" class="level2 callout-body-container callout-body" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="practice-q-count-smokers-and-non-smokers-by-day"><span class="header-section-number">19.8</span> Practice Q: Count Smokers and Non-Smokers by Day</h2>
+<p>Using the <code>tips</code> dataset, count the number of smokers and non-smokers for each day.</p>
+<div id="268a99ba" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tips</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>16.99</td>
+<td>1.01</td>
+<td>Female</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>10.34</td>
+<td>1.66</td>
+<td>Male</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>21.01</td>
+<td>3.50</td>
+<td>Male</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">241</td>
+<td>22.67</td>
+<td>2.00</td>
+<td>Male</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">242</td>
+<td>17.82</td>
+<td>1.75</td>
+<td>Male</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">243</td>
+<td>18.78</td>
+<td>3.00</td>
+<td>Female</td>
+<td>No</td>
+<td>Thur</td>
+<td>Dinner</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>244 rows × 7 columns</p>
 </div>
+</div>
+</div>
+<p>The first few rows of your result should look something like this:</p>
+<pre><code>day smoker  count
+Fri Yes 15
+Fri No  4
+Sat No  45</code></pre>
 </section>
 </div>
 </section>
-<section id="month-with-the-most-typical-sales" class="level3" data-number="19.6.3">
-<h3 data-number="19.6.3" class="anchored" data-anchor-id="month-with-the-most-typical-sales"><span class="header-section-number">19.6.3</span> Month with the Most “Typical” Sales</h3>
-<p>We can also use <code>groupby()</code> with <code>transform()</code> to find the month with the most “typical” sales. We’ll use the mean sales volume for each year as the “typical” sales volume, then get the month with the closest sales to that.</p>
-<div id="a17e3306" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>housing</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  .assign(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    mean_sales<span class="op">=</span>housing.groupby(<span class="st">"year"</span>).sales.transform(<span class="st">"mean"</span>),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    sales_diff_abs<span class="op">=</span><span class="kw">lambda</span> x: (x.sales <span class="op">-</span> x.mean_sales).<span class="bu">abs</span>()</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  .sort_values(<span class="st">"sales_diff_abs"</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  .groupby(<span class="st">"year"</span>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  .first()</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="counting-values-that-meet-a-condition" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="counting-values-that-meet-a-condition"><span class="header-section-number">19.9</span> Counting Values that Meet a Condition</h2>
+<p>To count the number of values that meet a condition within groups, one approach is to create a new boolean column and then apply <code>value_counts()</code> to it. For example, to count the number of days with more than 10 inches of precipitation:</p>
+<div id="5da7b3b5" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">'high_precip'</span>] <span class="op">=</span> seattle_2012[<span class="st">'precipitation'</span>] <span class="op">&gt;</span> <span class="dv">10</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">'high_precip'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>high_precip
+False    324
+True      42
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>We can now group by <code>month</code> and count the number of <code>True</code> values per month:</p>
+<div id="70088e14" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">'month'</span>)[<span class="st">'high_precip'</span>].value_counts().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -1291,72 +1520,57 @@ Practice
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">sales</th>
-<th data-quarto-table-cell-role="th">mean_sales</th>
-<th data-quarto-table-cell-role="th">sales_diff_abs</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">high_precip</th>
+<th data-quarto-table-cell-role="th">count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2000</td>
-<td>4</td>
-<td>1556</td>
-<td>1551.750000</td>
-<td>4.250000</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>January</td>
+<td>False</td>
+<td>25</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2001</td>
-<td>3</td>
-<td>1553</td>
-<td>1532.666667</td>
-<td>20.333333</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>January</td>
+<td>True</td>
+<td>6</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2002</td>
-<td>3</td>
-<td>1550</td>
-<td>1559.666667</td>
-<td>9.666667</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>February</td>
+<td>False</td>
+<td>25</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
 <td>...</td>
 <td>...</td>
 <td>...</td>
-<td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2013</td>
-<td>9</td>
-<td>2544</td>
-<td>2536.333333</td>
-<td>7.666667</td>
+<td data-quarto-table-cell-role="th">21</td>
+<td>November</td>
+<td>True</td>
+<td>5</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2014</td>
-<td>10</td>
-<td>2588</td>
-<td>2579.416667</td>
-<td>8.583333</td>
+<td data-quarto-table-cell-role="th">22</td>
+<td>December</td>
+<td>False</td>
+<td>24</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2015</td>
-<td>3</td>
-<td>2677</td>
-<td>2696.857143</td>
-<td>19.857143</td>
+<td data-quarto-table-cell-role="th">23</td>
+<td>December</td>
+<td>True</td>
+<td>7</td>
 </tr>
 </tbody>
 </table>
 
-<p>16 rows × 4 columns</p>
+<p>24 rows × 3 columns</p>
 </div>
 </div>
 </div>
@@ -1369,25 +1583,963 @@ Practice
 Practice
 </div>
 </div>
-<section id="practice-q-filter-for-times-with-above-mean-temperature" class="level3 callout-body-container callout-body" data-number="19.6.4">
-<h3 data-number="19.6.4" class="anchored" data-anchor-id="practice-q-filter-for-times-with-above-mean-temperature"><span class="header-section-number">19.6.4</span> Practice Q: Filter for Times with Above Mean Temperature</h3>
-<p>Group the <code>gibraltar</code> dataframe by <code>date</code>, then use <code>apply()</code>, <code>assign()</code>, and <code>query()</code> as needed to subset to only times when the temperature is above the mean temperature for that day. You should have 698 rows in the output.</p>
-<div id="c07b5f16" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="practice-q-count-time-of-day-per-sex" class="level2 callout-body-container callout-body" data-number="19.10">
+<h2 data-number="19.10" class="anchored" data-anchor-id="practice-q-count-time-of-day-per-sex"><span class="header-section-number">19.10</span> Practice Q: Count Time of Day per Sex</h2>
+<p>In the <code>tips</code> dataset, count how many times each sex (<code>Male</code>, <code>Female</code>) appears in each time category (<code>Lunch</code>, <code>Dinner</code>).</p>
+<p>The first three rows of your output data should look something like this:</p>
+<pre><code>sex time    count
+Female  Dinner  52
+Female  Lunch   35
+Male    Dinner  124</code></pre>
 </section>
 </div>
 </section>
+<section id="computing-cumulative-sums-within-groups" class="level2" data-number="19.11">
+<h2 data-number="19.11" class="anchored" data-anchor-id="computing-cumulative-sums-within-groups"><span class="header-section-number">19.11</span> Computing Cumulative Sums Within Groups</h2>
+<p>Cumulative sums help track running totals within groups. This is an often-useful operation. Let’s see how we can do this to grouped data.</p>
+<p>As a recall, here’s how we can compute the cumulative sum of precipitation for the entire DataFrame:</p>
+<div id="5e3643e7" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative sum of precipitation</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">"precip_cumul"</span>] <span class="op">=</span> seattle_2012[<span class="st">"precipitation"</span>].cumsum()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+<th data-quarto-table-cell-role="th">high_precip</th>
+<th data-quarto-table-cell-role="th">precip_cumul</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2012-01-01</td>
+<td>January</td>
+<td>0.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+<td>False</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2012-01-02</td>
+<td>January</td>
+<td>10.9</td>
+<td>4.5</td>
+<td>rain</td>
+<td>True</td>
+<td>10.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2012-01-03</td>
+<td>January</td>
+<td>0.8</td>
+<td>2.3</td>
+<td>rain</td>
+<td>False</td>
+<td>11.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>December</td>
+<td>1.5</td>
+<td>1.7</td>
+<td>rain</td>
+<td>False</td>
+<td>1226.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>December</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+<td>False</td>
+<td>1226.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>drizzle</td>
+<td>False</td>
+<td>1226.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<p>To compute cumulative precipitation within each month:</p>
+<div id="727db7b6" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative precipitation per month</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>seattle_2012[<span class="st">"precip_cumul"</span>] <span class="op">=</span> seattle_2012.groupby(<span class="st">"month"</span>)[<span class="st">"precipitation"</span>].cumsum()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+<th data-quarto-table-cell-role="th">high_precip</th>
+<th data-quarto-table-cell-role="th">precip_cumul</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2012-01-01</td>
+<td>January</td>
+<td>0.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+<td>False</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2012-01-02</td>
+<td>January</td>
+<td>10.9</td>
+<td>4.5</td>
+<td>rain</td>
+<td>True</td>
+<td>10.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2012-01-03</td>
+<td>January</td>
+<td>0.8</td>
+<td>2.3</td>
+<td>rain</td>
+<td>False</td>
+<td>11.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>December</td>
+<td>1.5</td>
+<td>1.7</td>
+<td>rain</td>
+<td>False</td>
+<td>174.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>December</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+<td>False</td>
+<td>174.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>drizzle</td>
+<td>False</td>
+<td>174.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<section id="practice-questions" class="level3" data-number="19.11.1">
+<h3 data-number="19.11.1" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">19.11.1</span> Practice Questions</h3>
+<div class="callout-practice" title="Practice Q1: Cumulative Tip Amount by Day">
+<p>Using the <code>tips</code> dataset, compute the cumulative sum of <code>total_bill</code> for each <code>day</code>, adding a new column <code>cumul_total_bill_day</code>. Then add another column <code>cumul_tip_day</code> that contains the cumulative sum of <code>tip</code> for each <code>day</code>.</p>
+<div id="3983ba73" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
-<section id="wrap-up" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">19.7</span> Wrap Up</h2>
-<p>In this lesson, we explored powerful techniques for grouped operations in pandas:</p>
-<ol type="1">
-<li>Using <code>groupby()</code> with <code>transform()</code> and <code>assign()</code> for grouped transformations</li>
-<li>Combining <code>groupby()</code>, <code>transform()</code>, and <code>query()</code> for grouped filtering</li>
-</ol>
-<p>These methods significantly enhance our ability to analyze and manipulate data within specific groups.</p>
-<p>Congratulations on making it through!</p>
+</section>
+<section id="sorting-data-within-groups" class="level2" data-number="19.12">
+<h2 data-number="19.12" class="anchored" data-anchor-id="sorting-data-within-groups"><span class="header-section-number">19.12</span> Sorting Data Within Groups</h2>
+<p>Let’s reinitialize the <code>seattle_2012</code> DataFrame to a smaller set of columns:</p>
+<div id="1a1f0345" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>seattle_2012 <span class="op">=</span> seattle_2012[[<span class="st">'date'</span>, <span class="st">'month'</span>, <span class="st">'precipitation'</span>, <span class="st">'wind'</span>, <span class="st">'weather'</span>]]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>seattle_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2012-01-01</td>
+<td>January</td>
+<td>0.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2012-01-02</td>
+<td>January</td>
+<td>10.9</td>
+<td>4.5</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2012-01-03</td>
+<td>January</td>
+<td>0.8</td>
+<td>2.3</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">363</td>
+<td>2012-12-29</td>
+<td>December</td>
+<td>1.5</td>
+<td>1.7</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2012-12-30</td>
+<td>December</td>
+<td>0.0</td>
+<td>1.8</td>
+<td>drizzle</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>drizzle</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>Sorting within groups allows us to find minimums, maximums, or top N values in each group. Let’s see how we can do this to grouped data.</p>
+<p>As a refresher, here’s how we can sort the entire DataFrame by precipitation:</p>
+<div id="b445df3b" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by precipitation descending</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>seattle_2012_sorted <span class="op">=</span> seattle_2012.sort_values(<span class="st">'precipitation'</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>seattle_2012_sorted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2012-01-01</td>
+<td>January</td>
+<td>0.0</td>
+<td>4.7</td>
+<td>drizzle</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">196</td>
+<td>2012-07-15</td>
+<td>July</td>
+<td>0.0</td>
+<td>3.8</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">198</td>
+<td>2012-07-17</td>
+<td>July</td>
+<td>0.0</td>
+<td>2.6</td>
+<td>sun</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">303</td>
+<td>2012-10-30</td>
+<td>October</td>
+<td>34.5</td>
+<td>2.8</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">334</td>
+<td>2012-11-30</td>
+<td>November</td>
+<td>35.6</td>
+<td>4.6</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">323</td>
+<td>2012-11-19</td>
+<td>November</td>
+<td>54.1</td>
+<td>6.0</td>
+<td>rain</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>Or, in descending order:</p>
+<div id="1b2d4676" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>seattle_2012_sorted <span class="op">=</span> seattle_2012.sort_values(<span class="st">'precipitation'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>seattle_2012_sorted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">323</td>
+<td>2012-11-19</td>
+<td>November</td>
+<td>54.1</td>
+<td>6.0</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">334</td>
+<td>2012-11-30</td>
+<td>November</td>
+<td>35.6</td>
+<td>4.6</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">303</td>
+<td>2012-10-30</td>
+<td>October</td>
+<td>34.5</td>
+<td>2.8</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">200</td>
+<td>2012-07-19</td>
+<td>July</td>
+<td>0.0</td>
+<td>2.2</td>
+<td>sun</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">202</td>
+<td>2012-07-21</td>
+<td>July</td>
+<td>0.0</td>
+<td>2.3</td>
+<td>sun</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>drizzle</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>Now, unfortunately, the <code>sort_values()</code> method cannot be called directly on a grouped object:</p>
+<div id="c7e40cab" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Does not work</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">"month"</span>).sort_values(<span class="st">"precipitation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>AttributeError: 'DataFrameGroupBy' object has no attribute 'sort_values'</code></pre>
+<p>To sort precipitation within each month, we need to use <code>groupby()</code> and <code>apply()</code>. The apply method accepts some function which will be applied to each group.</p>
+<p>Let’s define a custom sort function that sorts the values within each group:</p>
+<div id="96dbcfe5" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sort_precipitation(df):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.sort_values(<span class="st">'precipitation'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can apply this function to each group:</p>
+<div id="ca67f9b1" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort precipitation within each month</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">"month"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(sort_precipitation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>2012-01-29</td>
+<td>January</td>
+<td>27.7</td>
+<td>4.5</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2012-01-04</td>
+<td>January</td>
+<td>20.3</td>
+<td>4.7</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">17</td>
+<td>2012-01-18</td>
+<td>January</td>
+<td>19.8</td>
+<td>5.0</td>
+<td>snow</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">342</td>
+<td>2012-12-08</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>sun</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">362</td>
+<td>2012-12-28</td>
+<td>December</td>
+<td>0.0</td>
+<td>1.7</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>drizzle</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>Since the function is very simple, it would be better to use a lambda function:</p>
+<div id="40a12ed1" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">"month"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.sort_values(<span class="st">"precipitation"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>2012-01-29</td>
+<td>January</td>
+<td>27.7</td>
+<td>4.5</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2012-01-04</td>
+<td>January</td>
+<td>20.3</td>
+<td>4.7</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">17</td>
+<td>2012-01-18</td>
+<td>January</td>
+<td>19.8</td>
+<td>5.0</td>
+<td>snow</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">342</td>
+<td>2012-12-08</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>sun</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">362</td>
+<td>2012-12-28</td>
+<td>December</td>
+<td>0.0</td>
+<td>1.7</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2012-12-31</td>
+<td>December</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>drizzle</td>
+</tr>
+</tbody>
+</table>
+
+<p>366 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>We can extend this approach to get the top N values within each group by adding <code>.head(N)</code>. For example, let’s obtain the day with the most precipitation in each month:</p>
+<div id="e7c816fa" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top 3 days with the highest precipitation in each month</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">"month"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.sort_values(<span class="st">"precipitation"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>2012-01-29</td>
+<td>January</td>
+<td>27.7</td>
+<td>4.5</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">47</td>
+<td>2012-02-17</td>
+<td>February</td>
+<td>17.3</td>
+<td>3.4</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">88</td>
+<td>2012-03-29</td>
+<td>March</td>
+<td>27.4</td>
+<td>4.4</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">303</td>
+<td>2012-10-30</td>
+<td>October</td>
+<td>34.5</td>
+<td>2.8</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">323</td>
+<td>2012-11-19</td>
+<td>November</td>
+<td>54.1</td>
+<td>6.0</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">350</td>
+<td>2012-12-16</td>
+<td>December</td>
+<td>22.6</td>
+<td>5.5</td>
+<td>snow</td>
+</tr>
+</tbody>
+</table>
+
+<p>12 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>Or to get the top 3 days with the highest precipitation in each month:</p>
+<div id="fea61a2a" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top 3 days with the highest precipitation in each month</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>seattle_2012.groupby(<span class="st">"month"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.sort_values(<span class="st">"precipitation"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">precipitation</th>
+<th data-quarto-table-cell-role="th">wind</th>
+<th data-quarto-table-cell-role="th">weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>2012-01-29</td>
+<td>January</td>
+<td>27.7</td>
+<td>4.5</td>
+<td>rain</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2012-01-04</td>
+<td>January</td>
+<td>20.3</td>
+<td>4.7</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">17</td>
+<td>2012-01-18</td>
+<td>January</td>
+<td>19.8</td>
+<td>5.0</td>
+<td>snow</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">350</td>
+<td>2012-12-16</td>
+<td>December</td>
+<td>22.6</td>
+<td>5.5</td>
+<td>snow</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">336</td>
+<td>2012-12-02</td>
+<td>December</td>
+<td>19.6</td>
+<td>6.2</td>
+<td>rain</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">338</td>
+<td>2012-12-04</td>
+<td>December</td>
+<td>14.2</td>
+<td>6.2</td>
+<td>rain</td>
+</tr>
+</tbody>
+</table>
+
+<p>36 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<section id="practice-questions-1" class="level3" data-number="19.12.1">
+<h3 data-number="19.12.1" class="anchored" data-anchor-id="practice-questions-1"><span class="header-section-number">19.12.1</span> Practice Questions</h3>
+<div class="callout-practice" title="Practice Q1: Top 2 Highest Tips per Day">
+<p>Using the <code>tips</code> dataset, return a subset of the DataFrame with the highest tip for each <code>day</code>.</p>
+<div id="802093d0" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="callout-practice" title="Practice Q2: Lowest Total Bills per Size">
+<p>In the <code>tips</code> dataset, return a subset of the DataFrame with the lowest <code>total_bill</code> for each <code>size</code> (table size).</p>
+<div id="a0d691d7" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">'size'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.sort_values(<span class="st">'total_bill'</span>).head(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">1</td>
+<td data-quarto-table-cell-role="th">67</td>
+<td>3.07</td>
+<td>1.00</td>
+<td>Female</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">111</td>
+<td>7.25</td>
+<td>1.00</td>
+<td>Female</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">222</td>
+<td>8.58</td>
+<td>1.92</td>
+<td>Male</td>
+<td>Yes</td>
+<td>Fri</td>
+<td>Lunch</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">6</td>
+<td data-quarto-table-cell-role="th">143</td>
+<td>27.05</td>
+<td>5.00</td>
+<td>Female</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">125</td>
+<td>29.80</td>
+<td>4.20</td>
+<td>Female</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">141</td>
+<td>34.30</td>
+<td>6.70</td>
+<td>Male</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+
+<p>18 rows × 7 columns</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="wrap-up" class="level2" data-number="19.13">
+<h2 data-number="19.13" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">19.13</span> Wrap-Up</h2>
+<p>In this lesson, you’ve learned several powerful <strong>group-level data transformations</strong> in pandas:</p>
+<ul>
+<li><strong>Adding Summary Statistics</strong>: Using <code>transform()</code> to add group-level calculations as new columns</li>
+<li><strong>Counting Within Groups</strong>: Using <code>value_counts()</code> to count occurrences in groups</li>
+<li><strong>Computing Cumulative Sums</strong>: Tracking running totals within groups</li>
+<li><strong>Sorting Within Groups</strong>: Finding minimums, maximums, and top N values per group</li>
+</ul>
+<p>These techniques allow you to analyze patterns and statistics within specific subsets of your data. Keep practicing with different datasets to build your data manipulation skills!</p>
+<p>See you next time!</p>
 
 
 </section>

@@ -1,0 +1,735 @@
+# Intro to Joining Datasets
+
+```{r, echo = F, message = F, warning = F}
+# Load packages 
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(rlang, tidyverse, knitr, here, reactable, gt, flextable)
+
+## functions
+source(here::here("global/functions/misc_functions.R"))
+
+## default render
+knitr::opts_chunk$set(class.source = "tgc-code-block", render = reactable_5_rows, error = T)
+```
+
+# Prelude
+
+Joining datasets is a crucial skill when working with data as it allows you to combine information about the same entities from multiple sources, leading to more comprehensive and insightful analyses. In this lesson, you'll learn how to use different joining techniques using R's `dplyr` package. Let's get started!
+
+# Learning Objectives
+
+-   You understand how each of the different `dplyr` joins work: left, right, inner, and full. 
+
+-   You're able to choose the appropriate join for your data.
+
+-   You can join simple datasets together using functions from `dplyr`.
+
+# Packages
+
+Please load the packages needed for this lesson with the code below:
+
+```{r warning = F, message = F, echo = T}
+# Load packages 
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse, 
+               countrycode)
+```
+
+# Data Definitions
+
+Below are the datasets we'll be using throughout this lesson.
+
+```{r}
+
+# TB incidence in Africa
+tb_2019_africa <- read_csv("https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_incidence_2019.csv")
+
+# Health expenditure data
+health_exp_2019 <- read_csv("https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/health_expend_per_cap_2019.csv")
+
+# Highest expenditure countries
+highest_exp <- 
+  health_exp_2019 %>% 
+  arrange(-expend_usd) %>% 
+  head(70)
+  
+# TB cases in children
+tb_cases_children <- read_csv("https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_cases_children_2012.csv")
+
+# Country continents data
+country_continents <- read_csv("https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/country_continents.csv")
+
+
+# Demographic data
+demographic <- 
+  tribble(~name,     ~age,
+          "Alice",    25,
+          "Bob",      32,
+          "Charlie",  45)
+
+# Test information
+test_info <- 
+  tribble(~name,     ~test_date,    ~result,
+          "Alice",   "2023-06-05",  "Negative",
+          "Bob",     "2023-08-10",  "Positive",
+          "Charlie", "2023-07-15",  "Negative")
+
+# Disordered test information
+test_info_disordered <- 
+  tribble(~name,     ~test_date,    ~result,
+          "Bob",     "2023-08-10",  "Positive", # Bob in first row
+          "Alice",   "2023-06-05",  "Negative",
+          "Charlie", "2023-07-15",  "Negative")
+
+# Multiple test information
+test_info_multiple <- 
+  tribble(~name,     ~test_date,    ~result,
+          "Alice",   "2023-06-05",  "Negative",
+          "Alice",   "2023-06-06",  "Negative",
+          "Bob",     "2023-08-10",  "Positive",
+          "Charlie", "2023-07-15",  "Negative")
+
+# Test information with different name
+test_info_different_name <- 
+  tribble(~test_recipient,  ~test_date,    ~result,
+          "Alice",          "2023-06-05",  "Negative",
+          "Bob",            "2023-08-10",  "Positive",
+          "Charlie",        "2023-07-15",  "Negative")
+
+# Test information including Xavier
+test_info_xavier <- tribble(
+  ~name,    ~test_date, ~result,
+  "Alice",  "2023-06-05", "Negative",
+  "Bob",    "2023-08-10", "Positive",
+  "Xavier", "2023-05-02", "Negative")
+
+# Students data
+students <- tribble(
+  ~student_id, ~name,     ~age,
+  1,          "Alice",     20,
+  2,          "Bob",       22,
+  3,          "Charlie",   21
+)
+
+# Exam dates data
+exam_dates <- tribble(
+  ~student_id, ~exam_date,
+  1,          "2023-05-20",
+  2,          "2023-05-21",
+  3,          "2023-05-22"
+)
+
+# Employee details
+employee_details <- tribble(
+  ~id_number,  ~full_name,   ~department,
+  "E001",      "Emily",      "HR",
+  "E002",      "Frank",      "IT",
+  "E003",      "Grace",      "Marketing"
+)
+
+# Performance reviews
+performance_reviews <- tribble(
+  ~employee_code, ~review_type,  ~review_date,
+  "E001",        "Annual",       "2022-05-10",
+  "E002",        "Mid-year",     "2023-09-01",
+  "E003",        "Annual",       "2021-12-15"
+)
+
+# Sales data
+sales_data <- tribble(
+  ~salesperson_id, ~product,       ~date_of_sale,
+  1,               "Laptop",       "2023-01-15",
+  4,               "Smartphone",   "2023-03-05",
+  8,               "Tablet",       "2023-02-20"
+)
+
+# Salesperson demographics
+salesperson_demographics <- tribble(
+  ~salesperson_id, ~name,      ~age,  ~gender,
+  1,               "Alice",     28,    "Female",
+  2,               "Bob",       45,    "Male",
+  3,               "Charlie",   32,    "Male",
+  5,               "Diana",     55,    "Female",
+  8,               "Eve",       40,    "Female"
+)
+
+# Total sales data
+total_sales <- tribble(
+  ~product,         ~total_units_sold,   
+  "Laptop",         9751,     
+  "Desktop",        136,   
+  "Tablet",         8285,
+  "Smartphone",     2478    
+)
+
+# Product feedback data
+product_feedback <- tribble(
+  ~product,           ~n_positive_reviews, ~n_negative_reviews,
+  "Desktop",          128,                 30,
+  "Gaming Console",   582,                 11,
+  "Laptop",           1938,                42,
+  "Smartwatch",       200,                 5
+)
+
+# Sales incidence data
+sales <- tribble(
+  ~year, ~sales_count,
+  2010, 69890,
+  2011, 66507,
+  2014, 59831,
+  2016, 58704,
+  2017, 59151,
+)
+
+# Customer complaints data
+customer_complaints <- tribble(
+  ~year, ~complaints_count,
+  2011, 1292,
+  2013, 1100,
+  2015, 1011,
+  2016, 940,
+  2019, 895
+)
+```
+
+# What is a join and why do we need it?
+
+To illustrate the utility of joins, let's start with a toy example. Consider the following two datasets. The first, `demographic`, contains names and ages of three individuals:
+
+```{r}
+demographic
+```
+
+The second, `test_info`, contains test dates and results for those individuals:
+
+```{r}
+test_info
+```
+
+We'd like to analyze these data together, and so we need a way to combine them.
+
+One option we might consider is the `cbind()` function from base R (`cbind` is short for column bind):
+
+```{r render = kable_5_rows}
+cbind(demographic, test_info)
+```
+
+This successfully merges the datasets, but it doesn't do so very intelligently. The function essentially "pastes" or "staples" the two tables together. So, as you can notice, the "name" column appears twice. This is not ideal and will be problematic for analysis.
+
+Another problem occurs if the rows in the two datasets are not already aligned. In this case, the data will be combined incorrectly with `cbind()`. Consider the `test_info_disordered` dataset, which now has Bob in the first row:
+
+```{r}
+test_info_disordered
+```
+
+What happens if we `cbind()` this with the original `demographic` dataset, where Bob was in the *second* row?
+
+```{r render = kable_5_rows}
+cbind(demographic, test_info_disordered)
+```
+
+Alice's demographic details are now mistakenly aligned with Bob's test info!
+
+A third issue arises when an entity appears more than once in one dataset. Perhaps Alice had multiple tests:
+
+```{r}
+test_info_multiple
+```
+
+If we try to `cbind()` this with the `demographic` dataset, we'll get an error, due to a mismatch in row counts:
+
+```{r eval = F}
+cbind(demographic, test_info_multiple)
+```
+
+```         
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 3, 4
+```
+
+::: vocab
+What we have here is called a `one-to-many` relationship---one Alice in the demographic data, but multiple Alice rows in the test data. Joining in such cases will be covered in detail in the second joining lesson.
+:::
+
+------------------------------------------------------------------------
+
+Clearly, we need a smarter way to combine datasets than `cbind()`; we'll need to venture into the world of joining.
+
+Let's start with the most common join, the `left_join()`, which solves the problems we previously encountered.
+
+It works for the simple case, and it does not duplicate the name column:
+
+```{r}
+left_join(demographic, test_info)
+```
+
+It works where the datasets are not ordered identically:
+
+```{r}
+left_join(demographic, test_info_disordered)
+```
+
+And it works when there are multiple test rows per individual:
+
+```{r}
+left_join(demographic, test_info_multiple)
+```
+
+Simple yet beautiful!
+
+::: side-note
+We'll be using the pipe operator as well when joining. Remember that this:
+
+```{r results = "hide"}
+demographic %>% left_join(test_info)
+```
+
+is equivalent to this:
+
+```{r results = "hide"}
+left_join(demographic, test_info)
+```
+:::
+
+# Joining syntax
+
+Now that we understand *why* we need joins, let's look at their basic syntax.
+
+Joins take two dataframes as the first two arguments: `x` (the *left* dataframe) and `y` (the *right* dataframe). As with other R functions, you can provide these as named or unnamed arguments:
+
+```{r eval = F}
+# both the same:
+left_join(x = demographic, y = test_info) # named
+left_join(demographic, test_info) # unnamed
+```
+
+Another critical argument is `by`, which indicates the column or **key** used to connect the tables. We don't always need to supply this argument; it can be *inferred* from the datasets. For example, in our original examples, "name" is the only column common to `demographic` and `test_info`. So the join function assumes `by = "name"`:
+
+```{r eval = F}
+# these are equivalent
+left_join(x = demographic, y = test_info)  
+left_join(x = demographic, y = test_info, by = "name")
+```
+
+::: vocab
+The column used to connect rows across the tables is known as a "key". In the dplyr join functions, the key is specified in the `by` argument, as seen in `left_join(x = demographic, y = test_info, by = "name")`
+:::
+
+What happens if the keys are named differently in the two datasets? Consider the `test_info_different_name` dataset, where the "name" column has been changed to "test_recipient":
+
+```{r}
+test_info_different_name
+```
+
+If we try to join `test_info_different_name` with our original `demographic` dataset, we will encounter an error:
+
+```{r eval = F}
+left_join(x = demographic, y = test_info_different_name)
+```
+
+```         
+Error in `left_join()`:
+! `by` must be supplied when `x` and `y` have no common
+  variables.
+ℹ Use `cross_join()` to perform a cross-join.
+```
+
+The error indicates that there are no common variables, so the join is not possible.
+
+In situations like this, you have two choices: you can rename the column in the second dataframe to match the first, or more simply, specify which columns to join on using `by = c()`.
+
+Here's how to do this:
+
+```{r}
+left_join(x = demographic, y = test_info_different_name, 
+          by = c("name" = "test_recipient"))
+```
+
+The syntax `c("name" = "test_recipient")` is a bit unusual. It essentially says, "Connect `name` from data frame x with `test_recipient` from data frame y because they represent the same data."
+
+------------------------------------------------------------------------
+
+::: vocab
+**Key**: The column or set of columns used to match rows between two dataframes in a join operation.
+
+**Left Join**: A type of join that keeps all rows from the left dataframe and adds matching rows from the right dataframe. If there is no match, the result is `NA` on the right side.
+
+:::
+
+# Types of joins
+
+The toy examples so far have involved datasets that could be matched perfectly—every row in one dataset had a corresponding row in the other dataset.
+
+Real-world data is usually messier. Often, there will be entries in the first table that do not have corresponding entries in the second table, and vice versa.
+
+To handle these cases of imperfect matching, there are different join types with specific behaviors: `left_join()`, `right_join()`, `inner_join()`, and `full_join()`. In the upcoming sections, we'll look at examples of how each join type operates on datasets with imperfect matches.
+
+## `left_join()`
+
+Let's start with `left_join()`, which you've already been introduced to. To see how it handles unmatched rows, we will try to join our original `demographic` dataset with a modified version of the `test_info` dataset.
+
+As a reminder, here is the `demographic` dataset, with Alice, Bob, and Charlie:
+
+```{r}
+demographic
+```
+
+For test information, we'll remove `Charlie` and we'll add a new individual, `Xavier`, and his test data:
+
+```{r}
+test_info_xavier
+```
+
+If we perform a `left_join()` using `demographic` as the left dataset (`x = demographic`) and `test_info_xavier` as the right dataset (`y = test_info_xavier`), what should we expect? Recall that Charlie is only present in the left dataset, and Xavier is only present in the right. Well, here's what happens:
+
+```{r render=reactable_5_rows}
+left_join(x = demographic, y = test_info_xavier, by = "name")
+```
+
+As you can see, with the *LEFT* join, all records from the *LEFT* dataframe (`demographic`) are retained. So, even though `Charlie` doesn't have a match in the `test_info_xavier` dataset, he's still included in the output. (But of course, since his test information is not available in `test_info_xavier`, those values were left as `NA`.)
+
+Xavier, on the other hand, who was only present in the right dataset, gets dropped.
+
+The graphic below shows how this join worked:
+
+![](images/left_join1.gif)
+
+::: key-point
+In a join function like `left_join(x, y)`, the dataset provided to the `x` argument can be termed the "left" dataset, while the dataset assigned to the `y` argument can be called the "right" dataset.
+:::
+
+Now what if we flip the datasets? Let's see the outcome when `test_info_xavier` is the left dataset and `demographic` is the right one:
+
+```{r render=reactable_5_rows}
+left_join(x = test_info_xavier, y = demographic, by = "name")
+```
+
+Once again, the `left_join()` retains all rows from the *left* dataset (now `test_info_xavier`). This means Xavier's data is included this time. Charlie, on the other hand, is excluded.
+
+::: vocab
+**Primary Dataset**: In the context of joins, the primary dataset refers to the main or prioritized dataset in an operation. In a left join, the left dataset is considered the primary dataset because all of its rows are retained in the output, regardless of whether they have a matching row in the other dataset.
+:::
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Left Join Students and Exam Dates
+
+Consider the two datasets below, one with student details and the other with exam dates for these students.
+
+```{r}
+students
+```
+
+```{r}
+exam_dates
+```
+
+Join the `students` dataset with the `exam_dates` dataset using `left_join()`.
+
+```{r}
+# | echo: false
+# | eval: false
+# Solution
+left_join(x = students, y = exam_dates)
+```
+
+:::
+
+------------------------------------------------------------------------
+
+Let's try another example, this time with a more realistic set of data.
+
+First, we have data on the TB incidence rate per 100,000 people for 47 African countries, from the [WHO](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-(per-100-000-population-per-year)):
+
+```{r render=reactable_5_rows, message=FALSE}
+tb_2019_africa
+```
+
+We want to analyze how TB incidence in African countries varies with government health expenditure per capita. For this, we have data on health expenditure per capita in USD, also from the WHO, for countries from all continents:
+
+```{r render=reactable_5_rows, message=FALSE}
+health_exp_2019
+```
+
+Which dataset should we use as the left dataframe for the join?
+
+Since our goal is to analyze African countries, we should use `tb_2019_africa` as the left dataframe. This will ensure we keep all the African countries in the final joined dataset.
+
+Let's join them:
+
+```{r render=reactable_5_rows}
+tb_health_exp_joined <- 
+  tb_2019_africa %>%
+  left_join(health_exp_2019, by = "country")
+tb_health_exp_joined
+```
+
+Now in the joined dataset, we have just the 47 rows for African countries, which is exactly what we wanted!
+
+All rows from the left dataframe `tb_2019_africa` were kept, while non-African countries from `health_exp_2019` were discarded.
+
+We can check if any rows in `tb_2019_africa` did not have a match in `health_exp_2019` by filtering for `NA` values:
+
+```{r}
+tb_health_exp_joined %>% 
+  filter(is.na(expend_usd))
+```
+
+This shows that 3 countries—Mauritius, South Sudan, and Comoros—did not have expenditure data in `health_exp_2019`. But because they were present in `tb_2019_africa`, and that was the left dataframe, they were still included in the joined data.
+
+To be sure, we can also quickly confirm that those countries are absent from the expenditure dataset with a filter statement:
+
+```{r}
+health_exp_2019 %>% 
+  filter(country %in% c("Mauritius", "South Sudan", "Comoros"))
+```
+
+Indeed, these countries aren't present in `health_exp_2019`.
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Left Join TB Cases and Continents
+
+Copy the code below to define two datasets.
+
+The first, `tb_cases_children`, contains the number of TB cases in under 15s in 2012, by country:
+
+```{r}
+tb_cases_children
+```
+
+And `country_continents`, from the {countrycode} package, lists all countries and their corresponding region and continent:
+
+```{r}
+country_continents
+```
+
+Your goal is to add the continent and region data to the TB cases dataset.
+
+Which dataset should be the left dataframe, `x`? And which should be the right, `y`? Once you've decided, join the datasets appropriately using `left_join()`.
+
+```{r}
+# | echo: false
+# | eval: false
+# Solution
+left_join(x = tb_cases_children, y = country_continents, by = c(country = "country.name.en"))
+```
+
+:::
+
+## `right_join()`
+
+A `right_join()` can be thought of as a mirror image of a `left_join()`. The mechanics are the same, but now all rows from the *RIGHT* dataset are retained, while only those rows from the left dataset that find a match in the right are kept.
+
+Let's look at an example to understand this. We'll use our original `demographic` and modified `test_info_xavier` datasets:
+
+```{r render=reactable_5_rows}
+demographic
+test_info_xavier
+```
+
+Now let's try `right_join()`, with `demographic` as the right dataframe:
+
+```{r render=reactable_5_rows}
+right_join(x = test_info_xavier, y = demographic)
+```
+
+Hopefully you're getting the hang of this and could predict that output! Since `demographic` was the *right* dataframe, and we are using *right*-join, all the rows from `demographic` are kept—Alice, Bob, and Charlie. But only matching records in the left dataframe `test_info_xavier`!
+
+The graphic below illustrates this process:
+
+![](images/right_join.gif)
+
+An important point—the same final dataframe can be created with either `left_join()` or `right_join()`, it just depends on what order you provide the data frames to these functions:
+
+```{r render=reactable_5_rows}
+# here, RIGHT_join prioritizes the RIGHT df, demographic
+right_join(x = test_info_xavier, y = demographic)
+
+# here, LEFT_join prioritizes the LEFT df, again demographic
+left_join(x = demographic, y = test_info_xavier)
+```
+
+::: side-note
+The one difference you might notice between left and right-join is that the final column orders are different. But columns can easily be rearranged, so worrying about column order is not really worth your time.
+:::
+
+As we previously mentioned, data scientists typically favor `left_join()` over `right_join()`. It makes more sense to specify your primary dataset first, in the left position. Opting for a `left_join()` is a common best practice due to its clearer logic, making it less error-prone.
+
+Great, now we understand how `left_join()` and `right_join()` work, let's move on to `inner_join()` and `full_join()`!
+
+## `inner_join()`
+
+What makes an `inner_join` distinct is that rows are only kept if the joining values are present in *both* dataframes. Let's return to our example of individuals and their test results. As a reminder, here are our datasets:
+
+```{r render=reactable_5_rows}
+demographic
+test_info_xavier
+```
+
+Now that we have a better understanding of how joins work, we can already picture what the final dataframe would look like if we used an `inner_join()` on our two dataframes above. If only rows with joining values that are in *both* dataframes are kept, and the only individuals that are in both `demographic` and `test_info_xavier` are `Alice` and `Bob`, then they should be the only individuals in our final dataset! Let's try it out.
+
+```{r render=reactable_5_rows}
+inner_join(demographic, test_info_xavier, by = "name")
+```
+
+Perfect, that's exactly what we expected! Here, `Charlie` was only in the `demographic` dataset, and `Xavier` was only in the `test_info_xavier` dataset, so both of them were removed. The graphic below shows how this join works:
+
+![](images/inner_join.gif)
+
+It makes sense that the order in which you specify your datasets doesn't change the information that's retained, given that you need joining values in both datasets for a row to be kept. To illustrate this, let's try changing the order of our datasets.
+
+```{r render=reactable_5_rows}
+inner_join(test_info_xavier, demographic, by = "name")
+```
+
+As expected, the only difference here is the order of our columns; otherwise, the information retained is the same.
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Inner Join Products
+
+The following data is on product sales and customer feedback in 2019. Copy the code below to create two new dataframes:
+
+```{r}
+total_sales
+```
+
+```{r}
+product_feedback
+```
+
+Which products are common between both datasets? Use an `inner_join()` to join the dataframes, in order to keep only the products that feature in both datasets.
+
+```{r}
+# | echo: false
+# | eval: false
+# Solution
+inner_join(total_sales, product_feedback)
+```
+
+:::
+
+Let's return to our health expenditure and TB incidence data and apply what we've learnt to these datasets.
+
+```{r render=reactable_5_rows}
+tb_2019_africa
+health_exp_2019
+```
+
+Here, we can create a new dataframe called `inner_exp_tb` using an `inner_join()` to retain only the countries that we have both health expenditure and TB incidence rates data on. Let's try it out now:
+
+```{r render=reactable_5_rows}
+inner_exp_tb <- tb_2019_africa %>% 
+  inner_join(health_exp_2019)
+inner_exp_tb
+```
+
+Works great!
+
+Notice that there are now only 44 rows in the output, since the three African countries without corresponding expenditure information in the `health_exp_2019` were dropped.
+
+Along with `left_join()`, the `inner_join()` is one of the most common joins when working with data, so it's likely you will come across it a lot. It's a powerful and often-used tool, but it's also the join that excludes the most information, so be sure that you only want matching records in your final dataset or you may end up accidentally losing a lot of data! In contrast, `full_join()` is the most inclusive join. Let's take a look at it in the next section.
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Inner Join One Row
+
+The code chunk below filters the `health_exp_2019` dataset to the 70 countries with the highest spending:
+
+```{r}
+highest_exp
+```
+
+Use an `inner_join()` to join this `highest_exp` dataset with the African TB incidence dataset, `tb_2019_africa`.
+
+If you do this correctly, there will be just one row returned. Why?
+
+```{r}
+# | echo: false
+# | eval: false
+# Solution
+inner_join(highest_exp, tb_2019_africa)
+# There is only one country in common between the two datasets.
+```
+
+:::
+
+## `full_join()`
+
+The peculiarity of `full_join()` is that it retains *all* records, regardless of whether or not there is a match between the two datasets. Where there is missing information in our final dataset, cells are set to `NA` just as we have seen in the `left_join()` and `right_join()`. Let's take a look at our `demographic` and `test_info_xavier` datasets to illustrate this.
+
+Here is a reminder of our datasets:
+
+```{r render=reactable_5_rows}
+demographic
+test_info_xavier
+```
+
+Now let's perform a `full_join`, with `demographic` as our primary dataset.
+
+```{r render=reactable_5_rows}
+full_join(demographic, test_info_xavier, by = "name")
+```
+
+As we can see, all rows were kept so there was no loss in information! The graphic below illustrates this process:
+
+![](images/full_join.gif)
+
+Because this join isn't selective, everything ends up in the final dataset, so changing the order of our datasets won't change the information that's retained. We can see this below when we specify `test_info_xavier` as our primary dataset and `demographic` as our secondary dataset.
+
+```{r render=reactable_5_rows}
+full_join(test_info_xavier, demographic, by = "name")
+```
+
+Just as we saw above, all of the data from both of the original datasets are still there, with any missing information set to `NA`.
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Join Sales Data
+
+The following dataframes contain global sales and global customer complaints from various years. 
+
+```{r}
+sales
+```
+
+```{r}
+customer_complaints
+```
+
+Join the above tables using the appropriate join to retain all information from the two datasets.
+
+```{r}
+# | echo: false
+# | eval: false
+# Solution
+full_join(sales, customer_complaints)
+```
+
+:::
+
+Let's turn back to our TB dataset and our health expenditure dataset.
+
+```{r render=reactable_5_rows}
+tb_2019_africa
+health_exp_2019
+```
+
+Now let's create a new dataframe called `full_tb_health` using a `full_join`!
+
+```{r render=reactable_5_rows}
+full_tb_health <- tb_2019_africa %>%
+ full_join(health_exp_2019)
+full_tb_health
+```
+
+Just as we saw earlier, all rows were kept between both datasets with missing values set to `NA`.
+
+------------------------------------------------------------------------
+
+# Wrap Up!
+
+Way to go, you now understand the basics of joining! The Venn diagram below gives a helpful summary of the different joins and the information that each one retains. It may be helpful to save this image for future reference!
+
+![](images/venn_cropped-01.jpg)

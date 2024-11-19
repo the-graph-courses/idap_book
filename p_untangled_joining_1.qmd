@@ -1,490 +1,541 @@
 ---
-title: 'Intro to Joining Datasets'
-format: html
+title: 'Introduction to Joining Datasets'
 ---
 
-```{r, echo = F, message = F, warning = F}
-# Load packages 
-if(!require(pacman)) install.packages("pacman")
-pacman::p_load(rlang, tidyverse, knitr, here, reactable, gt, flextable)
+```{python}
+# | echo: false
+# | message: false
+# | warning: false
 
-## functions
-source(here::here("global/functions/misc_functions.R"))
-
-## default render
-knitr::opts_chunk$set(class.source = "tgc-code-block", render = reactable_5_rows)
+# Load packages
+import pandas as pd
 ```
 
 # Prelude
 
-Joining datasets is a crucial skill when working with health-related data as it allows you to combine information about the same entities from multiple sources, leading to more comprehensive and insightful analyses. In this lesson, you'll learn how to use different joining techniques using R's `dplyr` package. Let's get started!
+Joining datasets is a key skill when working with data as it allows you to combine information about the same entities from multiple sources, leading to more comprehensive and insightful analyses. In this lesson, you'll learn how to use different joining techniques using Python's `pandas` library. Let's get started!
 
 # Learning Objectives
 
--   You understand how each of the different `dplyr` joins work: left, right, inner and full. 
+-   You understand how each of the different `pandas` joins work: left, right, inner, and full.
 
--   You're able to choose the appropriate join for your data
+-   You're able to choose the appropriate join for your data.
 
--   You can join simple datasets together using functions from `dplyr`
+-   You can join simple datasets together using functions from `pandas`.
 
 # Packages
 
 Please load the packages needed for this lesson with the code below:
 
-```{r warning = F, message = F, echo = T}
-# Load packages 
-if(!require(pacman)) install.packages("pacman")
-pacman::p_load(tidyverse, 
-               countrycode)
-```
+```{python}
+# | warning: false
+# | message: false
+# | echo: true
 
-
-```{r}
-# ... existing code ...
-
-# Write the datasets to CSV files
-write_csv(tb_cases_children, here("data/tb_cases_children_2012.csv"))
-write_csv(country_continents, here("data/country_continents.csv"))
+# Load packages
+import pandas as pd
 ```
 
 # Data Definitions
 
 Below are the datasets we'll be using throughout this lesson.
 
-```{r}
-# Demographic data
-demographic <- 
-  tribble(~name,     ~age,
-          "Alice",    25,
-          "Bob",      32,
-          "Charlie",  45)
-
-# Test information
-test_info <- 
-  tribble(~name,     ~test_date,    ~result,
-          "Alice",   "2023-06-05",  "Negative",
-          "Bob",     "2023-08-10",  "Positive",
-          "Charlie", "2023-07-15",  "Negative")
-
-# Disordered test information
-test_info_disordered <- 
-  tribble(~name,     ~test_date,    ~result,
-          "Bob",     "2023-08-10",  "Positive", # Bob in first row
-          "Alice",   "2023-06-05",  "Negative",
-          "Charlie", "2023-07-15",  "Negative")
-
-# Multiple test information
-test_info_multiple <- 
-  tribble(~name,     ~test_date,    ~result,
-          "Alice",   "2023-06-05",  "Negative",
-          "Alice",   "2023-06-06",  "Negative",
-          "Bob",     "2023-08-10",  "Positive",
-          "Charlie", "2023-07-15",  "Negative")
-
-# Test information with different name
-test_info_different_name <- 
-  tribble(~test_recipient,  ~test_date,    ~result,
-          "Alice",          "2023-06-05",  "Negative",
-          "Bob",            "2023-08-10",  "Positive",
-          "Charlie",        "2023-07-15",  "Negative")
-
-# Test information including Xavier
-test_info_xavier <- tribble(
-  ~name,    ~test_date, ~result,
-  "Alice",  "2023-06-05", "Negative",
-  "Bob",    "2023-08-10", "Positive",
-  "Xavier", "2023-05-02", "Negative")
-
-# Patients data
-patients <- tribble(
-  ~patient_id, ~name,     ~age,
-  1,          "John",     32,
-  2,          "Joy",      28,
-  3,          "Khan",      40
-)
-
-# Checkups data
-checkups <- tribble(
-  ~patient_id, ~checkup_date,
-  1,          "2023-01-20",
-  2,          "2023-02-20",
-  3,          "2023-05-15"
-)
-
-# Patient details
-patient_details <- tribble(
-  ~id_number,  ~full_name,   ~address,
-  "A001",      "Alice",      "123 Elm St",
-  "B002",      "Bob",        "456 Maple Dr",
-  "C003",      "Charlie",    "789 Oak Blvd"
-)
-
-# Vaccination records
-vaccination_records <- tribble(
-  ~patient_code, ~vaccine_type,  ~vaccination_date,
-  "A001",        "COVID-19",     "2022-05-10",
-  "B002",        "Flu",          "2023-09-01",
-  "C003",        "Hepatitis B",  "2021-12-15"
-)
-
-# Disease diagnoses
-disease_dx <- tribble(
-  ~patient_id, ~disease,       ~date_of_diagnosis,
-  1,            "Influenza",    "2023-01-15",
-  4,            "COVID-19",     "2023-03-05",
-  8,            "Influenza",    "2023-02-20",
-)
-
-# Patient demographics
-patient_demographics <- tribble(
-  ~patient_id, ~name,      ~age,  ~gender,
-  1,            "Fred",      28,  "Female",
-  2,            "Genevieve", 45,  "Female",
-  3,            "Henry",     32,  "Male",
-  5,            "Irene",     55,  "Female",
-  8,            "Jules",     40,  "Male"
-)
+```{python}
+# | echo: true
 
 # TB incidence in Africa
-tb_2019_africa <- read_csv(here("data/tb_incidence_2019.csv"))
-
-# Health expenditure data
-health_exp_2019 <- read_csv(here("data/health_expend_per_cap_2019.csv"))
-
-# TB cases in children
-tb_cases_children <- tidyr::who %>% 
-  filter(year == 2012) %>% 
-  transmute(country, tb_cases_smear_0_14 = new_sp_m014 + new_sp_f014)
-
-# Country continents data
-country_continents <- 
-  countrycode::codelist %>% 
-  select(country.name.en, continent, region)
-
-# Pathogen infection data
-total_inf <- tribble(
-  ~pathogen,         ~total_infections,   
-  "Campylobacter",    9751,     
-  "Listeria",         136,   
-  "Salmonella",       8285,
-  "Shigella",         2478,    
+tb_2019_africa = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_incidence_2019.csv"
 )
 
-# Pathogen outcomes data
-outcomes <- tribble(
-  ~pathogen,        ~n_hosp,    ~n_deaths,
-  "Listeria",          128,        30,
-  "STEC",              582,        11,
-  "Campylobacter",     1938,       42,
-  "Yersinia",          200,        5,
+# Health expenditure data
+health_exp_2019 = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/health_expend_per_cap_2019.csv"
 )
 
 # Highest expenditure countries
-highest_exp <- 
-  health_exp_2019 %>% 
-  arrange(-expend_usd) %>% 
-  head(70)
+highest_exp = health_exp_2019.sort_values("expend_usd", ascending=False).head(70)
 
-# Malaria incidence data
-malaria_inc <- tribble(
-  ~year, ~inc_100k,
-  2010, 69.485344,
-  2011, 66.507935,
-  2014, 59.831020,
-  2016, 58.704540,
-  2017, 59.151703,
+# TB cases in children
+tb_cases_children = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_cases_children_2012.csv"
 )
 
-# Malaria deaths data
-malaria_deaths <- tribble(
-  ~year, ~deaths_100k,
-  2011, 12.92,
-  2013, 11.00,
-  2015, 10.11,
-  2016, 9.40,
-  2019, 8.95
+# Country continents data
+country_continents = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/country_continents.csv"
+)
+
+# Demographic data
+demographic = pd.DataFrame({"name": ["Alice", "Bob", "Charlie"], "age": [25, 32, 45]})
+
+# Test information
+test_info = pd.DataFrame(
+    {
+        "name": ["Alice", "Bob", "Charlie"],
+        "test_date": ["2023-06-05", "2023-08-10", "2023-07-15"],
+        "result": ["Negative", "Positive", "Negative"],
+    }
+)
+
+# Disordered test information
+test_info_disordered = pd.DataFrame(
+    {
+        "name": ["Bob", "Alice", "Charlie"],  # Bob in first row
+        "test_date": ["2023-08-10", "2023-06-05", "2023-07-15"],
+        "result": ["Positive", "Negative", "Negative"],
+    }
+)
+
+# Multiple test information
+test_info_multiple = pd.DataFrame(
+    {
+        "name": ["Alice", "Alice", "Bob", "Charlie"],
+        "test_date": ["2023-06-05", "2023-06-06", "2023-08-10", "2023-07-15"],
+        "result": ["Negative", "Negative", "Positive", "Negative"],
+    }
+)
+
+# Test information with different name
+test_info_different_name = pd.DataFrame(
+    {
+        "name": ["Alice", "Bob", "Charlie"],
+        "test_date": ["2023-06-05", "2023-08-10", "2023-07-15"],
+        "result": ["Negative", "Positive", "Negative"],
+    }
+)
+
+# Test information including Xavier
+test_info_xavier = pd.DataFrame(
+    {
+        "name": ["Alice", "Bob", "Xavier"],
+        "test_date": ["2023-06-05", "2023-08-10", "2023-05-02"],
+        "result": ["Negative", "Positive", "Negative"],
+    }
+)
+
+# Students data
+students = pd.DataFrame(
+    {"student_id": [1, 2, 3], "name": ["Alice", "Bob", "Charlie"], "age": [20, 22, 21]}
+)
+
+# Exam dates data
+exam_dates = pd.DataFrame(
+    {"student_id": [1, 3], "exam_date": ["2023-05-20", "2023-05-22"]}
+)
+
+# Employee details
+employee_details = pd.DataFrame(
+    {
+        "id_number": ["E001", "E002", "E003"],
+        "full_name": ["Emily", "Frank", "Grace"],
+        "department": ["HR", "IT", "Marketing"],
+    }
+)
+
+# Performance reviews
+performance_reviews = pd.DataFrame(
+    {
+        "employee_code": ["E001", "E002", "E003"],
+        "review_type": ["Annual", "Mid-year", "Annual"],
+        "review_date": ["2022-05-10", "2023-09-01", "2021-12-15"],
+    }
+)
+
+# Sales data
+sales_data = pd.DataFrame(
+    {
+        "salesperson_id": [1, 4, 8],
+        "product": ["Laptop", "Smartphone", "Tablet"],
+        "date_of_sale": ["2023-01-15", "2023-03-05", "2023-02-20"],
+    }
+)
+
+# Salesperson demographics
+salesperson_demographics = pd.DataFrame(
+    {
+        "salesperson_id": [1, 2, 3, 5, 8],
+        "name": ["Alice", "Bob", "Charlie", "Diana", "Eve"],
+        "age": [28, 45, 32, 55, 40],
+        "gender": ["Female", "Male", "Male", "Female", "Female"],
+    }
+)
+
+# Total sales data
+total_sales = pd.DataFrame(
+    {
+        "product": [
+            "Laptop",
+            "Desktop",
+            "Tablet",
+            "Smartphone",
+            "Smartwatch",
+            "Headphones",
+            "Monitor",
+            "Keyboard",
+            "Mouse",
+            "Printer",
+        ],
+        "total_units_sold": [9751, 136, 8285, 2478, 3642, 5231, 1892, 4267, 3891, 982],
+    }
+)
+
+# Product feedback data
+product_feedback = pd.DataFrame(
+    {
+        "product": [
+            "Laptop",
+            "Desktop",
+            "Tablet",
+            "Smartphone",
+            "Smartwatch",
+            "Headphones",
+            "Monitor",
+            "Gaming Console",
+            "Camera",
+            "Speaker",
+        ],
+        "n_positive_reviews": [1938, 128, 842, 1567, 723, 956, 445, 582, 234, 678],
+        "n_negative_reviews": [42, 30, 56, 89, 34, 28, 15, 11, 8, 25],
+    }
+)
+
+# Sales incidence data
+sales = pd.DataFrame(
+    {
+        "year": [2010, 2011, 2014, 2016, 2017],
+        "sales_count": [69890, 66507, 59831, 58704, 59151],
+    }
+)
+
+# Customer complaints data
+customer_complaints = pd.DataFrame(
+    {
+        "year": [2011, 2013, 2015, 2016, 2019],
+        "complaints_count": [1292, 1100, 1011, 940, 895],
+    }
+)
+
+
+employees = pd.DataFrame(
+    {"employee_id": [1, 2, 3], "name": ["John", "Joy", "Khan"], "age": [32, 28, 40]}
+)
+
+training_sessions = pd.DataFrame(
+    {
+        "employee_id": [1, 2, 3],
+        "training_date": ["2023-01-20", "2023-02-20", "2023-05-15"],
+    }
+)
+
+customer_details = pd.DataFrame(
+    {
+        "id_number": ["A001", "B002", "C003"],
+        "full_name": ["Alice", "Bob", "Charlie"],
+        "address": ["123 Elm St", "456 Maple Dr", "789 Oak Blvd"],
+    }
+)
+
+# Order Records
+order_records = pd.DataFrame(
+    {
+        "customer_code": ["A001", "B002", "C003"],
+        "product_type": ["Electronics", "Books", "Clothing"],
+        "order_date": ["2022-05-10", "2023-09-01", "2021-12-15"],
+    }
 )
 ```
 
 # What is a join and why do we need it?
 
-To illustrate the utility of joins, let's start with a toy example. Consider the following two datasets. The first, `demographic`, contains names and ages of three patients:
+To illustrate the utility of joins, let's start with a toy example. Consider the following two datasets. The first, `demographic`, contains names and ages of three individuals:
 
-```{r}
+```{python}
 demographic
 ```
 
-The second, `test_info`, contains tuberculosis test dates and results for those patients:
+The second, `test_info`, contains test dates and results for those individuals:
 
-```{r}
+```{python}
 test_info
 ```
 
 We'd like to analyze these data together, and so we need a way to combine them.
 
-One option we might consider is the `cbind()` function from base R (`cbind` is short for column bind):
+One option we might consider is concatenating the dataframes horizontally using `pd.concat()`:
 
-```{r render = kable_5_rows}
-cbind(demographic, test_info)
+```{python}
+pd.concat([demographic, test_info], axis=1)
 ```
 
 This successfully merges the datasets, but it doesn't do so very intelligently. The function essentially "pastes" or "staples" the two tables together. So, as you can notice, the "name" column appears twice. This is not ideal and will be problematic for analysis.
 
-Another problem occurs if the rows in the two datasets are not already aligned. In this case, the data will be combined incorrectly with `cbind()`. Consider the `test_info_disordered` dataset, which now has Bob in the first row:
+Another problem occurs if the rows in the two datasets are not already aligned. In this case, the data will be combined incorrectly with `pd.concat()`. Consider the `test_info_disordered` dataset, which now has Bob in the first row:
 
-```{r}
+```{python}
 test_info_disordered
 ```
 
-What happens if we `cbind()` this with the original `demographic` dataset, where Bob was in the *second* row?
+What happens if we concatenate this with the original `demographic` dataset, where Bob was in the *second* row?
 
-```{r render = kable_5_rows}
-cbind(demographic, test_info_disordered)
+```{python}
+pd.concat([demographic, test_info_disordered], axis=1)
 ```
 
 Alice's demographic details are now mistakenly aligned with Bob's test info!
 
-A third issue arises when an entity appears more than once in one dataset. Perhaps Alice did multiple TB tests:
+A third issue arises when an entity appears more than once in one dataset. Perhaps Alice had multiple tests:
 
-```{r}
+```{python}
 test_info_multiple
 ```
 
-If we try to `cbind()` this with the `demographic` dataset, we'll get an error, due to a mismatch in row counts:
+If we try to concatenate this with the `demographic` dataset, we'll get mismatched data due to differing row counts:
 
-```{r eval = F}
-cbind(demographic, test_info_multiple)
+```{python}
+pd.concat([demographic, test_info_multiple], axis=1)
 ```
 
-```         
-Error in data.frame(..., check.names = FALSE) : 
-  arguments imply differing number of rows: 3, 4
-```
+This results in NaN values and misaligned data.
 
-::: vocab
-What we have here is called a `one-to-many` relationship---one Alice in the demographic data, but multiple Alice rows in the test data. Joining in such cases will be covered in detail in the second joining lesson.
+::: {.callout-note title="Side Note"}
+What we have here is called a **one-to-many** relationship—one Alice in the demographic data, but multiple Alice rows in the test data since she had multiple tests. Joining in such cases will be covered in detail in the second joining lesson.
 :::
 
-------------------------------------------------------------------------
+---
 
-Clearly, we need a smarter way to combine datasets than `cbind()`; we'll need to venture into the world of joining.
-
-Let's start with the most common join, the `left_join()`, which solves the problems we previously encountered.
+Clearly, we need a smarter way to combine datasets than concatenation; we'll need to venture into the world of joining. In pandas, the function that performs joins is `pd.merge()`.
 
 It works for the simple case, and it does not duplicate the name column:
 
-```{r}
-left_join(demographic, test_info)
+```{python}
+pd.merge(demographic, test_info)
 ```
 
 It works where the datasets are not ordered identically:
 
-```{r}
-left_join(demographic, test_info_disordered)
+```{python}
+pd.merge(demographic, test_info_disordered)
 ```
 
-And it works when there are multiple test rows per patient:
+As you can see, Alice's demographic details are now correctly aligned with her test results.
 
-```{r}
-left_join(demographic, test_info_multiple)
+And it works when there are multiple test rows per individual:
+
+```{python}
+pd.merge(demographic, test_info_multiple)
 ```
 
-Simple yet beautiful!
+In this case, the `pd.merge()` function correctly repeats Alice's demographic details for each of her tests.
 
-::: side-note
-We'll be using the pipe operator as well when joining. Remember that this:
-
-```{r results = "hide"}
-demographic %>% left_join(test_info)
-```
-
-is equivalent to this:
-
-```{r results = "hide"}
-left_join(demographic, test_info)
-```
-:::
+Simple and beautiful!
 
 # Joining syntax
 
 Now that we understand *why* we need joins, let's look at their basic syntax.
 
-Joins take two dataframes as the first two arguments: `x` (the *left* dataframe) and `y` (the *right* dataframe). As with other R functions, you can provide these as named or unnamed arguments:
+Joins take two dataframes as the first two arguments: `left` (the *left* dataframe) and `right` (the *right* dataframe). In pandas, you can provide these as positional or keyword arguments:
 
-```{r eval = F}
+```{python}
 # both the same:
-left_join(x = demographic, y = test_info) # named
-left_join(demographic, test_info) # unnamed
+pd.merge(left=demographic, right=test_info)  # keyword arguments
+pd.merge(demographic, test_info)  # positional arguments
 ```
 
-Another critical argument is `by`, which indicates the column or **key** used to connect the tables. We don't always need to supply this argument; it can be *inferred* from the datasets. For example, in our original examples, "name" is the only column common to `demographic` and `test_info`. So the join function assumes `by = "name"`:
+Another critical argument is `on`, which indicates the column or **key** used to connect the tables. We don't always need to supply this argument; it can be *inferred* from the datasets. For example, in our original examples, "name" is the only column common to `demographic` and `test_info`. So the merge function assumes `on='name'`:
 
-```{r eval = F}
+```{python}
 # these are equivalent
-left_join(x = demographic, y = test_info)  
-left_join(x = demographic, y = test_info, by = "name")
+pd.merge(demographic, test_info)
+pd.merge(demographic, test_info, on='name')
 ```
 
-::: vocab
-The column used to connect rows across the tables is known as a "key". In the dplyr join functions, the key is specified in the `by` argument, as seen in `left_join(x = demographic, y = test_info, by = "name")`
+::: {.callout-note title="Vocab"}
+The column used to connect rows across the tables is known as a **key**. In the pandas `merge()` function, the key is specified in the `on` argument, as seen in `pd.merge(demographic, test_info, on='name')`.
 :::
 
 What happens if the keys are named differently in the two datasets? Consider the `test_info_different_name` dataset, where the "name" column has been changed to "test_recipient":
 
-```{r}
+```{python}
 test_info_different_name
 ```
 
 If we try to join `test_info_different_name` with our original `demographic` dataset, we will encounter an error:
 
-```{r eval = F}
-left_join(x = demographic, y = test_info_different_name)
+```{python}
+# | eval: false
+pd.merge(demographic, test_info_different_name)
 ```
 
-```         
-Error in `left_join()`:
-! `by` must be supplied when `x` and `y` have no common
-  variables.
-ℹ Use `cross_join()` to perform a cross-join.
+```
+MergeError: No common columns to perform merge on. Merge options: left_on=None, right_on=None, left_index=False, right_index=False
 ```
 
 The error indicates that there are no common variables, so the join is not possible.
 
-In situations like this, you have two choices: you can rename the column in the second dataframe to match the first, or more simply, specify which columns to join on using `by = c()`.
+In situations like this, you have two choices: you can rename the column in the second dataframe to match the first, or more simply, specify which columns to join on using `left_on` and `right_on`.
 
 Here's how to do this:
 
-```{r}
-left_join(x = demographic, y = test_info_different_name, 
-          by = c("name" = "test_recipient"))
+```{python}
+pd.merge(demographic, test_info_different_name, left_on='name', right_on='test_recipient')
 ```
 
-The syntax `c("name" = "test_recipient")` is a bit unusual. It essentially says, "Connect `name` from data frame x with `test_recipient` from data frame y because they represent the same data."
+This syntax essentially says, "Connect `name` from the left dataframe with `test_recipient` from the right dataframe because they represent the same data."
 
-------------------------------------------------------------------------
+---
 
-::: r-practice
+::: {.callout-note title="Vocab"}
+**Key**: The column or set of columns used to match rows between two dataframes in a join operation.
 
-*(NOTE: Answers are at the bottom of the page. Try to answer the questions yourself before checking.)*
-
-### Left Join Patients and Checkups {.unlisted .unnumbered}
-
-Consider the two datasets below, one with patient details and the other with medical check-up dates for these patients.
-
-```{r}
-patients
-```
-
-```{r}
-checkups
-```
-
-Join the `patients` dataset with the `checkups` dataset using `left_join()`
+**Left Join**: A type of join that keeps all rows from the left dataframe and adds matching rows from the right dataframe. If there is no match, the result is `NaN` on the right side.
 :::
 
-::: r-practice
 
-### Left Join with by Argument {.unlisted .unnumbered}
+::: {.callout-tip title="Practice"}
 
-Two datasets are defined below, one with patient details and the other with vaccination records for those patients.
+## Practice Q: Join Employees and Training Sessions
 
-```{r}
-# Patient Details
-patient_details
+Consider the two datasets below, one with employee details and the other with training session dates for these employees.
+
+```{python}
+employees
 ```
 
-```{r}
-# Vaccination Records
-vaccination_records
+```{python}
+training_sessions
 ```
 
-Join the `patient_details` and `vaccination_records` datasets. You will need to use the `by` argument because the patient identifier columns have different names.
+How many rows and columns would you expect to have after joining these two datasets?
+
+Now join the two datasets and check your answer.
+
+```{python}
+# Your code here
+```
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(employees, training_sessions)
+```
+
+:::
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Join with `on` Argument
+
+Two datasets are shown below, one with customer details and the other with order records for those customers.
+
+```{python}
+customer_details
+```
+
+```{python}
+order_records
+```
+
+Join the `customer_details` and `order_records` datasets. You will need to use the `left_on` and `right_on` arguments because the customer identifier columns have different names.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(customer_details, order_records, left_on="id_number", right_on="customer_code")
+```
+
 :::
 
 # Types of joins
 
-The toy examples so far have involved datasets that could be matched perfectly - every row in one dataset had a corresponding row in the other dataset.
+The toy examples so far have involved datasets that could be matched perfectly—every row in one dataset had a corresponding row in the other dataset.
 
 Real-world data is usually messier. Often, there will be entries in the first table that do not have corresponding entries in the second table, and vice versa.
 
-To handle these cases of imperfect matching, there are different join types with specific behaviors: `left_join()`, `right_join()`, `inner_join()`, and `full_join()`. In the upcoming sections, we'll look at examples of how each join type operates on datasets with imperfect matches.
+To handle these cases of imperfect matching, there are different join types with specific behaviors: `left`, `right`, `inner`, and `outer`. In the upcoming sections, we'll look at examples of how each join type operates on datasets with imperfect matches.
 
-## `left_join()`
+## `left` join
 
-Let's start with `left_join()`, which you've already been introduced to. To see how it handles unmatched rows, we will try to join our original `demographic` dataset with a modified version of the `test_info` dataset.
+Let's start with the `left` join. To see how it handles unmatched rows, we will try to join our original `demographic` dataset with a modified version of the `test_info` dataset.
 
-As a reminder, here is the `demographic` dataset, with Alice, Bob and Charlie:
+As a reminder, here is the `demographic` dataset, with Alice, Bob, and Charlie:
 
-```{r}
+```{python}
 demographic
 ```
 
-For test information, we'll remove `Charlie` and we'll add a new patient, `Xavier`, and his test data:
+For test information, we'll remove `Charlie` and we'll add a new individual, `Xavier`, and his test data:
 
-```{r}
+```{python}
 test_info_xavier
 ```
 
-If we perform a `left_join()` using `demographic` as the left dataset (`x = demographic`) and `test_info_xavier` as the right dataset (`y = test_info_xavier`), what should we expect? Recall that Charlie is only present in the left dataset, and Xavier is only present in the right. Well, here's what happens:
+We can specify the join type using the `how` argument:
 
-```{r render=reactable_5_rows}
-left_join(x = demographic, y = test_info_xavier, by = "name")
+```{python}
+pd.merge(demographic, test_info_xavier, how='left')
 ```
 
-As you can see, with the *LEFT* join, all records from the *LEFT* dataframe (`demographic`) are retained. So, even though `Charlie` doesn't have a match in the `test_info_xavier` dataset, he's still included in the output. (But of course, since his test information is not available in `test_info_xavier` those values were left as `NA`.)
+As you can see, with the *left* join, all records from the *left* dataframe (`demographic`) are retained. So, even though `Charlie` doesn't have a match in the `test_info_xavier` dataset, he's still included in the output. (But of course, since his test information is not available in `test_info_xavier`, those values were left as `NaN`.)
 
 Xavier, on the other hand, who was only present in the right dataset, gets dropped.
 
 The graphic below shows how this join worked:
 
-![](images/left_join1.gif)
+![Left Join](images/left_join1.gif)
 
-::: key-point
-In a join function like `left_join(x, y)`, the dataset provided to the `x` argument can be termed the "left" dataset, while the dataset assigned to the `y` argument can be called the "right" dataset.
-:::
+Now what if we flip the dataframes? Let's see the outcome when `test_info_xavier` is the left dataframe and `demographic` is the right one:
 
-Now what if we flip the datasets? Let's see the outcome when `test_info_xavier` is the left dataset and `demographic` is the right one:
-
-```{r render=reactable_5_rows}
-left_join(x = test_info_xavier, y = demographic, by = "name")
+```{python}
+pd.merge(test_info_xavier, demographic, on='name', how='left')
 ```
 
-Once again, the `left_join()` retains all rows from the *left* dataset (now `test_info_xavier`). This means Xavier's data is included this time. Charlie, on the other hand, is excluded.
+Once again, the `left` join retains all rows from the *left* dataframe (now `test_info_xavier`). This means Xavier's data is included this time. Charlie, on the other hand, is excluded.
 
-::: vocab
-**Primary Dataset**: In the context of joins, the primary dataset refers to the main or prioritized dataset in an operation. In a left join, the left dataset is considered the primary dataset because all of its rows are retained in the output, regardless of whether they have a matching row in the other dataset.
+::: {.callout-note title="Key Point"}
+**Primary Dataset**: In the context of joins, the primary dataset refers to the main or prioritized dataset in an operation. In a left join, the left dataframe is considered the primary dataset because all of its rows are retained in the output, regardless of whether they have a matching row in the other dataframe.
 :::
 
-::: r-practice
+::: {.callout-tip title="Practice"}
 
-### Left Join Diagnoses and Demographics {.unlisted .unnumbered}
+## Practice Q: Left Join Students and Exam Dates
 
-Try out the following. Below are two datasets - one with disease diagnoses (`disease_dx`) and another with patient demographics (`patient_demographics`).
+Consider the two datasets below, one with student details and the other with exam dates for some of these students.
 
-```{r}
-disease_dx
+```{python}
+students
 ```
 
-```{r}
-patient_demographics
+```{python}
+exam_dates
 ```
 
-Use `left_join()` to merge these datasets, keeping only patients for whom we have demographic information. Think carefully about which dataset to put on the left.
+Join the `students` dataset with the `exam_dates` dataset using a left join.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(students, exam_dates, on='student_id', how='left')
+```
+
 :::
 
-------------------------------------------------------------------------
+---
 
 Let's try another example, this time with a more realistic set of data.
 
-First, we have data on the TB incidence rate per 100,000 people for 47 African countries, from the [WHO](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-(per-100-000-population-per-year)):
+First, we have data on the TB incidence rate per 100,000 people for some African countries, from the [WHO](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-(per-100-000-population-per-year)):
 
-```{r render=reactable_5_rows, message=FALSE}
+```{python}
 tb_2019_africa
 ```
 
 We want to analyze how TB incidence in African countries varies with government health expenditure per capita. For this, we have data on health expenditure per capita in USD, also from the WHO, for countries from all continents:
 
-```{r render=reactable_5_rows, message=FALSE}
+```{python}
 health_exp_2019
 ```
 
@@ -494,293 +545,201 @@ Since our goal is to analyze African countries, we should use `tb_2019_africa` a
 
 Let's join them:
 
-```{r render=reactable_5_rows}
-tb_health_exp_joined <- 
-  tb_2019_africa %>%
-  left_join(health_exp_2019, by = "country")
+```{python}
+tb_health_exp_joined = pd.merge(tb_2019_africa, health_exp_2019, on='country', how='left')
 tb_health_exp_joined
 ```
 
-Now in the joined dataset, we have just the 47 rows for African countries, which is exactly what we wanted!
+Now in the joined dataset, we have just the African countries, which is exactly what we wanted.
 
 All rows from the left dataframe `tb_2019_africa` were kept, while non-African countries from `health_exp_2019` were discarded.
 
-We can check if any rows in `tb_2019_africa` did not have a match in `health_exp_2019` by filtering for `NA` values:
+We can check if any rows in `tb_2019_africa` did not have a match in `health_exp_2019` by filtering for `NaN` values:
 
-```{r}
-tb_health_exp_joined %>% 
-  filter(is.na(expend_usd))
+```{python}
+tb_health_exp_joined[tb_health_exp_joined['expend_usd'].isna()]
 ```
 
-This shows that 3 countries - Mauritius, South Sudan, and Comoros - did not have expenditure data in `health_exp_2019`. But because they were present in `tb_2019_africa`, and that was the left dataframe, they were still included in the joined data.
+This shows that 3 countries—Mauritius, South Sudan, and Comoros—did not have expenditure data in `health_exp_2019`. But because they were present in `tb_2019_africa`, and that was the left dataframe, they were still included in the joined data.
 
-To be sure, we can also quickly confirm that those countries are absent from the expenditure dataset with a filter statement:
 
-```{r}
-health_exp_2019 %>% 
-  filter(country %in% c("Mauritius", "South Sudan", "Comoros"))
-```
+::: {.callout-tip title="Practice"}
 
-Indeed, these countries aren't present in `health_exp_2019`.
+## Practice Q: Left Join TB Cases and Continents
 
-::: r-practice
+The first, `tb_cases_children`, contains the number of TB cases in under 15s in 2012, by country:
 
-### Left Join TB Cases and Continents {.unlisted .unnumbered}
-
-Copy the code below to define two datasets.
-
-The first, `tb_cases_children` contains the number of TB cases in under 15s in 2012, by country:
-
-```{r}
+```{python}
 tb_cases_children
 ```
 
-And `country_continents`, from the {countrycode} package, lists all countries and their corresponding region and continent:
+And `country_continents`, lists all countries and their corresponding region and continent:
 
-```{r}
+```{python}
 country_continents
 ```
 
 Your goal is to add the continent and region data to the TB cases dataset.
 
-Which dataset should be the left dataframe, `x`? And which should be the right, `y`? Once you've decided, join the datasets appropriately using `left_join()`.
+Which dataframe should be the left one? And which should be the right one? Once you've decided, join the datasets appropriately using a left join.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(tb_cases_children, country_continents, left_on='country', right_on='country.name.en', how='left')
+```
+
 :::
 
-## `right_join()`
+## `right` join
 
-A `right_join()` can be thought of as a mirror image of a `left_join()`. The mechanics are the same, but now all rows from the *RIGHT* dataset are retained, while only those rows from the left dataset that find a match in the right are kept.
+A `right` join can be thought of as a mirror image of a `left` join. The mechanics are the same, but now all rows from the *right* dataframe are retained, while only those rows from the left dataframe that find a match in the right are kept.
 
 Let's look at an example to understand this. We'll use our original `demographic` and modified `test_info_xavier` datasets:
 
-```{r render=reactable_5_rows}
+```{python}
 demographic
 test_info_xavier
 ```
 
-Now let's try `right_join()`, with `demographic` as the right dataframe:
+Now let's try a right join, with `demographic` as the right dataframe:
 
-```{r render=reactable_5_rows}
-right_join(x = test_info_xavier, y = demographic)
+```{python}
+pd.merge(test_info_xavier, demographic, on='name', how='right')
 ```
 
-Hopefully you're getting the hang of this, and could predict that output! Since `demographic` was the *right* dataframe, and we are using *right*-join, all the rows from `demographic` are kept---Alice, Bob and Charlie. But only matching records in the left data frame `test_info_xavier`!
+Hopefully you're getting the hang of this and could predict that output! Since `demographic` was the *right* dataframe, and we are using a *right* join, all the rows from `demographic` are kept—Alice, Bob, and Charlie—but only matching records from `test_info_xavier`.
 
 The graphic below illustrates this process:
 
-![](images/right_join.gif)
+![Right Join](images/right_join.gif)
 
-An important point---the same final dataframe can be created with either `left_join()` or `right_join()`, it just depends on what order you provide the data frames to these functions:
+An important point—the same final dataframe can be created with either a `left` join or a `right` join; it just depends on what order you provide the dataframes to these functions:
 
-```{r render=reactable_5_rows}
-# here, RIGHT_join prioritizes the RIGHT df, demographic
-right_join(x = test_info_xavier, y = demographic)
-
-# here, LEFT_join prioritizes the LEFT df, again demographic
-left_join(x = demographic, y = test_info_xavier)
+```{python}
+# Here, right join prioritizes the right dataframe, demographic
+pd.merge(test_info_xavier, demographic, on='name', how='right')
 ```
 
-::: side-note
-The one difference you might notice between left and right-join is that the final column orders are different. But columns can easily be rearranged, so worrying about column order is not really worth your time.
-:::
+```{python}
+# Here, left join prioritizes the left dataframe, again demographic
+pd.merge(demographic, test_info_xavier, on='name', how='left')
+```
 
-As we previously mentioned, data scientists typically favor `left_join()` over `right_join()`. It makes more sense to specify your primary dataset first, in the left position. Opting for a `left_join()` is a common best practice due to its clearer logic, making it less error-prone.
+As we previously mentioned, data scientists typically favor `left` joins over `right` joins. It makes more sense to specify your primary dataset first, in the left position. Opting for a `left` join is a common best practice due to its clearer logic, making it less error-prone.
 
-Great, now we understand how `left_join()` and `right_join()` work, let's move on to `inner_join()` and `full_join()`!
+Great, now we understand how `left` and `right` joins work, let's move on to `inner` and `full` joins!
 
-## `inner_join()`
+## `inner` join
 
-What makes an `inner_join` distinct is that rows are only kept if the joining values are present in *both* dataframes. Let's return to our example of patients and their COVID test results. As a reminder, here are our datasets:
+What makes an `inner` join distinct is that rows are only kept if the joining values are present in *both* dataframes. Let's return to our example of individuals and their test results. As a reminder, here are our datasets:
 
-```{r render=reactable_5_rows}
+```{python}
 demographic
+```
+
+```{python}
 test_info_xavier
 ```
 
-Now that we have a better understanding of how joins work, we can already picture what the final dataframe would look like if we used an `inner_join()` on our two dataframes above. If only rows with joining values that are in *both* dataframes are kept, and the only patients that are in both `demographic` and `test_info_xavier` are `Alice` and `Bob`, then they should be the only patients in our final dataset! Let's try it out.
+Now that we have a better understanding of how joins work, we can already picture what the final dataframe would look like if we used an `inner` join on our two dataframes above. If only rows with joining values that are in *both* dataframes are kept, and the only individuals that are in both `demographic` and `test_info_xavier` are `Alice` and `Bob`, then they should be the only individuals in our final dataset! Let's try it out.
 
-```{r render=reactable_5_rows}
-inner_join(demographic, test_info_xavier, by="name")
+```{python}
+pd.merge(demographic, test_info_xavier, on='name', how='inner')
 ```
 
 Perfect, that's exactly what we expected! Here, `Charlie` was only in the `demographic` dataset, and `Xavier` was only in the `test_info_xavier` dataset, so both of them were removed. The graphic below shows how this join works:
 
-![](images/inner_join.gif)
+![Inner Join](images/inner_join.gif)
 
-It makes sense that the order in which you specify your datasets doesn't change the information that's retained, given that you need joining values in both datasets for a row to be kept. To illustrate this, let's try changing the order of our datasets.
+Note that the default join type is `inner`. So if you don't specify `how='inner'`, you're actually performing an inner join! Try it out:
 
-```{r render=reactable_5_rows}
-inner_join(test_info_xavier, demographic, by="name")
+```{python}
+pd.merge(demographic, test_info_xavier)
 ```
 
-As expected, the only difference here is the order of our columns, otherwise the information retained is the same.
+::: {.callout-tip title="Practice"}
 
-::: r-practice
+## Practice Q: Inner Join Products
 
-### Inner Join Pathogens {.unlisted .unnumbered}
+The following data is on product sales and customer feedback in 2019.
 
-The following data is on foodborne-outbreaks in the US in 2019, from the [CDC](https://wwwn.cdc.gov/FoodNetFast/PathogenSurveillance/AnnualSummary). Copy the code below to create two new dataframes:
-
-```{r}
-total_inf
+```{python}
+total_sales
 ```
 
-```{r}
-outcomes
+```{python}
+product_feedback
 ```
 
-Which pathogens are common between both datasets? Use an `inner_join()` to join the dataframes, in order to keep only the pathogens that feature in both datasets.
+Which products are common between both dataframes? Use an `inner` join to determine this.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(total_sales, product_feedback, on='product', how='inner')
+```
+
 :::
 
-Let's return to our health expenditure and TB incidence data and apply what we've learnt to these datasets.
+## `outer` join
 
-```{r render=reactable_5_rows}
-tb_2019_africa
-health_exp_2019
-```
-
-Here, we can create a new dataframe called `inner_exp_tb` using an `inner_join()` to retain only the countries that we have both health expenditure and TB incidence rates data on. Let's try it out now:
-
-```{r render=reactable_5_rows}
-inner_exp_tb <- tb_2019_africa %>% 
-  inner_join(health_exp_2019)
-inner_exp_tb
-```
-
-Works great!
-
-Notice that there are now only 44 rows in the output, since the three African countries without corresponding expenditure information in the `health_exp_2019` were dropped.
-
-Along with `left_join()`, the `inner_join()` is one of the most common joins when working with data, so it's likely you will come across it a lot. It's a powerful and often-used tool, but it's also the join that excludes the most information, so be sure that you only want matching records in your final dataset or you may end up accidentally losing a lot of data! In contrast, `full_join()` is the most inclusive join, let's take a look at it in the next section.
-
-::: r-practice
-
-### Inner Join One Row {.unlisted .unnumbered}
-
-The code chunk below filters the `health_exp_2019` dataset to the 70 countries with the highest spending:
-
-```{r}
-highest_exp
-```
-
-Use an `inner_join()` to join this `highest_exp` dataset with the African TB incidence dataset, `tb_2019_africa`.
-
-If you do this correctly, there will be just one row returned. Why?
-:::
-
-## `full_join()`
-
-The peculiarity of `full_join()` is that it retains *all* records, regardless of whether or not there is a match between the two datasets. Where there is missing information in our final dataset, cells are set to `NA` just as we have seen in the `left_join()` and `right_join()`. Let's take a look at our `demographic` and `test_info_xavier` datasets to illustrate this.
+The peculiarity of the `outer` join is that it retains *all* records, regardless of whether or not there is a match between the two datasets. Where there is missing information in our final dataset, cells are set to `NaN` just as we have seen in the `left` and `right` joins. Let's take a look at our `demographic` and `test_info_xavier` datasets to illustrate this.
 
 Here is a reminder of our datasets:
 
-```{r render=reactable_5_rows}
+```{python}
 demographic
 test_info_xavier
 ```
 
-Now let's perform a `full_join`, with `demographic` as our primary dataset.
+Now let's perform an `outer` join:
 
-```{r render=reactable_5_rows}
-full_join(demographic, test_info_xavier, by="name")
+```{python}
+pd.merge(demographic, test_info_xavier, on='name', how='outer')
 ```
 
 As we can see, all rows were kept so there was no loss in information! The graphic below illustrates this process:
 
-![](images/full_join.gif)
+![Outer Join](images/full_join.gif)
 
-Because this join isn't selective, everything ends up in the final dataset, so changing the order of our datasets won't change the information that's retained. We can see this below when we specify `test_info_xavier` as our primary dataset and `demographic` as our secondary dataset.
+Because this join isn't selective, everything ends up in the final dataset, so changing the order of our dataframes won't change the information that's retained. We can see this below when we specify `test_info_xavier` as our primary dataframe and `demographic` as our secondary dataframe.
 
-```{r render=reactable_5_rows}
-full_join(test_info_xavier, demographic, by="name")
+```{python}
+pd.merge(test_info_xavier, demographic, on='name', how='outer')
 ```
 
-Just as we saw above, all of the data from both of the original datasets are still there, with any missing information set to `NA`.
+Just as we saw above, all of the data from both of the original dataframes are still there, with any missing information set to `NaN`.
 
-::: r-practice
+::: {.callout-tip title="Practice"}
 
-### Full Join Malaria Data {.unlisted .unnumbered}
+## Practice Q: Join Sales Data
 
-The following dataframes contain global malaria incidence rates per 100'000 people and global death rates per 100'000 people from malaria, from [Our World in Data](https://ourworldindata.org/malaria). Copy the code to create two small dataframes:
+The following dataframes contain global sales and global customer complaints from various years.
 
-```{r}
-malaria_inc
+```{python}
+sales
 ```
 
-```{r}
-malaria_deaths
+```{python}
+customer_complaints
 ```
 
-Then, join the above tables using a `full_join()` in order to retain all information from the two datasets.
+Join the above tables using the appropriate join to retain all information from the two datasets.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(sales, customer_complaints, on='year', how='outer')
+```
+
 :::
-
-Let's turn back to our TB dataset and our health expenditure dataset.
-
-```{r render=reactable_5_rows}
-tb_2019_africa
-health_exp_2019
-```
-
-Now let's create a new dataframe called `full_tb_health` using a full_join!
-
-```{r render=reactable_5_rows}
-full_tb_health <- tb_2019_africa %>%
- full_join(health_exp_2019)
-full_tb_health
-```
-
-Just as we saw earlier, all rows were kept between both datasets with missing values set to `NA`.
-
-------------------------------------------------------------------------
 
 # Wrap Up!
 
 Way to go, you now understand the basics of joining! The Venn diagram below gives a helpful summary of the different joins and the information that each one retains. It may be helpful to save this image for future reference!
 
-![](images/venn_cropped-01.jpg)
-
-------------------------------------------------------------------------
-
-# Answer Key {.unnumbered}
-
-### Q: Left Join Patients and Checkups {.unlisted .unnumbered}
-
-```{r}
-left_join(x=patients, y=checkups)
-```
-
-### Q: Left Join with by Argument {.unlisted .unnumbered}
-
-```{r}
-left_join(x=patient_details, y=vaccination_records, by=c("id_number"="patient_code"))
-```
-
-### Q: Left Join Diagnoses and Demographics {.unlisted .unnumbered}
-
-```{r}
-left_join(x=patient_demographics, y=disease_dx)
-```
-
-### Q: Left Join TB Cases and Continents {.unlisted .unnumbered}
-
-```{r}
-left_join(x=tb_cases_children, y=country_continents, by=c(country="country.name.en"))
-```
-
-### Q: Inner Join Pathogens {.unlisted .unnumbered}
-
-```{r}
-inner_join(total_inf, outcomes)
-```
-
-### Q: Inner Join One Row {.unlisted .unnumbered}
-
-```{r}
-inner_join(highest_exp, tb_2019_africa)
-```
-There is only one country in common between the two datasets. 
-
-### Q: Full Join Malaria Data {.unlisted .unnumbered}
-
-```{r}
-full_join(malaria_inc, malaria_deaths)
-```
+![Join Types](images/venn_cropped-01.jpg)

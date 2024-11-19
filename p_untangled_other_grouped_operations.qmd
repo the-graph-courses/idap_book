@@ -140,8 +140,9 @@ total_bill    tip     sex      smoker    day    time      size    daily_total_ti
 ```{python}
 # | echo: false
 # | eval: false
-tips['daily_total_tips'] = tips.groupby('day')['tip'].transform('sum')
-tips['tip_proportion'] = tips['tip'] / tips['daily_total_tips']
+# Solution
+tips["daily_total_tips"] = tips.groupby("day")["tip"].transform("sum")
+tips["tip_proportion"] = tips["tip"] / tips["daily_total_tips"]
 tips
 ```
 

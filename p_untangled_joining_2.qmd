@@ -1,0 +1,398 @@
+---
+title: 'Joining 2: Mismatched Values, One-to-Many & Multi-Key Joins'
+---
+
+```{r, echo = F, message = F, warning = F}
+# Load packages
+if (!require(pacman)) install.packages("pacman")
+pacman::p_load(rlang, tidyverse, knitr, here, reactable, gt, flextable)
+
+## functions
+source(here::here("global/functions/misc_functions.R"))
+
+## default render
+registerS3method("reactable_5_rows", "data.frame", reactable_5_rows)
+knitr::opts_chunk$set(class.source = "tgc-code-block")
+```
+
+# Introduction
+
+Now that we have a solid grasp on the different types of joins and how they work, we can look at how to manage messier and more complex datasets. Joining real-world data from different sources often requires a bit of thought and cleaning ahead of time.
+
+------------------------------------------------------------------------
+
+# Learning Objectives
+
+-   You know how to check for mismatched values between dataframes
+
+-   You understand the concept of a one-to-many join
+
+-   You know how to join on multiple key columns
+
+------------------------------------------------------------------------
+
+# Datasets 
+
+```{r}
+oil_consumption <- read_csv(here("data/oil_consumption.csv"))
+tidyr_population <- read_csv(here("data/tidyr_population.csv"))
+
+test_info_many <- tribble(
+    ~name, ~test_date, ~result,
+    "Alice", "2023-06-05", "Negative",
+    "Alice", "2023-06-10", "Positive",
+    "Bob", "2023-08-10", "Positive",
+    "Xavier", "2023-05-02", "Negative",
+    "Xavier", "2023-05-12", "Negative",
+)
+
+
+farm_info <- tribble(
+    ~farm_id, ~farm_name, ~location,
+    1, "Green Acres", "County A",
+    2, "Harvest Hill", "County B",
+    3, "Golden Fields", "County A"
+)
+
+crop_yields <- tribble(
+    ~farm_id, ~crop, ~yield_tons,
+    1, "Wheat", 50,
+    1, "Corn", 60,
+    2, "Soybeans", 45,
+    3, "Wheat", 55,
+    3, "Barley", 30
+)
+
+traffic_flow <- tribble(
+    ~street_name, ~time_of_day, ~vehicle_count,
+    "Main St", "9am", 1200,
+    "Main St", "2pm", 900,
+    "Broadway", "9am", 1500,
+    "Broadway", "2pm", 1100,
+    "Elm St", "9am", 700,
+    "Elm St", "2pm", 600
+)
+
+pollution_levels <- tribble(
+    ~street_name,   ~time_of_day,   ~pm_2_5_level,
+    "Main St",      "9am",          35.5,
+    "Main St",      "2pm",          42.1,
+    "Broadway",     "9am",          40.3,
+    "Broadway",     "2pm",          48.2,
+    "Elm St",       "9am",          25.7,
+    "Elm St",       "2pm",          30.9
+)
+
+test_info_diff <- tribble(
+    ~name, ~test_date, ~result,
+    "alice", "2023-06-05", "Negative",
+    "Bob", "2023-08-10", "Positive",
+    "charlie", "2023-05-02", "Negative",
+)
+
+
+asia_countries <- tribble(
+    ~Country, ~Capital,
+    "India", "New Delhi",
+    "Indonesia", "Jakarta",
+    "Philippines", "Manila"
+)
+
+asia_population <- tribble(
+    ~Country, ~Population, ~Life_Expectancy,
+    "India ", 1393000000, 69.7,
+    "indonesia", 273500000, 71.7,
+    "Philipines", 113000000, 72.7
+)
+
+
+oil_2012 <- oil_consumption %>%
+    mutate(country_code = countrycode(country, origin = "country.name", destination = "iso3c")) %>%
+    filter(year == 2012)
+
+
+country_regions <- countrycode::codelist %>%
+    select(country_name = iso.name.en, country_code = iso3c, continent) %>%
+    filter(complete.cases(country_name, continent))
+
+```
+
+# Packages
+
+Please load the packages needed for this lesson with the code below:
+
+```{r warning = F, message = F, echo = T}
+if (!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse, countrycode)
+```
+
+
+# One-to-many relationships
+
+So far, we have primarily looked at one-to-one joins, where an observation in one dataframe corresponded to only one observation in the other dataframe. In a one-to-many join, an observation one dataframe corresponds to multiple observations in the other dataframe. 
+
+The image below illustrates this concept:
+
+![](images/one_to_many.jpg)
+
+To illustrate a one-to-many join, let's return to our patients and their COVID test data. Let's imagine that in our dataset, `Alice` and `Xavier` got tested multiple times for COVID. We can add two more rows to our `test_info` dataframe with their new test information:
+
+```{r, render = reactable_5_rows}
+demographic
+test_info_many
+```
+
+Next, let's take a look at what happens when we use a `left_join()` with `demographic` as the dataset to the left of the call:
+
+```{r, render = reactable_5_rows}
+left_join(demographic, test_info_many)
+```
+
+What´s happened above? Basically, when you perform a one-to-many join, the data from the "one" side are duplicated for each matching row of the "many" side.
+
+
+::: practice
+
+### Q: Merging One-to-Many Crop Yields {.unlisted .unnumbered}
+
+Run the code below to print the two small dataframes:
+
+```{r}
+farm_info
+crop_yields
+```
+
+If you use a `left_join()` to join these datasets, how many rows will be in the final dataframe? Try to figure it out and then perform the join to see if you were right.
+
+:::
+Certainly! Here's the revised version with `9am` and `2pm` instead of `morning` and `evening`.
+
+---
+
+# Multiple Key Columns
+
+Sometimes we have more than one column that uniquely identifies the observations that we want to match on. For example, let's imagine we have traffic flow data for three streets at two different times of day: 9am and 2pm.
+
+```{r, render = reactable_5_rows}
+traffic_flow
+```
+
+Now, let's imagine we have another dataset for the same three streets, recording air pollution levels (measured in particulate matter, **PM2.5**) during the same times of day. Understanding the correlation between traffic volume and pollution levels helps planners optimize interventions.
+
+```{r, render = reactable_5_rows}
+pollution_levels
+```
+
+We want to join the two datasets so that each street has two rows: one for the 9am time point and one for the 2pm time point. To do this, our first instinct may be to join the datasets *only* on `street_name`. Let's try it out and see what happens:
+
+```{r, render = reactable_5_rows}
+traffic_flow %>%
+    left_join(pollution_levels, by = "street_name")
+```
+
+As we can see, this isn't what we wanted at all! We end up with duplicated rows—now we have **four rows** for each street. R also gives a warning that this is a "many-to-many" relationship, because multiple rows in one dataset (the 9am and 2pm traffic data) match with multiple rows in the other dataset. As a general rule, you should avoid many-to-many joins whenever possible! Also note that, since we have two columns called `time_of_day` (one from each dataframe), these columns in the new dataframe are differentiated by `.x` and `.y`.
+
+What we want to do is match on BOTH `street_name` AND `time_of_day`. To do this, we need to tell R to match on two columns. In reality, this process is very simple! We just use the `c()` function and specify both column names.
+
+```{r, render = reactable_5_rows}
+traffic_flow %>%
+    left_join(pollution_levels, by = c("street_name", "time_of_day"))
+```
+
+
+::: practice
+
+### Q: Calculate Oil Consumption per Capita {.unlisted .unnumbered}
+
+We have two datasets containing information about countries:
+- `oil_consumption`: Contains yearly oil consumption in thousands of barrels per day
+- `tidyr_population`: Contains yearly population data
+
+```{r}
+# View the datasets
+oil_consumption
+tidyr_population
+```
+
+1. Join these datasets using a `left_join()`. Since we want to match both country AND year, you'll need to join on multiple columns.
+
+2. After joining, create a new column called `consumption_per_capita` that calculates the daily oil consumption per person (in barrels). 
+   * Hint: You'll need to divide `consumption` by `population` and multiply by 1000 (since consumption is in thousands)
+
+3. Which country had the highest per capita oil consumption in 2020?
+
+**Solution:**
+
+```{r}
+oil_consumption %>%
+    # Join the datasets
+    left_join(tidyr_population, by = c("country", "year")) %>%
+    # Calculate per capita consumption
+    mutate(consumption_per_capita = (consumption * 1000) / population) %>%
+    # Filter for 2020 and sort to find highest
+    filter(year == 2020) %>%
+    arrange(desc(consumption_per_capita))
+```
+
+:::
+
+# Pre-join data cleaning: addressing data inconsistencies
+
+## A toy example
+
+Often you will need to pre-clean your data when you draw it from different sources before you're able to join it. This is because there can be inconsistencies in ways that values are recorded in different tables such as spelling errors, differences in capitalization, and extra spaces. In order to join values, we need them to match perfectly. If there are any differences, R considers them to be different values.
+
+To illustrate this, let's return to our mock patient data from the first lesson. If you recall, we had two dataframes, one called `demographic` and the other called `test_info`. We can recreate these datasets but change `Alice` to `alice` in the `demographic` dataset and keep all other values the same.
+
+```{r render = reactable_5_rows}
+
+demographic
+
+
+test_info_diff
+```
+
+Now let's try a `left_join()` and `inner_join()` on our two datasets.
+
+```{r render = reactable_5_rows}
+left_join(demographic, test_info_diff, by = "name")
+inner_join(demographic, test_info_diff, by = "name")
+```
+
+As we can see, R didn't recognize `Alice` and `alice` as the same person, and it also could not match `Charlie` and `charlie`. So in the `left_join()`, `Alice` and `Charlie` are left with NAs, and in the `inner_join()`, they are dropped.
+
+How can we fix this? We need to ensure that the names in both datasets are in title case, with a capitalized first letter. For this we can use `str_to_title()`. Let's try it:
+
+```{r render = reactable_5_rows}
+test_info_title <- test_info_diff %>%
+    mutate(name = str_to_title(name)) # convert to title case
+test_info_title
+
+left_join(demographic, test_info_title, by = "name")
+inner_join(demographic, test_info_title, by = "name")
+```
+
+That worked perfectly! We won't go into detail about all the different functions we can use to modify strings. The important part of this lesson is that we will learn how to identify mismatched values between dataframes.
+
+::: practice
+
+*(NOTE: Answers are at the bottom of the page. Try to answer the questions yourself before checking.)*
+
+### Q: Inner Join countries {.unlisted .unnumbered}
+
+The following two datasets contain data for India, Indonesia, and the Philippines. However an `inner_join()` of these datasets produces no output. What are the differences between the values in the key columns that would have to be changed before joining the datasets? 
+
+```{r}
+asia_countries
+asia_population
+
+```
+
+```{r}
+inner_join(asia_countries, asia_population)
+```
+
+:::
+
+## Real Data Example 1: Key Typos
+
+Let's now return to the oil consumption example.
+
+```{r}
+oil_consumption
+tidyr_population
+```
+
+Recall that we had some issues with the `tidyr_population` dataset because the country names were not in the same format as in the `oil_consumption` dataset.
+
+Let's see which countries failed to find a match in the `tidyr_population` dataset.
+
+```{r}
+left_join(oil_consumption, tidyr_population, by = c("country", "year")) |>
+    filter(is.na(population)) |>
+    distinct(country)
+```
+
+It is hard to be sure whether this is because the population data is not available for these countries or because the country names are not spelled the same way in the two datasets.
+
+To avoid such mismatches, it is often useful to use country codes rather than country names as the key.
+
+Let's now add country codes to both datasets and try the join again.
+
+```{r}
+oil_consumption <- oil_consumption |>
+    mutate(country_code = countrycode(country, origin = "country.name", destination = "iso3c"))
+
+tidyr_population <- tidyr_population |>
+    mutate(country_code = countrycode(country, origin = "country.name", destination = "iso3c"))
+```
+
+```{r}
+left_join(oil_consumption, tidyr_population, by = c("country_code", "year"))
+```
+
+We can also check if there are any cases where there was no match found for the country code.
+
+```{r}
+left_join(oil_consumption, tidyr_population, by = c("country_code", "year")) |>
+    filter(is.na(population)) |>
+    distinct(country_code)
+```
+
+It seems TWN (Taiwan) failed to find a match. 
+
+Let's make sure that Taiwan is in the `tidyr_population` dataset.
+
+```{r}
+tidyr_population |>
+    filter(country_code == "TWN")
+```
+
+```{r}
+tidyr_population |>
+    filter(str_detect(country, "Taiwan"))
+```
+
+Nope. We don't have it. 
+
+### Q: Merging TB Cases with Geographic Data {.unlisted .unnumbered}
+
+Run the code to view the two datasets. 
+
+The first, `oil_2012` records the oil consumption for the year 2012:
+
+```{r, render = reactable_5_rows}
+oil_2012
+```
+
+And `country_regions` lists countries along with their respective regions and continents:
+
+```{r, render = reactable_5_rows}
+
+country_regions
+```
+
+Join the two datasets using the country codes as the key. Then find the countries with the highest oil consumption in each continent. As a sanity check, your answer should include the US & China.
+
+```{r}
+# | eval: false
+# | echo: false
+# Solution
+
+left_join(oil_2012, country_regions, by = "country_code") %>%
+    group_by(continent) %>%
+    slice_max(order_by = oil_consump, n = 1)
+
+```
+
+
+:::
+
+
+
+# Wrap Up!
+
+In this lesson, we delved into the intricacies of data cleaning before a join, focusing on how to detect and correct mismatches or inconsistencies in key columns. We also highlighted the impact of one-to-many relationships in joining dataframes, showing how data from the "one" side is duplicated for each matching row of the "many" side. Finally, we demonstrated how to join dataframes using multiple key columns.
+ 
+As we conclude this lesson, we hope that you have gained a deeper understanding of the importance and utility of joining dataframes in R.
+

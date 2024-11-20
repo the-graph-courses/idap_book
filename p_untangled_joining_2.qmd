@@ -136,7 +136,7 @@ asia_countries = pd.DataFrame(
 
 asia_population = pd.DataFrame(
     {
-        "Country": ["India ", "indonesia", "Philipines"],
+        "Country": ["India", "indonesia", "Philipines"],
         "Population": [1393000000, 273500000, 113000000],
         "Life_Expectancy": [69.7, 71.7, 72.7],
     }
@@ -245,7 +245,7 @@ oil_consumption
 tidyr_population.sort_values(by=['country', 'year'])
 ```
 
-1. Join these datasets using a `merge()` with a left join. Since we want to match both country AND year, you'll need to join on multiple columns.
+1. Join these datasets using a `merge()` with a left join. Since we want to match both country AND year, you'll need to join on multiple columns. (You may notice that not all rows are matched. You can ignore this for now.)
 
 2. After joining, create a new column called `consumption_per_capita` that calculates the yearly oil consumption per person (in tonnes).
 
@@ -295,17 +295,25 @@ As we can see, Python didn't recognize `Alice` and `alice` as the same person, a
 How can we fix this? We need to ensure that the names in both datasets are in title case, with a capitalized first letter. For this we can use `str.title()`. Let's try it:
 
 ```{python}
-test_info_title = test_info_diff.copy()
-test_info_title['name'] = test_info_title['name'].str.title()
-test_info_title
+test_info_diff['name'] = test_info_diff['name'].str.title()
+test_info_diff
 ```
 
 ```{python}
-people.merge(test_info_title, on='name', how='left')
+people.merge(test_info_diff, on='name', how='inner')
 ```
 
+Hmm, Charlie is still not matched. It's hard to see from the printout, but the `name` column in `test_info_diff` has an extra space at the end. We can fix this by using `str.strip()`.
+
 ```{python}
-people.merge(test_info_title, on='name', how='inner')
+test_info_diff['name'] = test_info_diff['name'].str.strip()
+test_info_diff
+```
+
+Now we can join the two datasets:
+
+```{python}
+people.merge(test_info_diff, on='name', how='inner')
 ```
 
 Perfect! 
@@ -314,7 +322,7 @@ Perfect!
 
 ## Practice Q: Inner Join countries
 
-The following two datasets contain data for India, Indonesia, and the Philippines. However, an `inner` join of these datasets produces no output. What are the differences between the values in the key columns that would have to be changed before joining the datasets?
+The following two datasets contain data for India, Indonesia, and the Philippines. However, an `inner` join of these datasets produces no output. What are the differences between the values in the key columns that would have to be changed before joining the datasets? Pay attention to capitalization and spelling.
 
 ```{python}
 asia_countries
@@ -334,7 +342,7 @@ Now, fix the mismatched values in the `Country` column and try the join again.
 # | echo: false
 # | eval: false
 # Solution
-asia_countries["Country"] = asia_countries["Country"].str.title()
+asia_population["Country"] = asia_population["Country"].str.title().replace({"Philipines": "Philippines"})
 asia_countries.merge(asia_population, on="Country")
 ```
 
@@ -346,6 +354,9 @@ Let's now return to the oil consumption example.
 
 ```{python}
 oil_consumption
+```
+
+```{python}
 tidyr_population
 ```
 
@@ -366,18 +377,18 @@ To avoid such mismatches, it is often useful to use country codes rather than co
 Let's now add country codes to both datasets and try the join again.
 
 ```{python}
-oil_consumption['country_code'] = cc.convert(oil_consumption['country'], to='ISO3')
-tidyr_population['country_code'] = cc.convert(tidyr_population['country'], to='ISO3')
+oil_consumption['country_code'] = cc.pandas_convert(oil_consumption['country'], to='ISO3')
+tidyr_population['country_code'] = cc.pandas_convert(tidyr_population['country'], to='ISO3')
 ```
 
 ```{python}
 oil_pop_code = oil_consumption.merge(tidyr_population, on=['country_code', 'year'], how='left')
 ```
 
-We can also check if there are any cases where there was no match found for the country code.
+Let's see which countries still failed to find a match:
 
 ```{python}
-missing_pop_code = oil_pop_code[oil_pop_code['population'].isna()]
+missing_pop_code = oil_pop_code.query('population.isna()')
 missing_pop_code['country_code'].unique()
 ```
 

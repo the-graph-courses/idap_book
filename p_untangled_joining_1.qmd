@@ -66,8 +66,8 @@ country_continents = pd.read_csv(
     "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/country_continents.csv"
 )
 
-# Demographic data
-demographic = pd.DataFrame({"name": ["Alice", "Bob", "Charlie"], "age": [25, 32, 45]})
+# people data
+people = pd.DataFrame({"name": ["Alice", "Bob", "Charlie"], "age": [25, 32, 45]})
 
 # Test information
 test_info = pd.DataFrame(
@@ -151,8 +151,8 @@ sales_data = pd.DataFrame(
     }
 )
 
-# Salesperson demographics
-salesperson_demographics = pd.DataFrame(
+# Salesperson peoples
+salesperson_peoples = pd.DataFrame(
     {
         "salesperson_id": [1, 2, 3, 5, 8],
         "name": ["Alice", "Bob", "Charlie", "Diana", "Eve"],
@@ -248,10 +248,10 @@ order_records = pd.DataFrame(
 
 # What is a join and why do we need it?
 
-To illustrate the utility of joins, let's start with a toy example. Consider the following two datasets. The first, `demographic`, contains names and ages of three individuals:
+To illustrate the utility of joins, let's start with a toy example. Consider the following two datasets. The first, `people`, contains names and ages of three individuals:
 
 ```{python}
-demographic
+people
 ```
 
 The second, `test_info`, contains test dates and results for those individuals:
@@ -265,7 +265,7 @@ We'd like to analyze these data together, and so we need a way to combine them.
 One option we might consider is concatenating the dataframes horizontally using `pd.concat()`:
 
 ```{python}
-pd.concat([demographic, test_info], axis=1)
+pd.concat([people, test_info], axis=1)
 ```
 
 This successfully merges the datasets, but it doesn't do so very intelligently. The function essentially "pastes" or "staples" the two tables together. So, as you can notice, the "name" column appears twice. This is not ideal and will be problematic for analysis.
@@ -276,13 +276,13 @@ Another problem occurs if the rows in the two datasets are not already aligned. 
 test_info_disordered
 ```
 
-What happens if we concatenate this with the original `demographic` dataset, where Bob was in the *second* row?
+What happens if we concatenate this with the original `people` dataset, where Bob was in the *second* row?
 
 ```{python}
-pd.concat([demographic, test_info_disordered], axis=1)
+pd.concat([people, test_info_disordered], axis=1)
 ```
 
-Alice's demographic details are now mistakenly aligned with Bob's test info!
+Alice's people details are now mistakenly aligned with Bob's test info!
 
 A third issue arises when an entity appears more than once in one dataset. Perhaps Alice had multiple tests:
 
@@ -290,16 +290,16 @@ A third issue arises when an entity appears more than once in one dataset. Perha
 test_info_multiple
 ```
 
-If we try to concatenate this with the `demographic` dataset, we'll get mismatched data due to differing row counts:
+If we try to concatenate this with the `people` dataset, we'll get mismatched data due to differing row counts:
 
 ```{python}
-pd.concat([demographic, test_info_multiple], axis=1)
+pd.concat([people, test_info_multiple], axis=1)
 ```
 
 This results in NaN values and misaligned data.
 
 ::: {.callout-note title="Side Note"}
-What we have here is called a **one-to-many** relationship—one Alice in the demographic data, but multiple Alice rows in the test data since she had multiple tests. Joining in such cases will be covered in detail in the second joining lesson.
+What we have here is called a **one-to-many** relationship—one Alice in the people data, but multiple Alice rows in the test data since she had multiple tests. Joining in such cases will be covered in detail in the second joining lesson.
 :::
 
 ---
@@ -309,24 +309,24 @@ Clearly, we need a smarter way to combine datasets than concatenation; we'll nee
 It works for the simple case, and it does not duplicate the name column:
 
 ```{python}
-pd.merge(demographic, test_info)
+pd.merge(people, test_info)
 ```
 
 It works where the datasets are not ordered identically:
 
 ```{python}
-pd.merge(demographic, test_info_disordered)
+pd.merge(people, test_info_disordered)
 ```
 
-As you can see, Alice's demographic details are now correctly aligned with her test results.
+As you can see, Alice's details are now correctly aligned with her test results.
 
 And it works when there are multiple test rows per individual:
 
 ```{python}
-pd.merge(demographic, test_info_multiple)
+pd.merge(people, test_info_multiple)
 ```
 
-In this case, the `pd.merge()` function correctly repeats Alice's demographic details for each of her tests.
+In this case, the `pd.merge()` function correctly repeats Alice's details for each of her tests.
 
 Simple and beautiful!
 
@@ -338,20 +338,20 @@ Joins take two dataframes as the first two arguments: `left` (the *left* datafra
 
 ```{python}
 # both the same:
-pd.merge(left=demographic, right=test_info)  # keyword arguments
-pd.merge(demographic, test_info)  # positional arguments
+pd.merge(left=people, right=test_info)  # keyword arguments
+pd.merge(people, test_info)  # positional arguments
 ```
 
-Another critical argument is `on`, which indicates the column or **key** used to connect the tables. We don't always need to supply this argument; it can be *inferred* from the datasets. For example, in our original examples, "name" is the only column common to `demographic` and `test_info`. So the merge function assumes `on='name'`:
+Another critical argument is `on`, which indicates the column or **key** used to connect the tables. We don't always need to supply this argument; it can be *inferred* from the datasets. For example, in our original examples, "name" is the only column common to `people` and `test_info`. So the merge function assumes `on='name'`:
 
 ```{python}
 # these are equivalent
-pd.merge(demographic, test_info)
-pd.merge(demographic, test_info, on='name')
+pd.merge(people, test_info)
+pd.merge(people, test_info, on='name')
 ```
 
 ::: {.callout-note title="Vocab"}
-The column used to connect rows across the tables is known as a **key**. In the pandas `merge()` function, the key is specified in the `on` argument, as seen in `pd.merge(demographic, test_info, on='name')`.
+The column used to connect rows across the tables is known as a **key**. In the pandas `merge()` function, the key is specified in the `on` argument, as seen in `pd.merge(people, test_info, on='name')`.
 :::
 
 What happens if the keys are named differently in the two datasets? Consider the `test_info_different_name` dataset, where the "name" column has been changed to "test_recipient":
@@ -360,11 +360,11 @@ What happens if the keys are named differently in the two datasets? Consider the
 test_info_different_name
 ```
 
-If we try to join `test_info_different_name` with our original `demographic` dataset, we will encounter an error:
+If we try to join `test_info_different_name` with our original `people` dataset, we will encounter an error:
 
 ```{python}
 # | eval: false
-pd.merge(demographic, test_info_different_name)
+pd.merge(people, test_info_different_name)
 ```
 
 ```
@@ -378,7 +378,7 @@ In situations like this, you have two choices: you can rename the column in the 
 Here's how to do this:
 
 ```{python}
-pd.merge(demographic, test_info_different_name, left_on='name', right_on='test_recipient')
+pd.merge(people, test_info_different_name, left_on='name', right_on='test_recipient')
 ```
 
 This syntax essentially says, "Connect `name` from the left dataframe with `test_recipient` from the right dataframe because they represent the same data."
@@ -458,12 +458,12 @@ To handle these cases of imperfect matching, there are different join types with
 
 ## `left` join
 
-Let's start with the `left` join. To see how it handles unmatched rows, we will try to join our original `demographic` dataset with a modified version of the `test_info` dataset.
+Let's start with the `left` join. To see how it handles unmatched rows, we will try to join our original `people` dataset with a modified version of the `test_info` dataset.
 
-As a reminder, here is the `demographic` dataset, with Alice, Bob, and Charlie:
+As a reminder, here is the `people` dataset, with Alice, Bob, and Charlie:
 
 ```{python}
-demographic
+people
 ```
 
 For test information, we'll remove `Charlie` and we'll add a new individual, `Xavier`, and his test data:
@@ -475,10 +475,10 @@ test_info_xavier
 We can specify the join type using the `how` argument:
 
 ```{python}
-pd.merge(demographic, test_info_xavier, how='left')
+pd.merge(people, test_info_xavier, how='left')
 ```
 
-As you can see, with the *left* join, all records from the *left* dataframe (`demographic`) are retained. So, even though `Charlie` doesn't have a match in the `test_info_xavier` dataset, he's still included in the output. (But of course, since his test information is not available in `test_info_xavier`, those values were left as `NaN`.)
+As you can see, with the *left* join, all records from the *left* dataframe (`people`) are retained. So, even though `Charlie` doesn't have a match in the `test_info_xavier` dataset, he's still included in the output. (But of course, since his test information is not available in `test_info_xavier`, those values were left as `NaN`.)
 
 Xavier, on the other hand, who was only present in the right dataset, gets dropped.
 
@@ -486,10 +486,10 @@ The graphic below shows how this join worked:
 
 ![Left Join](images/left_join1.gif)
 
-Now what if we flip the dataframes? Let's see the outcome when `test_info_xavier` is the left dataframe and `demographic` is the right one:
+Now what if we flip the dataframes? Let's see the outcome when `test_info_xavier` is the left dataframe and `people` is the right one:
 
 ```{python}
-pd.merge(test_info_xavier, demographic, on='name', how='left')
+pd.merge(test_info_xavier, people, on='name', how='left')
 ```
 
 Once again, the `left` join retains all rows from the *left* dataframe (now `test_info_xavier`). This means Xavier's data is included this time. Charlie, on the other hand, is excluded.
@@ -596,20 +596,20 @@ pd.merge(tb_cases_children, country_continents, left_on='country', right_on='cou
 
 A `right` join can be thought of as a mirror image of a `left` join. The mechanics are the same, but now all rows from the *right* dataframe are retained, while only those rows from the left dataframe that find a match in the right are kept.
 
-Let's look at an example to understand this. We'll use our original `demographic` and modified `test_info_xavier` datasets:
+Let's look at an example to understand this. We'll use our original `people` and modified `test_info_xavier` datasets:
 
 ```{python}
-demographic
+people
 test_info_xavier
 ```
 
-Now let's try a right join, with `demographic` as the right dataframe:
+Now let's try a right join, with `people` as the right dataframe:
 
 ```{python}
-pd.merge(test_info_xavier, demographic, on='name', how='right')
+pd.merge(test_info_xavier, people, on='name', how='right')
 ```
 
-Hopefully you're getting the hang of this and could predict that output! Since `demographic` was the *right* dataframe, and we are using a *right* join, all the rows from `demographic` are kept—Alice, Bob, and Charlie—but only matching records from `test_info_xavier`.
+Hopefully you're getting the hang of this and could predict that output! Since `people` was the *right* dataframe, and we are using a *right* join, all the rows from `people` are kept—Alice, Bob, and Charlie—but only matching records from `test_info_xavier`.
 
 The graphic below illustrates this process:
 
@@ -618,13 +618,13 @@ The graphic below illustrates this process:
 An important point—the same final dataframe can be created with either a `left` join or a `right` join; it just depends on what order you provide the dataframes to these functions:
 
 ```{python}
-# Here, right join prioritizes the right dataframe, demographic
-pd.merge(test_info_xavier, demographic, on='name', how='right')
+# Here, right join prioritizes the right dataframe, people
+pd.merge(test_info_xavier, people, on='name', how='right')
 ```
 
 ```{python}
-# Here, left join prioritizes the left dataframe, again demographic
-pd.merge(demographic, test_info_xavier, on='name', how='left')
+# Here, left join prioritizes the left dataframe, again people
+pd.merge(people, test_info_xavier, on='name', how='left')
 ```
 
 As we previously mentioned, data scientists typically favor `left` joins over `right` joins. It makes more sense to specify your primary dataset first, in the left position. Opting for a `left` join is a common best practice due to its clearer logic, making it less error-prone.
@@ -636,27 +636,27 @@ Great, now we understand how `left` and `right` joins work, let's move on to `in
 What makes an `inner` join distinct is that rows are only kept if the joining values are present in *both* dataframes. Let's return to our example of individuals and their test results. As a reminder, here are our datasets:
 
 ```{python}
-demographic
+people
 ```
 
 ```{python}
 test_info_xavier
 ```
 
-Now that we have a better understanding of how joins work, we can already picture what the final dataframe would look like if we used an `inner` join on our two dataframes above. If only rows with joining values that are in *both* dataframes are kept, and the only individuals that are in both `demographic` and `test_info_xavier` are `Alice` and `Bob`, then they should be the only individuals in our final dataset! Let's try it out.
+Now that we have a better understanding of how joins work, we can already picture what the final dataframe would look like if we used an `inner` join on our two dataframes above. If only rows with joining values that are in *both* dataframes are kept, and the only individuals that are in both `people` and `test_info_xavier` are `Alice` and `Bob`, then they should be the only individuals in our final dataset! Let's try it out.
 
 ```{python}
-pd.merge(demographic, test_info_xavier, on='name', how='inner')
+pd.merge(people, test_info_xavier, on='name', how='inner')
 ```
 
-Perfect, that's exactly what we expected! Here, `Charlie` was only in the `demographic` dataset, and `Xavier` was only in the `test_info_xavier` dataset, so both of them were removed. The graphic below shows how this join works:
+Perfect, that's exactly what we expected! Here, `Charlie` was only in the `people` dataset, and `Xavier` was only in the `test_info_xavier` dataset, so both of them were removed. The graphic below shows how this join works:
 
 ![Inner Join](images/inner_join.gif)
 
 Note that the default join type is `inner`. So if you don't specify `how='inner'`, you're actually performing an inner join! Try it out:
 
 ```{python}
-pd.merge(demographic, test_info_xavier)
+pd.merge(people, test_info_xavier)
 ```
 
 ::: {.callout-tip title="Practice"}
@@ -686,29 +686,29 @@ pd.merge(total_sales, product_feedback, on='product', how='inner')
 
 ## `outer` join
 
-The peculiarity of the `outer` join is that it retains *all* records, regardless of whether or not there is a match between the two datasets. Where there is missing information in our final dataset, cells are set to `NaN` just as we have seen in the `left` and `right` joins. Let's take a look at our `demographic` and `test_info_xavier` datasets to illustrate this.
+The peculiarity of the `outer` join is that it retains *all* records, regardless of whether or not there is a match between the two datasets. Where there is missing information in our final dataset, cells are set to `NaN` just as we have seen in the `left` and `right` joins. Let's take a look at our `people` and `test_info_xavier` datasets to illustrate this.
 
 Here is a reminder of our datasets:
 
 ```{python}
-demographic
+people
 test_info_xavier
 ```
 
 Now let's perform an `outer` join:
 
 ```{python}
-pd.merge(demographic, test_info_xavier, on='name', how='outer')
+pd.merge(people, test_info_xavier, on='name', how='outer')
 ```
 
 As we can see, all rows were kept so there was no loss in information! The graphic below illustrates this process:
 
 ![Outer Join](images/full_join.gif)
 
-Because this join isn't selective, everything ends up in the final dataset, so changing the order of our dataframes won't change the information that's retained. We can see this below when we specify `test_info_xavier` as our primary dataframe and `demographic` as our secondary dataframe.
+Because this join isn't selective, everything ends up in the final dataset, so changing the order of our dataframes won't change the information that's retained. We can see this below when we specify `test_info_xavier` as our primary dataframe and `people` as our secondary dataframe.
 
 ```{python}
-pd.merge(test_info_xavier, demographic, on='name', how='outer')
+pd.merge(test_info_xavier, people, on='name', how='outer')
 ```
 
 Just as we saw above, all of the data from both of the original dataframes are still there, with any missing information set to `NaN`.

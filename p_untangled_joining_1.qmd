@@ -11,42 +11,19 @@ title: 'Introduction to Joining Datasets'
 import pandas as pd
 ```
 
-# Prelude
+## Data & Packages
 
-Joining datasets is a key skill when working with data as it allows you to combine information about the same entities from multiple sources, leading to more comprehensive and insightful analyses. In this lesson, you'll learn how to use different joining techniques using Python's `pandas` library. Let's get started!
-
-# Learning Objectives
-
--   You understand how each of the different `pandas` joins work: left, right, inner, and full.
-
--   You're able to choose the appropriate join for your data.
-
--   You can join simple datasets together using functions from `pandas`.
-
-# Packages
-
-Please load the packages needed for this lesson with the code below:
+Please run the code below to load the packages and datasets we'll be using throughout this lesson.
 
 ```{python}
-# | warning: false
-# | message: false
-# | echo: true
 
-# Load packages
 import pandas as pd
-```
 
-# Data Definitions
-
-Below are the datasets we'll be using throughout this lesson.
-
-```{python}
-# | echo: true
 
 # TB incidence in Africa
 tb_2019_africa = pd.read_csv(
     "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_incidence_2019.csv"
-)
+) 
 
 # Health expenditure data
 health_exp_2019 = pd.read_csv(
@@ -59,7 +36,7 @@ highest_exp = health_exp_2019.sort_values("expend_usd", ascending=False).head(70
 # TB cases in children
 tb_cases_children = pd.read_csv(
     "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_cases_children_2012.csv"
-)
+).dropna()
 
 # Country continents data
 country_continents = pd.read_csv(
@@ -99,7 +76,7 @@ test_info_multiple = pd.DataFrame(
 # Test information with different name
 test_info_different_name = pd.DataFrame(
     {
-        "name": ["Alice", "Bob", "Charlie"],
+        "first_name": ["Alice", "Bob", "Charlie"],
         "test_date": ["2023-06-05", "2023-08-10", "2023-07-15"],
         "result": ["Negative", "Positive", "Negative"],
     }
@@ -246,7 +223,19 @@ order_records = pd.DataFrame(
 )
 ```
 
-# What is a join and why do we need it?
+
+## Intro
+
+Joining is a key skill when working with data as it allows you to combine information about the same entities from multiple sources, leading to more comprehensive and insightful analyses. In this lesson, you'll learn how to use different joining techniques using Python's `pandas` library. Let's get started!
+
+
+## Learning Objectives
+
+-   You understand how each of the different joins work: left, right, inner, and outer.
+
+-   You can join simple datasets together using the `pd.merge()` function.
+
+## Why Do We Need Joins?
 
 To illustrate the utility of joins, let's start with a toy example. Consider the following two datasets. The first, `people`, contains names and ages of three individuals:
 
@@ -330,14 +319,14 @@ In this case, the `pd.merge()` function correctly repeats Alice's details for ea
 
 Simple and beautiful!
 
-# Joining syntax
+## pd.merge() syntax
 
 Now that we understand *why* we need joins, let's look at their basic syntax.
 
 Joins take two dataframes as the first two arguments: `left` (the *left* dataframe) and `right` (the *right* dataframe). In pandas, you can provide these as positional or keyword arguments:
 
 ```{python}
-# both the same:
+# left and right
 pd.merge(left=people, right=test_info)  # keyword arguments
 pd.merge(people, test_info)  # positional arguments
 ```
@@ -345,16 +334,16 @@ pd.merge(people, test_info)  # positional arguments
 Another critical argument is `on`, which indicates the column or **key** used to connect the tables. We don't always need to supply this argument; it can be *inferred* from the datasets. For example, in our original examples, "name" is the only column common to `people` and `test_info`. So the merge function assumes `on='name'`:
 
 ```{python}
-# these are equivalent
+# on argument is optional if the column key is the same in both dataframes
 pd.merge(people, test_info)
-pd.merge(people, test_info, on='name')
+pd.merge(people, test_info, on="name")
 ```
 
 ::: {.callout-note title="Vocab"}
 The column used to connect rows across the tables is known as a **key**. In the pandas `merge()` function, the key is specified in the `on` argument, as seen in `pd.merge(people, test_info, on='name')`.
 :::
 
-What happens if the keys are named differently in the two datasets? Consider the `test_info_different_name` dataset, where the "name" column has been changed to "test_recipient":
+What happens if the keys are named differently in the two datasets? Consider the `test_info_different_name` dataset, where the "name" column has been changed to "first_name":
 
 ```{python}
 test_info_different_name
@@ -378,10 +367,10 @@ In situations like this, you have two choices: you can rename the column in the 
 Here's how to do this:
 
 ```{python}
-pd.merge(people, test_info_different_name, left_on='name', right_on='test_recipient')
+pd.merge(people, test_info_different_name, left_on='name', right_on='first_name')
 ```
 
-This syntax essentially says, "Connect `name` from the left dataframe with `test_recipient` from the right dataframe because they represent the same data."
+This syntax essentially says, "Connect `name` from the left dataframe with `first_name` from the right dataframe because they represent the same data."
 
 ---
 
@@ -448,7 +437,7 @@ pd.merge(customer_details, order_records, left_on="id_number", right_on="custome
 
 :::
 
-# Types of joins
+## Types of joins
 
 The toy examples so far have involved datasets that could be matched perfectly—every row in one dataset had a corresponding row in the other dataset.
 
@@ -525,6 +514,8 @@ pd.merge(students, exam_dates, on='student_id', how='left')
 
 ---
 
+## Analysing African TB Incidence and Health Expenditure
+
 Let's try another example, this time with a more realistic set of data.
 
 First, we have data on the TB incidence rate per 100,000 people for some African countries, from the [WHO](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-(per-100-000-population-per-year)):
@@ -557,7 +548,7 @@ All rows from the left dataframe `tb_2019_africa` were kept, while non-African c
 We can check if any rows in `tb_2019_africa` did not have a match in `health_exp_2019` by filtering for `NaN` values:
 
 ```{python}
-tb_health_exp_joined[tb_health_exp_joined['expend_usd'].isna()]
+tb_health_exp_joined.query("expend_usd.isna()")
 ```
 
 This shows that 3 countries—Mauritius, South Sudan, and Comoros—did not have expenditure data in `health_exp_2019`. But because they were present in `tb_2019_africa`, and that was the left dataframe, they were still included in the joined data.
@@ -629,8 +620,6 @@ pd.merge(people, test_info_xavier, on='name', how='left')
 
 As we previously mentioned, data scientists typically favor `left` joins over `right` joins. It makes more sense to specify your primary dataset first, in the left position. Opting for a `left` join is a common best practice due to its clearer logic, making it less error-prone.
 
-Great, now we understand how `left` and `right` joins work, let's move on to `inner` and `full` joins!
-
 ## `inner` join
 
 What makes an `inner` join distinct is that rows are only kept if the joining values are present in *both* dataframes. Let's return to our example of individuals and their test results. As a reminder, here are our datasets:
@@ -673,13 +662,28 @@ total_sales
 product_feedback
 ```
 
-Which products are common between both dataframes? Use an `inner` join to determine this.
+
+
+Use an `inner` join to combine the datasets. 
+
+How many products are there in common between the two datasets.
+
+Which product has the highest ratio of positive reviews to units sold? (Should be laptops)
+
 
 ```{python}
 # | echo: false
 # | eval: false
 # Solution
 pd.merge(total_sales, product_feedback, on='product', how='inner')
+
+# How many products are there in common between the two datasets?
+len(pd.merge(total_sales, product_feedback, on='product', how='inner'))
+
+# Which product has the highest ratio of positive reviews to units sold?
+pd.merge(total_sales, product_feedback, on='product', how='inner').assign(
+    ratio=lambda x: x['n_positive_reviews'] / x['n_negative_reviews']
+).sort_values("ratio", ascending=False).head(1)
 ```
 
 :::
@@ -704,12 +708,6 @@ pd.merge(people, test_info_xavier, on='name', how='outer')
 As we can see, all rows were kept so there was no loss in information! The graphic below illustrates this process:
 
 ![Outer Join](images/full_join.gif)
-
-Because this join isn't selective, everything ends up in the final dataset, so changing the order of our dataframes won't change the information that's retained. We can see this below when we specify `test_info_xavier` as our primary dataframe and `people` as our secondary dataframe.
-
-```{python}
-pd.merge(test_info_xavier, people, on='name', how='outer')
-```
 
 Just as we saw above, all of the data from both of the original dataframes are still there, with any missing information set to `NaN`.
 
@@ -738,7 +736,7 @@ pd.merge(sales, customer_complaints, on='year', how='outer')
 
 :::
 
-# Wrap Up!
+## Wrap Up!
 
 Way to go, you now understand the basics of joining! The Venn diagram below gives a helpful summary of the different joins and the information that each one retains. It may be helpful to save this image for future reference!
 

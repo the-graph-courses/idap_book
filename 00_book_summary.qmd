@@ -1,0 +1,493 @@
+# Introduction to Data Science with Python Cheatsheet
+
+This cheatsheet is based on "Introduction to Data Science with Python" by The GRAPH Courses. It extracts key chapter headings and code examples to provide a concise reference.
+
+## Foundations
+
+### Introduction to Google Colab
+
+- **What is Google Colab?**  
+  A free online platform for working with Python/R in your browser. Great for beginners as no local installation is needed. Note: Limitations exist for heavy workloads.
+  
+- **Key Features:**
+  - Code and text cells.
+  - Pre-installed libraries.
+  - Data import from local files and Google Drive.
+  - Sharing and collaboration.
+  
+- **Keyboard Shortcuts:**
+  - `Cmd/Ctrl + Enter`: Run current cell.
+  - `Shift + Enter`: Run and create new cell.
+
+```{python}
+# Example of working with data
+import pandas as pd
+housing_data = pd.read_csv("/content/sample_data/california_housing_test.csv")
+housing_data.describe()
+housing_data  # To view the dataset
+```
+
+### Coding Basics
+
+- **Comments:**
+  - Single-line: `# This is a comment`
+  - Multi-line: `'''This is a multiline comment'''` or `"""This is another multiline comment"""`
+  
+- **Arithmetic Operations:**  
+  `+`, `-`, `*`, `/`, `**` (exponent), `%` (modulo), `//` (floor division).
+
+- **Order of Operations:**  
+  PEMDAS (Parentheses, Exponents, Multiplication & Division, Addition & Subtraction).
+
+- **Math Library:**
+  - Importing: `import math`
+  - Square root: `math.sqrt(x)`
+  - Natural logarithm: `math.log(x)`
+
+```{python}
+import math
+math.sqrt(100)  # Output: 10.0
+math.log(100)   # Output: 4.605...
+```
+
+- **Spacing and Indentation:**
+  - Use blank lines to separate code blocks.
+  - Use spaces around operators for readability.
+  - Indentation is crucial for defining code blocks (loops, functions, etc.).
+
+- **Variables:**
+  - Named containers for storing values.
+  - Types: string (`str`), integer (`int`), float (`float`).
+
+- **Variable Assignment:**  
+  `variable_name = value`
+
+- **Variable Naming:**
+  - Start with a letter or underscore.
+  - Contain letters, numbers, and underscores.
+  - Use `snake_case` convention.
+
+- **User Input:**  
+  `name = input("What is your name? ")`
+
+- **Common Errors:**  
+  `NameError` (using undefined variable).
+
+```{python}
+# Variable Example
+first_name = "Joanna"  # string
+age = 5                # integer
+height = 1.4           # float
+
+print(type(first_name))  # Output: <class 'str'>
+```
+
+### Functions, Methods, and Libraries in Python
+
+- **Functions:**  
+  Reusable blocks of code. Syntax: `function_name(argument1, argument2)`
+
+- **Methods:**  
+  Functions associated with objects. Syntax: `object.method_name(arguments)`
+
+- **Arguments:**
+  - **Positional:** Order matters.
+  - **Keyword:** `argument_name = value`
+
+- **Libraries:**  
+  Collections of pre-written code.
+
+```{python}
+# Library import examples
+import math             # Imports the entire library
+import math as m        # Imports the entire library using the alias 'm'
+from math import sqrt   # Imports only the `sqrt` function
+
+# Function examples
+len("Python")           # Output: 6
+round(3.1415, 2)        # Output: 3.14
+
+# Method example
+name = "python"
+name.upper()            # Output: 'PYTHON'
+```
+
+- **Installing Libraries:**
+  - In Colab: `!pip install library_name`
+  - Locally: `pip install library_name`
+
+```{python}
+!pip install cowsay  # Install the 'cowsay' library
+
+import cowsay
+cowsay.cow('Moo!')
+```
+
+### Data Structures in Python
+
+- **Lists:**
+  - Ordered, mutable sequences.
+  - Syntax: `my_list = ["apples", "bananas", "milk"]`
+
+- **Dictionaries:**
+  - Key-value pairs.
+  - Syntax: `my_dict = {"Alice": 90, "Bob": 85}`
+
+- **Pandas Series:**
+  - 1D labeled array.
+
+```{python}
+import pandas as pd
+temps = pd.Series([1, 2, 3, 4, 5])
+temps.mean()  # Output: 3.0
+```
+
+- **Pandas DataFrames:**
+  - 2D labeled data structure (like a table).
+
+```{python}
+data = {'name': ["Alice", "Bob"], 'age': [25, 30]}
+people_df = pd.DataFrame(data)
+people_df['name']  # Output: Series with 'Alice' and 'Bob'
+```
+
+### Intro to Loops in Python
+
+- **`for` Loop:**
+  - Repeats a block of code for each item in a sequence.
+
+```{python}
+ages = [7, 8, 9]
+for age in ages:
+    print(age * 12)
+
+# Output:
+# 84
+# 96
+# 108
+
+# Looping with index and value
+for i, age in enumerate(ages):
+    print(f"Person {i+1} is {age} years old or {age*12} months.")
+
+# Output:
+# Person 1 is 7 years old or 84 months.
+# Person 2 is 8 years old or 96 months.
+# Person 3 is 9 years old or 108 months.
+```
+
+- **f-Strings:**
+  - Formatted string literals.
+  - Syntax: `f"{variable_name} is the value"`
+
+### Intro to Functions and Conditionals
+
+- **Defining Functions:**
+
+```{python}
+def function_name(arguments):
+    # Function body
+    return result
+```
+
+- **Example Function:**
+
+```{python}
+def pounds_to_kg(pounds):
+    return pounds * 0.4536
+
+print(pounds_to_kg(150))  # Output: 68.04
+```
+
+- **Functions with Multiple Arguments:**
+
+```{python}
+def calc_calories(carb_grams=0, protein_grams=0, fat_grams=0):
+    result = (carb_grams * 4) + (protein_grams * 4) + (fat_grams * 9)
+    return result
+
+# Usage
+calc_calories(carb_grams=50, protein_grams=25, fat_grams=10)  # Output: 390
+```
+
+- **Conditional Statements:**
+
+```{python}
+def class_num(num):
+    if num > 0:
+        return "Positive"
+    elif num < 0:
+        return "Negative" 
+    else:
+        return "Zero"
+
+# Usage:
+print(class_num(10))    # Output: Positive
+print(class_num(-5))    # Output: Negative
+print(class_num(0))     # Output: Zero
+```
+
+- **Vectorizing Functions with NumPy:**
+
+```{python}
+import numpy as np
+
+class_num_vec = np.vectorize(class_num)  # Allows us to use custom functions on arrays
+```
+
+## Data Visualization
+
+### Data Visualization Types
+
+- **Common Visualization Types:**
+  - **Histogram:** Distribution of a single numerical variable.
+  - **Box Plot:** Visualizing distribution and outliers.
+  - **Scatter Plot:** Relationship between two numerical variables.
+  - **Line Plot:** Trends over time.
+  - **Bar Plot:** Comparing categories.
+
+### Univariate Graphs with Plotly Express
+
+```{python}
+import plotly.express as px
+import pandas as pd
+
+# Histogram
+px.histogram(data, x='column_name')
+
+# Customized Histogram
+px.histogram(
+    data,
+    x='column_name',
+    title='Distribution',
+    labels={'column_name': 'Label'},
+    nbins=20
+)
+
+# Box Plot
+px.box(data, y='numeric_column')
+
+# Violin Plot
+px.violin(data, y='numeric_column', box=True)
+```
+
+### Bivariate & Multivariate Graphs with Plotly Express
+
+```{python}
+# Scatter Plot
+px.scatter(data, x='x_column', y='y_column', color='category_column')
+
+# Line Plot
+px.line(data, x='time_column', y='value_column', markers=True)
+
+# Bar Plot
+# Basic Bar Plot
+px.bar(data, x='category', y='value')
+
+# Grouped Bar Plot
+px.bar(data, x='category', y='value', color='group', barmode='group')
+
+# Stacked Bar Plot
+px.bar(data, x='category', y='value', color='group', barmode='stack')
+```
+
+## Tools for Local Python
+
+### Installing Python
+
+1. **Download Python:**  
+   Visit [python.org](https://www.python.org/downloads/) and download the latest version.
+
+2. **Installation Steps:**
+   - Check "Add Python to PATH" during installation.
+   - Follow the installation prompts.
+
+3. **Verify Installation:**
+
+```bash
+python --version
+```
+
+### Installing and Using VS Code
+
+1. **Download VS Code:**  
+   Visit [code.visualstudio.com](https://code.visualstudio.com/) and download.
+
+2. **Install Python Extension:**
+   - Open VS Code.
+   - Go to Extensions (`Ctrl+Shift+X` or `Cmd+Shift+X`).
+   - Search for "Python" and install the official extension.
+
+3. **Select Interpreter:**
+   - Open Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
+   - Type "Python: Select Interpreter" and choose your Python version.
+
+4. **Create a New Python File:**
+   - Create a new file with `.py` extension.
+
+### Folders and Virtual Environments
+
+- **Creating a Virtual Environment:**
+
+```bash
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+# Windows:
+.venv\Scripts\activate
+# macOS/Linux:
+source .venv/bin/activate
+
+# Install packages
+pip install pandas numpy plotly jupyter
+```
+
+- **Organizing Projects:**
+  - Use folders to organize code, data, and virtual environments.
+  - Keep virtual environments separate for each project.
+
+### Using Quarto
+
+- **What is Quarto?**  
+  An open-source scientific and technical publishing system built on Pandoc.
+
+- **Installing Quarto:**
+  1. Download from [quarto.org](https://quarto.org/).
+
+- **Using Quarto with VS Code:**
+  1. Install the Quarto extension in VS Code.
+  2. Create Quarto documents (`.qmd`) for reports, combining text and code.
+
+## Data Manipulation
+
+### Subsetting Columns
+
+```{python}
+import pandas as pd
+
+# Select a single column
+df['column_name']
+
+# Select multiple columns
+df[['col1', 'col2', 'col3']]
+
+# Drop columns
+df.drop(columns=['col1', 'col2'])
+```
+
+### Querying Rows
+
+```{python}
+# Basic filtering
+df_filtered = df.query('column > value')
+
+# Multiple conditions
+df_filtered = df.query('col1 > value1 & col2 == "string"')
+
+# Using OR condition
+df_filtered = df.query('col1 > value1 | col2 == "string"')
+
+# Handling missing values
+df_missing = df[df['column'].isna()]
+df_not_missing = df[df['column'].notna()]
+```
+
+### Transforming Variables in Pandas
+
+```{python}
+# Creating new columns
+df['new_col'] = df['col1'] * 2
+
+# Using multiple columns
+df['bmi'] = df['weight'] / (df['height'] ** 2)
+```
+
+### Conditional Transformations of Variables
+
+```{python}
+# Using replace() for mapping values
+day_mapping = {"Sun": "Sunday", "Sat": "Saturday", "Fri": "Friday", "Thur": "Thursday"}
+df["day_full"] = df["day"].replace(day_mapping)
+```
+
+```{python}
+# Conditional creation using apply and lambda
+# Define function then vectorize it
+def categorize_value(x):
+    return "High" if x > 100 else "Low"
+
+
+categorize_vec = np.vectorize(categorize_value)
+
+# Apply to column directly
+df["category"] = categorize_vec(df["value"])
+```
+
+### Grouping and Summarizing Data
+
+```{python}
+# Multiple aggregations
+df_agg = df.groupby('category').agg(
+    mean_col1=('col1', 'mean'),
+    sum_col2=('col2', 'sum'),
+    count_col3=('col3', 'count')
+)
+```
+
+### Grouped Transformations and Filtering
+
+```{python}
+import pandas as pd
+
+# Add group mean as a new column
+df['group_mean'] = df.groupby('group')['value'].transform('mean')
+
+# Count values within groups
+group_counts = df.groupby('group')['category'].value_counts().reset_index(name='count')
+
+# Cumulative sum within groups
+df['cumulative_sum'] = df.groupby('group')['value'].cumsum()
+
+# Apply custom function within groups (e.g., get top N values)
+df.groupby('group').apply(lambda x: x.nlargest(3, 'value'))
+```
+
+## Using LLMs in Python
+
+### Using LLMs in Python for Text Generation
+
+- **Setup:**
+
+```{python}
+import openai
+
+openai.api_key = "your-api-key"
+```
+
+- **Basic Text Generation:**
+
+```{python}
+def llm_chat(message):
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": message}]
+    )
+    return response.choices[0].message.content
+
+# Usage
+response = llm_chat("What is Python?")
+print(response)
+```
+
+### Vectorized LLM Operations
+
+```{python}
+import numpy as np
+
+# Vectorize the function for use with pandas
+llm_chat_vec = np.vectorize(llm_chat)
+
+# Apply to a DataFrame
+df['ai_response'] = llm_chat_vec(df['prompts'])
+```

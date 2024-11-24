@@ -1,0 +1,3501 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>21&nbsp; Joining 2: One-to-Many, Multi-Key Joins &amp; Key Mismatches – Introduction to Data Science with Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./p_untangled_pivoting.html" rel="next">
+<link href="./p_untangled_joining_1.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_joining_2.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Joining 2: One-to-Many, Multi-Key Joins &amp; Key Mismatches</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Data Science with Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/the-graph-courses/idap_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_google_colab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Google Colab</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_coding_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Coding basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_functions_methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions, Methods, and Libraries in Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Structures in Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_for_loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Intro to Loops in Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_foundations_writing_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Intro to Functions and Conditionals</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_data_on_display_data_viz_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization Types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_data_on_display_univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Univariate Graphs with Plotly Express</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_data_on_display_multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bivariate &amp; Multivariate Graphs with Plotly Express</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tools for Local Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_installing_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installing Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_using_vscode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Installing and Using VS Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_venv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Folders and Virtual Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_tools_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Manipulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_subset_columns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Subsetting columns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_query_rows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Querying rows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_transform_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Transforming Variables in pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_conditional_transforms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Conditional Transformations of Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_groupby_agg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grouping and summarizing data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_other_grouped_operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_joining_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Introduction to Joining Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_joining_2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Joining 2: One-to-Many, Multi-Key Joins &amp; Key Mismatches</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using LLMs in Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_ai_LLM_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages"><span class="header-section-number">21.1</span> Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">21.2</span> Data</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">21.3</span> Introduction</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">21.4</span> Learning Objectives</a></li>
+  <li><a href="#one-to-many-joins" id="toc-one-to-many-joins" class="nav-link" data-scroll-target="#one-to-many-joins"><span class="header-section-number">21.5</span> One-to-many joins</a></li>
+  <li><a href="#multiple-key-columns" id="toc-multiple-key-columns" class="nav-link" data-scroll-target="#multiple-key-columns"><span class="header-section-number">21.7</span> Multiple Key Columns</a></li>
+  <li><a href="#key-mismatches" id="toc-key-mismatches" class="nav-link" data-scroll-target="#key-mismatches"><span class="header-section-number">21.9</span> Key Mismatches</a></li>
+  <li><a href="#key-mismatches-oil-consumption-example" id="toc-key-mismatches-oil-consumption-example" class="nav-link" data-scroll-target="#key-mismatches-oil-consumption-example"><span class="header-section-number">21.11</span> Key Mismatches: Oil Consumption Example</a>
+  <ul class="collapse">
+  <li><a href="#merging-with-country-codes" id="toc-merging-with-country-codes" class="nav-link" data-scroll-target="#merging-with-country-codes"><span class="header-section-number">21.12.1</span> Merging with Country Codes</a></li>
+  <li><a href="#identifying-remaining-mismatches" id="toc-identifying-remaining-mismatches" class="nav-link" data-scroll-target="#identifying-remaining-mismatches"><span class="header-section-number">21.12.2</span> Identifying Remaining Mismatches</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">22</span> Wrap Up!</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_joining_2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_joining_2.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Joining 2: One-to-Many, Multi-Key Joins &amp; Key Mismatches</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Joining 2: One-to-Many, Multi-Key Joins &amp; Key Mismatches</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="packages" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">21.1</span> Packages</h2>
+<div id="892d7eae" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> country_converter <span class="im">as</span> cc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="data"><span class="header-section-number">21.2</span> Data</h2>
+<p>Run the code below to load and define the datasets to be used in this lesson.</p>
+<div id="a45631ec" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load datasets</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>oil_consumption <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/oil_consumption.csv"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tidyr_population <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tidyr_population.csv"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>country_regions <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/country_continent_data.csv"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>oil_2012 <span class="op">=</span> (</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    oil_consumption[oil_consumption[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2012</span>].copy().drop(columns<span class="op">=</span>[<span class="st">"year"</span>])</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># people data</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>people <span class="op">=</span> pd.DataFrame({<span class="st">"name"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>], <span class="st">"age"</span>: [<span class="dv">25</span>, <span class="dv">32</span>, <span class="dv">45</span>]})</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>test_info_many <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"name"</span>: [<span class="st">"Alice"</span>, <span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"Charlie"</span>],</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"test_date"</span>: [</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">"2023-06-05"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            <span class="st">"2023-06-10"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="st">"2023-08-10"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"2023-05-02"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">"2023-05-12"</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">"2023-05-15"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"result"</span>: [</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Negative"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Positive"</span>,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Positive"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Negative"</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Negative"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Negative"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>farm_info <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"farm_id"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"farm_name"</span>: [<span class="st">"Green Acres"</span>, <span class="st">"Harvest Hill"</span>, <span class="st">"Golden Fields"</span>],</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"location"</span>: [<span class="st">"County A"</span>, <span class="st">"County B"</span>, <span class="st">"County A"</span>],</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>crop_yields <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="st">"farm_id"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>],</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="st">"crop"</span>: [<span class="st">"Wheat"</span>, <span class="st">"Corn"</span>, <span class="st">"Soybeans"</span>, <span class="st">"Wheat"</span>, <span class="st">"Barley"</span>],</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">"yield_tons"</span>: [<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">45</span>, <span class="dv">55</span>, <span class="dv">30</span>],</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>traffic_flow <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">"street_name"</span>: [</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Main St"</span>,</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Main St"</span>,</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Broadway"</span>,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Broadway"</span>,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Elm St"</span>,</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Elm St"</span>,</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        <span class="st">"time_of_day"</span>: [<span class="st">"9am"</span>, <span class="st">"2pm"</span>, <span class="st">"9am"</span>, <span class="st">"2pm"</span>, <span class="st">"9am"</span>, <span class="st">"2pm"</span>],</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        <span class="st">"vehicle_count"</span>: [<span class="dv">1200</span>, <span class="dv">900</span>, <span class="dv">1500</span>, <span class="dv">1100</span>, <span class="dv">700</span>, <span class="dv">600</span>],</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>pollution_levels <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        <span class="st">"street_name"</span>: [</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Main St"</span>,</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Main St"</span>,</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Broadway"</span>,</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Broadway"</span>,</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Elm St"</span>,</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Elm St"</span>,</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        <span class="st">"time_of_day"</span>: [<span class="st">"9am"</span>, <span class="st">"2pm"</span>, <span class="st">"9am"</span>, <span class="st">"2pm"</span>, <span class="st">"9am"</span>, <span class="st">"2pm"</span>],</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pm_2_5_level"</span>: [<span class="fl">35.5</span>, <span class="fl">42.1</span>, <span class="fl">40.3</span>, <span class="fl">48.2</span>, <span class="fl">25.7</span>, <span class="fl">30.9</span>],</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>test_info_diff <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>        <span class="st">"name"</span>: [<span class="st">"alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie "</span>],</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>        <span class="st">"test_date"</span>: [<span class="st">"2023-06-05"</span>, <span class="st">"2023-08-10"</span>, <span class="st">"2023-05-02"</span>],</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>        <span class="st">"result"</span>: [<span class="st">"Negative"</span>, <span class="st">"Positive"</span>, <span class="st">"Negative"</span>],</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>asia_countries <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Country"</span>: [<span class="st">"India"</span>, <span class="st">"Indonesia"</span>, <span class="st">"Philippines"</span>],</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Capital"</span>: [<span class="st">"New Delhi"</span>, <span class="st">"Jakarta"</span>, <span class="st">"Manila"</span>],</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>asia_population <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Country"</span>: [<span class="st">"India"</span>, <span class="st">"indonesia"</span>, <span class="st">"Philipines"</span>],</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Population"</span>: [<span class="dv">1393000000</span>, <span class="dv">273500000</span>, <span class="dv">113000000</span>],</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Life_Expectancy"</span>: [<span class="fl">69.7</span>, <span class="fl">71.7</span>, <span class="fl">72.7</span>],</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="introduction" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="introduction"><span class="header-section-number">21.3</span> Introduction</h2>
+<p>Now that we have a solid grasp on the different types of joins and how they work, we can look at how to manage more complex joins and messier data.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">21.4</span> Learning Objectives</h2>
+<ul>
+<li><p>You understand the concept of a one-to-many join</p></li>
+<li><p>You know how to join on multiple key columns</p></li>
+<li><p>You know how to check for mismatched values between dataframes</p></li>
+</ul>
+</section>
+<section id="one-to-many-joins" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="one-to-many-joins"><span class="header-section-number">21.5</span> One-to-many joins</h2>
+<p>So far, we have primarily looked at one-to-one joins, where an observation in one dataframe corresponded to only one observation in the other dataframe. In a one-to-many join, an observation in one dataframe corresponds to multiple observations in the other dataframe.</p>
+<p>To illustrate a one-to-many join, let’s return to our patients and their COVID test data. Let’s imagine that in our dataset, <code>Alice</code> and <code>Xavier</code> got tested multiple times for COVID. We can add two more rows to our <code>test_info</code> dataframe with their new test information:</p>
+<div id="d14538e6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>people</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>45</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="874b9da2" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>test_info_many</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>2023-06-05</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Alice</td>
+<td>2023-06-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Bob</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Bob</td>
+<td>2023-05-02</td>
+<td>Negative</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Charlie</td>
+<td>2023-05-12</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Charlie</td>
+<td>2023-05-15</td>
+<td>Negative</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Next, let’s take a look at what happens when we use a <code>merge()</code> with <code>people</code> as the left dataframe:</p>
+<div id="90733c71" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pd.merge(people, test_info_many, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>25</td>
+<td>2023-06-05</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Alice</td>
+<td>25</td>
+<td>2023-06-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Bob</td>
+<td>32</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Bob</td>
+<td>32</td>
+<td>2023-05-02</td>
+<td>Negative</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Charlie</td>
+<td>45</td>
+<td>2023-05-12</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Charlie</td>
+<td>45</td>
+<td>2023-05-15</td>
+<td>Negative</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>What’s happened above? Basically, when you perform a one-to-many join, the data from the “one” side are duplicated for each matching row of the “many” side.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice
+</div>
+</div>
+<section id="practice-q-merging-one-to-many-crop-yields" class="level2 callout-body-container callout-body" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="practice-q-merging-one-to-many-crop-yields"><span class="header-section-number">21.6</span> Practice Q: Merging One-to-Many Crop Yields</h2>
+<p>Run the code below to print the two small dataframes:</p>
+<div id="236d3d46" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>farm_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">farm_id</th>
+<th data-quarto-table-cell-role="th">farm_name</th>
+<th data-quarto-table-cell-role="th">location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Green Acres</td>
+<td>County A</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Harvest Hill</td>
+<td>County B</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Golden Fields</td>
+<td>County A</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="19a06f68" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>crop_yields</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">farm_id</th>
+<th data-quarto-table-cell-role="th">crop</th>
+<th data-quarto-table-cell-role="th">yield_tons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Wheat</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>Corn</td>
+<td>60</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>Soybeans</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3</td>
+<td>Wheat</td>
+<td>55</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>3</td>
+<td>Barley</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>If you use a <code>merge()</code> to join these datasets, how many rows will be in the final dataframe? Try to figure it out and then perform the join to see if you were right.</p>
+</section>
+</div>
+</section>
+<section id="multiple-key-columns" class="level2" data-number="21.7">
+<h2 data-number="21.7" class="anchored" data-anchor-id="multiple-key-columns"><span class="header-section-number">21.7</span> Multiple Key Columns</h2>
+<p>Sometimes we have more than one column that uniquely identifies the observations that we want to match on. For example, let’s imagine we have traffic flow data for three streets at two different times of day: 9am and 2pm.</p>
+<div id="6aa879f9" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>traffic_flow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">street_name</th>
+<th data-quarto-table-cell-role="th">time_of_day</th>
+<th data-quarto-table-cell-role="th">vehicle_count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Main St</td>
+<td>9am</td>
+<td>1200</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Main St</td>
+<td>2pm</td>
+<td>900</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Broadway</td>
+<td>9am</td>
+<td>1500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Broadway</td>
+<td>2pm</td>
+<td>1100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Elm St</td>
+<td>9am</td>
+<td>700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Elm St</td>
+<td>2pm</td>
+<td>600</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now, let’s imagine we have another dataset for the same three streets, recording air pollution levels (measured in particulate matter, <strong>PM2.5</strong>) during the same times of day.</p>
+<div id="a82bde5d" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pollution_levels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">street_name</th>
+<th data-quarto-table-cell-role="th">time_of_day</th>
+<th data-quarto-table-cell-role="th">pm_2_5_level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Main St</td>
+<td>9am</td>
+<td>35.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Main St</td>
+<td>2pm</td>
+<td>42.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Broadway</td>
+<td>9am</td>
+<td>40.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Broadway</td>
+<td>2pm</td>
+<td>48.2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Elm St</td>
+<td>9am</td>
+<td>25.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Elm St</td>
+<td>2pm</td>
+<td>30.9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>We want to join the two datasets so that each street has two rows: one for the 9am time point and one for the 2pm time point. To do this, our first instinct may be to join the datasets <em>only</em> on <code>street_name</code>. Let’s try it out and see what happens:</p>
+<div id="be788764" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pd.merge(traffic_flow, pollution_levels, on<span class="op">=</span><span class="st">"street_name"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">street_name</th>
+<th data-quarto-table-cell-role="th">time_of_day_x</th>
+<th data-quarto-table-cell-role="th">vehicle_count</th>
+<th data-quarto-table-cell-role="th">time_of_day_y</th>
+<th data-quarto-table-cell-role="th">pm_2_5_level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Main St</td>
+<td>9am</td>
+<td>1200</td>
+<td>9am</td>
+<td>35.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Main St</td>
+<td>9am</td>
+<td>1200</td>
+<td>2pm</td>
+<td>42.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Main St</td>
+<td>2pm</td>
+<td>900</td>
+<td>9am</td>
+<td>35.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Main St</td>
+<td>2pm</td>
+<td>900</td>
+<td>2pm</td>
+<td>42.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Broadway</td>
+<td>9am</td>
+<td>1500</td>
+<td>9am</td>
+<td>40.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Broadway</td>
+<td>9am</td>
+<td>1500</td>
+<td>2pm</td>
+<td>48.2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Broadway</td>
+<td>2pm</td>
+<td>1100</td>
+<td>9am</td>
+<td>40.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Broadway</td>
+<td>2pm</td>
+<td>1100</td>
+<td>2pm</td>
+<td>48.2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Elm St</td>
+<td>9am</td>
+<td>700</td>
+<td>9am</td>
+<td>25.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Elm St</td>
+<td>9am</td>
+<td>700</td>
+<td>2pm</td>
+<td>30.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>Elm St</td>
+<td>2pm</td>
+<td>600</td>
+<td>9am</td>
+<td>25.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>Elm St</td>
+<td>2pm</td>
+<td>600</td>
+<td>2pm</td>
+<td>30.9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>As we can see, this isn’t what we wanted at all! We end up with duplicated rows—now we have <strong>four rows</strong> for each street.</p>
+<p>What we want to do is match on BOTH <code>street_name</code> AND <code>time_of_day</code>. To do this, we need to tell Python to match on two columns by specifying both column names in a list.</p>
+<div id="bd4cd977" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.merge(traffic_flow, pollution_levels, on<span class="op">=</span>[<span class="st">"street_name"</span>, <span class="st">"time_of_day"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">street_name</th>
+<th data-quarto-table-cell-role="th">time_of_day</th>
+<th data-quarto-table-cell-role="th">vehicle_count</th>
+<th data-quarto-table-cell-role="th">pm_2_5_level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Main St</td>
+<td>9am</td>
+<td>1200</td>
+<td>35.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Main St</td>
+<td>2pm</td>
+<td>900</td>
+<td>42.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Broadway</td>
+<td>9am</td>
+<td>1500</td>
+<td>40.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Broadway</td>
+<td>2pm</td>
+<td>1100</td>
+<td>48.2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Elm St</td>
+<td>9am</td>
+<td>700</td>
+<td>25.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Elm St</td>
+<td>2pm</td>
+<td>600</td>
+<td>30.9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now we have the correct number of rows! We can directly see the vehicle count and PM2.5 level for each street at each time of day.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice
+</div>
+</div>
+<section id="practice-q-calculate-oil-consumption-per-capita" class="level2 callout-body-container callout-body" data-number="21.8">
+<h2 data-number="21.8" class="anchored" data-anchor-id="practice-q-calculate-oil-consumption-per-capita"><span class="header-section-number">21.8</span> Practice Q: Calculate Oil Consumption per Capita</h2>
+<p>We have two datasets containing information about countries:</p>
+<ul>
+<li><code>oil_consumption</code>: Contains yearly oil consumption in tonnes</li>
+<li><code>tidyr_population</code>: Contains yearly population data</li>
+</ul>
+<div id="ee37d97a" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the datasets</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>oil_consumption.sort_values(by<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">oil_consump</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19</td>
+<td>Algeria</td>
+<td>1995</td>
+<td>8430000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">98</td>
+<td>Algeria</td>
+<td>1996</td>
+<td>8060000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">177</td>
+<td>Algeria</td>
+<td>1997</td>
+<td>7990000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">256</td>
+<td>Algeria</td>
+<td>1998</td>
+<td>8220000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">335</td>
+<td>Algeria</td>
+<td>1999</td>
+<td>8110000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1183</td>
+<td>Vietnam</td>
+<td>2009</td>
+<td>14200000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1262</td>
+<td>Vietnam</td>
+<td>2010</td>
+<td>15300000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1341</td>
+<td>Vietnam</td>
+<td>2011</td>
+<td>16700000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1420</td>
+<td>Vietnam</td>
+<td>2012</td>
+<td>17000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1499</td>
+<td>Vietnam</td>
+<td>2013</td>
+<td>18200000</td>
+</tr>
+</tbody>
+</table>
+
+<p>1501 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<div id="f50826e8" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.sort_values(by<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Afghanistan</td>
+<td>1995</td>
+<td>17586073</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Afghanistan</td>
+<td>1996</td>
+<td>18415307</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Afghanistan</td>
+<td>1997</td>
+<td>19021226</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Afghanistan</td>
+<td>1998</td>
+<td>19496836</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Afghanistan</td>
+<td>1999</td>
+<td>19987071</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4040</td>
+<td>Zimbabwe</td>
+<td>2009</td>
+<td>12888918</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4041</td>
+<td>Zimbabwe</td>
+<td>2010</td>
+<td>13076978</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4042</td>
+<td>Zimbabwe</td>
+<td>2011</td>
+<td>13358738</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4043</td>
+<td>Zimbabwe</td>
+<td>2012</td>
+<td>13724317</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4044</td>
+<td>Zimbabwe</td>
+<td>2013</td>
+<td>14149648</td>
+</tr>
+</tbody>
+</table>
+
+<p>4045 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li><p>Join these datasets using <code>merge()</code> with a left join. Since we want to match both country AND year, you’ll need to join on multiple columns. (You may notice that not all rows are matched. You can ignore this for now.)</p></li>
+<li><p>After joining, create a new column called <code>consumption_per_capita</code> that calculates the yearly oil consumption per person (in tonnes).</p></li>
+<li><p>Which country had the highest per capita oil consumption in 1995?</p></li>
+</ol>
+</section>
+</div>
+</section>
+<section id="key-mismatches" class="level2" data-number="21.9">
+<h2 data-number="21.9" class="anchored" data-anchor-id="key-mismatches"><span class="header-section-number">21.9</span> Key Mismatches</h2>
+<p>Often you will need to pre-clean your data when you draw it from different sources before you’re able to join it. This is because there can be inconsistencies in ways that values are recorded.</p>
+<p>To illustrate this, let’s return to our mock patient data from the first lesson. If you recall, we had two dataframes, one called <code>people</code> and the other called <code>test_info</code>. We can recreate these datasets but change <code>Alice</code> to <code>alice</code> in the <code>test_info_diff</code> dataset and keep all other values the same.</p>
+<div id="3a8e7573" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>people</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>45</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="ef280887" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test_info_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>alice</td>
+<td>2023-06-05</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>2023-05-02</td>
+<td>Negative</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now let’s try a <code>merge()</code> on our two datasets.</p>
+<div id="aba8cd1b" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>people.merge(test_info_diff, on<span class="op">=</span><span class="st">'name'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>25</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>32</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>45</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="d9fe1faf" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.merge(people, test_info_diff, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>25</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>32</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>45</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>As we can see, Python didn’t recognize <code>Alice</code> and <code>alice</code> as the same person, and it also could not match <code>Charlie</code> and <code>Charlie</code>! So we lose <code>Alice</code> and <code>Charlie</code> in the <code>left</code> join, and they are dropped in the <code>inner</code> join.</p>
+<p>How can we fix this? We need to ensure that the names in both datasets are in the same format. For this, we can use <code>str.title()</code> to capitalize the first letter of each name.</p>
+<div id="4490862a" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>test_info_diff[<span class="st">'name'</span>] <span class="op">=</span> test_info_diff[<span class="st">'name'</span>].<span class="bu">str</span>.title()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>test_info_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>2023-06-05</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>2023-05-02</td>
+<td>Negative</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="11df25c7" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>people.merge(test_info_diff, on<span class="op">=</span><span class="st">'name'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>25</td>
+<td>2023-06-05</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>32</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Hmm, Charlie is still not matched. It’s hard to see from the printout, but the <code>name</code> column in <code>test_info_diff</code> has an extra space at the end.</p>
+<p>We can spot this better by using <code>.unique()</code> to convert to an array:</p>
+<div id="70780a79" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>test_info_diff[<span class="st">'name'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>array(['Alice', 'Bob', 'Charlie '], dtype=object)</code></pre>
+</div>
+</div>
+<p>Now, we can fix this by using <code>str.strip()</code> to remove the extra space.</p>
+<div id="70315c29" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>test_info_diff[<span class="st">'name'</span>] <span class="op">=</span> test_info_diff[<span class="st">'name'</span>].<span class="bu">str</span>.strip()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>test_info_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>2023-06-05</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>2023-05-02</td>
+<td>Negative</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now we can join the two datasets:</p>
+<div id="99bf2b72" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>people.merge(test_info_diff, on<span class="op">=</span><span class="st">'name'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">test_date</th>
+<th data-quarto-table-cell-role="th">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>25</td>
+<td>2023-06-05</td>
+<td>Negative</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>32</td>
+<td>2023-08-10</td>
+<td>Positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>45</td>
+<td>2023-05-02</td>
+<td>Negative</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Perfect!</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice
+</div>
+</div>
+<section id="practice-q-inner-join-countries" class="level2 callout-body-container callout-body" data-number="21.10">
+<h2 data-number="21.10" class="anchored" data-anchor-id="practice-q-inner-join-countries"><span class="header-section-number">21.10</span> Practice Q: Inner Join Countries</h2>
+<p>The following two datasets contain data for India, Indonesia, and the Philippines. However, an <code>inner</code> join of these datasets only returns 1 row.</p>
+<div id="7f0e12ce" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>asia_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Capital</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>India</td>
+<td>New Delhi</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Indonesia</td>
+<td>Jakarta</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Philippines</td>
+<td>Manila</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="ddbc352f" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>asia_population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Population</th>
+<th data-quarto-table-cell-role="th">Life_Expectancy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>India</td>
+<td>1393000000</td>
+<td>69.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>indonesia</td>
+<td>273500000</td>
+<td>71.7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Philipines</td>
+<td>113000000</td>
+<td>72.7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="119e77d5" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pd.merge(asia_countries, asia_population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Capital</th>
+<th data-quarto-table-cell-role="th">Population</th>
+<th data-quarto-table-cell-role="th">Life_Expectancy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>India</td>
+<td>New Delhi</td>
+<td>1393000000</td>
+<td>69.7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>What are the differences between the values in the key columns that would have to be changed before joining the datasets? Pay attention to capitalization and spelling.</p>
+<p>Now, fix the mismatched values in the <code>Country</code> column and try the join again.</p>
+</section>
+</div>
+</section>
+<section id="key-mismatches-oil-consumption-example" class="level2" data-number="21.11">
+<h2 data-number="21.11" class="anchored" data-anchor-id="key-mismatches-oil-consumption-example"><span class="header-section-number">21.11</span> Key Mismatches: Oil Consumption Example</h2>
+<p>Let’s now return to the oil consumption example.</p>
+<div id="ccad6c2d" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>oil_consumption</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">oil_consump</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>United Arab Emirates</td>
+<td>1995</td>
+<td>20800000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Argentina</td>
+<td>1995</td>
+<td>20300000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Australia</td>
+<td>1995</td>
+<td>36500000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Austria</td>
+<td>1995</td>
+<td>11300000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Azerbaijan</td>
+<td>1995</td>
+<td>6580000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1496</td>
+<td>USA</td>
+<td>2013</td>
+<td>791000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1497</td>
+<td>Uzbekistan</td>
+<td>2013</td>
+<td>2860000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1498</td>
+<td>Venezuela</td>
+<td>2013</td>
+<td>36800000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1499</td>
+<td>Vietnam</td>
+<td>2013</td>
+<td>18200000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1500</td>
+<td>South Africa</td>
+<td>2013</td>
+<td>26700000</td>
+</tr>
+</tbody>
+</table>
+
+<p>1501 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<div id="f2b6bb46" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tidyr_population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Afghanistan</td>
+<td>1995</td>
+<td>17586073</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Afghanistan</td>
+<td>1996</td>
+<td>18415307</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Afghanistan</td>
+<td>1997</td>
+<td>19021226</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Afghanistan</td>
+<td>1998</td>
+<td>19496836</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Afghanistan</td>
+<td>1999</td>
+<td>19987071</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4040</td>
+<td>Zimbabwe</td>
+<td>2009</td>
+<td>12888918</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4041</td>
+<td>Zimbabwe</td>
+<td>2010</td>
+<td>13076978</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4042</td>
+<td>Zimbabwe</td>
+<td>2011</td>
+<td>13358738</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4043</td>
+<td>Zimbabwe</td>
+<td>2012</td>
+<td>13724317</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4044</td>
+<td>Zimbabwe</td>
+<td>2013</td>
+<td>14149648</td>
+</tr>
+</tbody>
+</table>
+
+<p>4045 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<p>Recall that after the join, there were some countries that were not matched.</p>
+<div id="fad269b7" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pd.merge(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    oil_consumption, tidyr_population, on<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>], how<span class="op">=</span><span class="st">"left"</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>).sort_values([<span class="st">"country"</span>, <span class="st">"year"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">oil_consump</th>
+<th data-quarto-table-cell-role="th">population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19</td>
+<td>Algeria</td>
+<td>1995</td>
+<td>8430000</td>
+<td>29315463.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">98</td>
+<td>Algeria</td>
+<td>1996</td>
+<td>8060000</td>
+<td>29845208.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">177</td>
+<td>Algeria</td>
+<td>1997</td>
+<td>7990000</td>
+<td>30345466.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">256</td>
+<td>Algeria</td>
+<td>1998</td>
+<td>8220000</td>
+<td>30820435.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">335</td>
+<td>Algeria</td>
+<td>1999</td>
+<td>8110000</td>
+<td>31276295.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1183</td>
+<td>Vietnam</td>
+<td>2009</td>
+<td>14200000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1262</td>
+<td>Vietnam</td>
+<td>2010</td>
+<td>15300000</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1341</td>
+<td>Vietnam</td>
+<td>2011</td>
+<td>16700000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1420</td>
+<td>Vietnam</td>
+<td>2012</td>
+<td>17000000</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1499</td>
+<td>Vietnam</td>
+<td>2013</td>
+<td>18200000</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>1501 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p>This is because the country names were not in the same format in the two datasets.</p>
+<p>Before attempting to join these datasets, it’s a good idea to check for mismatches in the key columns. This can help you identify any discrepancies that might prevent a successful join.</p>
+<p>First, let’s identify the unique country names in both datasets.</p>
+<div id="8ae137fa" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>oil_countries <span class="op">=</span> <span class="bu">set</span>(oil_consumption[<span class="st">'country'</span>].unique())</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>pop_countries <span class="op">=</span> <span class="bu">set</span>(tidyr_population[<span class="st">'country'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, find countries in <code>oil_consumption</code> that are not in <code>tidyr_population</code>:</p>
+<div id="86cf2085" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>missing_in_pop <span class="op">=</span> oil_countries <span class="op">-</span> pop_countries</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>missing_in_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>{'Hong Kong, China',
+ 'Iran',
+ 'North Macedonia',
+ 'Russia',
+ 'Slovak Republic',
+ 'South Korea',
+ 'Taiwan',
+ 'UK',
+ 'USA',
+ 'Venezuela',
+ 'Vietnam'}</code></pre>
+</div>
+</div>
+<p>And countries in <code>tidyr_population</code> that are not in <code>oil_consumption</code>:</p>
+<div id="3f632b6d" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>missing_in_oil <span class="op">=</span> pop_countries <span class="op">-</span> oil_countries</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>missing_in_oil</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>{'Afghanistan',
+ 'Albania',
+ 'American Samoa',
+ 'Andorra',
+ 'Angola',
+ 'Anguilla',
+ 'Antigua and Barbuda',
+ 'Armenia',
+ 'Aruba',
+ 'Bahamas',
+ 'Bahrain',
+ 'Barbados',
+ 'Belize',
+ 'Benin',
+ 'Bermuda',
+ 'Bhutan',
+ 'Bolivia (Plurinational State of)',
+ 'Bonaire, Saint Eustatius and Saba',
+ 'Bosnia and Herzegovina',
+ 'Botswana',
+ 'British Virgin Islands',
+ 'Brunei Darussalam',
+ 'Burkina Faso',
+ 'Burundi',
+ 'Cabo Verde',
+ 'Cambodia',
+ 'Cameroon',
+ 'Cayman Islands',
+ 'Central African Republic',
+ 'Chad',
+ 'China, Hong Kong SAR',
+ 'China, Macao SAR',
+ 'Comoros',
+ 'Congo',
+ 'Cook Islands',
+ 'Costa Rica',
+ 'Cuba',
+ 'Curaçao',
+ "Côte d'Ivoire",
+ "Democratic People's Republic of Korea",
+ 'Democratic Republic of the Congo',
+ 'Djibouti',
+ 'Dominica',
+ 'Dominican Republic',
+ 'El Salvador',
+ 'Equatorial Guinea',
+ 'Eritrea',
+ 'Ethiopia',
+ 'Fiji',
+ 'French Polynesia',
+ 'Gabon',
+ 'Gambia',
+ 'Georgia',
+ 'Ghana',
+ 'Greenland',
+ 'Grenada',
+ 'Guam',
+ 'Guatemala',
+ 'Guinea',
+ 'Guinea-Bissau',
+ 'Guyana',
+ 'Haiti',
+ 'Honduras',
+ 'Iran (Islamic Republic of)',
+ 'Jamaica',
+ 'Jordan',
+ 'Kenya',
+ 'Kiribati',
+ 'Kyrgyzstan',
+ "Lao People's Democratic Republic",
+ 'Lebanon',
+ 'Lesotho',
+ 'Liberia',
+ 'Libya',
+ 'Madagascar',
+ 'Malawi',
+ 'Maldives',
+ 'Mali',
+ 'Malta',
+ 'Marshall Islands',
+ 'Mauritania',
+ 'Mauritius',
+ 'Micronesia (Federated States of)',
+ 'Monaco',
+ 'Mongolia',
+ 'Montenegro',
+ 'Montserrat',
+ 'Mozambique',
+ 'Myanmar',
+ 'Namibia',
+ 'Nauru',
+ 'Nepal',
+ 'New Caledonia',
+ 'Nicaragua',
+ 'Niger',
+ 'Nigeria',
+ 'Niue',
+ 'Northern Mariana Islands',
+ 'Palau',
+ 'Panama',
+ 'Papua New Guinea',
+ 'Paraguay',
+ 'Puerto Rico',
+ 'Republic of Korea',
+ 'Republic of Moldova',
+ 'Russian Federation',
+ 'Rwanda',
+ 'Saint Kitts and Nevis',
+ 'Saint Lucia',
+ 'Saint Vincent and the Grenadines',
+ 'Samoa',
+ 'San Marino',
+ 'Sao Tome and Principe',
+ 'Senegal',
+ 'Serbia',
+ 'Seychelles',
+ 'Sierra Leone',
+ 'Sint Maarten (Dutch part)',
+ 'Slovakia',
+ 'Solomon Islands',
+ 'Somalia',
+ 'South Sudan',
+ 'Sudan',
+ 'Suriname',
+ 'Swaziland',
+ 'Syrian Arab Republic',
+ 'Tajikistan',
+ 'The Former Yugoslav Republic of Macedonia',
+ 'Timor-Leste',
+ 'Togo',
+ 'Tokelau',
+ 'Tonga',
+ 'Tunisia',
+ 'Turks and Caicos Islands',
+ 'Tuvalu',
+ 'US Virgin Islands',
+ 'Uganda',
+ 'United Kingdom of Great Britain and Northern Ireland',
+ 'United Republic of Tanzania',
+ 'United States of America',
+ 'Uruguay',
+ 'Vanuatu',
+ 'Venezuela (Bolivarian Republic of)',
+ 'Viet Nam',
+ 'Wallis and Futuna Islands',
+ 'West Bank and Gaza Strip',
+ 'Yemen',
+ 'Zambia',
+ 'Zimbabwe'}</code></pre>
+</div>
+</div>
+<p>These differences indicate mismatches in the key columns that need to be addressed before joining.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<section id="set-arithmetic" class="level2 callout-body-container callout-body" data-number="21.12">
+<h2 data-number="21.12" class="anchored" data-anchor-id="set-arithmetic"><span class="header-section-number">21.12</span> Set Arithmetic</h2>
+<p>Consider two sets of the numbers 1:5, and 2:4.</p>
+<div id="a87f3de6" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>set_1 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>set_2 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can check the values in <code>set_1</code> that are not in <code>set_2</code> by using set arithmetic:</p>
+<div id="f04536a3" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>set_1 <span class="op">-</span> set_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>{1, 5}</code></pre>
+</div>
+</div>
+<p>And the values in <code>set_2</code> that are not in <code>set_1</code> by using:</p>
+<div id="ad08ece5" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>set_2 <span class="op">-</span> set_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>set()</code></pre>
+</div>
+</div>
+</section>
+</div>
+<section id="merging-with-country-codes" class="level3" data-number="21.12.1">
+<h3 data-number="21.12.1" class="anchored" data-anchor-id="merging-with-country-codes"><span class="header-section-number">21.12.1</span> Merging with Country Codes</h3>
+<p>To avoid such mismatches, it is often useful to use country codes rather than country names as the key.</p>
+<p>Let’s now add country codes to both datasets and try the join again.</p>
+<div id="733c4741" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How to use country_converter</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cc.convert(<span class="st">"Nigeria"</span>, to<span class="op">=</span><span class="st">'ISO3'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>'NGA'</code></pre>
+</div>
+</div>
+<div id="0a086a8b" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>oil_consumption[<span class="st">'country_code'</span>] <span class="op">=</span> cc.convert(oil_consumption[<span class="st">'country'</span>], to<span class="op">=</span><span class="st">'ISO3'</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>tidyr_population[<span class="st">'country_code'</span>] <span class="op">=</span> cc.convert(tidyr_population[<span class="st">'country'</span>], to<span class="op">=</span><span class="st">'ISO3'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e96588c1" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>oil_pop_code <span class="op">=</span> oil_consumption.merge(tidyr_population, on<span class="op">=</span>[<span class="st">'country_code'</span>, <span class="st">'year'</span>], how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="identifying-remaining-mismatches" class="level3" data-number="21.12.2">
+<h3 data-number="21.12.2" class="anchored"><span class="header-section-number">21.12.2</span> Identifying Remaining Mismatches</h3>
+<p>Let’s see which countries still failed to find a match:</p>
+<div id="45a5528c" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>(oil_pop_code[<span class="st">'country_code'</span>].unique()) <span class="op">-</span> <span class="bu">set</span>(tidyr_population[<span class="st">'country_code'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>{'TWN'}</code></pre>
+</div>
+</div>
+<p>It seems ‘TWN’ (Taiwan) failed to find a match. We can manually look through the <code>tidyr_population</code> dataset to see if we can find it.</p>
+<div id="2ccc84e0" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.query(<span class="st">"country.str.contains('Taiwan')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Just in case there is a mismatch in capitalization, we can also check for ‘taiwan’:</p>
+<div id="45455aa8" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.query(<span class="st">"country.str.contains('taiwan')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>And we can check for ‘China’ since there is currently conflict over whether Taiwan is part of China.</p>
+<div id="39a47744" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.query(<span class="st">"country.str.contains('China')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">783</td>
+<td>China</td>
+<td>1995</td>
+<td>1237531429</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">784</td>
+<td>China</td>
+<td>1996</td>
+<td>1247897092</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">785</td>
+<td>China</td>
+<td>1997</td>
+<td>1257021784</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">786</td>
+<td>China</td>
+<td>1998</td>
+<td>1265222536</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">787</td>
+<td>China</td>
+<td>1999</td>
+<td>1272915272</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">788</td>
+<td>China</td>
+<td>2000</td>
+<td>1280428583</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">789</td>
+<td>China</td>
+<td>2001</td>
+<td>1287890449</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">790</td>
+<td>China</td>
+<td>2002</td>
+<td>1295322020</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">791</td>
+<td>China</td>
+<td>2003</td>
+<td>1302810258</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">792</td>
+<td>China</td>
+<td>2004</td>
+<td>1310414386</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">793</td>
+<td>China</td>
+<td>2005</td>
+<td>1318176835</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">794</td>
+<td>China</td>
+<td>2006</td>
+<td>1326146433</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">795</td>
+<td>China</td>
+<td>2007</td>
+<td>1334343509</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">796</td>
+<td>China</td>
+<td>2008</td>
+<td>1342732604</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">797</td>
+<td>China</td>
+<td>2009</td>
+<td>1351247555</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">798</td>
+<td>China</td>
+<td>2010</td>
+<td>1359821465</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">799</td>
+<td>China</td>
+<td>2011</td>
+<td>1368440300</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">800</td>
+<td>China</td>
+<td>2012</td>
+<td>1377064907</td>
+<td>CHN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">801</td>
+<td>China</td>
+<td>2013</td>
+<td>1385566537</td>
+<td>CHN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">802</td>
+<td>China, Hong Kong SAR</td>
+<td>1995</td>
+<td>6144498</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">803</td>
+<td>China, Hong Kong SAR</td>
+<td>1996</td>
+<td>6275363</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">804</td>
+<td>China, Hong Kong SAR</td>
+<td>1997</td>
+<td>6430651</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">805</td>
+<td>China, Hong Kong SAR</td>
+<td>1998</td>
+<td>6591717</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">806</td>
+<td>China, Hong Kong SAR</td>
+<td>1999</td>
+<td>6732627</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">807</td>
+<td>China, Hong Kong SAR</td>
+<td>2000</td>
+<td>6835301</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">808</td>
+<td>China, Hong Kong SAR</td>
+<td>2001</td>
+<td>6892752</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">809</td>
+<td>China, Hong Kong SAR</td>
+<td>2002</td>
+<td>6912079</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">810</td>
+<td>China, Hong Kong SAR</td>
+<td>2003</td>
+<td>6906631</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">811</td>
+<td>China, Hong Kong SAR</td>
+<td>2004</td>
+<td>6896523</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">812</td>
+<td>China, Hong Kong SAR</td>
+<td>2005</td>
+<td>6896686</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">813</td>
+<td>China, Hong Kong SAR</td>
+<td>2006</td>
+<td>6910671</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">814</td>
+<td>China, Hong Kong SAR</td>
+<td>2007</td>
+<td>6934748</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">815</td>
+<td>China, Hong Kong SAR</td>
+<td>2008</td>
+<td>6967866</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">816</td>
+<td>China, Hong Kong SAR</td>
+<td>2009</td>
+<td>7006930</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">817</td>
+<td>China, Hong Kong SAR</td>
+<td>2010</td>
+<td>7049514</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">818</td>
+<td>China, Hong Kong SAR</td>
+<td>2011</td>
+<td>7096359</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">819</td>
+<td>China, Hong Kong SAR</td>
+<td>2012</td>
+<td>7148493</td>
+<td>HKG</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">820</td>
+<td>China, Hong Kong SAR</td>
+<td>2013</td>
+<td>7203836</td>
+<td>HKG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">821</td>
+<td>China, Macao SAR</td>
+<td>1995</td>
+<td>398459</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">822</td>
+<td>China, Macao SAR</td>
+<td>1996</td>
+<td>405231</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">823</td>
+<td>China, Macao SAR</td>
+<td>1997</td>
+<td>412031</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">824</td>
+<td>China, Macao SAR</td>
+<td>1998</td>
+<td>418810</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">825</td>
+<td>China, Macao SAR</td>
+<td>1999</td>
+<td>425448</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">826</td>
+<td>China, Macao SAR</td>
+<td>2000</td>
+<td>431907</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">827</td>
+<td>China, Macao SAR</td>
+<td>2001</td>
+<td>438080</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">828</td>
+<td>China, Macao SAR</td>
+<td>2002</td>
+<td>444150</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">829</td>
+<td>China, Macao SAR</td>
+<td>2003</td>
+<td>450711</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">830</td>
+<td>China, Macao SAR</td>
+<td>2004</td>
+<td>458542</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">831</td>
+<td>China, Macao SAR</td>
+<td>2005</td>
+<td>468149</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">832</td>
+<td>China, Macao SAR</td>
+<td>2006</td>
+<td>479808</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">833</td>
+<td>China, Macao SAR</td>
+<td>2007</td>
+<td>493206</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">834</td>
+<td>China, Macao SAR</td>
+<td>2008</td>
+<td>507528</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">835</td>
+<td>China, Macao SAR</td>
+<td>2009</td>
+<td>521617</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">836</td>
+<td>China, Macao SAR</td>
+<td>2010</td>
+<td>534626</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">837</td>
+<td>China, Macao SAR</td>
+<td>2011</td>
+<td>546278</td>
+<td>MAC</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">838</td>
+<td>China, Macao SAR</td>
+<td>2012</td>
+<td>556783</td>
+<td>MAC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">839</td>
+<td>China, Macao SAR</td>
+<td>2013</td>
+<td>566375</td>
+<td>MAC</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>It seems that Taiwan is not in the <code>tidyr_population</code> dataset.</p>
+<p>In such a case, you might then try to find a dataset containing population data for Taiwan and add it to the <code>tidyr_population</code> dataset. But we’ll leave this for you to figure out.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice
+</div>
+</div>
+<section id="practice-q-merging-oil-consumption-with-geographic-data" class="level2 callout-body-container callout-body" data-number="21.13">
+<h2 data-number="21.13" class="anchored" data-anchor-id="practice-q-merging-oil-consumption-with-geographic-data"><span class="header-section-number">21.13</span> Practice Q: Merging Oil Consumption with Geographic Data</h2>
+<p>Run the code to view the two datasets.</p>
+<p>The first, <code>oil_2012</code>, records the oil consumption for the year 2012:</p>
+<div id="2e8744ab" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>oil_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">oil_consump</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1343</td>
+<td>United Arab Emirates</td>
+<td>35200000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1344</td>
+<td>Argentina</td>
+<td>28600000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1345</td>
+<td>Australia</td>
+<td>46100000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1346</td>
+<td>Austria</td>
+<td>11900000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1347</td>
+<td>Azerbaijan</td>
+<td>4170000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1417</td>
+<td>USA</td>
+<td>778000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1418</td>
+<td>Uzbekistan</td>
+<td>3030000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1419</td>
+<td>Venezuela</td>
+<td>37200000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1420</td>
+<td>Vietnam</td>
+<td>17000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1421</td>
+<td>South Africa</td>
+<td>26300000</td>
+</tr>
+</tbody>
+</table>
+
+<p>79 rows × 2 columns</p>
+</div>
+</div>
+</div>
+<p>And <code>country_regions</code> lists countries along with their respective regions and continents:</p>
+<div id="4429c189" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>country_regions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">continent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Afghanistan</td>
+<td>AFG</td>
+<td>Asia</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Albania</td>
+<td>ALB</td>
+<td>Europe</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Algeria</td>
+<td>DZA</td>
+<td>Africa</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>American Samoa</td>
+<td>ASM</td>
+<td>Oceania</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Andorra</td>
+<td>AND</td>
+<td>Europe</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">237</td>
+<td>Western Sahara</td>
+<td>ESH</td>
+<td>Africa</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">238</td>
+<td>Yemen</td>
+<td>YEM</td>
+<td>Asia</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">239</td>
+<td>Zambia</td>
+<td>ZMB</td>
+<td>Africa</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">240</td>
+<td>Zimbabwe</td>
+<td>ZWE</td>
+<td>Africa</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">241</td>
+<td>Åland Islands</td>
+<td>ALA</td>
+<td>Europe</td>
+</tr>
+</tbody>
+</table>
+
+<p>242 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<p>Join the two datasets using the country codes as the key. Then find the countries with the highest oil consumption in each continent. As a sanity check, your answer should include the US &amp; China.</p>
+<div id="5dd71bb7" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>oil_2012[<span class="st">'country_code'</span>] <span class="op">=</span> cc.convert(oil_2012[<span class="st">'country'</span>], to<span class="op">=</span><span class="st">'ISO3'</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>oil_2012_regions <span class="op">=</span> oil_2012.merge(country_regions, on<span class="op">=</span><span class="st">'country_code'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>max_oil_by_continent <span class="op">=</span> oil_2012_regions.loc[</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    oil_2012_regions.groupby(<span class="st">'continent'</span>)[<span class="st">'oil_consump'</span>].idxmax()</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>max_oil_by_continent[[<span class="st">'country'</span>, <span class="st">'continent'</span>, <span class="st">'oil_consump'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">continent</th>
+<th data-quarto-table-cell-role="th">oil_consump</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">21</td>
+<td>Egypt</td>
+<td>Africa</td>
+<td>35300000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">74</td>
+<td>USA</td>
+<td>Americas</td>
+<td>778000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">13</td>
+<td>China</td>
+<td>Asia</td>
+<td>484000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">62</td>
+<td>Russia</td>
+<td>Europe</td>
+<td>145000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Australia</td>
+<td>Oceania</td>
+<td>46100000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+</section>
+<section id="wrap-up" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> Wrap Up!</h1>
+<p>In this lesson, we explored several advanced concepts related to joining dataframes in Python:</p>
+<ol type="1">
+<li><p><strong>One-to-Many Relationships</strong>: We learned how joins work when one observation in a dataframe corresponds to multiple observations in another dataframe, and how the data from the “one” side gets duplicated for each matching row on the “many” side.</p></li>
+<li><p><strong>Multi-Key Joins</strong>: We discovered how to join dataframes using multiple columns as keys (like combining street names with time of day), which is essential for maintaining data integrity when a single column isn’t enough to uniquely identify observations.</p></li>
+<li><p><strong>Key Mismatches</strong>: We explored common challenges in joining data from different sources, including:</p>
+<ul>
+<li>Case sensitivity issues (e.g., “Alice” vs “alice”)</li>
+<li>Trailing spaces</li>
+<li>Spelling variations</li>
+<li>Using standardized codes (like country codes) to ensure consistent matching</li>
+</ul></li>
+</ol>
+<p>These skills are crucial for real-world data analysis, where data often comes from multiple sources and requires careful cleaning and preparation before it can be effectively combined.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./p_untangled_joining_1.html" class="pagination-link" aria-label="Introduction to Joining Datasets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Introduction to Joining Datasets</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./p_untangled_pivoting.html" class="pagination-link" aria-label="Reshaping data">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Book created by <a href="https://thegraphcourses.org/">The GRAPH Courses</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_joining_2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -2,35 +2,20 @@
 title: 'Joining 2: One-to-Many, Multi-Key Joins & Key Mismatches'
 ---
 
+## Packages
+
 ```{python}
-# | echo: false
-# | message: false
-# | warning: false
-# Load packages
 import pandas as pd
-import numpy as np
-from country_converter import CountryConverter
+import country_converter as cc
 ```
 
-## Introduction
-
-Now that we have a solid grasp on the different types of joins and how they work, we can look at how to manage more complex joins and messier data.
-
-
-## Learning Objectives
-
--   You understand the concept of a one-to-many join
-
--   You know how to join on multiple key columns
-
--   You know how to check for mismatched values between dataframes
-
-
-## Datasets 
+## Data
 
 Run the code below to load and define the datasets to be used in this lesson.
 
 ```{python}
+
+
 # Load datasets
 oil_consumption = pd.read_csv(
     "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/oil_consumption.csv"
@@ -42,11 +27,10 @@ country_regions = pd.read_csv(
     "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/country_continent_data.csv"
 )
 
-cc = CountryConverter()
 
-
-oil_2012 = oil_consumption[oil_consumption["year"] == 2012].copy()
-oil_2012["country_code"] = cc.convert(oil_2012["country"], to="ISO3")
+oil_2012 = (
+    oil_consumption[oil_consumption["year"] == 2012].copy().drop(columns=["year"])
+)
 
 # people data
 people = pd.DataFrame({"name": ["Alice", "Bob", "Charlie"], "age": [25, 32, 45]})
@@ -143,24 +127,23 @@ asia_population = pd.DataFrame(
 )
 ```
 
-# Packages
+## Introduction
 
-Please load the packages needed for this lesson with the code below:
+Now that we have a solid grasp on the different types of joins and how they work, we can look at how to manage more complex joins and messier data.
 
-```{python}
-# | warning: false
-# | message: false
-# | echo: true
-import pandas as pd
-import numpy as np
-from country_converter import CountryConverter
-cc = CountryConverter()
-```
 
-## One-to-many relationships
+## Learning Objectives
+
+-   You understand the concept of a one-to-many join
+
+-   You know how to join on multiple key columns
+
+-   You know how to check for mismatched values between dataframes
+
+
+## One-to-many joins
 
 So far, we have primarily looked at one-to-one joins, where an observation in one dataframe corresponded to only one observation in the other dataframe. In a one-to-many join, an observation in one dataframe corresponds to multiple observations in the other dataframe.
-
 
 To illustrate a one-to-many join, let's return to our patients and their COVID test data. Let's imagine that in our dataset, `Alice` and `Xavier` got tested multiple times for COVID. We can add two more rows to our `test_info` dataframe with their new test information:
 
@@ -175,14 +158,14 @@ test_info_many
 Next, let's take a look at what happens when we use a `merge()` with `people` as the left dataframe:
 
 ```{python}
-people.merge(test_info_many, on='name', how='left')
+pd.merge(people, test_info_many, on="name", how="left")
 ```
 
 What's happened above? Basically, when you perform a one-to-many join, the data from the "one" side are duplicated for each matching row of the "many" side.
 
 ::: {.callout-tip title="Practice"}
 
-### Practice Q: Merging One-to-Many Crop Yields
+## Practice Q: Merging One-to-Many Crop Yields
 
 Run the code below to print the two small dataframes:
 
@@ -194,7 +177,7 @@ farm_info
 crop_yields
 ```
 
-If you use a `merge()` to join these datasets with a left join, how many rows will be in the final dataframe? Try to figure it out and then perform the join to see if you were right.
+If you use a `merge()` to join these datasets, how many rows will be in the final dataframe? Try to figure it out and then perform the join to see if you were right.
 
 :::
 
@@ -214,7 +197,7 @@ pollution_levels
 We want to join the two datasets so that each street has two rows: one for the 9am time point and one for the 2pm time point. To do this, our first instinct may be to join the datasets *only* on `street_name`. Let's try it out and see what happens:
 
 ```{python}
-traffic_flow.merge(pollution_levels, on='street_name', how='left')
+pd.merge(traffic_flow, pollution_levels, on="street_name", how="left")
 ```
 
 As we can see, this isn't what we wanted at all! We end up with duplicated rowsâ€”now we have **four rows** for each street.
@@ -222,14 +205,14 @@ As we can see, this isn't what we wanted at all! We end up with duplicated rowsâ
 What we want to do is match on BOTH `street_name` AND `time_of_day`. To do this, we need to tell Python to match on two columns by specifying both column names in a list.
 
 ```{python}
-traffic_flow.merge(pollution_levels, on=['street_name', 'time_of_day'], how='left')
+pd.merge(traffic_flow, pollution_levels, on=["street_name", "time_of_day"])
 ```
 
 Now we have the correct number of rows! We can directly see the vehicle count and PM2.5 level for each street at each time of day.
 
 ::: {.callout-tip title="Practice"}
 
-### Practice Q: Calculate Oil Consumption per Capita
+## Practice Q: Calculate Oil Consumption per Capita
 
 We have two datasets containing information about countries:
 
@@ -238,18 +221,18 @@ We have two datasets containing information about countries:
 
 ```{python}
 # View the datasets
-oil_consumption
+oil_consumption.sort_values(by=["country", "year"])
 ```
 
 ```{python}
-tidyr_population.sort_values(by=['country', 'year'])
+tidyr_population.sort_values(by=["country", "year"])
 ```
 
-1. Join these datasets using a `merge()` with a left join. Since we want to match both country AND year, you'll need to join on multiple columns. (You may notice that not all rows are matched. You can ignore this for now.)
+1. Join these datasets using `merge()` with a left join. Since we want to match both country AND year, you'll need to join on multiple columns. (You may notice that not all rows are matched. You can ignore this for now.)
 
 2. After joining, create a new column called `consumption_per_capita` that calculates the yearly oil consumption per person (in tonnes).
 
-3. Which country had the highest per capita oil consumption in 2013?
+3. Which country had the highest per capita oil consumption in 1995?
 
 ```{python}
 # | echo: false
@@ -260,8 +243,8 @@ oil_pop = oil_consumption.merge(tidyr_population, on=["country", "year"], how="l
 oil_pop["consumption_per_capita"] = (oil_pop["oil_consump"] * 1000) / oil_pop[
     "population"
 ]
-oil_pop_2013 = oil_pop.query("year == 2013")
-oil_pop_2013.sort_values(by="consumption_per_capita", ascending=False).head(1)
+oil_pop_1995 = oil_pop.query("year == 1995")
+oil_pop_1995.sort_values(by="consumption_per_capita", ascending=False).head(1)
 ```
 
 :::
@@ -287,12 +270,12 @@ people.merge(test_info_diff, on='name', how='left')
 ```
 
 ```{python}
-people.merge(test_info_diff, on='name', how='inner')
+pd.merge(people, test_info_diff, on="name", how="left")
 ```
 
 As we can see, Python didn't recognize `Alice` and `alice` as the same person, and it also could not match `Charlie` and `Charlie `! So we lose `Alice` and `Charlie` in the `left` join, and they are dropped in the `inner` join.
 
-How can we fix this? We need to ensure that the names in both datasets are in title case, with a capitalized first letter. For this we can use `str.title()`. Let's try it:
+How can we fix this? We need to ensure that the names in both datasets are in the same format. For this, we can use `str.title()` to capitalize the first letter of each name.
 
 ```{python}
 test_info_diff['name'] = test_info_diff['name'].str.title()
@@ -303,7 +286,15 @@ test_info_diff
 people.merge(test_info_diff, on='name', how='inner')
 ```
 
-Hmm, Charlie is still not matched. It's hard to see from the printout, but the `name` column in `test_info_diff` has an extra space at the end. We can fix this by using `str.strip()`.
+Hmm, Charlie is still not matched. It's hard to see from the printout, but the `name` column in `test_info_diff` has an extra space at the end. 
+
+We can spot this better by using `.unique()` to convert to an array:
+
+```{python}
+test_info_diff['name'].unique()
+```
+
+Now, we can fix this by using `str.strip()` to remove the extra space.
 
 ```{python}
 test_info_diff['name'] = test_info_diff['name'].str.strip()
@@ -320,9 +311,9 @@ Perfect!
 
 ::: {.callout-tip title="Practice"}
 
-## Practice Q: Inner Join countries
+## Practice Q: Inner Join Countries
 
-The following two datasets contain data for India, Indonesia, and the Philippines. However, an `inner` join of these datasets produces no output. What are the differences between the values in the key columns that would have to be changed before joining the datasets? Pay attention to capitalization and spelling.
+The following two datasets contain data for India, Indonesia, and the Philippines. However, an `inner` join of these datasets only returns 1 row.
 
 ```{python}
 asia_countries
@@ -333,22 +324,16 @@ asia_population
 ```
 
 ```{python}
-asia_countries.merge(asia_population, on='Country')
+pd.merge(asia_countries, asia_population)
 ```
+
+What are the differences between the values in the key columns that would have to be changed before joining the datasets? Pay attention to capitalization and spelling.
 
 Now, fix the mismatched values in the `Country` column and try the join again.
 
-```{python}
-# | echo: false
-# | eval: false
-# Solution
-asia_population["Country"] = asia_population["Country"].str.title().replace({"Philipines": "Philippines"})
-asia_countries.merge(asia_population, on="Country")
-```
-
 :::
 
-## Key Mismatches: A Real Dataset Example
+## Key Mismatches: Oil Consumption Example
 
 Let's now return to the oil consumption example.
 
@@ -360,59 +345,127 @@ oil_consumption
 tidyr_population
 ```
 
-Recall that we had some issues with the `tidyr_population` dataset because the country names were not in the same format as in the `oil_consumption` dataset.
+Recall that after the join, there were some countries that were not matched. 
 
-Let's see which countries failed to find a match in the `tidyr_population` dataset.
 
 ```{python}
-oil_pop = oil_consumption.merge(tidyr_population, on=['country', 'year'], how='left')
-missing_pop = oil_pop.query('population.isna()')
-missing_pop['country'].unique()
+pd.merge(
+    oil_consumption, tidyr_population, on=["country", "year"], how="left"
+).sort_values(["country", "year"])
 ```
 
-It is hard to be sure whether this is because the population data is not available for these countries or because the country names are not spelled the same way in the two datasets.
+
+This is because the country names were not in the same format in the two datasets.
+
+Before attempting to join these datasets, it's a good idea to check for mismatches in the key columns. This can help you identify any discrepancies that might prevent a successful join.
+
+First, let's identify the unique country names in both datasets.
+
+```{python}
+oil_countries = set(oil_consumption['country'].unique())
+pop_countries = set(tidyr_population['country'].unique())
+```
+
+Now, find countries in `oil_consumption` that are not in `tidyr_population`:
+
+```{python}
+missing_in_pop = oil_countries - pop_countries
+missing_in_pop
+```
+
+And countries in `tidyr_population` that are not in `oil_consumption`:
+
+```{python}
+missing_in_oil = pop_countries - oil_countries
+missing_in_oil
+```
+
+These differences indicate mismatches in the key columns that need to be addressed before joining.
+
+
+::: {.callout-note title="Side Note"}
+
+## Set Arithmetic
+
+Consider two sets of the numbers 1:5, and 2:4.
+
+```{python}
+set_1 = set([1, 2, 3, 4, 5])
+set_2 = set([2, 3, 4])
+```
+
+We can check the values in `set_1` that are not in `set_2` by using set arithmetic:
+
+```{python}
+set_1 - set_2
+```
+
+And the values in `set_2` that are not in `set_1` by using:
+
+
+```{python}
+set_2 - set_1
+```
+
+:::
+
+### Merging with Country Codes
 
 To avoid such mismatches, it is often useful to use country codes rather than country names as the key.
 
 Let's now add country codes to both datasets and try the join again.
 
 ```{python}
-oil_consumption['country_code'] = cc.pandas_convert(oil_consumption['country'], to='ISO3')
-tidyr_population['country_code'] = cc.pandas_convert(tidyr_population['country'], to='ISO3')
+# How to use country_converter
+cc.convert("Nigeria", to='ISO3')
+```
+
+```{python}
+oil_consumption['country_code'] = cc.convert(oil_consumption['country'], to='ISO3')
+tidyr_population['country_code'] = cc.convert(tidyr_population['country'], to='ISO3')
 ```
 
 ```{python}
 oil_pop_code = oil_consumption.merge(tidyr_population, on=['country_code', 'year'], how='left')
 ```
 
+### Identifying Remaining Mismatches
+
 Let's see which countries still failed to find a match:
 
 ```{python}
-missing_pop_code = oil_pop_code.query('population.isna()')
-missing_pop_code['country_code'].unique()
+set(oil_pop_code['country_code'].unique()) - set(tidyr_population['country_code'].unique())
 ```
 
-It seems 'TWN' (Taiwan) failed to find a match.
-
-Let's make sure that Taiwan is in the `tidyr_population` dataset.
+It seems 'TWN' (Taiwan) failed to find a match. We can manually look through the `tidyr_population` dataset to see if we can find it.
 
 ```{python}
-tidyr_population[tidyr_population['country_code'] == 'TWN']
+tidyr_population.query("country.str.contains('Taiwan')")
 ```
+
+Just in case there is a mismatch in capitalization, we can also check for 'taiwan':
 
 ```{python}
-tidyr_population[tidyr_population['country'].str.contains('Taiwan')]
+tidyr_population.query("country.str.contains('taiwan')")
 ```
 
-Nope. We don't have it.
+And we can check for 'China' since there is currently conflict over whether Taiwan is part of China.
+
+```{python}
+tidyr_population.query("country.str.contains('China')")
+```
+
+It seems that Taiwan is not in the `tidyr_population` dataset. 
+
+In such a case, you might then try to find a dataset containing population data for Taiwan and add it to the `tidyr_population` dataset. But we'll leave this for you to figure out.
 
 ::: {.callout-tip title="Practice"}
 
-### Practice Q: Merging Oil Consumption with Geographic Data
+## Practice Q: Merging Oil Consumption with Geographic Data
 
 Run the code to view the two datasets.
 
-The first, `oil_2012` records the oil consumption for the year 2012:
+The first, `oil_2012`, records the oil consumption for the year 2012:
 
 ```{python}
 oil_2012
@@ -427,21 +480,32 @@ country_regions
 Join the two datasets using the country codes as the key. Then find the countries with the highest oil consumption in each continent. As a sanity check, your answer should include the US & China.
 
 ```{python}
-# | echo: false
-# | eval: false
-# Solution
+oil_2012['country_code'] = cc.convert(oil_2012['country'], to='ISO3')
 
-oil_2012_regions = oil_2012.merge(country_regions, on="country_code", how="left")
+
+oil_2012_regions = oil_2012.merge(country_regions, on='country_code', how='left')
+
 max_oil_by_continent = oil_2012_regions.loc[
-    oil_2012_regions.groupby("continent")["oil_consump"].idxmax()
+    oil_2012_regions.groupby('continent')['oil_consump'].idxmax()
 ]
-max_oil_by_continent[["country", "continent", "oil_consump"]]
+
+max_oil_by_continent[['country', 'continent', 'oil_consump']]
 ```
 
 :::
 
 # Wrap Up!
 
-In this lesson, we delved into the intricacies of data cleaning before a join, focusing on how to detect and correct mismatches or inconsistencies in key columns. We also highlighted the impact of one-to-many relationships in joining dataframes, showing how data from the "one" side is duplicated for each matching row of the "many" side. Finally, we demonstrated how to join dataframes using multiple key columns.
+In this lesson, we explored several advanced concepts related to joining dataframes in Python:
 
-As we conclude this lesson, we hope that you have gained a deeper understanding of the importance and utility of joining dataframes in Python.
+1. **One-to-Many Relationships**: We learned how joins work when one observation in a dataframe corresponds to multiple observations in another dataframe, and how the data from the "one" side gets duplicated for each matching row on the "many" side.
+
+2. **Multi-Key Joins**: We discovered how to join dataframes using multiple columns as keys (like combining street names with time of day), which is essential for maintaining data integrity when a single column isn't enough to uniquely identify observations.
+
+3. **Key Mismatches**: We explored common challenges in joining data from different sources, including:
+   - Case sensitivity issues (e.g., "Alice" vs "alice")
+   - Trailing spaces
+   - Spelling variations
+   - Using standardized codes (like country codes) to ensure consistent matching
+
+These skills are crucial for real-world data analysis, where data often comes from multiple sources and requires careful cleaning and preparation before it can be effectively combined.

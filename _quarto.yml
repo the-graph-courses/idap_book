@@ -46,6 +46,8 @@ book:
         - p_untangled_conditional_transforms.qmd
         - p_untangled_groupby_agg.qmd
         - p_untangled_other_grouped_operations.qmd
+        - p_untangled_joining_1.qmd
+        - p_untangled_joining_2.qmd
         - p_untangled_pivoting.qmd
     - part: "Using LLMs in Python"
       chapters:

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>22&nbsp; Reshaping data – Introduction to Data Science with Python</title>
+<title>22&nbsp; Reshaping Data with melt() and pivot() – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_pivoting.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_pivoting.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping Data with melt() and pivot()</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -325,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping Data with melt() and pivot()</span></span></a>
   </div>
 </li>
       </ul>
@@ -357,23 +357,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro"><span class="header-section-number">22.1</span> Intro</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">22.2</span> Learning Objectives</a></li>
-  <li><a href="#what-do-wide-and-long-mean" id="toc-what-do-wide-and-long-mean" class="nav-link" data-scroll-target="#what-do-wide-and-long-mean"><span class="header-section-number">22.3</span> What do wide and long mean?</a></li>
-  <li><a href="#when-should-you-use-wide-vs-long-data" id="toc-when-should-you-use-wide-vs-long-data" class="nav-link" data-scroll-target="#when-should-you-use-wide-vs-long-data"><span class="header-section-number">22.4</span> When should you use wide vs long data?</a></li>
-  <li><a href="#pivoting-wide-to-long" id="toc-pivoting-wide-to-long" class="nav-link" data-scroll-target="#pivoting-wide-to-long"><span class="header-section-number">22.5</span> Pivoting wide to long</a></li>
-  <li><a href="#pivoting-long-to-wide" id="toc-pivoting-long-to-wide" class="nav-link" data-scroll-target="#pivoting-long-to-wide"><span class="header-section-number">22.6</span> Pivoting long to wide</a></li>
-  <li><a href="#pivoting-can-be-hard" id="toc-pivoting-can-be-hard" class="nav-link" data-scroll-target="#pivoting-can-be-hard"><span class="header-section-number">22.7</span> Pivoting can be hard</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">22.8</span> Wrap up</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages"><span class="header-section-number">22.1</span> Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">22.2</span> Data</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">22.3</span> Introduction</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">22.4</span> Learning Objectives</a></li>
+  <li><a href="#what-do-wide-and-long-mean" id="toc-what-do-wide-and-long-mean" class="nav-link" data-scroll-target="#what-do-wide-and-long-mean"><span class="header-section-number">22.5</span> What Do “Wide” and “Long” Mean?</a></li>
+  <li><a href="#when-should-you-use-wide-vs.-long-data" id="toc-when-should-you-use-wide-vs.-long-data" class="nav-link" data-scroll-target="#when-should-you-use-wide-vs.-long-data"><span class="header-section-number">22.7</span> When Should You Use Wide vs.&nbsp;Long Data?</a></li>
+  <li><a href="#from-wide-to-long" id="toc-from-wide-to-long" class="nav-link" data-scroll-target="#from-wide-to-long"><span class="header-section-number">22.8</span> From Wide to Long</a></li>
+  <li><a href="#from-long-to-wide" id="toc-from-long-to-wide" class="nav-link" data-scroll-target="#from-long-to-wide"><span class="header-section-number">22.11</span> From Long to Wide</a></li>
+  <li><a href="#reshaping-can-be-hard" id="toc-reshaping-can-be-hard" class="nav-link" data-scroll-target="#reshaping-can-be-hard"><span class="header-section-number">22.14</span> Reshaping Can Be Hard</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">22.15</span> Wrap-Up</a></li>
+  <li><a href="#solution-q-wide-or-long" id="toc-solution-q-wide-or-long" class="nav-link" data-scroll-target="#solution-q-wide-or-long"><span class="header-section-number">22.16</span> Solution Q: Wide or Long?</a></li>
+  <li><a href="#solution-q-temperatures-to-long" id="toc-solution-q-temperatures-to-long" class="nav-link" data-scroll-target="#solution-q-temperatures-to-long"><span class="header-section-number">22.17</span> Solution Q: Temperatures to Long</a></li>
+  <li><a href="#solution-q-eurostat-births-to-long" id="toc-solution-q-eurostat-births-to-long" class="nav-link" data-scroll-target="#solution-q-eurostat-births-to-long"><span class="header-section-number">22.18</span> Solution Q: Eurostat Births to Long</a></li>
+  <li><a href="#solution-q-temperatures-back-to-wide" id="toc-solution-q-temperatures-back-to-wide" class="nav-link" data-scroll-target="#solution-q-temperatures-back-to-wide"><span class="header-section-number">22.19</span> Solution Q: Temperatures back to Wide</a></li>
+  <li><a href="#solution-q-population-to-wide" id="toc-solution-q-population-to-wide" class="nav-link" data-scroll-target="#solution-q-population-to-wide"><span class="header-section-number">22.20</span> Solution Q: Population to Wide</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/the-graph-courses/idap_book/edit/main/p_untangled_pivoting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/the-graph-courses/idap_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_pivoting.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_pivoting.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping Data with melt() and pivot()</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping data</span></h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping Data with melt() and pivot()</span></h1>
 </div>
 
 
@@ -390,29 +397,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="c6390a67" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pd.options.display.max_rows <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="packages" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">22.1</span> Packages</h2>
+<div id="1116061e" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="intro" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="intro"><span class="header-section-number">22.1</span> Intro</h2>
-<p>Pivoting or reshaping is a data manipulation technique that involves re-orienting the rows and columns of a dataset. This is often required to make data easier to analyze or understand.</p>
-<p>In this lesson, we will cover how to effectively pivot data using <code>pandas</code> functions.</p>
 </section>
-<section id="learning-objectives" class="level2" data-number="22.2">
-<h2 data-number="22.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">22.2</span> Learning Objectives</h2>
+<section id="data" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="data"><span class="header-section-number">22.2</span> Data</h2>
+<p>Run the code below to load and define the datasets to be used in this lesson.</p>
+<div id="4bf133c6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Temperatures dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"country"</span>: [<span class="st">"Sweden"</span>, <span class="st">"Denmark"</span>, <span class="st">"Norway"</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"1994"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"1995"</span>: [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"1996"</span>: [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fuels Wide dataset</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>fuels_wide <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/oil_per_capita_wide.csv"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Eurostat Births Wide dataset</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>euro_births_wide <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/euro_births_wide.csv"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Contracts dataset</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>contracts <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/chicago_contracts_20_23.csv"</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Population dataset</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tidyr_population.csv"</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="introduction" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="introduction"><span class="header-section-number">22.3</span> Introduction</h2>
+<p>Reshaping is a data manipulation technique that involves re-orienting the rows and columns of a dataset. This is often required to make data easier to analyze or understand.</p>
+<p>In this lesson, we will cover how to effectively reshape data using <code>pandas</code> functions.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">22.4</span> Learning Objectives</h2>
 <ul>
-<li>Understand what wide data format is, and what long data format is.</li>
-<li>Learn how to pivot long data to wide data using <code>melt()</code>.</li>
-<li>Learn how to pivot wide data to long data using <code>pivot()</code>.</li>
+<li>Understand what wide data format is and what long data format is.</li>
+<li>Learn how to reshape wide data to long data using <code>melt()</code>.</li>
+<li>Learn how to reshape long data to wide data using <code>pivot()</code>.</li>
 </ul>
 </section>
-<section id="what-do-wide-and-long-mean" class="level2" data-number="22.3">
-<h2 data-number="22.3" class="anchored" data-anchor-id="what-do-wide-and-long-mean"><span class="header-section-number">22.3</span> What do wide and long mean?</h2>
-<p>The terms wide and long are best understood in the context of example datasets. Let’s take a look at some now.</p>
+<section id="what-do-wide-and-long-mean" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="what-do-wide-and-long-mean"><span class="header-section-number">22.5</span> What Do “Wide” and “Long” Mean?</h2>
+<p>The terms “wide” and “long” are best understood in the context of example datasets. Let’s take a look at some now.</p>
 <p>Imagine that you have three products for which you collect sales data over three months.</p>
-<p>You can record the data in a wide format like this:</p>
+<p><strong>Wide Format:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -444,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p>Or you could record the data in a long format as so:</p>
+<p><strong>Long Format:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -502,11 +545,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Take a minute to study the two datasets to make sure you understand the relationship between them.</p>
-<p>In the wide dataset, each observational unit (each product) occupies only one row. And each measurement (sales in Jan, Feb, Mar) is in a separate column.</p>
-<p>In the long dataset, on the other hand, each observational unit (each product) occupies multiple rows, with one row for each measurement.</p>
+<p>In the <strong>wide dataset</strong>, each observational unit (each product) occupies only one row, and each measurement (sales in Jan, Feb, Mar) is in a separate column.</p>
+<p>In the <strong>long dataset</strong>, on the other hand, each observational unit (each product) occupies multiple rows, with one row for each measurement.</p>
 <hr>
-<p>Here is another example with mock data, in which the observational units are countries:</p>
-<p>Long format:</p>
+<p>Here’s another example with mock data, where the observational units are countries:</p>
+<p><strong>Long Format:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -538,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Wide format:</p>
+<p><strong>Wide Format:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -561,9 +604,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p>The examples above are both time-series datasets, because the measurements are repeated across time. But the concepts of long and wide are relevant to other kinds of data too.</p>
+<p>The examples above are both time-series datasets because the measurements are repeated across time. But the concepts of wide and long are relevant to other kinds of data too.</p>
 <p>Consider the example below, showing the number of employees in different departments of three companies:</p>
-<p>Wide format:</p>
+<p><strong>Wide Format:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -594,7 +637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Long format:</p>
+<p><strong>Long Format:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -651,8 +694,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>In the wide dataset, again, each observational unit (each company) occupies only one row, with the repeated measurements for that unit (number of employees in different departments) spread across multiple columns.</p>
-<p>In the long dataset, each observational unit is spread over multiple lines.</p>
+<p>In the wide dataset, each observational unit (each company) occupies only one row, with the repeated measurements (number of employees in different departments) spread across multiple columns.</p>
+<p>In the long dataset, each observational unit is spread over multiple rows.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Vocab">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -663,8 +706,8 @@ Vocab
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The “observational units”, sometimes called “statistical units” of a dataset are the primary entities or items described by the columns in that dataset.</p>
-<p>In the first example, the observational/statistical units were products; in the second example, countries, and in the third example, companies.</p>
+<p>The <strong>observational units</strong>, sometimes called <strong>statistical units</strong>, are the primary entities or items described by the dataset.</p>
+<p>In the first example, the observational units were products; in the second example, countries; and in the third example, companies.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Practice">
@@ -676,21 +719,12 @@ Vocab
 Practice
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Consider the mock dataset created below:</p>
-<div id="521a0066" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"country"</span>: [<span class="st">"Sweden"</span>, <span class="st">"Denmark"</span>, <span class="st">"Norway"</span>],</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"avgtemp.1994"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"avgtemp.1995"</span>: [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"avgtemp.1996"</span>: [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>],</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>temperatures</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<section id="practice-q-wide-or-long" class="level2 callout-body-container callout-body" data-number="22.6">
+<h2 data-number="22.6" class="anchored" data-anchor-id="practice-q-wide-or-long"><span class="header-section-number">22.6</span> Practice Q: Wide or Long?</h2>
+<p>Consider the <code>temperatures</code> dataset created earlier:</p>
+<div id="c3236537" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>temperatures</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -699,9 +733,9 @@ Practice
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">country</th>
-<th data-quarto-table-cell-role="th">avgtemp.1994</th>
-<th data-quarto-table-cell-role="th">avgtemp.1995</th>
-<th data-quarto-table-cell-role="th">avgtemp.1996</th>
+<th data-quarto-table-cell-role="th">1994</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
 </tr>
 </thead>
 <tbody>
@@ -733,25 +767,25 @@ Practice
 </div>
 </div>
 <p>Is this data in a wide or long format?</p>
-<div id="24937cef" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<div id="3bfded6b" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The data is in a wide format.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="when-should-you-use-wide-vs-long-data" class="level2" data-number="22.4">
-<h2 data-number="22.4" class="anchored" data-anchor-id="when-should-you-use-wide-vs-long-data"><span class="header-section-number">22.4</span> When should you use wide vs long data?</h2>
-<p>The truth is: it really depends on what you want to do! The wide format is great for <em>displaying data</em> because it’s easy to visually compare values this way. Long data is best for some data analysis tasks, like grouping and plotting.</p>
-<p>It will therefore be essential for you to know how to switch from one format to the other easily. Switching from the wide to the long format, or the other way around, is called <strong>pivoting</strong>.</p>
+</div>
 </section>
-<section id="pivoting-wide-to-long" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="pivoting-wide-to-long"><span class="header-section-number">22.5</span> Pivoting wide to long</h2>
-<p>To practice pivoting from a wide to a long format, we’ll consider data from Our World in Data on fossil fuel consumption per capita. You can find the data <a href="https://ourworldindata.org/grapher/fossil-fuels-per-capita">here</a>.</p>
-<p>Below, we read in and view this data on fossil fuel consumption per capita:</p>
-<div id="67454373" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fuels_wide <span class="op">=</span> pd.read_csv(<span class="st">"data/oil_per_capita_wide.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fuels_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<section id="when-should-you-use-wide-vs.-long-data" class="level2" data-number="22.7">
+<h2 data-number="22.7" class="anchored" data-anchor-id="when-should-you-use-wide-vs.-long-data"><span class="header-section-number">22.7</span> When Should You Use Wide vs.&nbsp;Long Data?</h2>
+<p>The truth is, it really depends on what you want to do! The wide format is great for <em>displaying data</em> because it’s easy to visually compare values this way. Long data is best for some data analysis tasks, like grouping and plotting.</p>
+<p>It is essential to know how to switch from one format to the other easily. Switching from the wide to the long format, or the other way around, is called <strong>reshaping</strong>.</p>
+</section>
+<section id="from-wide-to-long" class="level2" data-number="22.8">
+<h2 data-number="22.8" class="anchored" data-anchor-id="from-wide-to-long"><span class="header-section-number">22.8</span> From Wide to Long</h2>
+<p>To practice reshaping from a wide to a long format, we’ll consider data from Our World in Data on fossil fuel consumption per capita. You can find the data <a href="https://ourworldindata.org/grapher/fossil-fuels-per-capita">here</a>.</p>
+<p>Below, we view this data on fossil fuel consumption per capita:</p>
+<div id="4954517b" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fuels_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -898,14 +932,12 @@ Practice
 </div>
 </div>
 </div>
-<p>We observe that each observational unit (each country) occupies only one row, with the repeated measurements of fossil fuel consumption (in Kilowatt-hour equivalents) spread out across multiple columns. Hence this dataset is in a wide format.</p>
-<p>To convert to a long format, we can use the convenient <code>melt</code> function. Within <code>melt</code> we define which columns we want to pivot:</p>
-<div id="a66d4d99" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(fuels_wide</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> .melt(id_vars<span class="op">=</span>[<span class="st">'Entity'</span>, <span class="st">'Code'</span>], </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:])</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<p>We observe that each observational unit (each country) occupies only one row, with the repeated measurements of fossil fuel consumption (in kilowatt-hour equivalents) spread out across multiple columns. Hence, this dataset is in a wide format.</p>
+<p>To convert it to a long format, we can use the convenient <code>melt</code> function. Within <code>melt</code>, we define which columns we want to reshape:</p>
+<div id="db208348" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fuels_long <span class="op">=</span> fuels_wide.melt(id_vars<span class="op">=</span>[<span class="st">"Entity"</span>, <span class="st">"Code"</span>], value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fuels_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -1007,18 +1039,19 @@ Practice
 <p>Very easy!</p>
 <p>Let’s break down the code:</p>
 <ul>
-<li><code>id_vars</code> refers to the column(s) that will not be pivoted. In this case, it’s the country and the code.</li>
-<li><code>value_vars</code> is the column(s) that will be pivoted. In this case, it’s the years columns.</li>
+<li><strong><code>id_vars</code></strong> refers to the column(s) that will not be reshaped. In this case, it’s the “Entity” and “Code” columns.</li>
+<li><strong><code>value_vars</code></strong> is the column(s) that will be reshaped. In this case, it’s the year columns.</li>
 </ul>
-<p>The years are now indicated in the variable <code>variable</code>, and all the consumption values occupy a single variable, <code>value</code>.We may wish to rename the <code>variable</code> column to <code>year</code>, and the <code>value</code> column to <code>oil_consumption</code>. This can be done directly in the <code>melt</code> function:</p>
-<div id="5cfd4815" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(fuels_wide</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> .melt(id_vars<span class="op">=</span>[<span class="st">'Entity'</span>, <span class="st">'Code'</span>], </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>       value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:],</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       var_name<span class="op">=</span><span class="st">'year'</span>, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       value_name<span class="op">=</span><span class="st">'oil_consumption'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<p>The years are now indicated in the variable <code>variable</code>, and all the consumption values occupy a single variable, <code>value</code>. We may wish to rename the <code>variable</code> column to <code>year</code>, and the <code>value</code> column to <code>oil_consumption</code>. This can be done directly in the <code>melt</code> function:</p>
+<div id="cae50684" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fuels_long <span class="op">=</span> fuels_wide.melt(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">'Entity'</span>, <span class="st">'Code'</span>],</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:],</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'year'</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'oil_consumption'</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fuels_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
@@ -1117,19 +1150,12 @@ Practice
 </div>
 </div>
 </div>
-<p>You may also want to remove the <code>y_</code> in front of each year. This can be achieved with as string operation. We’ll also arrange the data by country and year:</p>
-<div id="6e3cb900" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    fuels_wide.melt(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        id_vars<span class="op">=</span>[<span class="st">"Entity"</span>, <span class="st">"Code"</span>],</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:],</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        var_name<span class="op">=</span><span class="st">"year"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        value_name<span class="op">=</span><span class="st">"oil_consumption"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    .assign(year<span class="op">=</span><span class="kw">lambda</span> df: df[<span class="st">"year"</span>].<span class="bu">str</span>.replace(<span class="st">"y_"</span>, <span class="st">""</span>).astype(<span class="bu">int</span>))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    .sort_values(by<span class="op">=</span>[<span class="st">"Entity"</span>, <span class="st">"year"</span>])</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<p>You may also want to remove the <code>y_</code> in front of each year. This can be achieved with a string operation. We’ll also arrange the data by country and year:</p>
+<div id="e085a445" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fuels_long[<span class="st">'year'</span>] <span class="op">=</span> fuels_long[<span class="st">'year'</span>].<span class="bu">str</span>.replace(<span class="st">'y_'</span>, <span class="st">''</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fuels_long <span class="op">=</span> fuels_long.sort_values(by<span class="op">=</span>[<span class="st">'Entity'</span>, <span class="st">'year'</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fuels_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -1228,23 +1254,105 @@ Practice
 </div>
 </div>
 </div>
-<p>Here’s what we added above:</p>
+<p>Here’s what we did above:</p>
 <ul>
-<li>In the <code>assign</code> function, we used a lambda function to replace the <code>y_</code> in front of each year with an empty string, and then convert the year to an integer.</li>
-<li>We used the <code>sort_values</code> function to sort the data by country and year.</li>
+<li>Used <code>str.replace()</code> to remove the <code>y_</code> prefix from each year.</li>
+<li>Converted the <code>year</code> column to integers using <code>astype(int)</code>.</li>
+<li>Sorted the data by “Entity” and “year” using <code>sort_values()</code>.</li>
 </ul>
-<p>Now we have a clean, long dataset; great! For later use, let’s now store this data:</p>
-<div id="aa437188" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fuels_long <span class="op">=</span> (</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    fuels_wide.melt(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        id_vars<span class="op">=</span>[<span class="st">"Entity"</span>, <span class="st">"Code"</span>],</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        value_vars<span class="op">=</span>fuels_wide.columns[<span class="dv">2</span>:],</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        var_name<span class="op">=</span><span class="st">"year"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        value_name<span class="op">=</span><span class="st">"oil_consumption"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    .assign(year<span class="op">=</span><span class="kw">lambda</span> df: df[<span class="st">"year"</span>].<span class="bu">str</span>.replace(<span class="st">"y_"</span>, <span class="st">""</span>).astype(<span class="bu">int</span>))</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    .sort_values(by<span class="op">=</span>[<span class="st">"Entity"</span>, <span class="st">"year"</span>])</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice
+</div>
+</div>
+<section id="practice-q-temperatures-to-long" class="level2 callout-body-container callout-body" data-number="22.9">
+<h2 data-number="22.9" class="anchored" data-anchor-id="practice-q-temperatures-to-long"><span class="header-section-number">22.9</span> Practice Q: Temperatures to Long</h2>
+<p>Convert the <code>temperatures</code> dataset created above into a long format. Your answer should have the following column names: <strong>“country”</strong>, <strong>“year”</strong>, and <strong>“avgtemp”</strong>.</p>
+<div id="4276cd12" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>temperatures_long <span class="op">=</span> temperatures.melt(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">"country"</span>], var_name<span class="op">=</span><span class="st">"year"</span>, value_name<span class="op">=</span><span class="st">"avgtemp"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>temperatures_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">avgtemp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Sweden</td>
+<td>1994</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Denmark</td>
+<td>1994</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Norway</td>
+<td>1994</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sweden</td>
+<td>1995</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Denmark</td>
+<td>1995</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Norway</td>
+<td>1995</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Sweden</td>
+<td>1996</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Denmark</td>
+<td>1996</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Norway</td>
+<td>1996</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Practice">
 <div class="callout-header d-flex align-content-center">
@@ -1255,12 +1363,12 @@ Practice
 Practice
 </div>
 </div>
-<div class="callout-body-container callout-body">
+<section id="practice-q-eurostat-births-to-long" class="level2 callout-body-container callout-body" data-number="22.10">
+<h2 data-number="22.10" class="anchored" data-anchor-id="practice-q-eurostat-births-to-long"><span class="header-section-number">22.10</span> Practice Q: Eurostat Births to Long</h2>
 <p>For this practice question, you will use the <code>euro_births_wide</code> dataset from <a href="https://ec.europa.eu/eurostat/databrowser/view/tps00204/default/table">Eurostat</a>. It shows the annual number of births in 50 European countries:</p>
-<div id="d96ca9de" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>euro_births_wide <span class="op">=</span> pd.read_csv(<span class="st">"data/euro_births_wide.csv"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>euro_births_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div id="2bc988e4" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>euro_births_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
@@ -1335,17 +1443,446 @@ Practice
 <td>795492.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
+<td data-quarto-table-cell-role="th">5</td>
+<td>Estonia</td>
+<td>13907.0</td>
+<td>14053.0</td>
+<td>13784.0</td>
+<td>14367.0</td>
+<td>14099.0</td>
+<td>13209.0</td>
+<td>13272.0</td>
 </tr>
 <tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Ireland</td>
+<td>65536.0</td>
+<td>63841.0</td>
+<td>61824.0</td>
+<td>61022.0</td>
+<td>59289.0</td>
+<td>55959.0</td>
+<td>58440.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Greece</td>
+<td>91847.0</td>
+<td>92898.0</td>
+<td>88553.0</td>
+<td>86440.0</td>
+<td>83763.0</td>
+<td>84764.0</td>
+<td>85303.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Spain</td>
+<td>418432.0</td>
+<td>408734.0</td>
+<td>391265.0</td>
+<td>370827.0</td>
+<td>358747.0</td>
+<td>340635.0</td>
+<td>336247.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>France</td>
+<td>799671.0</td>
+<td>784325.0</td>
+<td>770045.0</td>
+<td>759199.0</td>
+<td>754008.0</td>
+<td>735775.0</td>
+<td>738594.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>Croatia</td>
+<td>37503.0</td>
+<td>37537.0</td>
+<td>36556.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>Italy</td>
+<td>485780.0</td>
+<td>473438.0</td>
+<td>458151.0</td>
+<td>36945.0</td>
+<td>36135.0</td>
+<td>35845.0</td>
+<td>36508.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>Cyprus</td>
+<td>9170.0</td>
+<td>9455.0</td>
+<td>9229.0</td>
+<td>439747.0</td>
+<td>420084.0</td>
+<td>404892.0</td>
+<td>399431.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>Latvia</td>
+<td>21979.0</td>
+<td>21968.0</td>
+<td>20828.0</td>
+<td>9329.0</td>
+<td>9548.0</td>
+<td>9930.0</td>
+<td>10150.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>Lithuania</td>
+<td>31475.0</td>
+<td>30623.0</td>
+<td>28696.0</td>
+<td>19314.0</td>
+<td>18786.0</td>
+<td>17552.0</td>
+<td>17420.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>Luxembourg</td>
+<td>6115.0</td>
+<td>6050.0</td>
+<td>6174.0</td>
+<td>28149.0</td>
+<td>27393.0</td>
+<td>25144.0</td>
+<td>23330.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>Hungary</td>
+<td>92135.0</td>
+<td>95361.0</td>
+<td>94646.0</td>
+<td>6274.0</td>
+<td>6230.0</td>
+<td>6459.0</td>
+<td>6690.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>Malta</td>
+<td>4325.0</td>
+<td>4476.0</td>
+<td>4319.0</td>
+<td>93467.0</td>
+<td>93100.0</td>
+<td>93807.0</td>
+<td>94003.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>Netherlands</td>
+<td>170510.0</td>
+<td>172520.0</td>
+<td>169836.0</td>
+<td>4444.0</td>
+<td>4350.0</td>
+<td>4414.0</td>
+<td>4395.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>Austria</td>
+<td>84381.0</td>
+<td>87675.0</td>
+<td>87633.0</td>
+<td>168525.0</td>
+<td>169680.0</td>
+<td>168681.0</td>
+<td>179441.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>Poland</td>
+<td>369308.0</td>
+<td>382257.0</td>
+<td>401982.0</td>
+<td>85535.0</td>
+<td>84952.0</td>
+<td>83603.0</td>
+<td>86078.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>Portugal</td>
+<td>85500.0</td>
+<td>87126.0</td>
+<td>86154.0</td>
+<td>388178.0</td>
+<td>374954.0</td>
+<td>355309.0</td>
+<td>331511.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>Romania</td>
+<td>201995.0</td>
+<td>205773.0</td>
+<td>210590.0</td>
+<td>87020.0</td>
+<td>86579.0</td>
+<td>84530.0</td>
+<td>79582.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>Slovenia</td>
+<td>20641.0</td>
+<td>20345.0</td>
+<td>20241.0</td>
+<td>210290.0</td>
+<td>199720.0</td>
+<td>198302.0</td>
+<td>178496.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>Slovakia</td>
+<td>55602.0</td>
+<td>57557.0</td>
+<td>57969.0</td>
+<td>19585.0</td>
+<td>19328.0</td>
+<td>18767.0</td>
+<td>18984.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>Finland</td>
+<td>55472.0</td>
+<td>52814.0</td>
+<td>50321.0</td>
+<td>57639.0</td>
+<td>57054.0</td>
+<td>56650.0</td>
+<td>56565.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>Sweden</td>
+<td>114870.0</td>
+<td>117425.0</td>
+<td>115416.0</td>
+<td>47577.0</td>
+<td>45613.0</td>
+<td>46463.0</td>
+<td>49594.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>Iceland</td>
+<td>4129.0</td>
+<td>4034.0</td>
+<td>4071.0</td>
+<td>115832.0</td>
+<td>114523.0</td>
+<td>113077.0</td>
+<td>114263.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>Liechtenstein</td>
+<td>325.0</td>
+<td>378.0</td>
+<td>338.0</td>
+<td>4228.0</td>
+<td>4452.0</td>
+<td>4512.0</td>
+<td>4879.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>Norway</td>
+<td>58815.0</td>
+<td>58890.0</td>
+<td>56633.0</td>
+<td>378.0</td>
+<td>356.0</td>
+<td>353.0</td>
+<td>375.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>Switzerland</td>
+<td>86559.0</td>
+<td>87883.0</td>
+<td>87381.0</td>
+<td>55120.0</td>
+<td>54495.0</td>
+<td>52979.0</td>
+<td>56060.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>United Kingdom</td>
+<td>776746.0</td>
+<td>774386.0</td>
+<td>754754.0</td>
+<td>87851.0</td>
+<td>86172.0</td>
+<td>85914.0</td>
+<td>89644.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>Montenegro</td>
+<td>7386.0</td>
+<td>7569.0</td>
+<td>7432.0</td>
+<td>730918.0</td>
+<td>712699.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>North Macedonia</td>
+<td>23075.0</td>
+<td>23002.0</td>
+<td>21754.0</td>
+<td>7264.0</td>
+<td>7223.0</td>
+<td>7097.0</td>
+<td>7033.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>Albania</td>
+<td>32715.0</td>
+<td>31733.0</td>
+<td>30869.0</td>
+<td>21333.0</td>
+<td>19845.0</td>
+<td>19031.0</td>
+<td>18648.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>Serbia</td>
+<td>65657.0</td>
+<td>64734.0</td>
+<td>64894.0</td>
+<td>28934.0</td>
+<td>28561.0</td>
+<td>28075.0</td>
+<td>27211.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>Turkey</td>
+<td>1325783.0</td>
+<td>1309771.0</td>
+<td>1291055.0</td>
+<td>63975.0</td>
+<td>64399.0</td>
+<td>61692.0</td>
+<td>62180.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>Andorra</td>
+<td>NaN</td>
+<td>634.0</td>
+<td>NaN</td>
+<td>1248847.0</td>
+<td>1183652.0</td>
+<td>1112859.0</td>
+<td>1079842.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">38</td>
+<td>Belarus</td>
+<td>119028.0</td>
+<td>117779.0</td>
+<td>102556.0</td>
+<td>543.0</td>
+<td>539.0</td>
+<td>NaN</td>
+<td>503.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>Bosnia and Herzegovina</td>
+<td>NaN</td>
+<td>29276.0</td>
+<td>29158.0</td>
+<td>94042.0</td>
+<td>87602.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">40</td>
+<td>Kosovo (under United Nations Security Council ...</td>
+<td>24594.0</td>
+<td>23416.0</td>
+<td>23402.0</td>
+<td>29467.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41</td>
+<td>Moldova</td>
+<td>40855.0</td>
+<td>39961.0</td>
+<td>36640.0</td>
+<td>22761.0</td>
+<td>21798.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">42</td>
+<td>Monaco</td>
+<td>308.0</td>
+<td>295.0</td>
+<td>NaN</td>
+<td>34764.0</td>
+<td>32022.0</td>
+<td>30730.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">43</td>
+<td>Russia</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>227.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>San Marino</td>
+<td>269.0</td>
+<td>262.0</td>
+<td>228.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
 <td data-quarto-table-cell-role="th">45</td>
 <td>Ukraine</td>
 <td>411781.0</td>
@@ -1356,7 +1893,7 @@ Practice
 <td>NaN</td>
 <td>212.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td data-quarto-table-cell-role="th">46</td>
 <td>Armenia</td>
 <td>41763.0</td>
@@ -1367,7 +1904,7 @@ Practice
 <td>293457.0</td>
 <td>271983.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td data-quarto-table-cell-role="th">47</td>
 <td>Azerbaijan</td>
 <td>166210.0</td>
@@ -1378,7 +1915,7 @@ Practice
 <td>36353.0</td>
 <td>NaN</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td data-quarto-table-cell-role="th">48</td>
 <td>Georgia</td>
 <td>59249.0</td>
@@ -1389,7 +1926,7 @@ Practice
 <td>126571.0</td>
 <td>112284.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td data-quarto-table-cell-role="th">49</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1403,34 +1940,16 @@ Practice
 </tbody>
 </table>
 
-<p>50 rows × 8 columns</p>
 </div>
 </div>
 </div>
-<p>The data is in a wide format. Convert it to a long format data frame that has the following column names: “country”, “year” and “births_count”</p>
-<div id="e6efb3c2" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="pivoting-long-to-wide" class="level2" data-number="22.6">
-<h2 data-number="22.6" class="anchored" data-anchor-id="pivoting-long-to-wide"><span class="header-section-number">22.6</span> Pivoting long to wide</h2>
-<p>Now you know how to pivot from wide to long with <code>melt</code>. How about going the other way, from long to wide? For this, you can use the <code>pivot</code> function.</p>
-<p>But before we consider how to use this function to manipulate long data, let’s first consider <em>where</em> you’re likely to run into long data.</p>
-<p>While wide data tends to come from external sources (as we have seen above), long data on the other hand, is likely to be created by <em>you</em> while data wrangling, especially in the course of grouped aggregations.</p>
-<p>Let’s see an example of this now.</p>
-<p>We will use a dataset of contracts granted by the city of Chicago in the years 2020 to 2023. You can find more information about the data <a href="https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5/">here</a>. Below we import the data and do some data processing to prepare it for analysis.</p>
-<div id="4458920e" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>contracts_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/chicago_contracts_20_23.csv"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>contracts <span class="op">=</span> (</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    contracts_raw</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    .assign(year_of_contract<span class="op">=</span><span class="kw">lambda</span> df: pd.to_datetime(df[<span class="st">"approval_date"</span>]).dt.year)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    .reindex(columns<span class="op">=</span>[<span class="st">"year_of_contract"</span>] <span class="op">+</span> <span class="bu">list</span>(contracts_raw.columns.drop(<span class="st">"approval_date"</span>)))</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>contracts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The data is in a wide format. Convert it to a long format DataFrame that has the following column names: <strong>“country”</strong>, <strong>“year”</strong>, and <strong>“births_count”</strong>.</p>
+<div id="b88c00f2" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>births_long <span class="op">=</span> euro_births_wide.melt(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">"country"</span>], var_name<span class="op">=</span><span class="st">"year"</span>, value_name<span class="op">=</span><span class="st">"births_count"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>births_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1439,8 +1958,107 @@ Practice
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">year_of_contract</th>
+<th data-quarto-table-cell-role="th">country</th>
 <th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">births_count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Belgium</td>
+<td>x2015</td>
+<td>122274.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bulgaria</td>
+<td>x2015</td>
+<td>65950.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Czechia</td>
+<td>x2015</td>
+<td>110764.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Denmark</td>
+<td>x2015</td>
+<td>58205.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Germany</td>
+<td>x2015</td>
+<td>737575.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">345</td>
+<td>Ukraine</td>
+<td>x2021</td>
+<td>212.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">346</td>
+<td>Armenia</td>
+<td>x2021</td>
+<td>271983.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">347</td>
+<td>Azerbaijan</td>
+<td>x2021</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">348</td>
+<td>Georgia</td>
+<td>x2021</td>
+<td>112284.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">349</td>
+<td>NaN</td>
+<td>x2021</td>
+<td>45946.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>350 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+<section id="from-long-to-wide" class="level2" data-number="22.11">
+<h2 data-number="22.11" class="anchored" data-anchor-id="from-long-to-wide"><span class="header-section-number">22.11</span> From Long to Wide</h2>
+<p>Now you know how to reshape from wide to long with <code>melt()</code>. How about going the other way, from long to wide? For this, you can use the <code>pivot()</code> function.</p>
+<p>But before we consider how to use this function to manipulate long data, let’s first consider <em>where</em> you’re likely to run into long data.</p>
+<p>While wide data tends to come from external sources (as we have seen above), long data, on the other hand, is likely to be created by <em>you</em> while data wrangling, especially in the course of grouped aggregations.</p>
+<p>Let’s see an example of this now.</p>
+<p>We will use a dataset of contracts granted by the city of Chicago from 2020 to 2023. You can find more information about the data <a href="https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5/">here</a>.</p>
+<div id="f695d3e8" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>contracts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">approval_date</th>
 <th data-quarto-table-cell-role="th">description</th>
 <th data-quarto-table-cell-role="th">contract_num</th>
 <th data-quarto-table-cell-role="th">revision_num</th>
@@ -1465,7 +2083,7 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>2020</td>
-<td>2020</td>
+<td>2020-01-02</td>
 <td>LEASE</td>
 <td>24406</td>
 <td>32</td>
@@ -1488,7 +2106,7 @@ Practice
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>2020</td>
-<td>2020</td>
+<td>2020-01-03</td>
 <td>DFSS-HHS-CS-CEL:</td>
 <td>113798</td>
 <td>0</td>
@@ -1511,7 +2129,7 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>2020</td>
-<td>2020</td>
+<td>2020-01-03</td>
 <td>DFSS-HHS-CS-CEL:</td>
 <td>113819</td>
 <td>0</td>
@@ -1534,7 +2152,7 @@ Practice
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>2020</td>
-<td>2020</td>
+<td>2020-01-03</td>
 <td>DFSS-HHS-CS-CEL:</td>
 <td>113818</td>
 <td>0</td>
@@ -1557,7 +2175,7 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>2020</td>
-<td>2020</td>
+<td>2020-01-03</td>
 <td>DFSS-HHS-CS-CEL:</td>
 <td>113820</td>
 <td>0</td>
@@ -1603,7 +2221,7 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">28823</td>
 <td>2023</td>
-<td>2023</td>
+<td>2023-12-29</td>
 <td>DFSS-CORP-HL-PSH:</td>
 <td>220413</td>
 <td>3</td>
@@ -1626,7 +2244,7 @@ Practice
 <tr class="even">
 <td data-quarto-table-cell-role="th">28824</td>
 <td>2023</td>
-<td>2023</td>
+<td>2023-12-29</td>
 <td>DFSS-CORP-YS-OST:</td>
 <td>253846</td>
 <td>0</td>
@@ -1649,7 +2267,7 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">28825</td>
 <td>2023</td>
-<td>2023</td>
+<td>2023-12-29</td>
 <td>DFSS-IDHS-HL-INTHS:</td>
 <td>253843</td>
 <td>0</td>
@@ -1672,7 +2290,7 @@ Practice
 <tr class="even">
 <td data-quarto-table-cell-role="th">28826</td>
 <td>2023</td>
-<td>2023</td>
+<td>2023-12-29</td>
 <td>CDPH-RW-PA: ESS-HRSA PO 116685 CHICAGO HOUSE A...</td>
 <td>192085</td>
 <td>1</td>
@@ -1695,7 +2313,7 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">28827</td>
 <td>2023</td>
-<td>2023</td>
+<td>2023-12-29</td>
 <td>DFSS-HHS-CS-CEL:</td>
 <td>222199</td>
 <td>1</td>
@@ -1722,15 +2340,12 @@ Practice
 </div>
 </div>
 </div>
-<p>Each row corresponds to one contract, and we have each contract’s id number, the year in which they were granted, the amount of the contract, and the vendor’s name and address, among other variables.</p>
+<p>Each row corresponds to one contract, and we have each contract’s ID number, the year in which it was granted, the amount of the contract, and the vendor’s name and address, among other variables.</p>
 <p>Now, consider the following grouped summary of the <code>contracts</code> dataset, which shows the number of contracts by state of the vendor in each year:</p>
-<div id="d06c7644" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>contracts_summary <span class="op">=</span> (</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    contracts.groupby([<span class="st">"state"</span>, <span class="st">"year_of_contract"</span>]).size().reset_index(name<span class="op">=</span><span class="st">"n"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>contracts_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div id="ad67d52d" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>contracts_summary <span class="op">=</span> contracts.groupby(<span class="st">"state"</span>)[<span class="st">"year"</span>].value_counts().reset_index(name<span class="op">=</span><span class="st">'count'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>contracts_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -1739,16 +2354,16 @@ Practice
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">state</th>
-<th data-quarto-table-cell-role="th">year_of_contract</th>
-<th data-quarto-table-cell-role="th">n</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>Alabama</td>
-<td>2020</td>
-<td>1</td>
+<td>2023</td>
+<td>7</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
@@ -1759,14 +2374,14 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>Alabama</td>
-<td>2022</td>
+<td>2020</td>
 <td>1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>Alabama</td>
-<td>2023</td>
-<td>7</td>
+<td>2022</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
@@ -1789,14 +2404,14 @@ Practice
 <tr class="even">
 <td data-quarto-table-cell-role="th">129</td>
 <td>Wisconsin</td>
-<td>2020</td>
-<td>18</td>
+<td>2023</td>
+<td>25</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">130</td>
 <td>Wisconsin</td>
-<td>2021</td>
-<td>15</td>
+<td>2020</td>
+<td>18</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">131</td>
@@ -1807,8 +2422,8 @@ Practice
 <tr class="odd">
 <td data-quarto-table-cell-role="th">132</td>
 <td>Wisconsin</td>
-<td>2023</td>
-<td>25</td>
+<td>2021</td>
+<td>15</td>
 </tr>
 </tbody>
 </table>
@@ -1817,24 +2432,22 @@ Practice
 </div>
 </div>
 </div>
-<p>The output of this grouped operation is a quintessentially “long” dataset! Each observational unit (each contract type) occupies multiple rows (four rows per state, to be exact), with one row for each measurement (each year).</p>
-<p>So, as you now see, long data often can arrive as an output of grouped summaries, among other data manipulations.</p>
-<p>Now, let’s see how to convert such long data into a wide format with <code>pivot</code>.</p>
+<p>The output of this grouped operation is a quintessentially “long” dataset. Each observational unit (each state) occupies multiple rows, with one row for each measurement (each year).</p>
+<p>Now, let’s see how to convert such long data into a wide format with <code>pivot()</code>.</p>
 <p>The code is quite straightforward:</p>
-<div id="d8ccf1f3" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    contracts_summary.pivot(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="st">"state"</span>, columns<span class="op">=</span><span class="st">"year_of_contract"</span>, values<span class="op">=</span><span class="st">"n"</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    ).reset_index()</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div id="bc34f52e" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>contracts_wide <span class="op">=</span> contracts_summary.pivot(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">"state"</span>, columns<span class="op">=</span><span class="st">"year"</span>, values<span class="op">=</span><span class="st">"count"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>contracts_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
 
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th">year_of_contract</th>
+<th data-quarto-table-cell-role="th">year</th>
 <th data-quarto-table-cell-role="th">state</th>
 <th data-quarto-table-cell-role="th">2020</th>
 <th data-quarto-table-cell-role="th">2021</th>
@@ -1884,12 +2497,268 @@ Practice
 <td>38.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
+<td data-quarto-table-cell-role="th">5</td>
+<td>Canada</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Colorado</td>
+<td>6.0</td>
+<td>2.0</td>
+<td>7.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Connecticut</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Delaware</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>District of Columbia</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>Florida</td>
+<td>6.0</td>
+<td>5.0</td>
+<td>9.0</td>
+<td>9.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>Georgia</td>
+<td>19.0</td>
+<td>41.0</td>
+<td>30.0</td>
+<td>31.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>Illinois</td>
+<td>6285.0</td>
+<td>6120.0</td>
+<td>7185.0</td>
+<td>7956.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>Indiana</td>
+<td>11.0</td>
+<td>12.0</td>
+<td>14.0</td>
+<td>10.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>Iowa</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>7.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>Israel</td>
+<td>NaN</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>Kansas</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2.0</td>
+<td>8.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>Kentucky</td>
+<td>7.0</td>
+<td>3.0</td>
+<td>8.0</td>
+<td>21.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>Louisiana</td>
+<td>NaN</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>Maine</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>Marshall Islands</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>Maryland</td>
+<td>8.0</td>
+<td>6.0</td>
+<td>8.0</td>
+<td>9.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>Massachusetts</td>
+<td>13.0</td>
+<td>17.0</td>
+<td>11.0</td>
+<td>23.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>Michigan</td>
+<td>8.0</td>
+<td>4.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>Minnesota</td>
+<td>8.0</td>
+<td>4.0</td>
+<td>8.0</td>
+<td>3.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>Missouri</td>
+<td>23.0</td>
+<td>10.0</td>
+<td>14.0</td>
+<td>37.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>Nebraska</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>Nevada</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>New Hampshire</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>New Jersey</td>
+<td>NaN</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>9.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>New York</td>
+<td>19.0</td>
+<td>23.0</td>
+<td>23.0</td>
+<td>47.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>North Carolina</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>5.0</td>
+<td>9.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>Ohio</td>
+<td>10.0</td>
+<td>5.0</td>
+<td>10.0</td>
+<td>9.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>Oregon</td>
+<td>5.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>Pennsylvania</td>
+<td>20.0</td>
+<td>24.0</td>
+<td>31.0</td>
+<td>37.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>Rhode Island</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>South Carolina</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>Tennessee</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>3.0</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">38</td>
@@ -1934,24 +2803,22 @@ Practice
 </tbody>
 </table>
 
-<p>43 rows × 5 columns</p>
 </div>
 </div>
 </div>
-<p>As you can see, <code>pivot</code> has three important arguments: <code>index</code>, <code>columns</code>, and <code>values</code>.</p>
+<p>As you can see, <code>pivot()</code> has three important arguments:</p>
 <ul>
-<li><code>index</code> defines which column(s) to use as the new index. In our case, it’s the state, since we want each row to represent one state.</li>
-<li><code>columns</code> identifies which variable to use to define column names in the wide format. In our case, it’s the year of the contract. You can see that the years are now the column names.</li>
-<li><code>values</code> specifies which values will become the core of the wide data format. In our case, it’s the number of contracts. data format.</li>
+<li><strong><code>index</code></strong> defines which column(s) to use as the new index. In our case, it’s the “state” since we want each row to represent one state.</li>
+<li><strong><code>columns</code></strong> identifies which variable to use to define column names in the wide format. In our case, it’s the “year”. You can see that the years are now the column names.</li>
+<li><strong><code>values</code></strong> specifies which values will become the core of the wide data format. In our case, it’s the number of contracts “count”.</li>
 </ul>
-<p>You might also want to have the <em>years</em> be your primary observational/statistical unit, with each year occupying one row. This can be carried out similarly to the above example, but with <code>year_of_contract</code> as the index and <code>state</code> as the columns:</p>
-<div id="0828a1a4" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    contracts_summary.pivot(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="st">"year_of_contract"</span>, columns<span class="op">=</span><span class="st">"state"</span>, values<span class="op">=</span><span class="st">"n"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    ).reset_index()</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<p>You might also want to have the <em>years</em> be your primary observational units, with each year occupying one row. This can be carried out similarly to the above example, but with <code>year</code> as the index and <code>state</code> as the columns:</p>
+<div id="53439cc0" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>contracts_wide_year <span class="op">=</span> contracts_summary.pivot(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">"year"</span>, columns<span class="op">=</span><span class="st">"state"</span>, values<span class="op">=</span><span class="st">"count"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>contracts_wide_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
 
@@ -1959,7 +2826,7 @@ Practice
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">state</th>
-<th data-quarto-table-cell-role="th">year_of_contract</th>
+<th data-quarto-table-cell-role="th">year</th>
 <th data-quarto-table-cell-role="th">Alabama</th>
 <th data-quarto-table-cell-role="th">Arizona</th>
 <th data-quarto-table-cell-role="th">Arkansas</th>
@@ -2086,7 +2953,7 @@ Practice
 </div>
 </div>
 </div>
-<p>Here the unique observation units (our rows) are now the years (2021, 2022, 2023).</p>
+<p>Here, the unique observation units (our rows) are now the years (2020, 2021, 2022, 2023).</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Practice">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2096,13 +2963,75 @@ Practice
 Practice
 </div>
 </div>
-<div class="callout-body-container callout-body">
+<section id="practice-q-temperatures-back-to-wide" class="level2 callout-body-container callout-body" data-number="22.12">
+<h2 data-number="22.12" class="anchored" data-anchor-id="practice-q-temperatures-back-to-wide"><span class="header-section-number">22.12</span> Practice Q: Temperatures back to Wide</h2>
+<p>Convert the long <code>temperatures_long</code> dataset you created above back to a wide format. Your answer should have the following column names: <strong>“country”</strong>, <strong>“1994”</strong>, <strong>“1995”</strong>, and <strong>“1996”</strong>.</p>
+<div id="45bce0b8" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>temperatures_wide <span class="op">=</span> temperatures_long.pivot(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">"country"</span>, columns<span class="op">=</span><span class="st">"year"</span>, values<span class="op">=</span><span class="st">"avgtemp"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>temperatures_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">1994</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Denmark</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Norway</td>
+<td>3</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sweden</td>
+<td>1</td>
+<td>3</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Practice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice
+</div>
+</div>
+<section id="practice-q-population-to-wide" class="level2 callout-body-container callout-body" data-number="22.13">
+<h2 data-number="22.13" class="anchored" data-anchor-id="practice-q-population-to-wide"><span class="header-section-number">22.13</span> Practice Q: Population to Wide</h2>
 <p>The <code>population</code> dataset shows the populations of 219 countries over time.</p>
-<p>Pivot this data into a wide format. Your answer should have 20 columns and 219 rows.</p>
-<div id="5de667d6" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> pd.read_csv(<span class="st">"data/tidyr_population.csv"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<p>Reshape this data into a wide format. Your answer should have 219 rows and multiple columns representing different years.</p>
+<div id="d337bc9f" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -2189,22 +3118,862 @@ Practice
 </div>
 </div>
 </div>
-<div id="91e7dc82" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fe581710" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the long data into wide format</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>population_wide <span class="op">=</span> population.pivot(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">"country"</span>, columns<span class="op">=</span><span class="st">"year"</span>, values<span class="op">=</span><span class="st">"population"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the wide format data</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>population_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+<th data-quarto-table-cell-role="th">1997</th>
+<th data-quarto-table-cell-role="th">1998</th>
+<th data-quarto-table-cell-role="th">1999</th>
+<th data-quarto-table-cell-role="th">2000</th>
+<th data-quarto-table-cell-role="th">2001</th>
+<th data-quarto-table-cell-role="th">2002</th>
+<th data-quarto-table-cell-role="th">2003</th>
+<th data-quarto-table-cell-role="th">2004</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2006</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2008</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2010</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2012</th>
+<th data-quarto-table-cell-role="th">2013</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Afghanistan</td>
+<td>17586073.0</td>
+<td>18415307.0</td>
+<td>19021226.0</td>
+<td>19496836.0</td>
+<td>19987071.0</td>
+<td>20595360.0</td>
+<td>21347782.0</td>
+<td>22202806.0</td>
+<td>23116142.0</td>
+<td>24018682.0</td>
+<td>24860855.0</td>
+<td>25631282.0</td>
+<td>26349243.0</td>
+<td>27032197.0</td>
+<td>27708187.0</td>
+<td>28397812.0</td>
+<td>29105480.0</td>
+<td>29824536.0</td>
+<td>30551674.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Albania</td>
+<td>3357858.0</td>
+<td>3341043.0</td>
+<td>3331317.0</td>
+<td>3325456.0</td>
+<td>3317941.0</td>
+<td>3304948.0</td>
+<td>3286084.0</td>
+<td>3263596.0</td>
+<td>3239385.0</td>
+<td>3216197.0</td>
+<td>3196130.0</td>
+<td>3179573.0</td>
+<td>3166222.0</td>
+<td>3156608.0</td>
+<td>3151185.0</td>
+<td>3150143.0</td>
+<td>3153883.0</td>
+<td>3162083.0</td>
+<td>3173271.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Algeria</td>
+<td>29315463.0</td>
+<td>29845208.0</td>
+<td>30345466.0</td>
+<td>30820435.0</td>
+<td>31276295.0</td>
+<td>31719449.0</td>
+<td>32150198.0</td>
+<td>32572977.0</td>
+<td>33003442.0</td>
+<td>33461345.0</td>
+<td>33960903.0</td>
+<td>34507214.0</td>
+<td>35097043.0</td>
+<td>35725377.0</td>
+<td>36383302.0</td>
+<td>37062820.0</td>
+<td>37762962.0</td>
+<td>38481705.0</td>
+<td>39208194.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>American Samoa</td>
+<td>52874.0</td>
+<td>53926.0</td>
+<td>54942.0</td>
+<td>55899.0</td>
+<td>56768.0</td>
+<td>57522.0</td>
+<td>58176.0</td>
+<td>58729.0</td>
+<td>59117.0</td>
+<td>59262.0</td>
+<td>59117.0</td>
+<td>58652.0</td>
+<td>57919.0</td>
+<td>57053.0</td>
+<td>56245.0</td>
+<td>55636.0</td>
+<td>55274.0</td>
+<td>55128.0</td>
+<td>55165.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Andorra</td>
+<td>63854.0</td>
+<td>64274.0</td>
+<td>64090.0</td>
+<td>63799.0</td>
+<td>64084.0</td>
+<td>65399.0</td>
+<td>68000.0</td>
+<td>71639.0</td>
+<td>75643.0</td>
+<td>79060.0</td>
+<td>81223.0</td>
+<td>81877.0</td>
+<td>81292.0</td>
+<td>79969.0</td>
+<td>78659.0</td>
+<td>77907.0</td>
+<td>77865.0</td>
+<td>78360.0</td>
+<td>79218.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">212</td>
+<td>Wallis and Futuna Islands</td>
+<td>14143.0</td>
+<td>14221.0</td>
+<td>14309.0</td>
+<td>14394.0</td>
+<td>14460.0</td>
+<td>14497.0</td>
+<td>14501.0</td>
+<td>14476.0</td>
+<td>14422.0</td>
+<td>14344.0</td>
+<td>14246.0</td>
+<td>14126.0</td>
+<td>13988.0</td>
+<td>13840.0</td>
+<td>13697.0</td>
+<td>13565.0</td>
+<td>13451.0</td>
+<td>13353.0</td>
+<td>13272.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">213</td>
+<td>West Bank and Gaza Strip</td>
+<td>2598393.0</td>
+<td>2722497.0</td>
+<td>2851993.0</td>
+<td>2980563.0</td>
+<td>3099951.0</td>
+<td>3204572.0</td>
+<td>3291620.0</td>
+<td>3363542.0</td>
+<td>3426549.0</td>
+<td>3489743.0</td>
+<td>3559856.0</td>
+<td>3638829.0</td>
+<td>3725076.0</td>
+<td>3817551.0</td>
+<td>3914035.0</td>
+<td>4012880.0</td>
+<td>4114199.0</td>
+<td>4218771.0</td>
+<td>4326295.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">214</td>
+<td>Yemen</td>
+<td>15018201.0</td>
+<td>15578640.0</td>
+<td>16088019.0</td>
+<td>16564235.0</td>
+<td>17035531.0</td>
+<td>17522537.0</td>
+<td>18029989.0</td>
+<td>18551068.0</td>
+<td>19081306.0</td>
+<td>19612696.0</td>
+<td>20139661.0</td>
+<td>20661714.0</td>
+<td>21182162.0</td>
+<td>21703571.0</td>
+<td>22229625.0</td>
+<td>22763008.0</td>
+<td>23304206.0</td>
+<td>23852409.0</td>
+<td>24407381.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">215</td>
+<td>Zambia</td>
+<td>8841338.0</td>
+<td>9073311.0</td>
+<td>9320089.0</td>
+<td>9577483.0</td>
+<td>9839179.0</td>
+<td>10100981.0</td>
+<td>10362137.0</td>
+<td>10625423.0</td>
+<td>10894519.0</td>
+<td>11174650.0</td>
+<td>11470022.0</td>
+<td>11781612.0</td>
+<td>12109620.0</td>
+<td>12456527.0</td>
+<td>12825031.0</td>
+<td>13216985.0</td>
+<td>13633796.0</td>
+<td>14075099.0</td>
+<td>14538640.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">216</td>
+<td>Zimbabwe</td>
+<td>11639364.0</td>
+<td>11846110.0</td>
+<td>12045813.0</td>
+<td>12229500.0</td>
+<td>12384727.0</td>
+<td>12503652.0</td>
+<td>12586763.0</td>
+<td>12640922.0</td>
+<td>12673103.0</td>
+<td>12693047.0</td>
+<td>12710589.0</td>
+<td>12724308.0</td>
+<td>12740160.0</td>
+<td>12784041.0</td>
+<td>12888918.0</td>
+<td>13076978.0</td>
+<td>13358738.0</td>
+<td>13724317.0</td>
+<td>14149648.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>217 rows × 20 columns</p>
 </div>
 </div>
 </div>
 </section>
-<section id="pivoting-can-be-hard" class="level2" data-number="22.7">
-<h2 data-number="22.7" class="anchored" data-anchor-id="pivoting-can-be-hard"><span class="header-section-number">22.7</span> Pivoting can be hard</h2>
-<p>We have mostly looked at very simple examples of pivoting here, but in the wild, pivoting can be very difficult to do accurately.</p>
-<p>When you run into such cases, we recommend looking at the <a href="https://pandas.pydata.org/docs/user_guide/reshaping.html">official documentation</a> of pivoting from the pandas team, as it is quite rich in examples.</p>
+</div>
 </section>
-<section id="wrap-up" class="level2" data-number="22.8">
-<h2 data-number="22.8" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">22.8</span> Wrap up</h2>
+<section id="reshaping-can-be-hard" class="level2" data-number="22.14">
+<h2 data-number="22.14" class="anchored" data-anchor-id="reshaping-can-be-hard"><span class="header-section-number">22.14</span> Reshaping Can Be Hard</h2>
+<p>We have mostly looked at very simple examples of reshaping here, but in the wild, reshaping can be very difficult to do accurately.</p>
+<p>When you run into such cases, we recommend looking at the <a href="https://pandas.pydata.org/docs/user_guide/reshaping.html">official documentation</a> of reshaping from the pandas team, as it is quite rich in examples.</p>
+</section>
+<section id="wrap-up" class="level2" data-number="22.15">
+<h2 data-number="22.15" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">22.15</span> Wrap-Up</h2>
 <p>Congratulations! You’ve mastered the art of reshaping data with pandas.</p>
-<p>You now understand the differences between wide and long formats, and can skillfully use melt() and pivot() to transform your data as needed.</p>
-<p>Remember, there’s no universally “best” format – it depends on your specific analysis or visualization needs. With these skills, you’re now equipped to handle data in any shape it comes in. Keep practicing with different datasets to reinforce your learning!</p>
+<p>You now understand the differences between wide and long formats and can skillfully use <code>melt()</code> and <code>pivot()</code> to transform your data as needed.</p>
+<p>Remember, there’s no universally “best” format—it depends on your specific analysis or visualization needs. With these skills, you’re now equipped to handle data in any shape it comes in. Keep practicing with different datasets to reinforce your learning!</p>
+</section>
+<section id="solution-q-wide-or-long" class="level2" data-number="22.16">
+<h2 data-number="22.16" class="anchored" data-anchor-id="solution-q-wide-or-long"><span class="header-section-number">22.16</span> Solution Q: Wide or Long?</h2>
+<p>The data is in a wide format.</p>
+</section>
+<section id="solution-q-temperatures-to-long" class="level2" data-number="22.17">
+<h2 data-number="22.17" class="anchored" data-anchor-id="solution-q-temperatures-to-long"><span class="header-section-number">22.17</span> Solution Q: Temperatures to Long</h2>
+<div id="3364c1eb" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the wide data into long format</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>temperatures_long <span class="op">=</span> temperatures.melt(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">"country"</span>], var_name<span class="op">=</span><span class="st">"year"</span>, value_name<span class="op">=</span><span class="st">"avgtemp"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the long format data</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>temperatures_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">avgtemp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Sweden</td>
+<td>1994</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Denmark</td>
+<td>1994</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Norway</td>
+<td>1994</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sweden</td>
+<td>1995</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Denmark</td>
+<td>1995</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Norway</td>
+<td>1995</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Sweden</td>
+<td>1996</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Denmark</td>
+<td>1996</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Norway</td>
+<td>1996</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="solution-q-eurostat-births-to-long" class="level2" data-number="22.18">
+<h2 data-number="22.18" class="anchored" data-anchor-id="solution-q-eurostat-births-to-long"><span class="header-section-number">22.18</span> Solution Q: Eurostat Births to Long</h2>
+<div id="b0f48e90" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the wide data into long format</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>births_long <span class="op">=</span> euro_births_wide.melt(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">"country"</span>], var_name<span class="op">=</span><span class="st">"year"</span>, value_name<span class="op">=</span><span class="st">"births_count"</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the long format data</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>births_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">births_count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Belgium</td>
+<td>x2015</td>
+<td>122274.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bulgaria</td>
+<td>x2015</td>
+<td>65950.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Czechia</td>
+<td>x2015</td>
+<td>110764.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Denmark</td>
+<td>x2015</td>
+<td>58205.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Germany</td>
+<td>x2015</td>
+<td>737575.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">345</td>
+<td>Ukraine</td>
+<td>x2021</td>
+<td>212.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">346</td>
+<td>Armenia</td>
+<td>x2021</td>
+<td>271983.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">347</td>
+<td>Azerbaijan</td>
+<td>x2021</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">348</td>
+<td>Georgia</td>
+<td>x2021</td>
+<td>112284.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">349</td>
+<td>NaN</td>
+<td>x2021</td>
+<td>45946.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>350 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="solution-q-temperatures-back-to-wide" class="level2" data-number="22.19">
+<h2 data-number="22.19" class="anchored" data-anchor-id="solution-q-temperatures-back-to-wide"><span class="header-section-number">22.19</span> Solution Q: Temperatures back to Wide</h2>
+<div id="6dcdc995" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot the long data into wide format</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>temperatures_wide <span class="op">=</span> temperatures_long.pivot(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">"country"</span>, columns<span class="op">=</span><span class="st">"year"</span>, values<span class="op">=</span><span class="st">"avgtemp"</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the wide format data</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>temperatures_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">1994</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Denmark</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Norway</td>
+<td>3</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sweden</td>
+<td>1</td>
+<td>3</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="solution-q-population-to-wide" class="level2" data-number="22.20">
+<h2 data-number="22.20" class="anchored" data-anchor-id="solution-q-population-to-wide"><span class="header-section-number">22.20</span> Solution Q: Population to Wide</h2>
+<div id="3bee4b69" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot the long data into wide format</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>population_wide <span class="op">=</span> population.pivot(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">"country"</span>, columns<span class="op">=</span><span class="st">"year"</span>, values<span class="op">=</span><span class="st">"population"</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the wide format data</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>population_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+<th data-quarto-table-cell-role="th">1997</th>
+<th data-quarto-table-cell-role="th">1998</th>
+<th data-quarto-table-cell-role="th">1999</th>
+<th data-quarto-table-cell-role="th">2000</th>
+<th data-quarto-table-cell-role="th">2001</th>
+<th data-quarto-table-cell-role="th">2002</th>
+<th data-quarto-table-cell-role="th">2003</th>
+<th data-quarto-table-cell-role="th">2004</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2006</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2008</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2010</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2012</th>
+<th data-quarto-table-cell-role="th">2013</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Afghanistan</td>
+<td>17586073.0</td>
+<td>18415307.0</td>
+<td>19021226.0</td>
+<td>19496836.0</td>
+<td>19987071.0</td>
+<td>20595360.0</td>
+<td>21347782.0</td>
+<td>22202806.0</td>
+<td>23116142.0</td>
+<td>24018682.0</td>
+<td>24860855.0</td>
+<td>25631282.0</td>
+<td>26349243.0</td>
+<td>27032197.0</td>
+<td>27708187.0</td>
+<td>28397812.0</td>
+<td>29105480.0</td>
+<td>29824536.0</td>
+<td>30551674.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Albania</td>
+<td>3357858.0</td>
+<td>3341043.0</td>
+<td>3331317.0</td>
+<td>3325456.0</td>
+<td>3317941.0</td>
+<td>3304948.0</td>
+<td>3286084.0</td>
+<td>3263596.0</td>
+<td>3239385.0</td>
+<td>3216197.0</td>
+<td>3196130.0</td>
+<td>3179573.0</td>
+<td>3166222.0</td>
+<td>3156608.0</td>
+<td>3151185.0</td>
+<td>3150143.0</td>
+<td>3153883.0</td>
+<td>3162083.0</td>
+<td>3173271.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Algeria</td>
+<td>29315463.0</td>
+<td>29845208.0</td>
+<td>30345466.0</td>
+<td>30820435.0</td>
+<td>31276295.0</td>
+<td>31719449.0</td>
+<td>32150198.0</td>
+<td>32572977.0</td>
+<td>33003442.0</td>
+<td>33461345.0</td>
+<td>33960903.0</td>
+<td>34507214.0</td>
+<td>35097043.0</td>
+<td>35725377.0</td>
+<td>36383302.0</td>
+<td>37062820.0</td>
+<td>37762962.0</td>
+<td>38481705.0</td>
+<td>39208194.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>American Samoa</td>
+<td>52874.0</td>
+<td>53926.0</td>
+<td>54942.0</td>
+<td>55899.0</td>
+<td>56768.0</td>
+<td>57522.0</td>
+<td>58176.0</td>
+<td>58729.0</td>
+<td>59117.0</td>
+<td>59262.0</td>
+<td>59117.0</td>
+<td>58652.0</td>
+<td>57919.0</td>
+<td>57053.0</td>
+<td>56245.0</td>
+<td>55636.0</td>
+<td>55274.0</td>
+<td>55128.0</td>
+<td>55165.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Andorra</td>
+<td>63854.0</td>
+<td>64274.0</td>
+<td>64090.0</td>
+<td>63799.0</td>
+<td>64084.0</td>
+<td>65399.0</td>
+<td>68000.0</td>
+<td>71639.0</td>
+<td>75643.0</td>
+<td>79060.0</td>
+<td>81223.0</td>
+<td>81877.0</td>
+<td>81292.0</td>
+<td>79969.0</td>
+<td>78659.0</td>
+<td>77907.0</td>
+<td>77865.0</td>
+<td>78360.0</td>
+<td>79218.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">212</td>
+<td>Wallis and Futuna Islands</td>
+<td>14143.0</td>
+<td>14221.0</td>
+<td>14309.0</td>
+<td>14394.0</td>
+<td>14460.0</td>
+<td>14497.0</td>
+<td>14501.0</td>
+<td>14476.0</td>
+<td>14422.0</td>
+<td>14344.0</td>
+<td>14246.0</td>
+<td>14126.0</td>
+<td>13988.0</td>
+<td>13840.0</td>
+<td>13697.0</td>
+<td>13565.0</td>
+<td>13451.0</td>
+<td>13353.0</td>
+<td>13272.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">213</td>
+<td>West Bank and Gaza Strip</td>
+<td>2598393.0</td>
+<td>2722497.0</td>
+<td>2851993.0</td>
+<td>2980563.0</td>
+<td>3099951.0</td>
+<td>3204572.0</td>
+<td>3291620.0</td>
+<td>3363542.0</td>
+<td>3426549.0</td>
+<td>3489743.0</td>
+<td>3559856.0</td>
+<td>3638829.0</td>
+<td>3725076.0</td>
+<td>3817551.0</td>
+<td>3914035.0</td>
+<td>4012880.0</td>
+<td>4114199.0</td>
+<td>4218771.0</td>
+<td>4326295.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">214</td>
+<td>Yemen</td>
+<td>15018201.0</td>
+<td>15578640.0</td>
+<td>16088019.0</td>
+<td>16564235.0</td>
+<td>17035531.0</td>
+<td>17522537.0</td>
+<td>18029989.0</td>
+<td>18551068.0</td>
+<td>19081306.0</td>
+<td>19612696.0</td>
+<td>20139661.0</td>
+<td>20661714.0</td>
+<td>21182162.0</td>
+<td>21703571.0</td>
+<td>22229625.0</td>
+<td>22763008.0</td>
+<td>23304206.0</td>
+<td>23852409.0</td>
+<td>24407381.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">215</td>
+<td>Zambia</td>
+<td>8841338.0</td>
+<td>9073311.0</td>
+<td>9320089.0</td>
+<td>9577483.0</td>
+<td>9839179.0</td>
+<td>10100981.0</td>
+<td>10362137.0</td>
+<td>10625423.0</td>
+<td>10894519.0</td>
+<td>11174650.0</td>
+<td>11470022.0</td>
+<td>11781612.0</td>
+<td>12109620.0</td>
+<td>12456527.0</td>
+<td>12825031.0</td>
+<td>13216985.0</td>
+<td>13633796.0</td>
+<td>14075099.0</td>
+<td>14538640.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">216</td>
+<td>Zimbabwe</td>
+<td>11639364.0</td>
+<td>11846110.0</td>
+<td>12045813.0</td>
+<td>12229500.0</td>
+<td>12384727.0</td>
+<td>12503652.0</td>
+<td>12586763.0</td>
+<td>12640922.0</td>
+<td>12673103.0</td>
+<td>12693047.0</td>
+<td>12710589.0</td>
+<td>12724308.0</td>
+<td>12740160.0</td>
+<td>12784041.0</td>
+<td>12888918.0</td>
+<td>13076978.0</td>
+<td>13358738.0</td>
+<td>13724317.0</td>
+<td>14149648.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>217 rows × 20 columns</p>
+</div>
+</div>
+</div>
 
 
 </section>

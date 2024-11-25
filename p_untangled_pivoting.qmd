@@ -14,12 +14,14 @@ Run the code below to load and define the datasets to be used in this lesson.
 
 ```{python}
 # Temperatures dataset
-temperatures = pd.DataFrame({
-    "country": ["Sweden", "Denmark", "Norway"],
-    "1994": [1, 2, 3],
-    "1995": [3, 4, 5],
-    "1996": [5, 6, 7],
-})
+temperatures = pd.DataFrame(
+    {
+        "country": ["Sweden", "Denmark", "Norway"],
+        "1994": [1, 2, 3],
+        "1995": [3, 4, 5],
+        "1996": [5, 6, 7],
+    }
+)
 
 # Fuels Wide dataset
 fuels_wide = pd.read_csv(
@@ -160,10 +162,6 @@ temperatures
 
 Is this data in a wide or long format?
 
-```{python}
-# Write your answer here
-# The data is in a wide format.
-```
 
 :::
 
@@ -229,14 +227,11 @@ Here's what we did above:
 
 ## Practice Q: Temperatures to Long
 
-Convert the `temperatures` dataset created above into a long format. Your answer should have the following column names: **"country"**, **"year"**, and **"avgtemp"**.
+Convert the `temperatures` dataset shown below into a long format. Your answer should have the following column names: **"country"**, **"year"**, and **"avgtemp"**.
 
 ```{python}
 # Your code here
-temperatures_long = temperatures.melt(
-    id_vars=["country"], var_name="year", value_name="avgtemp"
-)
-temperatures_long
+temperatures
 ```
 
 :::
@@ -248,18 +243,11 @@ temperatures_long
 For this practice question, you will use the `euro_births_wide` dataset from [Eurostat](https://ec.europa.eu/eurostat/databrowser/view/tps00204/default/table). It shows the annual number of births in 50 European countries:
 
 ```{python}
-euro_births_wide
+euro_births_wide.head()
 ```
 
 The data is in a wide format. Convert it to a long format DataFrame that has the following column names: **"country"**, **"year"**, and **"births_count"**.
 
-```{python}
-# Your code here
-births_long = euro_births_wide.melt(
-    id_vars=["country"], var_name="year", value_name="births_count"
-)
-births_long
-```
 
 :::
 
@@ -298,7 +286,7 @@ The code is quite straightforward:
 contracts_wide = contracts_summary.pivot(
     index="state", columns="year", values="count"
 ).reset_index()
-contracts_wide
+contracts_wide.head()
 ```
 
 As you can see, `pivot()` has three important arguments:
@@ -326,10 +314,6 @@ Convert the long `temperatures_long` dataset you created above back to a wide fo
 
 ```{python}
 # Your code here
-temperatures_wide = temperatures_long.pivot(
-    index="country", columns="year", values="avgtemp"
-).reset_index()
-temperatures_wide
 ```
 
 :::
@@ -340,38 +324,26 @@ temperatures_wide
 
 The `population` dataset shows the populations of 219 countries over time.
 
-Reshape this data into a wide format. Your answer should have 219 rows and multiple columns representing different years.
+Reshape this data into a wide format. 
 
 ```{python}
 population
 ```
 
-```{python}
-# Your code here
 
-# Reshape the long data into wide format
-population_wide = population.pivot(
-    index="country", columns="year", values="population"
-).reset_index()
-
-# Display the wide format data
-population_wide
-```
 :::
 
 ## Reshaping Can Be Hard
 
-We have mostly looked at very simple examples of reshaping here, but in the wild, reshaping can be very difficult to do accurately.
+We have mostly looked at very simple examples of reshaping here, but in the wild, reshaping can be  difficult to do accurately.
 
 When you run into such cases, we recommend looking at the [official documentation](https://pandas.pydata.org/docs/user_guide/reshaping.html) of reshaping from the pandas team, as it is quite rich in examples.
 
 ## Wrap-Up
 
-Congratulations! You've mastered the art of reshaping data with pandas.
+Congratulations! You've gotten the hang of reshaping data with pandas.
 
 You now understand the differences between wide and long formats and can skillfully use `melt()` and `pivot()` to transform your data as needed.
-
-Remember, there's no universally "best" format—it depends on your specific analysis or visualization needs. With these skills, you're now equipped to handle data in any shape it comes in. Keep practicing with different datasets to reinforce your learning!
 
 ## Solution Q: Wide or Long?
 

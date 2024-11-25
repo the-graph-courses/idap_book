@@ -307,13 +307,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_other_grouped_operations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Grouped Transformations and Filtering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_joining_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Introduction to Joining Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./p_untangled_joining_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Joining 2: One-to-Many, Multi-Key Joins &amp; Key Mismatches</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_pivoting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_ai_LLM_functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Using LLMs in Python for Text Generation</span></span></a>
   </div>
 </li>
       </ul>
@@ -401,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="packages" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">17.3</span> Packages</h2>
 <p>This lesson will require <code>pandas</code>, <code>numpy</code>, <code>plotly.express</code>, and <code>vega_datasets</code>:</p>
-<div id="7ded2a11" class="cell" data-execution_count="2">
+<div id="05e628cc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vega_datasets <span class="im">as</span> vd</span>
@@ -412,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="17.4" class="anchored" data-anchor-id="introduction-to-replace"><span class="header-section-number">17.4</span> Introduction to <code>replace()</code></h2>
 <p>One common task in data wrangling is to replace values in a column based on certain conditions. The <code>replace()</code> method in pandas is a versatile tool for this purpose.</p>
 <p>In the <code>tips</code> dataset, the <code>day</code> column contains abbreviated day names:</p>
-<div id="f6a27915" class="cell" data-execution_count="3">
+<div id="3a3d1e37" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -421,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Our goal is to replace these abbreviations with the full day names.</p>
 <p>We can create a dictionary that maps the abbreviated names to the full names:</p>
-<div id="55b04aa5" class="cell" data-execution_count="4">
+<div id="b191a5c0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>day_mapping <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sun"</span>: <span class="st">"Sunday"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sat"</span>: <span class="st">"Saturday"</span>,</span>
@@ -430,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we use the <code>replace()</code> method with the dictionary:</p>
-<div id="4ed650f2" class="cell" data-execution_count="5">
+<div id="977d4c81" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day_full'</span>] <span class="op">=</span> tips[<span class="st">'day'</span>].replace(day_mapping)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tips</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -537,7 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Alternatively, we can perform the replacement directly within the <code>replace()</code> method without explicitly defining a dictionary:</p>
-<div id="dd3505c0" class="cell" data-execution_count="6">
+<div id="17143f0b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">'day_full'</span>] <span class="op">=</span> tips[<span class="st">'day'</span>].replace({</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sun"</span>: <span class="st">"Sunday"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sat"</span>: <span class="st">"Saturday"</span>,</span>
@@ -606,7 +618,7 @@ Practice
 <li>Replace <code>"Male"</code> with <code>"M"</code>.</li>
 </ul>
 <p>Assign the result to a new column called <code>sex_abbr</code> and display the first few rows.</p>
-<div id="0cc5a7bf" class="cell" data-execution_count="7">
+<div id="79ab83c3" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -616,7 +628,7 @@ Practice
 <h2 data-number="17.6" class="anchored" data-anchor-id="handling-missing-values-with-replace"><span class="header-section-number">17.6</span> Handling Missing Values with <code>replace()</code></h2>
 <p>Sometimes, your dataset may contain missing values (<code>NaN</code> or <code>None</code>) that you want to replace with a placeholder or specific value. The <code>replace()</code> method can handle this.</p>
 <p>Let’s examine the <code>Creative_Type</code> column in the <code>movies</code> dataset from vega_datasets:</p>
-<div id="5935947e" class="cell" data-execution_count="8">
+<div id="f4869ffe" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> vd.data.movies()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -633,13 +645,13 @@ Name: count, Length: 10, dtype: int64</code></pre>
 </div>
 <p>Notice that there are some <code>None</code> values in the <code>Creative_Type</code> column.</p>
 <p>Let’s replace <code>None</code> with <code>"Unknown/Unclear"</code>:</p>
-<div id="aeb33c4b" class="cell" data-execution_count="9">
+<div id="64f63482" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>] <span class="op">=</span> movies[<span class="st">'Creative_Type'</span>].replace({</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">None</span>: <span class="st">"Unknown/Unclear"</span>, <span class="co"># 👈 On this line, None is the key</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let’s verify the replacement:</p>
-<div id="ed94dcf7" class="cell" data-execution_count="10">
+<div id="6cb3c740" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Creative_Type'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>Creative_Type
@@ -654,13 +666,13 @@ Name: count, Length: 10, dtype: int64</code></pre>
 </div>
 </div>
 <p>While <code>None</code> is typically used to represent missing strings, <code>NaN</code> is used for missing numbers. Consider the <code>US_DVD_Sales</code> column:</p>
-<div id="d513aec9" class="cell" data-execution_count="11">
+<div id="8500514b" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>movies.query(<span class="st">"US_DVD_Sales.isna()"</span>).shape <span class="co"># Check the number of missing values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>(2637, 16)</code></pre>
 </div>
 </div>
-<div id="8bf8a31d" class="cell" data-execution_count="12">
+<div id="cf1d84ca" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'US_DVD_Sales'</span>].tail(<span class="dv">10</span>) <span class="co"># View the last 10 values. Some are missing.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>3191     3273039.0
@@ -674,13 +686,13 @@ Name: US_DVD_Sales, Length: 10, dtype: float64</code></pre>
 </div>
 </div>
 <p>We can use <code>replace()</code> to replace <code>NaN</code> with 0:</p>
-<div id="0eba310b" class="cell" data-execution_count="13">
+<div id="c1e824ad" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'US_DVD_Sales'</span>] <span class="op">=</span> movies[<span class="st">'US_DVD_Sales'</span>].replace({</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    np.nan: <span class="dv">0</span> <span class="co"># 👈 `NaN` is represented by `np.nan` in pandas</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s verify the replacement:</p>
-<div id="853db41d" class="cell" data-execution_count="14">
+<div id="5c758513" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'US_DVD_Sales'</span>].tail(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>3191     3273039.0
@@ -693,7 +705,7 @@ Name: US_DVD_Sales, Length: 10, dtype: float64</code></pre>
 Name: US_DVD_Sales, Length: 10, dtype: float64</code></pre>
 </div>
 </div>
-<div id="76fa71a1" class="cell" data-execution_count="15">
+<div id="1332af27" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>movies.query(<span class="st">"US_DVD_Sales.isna()"</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>(0, 16)</code></pre>
@@ -704,7 +716,7 @@ Name: US_DVD_Sales, Length: 10, dtype: float64</code></pre>
 <h2 data-number="17.7" class="anchored" data-anchor-id="practice-q-standardize-mpaa-ratings"><span class="header-section-number">17.7</span> Practice Q: Standardize MPAA Ratings</h2>
 <p>In the <code>movies</code> dataset, the <code>MPAA_Rating</code> column contains movie ratings. Some entries are <code>None</code> or <code>"Not Rated"</code>. Replace both <code>None</code> and <code>"Not Rated"</code> with <code>"Unrated"</code>.</p>
 <p>Then, use <code>value_counts()</code> to see how many movies are unrated. There should be 699 movies in this category.</p>
-<div id="6edca32c" class="cell" data-execution_count="16">
+<div id="5f13be76" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -716,7 +728,7 @@ Name: US_DVD_Sales, Length: 10, dtype: float64</code></pre>
 <li>If the value is between 10 million and 50 million, the category is <code>"Medium"</code>.</li>
 <li>If the value is greater than 50 million, the category is <code>"High"</code>.</li>
 </ul>
-<div id="813f5798" class="cell" data-execution_count="17">
+<div id="dbb4502b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categ_gross(gross):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gross <span class="op">&lt;</span> <span class="dv">10000000</span>:</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Low"</span></span>
@@ -741,13 +753,13 @@ Side Note
 </div>
 <div class="callout-body-container callout-body">
 <p>The <code>np.vectorize</code> function in the above case will return <code>None</code> as a string. To enforce the <code>None</code> type, you can use the <code>otypes</code> parameter:</p>
-<div id="1f6dac79" class="cell" data-execution_count="18">
+<div id="71ed006c" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>categ_gross_vec <span class="op">=</span> np.vectorize(categ_gross, otypes<span class="op">=</span>[<span class="bu">object</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>Now we can apply it to the entire column:</p>
-<div id="c6003405" class="cell" data-execution_count="19">
+<div id="d8ee6254" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Gross_Category'</span>] <span class="op">=</span> categ_gross_vec(movies[<span class="st">'US_Gross'</span>])</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Gross_Category'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -771,7 +783,7 @@ Name: count, dtype: int64</code></pre>
 <li>For all other movies, we leave the flag blank</li>
 </ul>
 <p>We can define a funcion that takes in three arguments and returns the appropriate flag:</p>
-<div id="0a5e44c2" class="cell" data-execution_count="20">
+<div id="76002dd4" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function to flag movies based on the conditions</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flag_movie(movie_type, us, worldwide):</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> movie_type <span class="op">==</span> <span class="st">'Super Hero'</span> <span class="kw">and</span> us <span class="op">==</span> worldwide:</span>
@@ -782,7 +794,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s test it out with a few sets of values:</p>
-<div id="ca527103" class="cell" data-execution_count="21">
+<div id="70e8e0f5" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flag_movie(movie_type<span class="op">=</span><span class="st">'Super Hero'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">100</span>))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flag_movie(movie_type<span class="op">=</span><span class="st">'Super Hero'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">200</span>))</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flag_movie(movie_type<span class="op">=</span><span class="st">'Comedy'</span>, us<span class="op">=</span><span class="dv">100</span>, worldwide<span class="op">=</span><span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -793,11 +805,11 @@ None</code></pre>
 </div>
 </div>
 <p>Now, let’s vectorize it:</p>
-<div id="3f9c58bf" class="cell" data-execution_count="22">
+<div id="3178cbb6" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>flag_movie_vec <span class="op">=</span> np.vectorize(flag_movie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now apply it to the columns:</p>
-<div id="139c4a15" class="cell" data-execution_count="23">
+<div id="77f1f2e8" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Action_Flag'</span>] <span class="op">=</span> flag_movie_vec(movies[<span class="st">'Creative_Type'</span>], movies[<span class="st">'US_Gross'</span>], movies[<span class="st">'Worldwide_Gross'</span>])</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -984,7 +996,7 @@ None</code></pre>
 </div>
 </div>
 <p>To see the distribution of movie categories based on our flag, we can use <code>value_counts()</code>:</p>
-<div id="b0ba62cb" class="cell" data-execution_count="24">
+<div id="f2d85fec" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Action_Flag'</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>Action_Flag
@@ -1003,7 +1015,7 @@ Name: count, dtype: int64</code></pre>
 <li>Otherwise, the movie is categorized as <strong>Other</strong>.</li>
 <li>Count how many movies are <strong>Critic-friendly</strong> and <strong>Commercial</strong>. There should be 13 Critic-friendly movies and 33 Commercial movies. Do you recognize any of them?</li>
 </ul>
-<div id="bcff4a74" class="cell" data-execution_count="25">
+<div id="80143d33" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>

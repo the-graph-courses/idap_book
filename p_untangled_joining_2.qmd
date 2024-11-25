@@ -270,7 +270,7 @@ people.merge(test_info_diff, on='name', how='left')
 ```
 
 ```{python}
-pd.merge(people, test_info_diff, on="name", how="left")
+pd.merge(people, test_info_diff, on="name", how="inner")
 ```
 
 As we can see, Python didn't recognize `Alice` and `alice` as the same person, and it also could not match `Charlie` and `Charlie `! So we lose `Alice` and `Charlie` in the `left` join, and they are dropped in the `inner` join.
@@ -286,7 +286,7 @@ test_info_diff
 people.merge(test_info_diff, on='name', how='inner')
 ```
 
-Hmm, Charlie is still not matched. It's hard to see from the printout, but the `name` column in `test_info_diff` has an extra space at the end. 
+Hmm, Charlie is still not matched. It's hard to see from the printout, but the string `Charlie ` in `test_info_diff` has an extra space at the end. 
 
 We can spot this better by using `.unique()` to convert to an array:
 
@@ -294,7 +294,7 @@ We can spot this better by using `.unique()` to convert to an array:
 test_info_diff['name'].unique()
 ```
 
-Now, we can fix this by using `str.strip()` to remove the extra space.
+We can fix this by using `str.strip()` to remove the extra space.
 
 ```{python}
 test_info_diff['name'] = test_info_diff['name'].str.strip()
@@ -335,8 +335,7 @@ Now, fix the mismatched values in the `Country` column and try the join again.
 
 ## Key Mismatches: Oil Consumption Example
 
-Let's now return to the oil consumption example.
-
+Let's now see a more realistic example of how mismatched keys can cause problems.
 ```{python}
 oil_consumption
 ```
@@ -345,8 +344,7 @@ oil_consumption
 tidyr_population
 ```
 
-Recall that after the join, there were some countries that were not matched. 
-
+After we attempt a join, we see that there are some countries that are not matched, such as Vietnam.
 
 ```{python}
 pd.merge(
@@ -354,8 +352,7 @@ pd.merge(
 ).sort_values(["country", "year"])
 ```
 
-
-This is because the country names were not in the same format in the two datasets.
+This is because the country names are not in the same format in the two datasets.
 
 Before attempting to join these datasets, it's a good idea to check for mismatches in the key columns. This can help you identify any discrepancies that might prevent a successful join.
 
@@ -366,7 +363,7 @@ oil_countries = set(oil_consumption['country'].unique())
 pop_countries = set(tidyr_population['country'].unique())
 ```
 
-Now, find countries in `oil_consumption` that are not in `tidyr_population`:
+Now, to find countries in `oil_consumption` that are not in `tidyr_population`, we can use set arithmetic:
 
 ```{python}
 missing_in_pop = oil_countries - pop_countries
@@ -382,10 +379,15 @@ missing_in_oil
 
 These differences indicate mismatches in the key columns that need to be addressed before joining.
 
+You might try to check manually. For example, we can see that Vietname is written as `Vietnam` in one dataset and `Viet Nam` in the other. 
+
+However, in the case of countries, there is an even nicer solution: use country codes! We'll see how to do this in the next section.
 
 ::: {.callout-note title="Side Note"}
 
 ## Set Arithmetic
+
+A quick side note on set arithmetic for those who are unfamiliar. 
 
 Consider two sets of the numbers 1:5, and 2:4.
 
@@ -411,7 +413,7 @@ set_2 - set_1
 
 ### Merging with Country Codes
 
-To avoid such mismatches, it is often useful to use country codes rather than country names as the key.
+To avoid country mismatches, it is often useful to use country codes rather than country names as the key.
 
 Let's now add country codes to both datasets and try the join again.
 

@@ -407,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="functions" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="functions"><span class="header-section-number">3.3</span> Functions</h2>
 <p>A function is a block of code that performs a specific task. It can take inputs (arguments) and return outputs. Here’s an example of a built-in function with just one argument:</p>
-<div id="dbe0809f" class="cell" data-execution_count="1">
+<div id="9100ac06" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the len() function to get the length of a string</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(<span class="st">"Python"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -415,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>round()</code> function takes two arguments: the number to round and the number of decimal places to round to.</p>
-<div id="fe31b9df" class="cell" data-execution_count="2">
+<div id="9c99233e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the round() function to round a number</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -435,7 +435,7 @@ Practice
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="q-using-built-in-functions"><span class="header-section-number">3.3.1</span> Q: Using built-in functions</h3>
 <p>Use the <code>abs()</code> function to get the absolute value of -5.</p>
 <p>Write your code below and run it to check your answer:</p>
-<div id="edc83c7c" class="cell" data-execution_count="3">
+<div id="13bd4924" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -447,7 +447,7 @@ Practice
 <p>There are different ways to pass arguments to a function.</p>
 <p>Consider again the <code>round()</code> function.</p>
 <p>If we look at the documentation for the <code>round()</code> function, with :</p>
-<div id="a103e7cd" class="cell" data-execution_count="4">
+<div id="2476bfc3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We see that it takes two arguments:</p>
@@ -459,27 +459,27 @@ Practice
 <ol type="1">
 <li>Positional arguments: Passed in the order they are defined. Since the default order of the arguments is <code>number</code> then <code>ndigits</code>, we can pass the arguments in that order without specifying the argument names, as we did above.</li>
 </ol>
-<div id="6f9e448d" class="cell" data-execution_count="5">
+<div id="98afc207" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>3.14</code></pre>
 </div>
 </div>
 <p>If we swap the order of the arguments, we get an error:</p>
-<div id="e1b1da46" class="cell" data-execution_count="6">
+<div id="15b3ddda" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="dv">2</span>, <span class="fl">3.1415</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Keyword arguments: Passed by specifying the argument name followed by a <code>=</code> and the argument value.</li>
 </ol>
-<div id="9a6aee5a" class="cell" data-execution_count="7">
+<div id="22f92ae9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(number<span class="op">=</span><span class="fl">3.1415</span>, ndigits<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>3.14</code></pre>
 </div>
 </div>
 <p>With this method, we can pass the arguments in any order, as long as we use the argument names.</p>
-<div id="c1b7ed40" class="cell" data-execution_count="8">
+<div id="8ea114f6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(ndigits<span class="op">=</span><span class="dv">2</span>, number<span class="op">=</span><span class="fl">3.1415</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>3.14</code></pre>
@@ -500,7 +500,7 @@ Practice
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="q-using-positional-arguments-with-pow"><span class="header-section-number">3.4.1</span> Q: Using Positional Arguments with <code>pow()</code></h3>
 <p>Use the <code>pow()</code> function to calculate 2 raised to the power of 5 by passing positional arguments. You may need to consult the documentation for the <code>pow()</code> function to see how it works.</p>
 <p>Write your code below and run it to check your answer:</p>
-<div id="b07cdd27" class="cell" data-execution_count="9">
+<div id="41fdebaf" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -508,7 +508,7 @@ Practice
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="q-using-keyword-arguments-with-round"><span class="header-section-number">3.4.2</span> Q: Using Keyword Arguments with <code>round()</code></h3>
 <p>Use the <code>round()</code> function to round the number <code>9.8765</code> to <code>3</code> decimal places by specifying keyword arguments.</p>
 <p>Write your code below and run it to check your answer:</p>
-<div id="32d5fd50" class="cell" data-execution_count="10">
+<div id="2572a253" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -520,7 +520,7 @@ Practice
 <p>Methods are similar to functions, but they are associated with specific objects or data types. They are called using dot notation.</p>
 <p>For example, every string object comes with a range of built-in methods, like <code>upper()</code> to convert to uppercase, <code>lower()</code> to convert to lowercase, <code>replace()</code> to replace substrings, and many more.</p>
 <p>Let’s see how to use these:</p>
-<div id="e93faefd" class="cell" data-execution_count="11">
+<div id="d81f873f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"python"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(name.upper())</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(name.lower())</span>
@@ -532,7 +532,7 @@ python
 </div>
 </div>
 <p>We can also call the methods directly on the string object, without assigning it to a variable:</p>
-<div id="94791a11" class="cell" data-execution_count="12">
+<div id="ced25375" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the upper() method on a string</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"python"</span>.upper())</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PYTHON"</span>.lower())</span>
@@ -544,7 +544,7 @@ python
 </div>
 </div>
 <p>Similarly, numbers in Python come with some built-in methods. For example, the <code>as_integer_ratio()</code> (added in Python 3.8) method converts a decimalnumber to a ratio of two integers.</p>
-<div id="353a18a0" class="cell" data-execution_count="13">
+<div id="132cd8a0" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the as_integer_ratio() method on a float</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>example_decimal <span class="op">=</span> <span class="fl">1.5</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>example_decimal.as_integer_ratio()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -587,7 +587,7 @@ Practice
 <li>Call the <code>replace()</code> method on the string “Helo” to replace the single l with two ls.</li>
 <li>Call the <code>split()</code> method on the string “Hello World” to split the string into a list of words.</li>
 </ol>
-<div id="b5427cfa" class="cell" data-execution_count="14">
+<div id="f7472739" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -598,17 +598,17 @@ Practice
 <p>Libraries are collections of pre-written code that you can use in your programs. They extend the functionality of Python by providing additional functions and tools.</p>
 <p>For example, the <code>math</code> library provides mathematical functions like <code>sqrt()</code> for square roots and <code>sin()</code> for sine.</p>
 <p>If we try to use the <code>sqrt()</code> function without importing the <code>math</code> library, we get an error:</p>
-<div id="5f5e640e" class="cell" data-execution_count="15">
+<div id="dc90e327" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will cause a NameError</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sqrt(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can import the <code>math</code> library and use the <code>sqrt()</code> function like this:</p>
-<div id="69905e85" class="cell" data-execution_count="16">
+<div id="9286eae4" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the library</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we can use the <code>sqrt()</code> function like this:</p>
-<div id="d95a274f" class="cell" data-execution_count="17">
+<div id="aed8e54c" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the sqrt() function</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>math.sqrt(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -616,12 +616,12 @@ Practice
 </div>
 </div>
 <p>We can get help on a function in a similar way, calling both the function and the library it’s in:</p>
-<div id="9dc00297" class="cell" data-execution_count="18">
+<div id="c55b8895" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get help on the sqrt() function</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>math.sqrt?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also import libraries with aliases. For example, we can import the <code>math</code> library with the alias <code>m</code>:</p>
-<div id="de818fe3" class="cell" data-execution_count="19">
+<div id="4a336a2f" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the entire library with an alias</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math <span class="im">as</span> m</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can use the alias to call the function</span></span>
@@ -631,7 +631,7 @@ Practice
 </div>
 </div>
 <p>Finally, if you want to skip the alias/library name, you can either import the functions individually:</p>
-<div id="13371d5d" class="cell" data-execution_count="20">
+<div id="a29894bb" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import specific functions from a library</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt, sin</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can use the function directly</span></span>
@@ -642,7 +642,7 @@ Practice
 </div>
 </div>
 <p>Or import everything from the library:</p>
-<div id="8efac7c1" class="cell" data-execution_count="21">
+<div id="b8620215" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import everything from the library</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can all functions directly, such as sqrt() and sin()</span></span>
@@ -689,7 +689,7 @@ Practice
 <ul>
 <li>Import the <code>random</code> library and use the <code>randint()</code> function to generate a random integer between 1 and 10. You can use the <code>?</code> operator to get help on the function after importing it.</li>
 </ul>
-<div id="4dc1c8ec" class="cell" data-execution_count="22">
+<div id="1028e9e7" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -699,11 +699,11 @@ Practice
 <h2 data-number="3.7" class="anchored" data-anchor-id="installing-libraries"><span class="header-section-number">3.7</span> Installing Libraries</h2>
 <p>While Python comes with many built-in libraries, there are thousands of additional libraries available that you can install to extend Python’s functionality even further. Let’s look at how to install and use a simple external library, with the <code>cowsay</code> library as an example.</p>
 <p>If we try to import this library without first installing it, we get an error:</p>
-<div id="cb32a931" class="cell" data-execution_count="23">
+<div id="9f4bb918" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To install the library, you can use the <code>!pip install</code> command in a code cell in Google Colab. For <code>cowsay</code>, you would run:</p>
-<div id="5d60402a" class="cell" data-execution_count="24">
+<div id="4d73da28" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install cowsay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pip installs packages from a remote repository called <a href="https://pypi.org/">PyPI</a>. Anyone can create and upload a package to PyPI. After a few checks, it’s then available for anyone to install.</p>
@@ -722,7 +722,7 @@ Side-note
 </div>
 </div>
 <p>Once installed, we can now import and use the <code>cowsay</code> library:</p>
-<div id="27e5e1e2" class="cell" data-execution_count="25">
+<div id="e9e18bf4" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cowsay</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the cow say something</span></span>
@@ -758,7 +758,7 @@ Practice
 <li>Consult the help for the <code>emojize()</code> function in the <code>emoji</code> library.</li>
 <li>Use the <code>emojize()</code> function to display an emoji for “thumbs up”.</li>
 </ol>
-<div id="01dc0201" class="cell" data-execution_count="26">
+<div id="f58fa961" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>

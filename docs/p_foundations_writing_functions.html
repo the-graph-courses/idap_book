@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="1d40be00" class="cell" data-execution_count="1">
+<div id="80dca338" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pd.options.display.max_rows <span class="op">=</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -409,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="packages" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">6.3</span> Packages</h2>
 <p>Run the following code to install and load the packages needed for this lesson:</p>
-<div id="1aaf426c" class="cell" data-execution_count="2">
+<div id="d576a356" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -419,12 +419,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="basics-of-a-function" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="basics-of-a-function"><span class="header-section-number">6.4</span> Basics of a Function</h2>
 <p>Let’s start by creating a very simple function. Consider the following function that converts pounds (a unit of weight) to kilograms (another unit of weight):</p>
-<div id="d5d5bd7e" class="cell" data-execution_count="3">
+<div id="63aa37d6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pounds_to_kg(pounds):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pounds <span class="op">*</span> <span class="fl">0.4536</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you execute this code, you will create a function named <code>pounds_to_kg</code>, which can be used directly in a script or in the console:</p>
-<div id="a448b2d9" class="cell" data-execution_count="4">
+<div id="e47a4c0f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pounds_to_kg(<span class="dv">150</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>68.04</code></pre>
@@ -432,45 +432,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Let’s break down the structure of this first function step by step.</p>
 <p>First, a function is created using the <code>def</code> keyword, followed by a pair of parentheses and a colon.</p>
-<div id="64d420d3" class="cell" data-execution_count="5">
+<div id="872eeeef" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> function_name():</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Function body</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Inside the parentheses, we indicate the <strong>arguments</strong> of the function. Our function only takes one argument, which we have decided to name <code>pounds</code>. This is the value that we want to convert from pounds to kilograms.</p>
-<div id="b18d7830" class="cell" data-execution_count="6">
+<div id="80becdef" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pounds_to_kg(pounds):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Function body</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Of course, we could have named this argument anything we wanted. E.g. <code>p</code> or <code>weight</code>.</p>
 <p>The next element, after the colon, is the <strong>body</strong> of the function. This is where we write the code that we want to execute when the function is called.</p>
-<div id="236b4198" class="cell" data-execution_count="7">
+<div id="ab37750a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pounds_to_kg(pounds):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pounds <span class="op">*</span> <span class="fl">0.4536</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We use the <code>return</code> statement to specify what value the function should output.</p>
 <p>You could also assign the result to a variable and then return that variable:</p>
-<div id="8e6dc0ec" class="cell" data-execution_count="8">
+<div id="4c373516" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pounds_to_kg(pounds):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    kg <span class="op">=</span> pounds <span class="op">*</span> <span class="fl">0.4536</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is a bit more wordy, but it makes the function clearer.</p>
 <p>We can now use our function like this with a named argument:</p>
-<div id="ea1658ab" class="cell" data-execution_count="9">
+<div id="1479d523" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pounds_to_kg(pounds<span class="op">=</span><span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>68.04</code></pre>
 </div>
 </div>
 <p>Or without a named argument:</p>
-<div id="07cf5d0d" class="cell" data-execution_count="10">
+<div id="54dbc63f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pounds_to_kg(<span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>68.04</code></pre>
 </div>
 </div>
 <p>To use this in a DataFrame, you can create a new column:</p>
-<div id="f673f9cc" class="cell" data-execution_count="11">
+<div id="24e99276" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pounds_df <span class="op">=</span> pd.DataFrame({<span class="st">'pounds'</span>: [<span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">250</span>]})</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pounds_df[<span class="st">'kg'</span>] <span class="op">=</span> pounds_to_kg(pounds_df[<span class="st">'pounds'</span>])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>pounds_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -522,7 +522,7 @@ Practice
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="age-in-months-function"><span class="header-section-number">6.4.1</span> Age in Months Function</h3>
 <p>Create a simple function called <code>years_to_months</code> that transforms age in years to age in months.</p>
 <p>Use it on the <code>riots_df</code> DataFrame imported below to create a new column called <code>age_months</code>:</p>
-<div id="78994afa" class="cell" data-execution_count="12">
+<div id="cd1a4c1d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>riots_df <span class="op">=</span> vd.data.la_riots()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>riots_df </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -658,7 +658,7 @@ Practice
 <section id="functions-with-multiple-arguments" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="functions-with-multiple-arguments"><span class="header-section-number">6.5</span> Functions with Multiple Arguments</h2>
 <p>Most functions take multiple arguments rather than just one. Let’s look at an example of a function that takes three arguments:</p>
-<div id="59432caf" class="cell" data-execution_count="13">
+<div id="3e874d83" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_calories(carb_grams, protein_grams, fat_grams):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> (carb_grams <span class="op">*</span> <span class="dv">4</span>) <span class="op">+</span> (protein_grams <span class="op">*</span> <span class="dv">4</span>) <span class="op">+</span> (fat_grams <span class="op">*</span> <span class="dv">9</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
@@ -670,25 +670,25 @@ Practice
 </div>
 <p>The <code>calc_calories</code> function computes the total calories based on the grams of carbohydrates, protein, and fat. Carbohydrates and proteins are estimated to be 4 calories per gram, while fat is estimated to be 9 calories per gram.</p>
 <p>If you attempt to use the function without supplying all the arguments, it will yield an error.</p>
-<div id="879b675f" class="cell" data-execution_count="14">
+<div id="976ace15" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>calc_calories(carb_grams<span class="op">=</span><span class="dv">50</span>, protein_grams<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>TypeError: calc_calories() missing 1 required positional argument: 'fat_grams'</code></pre>
 <p>You can define <strong>default values</strong> for your function’s arguments. If an argument is <strong>called</strong> without a <strong>value assigned to it</strong>, then this argument assumes its default value. Let’s make all arguments optional by giving them all default values:</p>
-<div id="4dc621a2" class="cell" data-execution_count="15">
+<div id="0ef7b36d" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_calories(carb_grams<span class="op">=</span><span class="dv">0</span>, protein_grams<span class="op">=</span><span class="dv">0</span>, fat_grams<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> (carb_grams <span class="op">*</span> <span class="dv">4</span>) <span class="op">+</span> (protein_grams <span class="op">*</span> <span class="dv">4</span>) <span class="op">+</span> (fat_grams <span class="op">*</span> <span class="dv">9</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we can call the function with only some arguments without getting an error:</p>
-<div id="e681e94e" class="cell" data-execution_count="16">
+<div id="1cddfbfa" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>calc_calories(carb_grams<span class="op">=</span><span class="dv">50</span>, protein_grams<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>300</code></pre>
 </div>
 </div>
 <p>Let’s use this on a sample dataset:</p>
-<div id="3cafd610" class="cell" data-execution_count="17">
+<div id="83146a5b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>food_df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'food'</span>: [<span class="st">'Apple'</span>, <span class="st">'Avocado'</span>],</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'carb_grams'</span>: [<span class="dv">25</span>, <span class="dv">10</span>],</span>
@@ -747,10 +747,10 @@ Practice
 <section id="bmi-function" class="level3 callout-body-container callout-body" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="bmi-function"><span class="header-section-number">6.5.1</span> BMI Function</h3>
 <p>Create a function named <code>calc_bmi</code> that calculates the Body Mass Index (BMI) for one or more individuals, then apply the function by running the code chunk further below. The formula for BMI is weight (kg) divided by height (m) squared.</p>
-<div id="b3f44177" class="cell" data-execution_count="18">
+<div id="ae30b35e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2f667a77" class="cell" data-execution_count="19">
+<div id="e078182e" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bmi_df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Weight'</span>: [<span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">100</span>],  <span class="co"># in kg</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Height'</span>: [<span class="fl">1.7</span>, <span class="fl">1.8</span>, <span class="fl">1.2</span>]  <span class="co"># in meters</span></span>
@@ -764,7 +764,7 @@ Practice
 <section id="intro-to-conditionals-if-elif-and-else" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="intro-to-conditionals-if-elif-and-else"><span class="header-section-number">6.6</span> Intro to Conditionals: <code>if</code>, <code>elif</code>, and <code>else</code></h2>
 <p>Conditional statements allow you to execute code only when certain conditions are met. The basic syntax in Python is:</p>
-<div id="49cc9621" class="cell" data-execution_count="20">
+<div id="da1c53b3" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condition:</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Code to execute if condition is True</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> another_condition:</span>
@@ -773,7 +773,7 @@ Practice
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Code to execute if all previous conditions were False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s look at an example of using conditionals within a function. Suppose we want to write a function that classifies a number as positive, negative, or zero.</p>
-<div id="f5d7248a" class="cell" data-execution_count="21">
+<div id="b144be44" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> class_num(num):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num <span class="op">&gt;</span> <span class="dv">0</span>:</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Positive"</span></span>
@@ -792,7 +792,7 @@ Zero</code></pre>
 </div>
 </div>
 <p>If you try to use this function the way we have done above for, for example the BMI function, you will get an error:</p>
-<div id="765bbd4a" class="cell" data-execution_count="22">
+<div id="0f511cde" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>num_df <span class="op">=</span> pd.DataFrame({<span class="st">'num'</span>: [<span class="dv">10</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">0</span>]})</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>num_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
@@ -825,12 +825,12 @@ Zero</code></pre>
 </div>
 </div>
 </div>
-<div id="674cd0ac" class="cell" data-execution_count="23">
+<div id="ed1ca95a" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>num_df[<span class="st">'category'</span>] <span class="op">=</span> class_num(num_df[<span class="st">'num'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().</code></pre>
 <p>The reason for this is that if statements are not built to work with series (they are not inherently vectorized); but rather work with single values. To get around this, we can use the <code>np.vectorize</code> function to create a vectorized version of the function:</p>
-<div id="88769051" class="cell" data-execution_count="24">
+<div id="20f85be9" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>class_num_vec <span class="op">=</span> np.vectorize(class_num)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>num_df[<span class="st">'category'</span>] <span class="op">=</span> class_num_vec(num_df[<span class="st">'num'</span>])</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>num_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -875,7 +875,7 @@ Zero</code></pre>
 <li>If the grade is below 60, the category is ‘Fail’.</li>
 <li>If the grade is negative or invalid, return ‘Invalid grade’.</li>
 </ul>
-<div id="957a6f15" class="cell" data-execution_count="25">
+<div id="14ed33de" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_grade(grade):</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> grade <span class="op">&gt;=</span> <span class="dv">85</span> <span class="kw">and</span> grade <span class="op">&lt;=</span> <span class="dv">100</span>:</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Excellent'</span></span>
@@ -892,10 +892,10 @@ Zero</code></pre>
 </div>
 </div>
 <p>We can apply this function to a column in a DataFrame but first we need to vectorize it:</p>
-<div id="00f76fad" class="cell" data-execution_count="26">
+<div id="3cac05ea" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>categorize_grade <span class="op">=</span> np.vectorize(categorize_grade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b1d1ccf3" class="cell" data-execution_count="27">
+<div id="61384f22" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>grades_df <span class="op">=</span> pd.DataFrame({<span class="st">'grade'</span>: [<span class="dv">95</span>, <span class="dv">82</span>, <span class="dv">76</span>, <span class="dv">65</span>, <span class="dv">58</span>, <span class="op">-</span><span class="dv">5</span>]})</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>grades_df[<span class="st">'grade_cat'</span>] <span class="op">=</span> categorize_grade(grades_df[<span class="st">'grade'</span>])</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>grades_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -967,7 +967,7 @@ Practice
 <li>If the age is negative or invalid, return ‘Invalid age’.</li>
 </ul>
 <p>Use it on the <code>riots_df</code> DataFrame printed below to create a new column called <code>Age_Category</code>.</p>
-<div id="be1fa00c" class="cell" data-execution_count="28">
+<div id="b2b0fda5" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>riots_df <span class="op">=</span> vd.data.la_riots()</span>
@@ -1113,7 +1113,7 @@ Side Note
 <section id="apply-vs-vectorize" class="level3 callout-body-container callout-body" data-number="6.6.2">
 <h3 data-number="6.6.2" class="anchored" data-anchor-id="apply-vs-vectorize"><span class="header-section-number">6.6.2</span> Apply vs Vectorize</h3>
 <p>Another way to use functions with if statements on a dataframe is to use the <code>apply</code> method. Here is how you can do the grade categorization function with <code>apply</code>:</p>
-<div id="ff5e272b" class="cell" data-execution_count="29">
+<div id="964cf2bc" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>grades_df[<span class="st">'grade_cat'</span>] <span class="op">=</span> grades_df[<span class="st">'grade'</span>].<span class="bu">apply</span>(categorize_grade)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>grades_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">

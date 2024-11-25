@@ -410,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="libraries" class="level2" data-number="18.3">
 <h2 data-number="18.3" class="anchored" data-anchor-id="libraries"><span class="header-section-number">18.3</span> Libraries</h2>
 <p>Run the following lines to import the necessary libraries:</p>
-<div id="fa28c391" class="cell" data-execution_count="2">
+<div id="4a063aa6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -419,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="18.4" class="anchored" data-anchor-id="the-yaounde-covid-19-dataset"><span class="header-section-number">18.4</span> The Yaounde COVID-19 dataset</h2>
 <p>In this lesson, we will again use a subset of data from the COVID-19 serological survey conducted in Yaounde, Cameroon.</p>
 <p>You can download the dataset from this link: <a href="https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_mini.zip">yaounde_mini.csv</a></p>
-<div id="dabdf8c2" class="cell" data-message="false" data-execution_count="3">
+<div id="63395337" class="cell" data-message="false" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>yao <span class="op">=</span> pd.read_csv(<span class="st">"data/yaounde_mini.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>yao</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -587,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="18.5" class="anchored" data-anchor-id="introducing-pandas.dataframe.agg"><span class="header-section-number">18.5</span> Introducing <code>pandas.DataFrame.agg()</code></h2>
 <p>To get started, let’s consider how to get simple summary statistics <em>without</em> using <code>agg()</code>, then we will consider why you <em>should</em> actually use <code>agg()</code>.</p>
 <p>Imagine you were asked to find the mean age of respondents in the <code>yao</code> data frame. You can do this by calling the <code>mean()</code> method on the <code>age</code> column of the <code>yao</code> data frame:</p>
-<div id="441d3c3a" class="cell" data-execution_count="4">
+<div id="ada7ec8c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>yao[[<span class="st">"age"</span>]].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>age    29.017508
@@ -595,7 +595,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Now, let’s see how to do this with <code>agg()</code>.</p>
-<div id="0a16ce0b" class="cell" data-execution_count="5">
+<div id="3d324903" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>yao.agg(mean_age<span class="op">=</span>(<span class="st">'age'</span>, <span class="st">'mean'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -620,14 +620,14 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>The anatomy of this syntax is:</p>
-<div id="ba89f6f7" class="cell" data-execution_count="6">
+<div id="9f8eac18" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dataframe.agg(summary_name<span class="op">=</span>(<span class="st">"COLUMN_TO_SUMMARIZE"</span>, <span class="st">"SUMMARY_FUNCTION"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This part <code>("COLUMN_TO_SUMMARIZE", "SUMMARY_FUNCTION")</code> is called a <em>tuple</em>. The first element of the tuple is the name of the column to summarize, and the second element is the summary function to apply to that column.</p>
 <p>The syntax is more complex, but as you will see later, much more powerful, as it allows you to compute multiple summary statistics, and to compute statistics per group.</p>
 <hr>
 <p>Let’s see how to compute multiple summary statistics in a single <code>agg()</code> statement. If you wanted both the mean and the median age, you could run:</p>
-<div id="157366be" class="cell" data-execution_count="7">
+<div id="78e2654f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>yao.agg(mean_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"mean"</span>), median_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"median"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -668,7 +668,7 @@ Practice
 <section id="practice-q-mean-and-median-weight" class="level2 callout-body-container callout-body" data-number="18.6">
 <h2 data-number="18.6" class="anchored" data-anchor-id="practice-q-mean-and-median-weight"><span class="header-section-number">18.6</span> Practice Q: Mean and median weight</h2>
 <p>Use <code>agg()</code> and the relevant summary functions to obtain the mean and median of respondent weights from the <code>weight_kg</code> variable of the <code>yao</code> data frame.</p>
-<div id="9bed2794" class="cell" data-execution_count="8">
+<div id="57aa037a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -679,15 +679,15 @@ Practice
 <p>Now let’s see how to use <code>groupby()</code> to obtain grouped summaries, the primary reason for using <code>agg()</code> in the first place.</p>
 <p>As its name suggests, <code>pandas.DataFrame.groupby()</code> lets you group a data frame by the values in a variable (e.g.&nbsp;male vs female sex). You can then perform operations that are split according to these groups.</p>
 <p>Let’s try to group the <code>yao</code> data frame by sex and observe the effect:</p>
-<div id="9565f122" class="cell" data-execution_count="10">
+<div id="dda9294b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>yao.groupby(<span class="st">"sex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x104334890&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x105acb2c0&gt;</code></pre>
 </div>
 </div>
 <p>Hmm. Apparently nothing happened. We just get a <code>GroupBy</code> object.</p>
 <p>But watch what happens when we chain the <code>groupby()</code> with the <code>agg()</code> call we used in the previous section:</p>
-<div id="63c2a0e8" class="cell" data-execution_count="11">
+<div id="5a9e563d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>yao.groupby(<span class="st">"sex"</span>).agg(mean_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"mean"</span>), median_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"median"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
@@ -726,7 +726,7 @@ Practice
 <p>Now we get a different statistic for each group! The mean age for female respondents is about 29.5, while for male respondents it’s about 28.4.</p>
 <p>As was mentioned earlier, this kind of grouped summary is the primary reason the <code>agg()</code> function is so useful.</p>
 <p>You may notice that there are two header rows. This is because the output has a hierarchical index (called a MultiIndex in pandas). While this can be useful in some cases, it often makes further data manipulation more difficult. We can reset the index to convert the group labels back to a regular column with the <code>reset_index()</code> method.</p>
-<div id="e98ab81f" class="cell" data-execution_count="12">
+<div id="ded4c14d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>yao.groupby(<span class="st">"sex"</span>).agg(mean_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"mean"</span>), median_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"median"</span>)).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -761,7 +761,7 @@ Practice
 </div>
 </div>
 <p>You may notice that the line of code is getting quite long. We can move each new method call to a new line to make the code more readable, but we need to wrap the entire chain in parentheses.</p>
-<div id="6cf09e36" class="cell" data-execution_count="13">
+<div id="31aca5c0" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"sex"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .agg(mean_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"mean"</span>), median_age<span class="op">=</span>(<span class="st">"age"</span>, <span class="st">"median"</span>))</span>
@@ -802,7 +802,7 @@ Practice
 <hr>
 <p>Let’s see one more example.</p>
 <p>Suppose you were asked to obtain the maximum and minimum weights for individuals in different neighborhoods, and also present the number of individuals in each neighborhood. We can write:</p>
-<div id="af71f601" class="cell" data-execution_count="14">
+<div id="5ad6a8d3" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
@@ -920,7 +920,7 @@ Practice
 </tr>
 </tbody>
 </table>
-<div id="9ad6adf6" class="cell" data-execution_count="15">
+<div id="4bfbd02a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -930,7 +930,7 @@ Practice
 <h2 data-number="18.9" class="anchored" data-anchor-id="grouping-by-multiple-variables-nested-grouping"><span class="header-section-number">18.9</span> Grouping by multiple variables (nested grouping)</h2>
 <p>It is possible to group a data frame by more than one variable. This is sometimes called “nested” grouping.</p>
 <p>Suppose you want to know the mean age of men and women <em>in each neighbourhood</em>, you could put both <code>sex</code> and <code>neighborhood</code> in the <code>groupby()</code> statement:</p>
-<div id="c3d7ee59" class="cell" data-execution_count="17">
+<div id="0513980a" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    yao</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .groupby([<span class="st">'sex'</span>, <span class="st">'neighborhood'</span>])</span>
@@ -1062,7 +1062,7 @@ Practice
 </tr>
 </tbody>
 </table>
-<div id="e31501b6" class="cell" data-execution_count="18">
+<div id="1e47a6bb" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1072,7 +1072,7 @@ Practice
 <h2 data-number="18.11" class="anchored" data-anchor-id="nan-values-in-agg"><span class="header-section-number">18.11</span> NaN values in <code>agg()</code></h2>
 <p>When using <code>agg()</code> to compute grouped summary statistics, pay attention to whether your group of interest contains NaN values.</p>
 <p>For example, to get mean weight by smoking status, we can write:</p>
-<div id="1f4e9486" class="cell" data-execution_count="20">
+<div id="2c6bb3fa" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"is_smoker"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_mean<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="st">"mean"</span>))</span>
@@ -1114,7 +1114,7 @@ Practice
 </div>
 <p>But this actually excludes some rows with NaN smoking status from the summary table.</p>
 <p>We can include these individuals in the summary table by setting <code>dropna=False</code> with the <code>groupby()</code> function.</p>
-<div id="32b18ae7" class="cell" data-execution_count="21">
+<div id="ef6e268c" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"is_smoker"</span>, dropna<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_mean<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="st">"mean"</span>))</span>
@@ -1160,7 +1160,7 @@ Practice
 </div>
 </div>
 <p>Also recall that you can see how many individuals are in each smoking status group by using the <code>size()</code> function. It is often useful to include this information in your summary table, so that you know how many individuals are behind each summary statistic.</p>
-<div id="5cf475fd" class="cell" data-execution_count="22">
+<div id="c60bee2a" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"is_smoker"</span>, dropna<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_mean<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="st">"mean"</span>), </span>
@@ -1250,7 +1250,7 @@ Practice
 </tr>
 </tbody>
 </table>
-<div id="81430981" class="cell" data-execution_count="23">
+<div id="5ed14d76" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1260,7 +1260,7 @@ Practice
 <h2 data-number="18.13" class="anchored" data-anchor-id="custom-summary-statistics-with-lambda-functions"><span class="header-section-number">18.13</span> Custom summary statistics with lambda functions</h2>
 <p>Before we dive into custom summary statistics, let’s briefly introduce lambda functions. Lambda functions in Python are small, anonymous functions defined with the <code>lambda</code> keyword.</p>
 <p>For example, consider a function that calculates the range (difference between the maximum and minimum) of a list. You could define it using a regular function like this:</p>
-<div id="85cfba30" class="cell" data-execution_count="25">
+<div id="b019e1fe" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> range_func(x):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(x) <span class="op">-</span> <span class="bu">min</span>(x)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1270,7 +1270,7 @@ Practice
 </div>
 </div>
 <p>Alternatively, you can achieve the same result using a lambda function:</p>
-<div id="407d462f" class="cell" data-execution_count="26">
+<div id="dd3021a0" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>range_func <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">max</span>(x) <span class="op">-</span> <span class="bu">min</span>(x)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(range_func([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]))  <span class="co"># Output: 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1279,7 +1279,7 @@ Practice
 </div>
 <p>Now, let’s see how we can use lambda functions to apply custom summary statistics in our data analysis.</p>
 <p>For example, let’s say we want to calculate the range of weights in each neighborhood. We could do this with our <code>range_func</code> function:</p>
-<div id="3502a8e8" class="cell" data-execution_count="27">
+<div id="1d3624ba" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_range<span class="op">=</span>(<span class="st">"weight_kg"</span>, range_func))</span>
@@ -1342,7 +1342,7 @@ Practice
 </div>
 <p>Notice that we did not wrap <code>range_func</code> in quotes. Only built-in functions are wrapped in quotes.</p>
 <p>Now, instead of calling <code>range_func</code> we can use a lambda function directly in the <code>agg()</code> call:</p>
-<div id="17cbc285" class="cell" data-execution_count="28">
+<div id="4451f997" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_range<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="kw">lambda</span> x: <span class="bu">max</span>(x) <span class="op">-</span> <span class="bu">min</span>(x)))</span>
@@ -1406,7 +1406,7 @@ Practice
 <p>Notice that we still provide a tuple to the <code>agg()</code> function, <code>('weight_kg', lambda x: max(x) - min(x))</code>, but the second element of the tuple is a lambda function.</p>
 <p>This lambda function operates on the column provided in the tuple, <code>weight_kg</code>.</p>
 <p>Let’s see another example: calculating the coefficient of variation (CV) of weight within each neighborhood. The CV is the standard deviation divided by the mean, and is a unitless measure of the relative variability of a distribution.</p>
-<div id="9b4351e2" class="cell" data-execution_count="29">
+<div id="dac63924" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    yao.groupby(<span class="st">"neighborhood"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .agg(weight_cv<span class="op">=</span>(<span class="st">"weight_kg"</span>, <span class="kw">lambda</span> x: (np.std(x) <span class="op">/</span> np.mean(x)) <span class="op">*</span> <span class="dv">100</span>))</span>
@@ -1479,7 +1479,7 @@ Practice
 <section id="practice-q-iqr-of-age-by-neighborhood" class="level2 callout-body-container callout-body" data-number="18.14">
 <h2 data-number="18.14" class="anchored" data-anchor-id="practice-q-iqr-of-age-by-neighborhood"><span class="header-section-number">18.14</span> Practice Q: IQR of age by neighborhood</h2>
 <p>Find the interquartile range (IQR) of the age variable for each neighborhood. The IQR is the difference between the 75th and 25th percentiles. Your lambda will look like this: <code>lambda x: x.quantile(0.75) - x.quantile(0.25)</code></p>
-<div id="c8288c53" class="cell" data-execution_count="30">
+<div id="5bc3046f" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>

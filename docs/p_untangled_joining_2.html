@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="packages" class="level2" data-number="21.1">
 <h2 data-number="21.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">21.1</span> Packages</h2>
-<div id="24b789c0" class="cell" data-execution_count="1">
+<div id="f705ec33" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> country_converter <span class="im">as</span> cc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data" class="level2" data-number="21.2">
 <h2 data-number="21.2" class="anchored" data-anchor-id="data"><span class="header-section-number">21.2</span> Data</h2>
 <p>Run the code below to load and define the datasets to be used in this lesson.</p>
-<div id="6680b084" class="cell" data-execution_count="2">
+<div id="0283917f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load datasets</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>oil_consumption <span class="op">=</span> pd.read_csv(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/oil_consumption.csv"</span></span>
@@ -533,9 +533,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="21.5" class="anchored" data-anchor-id="one-to-many-joins"><span class="header-section-number">21.5</span> One-to-many joins</h2>
 <p>So far, we have primarily looked at one-to-one joins, where an observation in one dataframe corresponded to only one observation in the other dataframe. In a one-to-many join, an observation in one dataframe corresponds to multiple observations in the other dataframe.</p>
 <p>To illustrate a one-to-many join, let’s return to our patients and their COVID test data. Let’s imagine that in our dataset, <code>Alice</code> and <code>Xavier</code> got tested multiple times for COVID. We can add two more rows to our <code>test_info</code> dataframe with their new test information:</p>
-<div id="fa92aa30" class="cell" data-execution_count="3">
+<div id="1963b263" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>people</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -569,9 +569,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="866b4ea1" class="cell" data-execution_count="4">
+<div id="8af2a587" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>test_info_many</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -628,9 +628,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Next, let’s take a look at what happens when we use a <code>merge()</code> with <code>people</code> as the left dataframe:</p>
-<div id="a28f78cb" class="cell" data-execution_count="5">
+<div id="0b9368ba" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pd.merge(people, test_info_many, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -706,9 +706,9 @@ Practice
 <section id="practice-q-merging-one-to-many-crop-yields" class="level2 callout-body-container callout-body" data-number="21.6">
 <h2 data-number="21.6" class="anchored" data-anchor-id="practice-q-merging-one-to-many-crop-yields"><span class="header-section-number">21.6</span> Practice Q: Merging One-to-Many Crop Yields</h2>
 <p>Run the code below to print the two small dataframes:</p>
-<div id="00602798" class="cell" data-execution_count="6">
+<div id="9554aede" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>farm_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -746,9 +746,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="cdb091f1" class="cell" data-execution_count="7">
+<div id="c083c954" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>crop_yields</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
@@ -805,9 +805,9 @@ Practice
 <section id="multiple-key-columns" class="level2" data-number="21.7">
 <h2 data-number="21.7" class="anchored" data-anchor-id="multiple-key-columns"><span class="header-section-number">21.7</span> Multiple Key Columns</h2>
 <p>Sometimes we have more than one column that uniquely identifies the observations that we want to match on. For example, let’s imagine we have traffic flow data for three streets at two different times of day: 9am and 2pm.</p>
-<div id="a11a2ed4" class="cell" data-execution_count="8">
+<div id="9dbcb4e5" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>traffic_flow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -864,9 +864,9 @@ Practice
 </div>
 </div>
 <p>Now, let’s imagine we have another dataset for the same three streets, recording air pollution levels (measured in particulate matter, <strong>PM2.5</strong>) during the same times of day.</p>
-<div id="c046c2a5" class="cell" data-execution_count="9">
+<div id="afa674d7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pollution_levels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -923,9 +923,9 @@ Practice
 </div>
 </div>
 <p>We want to join the two datasets so that each street has two rows: one for the 9am time point and one for the 2pm time point. To do this, our first instinct may be to join the datasets <em>only</em> on <code>street_name</code>. Let’s try it out and see what happens:</p>
-<div id="c95e1a75" class="cell" data-execution_count="10">
+<div id="ff2c7eda" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pd.merge(traffic_flow, pollution_levels, on<span class="op">=</span><span class="st">"street_name"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
@@ -1045,9 +1045,9 @@ Practice
 </div>
 <p>As we can see, this isn’t what we wanted at all! We end up with duplicated rows—now we have <strong>four rows</strong> for each street.</p>
 <p>What we want to do is match on BOTH <code>street_name</code> AND <code>time_of_day</code>. To do this, we need to tell Python to match on two columns by specifying both column names in a list.</p>
-<div id="3702292f" class="cell" data-execution_count="11">
+<div id="00fd0674" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.merge(traffic_flow, pollution_levels, on<span class="op">=</span>[<span class="st">"street_name"</span>, <span class="st">"time_of_day"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
@@ -1127,10 +1127,10 @@ Practice
 <li><code>oil_consumption</code>: Contains yearly oil consumption in tonnes</li>
 <li><code>tidyr_population</code>: Contains yearly population data</li>
 </ul>
-<div id="40e52483" class="cell" data-execution_count="12">
+<div id="ab005975" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the datasets</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>oil_consumption.sort_values(by<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
 
@@ -1217,9 +1217,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="eba09eb7" class="cell" data-execution_count="13">
+<div id="6dfa74db" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.sort_values(by<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="57">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -1318,9 +1318,9 @@ Practice
 <h2 data-number="21.9" class="anchored" data-anchor-id="key-mismatches"><span class="header-section-number">21.9</span> Key Mismatches</h2>
 <p>Often you will need to pre-clean your data when you draw it from different sources before you’re able to join it. This is because there can be inconsistencies in ways that values are recorded.</p>
 <p>To illustrate this, let’s return to our mock patient data from the first lesson. If you recall, we had two dataframes, one called <code>people</code> and the other called <code>test_info</code>. We can recreate these datasets but change <code>Alice</code> to <code>alice</code> in the <code>test_info_diff</code> dataset and keep all other values the same.</p>
-<div id="e05c09ba" class="cell" data-execution_count="15">
+<div id="27901cad" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>people</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="58">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
 
@@ -1354,9 +1354,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="b83c6b6a" class="cell" data-execution_count="16">
+<div id="270759ff" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test_info_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
 
@@ -1395,9 +1395,9 @@ Practice
 </div>
 </div>
 <p>Now let’s try a <code>merge()</code> on our two datasets.</p>
-<div id="630609e7" class="cell" data-execution_count="17">
+<div id="b7eb2cda" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>people.merge(test_info_diff, on<span class="op">=</span><span class="st">'name'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="60">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
 
@@ -1439,9 +1439,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="ce0e36dd" class="cell" data-execution_count="18">
+<div id="9953a12b" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.merge(people, test_info_diff, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -1471,10 +1471,10 @@ Practice
 </div>
 <p>As we can see, Python didn’t recognize <code>Alice</code> and <code>alice</code> as the same person, and it also could not match <code>Charlie</code> and <code>Charlie</code>! So we lose <code>Alice</code> and <code>Charlie</code> in the <code>left</code> join, and they are dropped in the <code>inner</code> join.</p>
 <p>How can we fix this? We need to ensure that the names in both datasets are in the same format. For this, we can use <code>str.title()</code> to capitalize the first letter of each name.</p>
-<div id="38a97425" class="cell" data-execution_count="19">
+<div id="b34f8239" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>test_info_diff[<span class="st">'name'</span>] <span class="op">=</span> test_info_diff[<span class="st">'name'</span>].<span class="bu">str</span>.title()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>test_info_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
@@ -1512,9 +1512,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="32ce462f" class="cell" data-execution_count="20">
+<div id="79f2345e" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>people.merge(test_info_diff, on<span class="op">=</span><span class="st">'name'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
 
@@ -1551,17 +1551,17 @@ Practice
 </div>
 <p>Hmm, Charlie is still not matched. It’s hard to see from the printout, but the string <code>Charlie</code> in <code>test_info_diff</code> has an extra space at the end.</p>
 <p>We can spot this better by using <code>.unique()</code> to convert to an array:</p>
-<div id="08e6ab56" class="cell" data-execution_count="21">
+<div id="4838a7ff" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>test_info_diff[<span class="st">'name'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>array(['Alice', 'Bob', 'Charlie '], dtype=object)</code></pre>
 </div>
 </div>
 <p>We can fix this by using <code>str.strip()</code> to remove the extra space.</p>
-<div id="f61d7d61" class="cell" data-execution_count="22">
+<div id="7606e368" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>test_info_diff[<span class="st">'name'</span>] <span class="op">=</span> test_info_diff[<span class="st">'name'</span>].<span class="bu">str</span>.strip()</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>test_info_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="65">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
 
@@ -1600,9 +1600,9 @@ Practice
 </div>
 </div>
 <p>Now we can join the two datasets:</p>
-<div id="50754123" class="cell" data-execution_count="23">
+<div id="f4957fa4" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>people.merge(test_info_diff, on<span class="op">=</span><span class="st">'name'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="66">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -1657,9 +1657,9 @@ Practice
 <section id="practice-q-inner-join-countries" class="level2 callout-body-container callout-body" data-number="21.10">
 <h2 data-number="21.10" class="anchored" data-anchor-id="practice-q-inner-join-countries"><span class="header-section-number">21.10</span> Practice Q: Inner Join Countries</h2>
 <p>The following two datasets contain data for India, Indonesia, and the Philippines. However, an <code>inner</code> join of these datasets only returns 1 row.</p>
-<div id="2090e0eb" class="cell" data-execution_count="24">
+<div id="472666ac" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>asia_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="67">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
 
@@ -1693,9 +1693,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="838bd4d4" class="cell" data-execution_count="25">
+<div id="a378152c" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>asia_population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
 
@@ -1733,9 +1733,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="7fd52123" class="cell" data-execution_count="26">
+<div id="d662403a" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pd.merge(asia_countries, asia_population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="69">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -1771,9 +1771,9 @@ Practice
 <section id="key-mismatches-oil-consumption-example" class="level2" data-number="21.11">
 <h2 data-number="21.11" class="anchored" data-anchor-id="key-mismatches-oil-consumption-example"><span class="header-section-number">21.11</span> Key Mismatches: Oil Consumption Example</h2>
 <p>Let’s now see a more realistic example of how mismatched keys can cause problems.</p>
-<div id="67033abd" class="cell" data-execution_count="27">
+<div id="e06f61d5" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>oil_consumption</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="70">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
 
@@ -1860,9 +1860,9 @@ Practice
 </div>
 </div>
 </div>
-<div id="874145e8" class="cell" data-execution_count="28">
+<div id="9c42a4bf" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tidyr_population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="71">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
 
@@ -1950,11 +1950,11 @@ Practice
 </div>
 </div>
 <p>After we attempt a join, we see that there are some countries that are not matched, such as Vietnam.</p>
-<div id="e14324ad" class="cell" data-execution_count="29">
+<div id="21a48c7b" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pd.merge(</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    oil_consumption, tidyr_population, on<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>], how<span class="op">=</span><span class="st">"left"</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>).sort_values([<span class="st">"country"</span>, <span class="st">"year"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -2056,15 +2056,15 @@ Practice
 <p>This is because the country names are not in the same format in the two datasets.</p>
 <p>Before attempting to join these datasets, it’s a good idea to check for mismatches in the key columns. This can help you identify any discrepancies that might prevent a successful join.</p>
 <p>First, let’s identify the unique country names in both datasets.</p>
-<div id="97a43948" class="cell" data-execution_count="30">
+<div id="1dcb385b" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>oil_countries <span class="op">=</span> <span class="bu">set</span>(oil_consumption[<span class="st">'country'</span>].unique())</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>pop_countries <span class="op">=</span> <span class="bu">set</span>(tidyr_population[<span class="st">'country'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, to find countries in <code>oil_consumption</code> that are not in <code>tidyr_population</code>, we can use set arithmetic:</p>
-<div id="a49939c9" class="cell" data-execution_count="31">
+<div id="4f3dcea4" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>missing_in_pop <span class="op">=</span> oil_countries <span class="op">-</span> pop_countries</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>missing_in_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="74">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>{'Hong Kong, China',
  'Iran',
  'North Macedonia',
@@ -2079,10 +2079,10 @@ Practice
 </div>
 </div>
 <p>And countries in <code>tidyr_population</code> that are not in <code>oil_consumption</code>:</p>
-<div id="e842b550" class="cell" data-execution_count="32">
+<div id="89432f14" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>missing_in_oil <span class="op">=</span> pop_countries <span class="op">-</span> oil_countries</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>missing_in_oil</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="75">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>{'Afghanistan',
  'Albania',
  'American Samoa',
@@ -2250,21 +2250,21 @@ Side Note
 <h2 data-number="21.12" class="anchored" data-anchor-id="set-arithmetic"><span class="header-section-number">21.12</span> Set Arithmetic</h2>
 <p>A quick side note on set arithmetic for those who are unfamiliar.</p>
 <p>Consider two sets of the numbers 1:5, and 2:4.</p>
-<div id="bb71f4b1" class="cell" data-execution_count="33">
+<div id="c3816d7b" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>set_1 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>set_2 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can check the values in <code>set_1</code> that are not in <code>set_2</code> by using set arithmetic:</p>
-<div id="059ed33e" class="cell" data-execution_count="34">
+<div id="f58bdac2" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>set_1 <span class="op">-</span> set_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="77">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>{1, 5}</code></pre>
 </div>
 </div>
 <p>And the values in <code>set_2</code> that are not in <code>set_1</code> by using:</p>
-<div id="d84792df" class="cell" data-execution_count="35">
+<div id="7417f2bd" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>set_2 <span class="op">-</span> set_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="78">
+<div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>set()</code></pre>
 </div>
 </div>
@@ -2274,34 +2274,34 @@ Side Note
 <h3 data-number="21.12.1" class="anchored" data-anchor-id="merging-with-country-codes"><span class="header-section-number">21.12.1</span> Merging with Country Codes</h3>
 <p>To avoid country mismatches, it is often useful to use country codes rather than country names as the key.</p>
 <p>Let’s now add country codes to both datasets and try the join again.</p>
-<div id="963570ed" class="cell" data-execution_count="36">
+<div id="74bb12e3" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How to use country_converter</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cc.convert(<span class="st">"Nigeria"</span>, to<span class="op">=</span><span class="st">'ISO3'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="79">
+<div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>'NGA'</code></pre>
 </div>
 </div>
-<div id="edd4b665" class="cell" data-execution_count="37">
+<div id="acdc5aa7" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>oil_consumption[<span class="st">'country_code'</span>] <span class="op">=</span> cc.convert(oil_consumption[<span class="st">'country'</span>], to<span class="op">=</span><span class="st">'ISO3'</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>tidyr_population[<span class="st">'country_code'</span>] <span class="op">=</span> cc.convert(tidyr_population[<span class="st">'country'</span>], to<span class="op">=</span><span class="st">'ISO3'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c61fca3d" class="cell" data-execution_count="38">
+<div id="7000ff92" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>oil_pop_code <span class="op">=</span> oil_consumption.merge(tidyr_population, on<span class="op">=</span>[<span class="st">'country_code'</span>, <span class="st">'year'</span>], how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="identifying-remaining-mismatches" class="level3" data-number="21.12.2">
 <h3 data-number="21.12.2" class="anchored"><span class="header-section-number">21.12.2</span> Identifying Remaining Mismatches</h3>
 <p>Let’s see which countries still failed to find a match:</p>
-<div id="2eb96cf6" class="cell" data-execution_count="39">
+<div id="c4b0da51" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>(oil_pop_code[<span class="st">'country_code'</span>].unique()) <span class="op">-</span> <span class="bu">set</span>(tidyr_population[<span class="st">'country_code'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="82">
+<div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>{'TWN'}</code></pre>
 </div>
 </div>
 <p>It seems ‘TWN’ (Taiwan) failed to find a match. We can manually look through the <code>tidyr_population</code> dataset to see if we can find it.</p>
-<div id="ea7947f2" class="cell" data-execution_count="40">
+<div id="8419006f" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.query(<span class="st">"country.str.contains('Taiwan')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="83">
+<div class="cell-output cell-output-display" data-execution_count="39">
 <div>
 
 
@@ -2323,9 +2323,9 @@ Side Note
 </div>
 </div>
 <p>Just in case there is a mismatch in capitalization, we can also check for ‘taiwan’:</p>
-<div id="a606cfe7" class="cell" data-execution_count="41">
+<div id="03ddcb0f" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.query(<span class="st">"country.str.contains('taiwan')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="84">
+<div class="cell-output cell-output-display" data-execution_count="40">
 <div>
 
 
@@ -2347,9 +2347,9 @@ Side Note
 </div>
 </div>
 <p>And we can check for ‘China’ since there is currently conflict over whether Taiwan is part of China.</p>
-<div id="8f8ec902" class="cell" data-execution_count="42">
+<div id="40c73483" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tidyr_population.query(<span class="st">"country.str.contains('China')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <div>
 
 
@@ -2784,9 +2784,9 @@ Practice
 <h2 data-number="21.13" class="anchored" data-anchor-id="practice-q-merging-oil-consumption-with-geographic-data"><span class="header-section-number">21.13</span> Practice Q: Merging Oil Consumption with Geographic Data</h2>
 <p>Run the code to view the two datasets.</p>
 <p>The first, <code>oil_2012</code>, records the oil consumption for the year 2012:</p>
-<div id="01c96496" class="cell" data-execution_count="43">
+<div id="74c7c66c" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>oil_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="86">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <div>
 
 
@@ -2862,9 +2862,9 @@ Practice
 </div>
 </div>
 <p>And <code>country_regions</code> lists countries along with their respective regions and continents:</p>
-<div id="a45e19ef" class="cell" data-execution_count="44">
+<div id="9de5d00a" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>country_regions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="87">
+<div class="cell-output cell-output-display" data-execution_count="43">
 <div>
 
 
@@ -2952,7 +2952,7 @@ Practice
 </div>
 </div>
 <p>Join the two datasets using the country codes as the key. Then find the countries with the highest oil consumption in each continent. As a sanity check, your answer should include the US &amp; China.</p>
-<div id="d8038c89" class="cell" data-execution_count="45">
+<div id="25665f6d" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>oil_2012[<span class="st">'country_code'</span>] <span class="op">=</span> cc.convert(oil_2012[<span class="st">'country'</span>], to<span class="op">=</span><span class="st">'ISO3'</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2963,7 +2963,7 @@ Practice
 <span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>max_oil_by_continent[[<span class="st">'country'</span>, <span class="st">'continent'</span>, <span class="st">'oil_consump'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="88">
+<div class="cell-output cell-output-display" data-execution_count="44">
 <div>
 
 

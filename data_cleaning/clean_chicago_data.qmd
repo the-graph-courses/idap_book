@@ -31,6 +31,7 @@ contracts_clean = (contracts
 .query("~approval_date.isna()")
 .assign(approval_date = lambda x: pd.to_datetime(x.approval_date))
 .query("approval_date >= '2020-01-01' and approval_date <= '2023-12-31'")
+.assign(year = lambda x: x.approval_date.dt.year)
 .rename(columns={
     "purchase_order_description": "description",
     "purchase_order__contract__number": "contract_num",
@@ -38,7 +39,7 @@ contracts_clean = (contracts
     "specification_number": "specification_num"
 })
 .assign(state=lambda df: df.state.replace(state_mapping))
-.pipe(lambda df: df.reindex(columns=["approval_date"] + [col for col in df.columns if col != "approval_date"]))
+.pipe(lambda df: df.reindex(columns=["year", "approval_date"] + [col for col in df.columns if col not in ["year", "approval_date"]]))
 .sort_values("approval_date")
 )
 

@@ -2,6 +2,8 @@
 title: 'Introduction to Google Colab'
 ---
 
+{{< video https://youtu.be/fp-2xtbFRYo?si=JO_AMNhh_XOJaFsP >}}  
+
 ## Learning Objectives
 
 - Understand what Google Colab is and its advantages for data science and AI

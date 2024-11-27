@@ -2,6 +2,8 @@
 title: 'Functions, Methods, and Libraries in Python'
 ---
 
+{{< video https://youtu.be/bGmceVFYI-g?si=qPmObA5dzdDzCh1E >}}  
+
 ## Learning objectives 
 
 1. You understand what functions and methods are in Python.

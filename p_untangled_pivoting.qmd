@@ -6,6 +6,7 @@ title: 'Reshaping Data with melt() and pivot()'
 
 ```{python}
 import pandas as pd
+import plotly.express as px
 ```
 
 ## Data
@@ -162,7 +163,6 @@ temperatures
 
 Is this data in a wide or long format?
 
-
 :::
 
 ## When Should You Use Wide vs. Long Data?
@@ -171,7 +171,7 @@ The truth is, it really depends on what you want to do! The wide format is great
 
 It is essential to know how to switch from one format to the other easily. Switching from the wide to the long format, or the other way around, is called **reshaping**.
 
-## From Wide to Long
+## From Wide to Long with `melt()`
 
 To practice reshaping from a wide to a long format, we'll consider data from Our World in Data on fossil fuel consumption per capita. You can find the data [here](https://ourworldindata.org/grapher/fossil-fuels-per-capita).
 
@@ -183,37 +183,37 @@ fuels_wide
 
 We observe that each observational unit (each country) occupies only one row, with the repeated measurements of fossil fuel consumption (in kilowatt-hour equivalents) spread out across multiple columns. Hence, this dataset is in a wide format.
 
-To convert it to a long format, we can use the convenient `melt` function. Within `melt`, we define which columns we want to reshape:
+To convert it to a long format, we can use the convenient `melt` function. Within `melt`, can define the id variables, which we do not want to reshape:
 
 ```{python}
-fuels_long = fuels_wide.melt(id_vars=["Entity", "Code"], value_vars=fuels_wide.columns[2:])
+fuels_long = fuels_wide.melt(id_vars=["Entity", "Code"])
 fuels_long
 ```
 
 Very easy!
 
-Let's break down the code:
+Let's sort it so it's easier to read:
 
-- **`id_vars`** refers to the column(s) that will not be reshaped. In this case, it's the "Entity" and "Code" columns.
-- **`value_vars`** is the column(s) that will be reshaped. In this case, it's the year columns.
+```{python}
+fuels_long = fuels_long.sort_values(by=['Entity', 'variable'])
+fuels_long
+```
 
 The years are now indicated in the variable `variable`, and all the consumption values occupy a single variable, `value`. We may wish to rename the `variable` column to `year`, and the `value` column to `oil_consumption`. This can be done directly in the `melt` function:
 
 ```{python}
 fuels_long = fuels_wide.melt(
     id_vars=['Entity', 'Code'],
-    value_vars=fuels_wide.columns[2:],
     var_name='year',
     value_name='oil_consumption'
-)
+).sort_values(by=['Entity', 'year'])
 fuels_long
 ```
 
-You may also want to remove the `y_` in front of each year. This can be achieved with a string operation. We'll also arrange the data by country and year:
+You may also want to remove the `y_` in front of each year. This can be achieved with a string operation.
 
 ```{python}
 fuels_long['year'] = fuels_long['year'].str.replace('y_', '').astype(int)
-fuels_long = fuels_long.sort_values(by=['Entity', 'year'])
 fuels_long
 ```
 
@@ -227,7 +227,7 @@ Here's what we did above:
 
 ## Practice Q: Temperatures to Long
 
-Convert the `temperatures` dataset shown below into a long format. Your answer should have the following column names: **"country"**, **"year"**, and **"avgtemp"**.
+Convert the `temperatures` dataset shown below into a long format. Your answer should have the following column names: **"country"**, **"year"**, and **"avg_temp"**.
 
 ```{python}
 # Your code here
@@ -248,14 +248,60 @@ euro_births_wide.head()
 
 The data is in a wide format. Convert it to a long format DataFrame that has the following column names: **"country"**, **"year"**, and **"births_count"**.
 
+Remove the x prefix from the year columns and convert them to integers.
 
 :::
+
+## Using Long Data for Analysis
+
+Let's see why long data is often better for analysis.
+
+Consider again the `fuels_wide` dataset:
+
+```{python}
+fuels_wide.head()
+```
+
+```{python}
+fuels_long.head()
+```
+
+If we want to find the average fossil fuel consumption per country, this is very easy to do with the long format:
+
+```{python}
+fuels_long.groupby('Entity')['oil_consumption'].mean()
+```
+
+But with the wide format, this is not so easy:
+
+```{python}
+fuels_wide[['y_1970', 'y_1980', 'y_1990', 'y_2000', 'y_2010', 'y_2020']].mean(axis=1)
+```
+
+Imagine if you had 100 years of data!
+
+And mean is a fairly simple operation. How would you calculate the standard deviation of fossil fuel consumption per country?
+
+---
+
+Long data is also very useful for plotting.
+
+For example, to plot the average fossil fuel consumption per country over time, we can use the following code:
+
+```{python}
+subset = fuels_long.query('Entity in ["Peru", "Iran", "China"]')
+px.line(subset, x='year', y='oil_consumption', color='Entity', title='Average Fossil Fuel Consumption per Country')
+```
+
+To create a plot like this with the wide format is not directly possible, since the data you want to plot is scattered across multiple columns.
+
+So as you can see, while wide data is great for display, long data is very useful for analysis and plotting.
 
 ## From Long to Wide
 
 Now you know how to reshape from wide to long with `melt()`. How about going the other way, from long to wide? For this, you can use the `pivot()` function.
 
-But before we consider how to use this function to manipulate long data, let's first consider *where* you're likely to run into long data.
+But before we see how to use this function to manipulate long data, let's first consider *where* you're likely to run into long data.
 
 While wide data tends to come from external sources (as we have seen above), long data, on the other hand, is likely to be created by *you* while data wrangling, especially in the course of grouped aggregations.
 
@@ -272,7 +318,7 @@ Each row corresponds to one contract, and we have each contract's ID number, the
 Now, consider the following grouped summary of the `contracts` dataset, which shows the number of contracts by state of the vendor in each year:
 
 ```{python}
-contracts_summary = contracts.groupby("state")["year"].value_counts().reset_index(name='count')
+contracts_summary = contracts.groupby("state")["year"].value_counts().reset_index()
 contracts_summary
 ```
 
@@ -288,6 +334,7 @@ contracts_wide = contracts_summary.pivot(
 ).reset_index()
 contracts_wide.head()
 ```
+
 
 As you can see, `pivot()` has three important arguments:
 

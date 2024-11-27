@@ -668,7 +668,7 @@ Use an `inner` join to combine the datasets.
 
 How many products are there in common between the two datasets.
 
-Which product has the highest ratio of positive reviews to units sold? (Should be laptops)
+Which product has the highest ratio of positive reviews to units sold? (Should be desktops)
 
 
 ```{python}
@@ -682,7 +682,7 @@ len(pd.merge(total_sales, product_feedback, on='product', how='inner'))
 
 # Which product has the highest ratio of positive reviews to units sold?
 pd.merge(total_sales, product_feedback, on='product', how='inner').assign(
-    ratio=lambda x: x['n_positive_reviews'] / x['n_negative_reviews']
+    ratio=lambda x: x['n_positive_reviews'] / x['total_units_sold']
 ).sort_values("ratio", ascending=False).head(1)
 ```
 

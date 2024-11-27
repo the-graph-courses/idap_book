@@ -2,6 +2,8 @@
 title: 'Coding basics'
 ---
 
+{{< video https://youtu.be/3smPFwv5bPU?si=JKcbGrTKfbGxRR1x >}}  
+
 ## Learning Objectives 
 
 1. You can write and use comments in Python (single-line and multi-line).

@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Introduction",
+    "title": "Introduction to Data Science with Python",
     "section": "",
-    "text": "0.1 Introduction\nDRAFT book for the course “Introduction to Data Science with Python”\nThis book is a compilation of lesson notes for a 3-month online course offered by The GRAPH Courses. To access the lesson videos, exercise files, and online quizzes, please visit our website, thegraphcourses.org.\nThe GRAPH Courses is a project of the Global Research and Analyses for Public Health (GRAPH) Network, a non-profit organization dedicated to making code and data skills accessible through affordable live bootcamps and free self-paced courses.",
+    "text": "0.1 Welcome Video",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -12,9 +12,9 @@
   {
     "objectID": "index.html#contributors",
     "href": "index.html#contributors",
-    "title": "Introduction",
-    "section": "0.3 Contributors",
-    "text": "0.3 Contributors\nWe are extremely grateful to the following individuals who have contributed to the development of these materials over several years:\nAmanda McKinley, Andree Valle Campos, Aziza Merzouki, Benedict Nguimbis, Bennour Hsin, Camille Beatrice Valera, Daniel Camara, Eduardo Araujo, Elton Mukonda, Guy Wafeu, Imad El Badisy, Imane Bensouda Korachi, Joy Vaz, Kene David Nwosu, Lameck Agasa, Laure Nguemo, Laure Vancauwenberghe, Matteo Franza, Michal Shrestha, Olivia Keiser, Sabina Rodriguez Velasquez, Sara Botero Mesa.",
+    "title": "Introduction to Data Science with Python",
+    "section": "1.1 Contributors",
+    "text": "1.1 Contributors\nWe are extremely grateful to the following individuals who have contributed to the development of these materials over several years:\nAmanda McKinley, Andree Valle Campos, Aziza Merzouki, Benedict Nguimbis, Bennour Hsin, Camille Beatrice Valera, Daniel Camara, Eduardo Araujo, Elton Mukonda, Guy Wafeu, Imad El Badisy, Imane Bensouda Korachi, Joy Vaz, Kene David Nwosu, Lameck Agasa, Laure Nguemo, Laure Vancauwenberghe, Matteo Franza, Michal Shrestha, Olivia Keiser, Sabina Rodriguez Velasquez, Sara Botero Mesa.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -22,9 +22,9 @@
   {
     "objectID": "index.html#partners-funders",
     "href": "index.html#partners-funders",
-    "title": "Introduction",
-    "section": "0.4 Partners & Funders",
-    "text": "0.4 Partners & Funders\n\nUniversity of Geneva\nUniversity of Oxford\nWorld Health Organization\nGlobal Fund\nErnst Goehner Foundation",
+    "title": "Introduction to Data Science with Python",
+    "section": "1.2 Partners & Funders",
+    "text": "1.2 Partners & Funders\n\nUniversity of Geneva\nUniversity of Oxford\nWorld Health Organization\nGlobal Fund\nErnst Goehner Foundation",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]

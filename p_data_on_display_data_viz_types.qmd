@@ -46,6 +46,8 @@ custom_template.layout.update(
 pio.templates.default = custom_template
 
 tips = px.data.tips()
+# Write tips dataset to CSV
+tips.to_csv('data/tips.csv', index=False)
 ```
 
 # Univariate Graphs

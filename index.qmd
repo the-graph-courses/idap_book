@@ -27,4 +27,4 @@ Amanda McKinley, Andree Valle Campos, Aziza Merzouki, Benedict Nguimbis, Bennour
 
 ## Welcome Video
 
-{{< video https://youtu.be/5gDtfh3PHP4?si=NeIaijjVvOiFlQQs >}}
+{{< video https://youtu.be/5gDtfh3PHP4?si=NeIaijjVvOiFlQQs >}} 

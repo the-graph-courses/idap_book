@@ -1,0 +1,55 @@
+
+
+````
+---
+title: "Gapminder: Example Quarto Report"
+author: "The GRAPH Courses"
+format: html
+---
+
+This is a Quarto report with a table, a scatter plot, and a map using the Gapminder dataset, Plotly, and itables.
+
+::: {.panel-tabset} 
+
+## Table
+
+```{python}
+from itables import show
+import plotly.express as px
+
+# Load Gapminder dataset
+gapminder = px.data.gapminder()
+
+# Display table
+show(gapminder.head())
+```
+
+## Scatter Plot
+
+```{python}
+px.scatter(
+    gapminder.query("year == 2007"),
+    x="gdpPercap",
+    y="lifeExp",
+    color="continent",
+    title="GDP vs Life Expectancy (2007)"
+)
+```
+
+## Map
+
+```{python}
+px.choropleth(
+    gapminder.query("year == 2007"),
+    locations="iso_alpha",
+    color="lifeExp",
+    hover_name="country",
+    title="Life Expectancy (2007)",
+)
+```
+
+:::
+
+Sample quarto report from the GRAPH Courses python bootcamp (thegraphcourses.org/pbb).
+
+````

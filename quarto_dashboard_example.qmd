@@ -1,0 +1,167 @@
+---
+title: "GAPMINDER | LIFE EXPECTANCIES 2007"  
+format: dashboard   
+---
+
+```{python}
+import pandas as pd
+import plotly.express as px
+import tabulate
+
+# Load the data
+gap = px.data.gapminder()
+
+# Filter for year 2007
+gap_07 = gap.query("year == 2007")
+
+# Compute highest life expectancy
+highest_row = gap_07.sort_values("lifeExp", ascending=False).head(1).squeeze()
+highest_life_exp_country = highest_row["country"]
+highest_life_exp_value = round(highest_row["lifeExp"], 1)
+
+# Compute lowest life expectancy
+lowest_row = gap_07.sort_values("lifeExp", ascending=True).head(1).squeeze()
+lowest_life_exp_country = lowest_row["country"]
+lowest_life_exp_value = round(lowest_row["lifeExp"], 1)
+
+# Compute average (population-weighted) life expectancy
+weighted_mean = (gap_07["lifeExp"] * gap_07["pop"]).sum() / gap_07["pop"].sum()
+average_life_exp_value = round(weighted_mean, 1)
+
+# Create the map using plotly express with a blue color scale
+map_fig = px.choropleth(
+    gap_07,
+    locations="iso_alpha",
+    color="lifeExp",
+    hover_name="country",
+    title="Map of Countries by Life Expectancy",
+    color_continuous_scale="Blues",
+).update_layout(coloraxis_showscale=False)
+
+# Largest 20 countries by Life Expectancy (bar chart) with a blue color scale
+top_20 = gap_07.nlargest(20, "pop").sort_values("lifeExp", ascending=True)
+bar_fig = px.bar(
+    top_20,
+    x="lifeExp",
+    y="country",
+    title="Life Expectancy in 20 Largest Countries",
+    color="lifeExp",
+    color_continuous_scale="Blues",
+).update_layout(coloraxis_showscale=False)
+
+```
+
+# HOME
+
+## Row 1 {height=30%}
+
+::: {.valuebox icon="heart" color="#1E90FF" title="Highest Life Expectancy"}
+
+`{python} str(highest_life_exp_value)`
+
+`{python} highest_life_exp_country`
+
+:::
+
+::: {.valuebox icon="thermometer" color="#87CEFA" title="Lowest Life Expectancy"} 
+
+`{python} str(lowest_life_exp_value)`
+
+`{python} lowest_life_exp_country`
+
+:::
+
+::: {.valuebox icon="graph-up" color="#4682B4" title="Average Life Expectancy"}
+
+`{python} str(average_life_exp_value)`
+
+:::
+
+## Row 2 {height=60%}
+
+### {width=70%}
+
+```{python}
+map_fig
+```
+
+### {width=40%}
+
+```{python}
+bar_fig
+```
+
+# REGIONAL
+
+## Row 1 {height=30%}
+
+```{python}
+import itables
+from IPython.display import Markdown
+
+# Create regional summary
+reg_sum = (
+    gap_07.groupby("continent")
+    .apply(
+        lambda g: pd.Series(
+            {
+                "Average Life Expectancy": g["lifeExp"].mean(),
+                "Lowest Life Expectancy": g["lifeExp"].min(),
+                "Country with Lowest Life Exp": g.loc[g["lifeExp"].idxmin(), "country"],
+                "Highest Life Expectancy": g["lifeExp"].max(),
+                "Country with Highest Life Exp": g.loc[
+                    g["lifeExp"].idxmax(), "country"
+                ],
+            }
+        )
+    )
+    .round(2)
+)
+
+Markdown(reg_sum.to_markdown())
+```
+
+## Row 2 {height=70%}
+
+### Column {width="80%"}
+
+```{python}
+continent_fig = px.box(
+    gap_07,
+    x="continent",
+    y="lifeExp",
+    color="continent",
+    title="Distribution of Life Expectancy by Continent",
+    points="all",  # This shows all data points
+    hover_data=["country"],  # This adds country names to hover info
+    color_discrete_sequence=px.colors.sequential.Turbo,  # Built-in Blues palette
+).update_layout(
+    showlegend=False, xaxis_title="Continent", yaxis_title="Life Expectancy (years)"
+)
+
+continent_fig
+```
+
+### Column {width="20%"}
+
+Africa shows markedly lower life expectancy figures compared to other continents, reflecting significant developmental challenges.
+
+Europe and Oceania demonstrate the most consistently high life expectancies, while Asia and the Americas show greater variability, indicating diverse development stages within these regions.
+
+# DATA DOWNLOAD
+
+```{python}
+# Display full dataset with itables
+itables.show(gap_07, caption="Gapminder Dataset (2007)", buttons=["csvHtml5"])
+```
+
+
+# ABOUT
+
+This data comes from the python `plotly.express` library’s `gapminder` dataset, which is originally sourced from the Gapminder Foundation.
+
+The Gapminder Foundation is a non-profit venture that promotes sustainable global development and achievement of the United Nations Millennium Development Goals by increasing use and understanding of statistics and other information about social, economic, and environmental development.
+
+**Watch Hans Rosling’s TED Talk:**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hVimVzgtD6w?si=dKHepC5EXhjaXOe2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

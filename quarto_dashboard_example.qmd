@@ -6,7 +6,7 @@ format: dashboard
 ```{python}
 import pandas as pd
 import plotly.express as px
-import tabulate
+import itables 
 
 # Load the data
 gap = px.data.gapminder()
@@ -96,9 +96,6 @@ bar_fig
 ## Row 1 {height=30%}
 
 ```{python}
-import itables
-from IPython.display import Markdown
-
 # Create regional summary
 reg_sum = (
     gap_07.groupby("continent")
@@ -118,7 +115,7 @@ reg_sum = (
     .round(2)
 )
 
-Markdown(reg_sum.to_markdown())
+itables.show(reg_sum)
 ```
 
 ## Row 2 {height=70%}

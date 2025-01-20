@@ -2,15 +2,6 @@
 title: 'Univariate Graphs with Plotly Express'
 ---
 
-
-```{python}
-# | echo: false
-# temporary solution to avoid SSL certificate verification error
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
-```
-
-
 ## Intro
 
 In this lesson, you'll learn how to create univariate graphs using Plotly Express. Univariate graphs are essential for understanding the distribution of a single variable, whether it's categorical or quantitative.
@@ -62,7 +53,7 @@ Try playing with the buttons at the top right. The button to download the chart 
 
 ::: {.callout-tip title='Practice'}
 
-### Practice: Speed Distribution Histogram 
+### Practice Q: Speed Distribution Histogram 
 
 Following the example of the histogram of tips, create a histogram of the speed distribution (Speed_IAS_in_knots) using the birdstrikes dataset. 
 
@@ -73,6 +64,13 @@ birdstrikes.head()
 ```
 :::
 
+::: {.callout-tip title="Solution" collapse="true"}
+### Solution Q: Speed Distribution Histogram
+
+```{python}
+px.histogram(birdstrikes, x='Speed_IAS_in_knots')
+```
+:::
 
 We can view the help documentation for the function by typing `px.histogram?` in a cell and running it.  
 
@@ -110,7 +108,7 @@ px.histogram(
 
 ::: {.callout-tip title='Practice'}
 
-### Practice: Bird Strikes Histogram Custom
+### Practice Q: Bird Strikes Histogram Custom
 
 Update your birdstrikes histogram to use a hex code color, add a title, and change the x-axis label to "Speed (Nautical Miles Per Hour)".
 
@@ -119,33 +117,17 @@ Update your birdstrikes histogram to use a hex code color, add a title, and chan
 ```
 :::
 
-
-### Counts on bars
-
-We can add counts to the bars with the `text_auto` argument.
+::: {.callout-tip title="Solution" collapse="true"}
+### Solution Q: Bird Strikes Histogram Custom
 
 ```{python}
-px.histogram(tips, x='tip', text_auto= True)
-```
-
-#### Bins and bandwidths
-
-We can adjust the number of bins or bin width to better represent the data using the `nbins` argument. Let's make a histogram with just 10 bins:
-
-```{python}
-px.histogram(tips, x='tip', nbins=10)
-```
-
-Now we have broader tip amount groups.
-
-::: {.callout-tip title='Practice'}
-
-### Practice: Speed Distribution Histogram Custom
-
-Create a histogram of the speed distribution (Speed_IAS_in_knots) with 15 bins using the birdstrikes dataset. Add counts to the bars, use a color of your choice, and add an appropriate title.
-
-```{python}
-# Your code here
+px.histogram(
+    birdstrikes,
+    x="Speed_IAS_in_knots",
+    labels={"Speed_IAS_in_knots": "Speed (Nautical Miles Per Hour)"},
+    title="Distribution of Bird Strike Speeds",
+    color_discrete_sequence=["#4B0082"]  # Indigo color
+)
 ```
 :::
 
@@ -200,12 +182,29 @@ tips_by_sex.update_layout(showlegend=False)
 
 ::: {.callout-tip title='Practice'}
 
-### Practice: Bird Strikes by Phase of Flight
+### Practice Q: Bird Strikes by Phase of Flight
 
 Create a bar chart showing the frequency of bird strikes by the phase of flight, `When__Phase_of_flight`. Add appropriate labels and a title. Use colors of your choice, and remove the legend.
 
 ```{python}
 # Your code here
+```
+:::
+
+::: {.callout-tip title="Solution" collapse="true"}
+### Solution Q: Bird Strikes by Phase of Flight
+
+```{python}
+fig = px.histogram(
+    birdstrikes,
+    x="When__Phase_of_flight",
+    text_auto=True,
+    color="When__Phase_of_flight",
+    labels={"When__Phase_of_flight": "Phase of Flight"},
+    title="Bird Strikes by Phase of Flight",
+    color_discrete_sequence=px.colors.qualitative.Set3
+)
+fig.update_layout(showlegend=False)
 ```
 :::
 
@@ -250,12 +249,21 @@ election_chart.update_xaxes(categoryorder="total ascending")
 
 ::: {.callout-tip title='Practice'}
 
-### Practice: Sorted Origin State Bar Chart
+### Practice Q: Sorted Origin State Bar Chart
 
-Create a sorted bar chart showing the distribution of bird strikes by origin state. Sort the bars in ascending order of frequency.
+Create a sorted bar chart showing the distribution of bird strikes by origin state. Sort the bars in descending order of frequency.
 
 ```{python}
 # Your code here
+```
+:::
+
+::: {.callout-tip title="Solution" collapse="true"}
+### Solution Q: Sorted Origin State Bar Chart
+
+```{python}
+fig = px.histogram(birdstrikes, x="Origin_State")
+fig.update_xaxes(categoryorder="total descending")
 ```
 :::
 
@@ -270,12 +278,20 @@ px.histogram(tips, y='day')
 
 ::: {.callout-tip title='Practice'}
 
-### Practice: Horizontal Bar Chart of Origin State
+### Practice Q: Horizontal Bar Chart of Origin State
     
 Create a horizontal bar chart showing the distribution of bird strikes by origin state.
 
 ```{python}
 # Your code here
+```
+:::
+
+::: {.callout-tip title="Solution" collapse="true"}
+### Solution Q: Horizontal Bar Chart of Origin State
+
+```{python}
+px.histogram(birdstrikes, y="Origin_State")
 ```
 :::
 
@@ -304,7 +320,7 @@ The legend is no longer needed, so we can remove it.
 tips_by_day_with_labels.update_layout(showlegend=False)
 ```
 
-::: {.callout-note title='Pro'}
+::: {.callout-note title='Pro Tip'}
 
 If you forget how to make simple changes like this, don't hesitate to consult the plotly documentation, Google or ChatGPT.
 
@@ -312,12 +328,22 @@ If you forget how to make simple changes like this, don't hesitate to consult th
 
 ::: {.callout-tip title='Practice'}
 
-### Practice: Wildlife Size Pie Chart
+### Practice Q: Wildlife Size Pie Chart
 
 Create a pie chart showing the distribution of bird strikes by wildlife size. Include percentages and labels inside the pie slices.
 
 ```{python}
 # Your code here
+```
+:::
+
+::: {.callout-tip title="Solution" collapse="true"}
+### Solution Q: Wildlife Size Pie Chart
+
+```{python}
+fig = px.pie(birdstrikes, names="Wildlife__Size")
+fig.update_traces(textposition="inside", textinfo="percent+label")
+fig.update_layout(showlegend=False)
 ```
 :::
 
@@ -328,3 +354,4 @@ Create a pie chart showing the distribution of bird strikes by wildlife size. In
 In this lesson, you learned how to create univariate graphs using Plotly Express. You should now feel confident in your ability to create bar charts, pie charts, and histograms. You should also feel comfortable customizing the appearance of your graphs.
 
 See you in the next lesson.
+

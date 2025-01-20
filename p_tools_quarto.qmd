@@ -11,8 +11,6 @@ Most of our documents in the GRAPH courses are actually written in Quarto!
 
 In this lesson, we will cover the basics of this powerful tool.
 
-Note that for this lesson, the video may be easier to understand than the lesson notes, since there are many graphical user interface steps that are hard to describe in writing.
-
 ## Learning Objectives
 
 By the end of this lesson, you should be able to:
@@ -41,7 +39,7 @@ Now that Quarto is installed, use it to install the `tinytex` package, which we 
 quarto install tinytex
 ```
 
-To use all the features of Quarto in VSCode, we need to install the **Quarto** extension and the **Jupyter** extension. You can install these in the Extensions tab of VSCode. Be sure to install the official versions of these extensions; they should have checkmarks next to them.
+To use all the features of Quarto in VSCode, we need to install the **Quarto** extension and the **Jupyter** extension. You can install these in the Extensions tab of VSCode. Be sure to install the official versions of these extensions. Quarto is published by Quarto, and Jupyter is published by Microsoft.
 
 That's a lot of installations, but fear not—you only have to do these steps once on your computer.
 
@@ -64,7 +62,6 @@ Add two sections to your document with the following text:
 
 Hello
 
----
 
 # Section 2
 
@@ -98,7 +95,7 @@ To test these, add multiple lines of code to one code chunk, then practice runni
 
 As you can see, we can use Quarto as an interactive document similar to a Jupyter notebook or Google Colab. But what makes it really shine is its ability to output to many formats.
 
-Let's see how to use this functionality.
+Later in the lesson, we will see how to use this functionality.
 
 ## Quarto Document Header (YAML)
 
@@ -112,13 +109,13 @@ format: html
 ---
 ```
 
-The `format` is where we can specify the output format of the document. For now, we are trying to keep things simple and just use HTML.
-
-For things to render properly, you need the `jupyter` package. Watch our video on setting up a virtual environment if you have not done this yet and are not sure how to install packages.
+For now, we will just use the `html` format.
 
 To render the document, click on the "Render" button in the top right of the screen.
 
-You should see a new tab open in your VSCode. 
+(For things to render properly, you need the `jupyter` package. Watch our video on setting up a virtual environment if you have not done this yet and are not sure how to install packages.)
+
+You should see a new tab open in your VSCode with the rendered document.
 
 If you go to the explorer, you should see a new file called `first_quarto_doc.html`. 
 
@@ -139,10 +136,9 @@ format:
   html:
     embed-resources: true
 ```
-
-Another powerful feature of Quarto is its ability to output to many formats.
-
 ## Output Formats
+
+As we discussed earlier, a powerful feature of Quarto is its ability to output to many formats.
 
 You can change the `format` value in the YAML header to experiment with other formats.
 
@@ -155,15 +151,13 @@ Try the following formats:
 - `revealjs`: Renders the document as an HTML slideshow.
 - `dashboard`: Renders the document as an interactive dashboard.
 
-There is a chance some of these may not work on your computer due to different operating systems or versions of software.
+Note that there is a chance some of these may not work on your computer due to different operating systems or versions of software.
 
 ## Markdown
 
 The text inside Quarto documents is written in Markdown.
 
 **Markdown** is a simple set of conventions for adding formatting to plain text. For example, to italicize text, you wrap it in asterisks `*text here*`, and to start a new header, you use the pound sign `#`. We will learn these in detail below.
-
-In your editor, you can refer to the "Markdown Quick Reference" or "Cheatsheet" to learn more about Markdown syntax.
 
 You can define titles of different levels by starting a line with one or more `#`:
 

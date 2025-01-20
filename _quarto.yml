@@ -53,24 +53,6 @@ book:
       chapters:
         - p_ai_LLM_functions.qmd
 
-
-    ## Use the below for PDF render
-    # - p_foundations_google_colab.qmd
-    # - p_foundations_coding_basics.qmd
-    # - p_foundations_functions_methods.qmd
-    # - p_foundations_data_structures.qmd
-    # - p_foundations_for_loops.qmd
-    # - p_data_on_display_data_viz_types.qmd
-    # - p_data_on_display_univariate.qmd
-    # - p_data_on_display_multivariate.qmd
-    # - p_untangled_subset_columns.qmd
-    # - p_untangled_query_rows.qmd
-    # - p_untangled_assign.qmd
-    # - p_untangled_case_when.qmd
-    # - p_untangled_group_by_agg.qmd
-    # - p_untangled_other_grouped_operations.qmd
-    # - p_untangled_pivoting.qmd
-
 resources:
   - CNAME
 

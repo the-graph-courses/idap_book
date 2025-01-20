@@ -2,7 +2,6 @@
 title: 'Intro to Functions and Conditionals'
 ---
 
-
 ```{python}
 import pandas as pd
 pd.options.display.max_rows = 7
@@ -312,7 +311,7 @@ grades_df['grade_cat'] = grades_df['grade'].apply(categorize_grade)
 grades_df
 ```
 
-The `vectorize` method is easier to use with multiple arguments, but you will encounter the `apply` further down the road.
+The `vectorize` method is easier to use with multiple arguments, but you will encounter the `apply` method further down the road.
 :::
 
 ## Conclusion

@@ -1,5 +1,5 @@
 ---
-title: 'Group-Level Data Transformations in Pandas'
+title: 'Other Grouped Operations in Pandas'
 ---
 
 ```{python}
@@ -12,7 +12,7 @@ pd.options.display.max_rows = 10
 
 ## Introduction
 
-In our previous lessons, you've learned how to extract summary statistics from groups using `groupby()` and `agg()`. Now, we'll take a step further by exploring some additional useful **grouped data transformations**. So let's get started. 
+In our previous lessons, you've learned how to extract summary statistics from groups using `groupby()` and `agg()`. Now, we'll take a step further by exploring some additional useful grouped data transformations. Let's get started. 
 
 ## Learning Objectives
 
@@ -21,7 +21,6 @@ By the end of this lesson, you will be able to:
 - Add group-level summary statistics as new columns using `transform()`.
 - Count values within groups using `value_counts()`.
 - Compute cumulative sums within groups.
-- Sort data within groups to extract minimum, maximum, and top N values with `apply()` and lambda functions.
 
 ## Imports
 

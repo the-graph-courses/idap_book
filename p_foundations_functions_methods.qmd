@@ -104,7 +104,7 @@ Specifying the keyword is usually recommended, except for simple functions with 
 
 ### Q: Using Positional Arguments with `pow()`
 
-Use the `pow()` function to calculate 2 raised to the power of 5 by passing positional arguments. You may need to consult the documentation for the `pow()` function to see how it works.
+Use the `pow()` function to calculate 2 raised to the power of 7 by passing positional arguments. You may need to consult the documentation for the `pow()` function to see how it works.
 
 Write your code below and run it to check your answer:
 
@@ -114,7 +114,7 @@ Write your code below and run it to check your answer:
 
 ### Q: Using Keyword Arguments with `round()`
 
-Use the `round()` function to round the number `9.8765` to `3` decimal places by specifying keyword arguments.
+Use the `round()` function to round the number `9.87652` to `3` decimal places by specifying keyword arguments.
 
 Write your code below and run it to check your answer:
 
@@ -173,7 +173,7 @@ Come up with simple definitions for the following terms that are clear to YOU (e
 
 ### Q: Using methods
 
-1. Call the `replace()` method on the string "Helo" to replace the single l with two ls.
+1. Call the `replace()` method on the string "Helo" to replace the single l with double l.
 2. Call the `split()` method on the string "Hello World" to split the string into a list of words.
 
 ```{python}

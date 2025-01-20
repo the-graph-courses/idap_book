@@ -67,7 +67,7 @@ In the initial stages of your Python data journey, you may not work with lists t
 
 ### Practice: Working with Lists
 
-1. Create a list called `temperatures` with these values: 1,2,3,4
+1. Create a list called `temps` with these values: 1,2,3,4
 2. Print the first element of the list
 3. Change the last element to 6
 
@@ -154,7 +154,7 @@ This makes them similar to dictionaries.
 
 ### Practice: Working with Series
 
-1. Create a Series called `rainfall` with these values: 5, 2, 7, 4, 1
+1. Create a Series called `rain` with these values: 5, 4, 3, 2
 2. Get the mean and median rainfall
 
 ```{python}
@@ -236,14 +236,10 @@ In a future series of lessons, we'll dive deeper into slicing and manipulating D
 
 1. Create a DataFrame called `students` with this information:
    - Columns: "Name", "Age", "Grade"
-   - Data: 
-     - ["Alice", 15, "A"]
-     - ["Bob", 16, "B"]
-     - ["Charlie", 15, "A"]
-2. Display the entire DataFrame
-3. Show only the "Grade" column
-4. Display the row for Bob
-5. Calculate and show the average age of the students
+   - Alice's grade is 90, Bob's grade is 85, and Charlie's grade is 70. You pick the ages. 
+2. Show only the "Grade" column
+3. Calculate and show the average age of the students
+4. Display the row for Bob. 
 
 ```{python}
 # Your code here

@@ -81,7 +81,6 @@ housing_data.describe()
 - Create a folder and upload a CSV file from your computer to the folder
 - We can import the data with pandas as before
 
-
 ## Practice Q: Importing Data
 
 - Import a CSV file you uploaded to your drive

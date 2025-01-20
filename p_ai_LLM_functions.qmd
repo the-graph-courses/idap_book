@@ -80,9 +80,13 @@ Use the `llm_chat` function to ask the model for the most tourist-friendly city 
 # Your code here
 ```
 
+:::
+
+::: {.callout-note collapse="true"}
+
+## Solution Q: Get tourist-friendly city in Brazil
+
 ```{python}
-# | eval: false 
-# | echo: false
 response = llm_chat("What is the most tourist-friendly city in Brazil?")
 print(response)
 ```
@@ -140,9 +144,13 @@ Create a function called `get_local_dishes` that takes a country name as input a
 # Your code here
 ```
 
+:::
+
+::: {.callout-note collapse="true"}
+
+## Solution Q: Get local dishes
+
 ```{python}
-# | echo: false
-# | eval: false
 def get_local_dishes(country):
     prompt = f"What are some of the most famous local dishes from {country}?"
     return llm_chat(prompt)
@@ -228,7 +236,6 @@ This approach allows you to generate detailed summaries for each movie based on 
 
 ::: {.callout-practice title="Practice"}
 
-
 ## Practice Q: Weather Summary
 
 Using the first 5 rows of the `seattle_weather` dataset from `vega_datasets`, create a function that takes all weather columns for a particular day and generates a summary of the weather conditions for that day. The function should use the LLM to generate a one-paragraph summary for a report, considering the data provided. Store the function in a column called `weather_summary`.
@@ -239,17 +246,22 @@ weather
 ```
 
 ```{python}
-# | echo: false
-# | eval: false
-# Solution
+# Your code here
+```
+
+:::
+
+::: {.callout-note collapse="true"}
+
+## Solution Q: Weather Summary
+
+```{python}
 # Step 1: Load the dataset
 weather = vd.data.seattle_weather().head()
-
 
 # Step 2: Convert each row into a dictionary and add it to the DataFrame
 weather_dicts = weather.to_dict(orient="records")
 weather["full_dict"] = weather_dicts
-
 
 # Step 3: Define the function to generate summaries
 def weather_summary(weather_data):
@@ -259,14 +271,12 @@ def weather_summary(weather_data):
     )
     return llm_chat(prompt)
 
-
 # Step 4: Vectorize the function
 weather_summary_vec = np.vectorize(weather_summary)
 
 # Step 5: Apply the function to generate summaries
 weather["summary"] = weather_summary_vec(weather["full_dict"])
 ```
-
 
 :::
 

@@ -78,11 +78,13 @@ The **Command Palette** is a powerful feature in VS Code that allows you to acce
 
 To access it, click on the search bar at the top of vscode window, then either press > or select the 'show and run commands' option. 
 
-Then type 'theme' and select 'Preferences: Color Theme'. 
+Let's practice changing the color theme:
 
-Use the up and down arrow keys to cycle through the available color themes.
+1. Type 'theme' and select 'Preferences: Color Theme'. 
 
-Press `Enter` to select your preferred theme.
+2. Use the up and down arrow keys to cycle through the available color themes.
+
+3. Press `Enter` to select your preferred theme.
 
 ## Wrap Up
 

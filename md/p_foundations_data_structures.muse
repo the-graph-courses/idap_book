@@ -1,11 +1,6 @@
----
-title: Data Structures in Python
----
+#title Data Structures in Python
 
-
-
-
-## Intro
+** Intro
 
 So far in our Python explorations, we’ve been working with simple,
 single values, like numbers and strings. But, as you know, data usually
@@ -18,43 +13,43 @@ series, and finally tables, or, more formally,dataframes.
 
 Let’s dive in!
 
-## Learning objectives
+** Learning objectives
 
--   Create and work with Python lists and dictionaries
--   Understand and use Pandas Series
--   Explore Pandas DataFrames for organizing structured data
+ - Create and work with Python lists and dictionaries
+ - Understand and use Pandas Series
+ - Explore Pandas DataFrames for organizing structured data
 
-## Imports
+** Imports
 
 We need pandas for this lesson. You can import it like this:
 
-```python
+<example>
 import pandas as pd
-```
+</example>
 
 If you get an error, you probably need to install it. You can do this by
-running `!pip install pandas` in a cell.
+running =!pip install pandas= in a cell.
 
-## Python Lists
+** Python Lists
 
 Lists are like ordered containers that can hold different types of
 information. For example, you might have a list of things to buy:
 
-```python
+<example>
 shopping = ["apples", "bananas", "milk", "bread"] 
 shopping
-```
+</example>
 
 In Python, we use something called “zero-based indexing” to access items
 in a list. This means we start counting positions from 0, not 1.
 
 Let’s see some examples:
 
-```python
+<example>
 print(shopping[0])  # First item (remember, we start at 0!)
 print(shopping[1])  # Second item
 print(shopping[2])  # Third item
-```
+</example>
 
 It might seem odd at first, but it’s a common practice in many
 programming languages. It has to do with how computers store
@@ -63,90 +58,89 @@ information, and the ease of writing algorithms.
 We can change the contents of a list after we’ve created it, using the
 same indexing system.
 
-```python
+<example>
 shopping[1] = "oranges"  # Replace the second item (at index 1)
 shopping
-```
+</example>
 
 There are many methods accessible to lists. For example, we can add
-elements to a list using the `append()` method.
+elements to a list using the =append()= method.
 
-```python
+<example>
 shopping.append("eggs")
 shopping
-```
+</example>
 
 In the initial stages of your Python data journey, you may not work with
 lists too often, so we’ll keep this intro brief.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice: Working with Lists
+*** Practice: Working with Lists
 
-1.  Create a list called `temps` with these values: 1,2,3,4
-2.  Print the first element of the list
-3.  Change the last element to 6
+ 1. Create a list called =temps= with these values: 1,2,3,4
+ 2. Print the first element of the list
+ 3. Change the last element to 6
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
-
-## Python Dictionaries
+** Python Dictionaries
 
 Dictionaries are like labeled storage boxes for your data. Each piece of
 data (value) has a unique label (key). Below, we have a dictionary of
 grades for some students.
 
-```python
+<example>
 grades = {"Alice": 90, "Bob": 85, "Charlie": 92}
 grades
-```
+</example>
 
-As you can see, dictionaries are defined using curly braces `{}`, with
-keys and values separated by colons `:`, and the key-value pairs are
+As you can see, dictionaries are defined using curly braces ={}=, with
+keys and values separated by colons =:=, and the key-value pairs are
 separated by commas.
 
 We use the key to get the associated value.
 
-```python
+<example>
 grades["Bob"]
-```
+</example>
 
-### Adding/Modifying Entries
+*** Adding/Modifying Entries
 
 We can easily add new information or change existing data in a
 dictionary.
 
-```python
+<example>
 grades["David"] = 88  # Add a new student
 grades
-```
+</example>
 
-
-```python
+<example>
 grades["Alice"] = 95  # Update Alice's grade
 grades
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice: Working with Dictionaries
+*** Practice: Working with Dictionaries
 
-1.  Create a dictionary called `prices` with these pairs: “apple”: 0.50,
+ 1. Create a dictionary called =prices= with these pairs: “apple”: 0.50,
     “banana”: 0.25, “orange”: 0.75
-2.  Print the price of an orange by using the key
-3.  Add a new fruit “grape” with a price of 1.5
-4.  Change the price of “banana” to 0.30
+ 2. Print the price of an orange by using the key
+ 3. Add a new fruit “grape” with a price of 1.5
+ 4. Change the price of “banana” to 0.30
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
-
-## Pandas Series
+** Pandas Series
 
 Pandas provides a data structure called a Series that is similar to a
 list, but with additional features that are particularly useful for data
@@ -154,44 +148,44 @@ analysis.
 
 Let’s create a simple Series:
 
-```python
+<example>
 temps = pd.Series([1, 2, 3, 4, 5])
 temps
-```
+</example>
 
 We can use built-in Series methods to calculate summary statistics.
 
-```python
+<example>
 temps.mean()
 temps.median()
 temps.std()
-```
+</example>
 
 An important feature of Series is that they can have a custom index for
 intuitive access.
 
-```python
+<example>
 temps_labeled = pd.Series([1, 2, 3, 4], index=['Mon', 'Tue', 'Wed', 'Thu'])
 temps_labeled
 temps_labeled['Wed']
-```
+</example>
 
 This makes them similar to dictionaries.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice: Working with Series
+*** Practice: Working with Series
 
-1.  Create a Series called `rain` with these values: 5, 4, 3, 2
-2.  Get the mean and median rainfall
+ 1. Create a Series called =rain= with these values: 5, 4, 3, 2
+ 2. Get the mean and median rainfall
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
-
-## Pandas DataFrames
+** Pandas DataFrames
 
 Next up, let’s consider Pandas DataFrames, which are like Series but in
 two dimensions - think spreadsheets or database tables.
@@ -206,28 +200,28 @@ should know how to data frames from scratch within Python as well.
 
 Let’s create three lists first:
 
-```python
+<example>
 # Create three lists
 names = ["Alice", "Bob", "Charlie"]
 ages = [25, 30, 28]
 cities = ["Lagos", "London", "Lima"]
-```
+</example>
 
 Then we combined them into a dictionary, and finally into a dataframe.
 
-```python
+<example>
 data = {'name': names,
         'age': ages,
         'city': cities}
 
 people_df = pd.DataFrame(data)
 people_df
-```
+</example>
 
 Note that we could have created the dataframe without the intermediate
 series:
 
-```python
+<example>
 people_df = pd.DataFrame(
     {
         "name": ["Alice", "Bob", "Charlie"],
@@ -236,55 +230,55 @@ people_df = pd.DataFrame(
     }
 )
 people_df
-```
+</example>
 
 We can select specific columns or rows from our DataFrame.
 
-```python
+<example>
 people_df["city"]  # Selecting a column. Note that this returns a Series.
 people_df.loc[0]  # Selecting a row by its label. This also returns a Series.
-```
+</example>
 
 We can call methods on the dataframe.
 
-```python
+<example>
 people_df.describe() # This is a summary of the numerical columns
 people_df.info() # This is a summary of the data types
-```
+</example>
 
 And we can call methods on the Series objects that result from selecting
 columns.
 
 For example, we can get summary statistics on the “city” column.
 
-```python
+<example>
 people_df["city"].describe()  # This is a summary of the "city" column
 people_df["age"].mean()  # This is the mean of the "age" column
-```
+</example>
 
 In a future series of lessons, we’ll dive deeper into slicing and
 manipulating DataFrames. Our goal in this lesson is just to get you
 familiar with the basic syntax and concepts.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice: Working with DataFrames
+*** Practice: Working with DataFrames
 
-1.  Create a DataFrame called `students` with this information:
-    -   Columns: “Name”, “Age”, “Grade”
-    -   Alice’s grade is 90, Bob’s grade is 85, and Charlie’s grade
-        is 70. You pick the ages.
-2.  Show only the “Grade” column
-3.  Calculate and show the average age of the students
-4.  Display the row for Bob.
+ 1. Create a DataFrame called =students= with this information:
+    - Columns: “Name”, “Age”, “Grade”
+    - Alice’s grade is 90, Bob’s grade is 85, and Charlie’s grade is 70.
+      You pick the ages.
+ 2. Show only the “Grade” column
+ 3. Calculate and show the average age of the students
+ 4. Display the row for Bob.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
-
-## Wrap-up
+** Wrap-up
 
 We’ve explored the main data structures for Python data analysis. From
 basic lists and dictionaries to Pandas Series and DataFrames, these

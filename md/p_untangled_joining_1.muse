@@ -1,16 +1,11 @@
----
-title: Introduction to Joining Datasets
----
+#title Introduction to Joining Datasets
 
-
-
-
-## Data & Packages {#data-packages}
+** Data & Packages
 
 Please run the code below to load the packages and datasets we’ll be
 using throughout this lesson.
 
-```python
+<example>
 import pandas as pd
 
 
@@ -215,50 +210,49 @@ order_records = pd.DataFrame(
         "order_date": ["2022-05-10", "2023-09-01", "2021-12-15"],
     }
 )
-```
+</example>
 
-## Intro
+** Intro
 
 Joining is a key skill when working with data as it allows you to
 combine information about the same entities from multiple sources,
 leading to more comprehensive and insightful analyses. In this lesson,
 you’ll learn how to use different joining techniques using Python’s
-`pandas` library. Let’s get started!
+=pandas= library. Let’s get started!
 
-## Learning Objectives
+** Learning Objectives
 
--   You understand how each of the different joins work: left, right,
-    inner, and outer.
+ - You understand how each of the different joins work: left, right,
+   inner, and outer.
+ - You can join simple datasets together using the =pd.merge()=
+   function.
 
--   You can join simple datasets together using the `pd.merge()`
-    function.
-
-## Why Do We Need Joins?
+** Why Do We Need Joins?
 
 To illustrate the utility of joins, let’s start with a toy example.
-Consider the following two datasets. The first, `people`, contains names
+Consider the following two datasets. The first, =people=, contains names
 and ages of three individuals:
 
-```python
+<example>
 people
-```
+</example>
 
-The second, `test_info`, contains test dates and results for those
+The second, =test_info=, contains test dates and results for those
 individuals:
 
-```python
+<example>
 test_info
-```
+</example>
 
 We’d like to analyze these data together, and so we need a way to
 combine them.
 
 One option we might consider is concatenating the dataframes
-horizontally using `pd.concat()`:
+horizontally using =pd.concat()=:
 
-```python
+<example>
 pd.concat([people, test_info], axis=1)
-```
+</example>
 
 This successfully merges the datasets, but it doesn’t do so very
 intelligently. The function essentially “pastes” or “staples” the two
@@ -267,213 +261,212 @@ This is not ideal and will be problematic for analysis.
 
 Another problem occurs if the rows in the two datasets are not already
 aligned. In this case, the data will be combined incorrectly with
-`pd.concat()`. Consider the `test_info_disordered` dataset, which now
+=pd.concat()=. Consider the =test_info_disordered= dataset, which now
 has Bob in the first row:
 
-```python
+<example>
 test_info_disordered
-```
+</example>
 
-What happens if we concatenate this with the original `people` dataset,
+What happens if we concatenate this with the original =people= dataset,
 where Bob was in the *second* row?
 
-```python
+<example>
 pd.concat([people, test_info_disordered], axis=1)
-```
+</example>
 
 Alice’s people details are now mistakenly aligned with Bob’s test info!
 
 A third issue arises when an entity appears more than once in one
 dataset. Perhaps Alice had multiple tests:
 
-```python
+<example>
 test_info_multiple
-```
+</example>
 
-If we try to concatenate this with the `people` dataset, we’ll get
+If we try to concatenate this with the =people= dataset, we’ll get
 mismatched data due to differing row counts:
 
-```python
+<example>
 pd.concat([people, test_info_multiple], axis=1)
-```
+</example>
 
 This results in NaN values and misaligned data.
 
-:::note[Side Note]
+<quote>
+**Side Note**
 
 What we have here is called a **one-to-many** relationship—one Alice in
 the people data, but multiple Alice rows in the test data since she had
 multiple tests. Joining in such cases will be covered in detail in the
 second joining lesson.
+</quote>
 
-:::
-
-------------------------------------------------------------------------
+----
 
 Clearly, we need a smarter way to combine datasets than concatenation;
 we’ll need to venture into the world of joining. In pandas, the function
-that performs joins is `pd.merge()`.
+that performs joins is =pd.merge()=.
 
 It works for the simple case, and it does not duplicate the name column:
 
-```python
+<example>
 pd.merge(people, test_info)
-```
+</example>
 
 It works where the datasets are not ordered identically:
 
-```python
+<example>
 pd.merge(people, test_info_disordered)
-```
+</example>
 
 As you can see, Alice’s details are now correctly aligned with her test
 results.
 
 And it works when there are multiple test rows per individual:
 
-```python
+<example>
 pd.merge(people, test_info_multiple)
-```
+</example>
 
-In this case, the `pd.merge()` function correctly repeats Alice’s
+In this case, the =pd.merge()= function correctly repeats Alice’s
 details for each of her tests.
 
 Simple and beautiful!
 
-## pd.merge() syntax {#pd.merge-syntax}
+** pd.merge() syntax
 
 Now that we understand *why* we need joins, let’s look at their basic
 syntax.
 
-Joins take two dataframes as the first two arguments: `left` (the *left*
-dataframe) and `right` (the *right* dataframe). In pandas, you can
+Joins take two dataframes as the first two arguments: =left= (the *left*
+dataframe) and =right= (the *right* dataframe). In pandas, you can
 provide these as positional or keyword arguments:
 
-```python
+<example>
 # left and right
 pd.merge(left=people, right=test_info)  # keyword arguments
 pd.merge(people, test_info)  # positional arguments
-```
+</example>
 
-Another critical argument is `on`, which indicates the column or **key**
+Another critical argument is =on=, which indicates the column or **key**
 used to connect the tables. We don’t always need to supply this
 argument; it can be *inferred* from the datasets. For example, in our
-original examples, “name” is the only column common to `people` and
-`test_info`. So the merge function assumes `on='name'`:
+original examples, “name” is the only column common to =people= and
+=test_info=. So the merge function assumes <code>on='name'</code>:
 
-```python
+<example>
 # on argument is optional if the column key is the same in both dataframes
 pd.merge(people, test_info)
 pd.merge(people, test_info, on="name")
-```
+</example>
 
-:::note[Vocab]
+<quote>
+**Vocab**
 
 The column used to connect rows across the tables is known as a **key**.
-In the pandas `merge()` function, the key is specified in the `on`
-argument, as seen in `pd.merge(people, test_info, on='name')`.
-
-:::
+In the pandas =merge()= function, the key is specified in the =on=
+argument, as seen in
+<code>pd.merge(people, test_info, on='name')</code>.
+</quote>
 
 What happens if the keys are named differently in the two datasets?
-Consider the `test_info_different_name` dataset, where the “name” column
+Consider the =test_info_different_name= dataset, where the “name” column
 has been changed to “first_name”:
 
-```python
+<example>
 test_info_different_name
-```
+</example>
 
-If we try to join `test_info_different_name` with our original `people`
+If we try to join =test_info_different_name= with our original =people=
 dataset, we will encounter an error:
 
-```python
+<example>
 pd.merge(people, test_info_different_name)
-```
+</example>
 
-``` text
+<example>
 MergeError: No common columns to perform merge on. Merge options: left_on=None, right_on=None, left_index=False, right_index=False
-```
+</example>
 
 The error indicates that there are no common variables, so the join is
 not possible.
 
 In situations like this, you have two choices: you can rename the column
 in the second dataframe to match the first, or more simply, specify
-which columns to join on using `left_on` and `right_on`.
+which columns to join on using =left_on= and =right_on=.
 
 Here’s how to do this:
 
-```python
+<example>
 pd.merge(people, test_info_different_name, left_on='name', right_on='first_name')
-```
+</example>
 
-This syntax essentially says, “Connect `name` from the left dataframe
-with `first_name` from the right dataframe because they represent the
+This syntax essentially says, “Connect =name= from the left dataframe
+with =first_name= from the right dataframe because they represent the
 same data.”
 
-------------------------------------------------------------------------
+----
 
-:::note[Vocab]
+<quote>
+**Vocab**
 
 **Key**: The column or set of columns used to match rows between two
 dataframes in a join operation.
 
 **Left Join**: A type of join that keeps all rows from the left
 dataframe and adds matching rows from the right dataframe. If there is
-no match, the result is `NaN` on the right side.
+no match, the result is =NaN= on the right side.
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
-
-## Practice Q: Join Employees and Training Sessions
+** Practice Q: Join Employees and Training Sessions
 
 Consider the two datasets below, one with employee details and the other
 with training session dates for these employees.
 
-```python
+<example>
 employees
-```
+</example>
 
-
-```python
+<example>
 training_sessions
-```
+</example>
 
 How many rows and columns would you expect to have after joining these
 two datasets?
 
 Now join the two datasets and check your answer.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
-
-## Practice Q: Join with `on` Argument
+** Practice Q: Join with =on= Argument
 
 Two datasets are shown below, one with customer details and the other
 with order records for those customers.
 
-```python
+<example>
 customer_details
-```
+</example>
 
-
-```python
+<example>
 order_records
-```
+</example>
 
-Join the `customer_details` and `order_records` datasets. You will need
-to use the `left_on` and `right_on` arguments because the customer
+Join the =customer_details= and =order_records= datasets. You will need
+to use the =left_on= and =right_on= arguments because the customer
 identifier columns have different names.
+</quote>
 
-:::
-
-## Types of joins
+** Types of joins
 
 The toy examples so far have involved datasets that could be matched
 perfectly—every row in one dataset had a corresponding row in the other
@@ -484,165 +477,162 @@ first table that do not have corresponding entries in the second table,
 and vice versa.
 
 To handle these cases of imperfect matching, there are different join
-types with specific behaviors: `left`, `right`, `inner`, and `outer`. In
+types with specific behaviors: =left=, =right=, =inner=, and =outer=. In
 the upcoming sections, we’ll look at examples of how each join type
 operates on datasets with imperfect matches.
 
-## `left` join
+** =left= join
 
-Let’s start with the `left` join. To see how it handles unmatched rows,
-we will try to join our original `people` dataset with a modified
-version of the `test_info` dataset.
+Let’s start with the =left= join. To see how it handles unmatched rows,
+we will try to join our original =people= dataset with a modified
+version of the =test_info= dataset.
 
-As a reminder, here is the `people` dataset, with Alice, Bob, and
+As a reminder, here is the =people= dataset, with Alice, Bob, and
 Charlie:
 
-```python
+<example>
 people
-```
+</example>
 
-For test information, we’ll remove `Charlie` and we’ll add a new
-individual, `Xavier`, and his test data:
+For test information, we’ll remove =Charlie= and we’ll add a new
+individual, =Xavier=, and his test data:
 
-```python
+<example>
 test_info_xavier
-```
+</example>
 
-We can specify the join type using the `how` argument:
+We can specify the join type using the =how= argument:
 
-```python
+<example>
 pd.merge(people, test_info_xavier, how='left')
-```
+</example>
 
 As you can see, with the *left* join, all records from the *left*
-dataframe (`people`) are retained. So, even though `Charlie` doesn’t
-have a match in the `test_info_xavier` dataset, he’s still included in
+dataframe (=people=) are retained. So, even though =Charlie= doesn’t
+have a match in the =test_info_xavier= dataset, he’s still included in
 the output. (But of course, since his test information is not available
-in `test_info_xavier`, those values were left as `NaN`.)
+in =test_info_xavier=, those values were left as =NaN=.)
 
 Xavier, on the other hand, who was only present in the right dataset,
 gets dropped.
 
 The graphic below shows how this join worked:
 
-<figure>
-<img src="images/left_join1.gif" alt="Left Join" />
-<figcaption aria-hidden="true">Left Join</figcaption>
-</figure>
-
+[[images/left_join1.gif][Left Join]]
+Left Join
 Now what if we flip the dataframes? Let’s see the outcome when
-`test_info_xavier` is the left dataframe and `people` is the right one:
+=test_info_xavier= is the left dataframe and =people= is the right one:
 
-```python
+<example>
 pd.merge(test_info_xavier, people, on='name', how='left')
-```
+</example>
 
-Once again, the `left` join retains all rows from the *left* dataframe
-(now `test_info_xavier`). This means Xavier’s data is included this
+Once again, the =left= join retains all rows from the *left* dataframe
+(now =test_info_xavier=). This means Xavier’s data is included this
 time. Charlie, on the other hand, is excluded.
 
-:::note[Key Point]
+<quote>
+**Key Point**
 
 **Primary Dataset**: In the context of joins, the primary dataset refers
 to the main or prioritized dataset in an operation. In a left join, the
 left dataframe is considered the primary dataset because all of its rows
 are retained in the output, regardless of whether they have a matching
 row in the other dataframe.
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
-
-## Practice Q: Left Join Students and Exam Dates
+** Practice Q: Left Join Students and Exam Dates
 
 Consider the two datasets below, one with student details and the other
 with exam dates for some of these students.
 
-```python
+<example>
 students
-```
+</example>
 
-
-```python
+<example>
 exam_dates
-```
+</example>
 
-Join the `students` dataset with the `exam_dates` dataset using a left
+Join the =students= dataset with the =exam_dates= dataset using a left
 join.
+</quote>
 
-:::
+----
 
-------------------------------------------------------------------------
-
-## Analysing African TB Incidence and Health Expenditure
+** Analysing African TB Incidence and Health Expenditure
 
 Let’s try another example, this time with a more realistic set of data.
 
 First, we have data on the TB incidence rate per 100,000 people for some
 African countries, from the
-[WHO](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-(per-100-000-population-per-year)):
+[[https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-(per-100-000-population-per-year)][WHO]]:
 
-```python
+<example>
 tb_2019_africa
-```
+</example>
 
 We want to analyze how TB incidence in African countries varies with
 government health expenditure per capita. For this, we have data on
 health expenditure per capita in USD, also from the WHO, for countries
 from all continents:
 
-```python
+<example>
 health_exp_2019
-```
+</example>
 
 Which dataset should we use as the left dataframe for the join?
 
 Since our goal is to analyze African countries, we should use
-`tb_2019_africa` as the left dataframe. This will ensure we keep all the
+=tb_2019_africa= as the left dataframe. This will ensure we keep all the
 African countries in the final joined dataset.
 
 Let’s join them:
 
-```python
+<example>
 tb_health_exp_joined = pd.merge(tb_2019_africa, health_exp_2019, on='country', how='left')
 tb_health_exp_joined
-```
+</example>
 
 Now in the joined dataset, we have just the African countries, which is
 exactly what we wanted.
 
-All rows from the left dataframe `tb_2019_africa` were kept, while
-non-African countries from `health_exp_2019` were discarded.
+All rows from the left dataframe =tb_2019_africa= were kept, while
+non-African countries from =health_exp_2019= were discarded.
 
-We can check if any rows in `tb_2019_africa` did not have a match in
-`health_exp_2019` by filtering for `NaN` values:
+We can check if any rows in =tb_2019_africa= did not have a match in
+=health_exp_2019= by filtering for =NaN= values:
 
-```python
+<example>
 tb_health_exp_joined.query("expend_usd.isna()")
-```
+</example>
 
 This shows that 3 countries—Mauritius, South Sudan, and Comoros—did not
-have expenditure data in `health_exp_2019`. But because they were
-present in `tb_2019_africa`, and that was the left dataframe, they were
+have expenditure data in =health_exp_2019=. But because they were
+present in =tb_2019_africa=, and that was the left dataframe, they were
 still included in the joined data.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Left Join TB Cases and Continents
+** Practice Q: Left Join TB Cases and Continents
 
-The first, `tb_cases_children`, contains the number of TB cases in under
+The first, =tb_cases_children=, contains the number of TB cases in under
 15s in 2012, by country:
 
-```python
+<example>
 tb_cases_children
-```
+</example>
 
-And `country_continents`, lists all countries and their corresponding
+And =country_continents=, lists all countries and their corresponding
 region and continent:
 
-```python
+<example>
 country_continents
-```
+</example>
 
 Your goal is to add the continent and region data to the TB cases
 dataset.
@@ -650,193 +640,178 @@ dataset.
 Which dataframe should be the left one? And which should be the right
 one? Once you’ve decided, join the datasets appropriately using a left
 join.
+</quote>
 
-:::
+** =right= join
 
-## `right` join
-
-A `right` join can be thought of as a mirror image of a `left` join. The
+A =right= join can be thought of as a mirror image of a =left= join. The
 mechanics are the same, but now all rows from the *right* dataframe are
 retained, while only those rows from the left dataframe that find a
 match in the right are kept.
 
 Let’s look at an example to understand this. We’ll use our original
-`people` and modified `test_info_xavier` datasets:
+=people= and modified =test_info_xavier= datasets:
 
-```python
+<example>
 people
 test_info_xavier
-```
+</example>
 
-Now let’s try a right join, with `people` as the right dataframe:
+Now let’s try a right join, with =people= as the right dataframe:
 
-```python
+<example>
 pd.merge(test_info_xavier, people, on='name', how='right')
-```
+</example>
 
 Hopefully you’re getting the hang of this and could predict that output!
-Since `people` was the *right* dataframe, and we are using a *right*
-join, all the rows from `people` are kept—Alice, Bob, and Charlie—but
-only matching records from `test_info_xavier`.
+Since =people= was the *right* dataframe, and we are using a *right*
+join, all the rows from =people= are kept—Alice, Bob, and Charlie—but
+only matching records from =test_info_xavier=.
 
 The graphic below illustrates this process:
 
-<figure>
-<img src="images/right_join.gif" alt="Right Join" />
-<figcaption aria-hidden="true">Right Join</figcaption>
-</figure>
-
+[[images/right_join.gif][Right Join]]
+Right Join
 An important point—the same final dataframe can be created with either a
-`left` join or a `right` join; it just depends on what order you provide
+=left= join or a =right= join; it just depends on what order you provide
 the dataframes to these functions:
 
-```python
+<example>
 # Here, right join prioritizes the right dataframe, people
 pd.merge(test_info_xavier, people, on='name', how='right')
-```
+</example>
 
-
-```python
+<example>
 # Here, left join prioritizes the left dataframe, again people
 pd.merge(people, test_info_xavier, on='name', how='left')
-```
+</example>
 
-As we previously mentioned, data scientists typically favor `left` joins
-over `right` joins. It makes more sense to specify your primary dataset
-first, in the left position. Opting for a `left` join is a common best
+As we previously mentioned, data scientists typically favor =left= joins
+over =right= joins. It makes more sense to specify your primary dataset
+first, in the left position. Opting for a =left= join is a common best
 practice due to its clearer logic, making it less error-prone.
 
-## `inner` join
+** =inner= join
 
-What makes an `inner` join distinct is that rows are only kept if the
+What makes an =inner= join distinct is that rows are only kept if the
 joining values are present in *both* dataframes. Let’s return to our
 example of individuals and their test results. As a reminder, here are
 our datasets:
 
-```python
+<example>
 people
-```
+</example>
 
-
-```python
+<example>
 test_info_xavier
-```
+</example>
 
 Now that we have a better understanding of how joins work, we can
 already picture what the final dataframe would look like if we used an
-`inner` join on our two dataframes above. If only rows with joining
+=inner= join on our two dataframes above. If only rows with joining
 values that are in *both* dataframes are kept, and the only individuals
-that are in both `people` and `test_info_xavier` are `Alice` and `Bob`,
+that are in both =people= and =test_info_xavier= are =Alice= and =Bob=,
 then they should be the only individuals in our final dataset! Let’s try
 it out.
 
-```python
+<example>
 pd.merge(people, test_info_xavier, on='name', how='inner')
-```
+</example>
 
-Perfect, that’s exactly what we expected! Here, `Charlie` was only in
-the `people` dataset, and `Xavier` was only in the `test_info_xavier`
+Perfect, that’s exactly what we expected! Here, =Charlie= was only in
+the =people= dataset, and =Xavier= was only in the =test_info_xavier=
 dataset, so both of them were removed. The graphic below shows how this
 join works:
 
-<figure>
-<img src="images/inner_join.gif" alt="Inner Join" />
-<figcaption aria-hidden="true">Inner Join</figcaption>
-</figure>
+[[images/inner_join.gif][Inner Join]]
+Inner Join
+Note that the default join type is =inner=. So if you don’t specify
+<code>how='inner'</code>, you’re actually performing an inner join! Try
+it out:
 
-Note that the default join type is `inner`. So if you don’t specify
-`how='inner'`, you’re actually performing an inner join! Try it out:
-
-```python
+<example>
 pd.merge(people, test_info_xavier)
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Inner Join Products
+** Practice Q: Inner Join Products
 
 The following data is on product sales and customer feedback in 2019.
 
-```python
+<example>
 total_sales
-```
+</example>
 
-
-```python
+<example>
 product_feedback
-```
+</example>
 
-Use an `inner` join to combine the datasets.
+Use an =inner= join to combine the datasets.
 
 How many products are there in common between the two datasets.
 
 Which product has the highest ratio of positive reviews to units sold?
 (Should be desktops)
+</quote>
 
-:::
+** =outer= join
 
-## `outer` join
-
-The peculiarity of the `outer` join is that it retains *all* records,
+The peculiarity of the =outer= join is that it retains *all* records,
 regardless of whether or not there is a match between the two datasets.
 Where there is missing information in our final dataset, cells are set
-to `NaN` just as we have seen in the `left` and `right` joins. Let’s
-take a look at our `people` and `test_info_xavier` datasets to
+to =NaN= just as we have seen in the =left= and =right= joins. Let’s
+take a look at our =people= and =test_info_xavier= datasets to
 illustrate this.
 
 Here is a reminder of our datasets:
 
-```python
+<example>
 people
 test_info_xavier
-```
+</example>
 
-Now let’s perform an `outer` join:
+Now let’s perform an =outer= join:
 
-```python
+<example>
 pd.merge(people, test_info_xavier, on='name', how='outer')
-```
+</example>
 
 As we can see, all rows were kept so there was no loss in information!
 The graphic below illustrates this process:
 
-<figure>
-<img src="images/full_join.gif" alt="Outer Join" />
-<figcaption aria-hidden="true">Outer Join</figcaption>
-</figure>
-
+[[images/full_join.gif][Outer Join]]
+Outer Join
 Just as we saw above, all of the data from both of the original
-dataframes are still there, with any missing information set to `NaN`.
+dataframes are still there, with any missing information set to =NaN=.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Join Sales Data
+** Practice Q: Join Sales Data
 
 The following dataframes contain global sales and global customer
 complaints from various years.
 
-```python
+<example>
 sales
-```
+</example>
 
-
-```python
+<example>
 customer_complaints
-```
+</example>
 
 Join the above tables using the appropriate join to retain all
 information from the two datasets.
+</quote>
 
-:::
-
-## Wrap Up!
+** Wrap Up!
 
 Way to go, you now understand the basics of joining! The Venn diagram
 below gives a helpful summary of the different joins and the information
 that each one retains. It may be helpful to save this image for future
 reference!
 
-<figure>
-<img src="images/venn_cropped-01.jpg" alt="Join Types" />
-<figcaption aria-hidden="true">Join Types</figcaption>
-</figure>
+[[images/venn_cropped-01.jpg][Join Types]]
+Join Types

@@ -1,14 +1,9 @@
----
-title: Intro to Loops in Python
----
+#title Intro to Loops in Python
 
-
-
-
-## Introduction
+** Introduction
 
 At the heart of programming is the concept of repeating a task multiple
-times. A `for` loop is one fundamental way to do that. Loops enable
+times. A =for= loop is one fundamental way to do that. Loops enable
 efficient repetition, saving time and effort.
 
 Mastering this concept is essential for writing intelligent Python code.
@@ -16,233 +11,233 @@ Mastering this concept is essential for writing intelligent Python code.
 Let’s dive in and enhance your coding skills!/Applications/Python
 3.12/Install Certificates.command
 
-## Learning Objectives
+** Learning Objectives
 
 By the end of this lesson, you will be able to:
 
--   Use basic `for` loops in Python
--   Use index variables to iterate through lists in a loop
--   Format output using f-strings within loops
--   Apply loops to generate multiple plots for data visualization
+ - Use basic =for= loops in Python
+ - Use index variables to iterate through lists in a loop
+ - Format output using f-strings within loops
+ - Apply loops to generate multiple plots for data visualization
 
-## Packages
+** Packages
 
 In this lesson, we will use the following Python libraries:
 
-```python
+<example>
 import pandas as pd
 import plotly.express as px
 from vega_datasets import data
-```
+</example>
 
-## Intro to `for` Loops
+** Intro to =for= Loops
 
 Let’s start with a simple example. Suppose we have a list of children’s
 ages in years, and we want to convert these to months:
 
-```python
+<example>
 ages = [7, 8, 9]  # List of ages in years
-```
+</example>
 
 We could try to directly multiply the list by 12:
 
-```python
+<example>
 ages * 12
-```
+</example>
 
 But this does not do what we want. It repeats the list 12 times.
 
 Rather, we need to loop through each element in the list and multiply it
 by 12:
 
-```python
+<example>
 for age in ages:
     print(age * 12)
-```
+</example>
 
-`for` and `in` are required keywords in the loop. The colon and the
+=for= and =in= are required keywords in the loop. The colon and the
 indentation on the second line are also required.
 
-In this loop, `age` is a temporary variable that takes the value of each
-element in `ages` during each iteration. First, `age` is 7, then 8, then
+In this loop, =age= is a temporary variable that takes the value of each
+element in =ages= during each iteration. First, =age= is 7, then 8, then
 9.
 
 You can choose any name for this variable:
 
-```python
+<example>
 for random_name in ages:
     print(random_name * 12)
-```
+</example>
 
 Note that we need the print statement since the loop does not
 automatically print the result:
 
-```python
+<example>
 for age in ages:
     age * 12
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Hours to Minutes Basic Loop
+*** Hours to Minutes Basic Loop
 
-Try converting hours to minutes using a `for` loop. Start with this list
+Try converting hours to minutes using a =for= loop. Start with this list
 of hours:
 
-```python
+<example>
 hours = [3, 4, 5]  # List of hours
 # Your code here
-```
+</example>
+</quote>
 
-:::
-
-## Printing with f-strings
+** Printing with f-strings
 
 We might want to print both the result and the original age. We could do
-this by concatenating strings with the `+` operator. But we need to
-convert the age to a string with `str()`.
+this by concatenating strings with the =+= operator. But we need to
+convert the age to a string with =str()=.
 
-```python
+<example>
 for age in ages:
     print(str(age) + " years is " + str(age * 12) + " months" )
-```
+</example>
 
 Alternatively, we can use something called an f-string. This is a string
 that allows us to embed variables directly.
 
-```python
+<example>
 for age in ages:
     print(f"{age} years is {age * 12} months")
-```
+</example>
 
-Within the f-string, we use curly braces `{}` to embed the variables.
+Within the f-string, we use curly braces ={}= to embed the variables.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice: F-String
+*** Practice: F-String
 
 Again convert the list of hours below to minutes. Use f-strings to print
 both the original hours and the converted minutes.
 
-```python
+<example>
 hours = [3, 4, 5]  # List of hours
 # Your code here
 # Example output "3 hours is 180 minutes"
-```
+</example>
+</quote>
 
-:::
+** Are =for= Loops Useful in Python?
 
-## Are `for` Loops Useful in Python?
-
-While `for` loops are useful, in many cases there are more efficient
+While =for= loops are useful, in many cases there are more efficient
 ways to perform operations over collections of data.
 
 For example, our initial age conversion could be achieved using pandas
 Series:
 
-```python
+<example>
 import pandas as pd
 
 ages = pd.Series([7, 8, 9])
 months = ages * 12
 print(months)
-```
+</example>
 
 But while libraries like pandas offer powerful ways to work with data,
 for loops are essential for tasks that can’t be easily vectorized or
 when you need fine-grained control over the iteration process.
 
-## Looping with an Index and Value
+** Looping with an Index and Value
 
 Sometimes, we want to access both the position (index) and the value of
-items in a list. The `enumerate()` function helps us do this easily.
+items in a list. The =enumerate()= function helps us do this easily.
 
-Let’s look at our `ages` list again:
+Let’s look at our =ages= list again:
 
-```python
+<example>
 ages = [7, 8, 9]  # List of ages in years
-```
+</example>
 
-First, let’s see what `enumerate()` actually does:
+First, let’s see what =enumerate()= actually does:
 
-```python
+<example>
 for item in enumerate(ages):
     print(item)
-```
+</example>
 
-As you can see, `enumerate()` gives us pairs of (index, value).
+As you can see, =enumerate()= gives us pairs of (index, value).
 
-We can unpack these pairs directly in the `for` loop:
+We can unpack these pairs directly in the =for= loop:
 
-```python
+<example>
 for i, age in enumerate(ages):
     print(f"The person at index {i} is aged {age}")
-```
+</example>
 
-Here, `i` is the index, and `age` is the value at that index.
+Here, =i= is the index, and =age= is the value at that index.
 
 Now, let’s create a more detailed output using both the index and value:
 
-```python
+<example>
 for i, age in enumerate(ages):
     print(f"The person at index {i} is aged {age} years which is {age * 12} months")
-```
+</example>
 
 This is particularly useful when you need both the position and the
 value in your loop.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice: Enumerate with F-strings
+*** Practice: Enumerate with F-strings
 
-Use `enumerate()` and f-strings to print a sentence for each hour in the
+Use =enumerate()= and f-strings to print a sentence for each hour in the
 list:
 
-```python
+<example>
 hours = [3, 4, 5]  # List of hours
 
 # Your code here
 # Example output: "Hour 3 at index 0 is equal to 180 minutes"
-```
+</example>
+</quote>
 
-:::
+* Real Loops Application: Generating Multiple Plots
 
-# Real Loops Application: Generating Multiple Plots
-
-Now that you have a solid understanding of `for` loops, let’s apply our
+Now that you have a solid understanding of =for= loops, let’s apply our
 knowledge to a more realistic looping task: generating multiple plots.
 
-We’ll use the `gapminder` dataset from Vega datasets to demonstrate
+We’ll use the =gapminder= dataset from Vega datasets to demonstrate
 this. Our aim is to create line plots for a few selected countries in
 the gapminder dataset.
 
 First, let’s load the data:
 
-```python
+<example>
 # Load gapminder dataset
 gapminder = data.gapminder()
 gapminder.head()
-```
+</example>
 
 Now let’s create a line chart for a single country. We’ll use the
-`query` method to filter the data for the country “Canada”. We have not
+=query= method to filter the data for the country “Canada”. We have not
 learned this method yet; it is a pandas function that allows us to
 filter the data based on a condition. We will learn more about it later
 in the course.
 
-```python
+<example>
 # Filter data for China
 china_data = gapminder.query("country == 'China'")
 
 # Create line chart
 fig = px.line(china_data, x="year", y="life_expect", title="Life Expectancy in China")
 fig.show()
-```
+</example>
 
 Now, let’s create a loop to create line plots for a few selected
 countries.
 
-```python
+<example>
 countries = ["India", "China", "United States", "Indonesia", "Pakistan"]
 
 for country_name in countries:
@@ -254,51 +249,50 @@ for country_name in countries:
         title=f"Life Expectancy in {country_name}",
     )
     fig.show()
-```
+</example>
 
 This loop creates a separate line plot for each country in our list,
 showing how life expectancy has changed over time.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice: Population Over Time
+*** Practice: Population Over Time
 
-Using the `gapminder` dataset, create a bar chart (with `px.bar`) of the
-population for the countries `United States`, `Canada`, `Mexico` and
-`Jamaica` over time.
+Using the =gapminder= dataset, create a bar chart (with =px.bar=) of the
+population for the countries =United States=, =Canada=, =Mexico= and
+=Jamaica= over time.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
+*** Practice: Tips Histogram by Day
 
-### Practice: Tips Histogram by Day
-
-Using the `tips` dataset, create a histogram of the total bill for each
+Using the =tips= dataset, create a histogram of the total bill for each
 day of the week.
 
-```python
+<example>
 # Load tips dataset
 tips = px.data.tips()
 tips.head()
-```
+</example>
 
-
-```python
+<example>
 # List of days
 days = ["Thur", "Fri", "Sat", "Sun"]
 
 # Your loop here
-```
+</example>
+</quote>
 
-:::
+* Wrap Up!
 
-# Wrap Up!
-
-We’ve covered the very basics of `for` loops in Python, from simple
+We’ve covered the very basics of =for= loops in Python, from simple
 syntax to practical data analysis applications. Loops are essential for
 efficient coding, allowing you to automate repetitive tasks. As we
 progress in the course, we will encounter many other applications of

@@ -1,11 +1,6 @@
----
-title: Univariate Graphs with Plotly Express
----
+#title Univariate Graphs with Plotly Express
 
-
-
-
-## Intro
+** Intro
 
 In this lesson, you’ll learn how to create univariate graphs using
 Plotly Express. Univariate graphs are essential for understanding the
@@ -14,87 +9,86 @@ quantitative.
 
 Let’s get started!
 
-## Learning objectives
+** Learning objectives
 
--   Create bar charts, pie charts, and treemaps for categorical data
-    using Plotly Express
--   Generate histograms for quantitative data using Plotly Express
--   Customize graph appearance and labels
+ - Create bar charts, pie charts, and treemaps for categorical data
+   using Plotly Express
+ - Generate histograms for quantitative data using Plotly Express
+ - Customize graph appearance and labels
 
-## Imports
+** Imports
 
 This lesson requires plotly.express, pandas, and vega_datasets. Install
 them if you haven’t already.
 
-```python
+<example>
 import plotly.express as px
 import pandas as pd
 from vega_datasets import data
-```
+</example>
 
-## Quantitative Data
+** Quantitative Data
 
-### Histogram
+*** Histogram
 
 Histograms are used to visualize the distribution of continuous
 variables.
 
 Let’s make a histogram of the tip amounts in the tips dataset.
 
-```python
+<example>
 tips = px.data.tips()
 tips.head() # view the first 5 rows
-```
+</example>
 
-
-```python
+<example>
 px.histogram(tips, x='tip')
-```
+</example>
 
 We can see that the highest bar, corresponding to tips between 1.75 and
 2.24, has a frequency of 55. This means that there were 55 tips between
 1.75 and 2.24.
 
-:::note[Side-note]
+<quote>
+**Side-note**
 
 Notice that plotly charts are interactive. You can hover over the bars
 to see the exact number of tips in each bin.
 
 Try playing with the buttons at the top right. The button to download
 the chart as a png is especially useful.
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
-
-### Practice Q: Speed Distribution Histogram
+*** Practice Q: Speed Distribution Histogram
 
 Following the example of the histogram of tips, create a histogram of
 the speed distribution (Speed_IAS_in_knots) using the birdstrikes
 dataset.
 
-```python
+<example>
 birdstrikes = data.birdstrikes()
 birdstrikes.head()
 # Your code here
-```
-
-:::
+</example>
+</quote>
 
 We can view the help documentation for the function by typing
-`px.histogram?` in a cell and running it.
+=px.histogram?= in a cell and running it.
 
-```python
+<example>
 px.histogram?
-```
+</example>
 
-From the help documentation, we can see that the `px.histogram` function
+From the help documentation, we can see that the =px.histogram= function
 has many arguments that we can use to customize the graph.
 
 Let’s make the histogram a bit nicer by adding a title, customizing the
 x axis label, and changing the color.
 
-```python
+<example>
 px.histogram(
     tips,
     x="tip",
@@ -102,17 +96,17 @@ px.histogram(
     title="Distribution of Tips", 
     color_discrete_sequence=["lightseagreen"]
 )
-```
+</example>
 
 Color names are based on standard CSS color naming from Mozilla. You can
 see the full list
-[here](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color).
+[[https://developer.mozilla.org/en-US/docs/Web/CSS/named-color][here]].
 
-Alternatively, you can use hex color codes, like `#1f77b4`. You can get
+Alternatively, you can use hex color codes, like =#1f77b4=. You can get
 these easily by using a color picker. Search for “color picker” on
 Google.
 
-```python
+<example>
 px.histogram(
     tips,
     x="tip",
@@ -120,65 +114,65 @@ px.histogram(
     title="Distribution of Tips", 
     color_discrete_sequence=["#6a5acd"]
 )
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice Q: Bird Strikes Histogram Custom
+*** Practice Q: Bird Strikes Histogram Custom
 
 Update your birdstrikes histogram to use a hex code color, add a title,
 and change the x-axis label to “Speed (Nautical Miles Per Hour)”.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
+** Categorical Data
 
-## Categorical Data
-
-### Bar chart
+*** Bar chart
 
 Bar charts can be used to display the frequency of a single categorical
 variable.
 
-Plotly has a `px.bar` function that we will see later. But for **single
+Plotly has a =px.bar= function that we will see later. But for **single
 categorical variables**, the function plotly wants you to use is
-actually `px.histogram`. (Statisticians everywhere are crying;
+actually =px.histogram=. (Statisticians everywhere are crying;
 histograms are supposed to be used for just quantitative data!)
 
 Let’s create a basic bar chart showing the distribution of sex in the
 tips dataset:
 
-```python
+<example>
 px.histogram(tips, x='sex')   
-```
+</example>
 
 Let’s add counts to the bars.
 
-```python
+<example>
 px.histogram(tips, x='sex', text_auto= True)
-```
+</example>
 
 We can enhance the chart by adding a color axis, and customizing the
 labels and title.
 
-```python
+<example>
 px.histogram(tips, x='sex', text_auto=True, color='sex', 
              labels={'sex': 'Gender'},
              title='Distribution of Customers by Gender')
-```
+</example>
 
-Arguably, in this plot, we do not need the `color` axis, since the `sex`
+Arguably, in this plot, we do not need the =color= axis, since the =sex=
 variable is already represented by the x axis. But public audiences like
 colors, so it may still be worth including.
 
 However, we should remove the legend. Let’s also use custom colors.
 
 For this, we can first create a figure object, then use the
-`.layout.update` method from that object to update the legend.
+=.layout.update= method from that object to update the legend.
 
-```python
+<example>
 tips_by_sex = px.histogram(
     tips,
     x="sex",
@@ -190,25 +184,25 @@ tips_by_sex = px.histogram(
 )
 
 tips_by_sex.update_layout(showlegend=False)
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice Q: Bird Strikes by Phase of Flight
+*** Practice Q: Bird Strikes by Phase of Flight
 
 Create a bar chart showing the frequency of bird strikes by the phase of
-flight, `When__Phase_of_flight`. Add appropriate labels and a title. Use
+flight, =When__Phase_of_flight=. Add appropriate labels and a title. Use
 colors of your choice, and remove the legend.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
+<verbatim>:::</verbatim>
 
-:::
-
-#### Sorting categories
+**** Sorting categories
 
 It is sometimes useful to dictate a specific order for the categories in
 a bar chart.
@@ -216,79 +210,78 @@ a bar chart.
 Consider this bar chart of the election winners by district in the 2013
 Montreal mayoral election.
 
-```python
+<example>
 election = px.data.election()
 election.head()
-```
+</example>
 
-
-```python
+<example>
 px.histogram(election, x='winner')
-```
+</example>
 
 Let’s define a custom order for the categories. “Bergeron” will be
 first, then “Joly” then “Coderre”.
 
-```python
+<example>
 custom_order = ["Bergeron", "Joly", "Coderre"]
 election_chart = px.histogram(election, x='winner', category_orders={'winner': custom_order})
 election_chart
-```
+</example>
 
 We can also sort the categories by frequency.
 
-We can sort the categories by frequency using the `categoryorder`
+We can sort the categories by frequency using the =categoryorder=
 attribute of the x axis.
 
-```python
+<example>
 election_chart = px.histogram(election, x="winner")
 election_chart.update_xaxes(categoryorder="total descending")
-```
+</example>
 
 Or in ascending order:
 
-```python
+<example>
 election_chart = px.histogram(election, x="winner")
 election_chart.update_xaxes(categoryorder="total ascending")
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice Q: Sorted Origin State Bar Chart
+*** Practice Q: Sorted Origin State Bar Chart
 
 Create a sorted bar chart showing the distribution of bird strikes by
 origin state. Sort the bars in descending order of frequency.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
-
-### Horizontal bar chart
+*** Horizontal bar chart
 
 When you have many categories, horizontal bar charts are often easier to
 read than vertical bar charts. To make a horizontal bar chart, simply
-use the `y` axis instead of the `x` axis.
+use the =y= axis instead of the =x= axis.
 
-```python
+<example>
 px.histogram(tips, y='day')
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-### Practice Q: Horizontal Bar Chart of Origin State
+*** Practice Q: Horizontal Bar Chart of Origin State
 
 Create a horizontal bar chart showing the distribution of bird strikes
 by origin state.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
-
-### Pie chart
+*** Pie chart
 
 Pie charts are also useful for showing the proportion of categorical
 variables. They are best used when you have a *small* number of
@@ -297,47 +290,47 @@ read.
 
 Let’s make a pie chart of the distribution of tips by day of the week.
 
-```python
+<example>
 px.pie(tips, names="day")
-```
+</example>
 
 We can add labels to the pie chart to make it easier to read.
 
-```python
+<example>
 tips_by_day = px.pie(tips, names="day")
 tips_by_day_with_labels = tips_by_day.update_traces(textposition="inside", textinfo="percent+label")
 tips_by_day_with_labels
-```
+</example>
 
 The legend is no longer needed, so we can remove it.
 
-```python
+<example>
 tips_by_day_with_labels.update_layout(showlegend=False)
-```
+</example>
 
-:::note[Pro Tip]
+<quote>
+**Pro Tip**
 
 If you forget how to make simple changes like this, don’t hesitate to
 consult the plotly documentation, Google or ChatGPT.
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
-
-### Practice Q: Wildlife Size Pie Chart
+*** Practice Q: Wildlife Size Pie Chart
 
 Create a pie chart showing the distribution of bird strikes by wildlife
 size. Include percentages and labels inside the pie slices.
 
-```python
+<example>
 # Your code here
-```
+</example>
+</quote>
 
-:::
+<verbatim>:::</verbatim>
 
-:::
-
-## Summary
+** Summary
 
 In this lesson, you learned how to create univariate graphs using Plotly
 Express. You should now feel confident in your ability to create bar

@@ -1,23 +1,18 @@
----
-title: 'Joining 2: One-to-Many, Multi-Key Joins & Key Mismatches'
----
+#title Joining 2: One-to-Many, Multi-Key Joins & Key Mismatches
 
+** Packages
 
-
-
-## Packages
-
-```python
+<example>
 import pandas as pd
 import country_converter as cc
-```
+</example>
 
-## Data
+** Data
 
 Run the code below to load and define the datasets to be used in this
 lesson.
 
-```python
+<example>
 # Load datasets
 oil_consumption = pd.read_csv(
     "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/oil_consumption.csv"
@@ -127,23 +122,21 @@ asia_population = pd.DataFrame(
         "Life_Expectancy": [69.7, 71.7, 72.7],
     }
 )
-```
+</example>
 
-## Introduction
+** Introduction
 
 Now that we have a solid grasp on the different types of joins and how
 they work, we can look at how to manage more complex joins and messier
 data.
 
-## Learning Objectives
+** Learning Objectives
 
--   You understand the concept of a one-to-many join
+ - You understand the concept of a one-to-many join
+ - You know how to join on multiple key columns
+ - You know how to check for mismatched values between dataframes
 
--   You know how to join on multiple key columns
-
--   You know how to check for mismatched values between dataframes
-
-## One-to-many joins
+** One-to-many joins
 
 So far, we have primarily looked at one-to-one joins, where an
 observation in one dataframe corresponded to only one observation in the
@@ -151,253 +144,242 @@ other dataframe. In a one-to-many join, an observation in one dataframe
 corresponds to multiple observations in the other dataframe.
 
 To illustrate a one-to-many join, let’s return to our patients and their
-COVID test data. Let’s imagine that in our dataset, `Alice` and `Xavier`
+COVID test data. Let’s imagine that in our dataset, =Alice= and =Xavier=
 got tested multiple times for COVID. We can add two more rows to our
-`test_info` dataframe with their new test information:
+=test_info= dataframe with their new test information:
 
-```python
+<example>
 people
-```
+</example>
 
-
-```python
+<example>
 test_info_many
-```
+</example>
 
-Next, let’s take a look at what happens when we use a `merge()` with
-`people` as the left dataframe:
+Next, let’s take a look at what happens when we use a =merge()= with
+=people= as the left dataframe:
 
-```python
+<example>
 pd.merge(people, test_info_many, on="name", how="left")
-```
+</example>
 
 What’s happened above? Basically, when you perform a one-to-many join,
 the data from the “one” side are duplicated for each matching row of the
 “many” side.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Merging One-to-Many Crop Yields
+** Practice Q: Merging One-to-Many Crop Yields
 
 Run the code below to print the two small dataframes:
 
-```python
+<example>
 farm_info
-```
+</example>
 
-
-```python
+<example>
 crop_yields
-```
+</example>
 
-If you use a `merge()` to join these datasets, how many rows will be in
+If you use a =merge()= to join these datasets, how many rows will be in
 the final dataframe? Try to figure it out and then perform the join to
 see if you were right.
+</quote>
 
-:::
-
-## Multiple Key Columns
+** Multiple Key Columns
 
 Sometimes we have more than one column that uniquely identifies the
 observations that we want to match on. For example, let’s imagine we
 have traffic flow data for three streets at two different times of day:
 9am and 2pm.
 
-```python
+<example>
 traffic_flow
-```
+</example>
 
 Now, let’s imagine we have another dataset for the same three streets,
 recording air pollution levels (measured in particulate matter,
 **PM2.5**) during the same times of day.
 
-```python
+<example>
 pollution_levels
-```
+</example>
 
 We want to join the two datasets so that each street has two rows: one
 for the 9am time point and one for the 2pm time point. To do this, our
-first instinct may be to join the datasets *only* on `street_name`.
+first instinct may be to join the datasets *only* on =street_name=.
 Let’s try it out and see what happens:
 
-```python
+<example>
 pd.merge(traffic_flow, pollution_levels, on="street_name", how="left")
-```
+</example>
 
 As we can see, this isn’t what we wanted at all! We end up with
 duplicated rows—now we have **four rows** for each street.
 
-What we want to do is match on BOTH `street_name` AND `time_of_day`. To
+What we want to do is match on BOTH =street_name= AND =time_of_day=. To
 do this, we need to tell Python to match on two columns by specifying
 both column names in a list.
 
-```python
+<example>
 pd.merge(traffic_flow, pollution_levels, on=["street_name", "time_of_day"])
-```
+</example>
 
 Now we have the correct number of rows! We can directly see the vehicle
 count and PM2.5 level for each street at each time of day.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Calculate Oil Consumption per Capita
+** Practice Q: Calculate Oil Consumption per Capita
 
 We have two datasets containing information about countries:
 
--   `oil_consumption`: Contains yearly oil consumption in tonnes
--   `tidyr_population`: Contains yearly population data
+ - =oil_consumption=: Contains yearly oil consumption in tonnes
+ - =tidyr_population=: Contains yearly population data
 
-```python
+<example>
 # View the datasets
 oil_consumption.sort_values(by=["country", "year"])
-```
+</example>
 
-
-```python
+<example>
 tidyr_population.sort_values(by=["country", "year"])
-```
+</example>
 
-1.  Join these datasets using `merge()` with a left join. Since we want
+ 1. Join these datasets using =merge()= with a left join. Since we want
     to match both country AND year, you’ll need to join on multiple
     columns. (You may notice that not all rows are matched. You can
     ignore this for now.)
-
-2.  After joining, create a new column called `consumption_per_capita`
+ 2. After joining, create a new column called =consumption_per_capita=
     that calculates the yearly oil consumption per person (in tonnes).
+ 3. Which country had the highest per capita oil consumption in 1995?
+</quote>
 
-3.  Which country had the highest per capita oil consumption in 1995?
-
-:::
-
-## Key Mismatches
+** Key Mismatches
 
 Often you will need to pre-clean your data when you draw it from
 different sources before you’re able to join it. This is because there
 can be inconsistencies in ways that values are recorded.
 
 To illustrate this, let’s return to our mock patient data from the first
-lesson. If you recall, we had two dataframes, one called `people` and
-the other called `test_info`. We can recreate these datasets but change
-`Alice` to `alice` in the `test_info_diff` dataset and keep all other
+lesson. If you recall, we had two dataframes, one called =people= and
+the other called =test_info=. We can recreate these datasets but change
+=Alice= to =alice= in the =test_info_diff= dataset and keep all other
 values the same.
 
-```python
+<example>
 people
-```
+</example>
 
-
-```python
+<example>
 test_info_diff
-```
+</example>
 
-Now let’s try a `merge()` on our two datasets.
+Now let’s try a =merge()= on our two datasets.
 
-```python
+<example>
 people.merge(test_info_diff, on='name', how='left')
-```
+</example>
 
-
-```python
+<example>
 pd.merge(people, test_info_diff, on="name", how="inner")
-```
+</example>
 
-As we can see, Python didn’t recognize `Alice` and `alice` as the same
-person, and it also could not match `Charlie` and `Charlie`! So we lose
-`Alice` and `Charlie` in the `left` join, and they are dropped in the
-`inner` join.
+As we can see, Python didn’t recognize =Alice= and =alice= as the same
+person, and it also could not match =Charlie= and =Charlie=! So we lose
+=Alice= and =Charlie= in the =left= join, and they are dropped in the
+=inner= join.
 
 How can we fix this? We need to ensure that the names in both datasets
-are in the same format. For this, we can use `str.title()` to capitalize
+are in the same format. For this, we can use =str.title()= to capitalize
 the first letter of each name.
 
-```python
+<example>
 test_info_diff['name'] = test_info_diff['name'].str.title()
 test_info_diff
-```
+</example>
 
-
-```python
+<example>
 people.merge(test_info_diff, on='name', how='inner')
-```
+</example>
 
 Hmm, Charlie is still not matched. It’s hard to see from the printout,
-but the string `Charlie` in `test_info_diff` has an extra space at the
+but the string =Charlie= in =test_info_diff= has an extra space at the
 end.
 
-We can spot this better by using `.unique()` to convert to an array:
+We can spot this better by using =.unique()= to convert to an array:
 
-```python
+<example>
 test_info_diff['name'].unique()
-```
+</example>
 
-We can fix this by using `str.strip()` to remove the extra space.
+We can fix this by using =str.strip()= to remove the extra space.
 
-```python
+<example>
 test_info_diff['name'] = test_info_diff['name'].str.strip()
 test_info_diff
-```
+</example>
 
 Now we can join the two datasets:
 
-```python
+<example>
 people.merge(test_info_diff, on='name', how='inner')
-```
+</example>
 
 Perfect!
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Inner Join Countries
+** Practice Q: Inner Join Countries
 
 The following two datasets contain data for India, Indonesia, and the
-Philippines. However, an `inner` join of these datasets only returns 1
+Philippines. However, an =inner= join of these datasets only returns 1
 row.
 
-```python
+<example>
 asia_countries
-```
+</example>
 
-
-```python
+<example>
 asia_population
-```
+</example>
 
-
-```python
+<example>
 pd.merge(asia_countries, asia_population)
-```
+</example>
 
 What are the differences between the values in the key columns that
 would have to be changed before joining the datasets? Pay attention to
 capitalization and spelling.
 
-Now, fix the mismatched values in the `Country` column and try the join
+Now, fix the mismatched values in the =Country= column and try the join
 again.
+</quote>
 
-:::
-
-## Key Mismatches: Oil Consumption Example
+** Key Mismatches: Oil Consumption Example
 
 Let’s now see a more realistic example of how mismatched keys can cause
 problems.
 
-```python
+<example>
 oil_consumption
-```
+</example>
 
-
-```python
+<example>
 tidyr_population
-```
+</example>
 
 After we attempt a join, we see that there are some countries that are
 not matched, such as Vietnam.
 
-```python
+<example>
 pd.merge(
     oil_consumption, tidyr_population, on=["country", "year"], how="left"
 ).sort_values(["country", "year"])
-```
+</example>
 
 This is because the country names are not in the same format in the two
 datasets.
@@ -408,145 +390,144 @@ discrepancies that might prevent a successful join.
 
 First, let’s identify the unique country names in both datasets.
 
-```python
+<example>
 oil_countries = set(oil_consumption['country'].unique())
 pop_countries = set(tidyr_population['country'].unique())
-```
+</example>
 
-Now, to find countries in `oil_consumption` that are not in
-`tidyr_population`, we can use set arithmetic:
+Now, to find countries in =oil_consumption= that are not in
+=tidyr_population=, we can use set arithmetic:
 
-```python
+<example>
 missing_in_pop = oil_countries - pop_countries
 missing_in_pop
-```
+</example>
 
-And countries in `tidyr_population` that are not in `oil_consumption`:
+And countries in =tidyr_population= that are not in =oil_consumption=:
 
-```python
+<example>
 missing_in_oil = pop_countries - oil_countries
 missing_in_oil
-```
+</example>
 
 These differences indicate mismatches in the key columns that need to be
 addressed before joining.
 
 You might try to check manually. For example, we can see that Vietname
-is written as `Vietnam` in one dataset and `Viet Nam` in the other.
+is written as =Vietnam= in one dataset and =Viet Nam= in the other.
 
 However, in the case of countries, there is an even nicer solution: use
 country codes! We’ll see how to do this in the next section.
 
-:::note[Side Note]
+<quote>
+**Side Note**
 
-## Set Arithmetic
+** Set Arithmetic
 
 A quick side note on set arithmetic for those who are unfamiliar.
 
 Consider two sets of the numbers 1:5, and 2:4.
 
-```python
+<example>
 set_1 = set([1, 2, 3, 4, 5])
 set_2 = set([2, 3, 4])
-```
+</example>
 
-We can check the values in `set_1` that are not in `set_2` by using set
+We can check the values in =set_1= that are not in =set_2= by using set
 arithmetic:
 
-```python
+<example>
 set_1 - set_2
-```
+</example>
 
-And the values in `set_2` that are not in `set_1` by using:
+And the values in =set_2= that are not in =set_1= by using:
 
-```python
+<example>
 set_2 - set_1
-```
+</example>
+</quote>
 
-:::
-
-### Merging with Country Codes
+*** Merging with Country Codes
 
 To avoid country mismatches, it is often useful to use country codes
 rather than country names as the key.
 
 Let’s now add country codes to both datasets and try the join again.
 
-```python
+<example>
 # How to use country_converter
 cc.convert("Nigeria", to='ISO3')
-```
+</example>
 
-
-```python
+<example>
 oil_consumption['country_code'] = cc.convert(oil_consumption['country'], to='ISO3')
 tidyr_population['country_code'] = cc.convert(tidyr_population['country'], to='ISO3')
-```
+</example>
 
-
-```python
+<example>
 oil_pop_code = oil_consumption.merge(tidyr_population, on=['country_code', 'year'], how='left')
-```
+</example>
 
-### Identifying Remaining Mismatches
+*** Identifying Remaining Mismatches
 
 Let’s see which countries still failed to find a match:
 
-```python
+<example>
 set(oil_pop_code['country_code'].unique()) - set(tidyr_population['country_code'].unique())
-```
+</example>
 
 It seems ‘TWN’ (Taiwan) failed to find a match. We can manually look
-through the `tidyr_population` dataset to see if we can find it.
+through the =tidyr_population= dataset to see if we can find it.
 
-```python
+<example>
 tidyr_population.query("country.str.contains('Taiwan')")
-```
+</example>
 
 Just in case there is a mismatch in capitalization, we can also check
 for ‘taiwan’:
 
-```python
+<example>
 tidyr_population.query("country.str.contains('taiwan')")
-```
+</example>
 
 And we can check for ‘China’ since there is currently conflict over
 whether Taiwan is part of China.
 
-```python
+<example>
 tidyr_population.query("country.str.contains('China')")
-```
+</example>
 
-It seems that Taiwan is not in the `tidyr_population` dataset.
+It seems that Taiwan is not in the =tidyr_population= dataset.
 
 In such a case, you might then try to find a dataset containing
-population data for Taiwan and add it to the `tidyr_population` dataset.
+population data for Taiwan and add it to the =tidyr_population= dataset.
 But we’ll leave this for you to figure out.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Merging Oil Consumption with Geographic Data
+** Practice Q: Merging Oil Consumption with Geographic Data
 
 Run the code to view the two datasets.
 
-The first, `oil_2012`, records the oil consumption for the year 2012:
+The first, =oil_2012=, records the oil consumption for the year 2012:
 
-```python
+<example>
 oil_2012
-```
+</example>
 
-And `country_regions` lists countries along with their respective
+And =country_regions= lists countries along with their respective
 regions and continents:
 
-```python
+<example>
 country_regions
-```
+</example>
 
 Join the two datasets using the country codes as the key. Then find the
 countries with the highest oil consumption in each continent. As a
 sanity check, your answer should include the US & China.
 
-```python
+<example>
 oil_2012['country_code'] = cc.convert(oil_2012['country'], to='ISO3')
 
 
@@ -557,33 +538,30 @@ max_oil_by_continent = oil_2012_regions.loc[
 ]
 
 max_oil_by_continent[['country', 'continent', 'oil_consump']]
-```
+</example>
+</quote>
 
-:::
-
-# Wrap Up!
+* Wrap Up!
 
 In this lesson, we explored several advanced concepts related to joining
 dataframes in Python:
 
-1.  **One-to-Many Relationships**: We learned how joins work when one
+ 1. **One-to-Many Relationships**: We learned how joins work when one
     observation in a dataframe corresponds to multiple observations in
     another dataframe, and how the data from the “one” side gets
     duplicated for each matching row on the “many” side.
-
-2.  **Multi-Key Joins**: We discovered how to join dataframes using
+ 2. **Multi-Key Joins**: We discovered how to join dataframes using
     multiple columns as keys (like combining street names with time of
     day), which is essential for maintaining data integrity when a
     single column isn’t enough to uniquely identify observations.
-
-3.  **Key Mismatches**: We explored common challenges in joining data
+ 3. **Key Mismatches**: We explored common challenges in joining data
     from different sources, including:
 
-    -   Case sensitivity issues (e.g., “Alice” vs “alice”)
-    -   Trailing spaces
-    -   Spelling variations
-    -   Using standardized codes (like country codes) to ensure
-        consistent matching
+    - Case sensitivity issues (e.g., “Alice” vs “alice”)
+    - Trailing spaces
+    - Spelling variations
+    - Using standardized codes (like country codes) to ensure consistent
+      matching
 
 These skills are crucial for real-world data analysis, where data often
 comes from multiple sources and requires careful cleaning and

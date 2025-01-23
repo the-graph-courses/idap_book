@@ -1,17 +1,12 @@
----
-title: Conditional Transformations of Variables
----
+#title Conditional Transformations of Variables
 
-
-
-
-## Introduction
+** Introduction
 
 In the previous lesson, you learned the basics of data transformation in
 pandas.
 
 In this lesson, we will explore how to **conditionally transform
-variables** in pandas using methods like `replace()` and custom
+variables** in pandas using methods like =replace()= and custom
 functions.
 
 Conditional transformations are essential when you need to recode
@@ -19,65 +14,65 @@ variables or create new ones based on specific criteria.
 
 Let’s dive in!
 
-## Learning Objectives
+** Learning Objectives
 
 By the end of this lesson, you will:
 
--   Be able to transform or create new variables based on conditions
-    using `replace()` and dictionaries.
--   Know how to handle `NaN` values in `replace()` transformations.
--   Be able to define and apply custom functions to recode variables.
+ - Be able to transform or create new variables based on conditions
+   using =replace()= and dictionaries.
+ - Know how to handle =NaN= values in =replace()= transformations.
+ - Be able to define and apply custom functions to recode variables.
 
-## Packages
+** Packages
 
-This lesson will require `pandas`, `numpy`, `plotly.express`, and
-`vega_datasets`:
+This lesson will require =pandas=, =numpy=, =plotly.express=, and
+=vega_datasets=:
 
-```python
+<example>
 import pandas as pd
 import numpy as np
 import vega_datasets as vd
 import plotly.express as px
-```
+</example>
 
-## Introduction to `replace()`
+** Introduction to =replace()=
 
 One common task in data wrangling is to replace values in a column based
-on certain conditions. The `replace()` method in pandas is a versatile
+on certain conditions. The =replace()= method in pandas is a versatile
 tool for this purpose.
 
-In the `tips` dataset, the `day` column contains abbreviated day names:
+In the =tips= dataset, the =day= column contains abbreviated day names:
 
-```python
+<example>
 tips = px.data.tips()
 tips['day'].unique()
-```
+</example>
 
 Our goal is to replace these abbreviations with the full day names.
 
 We can create a dictionary that maps the abbreviated names to the full
 names:
 
-```python
+<example>
 day_mapping = {
     "Sun": "Sunday",
     "Sat": "Saturday",
     "Fri": "Friday",
     "Thur": "Thursday"
 }
-```
+</example>
 
-Now, we use the `replace()` method with the dictionary:
+Now, we use the =replace()= method with the dictionary:
 
-```python
+<example>
 tips['day_full'] = tips['day'].replace(day_mapping)
 tips
-```
+</example>
 
 Alternatively, we can perform the replacement directly within the
-`replace()` method without explicitly defining a dictionary:
+=replace()= method without explicitly defining a dictionary:
 
-```python
+<example>
 tips['day_full'] = tips['day'].replace({
     "Sun": "Sunday",
     "Sat": "Saturday",
@@ -85,114 +80,112 @@ tips['day_full'] = tips['day'].replace({
     "Thur": "Thursday"
 })
 tips[['day', 'day_full']].head()
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Abbreviate Sex
+** Practice Q: Abbreviate Sex
 
-Using the `tips` dataset, replace the values in the `sex` column to
+Using the =tips= dataset, replace the values in the =sex= column to
 abbreviate gender:
 
--   Replace `"Female"` with `"F"`.
--   Replace `"Male"` with `"M"`.
+ - Replace ="Female"= with ="F"=.
+ - Replace ="Male"= with ="M"=.
 
-Assign the result to a new column called `sex_abbr` and display the
+Assign the result to a new column called =sex_abbr= and display the
 first few rows.
 
-```python
+<example>
 # Your code here:
-```
+</example>
+</quote>
 
-:::
+** Handling Missing Values with =replace()=
 
-## Handling Missing Values with `replace()`
-
-Sometimes, your dataset may contain missing values (`NaN` or `None`)
+Sometimes, your dataset may contain missing values (=NaN= or =None=)
 that you want to replace with a placeholder or specific value. The
-`replace()` method can handle this.
+=replace()= method can handle this.
 
-Let’s examine the `Creative_Type` column in the `movies` dataset from
+Let’s examine the =Creative_Type= column in the =movies= dataset from
 vega_datasets:
 
-```python
+<example>
 movies = vd.data.movies()
 movies['Creative_Type'].value_counts(dropna=False)
-```
+</example>
 
-Notice that there are some `None` values in the `Creative_Type` column.
+Notice that there are some =None= values in the =Creative_Type= column.
 
-Let’s replace `None` with `"Unknown/Unclear"`:
+Let’s replace =None= with ="Unknown/Unclear"=:
 
-```python
+<example>
 movies['Creative_Type'] = movies['Creative_Type'].replace({
     None: "Unknown/Unclear", # 👈 On this line, None is the key
 })
-```
+</example>
 
 Now, let’s verify the replacement:
 
-```python
+<example>
 movies['Creative_Type'].value_counts(dropna=False)
-```
+</example>
 
-While `None` is typically used to represent missing strings, `NaN` is
-used for missing numbers. Consider the `US_DVD_Sales` column:
+While =None= is typically used to represent missing strings, =NaN= is
+used for missing numbers. Consider the =US_DVD_Sales= column:
 
-```python
+<example>
 movies.query("US_DVD_Sales.isna()").shape # Check the number of missing values
-```
+</example>
 
-
-```python
+<example>
 movies['US_DVD_Sales'].tail(10) # View the last 10 values. Some are missing.
-```
+</example>
 
-We can use `replace()` to replace `NaN` with 0:
+We can use =replace()= to replace =NaN= with 0:
 
-```python
+<example>
 movies['US_DVD_Sales'] = movies['US_DVD_Sales'].replace({
     np.nan: 0 # 👈 `NaN` is represented by `np.nan` in pandas
 })
-```
+</example>
 
 Let’s verify the replacement:
 
-```python
+<example>
 movies['US_DVD_Sales'].tail(10)
-```
+</example>
 
-
-```python
+<example>
 movies.query("US_DVD_Sales.isna()").shape
-```
+</example>
 
-## Practice Q: Standardize MPAA Ratings
+** Practice Q: Standardize MPAA Ratings
 
-In the `movies` dataset, the `MPAA_Rating` column contains movie
-ratings. Some entries are `None` or `"Not Rated"`. Replace both `None`
-and `"Not Rated"` with `"Unrated"`.
+In the =movies= dataset, the =MPAA_Rating= column contains movie
+ratings. Some entries are =None= or ="Not Rated"=. Replace both =None=
+and ="Not Rated"= with ="Unrated"=.
 
-Then, use `value_counts()` to see how many movies are unrated. There
+Then, use =value_counts()= to see how many movies are unrated. There
 should be 699 movies in this category.
 
-```python
+<example>
 # Your code here:
-```
+</example>
 
-## Categorizing Numeric Data with Custom Functions
+** Categorizing Numeric Data with Custom Functions
 
 Recall from our previous lesson that we can use custom functions with
 conditional logic to transform variables. For example, we can categorize
-the `US_Gross` column into three categories based on the following
+the =US_Gross= column into three categories based on the following
 criteria:
 
--   If the value is less than 10 million, the category is `"Low"`.
--   If the value is between 10 million and 50 million, the category is
-    `"Medium"`.
--   If the value is greater than 50 million, the category is `"High"`.
+ - If the value is less than 10 million, the category is ="Low"=.
+ - If the value is between 10 million and 50 million, the category is
+   ="Medium"=.
+ - If the value is greater than 50 million, the category is ="High"=.
 
-```python
+<example>
 def categ_gross(gross):
     if gross < 10000000:
         return "Low"
@@ -205,31 +198,31 @@ def categ_gross(gross):
 
 
 categ_gross_vec = np.vectorize(categ_gross)
-```
+</example>
 
-:::note[Side Note]
+<quote>
+**Side Note**
 
-The `np.vectorize` function in the above case will return `None` as a
-string. To enforce the `None` type, you can use the `otypes` parameter:
+The =np.vectorize= function in the above case will return =None= as a
+string. To enforce the =None= type, you can use the =otypes= parameter:
 
-```python
+<example>
 categ_gross_vec = np.vectorize(categ_gross, otypes=[object])
-```
-
-:::
+</example>
+</quote>
 
 Now we can apply it to the entire column:
 
-```python
+<example>
 movies['Gross_Category'] = categ_gross_vec(movies['US_Gross'])
 movies['Gross_Category'].value_counts(dropna=False)
-```
+</example>
 
-This can also be achieved with `pd.cut()`, `np.where()` and
-`np.select()`. But the custom function approach is the most flexible.
+This can also be achieved with =pd.cut()=, =np.where()= and
+=np.select()=. But the custom function approach is the most flexible.
 Below we’ll see how to extend this to more complex conditions.
 
-## Complex Transformations with Custom Functions
+** Complex Transformations with Custom Functions
 
 The flexibility of custom functions can be extended easily to more
 complex conditional transformations.
@@ -238,17 +231,17 @@ For example, suppose we want to flag superhero movies as “US action
 movie” or “Global action movie” based on their US and worldwide gross
 earnings.
 
--   For Super Hero movies, if the US gross and worldwide gross are the
-    same (indicating sales were only in the US), the movie is flagged as
-    a **US action movie**.
--   For Super Hero movies, if the worldwide gross is greater than the US
-    gross, the movie is flagged as a **global action movie**.
--   For all other movies, we leave the flag blank
+ - For Super Hero movies, if the US gross and worldwide gross are the
+   same (indicating sales were only in the US), the movie is flagged as
+   a **US action movie**.
+ - For Super Hero movies, if the worldwide gross is greater than the US
+   gross, the movie is flagged as a **global action movie**.
+ - For all other movies, we leave the flag blank
 
 We can define a funcion that takes in three arguments and returns the
 appropriate flag:
 
-```python
+<example>
 # Define the function to flag movies based on the conditions
 def flag_movie(movie_type, us, worldwide):
     if movie_type == 'Super Hero' and us == worldwide:
@@ -257,64 +250,64 @@ def flag_movie(movie_type, us, worldwide):
         return 'Global action movie'
     else:
         return None
-```
+</example>
 
 Let’s test it out with a few sets of values:
 
-```python
+<example>
 print(flag_movie(movie_type='Super Hero', us=100, worldwide=100))
 print(flag_movie(movie_type='Super Hero', us=100, worldwide=200))
 print(flag_movie(movie_type='Comedy', us=100, worldwide=100))
-```
+</example>
 
 Now, let’s vectorize it:
 
-```python
+<example>
 flag_movie_vec = np.vectorize(flag_movie)
-```
+</example>
 
 We can now apply it to the columns:
 
-```python
+<example>
 movies['Action_Flag'] = flag_movie_vec(movies['Creative_Type'], movies['US_Gross'], movies['Worldwide_Gross'])
 movies
-```
+</example>
 
 To see the distribution of movie categories based on our flag, we can
-use `value_counts()`:
+use =value_counts()=:
 
-```python
+<example>
 movies['Action_Flag'].value_counts(dropna=False)
-```
+</example>
 
-### Practice: Flag Movies Based on Ratings
+*** Practice: Flag Movies Based on Ratings
 
-In the `movies` dataset, flag movies as **Critic-friendly** or
+In the =movies= dataset, flag movies as **Critic-friendly** or
 **Commercial** based on their Rotten Tomatoes and IMDB ratings.
 
--   If the Rotten Tomatoes rating is above 70% and the IMDB rating is
-    below 5, the movie is flagged as **Critic-friendly**.
--   If the Rotten Tomatoes rating is below 50% and the IMDB rating is
-    above 7, the movie is flagged as **Commercial**.
--   Otherwise, the movie is categorized as **Other**.
--   Count how many movies are **Critic-friendly** and **Commercial**.
-    There should be 13 Critic-friendly movies and 33 Commercial movies.
-    Do you recognize any of them?
+ - If the Rotten Tomatoes rating is above 70% and the IMDB rating is
+   below 5, the movie is flagged as **Critic-friendly**.
+ - If the Rotten Tomatoes rating is below 50% and the IMDB rating is
+   above 7, the movie is flagged as **Commercial**.
+ - Otherwise, the movie is categorized as **Other**.
+ - Count how many movies are **Critic-friendly** and **Commercial**.
+   There should be 13 Critic-friendly movies and 33 Commercial movies.
+   Do you recognize any of them?
 
-```python
+<example>
 # Your code here:
-```
+</example>
 
-## Wrap-Up
+** Wrap-Up
 
 In this lesson, you learned how to conditionally transform variables in
 pandas using:
 
--   The `replace()` method with dictionaries to map and replace specific
-    values.
--   Handling missing values (`NaN` or `None`) during replacements.
--   Defining custom functions and applying them to handle complex
-    conditions.
+ - The =replace()= method with dictionaries to map and replace specific
+   values.
+ - Handling missing values (=NaN= or =None=) during replacements.
+ - Defining custom functions and applying them to handle complex
+   conditions.
 
 These techniques are powerful tools for data cleaning and preprocessing,
 allowing you to reshape your data to meet your analysis needs.

@@ -1,31 +1,26 @@
----
-title: Coding basics
----
+#title Coding basics
 
+[[https://youtu.be/3smPFwv5bPU?si=JKcbGrTKfbGxRR1x]]
 
+** Learning Objectives
 
-
-[https://youtu.be/3smPFwv5bPU?si=JKcbGrTKfbGxRR1x](https://youtu.be/3smPFwv5bPU?si=JKcbGrTKfbGxRR1x)
-
-## Learning Objectives
-
-1.  You can write and use comments in Python (single-line and
+ 1. You can write and use comments in Python (single-line and
     multi-line).
-2.  You know how to use Python as a calculator for basic arithmetic
+ 2. You know how to use Python as a calculator for basic arithmetic
     operations and understand the order of operations.
-3.  You can use the math library for more complex mathematical
+ 3. You can use the math library for more complex mathematical
     operations.
-4.  You understand how to use proper spacing in Python code to improve
+ 4. You understand how to use proper spacing in Python code to improve
     readability.
-5.  You can create, manipulate, and reassign variables of different
+ 5. You can create, manipulate, and reassign variables of different
     types (string, int, float).
-6.  You can get user input and perform calculations with it.
-7.  You understand the basic rules and best practices for naming
+ 6. You can get user input and perform calculations with it.
+ 7. You understand the basic rules and best practices for naming
     variables in Python.
-8.  You can identify and fix common errors related to variable usage and
+ 8. You can identify and fix common errors related to variable usage and
     naming.
 
-## Introduction
+** Introduction
 
 In this lesson, you will learn the basics of using Python.
 
@@ -38,257 +33,252 @@ Next, **save the file** with a name like “coding_basics.py” or
 
 You should now type all the code from this lesson into that file.
 
-## Comments
+** Comments
 
 Comments are text that is ignored by Python. They are used to explain
 what the code is doing.
 
-You use the symbol `#`, pronounced “hash” or “pound”, to start a
-comment. Anything after the `#` on the same line is ignored. For
+You use the symbol =#=, pronounced “hash” or “pound”, to start a
+comment. Anything after the =#= on the same line is ignored. For
 example:
 
-```python
+<example>
 # Addition
 2 + 2
-```
+</example>
 
-If we just tried to write `Addition` above the code, it would cause an
+If we just tried to write =Addition= above the code, it would cause an
 error:
 
-```python
+<example>
 Addition
 2 + 2
-```
+</example>
 
-``` text
+<example>
 NameError: name 'Addition' is not defined
-```
+</example>
 
 We can put the comment on the same line as the code, but it needs to
 come after the code.
 
-```python
+<example>
 2 + 2  # Addition
-```
+</example>
 
-To write multiple lines of comments, you can either add more `#`
+To write multiple lines of comments, you can either add more =#=
 symbols:
 
-```python
+<example>
 # Addition
 # Add two numbers
 2 + 2
-```
+</example>
 
-Or you can use triple quotes `'''` or `"""`:
+Or you can use triple quotes ='''= or ="""=:
 
-```python
+<example>
 '''
 Addition:
 Below we add two numbers
 '''
 2 + 2
-```
+</example>
 
 Or:
 
-```python
+<example>
 """
 Addition:
 Below we add two numbers
 """
 2 + 2
-```
+</example>
 
-:::note[Vocab]
+<quote>
+**Vocab**
 
 **Comment**: A piece of text in your code that is ignored by Python.
 Comments are used to explain what the code is doing and are meant for
 human readers.
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
-
-## Practice Q: Commenting in Python
+** Practice Q: Commenting in Python
 
 Which of the following code chunks are valid ways to comment code in
 Python?
 
-``` text
+<example>
 # add two numbers
 2 + 2
-```
+</example>
 
-``` text
+<example>
 2 + 2 # add two numbers
-```
+</example>
 
-``` text
+<example>
 ''' add two numbers
 2 + 2
-```
+</example>
 
-``` text
+<example>
 # add two numbers 2 + 2
-```
+</example>
 
 Check your answer by trying to run each code chunk.
+</quote>
 
-:::
-
-## Python as a Calculator
+** Python as a Calculator
 
 As you have already seen, Python works as a calculator in standard ways.
 
 Below are some other examples of basic arithmetic operations:
 
-```python
+<example>
 2 - 2 # two minus two
-```
+</example>
 
-
-```python
+<example>
 2 * 2  # two times two 
-```
+</example>
 
-
-```python
+<example>
 2 / 2  # two divided by two
-```
+</example>
 
-
-```python
+<example>
 2 ** 2  # two raised to the power of two
-```
+</example>
 
-There are a few other operators you may come across. For example, `%` is
+There are a few other operators you may come across. For example, =%= is
 the modulo operator, which returns the remainder of the division.
 
-```python
+<example>
 10 % 3  # ten modulo three
-```
+</example>
 
-`//` is the floor division operator, which divides then rounds down to
+=//= is the floor division operator, which divides then rounds down to
 the nearest whole number.
 
-```python
+<example>
 10 // 3  # ten floor division three
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Modulo and Floor Division
+** Practice Q: Modulo and Floor Division
 
 Guess the result of the following code chunks then run them to check
 your answer:
 
-```python
+<example>
 5 % 4
-```
+</example>
 
-
-```python
+<example>
 5 // 4
-```
+</example>
+</quote>
 
-:::
-
-## Order of Operations
+** Order of Operations
 
 Python obeys the standard PEMDAS order of operations (Parentheses,
 Exponents, Multiplication, Division, Addition, Subtraction).
 
 For example, multiplication is evaluated before addition, so below the
-result is `6`.
+result is =6=.
 
-```python
+<example>
 2 + 2 * 2   
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Evaluating Arithmetic Expressions
+** Practice Q: Evaluating Arithmetic Expressions
 
-Which, if any, of the following code chunks will evaluate to `10`?
+Which, if any, of the following code chunks will evaluate to =10=?
 
-```python
+<example>
 2 + 2 * 4
-```
+</example>
 
-
-```python
+<example>
 6 + 2 ** 2
-```
+</example>
+</quote>
 
-:::
+** Using the Math Library
 
-## Using the Math Library
-
-We can also use the `math` library to do more complex mathematical
-operations. For example, we can use the `math.sqrt` function to
+We can also use the =math= library to do more complex mathematical
+operations. For example, we can use the =math.sqrt= function to
 calculate the square root of a number.
 
-```python
+<example>
 import math
 math.sqrt(100)  # square root
-```
+</example>
 
-Or we can use the `math.log` function to calculate the natural logarithm
+Or we can use the =math.log= function to calculate the natural logarithm
 of a number.
 
-```python
+<example>
 import math
 math.log(100)  # logarithm
-```
+</example>
 
-`math.sqrt` and `math.log` are examples of Python *functions*, where an
-*argument* (e.g., `100`) is passed to the function to perform a
+=math.sqrt= and =math.log= are examples of Python *functions*, where an
+*argument* (e.g., =100=) is passed to the function to perform a
 calculation.
 
 We will learn more about functions later.
 
-:::note[Vocab]
+<quote>
+**Vocab**
 
 **Function**: A reusable block of code that performs a specific task.
 Functions often take inputs (called arguments) and return outputs.
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
+** Practice Q: Using the Math Library
 
-## Practice Q: Using the Math Library
-
-Using the `math` library, calculate the square root of 81.
+Using the =math= library, calculate the square root of 81.
 
 Write your code below and run it to check your answers:
 
-```python
+<example>
 # Your code here
-```
+</example>
 
-## Practice Q: Describing the Use of the Random Library
+** Practice Q: Describing the Use of the Random Library
 
 Consider the following code, which generates a random number between 1
 and 10:
 
-```python
+<example>
 import random
 random.randint(1, 10)
-```
+</example>
 
 In that code, identify the library, the function, and the argument(s) to
 the function.
+</quote>
 
-:::
-
-## Spacing in Code
+** Spacing in Code
 
 Good spacing makes your code easier to read. In Python, two simple
 spacing practices can greatly improve your code’s readability: using
 blank lines and adding spaces around operators.
 
-## Indentation
+** Indentation
 
 Python uses indentation to indicate the start and end of loops,
 functions, and other blocks of code. We’ll look at this more in later
@@ -299,34 +289,34 @@ space before your code
 
 For example, consider the following code chunk:
 
-```python
+<example>
 import math
 # Get the square root of 100
  math.sqrt(100)
-```
+</example>
 
 Trying to run this code will cause an error:
 
-``` text
+<example>
 IndentationError: unexpected indent
-```
+</example>
 
-This is due to the space before the `math.sqrt` function. We can fix
+This is due to the space before the =math.sqrt= function. We can fix
 this by removing the space.
 
-```python
+<example>
 import math
 # Get the square root of 100
 math.sqrt(100)
-```
+</example>
 
-## Blank Lines
+** Blank Lines
 
 Use blank lines to separate different parts of your code.
 
 For example, consider the following code chunk:
 
-```python
+<example>
 # Set up numbers
 x = 5
 y = 10
@@ -334,11 +324,11 @@ y = 10
 result = x + y
 # Display result
 print(result)
-```
+</example>
 
 We can add blank lines to separate the different parts of the code:
 
-```python
+<example>
 # Set up numbers
 x = 5
 y = 10
@@ -348,48 +338,48 @@ result = x + y
 
 # Display result
 print(result)
-```
+</example>
 
 Blank lines help organize your code into logical sections, similar to
 paragraphs in writing.
 
-## Spaces Around Operators
+** Spaces Around Operators
 
 Adding spaces around mathematical operators improves readability:
 
-```python
+<example>
 # Hard to read
 x=5+3*2
 
 # Easy to read
 x = 5 + 3 * 2
-```
+</example>
 
 When listing items, add a space after each comma:
 
-```python
+<example>
 # Hard to read
 print(1,2,3)
 
 # Easy to read
 print(1, 2, 3)
-```
+</example>
 
 This practice follows the convention in written English, where we put a
 space after a comma. It makes lists of items in your code easier to
 read.
 
-## Variables in Python
+** Variables in Python
 
 As you have seen, to store a value for future use in Python, we assign
-it to a *variable* with the *assignment operator*, `=`.
+it to a *variable* with the *assignment operator*, <code>=</code>.
 
-```python
+<example>
 my_var = 2 + 2  # assign the result of `2 + 2 ` to the variable called `my_var`
 print(my_var)  # print my_var
-```
+</example>
 
-Now that you’ve created the variable `my_var`, Python knows about it and
+Now that you’ve created the variable =my_var=, Python knows about it and
 will keep track of it during this Python session.
 
 You can open your environment to see what variables you have created.
@@ -398,26 +388,27 @@ This looks different depending on your IDE.
 So what exactly is a variable? Think of it as a named container that can
 hold a value. When you run the code below:
 
-```python
+<example>
 my_var = 20
-```
+</example>
 
 you are telling Python, “store the number 20 in a variable named
 ‘my_var’”.
 
 Once the code is run, we would say, in Python terms, that “the value of
-variable `my_var` is 20”.
+variable =my_var= is 20”.
 
 Try to come up with a similar sentence for this code chunk:
 
-```python
+<example>
 first_name = "Joanna"
-```
+</example>
 
 After we run this code, we would say, in Python terms, that “the value
-of the `first_name` variable is Joanna”.
+of the =first_name= variable is Joanna”.
 
-:::note[Vocab]
+<quote>
+**Vocab**
 
 A text value like “Joanna” is called a **string**, while a number like
 20 is called an **integer**. If the number has a decimal point, it is
@@ -425,7 +416,7 @@ called a **float**, which is short for “floating-point number”.
 
 Below are these three types of variables:
 
-```python
+<example>
 # string variable
 first_name = "Joanna"
 
@@ -434,196 +425,195 @@ age = 5
 
 # float variable
 height = 1.4
-```
+</example>
 
-You can check the type of a variable using the `type()` function.
+You can check the type of a variable using the =type()= function.
 
-```python
+<example>
 print(type(first_name))
 print(type(age))
 print(type(height))
-```
+</example>
+</quote>
 
-:::
-
-:::note[Vocab]
+<quote>
+**Vocab**
 
 **Variable**: A named container that can hold a value. In Python,
 variables can store different types of data, including numbers, strings,
 and more complex objects.
+</quote>
 
-:::
-
-## Reassigning Variables
+** Reassigning Variables
 
 Reassigning a variable is like changing the contents of a container.
 
 For example, previously we ran this code to store the value “Joanna”
-inside the `first_name` variable:
+inside the =first_name= variable:
 
-```python
+<example>
 first_name = "Joanna"
-```
+</example>
 
 To change this to a different value, simply run a new assignment
 statement with a new value:
 
-```python
+<example>
 first_name = "Luigi"
-```
+</example>
 
 You can print the variable to observe the change:
 
-```python
+<example>
 first_name
-```
+</example>
 
-## Working with Variables
+** Working with Variables
 
 Most of your time in Python will be spent manipulating variables. Let’s
 see some quick examples.
 
 You can run simple commands on variables. For example, below we store
-the value `100` in a variable and then take the square root of the
+the value =100= in a variable and then take the square root of the
 variable:
 
-```python
+<example>
 import math
 
 my_number = 100
 math.sqrt(my_number)
-```
+</example>
 
-Python “sees” `my_number` as the number 100, and so is able to evaluate
+Python “sees” =my_number= as the number 100, and so is able to evaluate
 its square root.
 
-------------------------------------------------------------------------
+----
 
 You can also combine existing variables to create new variables. For
-example, type out the code below to add `my_number` to itself, and store
-the result in a new variable called `my_sum`:
+example, type out the code below to add =my_number= to itself, and store
+the result in a new variable called =my_sum=:
 
-```python
+<example>
 my_sum = my_number + my_number
 my_sum
-```
+</example>
 
-What should be the value of `my_sum`? First take a guess, then check it
+What should be the value of =my_sum=? First take a guess, then check it
 by printing it.
 
-------------------------------------------------------------------------
+----
 
-Python also allows us to concatenate strings with the `+` operator. For
-example, we can concatenate the `first_name` and `last_name` variables
-to create a new variable called `full_name`:
+Python also allows us to concatenate strings with the =+= operator. For
+example, we can concatenate the =first_name= and =last_name= variables
+to create a new variable called =full_name=:
 
-```python
+<example>
 first_name = "Joanna"
 last_name = "Luigi"
 full_name = first_name + " " + last_name
 full_name
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Variable Assignment and Manipulation
+** Practice Q: Variable Assignment and Manipulation
 
-Consider the code below. What is the value of the `answer` variable?
+Consider the code below. What is the value of the =answer= variable?
 Think about it, then run the code to check your answer.
 
-```python
+<example>
 eight = 9
 answer = eight - 8
 answer
-```
+</example>
+</quote>
 
-:::
+** Getting User Input
 
-## Getting User Input
-
-Though it’s not used often in data analysis, the `input()` function from
+Though it’s not used often in data analysis, the =input()= function from
 Python is a cool Python feature that you should know about. It allows
 you to get input from the user.
 
 Here’s a simple example. We can request user input and store it in a
-variable called `name`.
+variable called =name=.
 
-```python
+<example>
 name = input()
-```
+</example>
 
 And then we can print a greeting to the user.
 
-```python
+<example>
 print("Hello,", name)
-```
+</example>
 
 We can also include a question for the input prompt:
 
-```python
+<example>
 name = input('What is your name? ')
 print("Hello,", name)
-```
+</example>
 
 Let’s see another example. We’ll tell the user how many letters are in
 their name.
 
-```python
+<example>
 name = input('What is your name? ')
 print("There are", len(name), "letters in your name")
-```
+</example>
 
 For instance, if you run this code and enter “Kene”, you might see:
 
-``` text
+<example>
 What is your name? Kene
 There are 4 letters in your name
-```
+</example>
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Using Input()
+** Practice Q: Using Input()
 
 Write a short program that asks the user for their favorite color and
 then prints a message saying “xx color is my favorite color too!”, where
 xx is the color they entered. Test your program by running it and
 entering a color.
+</quote>
 
-:::
-
-## Common Error with Variables
+** Common Error with Variables
 
 One of the most common errors you’ll encounter when working with
-variables in Python is the `NameError`. This occurs when you try to use
+variables in Python is the =NameError=. This occurs when you try to use
 a variable that hasn’t been defined yet. For example:
 
-```python
+<example>
 my_number = 48  # define `my_number`
 My_number + 2  # attempt to add 2 to `my_number`
-```
+</example>
 
 If you run this code, you’ll get an error message like this:
 
-``` text
+<example>
 NameError: name 'My_number' is not defined
-```
+</example>
 
 Here, Python returns an error message because we haven’t created (or
-*defined*) the variable `My_number` yet. Recall that Python is
-case-sensitive; we defined `my_number` but tried to use `My_number`.
+*defined*) the variable =My_number= yet. Recall that Python is
+case-sensitive; we defined =my_number= but tried to use =My_number=.
 
 To fix this, make sure you’re using the correct variable name:
 
-```python
+<example>
 my_number = 48
 my_number + 2  # This will work and return 50
-```
+</example>
 
 Always double-check your variable names to avoid this error. Remember,
-in Python, `my_number`, `My_number`, and `MY_NUMBER` are all different
+in Python, =my_number=, =My_number=, and =MY_NUMBER= are all different
 variables.
 
-------------------------------------------------------------------------
+----
 
 When you first start learning Python, dealing with errors can be
 frustrating. They’re often difficult to understand.
@@ -636,29 +626,31 @@ ChatGPT to debug errors.
 
 At the start though, it’s good to try to spot and fix errors yourself.
 
-:::tip[Practice]
+<quote>
+**Practice**
 
-## Practice Q: Debugging Variable Errors
+** Practice Q: Debugging Variable Errors
 
 The code below returns an error. Why? (Look carefully)
 
-```python
+<example>
 my_1st_name = "Kene"
 my_last_name = "Nwosu"
 
 print(my_Ist_name, my_last_name)
-```
+</example>
 
 Hint: look at the variable names. Are they consistent?
+</quote>
 
-:::
+** Naming Variables
 
-## Naming Variables
+<quote>
+There are only ***two hard things*** in Computer Science: cache
+invalidation and ***naming things***.
 
-> There are only ***two hard things*** in Computer Science: cache
-> invalidation and ***naming things***.
->
-> — Phil Karlton.
+— Phil Karlton.
+</quote>
 
 Because much of your work in Python involves interacting with variables
 you have created, picking intelligent names for these variables is
@@ -672,68 +664,68 @@ often in conflict.
 So names that are too long, like the one below, are bad because they
 take forever to type.
 
-```python
+<example>
 sample_of_the_ebola_outbreak_dataset_from_sierra_leone_in_2014
-```
+</example>
 
-And a name like `data` is bad because it is not informative; the name
+And a name like =data= is bad because it is not informative; the name
 does not give a good idea of what the variable contains.
 
 As you write more Python code, you will learn how to write short and
 informative names.
 
-------------------------------------------------------------------------
+----
 
 For names with multiple words, there are a few conventions for how to
 separate the words:
 
-```python
+<example>
 snake_case = "Snake case uses underscores"
 camelCase = "Camel case capitalizes new words (but not the first word)"
 PascalCase = "Pascal case capitalizes all words including the first"
-```
+</example>
 
 We recommend snake_case, which uses all lower-case words, and separates
-words with `_`.
+words with =_=.
 
-------------------------------------------------------------------------
+----
 
 Note too that there are some limitations on variable names:
 
--   Names must start with a letter or underscore. So `2014_data` is not
-    a valid name (because it starts with a number). Try running the code
-    chunk below to see what error you get.
+ - Names must start with a letter or underscore. So =2014_data= is not a
+   valid name (because it starts with a number). Try running the code
+   chunk below to see what error you get.
 
-```python
+<example>
 2014_data = "This is not a valid name"
-```
+</example>
 
--   Names can only contain letters, numbers, and underscores (`_`). So
-    `ebola-data` or `ebola~data` or `ebola data` with a space are not
-    valid names.
+ - Names can only contain letters, numbers, and underscores (=_=). So
+   =ebola-data= or =ebola~data= or =ebola data= with a space are not
+   valid names.
 
-```python
+<example>
 ebola-data = "This is not a valid name"
-```
+</example>
 
-
-```python
+<example>
 ebola~data = "This is not a valid name"
-```
+</example>
 
-:::note[Side note]
+<quote>
+**Side note**
 
 While we recommend snake_case for variable names in Python, you might
 see other conventions like camelCase or PascalCase, especially when
 working with code from other languages or certain Python libraries. It’s
 important to be consistent within your own code and follow the
 conventions of any project or team you’re working with.
+</quote>
 
-:::
+<quote>
+**Practice**
 
-:::tip[Practice]
-
-## Practice Q: Valid Variable Naming Conventions
+** Practice Q: Valid Variable Naming Conventions
 
 Which of the following variable names are valid in Python? Try to
 determine this without running the code, then check your answers by
@@ -741,7 +733,7 @@ attempting to run each line.
 
 Then fix the invalid variable names.
 
-```python
+<example>
 1st_name = "John"
 last_name = "Doe"
 full-name = "John Doe"
@@ -749,28 +741,27 @@ age_in_years = 30
 current@job = "Developer"
 PhoneNumber = "555-1234"
 _secret_code = 42
-```
+</example>
+</quote>
 
-:::
-
-## Wrap-Up
+** Wrap-Up
 
 In this lesson, we’ve covered the fundamental building blocks of Python
 programming:
 
-1.  **Comments**: Using `#` for single-line and triple quotes for
+ 1. **Comments**: Using =#= for single-line and triple quotes for
     multi-line comments.
-2.  **Basic Arithmetic**: Using Python as a calculator and understanding
+ 2. **Basic Arithmetic**: Using Python as a calculator and understanding
     order of operations.
-3.  **Math Library**: Performing complex mathematical operations.
-4.  **Code Spacing**: Improving readability with proper spacing.
-5.  **Variables**: Creating, manipulating, and reassigning variables of
+ 3. **Math Library**: Performing complex mathematical operations.
+ 4. **Code Spacing**: Improving readability with proper spacing.
+ 5. **Variables**: Creating, manipulating, and reassigning variables of
     different types.
-6.  **Getting User Input**: Using the `input()` function to get input
+ 6. **Getting User Input**: Using the =input()= function to get input
     from the user.
-7.  **Variable Naming**: Following rules and best practices for naming
+ 7. **Variable Naming**: Following rules and best practices for naming
     variables.
-8.  **Common Errors**: Identifying and fixing errors related to
+ 8. **Common Errors**: Identifying and fixing errors related to
     variables.
 
 These concepts form the foundation of Python programming. As you

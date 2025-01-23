@@ -32,6 +32,7 @@ for i in range(len(qmd_files)):
     
     # Render the file in the md folder
     print(f"Rendering {qmd_file}")
-    subprocess.run(["quarto", "render", md_path, "--to", "docusaurus-md"])
+    subprocess.run(["quarto", "render", md_path, "--to", "muse"])
 
 print("Rendering complete!")
+

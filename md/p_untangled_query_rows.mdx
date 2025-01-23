@@ -1,0 +1,487 @@
+---
+title: Querying rows
+---
+
+
+
+
+export const quartoRawHtml =
+[`
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Operator</strong></td>
+<td style="text-align: left;"><strong>is True if</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A == B</td>
+<td style="text-align: left;">A is <strong>equal</strong> to B</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A != B</td>
+<td style="text-align: left;">A is <strong>not equal</strong> to B</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A &lt; B</td>
+<td style="text-align: left;">A is <strong>less than</strong> B</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A &lt;= B</td>
+<td style="text-align: left;">A is <strong>less than or equal</strong> to B</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A &gt; B</td>
+<td style="text-align: left;">A is <strong>greater than</strong> B</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A &gt;= B</td>
+<td style="text-align: left;">A is <strong>greater than or equal to</strong> B</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.isin([B])</td>
+<td style="text-align: left;">A <strong>is an element of</strong> B</td>
+</tr>
+</tbody>
+</table>
+`];
+
+## Intro
+
+Querying rows is one of the most frequently used operations in data
+analysis. It allows you to filter your dataset to focus on specific
+subsets of interest, enabling more targeted and efficient analysis.
+
+In this lesson, we’ll explore various techniques to subset rows in
+pandas.
+
+Let’s get started!
+
+## Learning objectives
+
+1.  You can use the `query()` method to keep or drop rows from a
+    DataFrame.
+2.  You can specify conditions using relational operators like greater
+    than (`>`), less than (`<`), equal to (`==`), not equal to (`!=`),
+    and is an element of (`isin()`).
+3.  You can combine conditions with `&` and `|`.
+4.  You can negate conditions with `~`.
+5.  You can use the `isna()` and `notna()` methods.
+6.  You can query based on string patterns using `str.contains()`.
+
+## The Yaounde COVID-19 dataset
+
+In this lesson, we will again use the data from the COVID-19 serological
+survey conducted in Yaounde, Cameroon.
+
+You can download the dataset from this link:
+[yaounde_data.csv](https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_data.csv)
+
+You can find out more about this dataset here:
+https://www.nature.com/articles/s41467-021-25946-0
+
+Let’s load the data into a pandas DataFrame.
+
+```python
+import pandas as pd
+
+yaounde = pd.read_csv("data/yaounde_data.csv")
+# a smaller subset of variables
+yao = yaounde[
+    [
+        "age",
+        "sex",
+        "weight_kg",
+        "neighborhood",
+        "occupation",
+        "symptoms",
+        "is_smoker",
+        "is_pregnant",
+        "igg_result",
+        "igm_result",
+    ]
+]
+yao.head()
+```
+
+## Introducing `query()`
+
+We can use the `query()` method to keep rows that satisfy a set of
+conditions. Let’s take a look at a simple example. If we want to keep
+just the male records, we run:
+
+```python
+yao.query('sex == "Male"')
+```
+
+As you can see, the `query()` syntax is quite simple. (It may be a bit
+surprising to have to put code in quotes, but it is quite readable.)
+
+Note the use of double equals (`==`) instead of single equals (`=`)
+there. The `==` sign tests for equality, while the single equals sign
+assigns a value. This is a common source of errors when you are a
+beginner, so watch out for it.
+
+We can chain `query()` with `shape[0]` to count the number of male
+respondents.
+
+```python
+yao.query('sex == "Male"').shape[0]
+```
+
+:::note[Reminder]
+
+The `shape` property returns the number of rows and columns in a
+DataFrame. The first element, `shape[0]`, is the number of rows, and the
+second element, `shape[1]`, is the number of columns.
+
+For example:
+
+```python
+yao.shape
+```
+
+
+```python
+yao.shape[0] # rows
+```
+
+
+```python
+yao.shape[1]  # columns
+```
+
+:::
+
+:::note[Key Point]
+
+Note that these subsets are not modifying the DataFrame itself. If we
+want a modified version, we create a new DataFrame to store the subset.
+For example, below we create a subset of male respondents:
+
+```python
+yao_male = yao.query('sex == "Male"')
+yao_male
+```
+
+But for ease of explanation, in the examples below, we are simply
+printing the result, without storing it in a variable.
+
+:::
+
+:::tip[Practice]
+
+### Practice Q: Subset for Pregnant Respondents
+
+Subset the `yao` data frame to respondents who were pregnant during the
+survey (The `is_pregnant` column contains “Yes”, “No” or NaN). Assign
+the result to a new DataFrame called `yao_pregnant`. Then print this new
+DataFrame. There should be 24 rows.
+
+```python
+# Your code here
+```
+
+:::
+
+## Relational operators
+
+The `==` operator introduced above is an example of a “relational”
+operator, as it tests the relation between two values. Here is a list of
+some more of these operators. You will use these often when you are
+querying rows in your data.
+
+<div dangerouslySetInnerHTML={{ __html: quartoRawHtml[0] }} />
+
+Let’s see how to use these with `query()`:
+
+```python
+yao.query('sex == "Female"')  # keep rows where `sex` is female
+yao.query('sex != "Male"')  # keep rows where `sex` is not "Male"
+yao.query("age < 6")  # keep respondents under 6
+yao.query("age >= 70")  # keep respondents aged at least 70
+
+# keep respondents whose neighbourhood is "Tsinga" or "Messa"
+yao.query('neighborhood.isin(["Tsinga", "Messa"])')
+```
+
+:::tip[Practice]
+
+### Practice Q: Subset for Children
+
+-   From `yao`, keep only respondents who were children (under 18).
+    Assign the result to a new DataFrame called `yao_children`. There
+    should be 291 rows.
+
+```python
+# Your code here
+```
+
+:::
+
+:::tip[Practice]
+
+### Practice Q: Subset for Tsinga and Messa
+
+-   With `isin()`, keep only respondents who live in the “Carriere” or
+    “Ekoudou” neighborhoods. Assign the result to a new DataFrame called
+    `yao_carriere_ekoudou`. There should be 426 rows.
+
+```python
+# Your code here
+```
+
+:::
+
+## Accessing external variables in `query()`
+
+The `query()` method allows you to access variables outside the
+DataFrame using the `@` symbol. This is useful when you want to use
+dynamic values in your query conditions.
+
+For example, say you have the variable `min_age` that you want to use in
+your query. You can do this as follows:
+
+```python
+min_age = 25
+
+# Query using external variables
+yao.query('age >= @min_age')
+```
+
+This feature is helpful when you need to filter data based on values
+that may change or are determined at runtime.
+
+:::tip[Practice]
+
+### Practice Q: Subset for Young Respondents
+
+-   From `yao`, keep respondents who are less than or equal to the
+    variable `max_age`, defined below. Assign the result to a new
+    DataFrame called `yao_young`. There should be 590 rows.
+
+```python
+max_age = 30
+# Your code here
+```
+
+:::
+
+## Combining conditions with `&` and `|` {#combining-conditions-with-and}
+
+We can pass multiple conditions to `query()` using `&` (the “ampersand”
+symbol) for AND and `|` (the “vertical bar” or “pipe” symbol) for OR.
+
+For example, to keep respondents who are either younger than 18 OR older
+than 65, we can write:
+
+```python
+yao.query("age < 18 | age > 65")
+```
+
+To keep respondents who are pregnant and are ex-smokers, we write:
+
+```python
+yao.query('is_pregnant == "Yes" & is_smoker == "Ex-smoker"')
+```
+
+To keep all respondents who are pregnant or ex-smokers, we write:
+
+```python
+yao.query('is_pregnant == "Yes" | is_smoker == "Ex-smoker"')
+```
+
+:::note[Side note]
+
+To get the unique values in a column, you can use the `value_counts()`
+method.
+
+```python
+yao.is_smoker.value_counts()
+```
+
+:::
+
+:::tip[Practice]
+
+### Practice Q: Subset for IgG Positive Men
+
+Subset `yao` to only keep men who tested IgG positive. Assign the result
+to a new DataFrame called `yao_igg_positive_men`. There should be 148
+rows after your query. Think carefully about whether to use `&` or `|`.
+
+```python
+# Your code here
+```
+
+:::
+
+## Negating conditions with the `~` operator {#negating-conditions-with-the-operator}
+
+To negate conditions in `query()`, we use the `~` operator (pronounced
+“tilde”).
+
+Let’s use this to drop respondents who are students:
+
+```python
+yao.query('~ (occupation == "Student")')
+```
+
+Notice that we have to enclose the condition in parentheses.
+
+We can also enclose multiple conditions in parentheses.
+
+Imagine we want to give out a drug, but since it is a strong drug, we
+don’t want children or lightweight (under 30kg) respondents to take it.
+First, we can write a query to select the children and these light
+respondents:
+
+```python
+yao.query("age < 18 | weight_kg < 30")
+```
+
+Now to drop these individuals, we can negate the condition with `~`:
+
+```python
+yao.query("~ (age < 18 | weight_kg < 30)")
+```
+
+This could also be written as:
+
+```python
+yao.query("age >= 18 & weight_kg >= 30")
+```
+
+But sometimes negated conditions are easier to read.
+
+:::tip[Practice]
+
+### Practice Q: Drop Smokers and drop those over 50
+
+We want to avoid giving a drug to older individuals and smokers. From
+`yao`, drop respondents that are either above 50 or who are smokers. Use
+`~` to negate the conditions. Assign the result to a new DataFrame
+called `yao_dropped`. Your output should have 810 rows.
+
+```python
+# Your code here
+```
+
+:::
+
+## `NaN` values
+
+The relational operators introduced so far do not work with null values
+like `NaN`.
+
+For example, the `is_pregnant` column contains (NA) values for men. To
+keep the rows with missing `is_pregnant` values, we could try writing:
+
+```python
+yao.query("is_pregnant == NaN")  # does not work
+```
+
+But this will not work. This is because `NaN` is a non-existent value.
+So the system cannot evaluate whether it is “equal to” or “not equal to”
+anything.
+
+Instead, we can use the `isna()` method to select rows with missing
+values:
+
+```python
+yao.query("is_pregnant.isna()")
+```
+
+Or we can select rows that are not missing with `notna()`:
+
+```python
+yao.query("is_pregnant.notna()")
+```
+
+:::tip[Practice]
+
+### Practice Q: Keep Missing Smoking Status
+
+From the `yao` dataset, keep all the respondents who had NA records for
+the report of their smoking status.
+
+```python
+# Your code here
+```
+
+:::
+
+## Querying Based on String Patterns
+
+Sometimes, we need to filter our data based on whether a string column
+contains a certain substring. This is particularly useful when dealing
+with multi-answer type variables, where responses may contain multiple
+values separated by delimiters. Let’s explore this using the
+`occupation` column in our dataset.
+
+First, let’s take a look at the unique values in the `occupation`
+column:
+
+```python
+yao.occupation.value_counts().to_dict()
+```
+
+As we can see, some respondents have multiple occupations, separated by
+“–”. To query based on string containment, we can use the
+`str.contains()` method within our `query()`.
+
+### Basic String Containment
+
+To find all respondents who are students (either solely or in
+combination with other occupations), we can use:
+
+```python
+yao.query("occupation.str.contains('Student')")
+```
+
+This query will return all rows where the `occupation` column contains
+the word “Student”, regardless of whether it’s the only occupation or
+part of a multiple-occupation entry.
+
+### Negating String Containment
+
+To find respondents who are not students (i.e., their occupation does
+not contain “Student”), you can use the `~` operator:
+
+```python
+yao.query("~occupation.str.contains('Student')")
+```
+
+### Using `|` with string containment {#using-with-string-containment}
+
+To find respondents who are students or farmers, we can use:
+
+```python
+yao.query("occupation.str.contains('Student|Farmer')")
+```
+
+:::tip[Practice]
+
+### Practice Q: Symptoms
+
+The symptoms column contains a list of symptoms that respondents
+reported.
+
+Query `yao` to find respondents who reported “Cough” or “Fever” as
+symptoms. Your answer should have 219 rows.
+
+```python
+# Your code here
+```
+
+:::
+
+## Wrap up
+
+Great job! You’ve learned how to select specific columns and filter rows
+based on various conditions.
+
+These skills allow you to focus on relevant data and create targeted
+subsets for analysis.
+
+Next, we’ll explore how to modify and transform your data, further
+expanding your data wrangling toolkit. See you in the next lesson!

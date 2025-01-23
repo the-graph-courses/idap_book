@@ -1,0 +1,743 @@
+---
+title: 'Introduction to Joining Datasets'
+---
+
+```{python}
+# | echo: false
+# | message: false
+# | warning: false
+
+# Load packages
+import pandas as pd
+```
+
+## Data & Packages
+
+Please run the code below to load the packages and datasets we'll be using throughout this lesson.
+
+```{python}
+
+import pandas as pd
+
+
+# TB incidence in Africa
+tb_2019_africa = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_incidence_2019.csv"
+) 
+
+# Health expenditure data
+health_exp_2019 = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/health_expend_per_cap_2019.csv"
+)
+
+# Highest expenditure countries
+highest_exp = health_exp_2019.sort_values("expend_usd", ascending=False).head(70)
+
+# TB cases in children
+tb_cases_children = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/tb_cases_children_2012.csv"
+).dropna()
+
+# Country continents data
+country_continents = pd.read_csv(
+    "https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/country_continents.csv"
+)
+
+# people data
+people = pd.DataFrame({"name": ["Alice", "Bob", "Charlie"], "age": [25, 32, 45]})
+
+# Test information
+test_info = pd.DataFrame(
+    {
+        "name": ["Alice", "Bob", "Charlie"],
+        "test_date": ["2023-06-05", "2023-08-10", "2023-07-15"],
+        "result": ["Negative", "Positive", "Negative"],
+    }
+)
+
+# Disordered test information
+test_info_disordered = pd.DataFrame(
+    {
+        "name": ["Bob", "Alice", "Charlie"],  # Bob in first row
+        "test_date": ["2023-08-10", "2023-06-05", "2023-07-15"],
+        "result": ["Positive", "Negative", "Negative"],
+    }
+)
+
+# Multiple test information
+test_info_multiple = pd.DataFrame(
+    {
+        "name": ["Alice", "Alice", "Bob", "Charlie"],
+        "test_date": ["2023-06-05", "2023-06-06", "2023-08-10", "2023-07-15"],
+        "result": ["Negative", "Negative", "Positive", "Negative"],
+    }
+)
+
+# Test information with different name
+test_info_different_name = pd.DataFrame(
+    {
+        "first_name": ["Alice", "Bob", "Charlie"],
+        "test_date": ["2023-06-05", "2023-08-10", "2023-07-15"],
+        "result": ["Negative", "Positive", "Negative"],
+    }
+)
+
+# Test information including Xavier
+test_info_xavier = pd.DataFrame(
+    {
+        "name": ["Alice", "Bob", "Xavier"],
+        "test_date": ["2023-06-05", "2023-08-10", "2023-05-02"],
+        "result": ["Negative", "Positive", "Negative"],
+    }
+)
+
+# Students data
+students = pd.DataFrame(
+    {"student_id": [1, 2, 3], "name": ["Alice", "Bob", "Charlie"], "age": [20, 22, 21]}
+)
+
+# Exam dates data
+exam_dates = pd.DataFrame(
+    {"student_id": [1, 3], "exam_date": ["2023-05-20", "2023-05-22"]}
+)
+
+# Employee details
+employee_details = pd.DataFrame(
+    {
+        "id_number": ["E001", "E002", "E003"],
+        "full_name": ["Emily", "Frank", "Grace"],
+        "department": ["HR", "IT", "Marketing"],
+    }
+)
+
+# Performance reviews
+performance_reviews = pd.DataFrame(
+    {
+        "employee_code": ["E001", "E002", "E003"],
+        "review_type": ["Annual", "Mid-year", "Annual"],
+        "review_date": ["2022-05-10", "2023-09-01", "2021-12-15"],
+    }
+)
+
+# Sales data
+sales_data = pd.DataFrame(
+    {
+        "salesperson_id": [1, 4, 8],
+        "product": ["Laptop", "Smartphone", "Tablet"],
+        "date_of_sale": ["2023-01-15", "2023-03-05", "2023-02-20"],
+    }
+)
+
+# Salesperson peoples
+salesperson_peoples = pd.DataFrame(
+    {
+        "salesperson_id": [1, 2, 3, 5, 8],
+        "name": ["Alice", "Bob", "Charlie", "Diana", "Eve"],
+        "age": [28, 45, 32, 55, 40],
+        "gender": ["Female", "Male", "Male", "Female", "Female"],
+    }
+)
+
+# Total sales data
+total_sales = pd.DataFrame(
+    {
+        "product": [
+            "Laptop",
+            "Desktop",
+            "Tablet",
+            "Smartphone",
+            "Smartwatch",
+            "Headphones",
+            "Monitor",
+            "Keyboard",
+            "Mouse",
+            "Printer",
+        ],
+        "total_units_sold": [9751, 136, 8285, 2478, 3642, 5231, 1892, 4267, 3891, 982],
+    }
+)
+
+# Product feedback data
+product_feedback = pd.DataFrame(
+    {
+        "product": [
+            "Laptop",
+            "Desktop",
+            "Tablet",
+            "Smartphone",
+            "Smartwatch",
+            "Headphones",
+            "Monitor",
+            "Gaming Console",
+            "Camera",
+            "Speaker",
+        ],
+        "n_positive_reviews": [1938, 128, 842, 1567, 723, 956, 445, 582, 234, 678],
+        "n_negative_reviews": [42, 30, 56, 89, 34, 28, 15, 11, 8, 25],
+    }
+)
+
+# Sales incidence data
+sales = pd.DataFrame(
+    {
+        "year": [2010, 2011, 2014, 2016, 2017],
+        "sales_count": [69890, 66507, 59831, 58704, 59151],
+    }
+)
+
+# Customer complaints data
+customer_complaints = pd.DataFrame(
+    {
+        "year": [2011, 2013, 2015, 2016, 2019],
+        "complaints_count": [1292, 1100, 1011, 940, 895],
+    }
+)
+
+
+employees = pd.DataFrame(
+    {"employee_id": [1, 2, 3], "name": ["John", "Joy", "Khan"], "age": [32, 28, 40]}
+)
+
+training_sessions = pd.DataFrame(
+    {
+        "employee_id": [1, 2, 3],
+        "training_date": ["2023-01-20", "2023-02-20", "2023-05-15"],
+    }
+)
+
+customer_details = pd.DataFrame(
+    {
+        "id_number": ["A001", "B002", "C003"],
+        "full_name": ["Alice", "Bob", "Charlie"],
+        "address": ["123 Elm St", "456 Maple Dr", "789 Oak Blvd"],
+    }
+)
+
+# Order Records
+order_records = pd.DataFrame(
+    {
+        "customer_code": ["A001", "B002", "C003"],
+        "product_type": ["Electronics", "Books", "Clothing"],
+        "order_date": ["2022-05-10", "2023-09-01", "2021-12-15"],
+    }
+)
+```
+
+
+## Intro
+
+Joining is a key skill when working with data as it allows you to combine information about the same entities from multiple sources, leading to more comprehensive and insightful analyses. In this lesson, you'll learn how to use different joining techniques using Python's `pandas` library. Let's get started!
+
+
+## Learning Objectives
+
+-   You understand how each of the different joins work: left, right, inner, and outer.
+
+-   You can join simple datasets together using the `pd.merge()` function.
+
+## Why Do We Need Joins?
+
+To illustrate the utility of joins, let's start with a toy example. Consider the following two datasets. The first, `people`, contains names and ages of three individuals:
+
+```{python}
+people
+```
+
+The second, `test_info`, contains test dates and results for those individuals:
+
+```{python}
+test_info
+```
+
+We'd like to analyze these data together, and so we need a way to combine them.
+
+One option we might consider is concatenating the dataframes horizontally using `pd.concat()`:
+
+```{python}
+pd.concat([people, test_info], axis=1)
+```
+
+This successfully merges the datasets, but it doesn't do so very intelligently. The function essentially "pastes" or "staples" the two tables together. So, as you can notice, the "name" column appears twice. This is not ideal and will be problematic for analysis.
+
+Another problem occurs if the rows in the two datasets are not already aligned. In this case, the data will be combined incorrectly with `pd.concat()`. Consider the `test_info_disordered` dataset, which now has Bob in the first row:
+
+```{python}
+test_info_disordered
+```
+
+What happens if we concatenate this with the original `people` dataset, where Bob was in the *second* row?
+
+```{python}
+pd.concat([people, test_info_disordered], axis=1)
+```
+
+Alice's people details are now mistakenly aligned with Bob's test info!
+
+A third issue arises when an entity appears more than once in one dataset. Perhaps Alice had multiple tests:
+
+```{python}
+test_info_multiple
+```
+
+If we try to concatenate this with the `people` dataset, we'll get mismatched data due to differing row counts:
+
+```{python}
+pd.concat([people, test_info_multiple], axis=1)
+```
+
+This results in NaN values and misaligned data.
+
+::: {.callout-note title="Side Note"}
+What we have here is called a **one-to-many** relationship—one Alice in the people data, but multiple Alice rows in the test data since she had multiple tests. Joining in such cases will be covered in detail in the second joining lesson.
+:::
+
+---
+
+Clearly, we need a smarter way to combine datasets than concatenation; we'll need to venture into the world of joining. In pandas, the function that performs joins is `pd.merge()`.
+
+It works for the simple case, and it does not duplicate the name column:
+
+```{python}
+pd.merge(people, test_info)
+```
+
+It works where the datasets are not ordered identically:
+
+```{python}
+pd.merge(people, test_info_disordered)
+```
+
+As you can see, Alice's details are now correctly aligned with her test results.
+
+And it works when there are multiple test rows per individual:
+
+```{python}
+pd.merge(people, test_info_multiple)
+```
+
+In this case, the `pd.merge()` function correctly repeats Alice's details for each of her tests.
+
+Simple and beautiful!
+
+## pd.merge() syntax
+
+Now that we understand *why* we need joins, let's look at their basic syntax.
+
+Joins take two dataframes as the first two arguments: `left` (the *left* dataframe) and `right` (the *right* dataframe). In pandas, you can provide these as positional or keyword arguments:
+
+```{python}
+# left and right
+pd.merge(left=people, right=test_info)  # keyword arguments
+pd.merge(people, test_info)  # positional arguments
+```
+
+Another critical argument is `on`, which indicates the column or **key** used to connect the tables. We don't always need to supply this argument; it can be *inferred* from the datasets. For example, in our original examples, "name" is the only column common to `people` and `test_info`. So the merge function assumes `on='name'`:
+
+```{python}
+# on argument is optional if the column key is the same in both dataframes
+pd.merge(people, test_info)
+pd.merge(people, test_info, on="name")
+```
+
+::: {.callout-note title="Vocab"}
+The column used to connect rows across the tables is known as a **key**. In the pandas `merge()` function, the key is specified in the `on` argument, as seen in `pd.merge(people, test_info, on='name')`.
+:::
+
+What happens if the keys are named differently in the two datasets? Consider the `test_info_different_name` dataset, where the "name" column has been changed to "first_name":
+
+```{python}
+test_info_different_name
+```
+
+If we try to join `test_info_different_name` with our original `people` dataset, we will encounter an error:
+
+```{python}
+# | eval: false
+pd.merge(people, test_info_different_name)
+```
+
+```
+MergeError: No common columns to perform merge on. Merge options: left_on=None, right_on=None, left_index=False, right_index=False
+```
+
+The error indicates that there are no common variables, so the join is not possible.
+
+In situations like this, you have two choices: you can rename the column in the second dataframe to match the first, or more simply, specify which columns to join on using `left_on` and `right_on`.
+
+Here's how to do this:
+
+```{python}
+pd.merge(people, test_info_different_name, left_on='name', right_on='first_name')
+```
+
+This syntax essentially says, "Connect `name` from the left dataframe with `first_name` from the right dataframe because they represent the same data."
+
+---
+
+::: {.callout-note title="Vocab"}
+**Key**: The column or set of columns used to match rows between two dataframes in a join operation.
+
+**Left Join**: A type of join that keeps all rows from the left dataframe and adds matching rows from the right dataframe. If there is no match, the result is `NaN` on the right side.
+:::
+
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Join Employees and Training Sessions
+
+Consider the two datasets below, one with employee details and the other with training session dates for these employees.
+
+```{python}
+employees
+```
+
+```{python}
+training_sessions
+```
+
+How many rows and columns would you expect to have after joining these two datasets?
+
+Now join the two datasets and check your answer.
+
+```{python}
+# Your code here
+```
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(employees, training_sessions)
+```
+
+:::
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Join with `on` Argument
+
+Two datasets are shown below, one with customer details and the other with order records for those customers.
+
+```{python}
+customer_details
+```
+
+```{python}
+order_records
+```
+
+Join the `customer_details` and `order_records` datasets. You will need to use the `left_on` and `right_on` arguments because the customer identifier columns have different names.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(customer_details, order_records, left_on="id_number", right_on="customer_code")
+```
+
+:::
+
+## Types of joins
+
+The toy examples so far have involved datasets that could be matched perfectly—every row in one dataset had a corresponding row in the other dataset.
+
+Real-world data is usually messier. Often, there will be entries in the first table that do not have corresponding entries in the second table, and vice versa.
+
+To handle these cases of imperfect matching, there are different join types with specific behaviors: `left`, `right`, `inner`, and `outer`. In the upcoming sections, we'll look at examples of how each join type operates on datasets with imperfect matches.
+
+## `left` join
+
+Let's start with the `left` join. To see how it handles unmatched rows, we will try to join our original `people` dataset with a modified version of the `test_info` dataset.
+
+As a reminder, here is the `people` dataset, with Alice, Bob, and Charlie:
+
+```{python}
+people
+```
+
+For test information, we'll remove `Charlie` and we'll add a new individual, `Xavier`, and his test data:
+
+```{python}
+test_info_xavier
+```
+
+We can specify the join type using the `how` argument:
+
+```{python}
+pd.merge(people, test_info_xavier, how='left')
+```
+
+As you can see, with the *left* join, all records from the *left* dataframe (`people`) are retained. So, even though `Charlie` doesn't have a match in the `test_info_xavier` dataset, he's still included in the output. (But of course, since his test information is not available in `test_info_xavier`, those values were left as `NaN`.)
+
+Xavier, on the other hand, who was only present in the right dataset, gets dropped.
+
+The graphic below shows how this join worked:
+
+![Left Join](images/left_join1.gif)
+
+Now what if we flip the dataframes? Let's see the outcome when `test_info_xavier` is the left dataframe and `people` is the right one:
+
+```{python}
+pd.merge(test_info_xavier, people, on='name', how='left')
+```
+
+Once again, the `left` join retains all rows from the *left* dataframe (now `test_info_xavier`). This means Xavier's data is included this time. Charlie, on the other hand, is excluded.
+
+::: {.callout-note title="Key Point"}
+**Primary Dataset**: In the context of joins, the primary dataset refers to the main or prioritized dataset in an operation. In a left join, the left dataframe is considered the primary dataset because all of its rows are retained in the output, regardless of whether they have a matching row in the other dataframe.
+:::
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Left Join Students and Exam Dates
+
+Consider the two datasets below, one with student details and the other with exam dates for some of these students.
+
+```{python}
+students
+```
+
+```{python}
+exam_dates
+```
+
+Join the `students` dataset with the `exam_dates` dataset using a left join.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(students, exam_dates, on='student_id', how='left')
+```
+
+:::
+
+---
+
+## Analysing African TB Incidence and Health Expenditure
+
+Let's try another example, this time with a more realistic set of data.
+
+First, we have data on the TB incidence rate per 100,000 people for some African countries, from the [WHO](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-(per-100-000-population-per-year)):
+
+```{python}
+tb_2019_africa
+```
+
+We want to analyze how TB incidence in African countries varies with government health expenditure per capita. For this, we have data on health expenditure per capita in USD, also from the WHO, for countries from all continents:
+
+```{python}
+health_exp_2019
+```
+
+Which dataset should we use as the left dataframe for the join?
+
+Since our goal is to analyze African countries, we should use `tb_2019_africa` as the left dataframe. This will ensure we keep all the African countries in the final joined dataset.
+
+Let's join them:
+
+```{python}
+tb_health_exp_joined = pd.merge(tb_2019_africa, health_exp_2019, on='country', how='left')
+tb_health_exp_joined
+```
+
+Now in the joined dataset, we have just the African countries, which is exactly what we wanted.
+
+All rows from the left dataframe `tb_2019_africa` were kept, while non-African countries from `health_exp_2019` were discarded.
+
+We can check if any rows in `tb_2019_africa` did not have a match in `health_exp_2019` by filtering for `NaN` values:
+
+```{python}
+tb_health_exp_joined.query("expend_usd.isna()")
+```
+
+This shows that 3 countries—Mauritius, South Sudan, and Comoros—did not have expenditure data in `health_exp_2019`. But because they were present in `tb_2019_africa`, and that was the left dataframe, they were still included in the joined data.
+
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Left Join TB Cases and Continents
+
+The first, `tb_cases_children`, contains the number of TB cases in under 15s in 2012, by country:
+
+```{python}
+tb_cases_children
+```
+
+And `country_continents`, lists all countries and their corresponding region and continent:
+
+```{python}
+country_continents
+```
+
+Your goal is to add the continent and region data to the TB cases dataset.
+
+Which dataframe should be the left one? And which should be the right one? Once you've decided, join the datasets appropriately using a left join.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(tb_cases_children, country_continents, left_on='country', right_on='country.name.en', how='left')
+```
+
+:::
+
+## `right` join
+
+A `right` join can be thought of as a mirror image of a `left` join. The mechanics are the same, but now all rows from the *right* dataframe are retained, while only those rows from the left dataframe that find a match in the right are kept.
+
+Let's look at an example to understand this. We'll use our original `people` and modified `test_info_xavier` datasets:
+
+```{python}
+people
+test_info_xavier
+```
+
+Now let's try a right join, with `people` as the right dataframe:
+
+```{python}
+pd.merge(test_info_xavier, people, on='name', how='right')
+```
+
+Hopefully you're getting the hang of this and could predict that output! Since `people` was the *right* dataframe, and we are using a *right* join, all the rows from `people` are kept—Alice, Bob, and Charlie—but only matching records from `test_info_xavier`.
+
+The graphic below illustrates this process:
+
+![Right Join](images/right_join.gif)
+
+An important point—the same final dataframe can be created with either a `left` join or a `right` join; it just depends on what order you provide the dataframes to these functions:
+
+```{python}
+# Here, right join prioritizes the right dataframe, people
+pd.merge(test_info_xavier, people, on='name', how='right')
+```
+
+```{python}
+# Here, left join prioritizes the left dataframe, again people
+pd.merge(people, test_info_xavier, on='name', how='left')
+```
+
+As we previously mentioned, data scientists typically favor `left` joins over `right` joins. It makes more sense to specify your primary dataset first, in the left position. Opting for a `left` join is a common best practice due to its clearer logic, making it less error-prone.
+
+## `inner` join
+
+What makes an `inner` join distinct is that rows are only kept if the joining values are present in *both* dataframes. Let's return to our example of individuals and their test results. As a reminder, here are our datasets:
+
+```{python}
+people
+```
+
+```{python}
+test_info_xavier
+```
+
+Now that we have a better understanding of how joins work, we can already picture what the final dataframe would look like if we used an `inner` join on our two dataframes above. If only rows with joining values that are in *both* dataframes are kept, and the only individuals that are in both `people` and `test_info_xavier` are `Alice` and `Bob`, then they should be the only individuals in our final dataset! Let's try it out.
+
+```{python}
+pd.merge(people, test_info_xavier, on='name', how='inner')
+```
+
+Perfect, that's exactly what we expected! Here, `Charlie` was only in the `people` dataset, and `Xavier` was only in the `test_info_xavier` dataset, so both of them were removed. The graphic below shows how this join works:
+
+![Inner Join](images/inner_join.gif)
+
+Note that the default join type is `inner`. So if you don't specify `how='inner'`, you're actually performing an inner join! Try it out:
+
+```{python}
+pd.merge(people, test_info_xavier)
+```
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Inner Join Products
+
+The following data is on product sales and customer feedback in 2019.
+
+```{python}
+total_sales
+```
+
+```{python}
+product_feedback
+```
+
+
+
+Use an `inner` join to combine the datasets. 
+
+How many products are there in common between the two datasets.
+
+Which product has the highest ratio of positive reviews to units sold? (Should be desktops)
+
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(total_sales, product_feedback, on='product', how='inner')
+
+# How many products are there in common between the two datasets?
+len(pd.merge(total_sales, product_feedback, on='product', how='inner'))
+
+# Which product has the highest ratio of positive reviews to units sold?
+pd.merge(total_sales, product_feedback, on='product', how='inner').assign(
+    ratio=lambda x: x['n_positive_reviews'] / x['total_units_sold']
+).sort_values("ratio", ascending=False).head(1)
+```
+
+:::
+
+## `outer` join
+
+The peculiarity of the `outer` join is that it retains *all* records, regardless of whether or not there is a match between the two datasets. Where there is missing information in our final dataset, cells are set to `NaN` just as we have seen in the `left` and `right` joins. Let's take a look at our `people` and `test_info_xavier` datasets to illustrate this.
+
+Here is a reminder of our datasets:
+
+```{python}
+people
+test_info_xavier
+```
+
+Now let's perform an `outer` join:
+
+```{python}
+pd.merge(people, test_info_xavier, on='name', how='outer')
+```
+
+As we can see, all rows were kept so there was no loss in information! The graphic below illustrates this process:
+
+![Outer Join](images/full_join.gif)
+
+Just as we saw above, all of the data from both of the original dataframes are still there, with any missing information set to `NaN`.
+
+::: {.callout-tip title="Practice"}
+
+## Practice Q: Join Sales Data
+
+The following dataframes contain global sales and global customer complaints from various years.
+
+```{python}
+sales
+```
+
+```{python}
+customer_complaints
+```
+
+Join the above tables using the appropriate join to retain all information from the two datasets.
+
+```{python}
+# | echo: false
+# | eval: false
+# Solution
+pd.merge(sales, customer_complaints, on='year', how='outer')
+```
+
+:::
+
+## Wrap Up!
+
+Way to go, you now understand the basics of joining! The Venn diagram below gives a helpful summary of the different joins and the information that each one retains. It may be helpful to save this image for future reference!
+
+![Join Types](images/venn_cropped-01.jpg)

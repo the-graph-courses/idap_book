@@ -1,0 +1,102 @@
+---
+title: 'Introduction to Google Colab'
+---
+
+{{< video https://youtu.be/fp-2xtbFRYo?si=JO_AMNhh_XOJaFsP >}}  
+
+## Learning Objectives
+
+- Understand what Google Colab is and its advantages for data science and AI
+- Learn how to access and navigate Google Colab
+- Create and manage notebooks in Google Colab
+- Run Python code in Colab cells
+- Use text cells for explanations and formatting
+- Import and use pre-installed libraries for data analysis
+- Import and use data to perform analysis
+- Share Colab notebooks
+
+## Introduction
+
+Google Collaboratory, or Colab for short, is a free online platform that allows you to work with Python or R code in your browser. It's a great way to get started with Python, as you don't have to install anything on your computer.
+
+Some limitations if you're running heavy workload though. Can get timeout. But for beginner data analysts, it's perfect and free.
+
+Note that this document is a summary of the video, rather than a replacement. You should watch the video for a more complete experience.
+
+## Getting Started With Colab
+
+- Search for "Google Colab" in your favorite search engine. 
+- Usually the first result will be the correct one. Currently, it's colab.research.google.com, but it may change in the future.
+- Sign in with your Google account (create a Gmail account if you don't have one)
+
+## Creating and Managing Notebooks
+
+- Notebooks are the main way to organize work in Colab. They contain code cells and text cells.
+- Create a new notebook: File > New Notebook
+- Rename your notebook for better organization
+
+## Working With Code Cells
+
+- There should be a button at the top left that allows you to add code or text cells
+- Code cells are where you write and execute Python code
+- Type ``1 + 1 in a cell then run it
+- Run a cell by clicking the play button or using keyboard shortcuts:
+  - `Command + Enter` on Mac or `Ctrl + Enter` on Windows: Run the current cell
+  - `Shift + Enter`: Run the current cell and create a new one below
+- Try to get comfortable with the keyboard shortcuts
+- Your code cell may take a while to run the first time, as the Python engine needs to be initialized
+- When you run a cell, the final output is displayed below the cell
+- To see multiple outputs, explicitly print them with `print()` For example:
+
+```python
+print(1)
+print(2)
+```
+
+## Text Cells
+
+- Use text cells for explanations and titles
+- The toolbar above the text cell allows you to format text, but pay attention to the generated markdown
+
+## Example of Working With Data
+
+- Click on the Files tab to see the "sample_data" folder
+- Import the California housing test dataset:
+
+```python
+import pandas
+housing_data = pandas.read_csv("/content/sample_data/california_housing_test.csv")
+housing_data.describe()
+```
+- View the dataset by typing `housing_data` in a cell and running it
+
+## Practice Q: Importing Data
+
+- Import the "california_housing_train" dataset
+- Use the `describe()` function to get a summary of the dataset
+
+## Getting Data From Your Drive
+
+- In the Files tab, click the button to mount your drive
+- Create a folder and upload a CSV file from your computer to the folder
+- We can import the data with pandas as before
+
+## Practice Q: Importing Data
+
+- Import a CSV file you uploaded to your drive
+- Use the `describe()` function to get a summary of the dataset
+
+## Where Is Your Notebook Saved?
+
+- All work is automatically saved to your Google Drive
+- Access your notebooks at drive.google.com in the "Colab Notebooks" folder
+
+## Sharing and Collaborating
+
+- Share notebooks with a link, giving viewer or editor access
+- Access notebooks later from your Google Drive
+- Download notebooks in various formats (ipynb, py)
+
+## Conclusion
+
+Google Colab provides a powerful, accessible platform for data science and AI projects. Its pre-configured environment and easy sharing features make it an excellent way to get started with data analysis.

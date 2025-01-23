@@ -70,7 +70,7 @@ print(response)
 ```
 
 
-::: {.callout-practice title="Practice"}
+::: {.callout-tip title="Practice"}
 
 ## Practice Q: Get tourist-friendly city in Brazil
 
@@ -80,13 +80,8 @@ Use the `llm_chat` function to ask the model for the most tourist-friendly city 
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-
-## Solution Q: Get tourist-friendly city in Brazil
-
 ```{python}
+#| include: false
 response = llm_chat("What is the most tourist-friendly city in Brazil?")
 print(response)
 ```
@@ -134,7 +129,7 @@ country_df
 
 This code will output a DataFrame with a new column `city_rec` containing city recommendations corresponding to each country.
 
-::: {.callout-practice title="Practice"}
+::: {.callout-tip title="Practice"}
 
 ## Practice Q: Get local dishes
 
@@ -144,13 +139,8 @@ Create a function called `get_local_dishes` that takes a country name as input a
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-
-## Solution Q: Get local dishes
-
 ```{python}
+#| include: false
 def get_local_dishes(country):
     prompt = f"What are some of the most famous local dishes from {country}?"
     return llm_chat(prompt)
@@ -234,7 +224,7 @@ movies.to_csv("movies_output.csv", index=False)
 
 This approach allows you to generate detailed summaries for each movie based on its full set of data, which can be incredibly useful for automated reporting and data analysis.
 
-::: {.callout-practice title="Practice"}
+::: {.callout-tip title="Practice"}
 
 ## Practice Q: Weather Summary
 
@@ -249,13 +239,8 @@ weather
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-
-## Solution Q: Weather Summary
-
 ```{python}
+#| include: false
 # Step 1: Load the dataset
 weather = vd.data.seattle_weather().head()
 

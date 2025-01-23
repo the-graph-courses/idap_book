@@ -1,0 +1,147 @@
+---
+title: "Folders and Virtual Environments"
+---
+
+## Introduction
+
+In this lesson, we will explore virtual environments in Python using Visual Studio Code (VS Code). We'll create a new workspace, set up a virtual environment, and install packages specific to our project.
+
+## Learning Objectives
+
+By the end of this lesson, you should be able to:
+
+- Create a new workspace in VS Code
+- Understand the concept of virtual environments
+- Create and use a virtual environment in VS Code
+- Install and use packages within a virtual environment
+
+## Creating a New Workspace
+
+On your desktop or in your `Documents` folder, create a new folder and name it `graph_courses_python`. This is going to be the main folder for many of the projects for this course so make sure you put it in an easy to reach place.   
+
+Open VS Code.
+
+Go to **File > Open Folder**.
+
+Navigate to the `graph_courses_python` folder you just created and select it.
+
+Now create a new script and call it `test_cowsay.py`. 
+
+Type `print(2 + 2)` in the file then run it by clicking the run button to make sure everything is working. 
+
+Next, let's try to import a package we haven't installed yet. Add the following line to your file:
+
+```{python}
+# | eval: false
+import cowsay
+
+cowsay.cow("Hello, World!")
+```
+
+If you try to run this, you'll get an error.
+
+This will not work because we haven't installed the `cowsay` package yet. And to     install it properly, we'll need to use virtual environments.
+
+### Vocab: Environments & Interpreter
+
+- An **environment** is a folder that contains a specific version of Python and any packages you install.
+- The **Python Interpreter** is the specific
+
+## Creating a Virtual Environment
+
+1. Open the **Command Palette** 
+2. Type `Python: Create Environment` and select it.
+3. Choose **Venv** as the environment type.
+4. Select the Python interpreter you want to use (e.g., Python 3.12.0).
+
+You should now see a new folder called `.venv`. This is the virtual environment. Inside it is a folder called `lib`, which contains packages.
+
+Next, tell VS Code to use this virtual environment:
+
+1. Open the **Command Palette** again.
+2. Type `Python: Select Interpreter` and choose it.
+3. Select the interpreter associated with your virtual environment (it should be listed under `.venv`).
+
+Now we've created and selected our virtual environment. We can install packages without affecting other projects.
+
+## Installing Packages
+
+Let's install the `cowsay` package.
+
+1. Open a **new terminal** in VS Code.
+You can do this with the terminal file menu option then selecting 'new terminal'. 
+2. Ensure the terminal is using your virtual environment. You can do this by hovering over the terminal icon in terminal window. It should mention that there is an activated environment for ....venv among other things
+3. Run the following command:
+
+```{bash}
+#| eval: false
+pip install cowsay
+```
+
+Occasionally, you might encounter an issue where pip is not recognized in the terminal. This is likely due to a temporary glitch in VS Code's environment detection. If this happens, try the following steps:
+
+1. Close and reopen VS Code.
+2. Use the Command Palette to select the Python interpreter again.
+3. Open a new terminal.
+
+These steps should resolve the issue and restore access to pip. If the problem persists, it may indicate a more complex configuration problem that requires further investigation.
+
+Now we should be able to use the `cowsay` package. Open `test_cowsay.py` and click the run button to execute the script.
+
+You should see a cow saying hello!
+
+## Summary of Key Steps
+
+Congrats! You have now created a virtual environment and installed a package. 
+
+These are key steps for any new Python project:
+
+1. **F**older: Create a project folder.
+2. **E**nvironment: Set up a virtual environment.
+3. **I**nterpreter: Select the appropriate Python interpreter.
+4. **L**ibraries: Install the necessary packages.
+
+Remember the acronym **FEIL** to help you recall these steps. (If you don't complete these steps you increase your chances of "FEIL"ure 😅)
+
+It's a bit of a pain to have to set up a virtual environment every time you start a new project, but it's a good habit to get into. 
+
+## Demonstrating Environment Isolation
+
+Let's demonstrate that the virtual environment is isolated.
+
+1. Open your previous workspace `my_first_workspace` with the File > Open Folder menu option.
+2. Create a Python file and try to use the `cowsay` package:
+
+    ```{python}
+    #| eval: false
+    import cowsay
+    ```
+
+This will probably not work because `cowsay` is not installed in that environment. If it does work, it means you have `cowsay` installed globally, which is okay.
+
+Now, let's return to our main folder/workspace. This is where you'll conduct most of your analysis for this course.
+
+## Installing Course Packages
+
+As a final step, let's install the packages we'll need for the course. While we could install each package as we encounter it, it's more efficient to install them all at once. In the terminal, run the following command. Type these very carefully. 
+
+```{bash}
+#| eval: false
+pip install plotly pandas jupyter ipykernel kaleido itables
+```
+
+- **pandas**: Data manipulation library.
+- **plotly**: Visualization library.
+- **jupyter** and **ipykernel**: Allow us to use Quarto to display our plots.
+- **kaleido**: Library for saving plots in different formats.
+- **itables**: Library for displaying tables in Quarto.
+
+When its done installing, your cursor in the terminal should be active again. e.g. you should be able to press enter to start a new command. 
+
+Keep this list of packages handy for future reference, as you'll likely need them for most projects.
+
+This command will install all the required packages in one go. If your installation stops at some point, try rerunning the command. Sometimes network issues may cause the installation to fail. If it freezes for more than 10 minutes, close the terminal and rerun the command.
+
+## Conclusion
+
+You've now learned how to create a workspace, set up a virtual environment, install packages, and use them in your Python projects. Remember that each project should have its own virtual environment to keep dependencies isolated and manageable.

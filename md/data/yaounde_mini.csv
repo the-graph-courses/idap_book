@@ -1,0 +1,972 @@
+age,age_category_3,sex,weight_kg,height_cm,neighborhood,is_smoker,is_pregnant,occupation,treatment_combinations,symptoms,n_days_miss_work,n_bedridden_days,highest_education,igg_result
+45,Adult,Female,95,169,Briqueterie,Non-smoker,No,Informal worker,Paracetamol,Muscle pain,0.0,0.0,Secondary,Negative
+55,Adult,Male,96,185,Briqueterie,Ex-smoker,,Salaried worker,,No symptoms,,,University,Positive
+23,Adult,Male,74,180,Briqueterie,Smoker,,Student,,No symptoms,,,University,Negative
+20,Adult,Female,70,164,Briqueterie,Non-smoker,No,Student,Antibiotics,Rhinitis--Sneezing--Anosmia or ageusia,7.0,7.0,Secondary,Positive
+55,Adult,Female,67,147,Briqueterie,Non-smoker,No,Trader--Farmer,,No symptoms,,,Primary,Positive
+17,Child,Female,65,162,Briqueterie,Non-smoker,No,Student,Paracetamol--Antibiotics,Fever--Cough--Rhinitis--Nausea or vomiting--Diarrhoea,7.0,3.0,Secondary,Negative
+13,Child,Female,65,150,Briqueterie,Non-smoker,No,Student,Traditional meds.,Sneezing,0.0,0.0,Secondary,Positive
+28,Adult,Male,62,173,Briqueterie,Non-smoker,,Student,Paracetamol,Headache,0.0,1.0,Doctorate,Negative
+30,Adult,Male,73,170,Briqueterie,Non-smoker,,Trader,Paracetamol--Traditional meds.,Fever--Rhinitis--Anosmia or ageusia,0.0,0.0,Secondary,Negative
+13,Child,Female,56,153,Briqueterie,Non-smoker,No,Other,,No symptoms,,,Secondary,Positive
+62,Adult,Female,53,157,Briqueterie,Non-smoker,No response,Unemployed,,No symptoms,,,Primary,Positive
+16,Child,Female,70,164,Briqueterie,Non-smoker,No,Student,Paracetamol,Rhinitis--Sneezing--Headache,0.0,0.0,Secondary,Positive
+34,Adult,Female,78,164,Briqueterie,Non-smoker,No,Trader,Paracetamol--Antibiotics,Cough--Headache,0.0,0.0,Primary,Positive
+38,Adult,Female,58,169,Briqueterie,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+42,Adult,Male,71,171,Briqueterie,Ex-smoker,,Trader,,No symptoms,,,Secondary,Negative
+28,Adult,Female,52,155,Briqueterie,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Positive
+21,Adult,Female,56,160,Briqueterie,Non-smoker,No,Informal worker,Paracetamol--Antibiotics--Other,Fever--Cough--Rhinitis--Headache,5.0,3.0,Primary,Negative
+8,Child,Female,26,127,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Primary,Positive
+8,Child,Male,29,120,Briqueterie,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+7,Child,Male,20,115,Briqueterie,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+9,Child,Male,28,134,Briqueterie,Non-smoker,,Student,Traditional meds.,Cough--Rhinitis,0.0,0.0,Primary,Negative
+31,Adult,Female,75,174,Briqueterie,Non-smoker,No,Trader,Paracetamol--Antibiotics,Cough--Headache,0.0,0.0,Primary,Positive
+38,Adult,Male,71,175,Briqueterie,Ex-smoker,,Informal worker,,Cough--Rhinitis--Headache,0.0,0.0,University,Negative
+7,Child,Female,28,131,Briqueterie,Non-smoker,No,Student,,Fever--Diarrhoea,0.0,0.0,Primary,Positive
+54,Adult,Male,71,180,Briqueterie,Smoker,,Salaried worker,,Cough--Rhinitis--Sneezing,0.0,2.0,University,Negative
+15,Child,Male,51,173,Briqueterie,Non-smoker,,Student,Paracetamol--Hydroxychloroquine,Fever,3.0,3.0,Secondary,Negative
+42,Adult,Female,101,175,Briqueterie,Non-smoker,No,Home-maker,Paracetamol,Fever--Headache,0.0,0.0,Primary,Positive
+18,Adult,Male,64,177,Briqueterie,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+11,Child,Male,27,140,Briqueterie,Non-smoker,,Other,,No symptoms,,,Secondary,Negative
+41,Adult,Female,91,175,Briqueterie,Non-smoker,No,Trader,Paracetamol--Traditional meds.--Other,Sneezing,0.0,0.0,Secondary,Negative
+9,Child,Female,34,135,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Primary,Positive
+13,Child,Female,65,177,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+69,Senior,Male,108,170,Briqueterie,Ex-smoker,,Retired,Antibiotics--Traditional meds.--Other,Cough,0.0,0.0,University,Positive
+65,Senior,Male,93,195,Briqueterie,Ex-smoker,,Retired,,No symptoms,,,Secondary,Negative
+42,Adult,Male,90,175,Briqueterie,Non-smoker,,Trader,,No symptoms,,,Primary,Negative
+28,Adult,Male,74,169,Briqueterie,Ex-smoker,,Trader,Paracetamol--Other,Fever--Cough--Sneezing--Headache,0.0,0.0,Secondary,Negative
+57,Adult,Male,76,184,Briqueterie,Smoker,,Unemployed,,No symptoms,,,University,Negative
+61,Adult,Male,78,170,Briqueterie,Smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+27,Adult,Female,74,164,Briqueterie,Ex-smoker,No,Home-maker,Traditional meds.,Cough,0.0,0.0,Secondary,Positive
+39,Adult,Male,82,171,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+28,Adult,Female,85,160,Briqueterie,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Positive
+20,Adult,Male,78,178,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+10,Child,Female,30,128,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+7,Child,Male,23,122,Briqueterie,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+13,Child,Male,37,148,Briqueterie,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+78,Senior,Male,95,170,Briqueterie,Ex-smoker,,Retired--Informal worker,,No symptoms,,,Secondary,Positive
+67,Senior,Female,83,161,Briqueterie,Non-smoker,No,Retired,Paracetamol--Traditional meds.,Stomach ache,0.0,2.0,Secondary,Negative
+66,Senior,Female,100,160,Briqueterie,Non-smoker,No,Home-maker--Informal worker,,No symptoms,,,Secondary,Negative
+30,Adult,Female,128,168,Briqueterie,Non-smoker,No response,Trader,,No symptoms,,,Primary,Negative
+25,Adult,Female,100,176,Briqueterie,Non-smoker,Yes,Trader--Unemployed,,No symptoms,,,Primary,Negative
+30,Adult,Female,92,160,Briqueterie,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+27,Adult,Female,68,155,Briqueterie,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Positive
+20,Adult,Male,65,175,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,No formal instruction,Negative
+22,Adult,Female,72,168,Briqueterie,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+54,Adult,Female,54,174,Briqueterie,Non-smoker,No,Home-maker,Traditional meds.,Headache,0.0,0.0,Primary,Positive
+28,Adult,Female,52,172,Briqueterie,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Positive
+20,Adult,Male,65,170,Briqueterie,Non-smoker,,Unemployed,,No symptoms,,,Doctorate,Positive
+28,Adult,Male,59,172,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,University,Negative
+28,Adult,Female,46,170,Briqueterie,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+14,Child,Male,44,156,Briqueterie,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+46,Adult,Male,65,183,Briqueterie,Smoker,,Informal worker,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Rhinitis--Muscle pain--Fatigue,0.0,0.0,Secondary,Negative
+50,Adult,Male,68,176,Briqueterie,Non-smoker,,Unemployed,Paracetamol--Antibiotics,Fever--Cough--Muscle pain,0.0,2.0,University,Positive
+44,Adult,Female,67,157,Briqueterie,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Positive
+21,Adult,Female,74,166,Briqueterie,Non-smoker,Yes,Home-maker,,No symptoms,,,Secondary,Negative
+79,Senior,Female,40,146,Briqueterie,Non-smoker,No,Retired,,No symptoms,,,Primary,Negative
+21,Adult,Female,66,153,Briqueterie,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+15,Child,Female,55,153,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+8,Child,Male,25,126,Briqueterie,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+37,Adult,Male,128,196,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+47,Adult,Female,85,178,Briqueterie,Non-smoker,No response,Informal worker,,No symptoms,,,Secondary,Negative
+10,Child,Female,34,143,Briqueterie,Non-smoker,No response,Student,Paracetamol--Antibiotics,Fever--Rhinitis,0.0,0.0,Primary,Negative
+7,Child,Male,24,124,Briqueterie,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+30,Adult,Female,85,185,Briqueterie,Non-smoker,No,Unemployed,,No symptoms,,,University,Negative
+78,Senior,Female,60,173,Briqueterie,Non-smoker,No,Unemployed,,No symptoms,,,Primary,Negative
+27,Adult,Male,65,169,Briqueterie,Non-smoker,,Trader,,No symptoms,,,No formal instruction,Positive
+26,Adult,Male,58,169,Briqueterie,Non-smoker,,Informal worker--Trader,,No symptoms,,,No formal instruction,Negative
+25,Adult,Male,69,184,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,No formal instruction,Negative
+51,Adult,Male,86,177,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,No formal instruction,Positive
+52,Adult,Male,82,178,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+32,Adult,Female,90,167,Briqueterie,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Positive
+13,Child,Female,53,164,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+31,Adult,Female,58,160,Briqueterie,Non-smoker,Yes,Home-maker,,No symptoms,,,No formal instruction,Negative
+37,Adult,Female,97,170,Briqueterie,Non-smoker,Yes,Unemployed,,No symptoms,,,Secondary,Negative
+10,Child,Male,51,152,Briqueterie,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+8,Child,Female,46,142,Briqueterie,Non-smoker,No,Other,,No symptoms,,,Primary,Negative
+37,Adult,Male,95,178,Briqueterie,Non-smoker,,Salaried worker,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Rhinitis--Sneezing,8.0,6.0,Secondary,Positive
+19,Adult,Female,79,165,Briqueterie,Non-smoker,No,Other,,No symptoms,,,Secondary,Negative
+44,Adult,Male,86,178,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+48,Adult,Female,88,162,Briqueterie,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+38,Adult,Female,76,164,Briqueterie,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+43,Adult,Female,108,175,Briqueterie,Non-smoker,No,Salaried worker,,No symptoms,,,Secondary,Negative
+15,Child,Female,43,156,Briqueterie,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+38,Adult,Male,72,180,Briqueterie,Non-smoker,,Informal worker,,Sore throat,0.0,0.0,Secondary,Negative
+10,Child,Female,32,152,Briqueterie,Non-smoker,No response,Unemployed,,No symptoms,,,Primary,Negative
+12,Child,Female,69,165,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+24,Adult,Male,90,176,Briqueterie,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+75,Senior,Male,74,163,Briqueterie,Non-smoker,,Informal worker,Paracetamol,Cough,7.0,4.0,Primary,Positive
+69,Senior,Female,105,174,Briqueterie,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Positive
+58,Adult,Female,87,167,Briqueterie,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+61,Adult,Male,70,168,Briqueterie,Smoker,,Informal worker,,No symptoms,,,Primary,Negative
+22,Adult,Female,82,184,Briqueterie,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+32,Adult,Female,72,175,Briqueterie,Non-smoker,No,Informal worker,,No symptoms,,,University,Negative
+52,Adult,Female,103,160,Briqueterie,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+48,Adult,Female,72,154,Briqueterie,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+25,Adult,Female,62,174,Briqueterie,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+17,Child,Female,48,154,Briqueterie,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+46,Adult,Female,115,169,Carriere,Non-smoker,No,Salaried worker,,No symptoms,,,Secondary,Positive
+10,Child,Female,41,154,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+36,Adult,Male,77,168,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Primary,Negative
+30,Adult,Female,51,154,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+16,Child,Female,54,168,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+10,Child,Female,26,130,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+26,Adult,Female,74,157,Carriere,Non-smoker,No,Trader,,No symptoms,,,No formal instruction,Negative
+24,Adult,Female,62,164,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+36,Adult,Female,79,162,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+38,Adult,Female,72,185,Carriere,Non-smoker,No,Trader,,No symptoms,,,Primary,Positive
+8,Child,Male,26,122,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+22,Adult,Female,51,160,Carriere,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+11,Child,Male,34,122,Carriere,Non-smoker,,Student,Paracetamol,Headache--Fatigue,0.0,0.0,Primary,Negative
+25,Adult,Female,55,155,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+35,Adult,Female,79,167,Carriere,Non-smoker,No,Trader,Paracetamol--Other,Fever--Fatigue,0.0,0.0,Secondary,Negative
+13,Child,Female,37,132,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+65,Senior,Female,68,160,Carriere,Non-smoker,No,Retired,,No symptoms,,,Secondary,Negative
+9,Child,Female,26,127,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+8,Child,Female,28,134,Carriere,Non-smoker,No response,Student,,No symptoms,,,Primary,Positive
+20,Adult,Female,90,173,Carriere,Non-smoker,No,Student,,No symptoms,,,University,Positive
+22,Adult,Male,71,171,Carriere,Non-smoker,,Student--Informal worker,,No symptoms,,,Primary,Negative
+21,Adult,Male,70,171,Carriere,Non-smoker,,Student--Informal worker,,No symptoms,,,Secondary,Positive
+22,Adult,Male,63,167,Carriere,Non-smoker,,Unemployed,,No symptoms,,,Secondary,Negative
+27,Adult,Male,59,167,Carriere,Ex-smoker,,Student--Informal worker,Paracetamol--Other,Fever--Headache,0.0,0.0,Primary,Negative
+24,Adult,Female,46,160,Carriere,Non-smoker,No,Salaried worker,,No symptoms,,,University,Positive
+24,Adult,Female,59,163,Carriere,Non-smoker,No,Student,Paracetamol,Fever--Rhinitis--Sneezing--Sore throat,2.0,2.0,University,Negative
+60,Adult,Female,86,154,Carriere,Non-smoker,No,Retired,,No symptoms,,,Secondary,Negative
+21,Adult,Male,75,174,Carriere,Non-smoker,,Student,,Cough--Sneezing--Headache,0.0,0.0,University,Positive
+34,Adult,Female,64,160,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,University,Negative
+25,Adult,Female,75,170,Carriere,Non-smoker,No,Student,Other,Rhinitis--Headache,0.0,0.0,University,Negative
+28,Adult,Female,77,164,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+11,Child,Female,44,140,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+23,Adult,Male,68,177,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+26,Adult,Male,75,177,Carriere,Non-smoker,,Unemployed,Antibiotics,Fever--Cough--Rhinitis--Sneezing--Headache,0.0,0.0,University,Positive
+34,Adult,Male,75,167,Carriere,Non-smoker,,Trader,,No symptoms,,,Primary,Positive
+27,Adult,Female,62,155,Carriere,Non-smoker,No,Trader,Other,Fever,0.0,0.0,Primary,Positive
+41,Adult,Female,84,162,Carriere,Non-smoker,No,Trader,,Cough--Rhinitis,0.0,0.0,Primary,Positive
+12,Child,Female,29,131,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+46,Adult,Female,74,165,Carriere,Non-smoker,No,Home-maker,Traditional meds.,Cough--Rhinitis,0.0,0.0,Primary,Positive
+18,Adult,Female,49,157,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+22,Adult,Female,43,142,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+48,Adult,Female,84,165,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Positive
+42,Adult,Female,84,154,Carriere,Non-smoker,No,Home-maker,Other,Rhinitis--Anosmia or ageusia,0.0,0.0,No formal instruction,Negative
+14,Child,Male,42,143,Carriere,Non-smoker,,Other,,No symptoms,,,No formal instruction,Negative
+37,Adult,Male,74,183,Carriere,Non-smoker,,Salaried worker,,No symptoms,,,Secondary,Positive
+43,Adult,Male,65,172,Carriere,Ex-smoker,,Salaried worker,,No symptoms,,,University,Negative
+24,Adult,Male,68,172,Carriere,Ex-smoker,,Informal worker,,Cough--Rhinitis,0.0,0.0,University,Negative
+39,Adult,Male,73,173,Carriere,Non-smoker,,Trader,,No symptoms,,,Secondary,Positive
+21,Adult,Female,75,177,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+21,Adult,Male,67,183,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+27,Adult,Male,82,178,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+42,Adult,Female,129,168,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+7,Child,Female,29,130,Carriere,Non-smoker,No,Student,Other,Rhinitis,0.0,0.0,Primary,Negative
+13,Child,Female,45,150,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+48,Adult,Male,84,174,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+45,Adult,Male,82,167,Carriere,Ex-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+26,Adult,Male,87,174,Carriere,Non-smoker,,Informal worker,,No symptoms,,,University,Positive
+28,Adult,Female,53,160,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,University,Negative
+22,Adult,Female,86,162,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+23,Adult,Male,61,172,Carriere,Smoker,,Unemployed,,No symptoms,,,Secondary,Negative
+69,Senior,Female,66,150,Carriere,Smoker,No,No response,,No symptoms,,,No formal instruction,Negative
+34,Adult,Male,85,176,Carriere,Smoker,,Informal worker,,No symptoms,,,Primary,Negative
+56,Adult,Female,78,170,Carriere,Non-smoker,No,Farmer,,No symptoms,,,Secondary,Negative
+18,Adult,Female,64,170,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+19,Adult,Female,70,177,Carriere,Non-smoker,No,Student--Other,Traditional meds.,Cough,0.0,0.0,Secondary,Negative
+10,Child,Female,64,147,Carriere,Non-smoker,No response,Student,Traditional meds.,Cough,0.0,0.0,Primary,Negative
+33,Adult,Female,97,168,Carriere,Non-smoker,No,Unemployed,Traditional meds.,Fever--Cough,0.0,0.0,Secondary,Negative
+51,Adult,Male,91,170,Carriere,Non-smoker,,Trader,,No symptoms,,,Primary,Positive
+30,Adult,Male,76,174,Carriere,Non-smoker,,Student,,No symptoms,,,University,Negative
+23,Adult,Male,65,170,Carriere,Smoker,,Student,,No symptoms,,,University,Negative
+21,Adult,Male,70,165,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+23,Adult,Female,63,153,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+65,Senior,Male,83,163,Carriere,Smoker,,Farmer,Traditional meds.,Cough,0.0,0.0,Secondary,Positive
+22,Adult,Female,76,156,Carriere,Ex-smoker,No,Student,Traditional meds.,Cough--Sore throat,0.0,0.0,University,Negative
+51,Adult,Male,82,174,Carriere,Ex-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+31,Adult,Female,66,162,Carriere,Non-smoker,Yes,Home-maker,,No symptoms,,,University,Negative
+42,Adult,Male,67,164,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+26,Adult,Male,71,166,Carriere,Non-smoker,,Informal worker,,Fever--Cough,0.0,0.0,Secondary,Positive
+60,Adult,Female,66,166,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Positive
+39,Adult,Female,70,165,Carriere,Non-smoker,No,Informal worker,Paracetamol--Traditional meds.,Fever--Headache,0.0,0.0,Primary,Negative
+33,Adult,Female,63,167,Carriere,Non-smoker,No,Other,,Cough--Anosmia or ageusia,0.0,0.0,Secondary,Positive
+14,Child,Male,46,156,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+29,Adult,Male,65,174,Carriere,Non-smoker,,Student,,No symptoms,,,University,Negative
+27,Adult,Male,80,177,Carriere,Non-smoker,,Informal worker,Paracetamol,Headache,0.0,0.0,Secondary,Negative
+5,Child,Female,19,114,Carriere,Non-smoker,No response,Student,,Fever,0.0,1.0,Primary,Negative
+30,Adult,Female,56,157,Carriere,Ex-smoker,No,Trader,,Fever--Headache--Muscle pain--Stomach ache,15.0,3.0,Secondary,Negative
+35,Adult,Female,99,160,Carriere,Non-smoker,No response,Home-maker,,No symptoms,,,Primary,Negative
+19,Adult,Female,65,154,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+11,Child,Female,35,134,Carriere,Non-smoker,No response,Student,,No symptoms,,,Secondary,Negative
+46,Adult,Male,81,170,Carriere,Non-smoker,,Trader,Paracetamol,Cough,0.0,0.0,Secondary,Negative
+27,Adult,Female,61,155,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+36,Adult,Female,78,162,Carriere,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+8,Child,Female,30,127,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+50,Adult,Female,85,163,Carriere,Non-smoker,No response,Salaried worker,,No symptoms,,,University,Positive
+57,Adult,Male,101,179,Carriere,Non-smoker,,Trader,,No symptoms,,,Secondary,Positive
+23,Adult,Female,53,162,Carriere,Non-smoker,No,Unemployed,,No symptoms,,,University,Negative
+26,Adult,Female,73,179,Carriere,Non-smoker,Yes,Unemployed,,No symptoms,,,University,Negative
+59,Adult,Male,100,182,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+49,Adult,Male,85,178,Carriere,Non-smoker,,Other,,No symptoms,,,Primary,Positive
+51,Adult,Female,91,164,Carriere,Non-smoker,No response,Home-maker,,No symptoms,,,Secondary,Negative
+13,Child,Male,38,150,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+11,Child,Male,38,150,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+50,Adult,Female,65,164,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+14,Child,Female,35,143,Carriere,Non-smoker,No response,Student,Traditional meds.,Cough,0.0,0.0,Primary,Negative
+14,Child,Female,60,164,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+23,Adult,Female,75,161,Carriere,Non-smoker,Yes,Home-maker,,No symptoms,,,Primary,Negative
+28,Adult,Male,67,163,Carriere,Non-smoker,,Informal worker--Other,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Rhinitis--Stomach ache,0.0,0.0,Secondary,Negative
+32,Adult,Male,82,170,Carriere,Non-smoker,,Student--Informal worker,,No symptoms,,,University,Positive
+33,Adult,Female,63,155,Carriere,,Yes,Home-maker,,No symptoms,,,Secondary,Positive
+63,Adult,Male,67,176,Carriere,Ex-smoker,,Trader,,No symptoms,,,Primary,Positive
+30,Adult,Male,68,176,Carriere,Ex-smoker,,Informal worker,Other,Cough,0.0,0.0,Primary,Positive
+34,Adult,Male,86,175,Carriere,Non-smoker,,Farmer--Other,Paracetamol--Antibiotics--Other anti-inflamm.--Traditional meds.,Rhinitis--Headache--Muscle pain,2.0,1.0,Secondary,Negative
+18,Adult,Female,75,165,Carriere,Non-smoker,No,Other,,No symptoms,,,Secondary,Negative
+31,Adult,Male,75,170,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+30,Adult,Male,92,175,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+21,Adult,Male,80,190,Carriere,Smoker,,Student--Informal worker,Paracetamol--Antibiotics--Traditional meds.,Fever--Headache--Fatigue,7.0,5.0,Secondary,Negative
+26,Adult,Male,91,173,Carriere,Non-smoker,,Trader,,No symptoms,,,Secondary,Positive
+29,Adult,Male,75,170,Carriere,Non-smoker,,Student,,No symptoms,,,University,Negative
+37,Adult,Male,75,172,Carriere,Non-smoker,,Other,,No symptoms,,,Secondary,Negative
+34,Adult,Male,65,169,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+32,Adult,Female,68,161,Carriere,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+32,Adult,Female,80,170,Carriere,Non-smoker,No,Trader,,No symptoms,,,Secondary,Positive
+38,Adult,Female,66,150,Carriere,Non-smoker,No,Informal worker,Antibiotics,Cough,0.0,0.0,University,Negative
+12,Child,Male,41,142,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+8,Child,Male,25,121,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+7,Child,Female,20,113,Carriere,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+11,Child,Male,30,121,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+65,Senior,Female,58,150,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Positive
+21,Adult,Male,76,185,Carriere,Non-smoker,,Student,,No symptoms,,,University,Negative
+36,Adult,Female,59,163,Carriere,Non-smoker,No,Salaried worker,Traditional meds.--Other,Cough--Rhinitis,0.0,0.0,Secondary,Negative
+34,Adult,Female,59,163,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+33,Adult,Female,89,157,Carriere,Non-smoker,No,Unemployed,Traditional meds.--Other,Cough--Rhinitis--Anosmia or ageusia,0.0,0.0,Secondary,Negative
+36,Adult,Female,124,165,Carriere,Non-smoker,No,Trader,,No symptoms,,,Secondary,Positive
+16,Child,Female,75,172,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+52,Adult,Female,74,159,Carriere,Smoker,No,No response,,No symptoms,,,No response,Negative
+7,Child,Female,20,119,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+28,Adult,Female,50,165,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,University,Negative
+62,Adult,Female,69,165,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+31,Adult,Male,68,168,Carriere,Ex-smoker,,Informal worker--Trader,,No symptoms,,,Secondary,Negative
+22,Adult,Male,66,164,Carriere,Ex-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+33,Adult,Female,78,153,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+53,Adult,Female,91,167,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+54,Adult,Male,101,181,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+58,Adult,Male,85,167,Carriere,Ex-smoker,,Trader,,No symptoms,,,Secondary,Negative
+35,Adult,Male,109,180,Carriere,Non-smoker,,Unemployed,,No symptoms,,,Secondary,Negative
+39,Adult,Male,75,171,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+21,Adult,Female,78,163,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+64,Adult,Female,72,162,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+11,Child,Male,36,148,Carriere,Non-smoker,,Student,,No symptoms,,,No response,Positive
+9,Child,Female,29,131,Carriere,Non-smoker,No response,Student,,No symptoms,,,Primary,Positive
+5,Child,Female,26,123,Carriere,Non-smoker,No response,No response,,No symptoms,,,Primary,Positive
+14,Child,Male,45,156,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+26,Adult,Male,84,171,Carriere,Non-smoker,,Informal worker,Paracetamol--Antibiotics,Cough--Rhinitis,0.0,0.0,Secondary,Positive
+26,Adult,Male,80,180,Carriere,Non-smoker,,Informal worker,Paracetamol--Traditional meds.,Cough--Rhinitis,0.0,0.0,University,Positive
+69,Senior,Male,83,175,Carriere,Non-smoker,,Informal worker,Paracetamol--Antibiotics--Traditional meds.--Oxygen,Fever--Cough--Muscle pain--Fatigue,18.0,8.0,Primary,Positive
+18,Adult,Female,80,157,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+21,Adult,Female,61,150,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+12,Child,Male,41,148,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+6,Child,Female,26,124,Carriere,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+27,Adult,Female,94,159,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+23,Adult,Female,105,163,Carriere,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+36,Adult,Female,66,160,Carriere,Non-smoker,No,Trader,,No symptoms,,,Secondary,Positive
+24,Adult,Male,74,174,Carriere,Non-smoker,,Informal worker,,No symptoms,,,University,Negative
+29,Adult,Male,75,175,Carriere,Smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+25,Adult,Female,86,172,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+49,Adult,Female,85,169,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+13,Child,Male,40,148,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+25,Adult,Female,90,155,Carriere,Ex-smoker,Yes,Home-maker,Paracetamol,Cough--Rhinitis--Sneezing,0.0,0.0,Secondary,Positive
+26,Adult,Female,59,164,Carriere,Non-smoker,No,Unemployed,Paracetamol--Antibiotics--Other,Fever--Fatigue,2.0,2.0,University,Negative
+34,Adult,Female,69,154,Carriere,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+36,Adult,Female,56,145,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+15,Child,Female,63,159,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+7,Child,Male,24,125,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+8,Child,Female,16,99,Carriere,Non-smoker,No response,No response,,No symptoms,,,No formal instruction,Negative
+16,Child,Female,49,151,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+12,Child,Male,30,134,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+36,Adult,Male,69,168,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Primary,Negative
+15,Child,Female,68,177,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+43,Adult,Female,70,160,Carriere,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+10,Child,Female,42,140,Carriere,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+10,Child,Male,39,125,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+12,Child,Male,59,165,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+25,Adult,Female,59,171,Carriere,Non-smoker,No response,Informal worker,,No symptoms,,,Secondary,Negative
+20,Adult,Female,65,174,Carriere,Non-smoker,No,Student,,No symptoms,,,University,Negative
+41,Adult,Female,61,161,Carriere,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+25,Adult,Male,78,180,Carriere,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+34,Adult,Female,49,150,Carriere,Non-smoker,No,Home-maker,Antibiotics,Cough--Rhinitis,0.0,0.0,Primary,Positive
+7,Child,Male,21,123,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+10,Child,Female,35,130,Carriere,Non-smoker,No,Student,Paracetamol--Antibiotics--Other anti-inflamm.,Sneezing--Sore throat,0.0,0.0,Primary,Negative
+12,Child,Male,39,145,Carriere,Non-smoker,,Student,Paracetamol,Headache,0.0,0.0,Primary,Negative
+33,Adult,Male,76,180,Carriere,Ex-smoker,,Informal worker,,Sneezing,0.0,0.0,No response,Negative
+15,Child,Female,50,150,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+12,Child,Male,47,150,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+6,Child,Male,25,114,Carriere,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+14,Child,Female,51,155,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+17,Child,Male,66,175,Carriere,Non-smoker,,Student,Paracetamol--Antibiotics--Hydrocortisone--Other anti-inflamm.--Traditional meds.,Fever--Headache--Fatigue,4.0,4.0,Secondary,Negative
+31,Adult,Male,70,171,Carriere,Ex-smoker,,Trader,Traditional meds.,Rhinitis,0.0,0.0,Secondary,Negative
+35,Adult,Female,72,164,Carriere,Non-smoker,No,Home-maker--Trader,Paracetamol--Hydrocortisone,Rhinitis--Fatigue,0.0,0.0,Secondary,Negative
+29,Adult,Female,61,158,Carriere,Non-smoker,No,Salaried worker,Traditional meds.,Fever--Cough--Rhinitis--Sneezing--Fatigue--Stomach ache--Anosmia or ageusia,7.0,7.0,University,Negative
+18,Adult,Female,61,151,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+56,Adult,Female,90,157,Carriere,Non-smoker,No,Trader,Traditional meds.,Cough--Rhinitis,0.0,0.0,Primary,Negative
+58,Adult,Female,109,155,Carriere,Non-smoker,No,Salaried worker,,Rhinitis,0.0,0.0,Secondary,Negative
+22,Adult,Female,74,158,Carriere,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+24,Adult,Female,76,156,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+6,Child,Female,24,120,Carriere,Non-smoker,No response,Student,,No symptoms,,,Primary,Positive
+68,Senior,Male,79,169,Carriere,Non-smoker,,Unemployed,,No symptoms,,,Primary,Positive
+21,Adult,Male,70,175,Carriere,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+21,Adult,Female,55,158,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+12,Child,Female,35,143,Carriere,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+14,Child,Female,63,160,Carriere,Non-smoker,No,Student,Other,Cough,0.0,0.0,Primary,Negative
+24,Adult,Male,72,174,Carriere,Non-smoker,,Trader,,No symptoms,,,Primary,Negative
+7,Child,Female,14,118,Carriere,Non-smoker,No response,Student,,No symptoms,,,Primary,Positive
+8,Child,Female,27,132,Carriere,Non-smoker,No,Student,Paracetamol--Other,Cough--Rhinitis--Sneezing--Headache--Fatigue,0.0,0.0,Primary,Positive
+12,Child,Female,40,152,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+36,Adult,Female,71,160,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+38,Adult,Male,89,167,Carriere,Non-smoker,,Salaried worker,,No symptoms,,,Doctorate,Positive
+27,Adult,Female,70,164,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+28,Adult,Male,68,167,Carriere,Non-smoker,,Informal worker,,No symptoms,,,University,Negative
+27,Adult,Male,71,171,Carriere,Non-smoker,,Student,,No symptoms,,,University,Positive
+20,Adult,Female,70,165,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+18,Adult,Male,71,172,Carriere,Ex-smoker,,Student,Paracetamol--Other,Fever--Headache--Fatigue,0.0,0.0,Secondary,Negative
+63,Adult,Female,73,164,Carriere,Non-smoker,No response,Informal worker,,No symptoms,,,University,Negative
+72,Senior,Male,65,163,Carriere,Non-smoker,,Retired,Paracetamol--Antibiotics--Other anti-inflamm.--Other,Shortness of breath,7.0,7.0,Secondary,Negative
+70,Senior,Male,80,178,Carriere,Non-smoker,,Retired,,No symptoms,,,Secondary,Negative
+62,Adult,Female,92,162,Carriere,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Positive
+43,Adult,Male,84,174,Carriere,Ex-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+48,Adult,Female,85,165,Carriere,Non-smoker,No response,Trader,,No symptoms,,,Primary,Negative
+67,Senior,Male,74,172,Carriere,Ex-smoker,,Unemployed,,No symptoms,,,Primary,Negative
+30,Adult,Female,58,159,Carriere,Ex-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+26,Adult,Female,60,159,Carriere,Non-smoker,No,Student,,No symptoms,,,University,Negative
+42,Adult,Female,108,154,Carriere,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+28,Adult,Female,65,158,Carriere,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+21,Adult,Female,69,165,Carriere,Non-smoker,Yes,Student,,No symptoms,,,Secondary,Negative
+23,Adult,Female,77,166,Carriere,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+26,Adult,Female,75,150,Carriere,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+31,Adult,Male,88,170,Carriere,Smoker,,Informal worker,Other,Rhinitis,0.0,0.0,Primary,Negative
+45,Adult,Male,102,172,Cité Verte,Non-smoker,,Retired,,No symptoms,,,Secondary,Negative
+44,Adult,Female,109,160,Cité Verte,Non-smoker,No,Salaried worker,Traditional meds.,Fever--Cough--Rhinitis,2.0,1.0,Secondary,Negative
+29,Adult,Male,54,164,Cité Verte,Non-smoker,,Trader,,No symptoms,,,Secondary,Negative
+73,Senior,Female,79,169,Cité Verte,Non-smoker,No,Retired,Other anti-inflamm.,Muscle pain,5.0,3.0,Primary,Positive
+37,Adult,Female,112,170,Cité Verte,Non-smoker,No,Trader,,Rhinitis,0.0,0.0,Secondary,Positive
+78,Senior,Female,70,166,Cité Verte,Non-smoker,No,No response,,No symptoms,,,Primary,Negative
+47,Adult,Female,95,175,Cité Verte,Non-smoker,No,Trader,Traditional meds.,Cough--Rhinitis--Headache,0.0,0.0,Secondary,Negative
+20,Adult,Female,58,166,Cité Verte,Non-smoker,No,Trader,Paracetamol--Antibiotics,Fever--Headache--Fatigue--Nausea or vomiting,7.0,7.0,University,Positive
+53,Adult,Female,85,163,Cité Verte,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+25,Adult,Female,71,157,Cité Verte,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+24,Adult,Male,79,185,Cité Verte,Non-smoker,,Trader,,No symptoms,,,Secondary,Negative
+30,Adult,Male,94,185,Cité Verte,Non-smoker,,Informal worker,Antibiotics,Cough,0.0,0.0,Secondary,Negative
+17,Child,Male,65,190,Cité Verte,Non-smoker,,Student,,Rhinitis,0.0,0.0,Secondary,Negative
+17,Child,Male,62,175,Cité Verte,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+34,Adult,Female,84,167,Cité Verte,Non-smoker,No,Salaried worker,Paracetamol--Antibiotics--Traditional meds.,Fever--Headache--Muscle pain--Anosmia or ageusia,7.0,4.0,University,Negative
+26,Adult,Female,88,162,Cité Verte,Non-smoker,No,Student,,No symptoms,,,University,Negative
+32,Adult,Female,102,169,Cité Verte,Non-smoker,No,Trader,,Cough,0.0,0.0,Primary,Negative
+28,Adult,Female,68,170,Cité Verte,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+23,Adult,Female,65,163,Cité Verte,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+14,Child,Male,45,152,Cité Verte,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+12,Child,Male,40,148,Cité Verte,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+13,Child,Female,55,155,Cité Verte,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+6,Child,Female,21,118,Cité Verte,Non-smoker,No,Student,,No symptoms,,,Primary,Positive
+17,Child,Female,63,164,Cité Verte,Non-smoker,No,Student,Paracetamol--Antibiotics--Other,Fever,0.0,0.0,Secondary,Negative
+44,Adult,Female,79,164,Cité Verte,Non-smoker,No,Salaried worker,,No symptoms,,,Secondary,Negative
+40,Adult,Female,70,170,Cité Verte,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+12,Child,Female,42,159,Cité Verte,Non-smoker,No,Student,Paracetamol--Antibiotics,Fever--Rhinitis--Headache,3.0,2.0,Secondary,Negative
+18,Adult,Male,65,167,Cité Verte,Non-smoker,,Student,Paracetamol--Antibiotics--Other,Fever--Headache--Fatigue,8.0,4.0,Secondary,Positive
+20,Adult,Female,67,167,Cité Verte,Non-smoker,No,Student,Traditional meds.,Fever--Cough--Rhinitis,0.0,3.0,University,Negative
+43,Adult,Female,75,164,Cité Verte,Non-smoker,No,Salaried worker,Traditional meds.,Rhinitis,0.0,0.0,Secondary,Negative
+19,Adult,Female,67,156,Cité Verte,Non-smoker,No,Student,Antibiotics--Other anti-inflamm.,Fever,0.0,0.0,Secondary,Negative
+20,Adult,Female,65,167,Cité Verte,Non-smoker,No,Student,Paracetamol--Traditional meds.--Other,Fever,0.0,0.0,Secondary,Negative
+6,Child,Male,22,120,Cité Verte,Non-smoker,,Student,Other,Other,2.0,2.0,Primary,Negative
+6,Child,Male,18,112,Cité Verte,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+8,Child,Male,22,130,Cité Verte,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+14,Child,Female,52,169,Cité Verte,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+11,Child,Female,42,146,Cité Verte,Non-smoker,No response,Student,,No symptoms,,,Secondary,Negative
+67,Senior,Male,94,172,Cité Verte,Ex-smoker,,Retired--Other,Paracetamol--Antibiotics--Traditional meds.,Cough--Headache,2.0,2.0,Doctorate,Negative
+26,Adult,Female,66,166,Cité Verte,Non-smoker,No,Home-maker,Paracetamol,Rhinitis--Headache,0.0,0.0,University,Negative
+27,Adult,Female,67,163,Cité Verte,Non-smoker,No,Trader,,Rhinitis--Sneezing--Headache--Fatigue,0.0,0.0,University,Negative
+68,Senior,Male,78,173,Cité Verte,Non-smoker,,Retired,Traditional meds.,Cough,0.0,0.0,Secondary,Negative
+61,Adult,Female,90,169,Cité Verte,Non-smoker,No,Trader,Traditional meds.,Cough--Rhinitis--Sneezing,0.0,0.0,Secondary,Negative
+23,Adult,Female,55,155,Cité Verte,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+39,Adult,Male,93,178,Cité Verte,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+28,Adult,Female,73,164,Cité Verte,Non-smoker,No,Informal worker,,No symptoms,,,University,Positive
+29,Adult,Female,55,170,Cité Verte,Non-smoker,No,Salaried worker,Paracetamol,Headache--Muscle pain,0.0,0.0,University,Positive
+43,Adult,Female,65,160,Cité Verte,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Positive
+60,Adult,Male,85,187,Cité Verte,Smoker,,Unemployed,,No symptoms,,,Secondary,Negative
+48,Adult,Female,115,155,Cité Verte,Non-smoker,No,Home-maker,,No symptoms,,,University,Negative
+36,Adult,Female,81,160,Cité Verte,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Positive
+25,Adult,Male,69,165,Cité Verte,Non-smoker,,Informal worker--Unemployed,Other,Headache,2.0,2.0,University,Negative
+24,Adult,Male,64,175,Cité Verte,Ex-smoker,,Student,,Headache,0.0,0.0,Secondary,Negative
+46,Adult,Male,96,167,Cité Verte,Non-smoker,,Salaried worker,,No symptoms,,,University,Negative
+19,Adult,Male,60,161,Cité Verte,Ex-smoker,,Student,Traditional meds.,Cough,0.0,0.0,Secondary,Negative
+15,Child,Male,65,166,Cité Verte,Smoker,,Student,Traditional meds.,Fever--Cough,1.0,1.0,Secondary,Negative
+14,Child,Female,67,169,Cité Verte,Non-smoker,No,Student,Antibiotics,Fever--Cough--Headache--Fatigue,0.0,3.0,Secondary,Positive
+36,Adult,Female,92,170,Cité Verte,Ex-smoker,No,Salaried worker,Paracetamol,Fever--Cough--Rhinitis--Headache,0.0,2.0,University,Positive
+39,Adult,Female,86,159,Cité Verte,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+9,Child,Male,38,145,Cité Verte,Non-smoker,,Student,Antibiotics,Cough--Rhinitis,0.0,0.0,Primary,Negative
+54,Adult,Male,71,170,Cité Verte,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+46,Adult,Female,118,166,Cité Verte,Non-smoker,No,Salaried worker,,No symptoms,,,Secondary,Negative
+33,Adult,Female,89,160,Cité Verte,Non-smoker,No,Salaried worker,,No symptoms,,,University,Negative
+8,Child,Male,45,130,Cité Verte,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+32,Adult,Male,70,177,Cité Verte,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+46,Adult,Female,98,169,Cité Verte,Non-smoker,No,Farmer,,No symptoms,,,Primary,Negative
+22,Adult,Female,61,156,Cité Verte,Non-smoker,No,Informal worker,,Cough--Sneezing,0.0,0.0,Secondary,Negative
+28,Adult,Female,60,152,Cité Verte,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+8,Child,Female,23,129,Cité Verte,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+5,Child,Male,16,111,Cité Verte,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+21,Adult,Male,70,173,Cité Verte,Ex-smoker,,Unemployed,Other anti-inflamm.,Cough--Sneezing--Muscle pain,2.0,2.0,Secondary,Positive
+25,Adult,Female,73,158,Cité Verte,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+37,Adult,Male,85,178,Cité Verte,Smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+29,Adult,Female,77,174,Ekoudou,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+8,Child,Male,27,125,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+5,Child,Female,21,107,Ekoudou,Non-smoker,No response,Student,,No symptoms,,,Primary,Positive
+9,Child,Male,39,133,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+50,Adult,Male,65,172,Ekoudou,Non-smoker,,Trader,,No symptoms,,,Primary,Negative
+23,Adult,Female,65,165,Ekoudou,Non-smoker,Yes,Home-maker,,No symptoms,,,Secondary,Negative
+23,Adult,Female,65,171,Ekoudou,Non-smoker,Yes,Student,,No symptoms,,,Secondary,Positive
+17,Child,Female,67,165,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+44,Adult,Female,78,172,Ekoudou,Non-smoker,No,Home-maker,Paracetamol--Antibiotics,Fever--Rhinitis--Headache,0.0,0.0,Secondary,Positive
+43,Adult,Female,110,155,Ekoudou,Non-smoker,Yes,Home-maker,,No symptoms,,,Primary,Positive
+20,Adult,Female,79,173,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+38,Adult,Female,63,176,Ekoudou,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+28,Adult,Male,65,168,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+13,Child,Male,35,145,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+11,Child,Female,33,141,Ekoudou,Non-smoker,No response,Student,,No symptoms,,,Secondary,Positive
+10,Child,Male,38,151,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+6,Child,Male,18,109,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+11,Child,Male,24,129,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+9,Child,Female,23,128,Ekoudou,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+25,Adult,Female,50,167,Ekoudou,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+32,Adult,Female,73,170,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+20,Adult,Female,48,168,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+32,Adult,Female,83,171,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+8,Child,Male,31,112,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+7,Child,Male,28,109,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+32,Adult,Male,79,172,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,No formal instruction,Negative
+61,Adult,Male,70,165,Ekoudou,Non-smoker,,Retired,,No symptoms,,,University,Positive
+27,Adult,Female,54,167,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,Primary,Negative
+10,Child,Female,24,117,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+14,Child,Male,31,135,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+51,Adult,Female,65,165,Ekoudou,Non-smoker,No,Informal worker,,Cough,0.0,0.0,Primary,Negative
+12,Child,Female,35,130,Ekoudou,Non-smoker,No,Student,Traditional meds.,Cough--Headache,1.0,1.0,Primary,Negative
+5,Child,Male,15,105,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+67,Senior,Male,76,187,Ekoudou,Non-smoker,,Salaried worker,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Rhinitis--Headache--Muscle pain,0.0,0.0,Primary,Positive
+38,Adult,Female,72,170,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,Primary,Negative
+38,Adult,Female,63,164,Ekoudou,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+21,Adult,Female,58,164,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+8,Child,Male,37,134,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+55,Adult,Female,77,167,Ekoudou,Non-smoker,No,Informal worker,,No symptoms,,,No formal instruction,Negative
+34,Adult,Male,73,174,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+25,Adult,Female,59,164,Ekoudou,Non-smoker,Yes,Informal worker,,No symptoms,,,Secondary,Negative
+11,Child,Male,29,138,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+9,Child,Male,28,134,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+7,Child,Female,19,115,Ekoudou,Non-smoker,No,Student,Paracetamol--Antibiotics--Other anti-inflamm.,Cough--Headache,0.0,0.0,Primary,Negative
+22,Adult,Male,67,173,Ekoudou,Ex-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+21,Adult,Male,72,185,Ekoudou,Ex-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+30,Adult,Male,91,168,Ekoudou,Non-smoker,,Student,Paracetamol--Hydrocortisone--Traditional meds.,Fever--Cough--Rhinitis--Sneezing--Headache--Anosmia or ageusia,8.0,6.0,University,Positive
+45,Adult,Female,59,165,Ekoudou,Non-smoker,No,Home-maker,Paracetamol,Headache,0.0,0.0,Primary,Positive
+33,Adult,Female,65,164,Ekoudou,Non-smoker,No,Informal worker,Hydrocortisone,Fever--Rhinitis--Sneezing--Anosmia or ageusia,0.0,0.0,Primary,Positive
+22,Adult,Female,54,161,Ekoudou,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+16,Child,Female,40,161,Ekoudou,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+39,Adult,Female,62,164,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+16,Child,Female,53,164,Ekoudou,Non-smoker,No,Student,Paracetamol--Hydrocortisone,Fever--Rhinitis--Sneezing--Headache,0.0,0.0,Secondary,Negative
+47,Adult,Female,57,159,Ekoudou,Non-smoker,No,Salaried worker,Paracetamol--Antibiotics--Traditional meds.,Fever--Rhinitis--Sore throat--Headache,5.0,3.0,Secondary,Negative
+20,Adult,Female,52,160,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+26,Adult,Female,62,158,Ekoudou,Non-smoker,No,Informal worker,Paracetamol--Other,Rhinitis--Headache,0.0,0.0,University,Positive
+34,Adult,Female,63,167,Ekoudou,Ex-smoker,No,Informal worker,Traditional meds.,Sore throat--Diarrhoea,0.0,0.0,Primary,Negative
+22,Adult,Female,57,168,Ekoudou,Non-smoker,No,Student,,No symptoms,,,University,Negative
+17,Child,Female,67,170,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+28,Adult,Female,65,169,Ekoudou,Non-smoker,No,Student--Informal worker,Paracetamol,Headache,0.0,0.0,University,Negative
+16,Child,Female,52,154,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+18,Adult,Female,54,159,Ekoudou,Non-smoker,Yes,Student,,No symptoms,,,Primary,Positive
+56,Adult,Female,80,165,Ekoudou,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Negative
+56,Adult,Female,75,165,Ekoudou,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Negative
+49,Adult,Male,92,190,Ekoudou,Smoker,,Informal worker,Paracetamol--Traditional meds.--Other,Fever--Headache--Muscle pain--Fatigue,5.0,3.0,Secondary,Positive
+10,Child,Female,35,130,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+14,Child,Male,41,151,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+18,Adult,Female,61,174,Ekoudou,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+8,Child,Female,32,110,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+8,Child,Male,32,110,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+24,Adult,Male,73,174,Ekoudou,Non-smoker,,Student,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Headache--Muscle pain--Fatigue,7.0,4.0,Secondary,Positive
+22,Adult,Male,57,163,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+14,Child,Female,66,173,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+10,Child,Male,50,145,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+22,Adult,Female,74,161,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,Primary,Positive
+30,Adult,Female,85,167,Ekoudou,Non-smoker,No,Trader,Paracetamol--Antibiotics--Other,Fever--Headache--Stomach ache,5.0,3.0,Primary,Positive
+22,Adult,Female,56,165,Ekoudou,Non-smoker,No,Informal worker,Paracetamol,Fever--Headache--Muscle pain--Fatigue--Stomach ache,2.0,2.0,Secondary,Negative
+61,Adult,Female,121,166,Ekoudou,Non-smoker,No response,Unemployed,,No symptoms,,,No formal instruction,Positive
+10,Child,Female,38,155,Ekoudou,Non-smoker,No,Student,Traditional meds.,Cough--Rhinitis--Sneezing,0.0,0.0,Primary,Negative
+27,Adult,Male,55,164,Ekoudou,Non-smoker,,Trader,,No symptoms,,,Secondary,Negative
+35,Adult,Female,84,168,Ekoudou,Non-smoker,No,Unemployed,Paracetamol--Other,Fever--Other,0.0,0.0,Primary,Positive
+14,Child,Male,70,175,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+13,Child,Male,57,167,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+67,Senior,Female,58,163,Ekoudou,Non-smoker,No,Salaried worker,Paracetamol--Other anti-inflamm.,Muscle pain,2.0,,Secondary,Negative
+7,Child,Male,35,137,Ekoudou,Non-smoker,,Student,Paracetamol--Antibiotics--Other,Fever--Headache--Diarrhoea,5.0,3.0,Primary,Negative
+32,Adult,Female,78,178,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Doctorate,Negative
+7,Child,Male,40,145,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+30,Adult,Female,65,169,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,University,Negative
+22,Adult,Female,63,167,Ekoudou,Non-smoker,No,Student,,No symptoms,,,University,Negative
+29,Adult,Male,70,176,Ekoudou,Non-smoker,,Student,,No symptoms,,,University,Negative
+35,Adult,Male,78,172,Ekoudou,Non-smoker,,Informal worker,Hydrocortisone,Fever--Cough,0.0,0.0,Secondary,Negative
+26,Adult,Female,56,160,Ekoudou,Non-smoker,No,Home-maker,Paracetamol--Other,Fever--Headache--Muscle pain,6.0,3.0,Secondary,Negative
+38,Adult,Male,73,169,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+56,Adult,Female,119,166,Ekoudou,Non-smoker,No,Informal worker,Paracetamol,Fever,0.0,0.0,Secondary,Negative
+21,Adult,Female,64,164,Ekoudou,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Positive
+39,Adult,Female,68,164,Ekoudou,Non-smoker,No,Unemployed,Paracetamol--Antibiotics--Other,Fever--Muscle pain--Nausea or vomiting--Stomach ache,3.0,3.0,Primary,Positive
+10,Child,Male,28,137,Ekoudou,Non-smoker,,Student,Traditional meds.,Cough--Sneezing,0.0,0.0,Primary,Positive
+8,Child,Male,23,120,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+11,Child,Male,41,152,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+34,Adult,Female,63,172,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+5,Child,Female,20,105,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+8,Child,Male,22,115,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+67,Senior,Male,95,168,Ekoudou,Non-smoker,,Retired,,No symptoms,,,Primary,Negative
+16,Child,Male,49,157,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+33,Adult,Female,72,165,Ekoudou,Non-smoker,No,Informal worker,Paracetamol,Headache--Fatigue,0.0,0.0,Secondary,Negative
+44,Adult,Female,82,165,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,Primary,Negative
+24,Adult,Male,80,169,Ekoudou,Non-smoker,,Informal worker,Paracetamol,Headache,0.0,0.0,Secondary,Negative
+25,Adult,Male,70,168,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+59,Adult,Male,84,169,Ekoudou,Ex-smoker,,Retired,Paracetamol--Other,Fever--Rhinitis--Sneezing--Headache,5.0,3.0,Secondary,Negative
+43,Adult,Female,89,168,Ekoudou,Non-smoker,No response,Unemployed,Other,Fever--Headache--Muscle pain--Fatigue,3.0,3.0,Primary,Positive
+10,Child,Female,32,152,Ekoudou,Non-smoker,No response,Student,,No symptoms,,,Primary,Positive
+7,Child,Female,31,148,Ekoudou,Non-smoker,No,Student,Traditional meds.,Cough--Rhinitis,0.0,0.0,Primary,Positive
+24,Adult,Female,59,158,Ekoudou,Non-smoker,No,Student--Informal worker,,No symptoms,,,Secondary,Negative
+47,Adult,Female,76,154,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+50,Adult,Female,84,168,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+43,Adult,Female,59,165,Ekoudou,Non-smoker,No,Unemployed,Paracetamol,Cough--Headache--Muscle pain,0.0,0.0,Primary,Negative
+41,Adult,Female,83,160,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+17,Child,Female,50,164,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+22,Adult,Male,75,174,Ekoudou,Non-smoker,,Student,,No symptoms,,,University,Negative
+5,Child,Female,20,117,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+26,Adult,Male,65,170,Ekoudou,Non-smoker,,Student,,No symptoms,,,University,Negative
+20,Adult,Female,52,166,Ekoudou,Non-smoker,No,Student,,No symptoms,,,University,Negative
+20,Adult,Male,52,166,Ekoudou,Non-smoker,,Student--Informal worker,,No symptoms,,,University,Positive
+56,Adult,Female,62,164,Ekoudou,Non-smoker,No,Trader,Paracetamol--Antibiotics--Other anti-inflamm.,Fever--Rhinitis--Headache,3.0,1.0,No formal instruction,Negative
+55,Adult,Male,82,185,Ekoudou,Non-smoker,,Trader,,No symptoms,,,No formal instruction,Negative
+48,Adult,Male,118,170,Ekoudou,Non-smoker,,Trader,,No symptoms,,,Primary,Positive
+35,Adult,Male,85,167,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+49,Adult,Female,99,180,Ekoudou,Ex-smoker,No,Informal worker,Paracetamol,Fever--Rhinitis,0.0,0.0,No formal instruction,Negative
+52,Adult,Male,78,166,Ekoudou,Non-smoker,,Informal worker,Paracetamol--Antibiotics,Fever--Headache--Muscle pain,3.0,3.0,Primary,Negative
+20,Adult,Female,69,157,Ekoudou,Non-smoker,No,Informal worker,Paracetamol,Fever,0.0,0.0,No formal instruction,Negative
+70,Senior,Female,50,157,Ekoudou,Non-smoker,No response,Unemployed,,No symptoms,,,No formal instruction,Negative
+65,Senior,Male,79,173,Ekoudou,Ex-smoker,,Trader,,No symptoms,,,No formal instruction,Positive
+37,Adult,Male,70,173,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,University,Negative
+51,Adult,Male,72,153,Ekoudou,Non-smoker,,Retired,,No symptoms,,,No formal instruction,Negative
+76,Senior,Male,78,170,Ekoudou,Non-smoker,,Retired,Paracetamol--Traditional meds.,Fever--Cough--Shortness of breath--Anosmia or ageusia,6.0,3.0,No formal instruction,Negative
+51,Adult,Female,76,158,Ekoudou,Non-smoker,No,Trader,Hydrocortisone,Cough--Anosmia or ageusia,0.0,2.0,No formal instruction,Negative
+30,Adult,Female,54,160,Ekoudou,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Positive
+34,Adult,Male,66,180,Ekoudou,Smoker,,Informal worker,Paracetamol--Antibiotics,Fever--Rhinitis--Anosmia or ageusia,3.0,3.0,Secondary,Positive
+34,Adult,Male,92,182,Mokolo,Non-smoker,,Informal worker,Paracetamol--Antibiotics--Other,Fever--Headache--Nausea or vomiting,9.0,7.0,Secondary,Negative
+24,Adult,Male,66,165,Ekoudou,Non-smoker,,Unemployed,,Fatigue,0.0,0.0,Secondary,Negative
+55,Adult,Male,66,182,Ekoudou,Smoker,,Informal worker,,No symptoms,,,Primary,Negative
+38,Adult,Male,73,162,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+30,Adult,Female,72,162,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Positive
+53,Adult,Female,75,160,Ekoudou,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+32,Adult,Female,70,162,Ekoudou,Non-smoker,No,Informal worker,Paracetamol,Headache,0.0,0.0,Primary,Negative
+7,Child,Male,23,118,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+7,Child,Male,23,118,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+16,Child,Male,60,167,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+56,Adult,Female,97,168,Ekoudou,Ex-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+10,Child,Female,37,140,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+7,Child,Female,37,121,Ekoudou,Non-smoker,No,Student,Antibiotics,Cough,0.0,0.0,Primary,Positive
+10,Child,Female,28,155,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+32,Adult,Male,78,167,Ekoudou,Non-smoker,,Informal worker--Other,,No symptoms,,,Secondary,Negative
+19,Adult,Female,57,156,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Positive
+7,Child,Male,22,148,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+13,Child,Male,29,154,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+56,Adult,Male,78,177,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+40,Adult,Female,100,163,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,Primary,Positive
+21,Adult,Female,78,153,Ekoudou,Non-smoker,No,Informal worker,Traditional meds.,Stomach ache,0.0,0.0,Secondary,Negative
+12,Child,Female,55,159,Ekoudou,Non-smoker,No,Student,Traditional meds.,Fever--Cough,3.0,2.0,Primary,Positive
+17,Child,Male,71,170,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+19,Adult,Female,109,160,Ekoudou,Non-smoker,No,Student,Paracetamol--Traditional meds.,Cough--Headache,4.0,1.0,Secondary,Negative
+30,Adult,Female,78,162,Ekoudou,Non-smoker,No,Informal worker,Paracetamol,Fever,0.0,0.0,Primary,Negative
+9,Child,Female,30,128,Ekoudou,Non-smoker,No,Student,Paracetamol--Antibiotics--Traditional meds.,Cough--Nausea or vomiting--Diarrhoea,3.0,1.0,Primary,Negative
+23,Adult,Male,72,171,Ekoudou,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+14,Child,Female,46,165,Ekoudou,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+50,Adult,Female,135,165,Ekoudou,Non-smoker,No,Informal worker,Paracetamol--Antibiotics,Headache--Muscle pain--Nausea or vomiting,3.0,2.0,Primary,Positive
+8,Child,Female,25,128,Ekoudou,Non-smoker,No,Student,Paracetamol--Other anti-inflamm.--Traditional meds.,Fever--Headache--Diarrhoea,5.0,3.0,Primary,Positive
+68,Senior,Female,64,159,Ekoudou,Non-smoker,No,Trader,,No symptoms,,,No formal instruction,Negative
+45,Adult,Female,64,152,Ekoudou,Non-smoker,No,Trader,,Fever--Headache--Muscle pain,0.0,0.0,Secondary,Negative
+25,Adult,Male,77,175,Ekoudou,Non-smoker,,Informal worker,Paracetamol,Fever,0.0,0.0,Secondary,Negative
+28,Adult,Female,102,162,Ekoudou,Non-smoker,No,Informal worker,Paracetamol--Antibiotics--Other,Fever--Headache--Muscle pain,3.0,3.0,Secondary,Negative
+60,Adult,Female,64,154,Ekoudou,Non-smoker,No,Trader,Other anti-inflamm.,Stomach ache--Other,5.0,2.0,No formal instruction,Negative
+31,Adult,Male,48,167,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,Primary,Negative
+14,Child,Male,49,160,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,No formal instruction,Negative
+11,Child,Male,38,152,Ekoudou,Non-smoker,,Student,Paracetamol--Traditional meds.,Fever--Cough,0.0,0.0,Secondary,Positive
+11,Child,Female,29,149,Ekoudou,Non-smoker,No,Student,Paracetamol--Antibiotics,Fever--Sneezing--Headache--Nausea or vomiting,5.0,3.0,Secondary,Negative
+7,Child,Female,27,130,Ekoudou,Non-smoker,No response,Student,Traditional meds.,Sneezing,0.0,0.0,Primary,Positive
+9,Child,Female,21,130,Ekoudou,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+8,Child,Male,24,131,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+13,Child,Female,69,163,Ekoudou,Non-smoker,No,Student,Paracetamol--Other,Fever--Cough--Sneezing--Headache,2.0,2.0,Secondary,Positive
+6,Child,Male,24,110,Ekoudou,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+21,Adult,Male,65,177,Ekoudou,Ex-smoker,,Informal worker,,No symptoms,,,Primary,Negative
+21,Adult,Male,74,171,Ekoudou,Non-smoker,,Informal worker,,No symptoms,,,University,Negative
+60,Adult,Female,85,168,Ekoudou,Non-smoker,No,Retired,,No symptoms,,,University,Negative
+32,Adult,Female,72,180,Ekoudou,Non-smoker,No,Unemployed,,No symptoms,,,University,Negative
+24,Adult,Male,52,165,Ekoudou,Non-smoker,,Student,,No symptoms,,,University,Negative
+21,Adult,Male,66,167,Ekoudou,Non-smoker,,Student--Informal worker,Hydrocortisone--Other,Rhinitis,0.0,0.0,University,Positive
+28,Adult,Male,80,166,Ekoudou,Non-smoker,,Trader,,No symptoms,,,University,Positive
+47,Adult,Female,83,165,Ekoudou,Non-smoker,No,Trader,Traditional meds.,Stomach ache,0.0,0.0,Primary,Positive
+35,Adult,Female,73,166,Ekoudou,Non-smoker,No,Informal worker,Paracetamol,Headache,1.0,1.0,Primary,Positive
+55,Adult,Male,70,169,Messa,Non-smoker,,Informal worker,,No symptoms,,,Primary,Negative
+59,Adult,Female,59,160,Messa,Non-smoker,No,Trader,,No symptoms,,,No formal instruction,Negative
+39,Adult,Female,72,169,Messa,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+12,Child,Female,53,158,Messa,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+12,Child,Female,49,135,Messa,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+10,Child,Male,38,101,Messa,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+7,Child,Female,22,100,Messa,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+13,Child,Male,53,161,Messa,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+23,Adult,Male,70,172,Messa,Ex-smoker,,Student,,No symptoms,,,Secondary,Negative
+67,Senior,Female,82,165,Messa,Non-smoker,No,Retired,,No symptoms,,,Secondary,Negative
+40,Adult,Male,65,180,Messa,Non-smoker,,Informal worker,,No symptoms,,,Primary,Negative
+29,Adult,Female,66,165,Messa,Non-smoker,Yes,Home-maker--Informal worker,,No symptoms,,,Primary,Negative
+9,Child,Female,33,130,Messa,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+14,Child,Female,67,168,Messa,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+6,Child,Female,27,123,Messa,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+24,Adult,Male,70,172,Messa,Non-smoker,,Student--Informal worker,,No symptoms,,,University,Negative
+29,Adult,Male,58,160,Messa,Non-smoker,,Informal worker,,No symptoms,,,University,Positive
+27,Adult,Female,85,162,Messa,Non-smoker,No,Informal worker,,No symptoms,,,University,Positive
+36,Adult,Male,75,180,Messa,Non-smoker,,Salaried worker,,No symptoms,,,Doctorate,Negative
+27,Adult,Male,62,165,Messa,Non-smoker,,Student,Traditional meds.,Headache--Anosmia or ageusia,0.0,0.0,University,Positive
+59,Adult,Female,96,158,Messa,Non-smoker,No,Retired,Traditional meds.,Fever--Muscle pain--Fatigue,3.0,3.0,University,Positive
+20,Adult,Female,61,153,Messa,Non-smoker,No,Student,Paracetamol--Traditional meds.,Cough--Headache,0.0,0.0,University,Negative
+55,Adult,Female,77,177,Messa,Non-smoker,No,Salaried worker,Traditional meds.,Fever--Cough--Muscle pain--Fatigue--Stomach ache,0.0,0.0,University,Positive
+28,Adult,Female,60,154,Messa,Non-smoker,No,Salaried worker,Traditional meds.,Fever--Cough--Anosmia or ageusia,3.0,2.0,Doctorate,Negative
+8,Child,Male,30,130,Messa,Non-smoker,,Student,Antibiotics--Hydrocortisone--Oxygen,Fever--Cough--Shortness of breath,10.0,7.0,Primary,Negative
+5,Child,Female,19,103,Messa,Non-smoker,No response,Student,,No symptoms,,,Primary,Positive
+15,Child,Female,58,157,Messa,Non-smoker,No,Student,Paracetamol--Traditional meds.,Headache,0.0,0.0,Secondary,Positive
+48,Adult,Female,86,162,Messa,Non-smoker,No,Home-maker--Trader,Traditional meds.,Fever--Headache,0.0,0.0,University,Negative
+15,Child,Male,50,170,Messa,Non-smoker,,Student,,Cough,0.0,0.0,Secondary,Negative
+17,Child,Male,77,181,Messa,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+11,Child,Male,38,152,Messa,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+27,Adult,Male,72,165,Messa,Non-smoker,,Other,,No symptoms,,,Primary,Negative
+8,Child,Male,25,132,Messa,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+11,Child,Male,41,143,Messa,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+11,Child,Female,36,141,Messa,Non-smoker,No response,Student,,No symptoms,,,Secondary,Positive
+35,Adult,Female,66,158,Messa,Non-smoker,No,Unemployed,Traditional meds.,Fever,2.0,2.0,Secondary,Negative
+52,Adult,Female,81,160,Messa,Non-smoker,No,Salaried worker,,No symptoms,,,University,Negative
+67,Senior,Female,48,147,Messa,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Positive
+18,Adult,Male,66,185,Messa,Non-smoker,,Student,Other,Rhinitis,0.0,0.0,Secondary,Negative
+14,Child,Female,57,168,Messa,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+45,Adult,Female,81,167,Messa,Non-smoker,No,Salaried worker,,No symptoms,,,Secondary,Negative
+19,Adult,Female,59,170,Messa,Non-smoker,No,Student,Paracetamol--Other,Headache--Fatigue--Nausea or vomiting--Stomach ache,5.0,3.0,Secondary,Negative
+25,Adult,Male,61,164,Messa,Non-smoker,,Student,Other,Fever--Headache,0.0,0.0,University,Negative
+32,Adult,Female,65,165,Messa,Non-smoker,No,Trader,,No symptoms,,,Secondary,Positive
+40,Adult,Male,65,169,Messa,Ex-smoker,,Unemployed,,No symptoms,,,Secondary,Positive
+33,Adult,Male,67,161,Messa,Smoker,,Unemployed,Paracetamol--Traditional meds.,Fever--Cough--Headache--Anosmia or ageusia,0.0,0.0,Secondary,Positive
+30,Adult,Male,63,164,Messa,Smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+25,Adult,Male,78,187,Messa,Smoker,,Student,,No symptoms,,,University,Positive
+45,Adult,Male,82,170,Mokolo,Ex-smoker,,Informal worker,Traditional meds.,Fever--Headache--Anosmia or ageusia,45.0,14.0,Secondary,Positive
+56,Adult,Female,106,165,Mokolo,Non-smoker,No,Home-maker,,No symptoms,,,Primary,Negative
+36,Adult,Female,94,160,Mokolo,Non-smoker,No,Salaried worker,,No symptoms,,,Secondary,Negative
+5,Child,Male,18,117,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+63,Adult,Male,86,165,Mokolo,Non-smoker,,Retired,,No symptoms,,,University,Negative
+20,Adult,Male,53,166,Mokolo,Non-smoker,,Student,Paracetamol,Cough--Headache--Anosmia or ageusia,0.0,2.0,University,Positive
+61,Adult,Female,105,165,Mokolo,Non-smoker,No,Retired--Trader,,No symptoms,,,Secondary,Negative
+32,Adult,Female,106,167,Mokolo,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+26,Adult,Female,83,165,Mokolo,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+21,Adult,Female,77,164,Mokolo,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+5,Child,Male,22,118,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+7,Child,Male,18,118,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+44,Adult,Male,83,178,Mokolo,Non-smoker,,Salaried worker,Other anti-inflamm.,Cough--Sneezing--Headache,0.0,0.0,Secondary,Negative
+38,Adult,Female,80,166,Mokolo,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+7,Child,Female,26,145,Mokolo,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+44,Adult,Male,86,173,Mokolo,Ex-smoker,,Salaried worker,,No symptoms,,,University,Positive
+10,Child,Female,42,147,Mokolo,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+33,Adult,Male,77,178,Mokolo,Non-smoker,,Informal worker,Paracetamol--Antibiotics--Other,Fever--Muscle pain,10.0,0.0,No formal instruction,Positive
+34,Adult,Male,96,170,Mokolo,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+25,Adult,Female,64,160,Mokolo,Non-smoker,No,Trader,Paracetamol--Antibiotics--Other,Fever--Rhinitis--Sneezing--Headache,0.0,0.0,No formal instruction,Positive
+10,Child,Male,34,143,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+28,Adult,Male,80,173,Mokolo,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Positive
+20,Adult,Female,54,165,Mokolo,Non-smoker,Yes,Unemployed,Paracetamol--Antibiotics--Other,Fever--Headache--Muscle pain--Stomach ache,1.0,1.0,No formal instruction,Negative
+64,Adult,Female,158,82,Mokolo,Non-smoker,No,Retired,Paracetamol--Traditional meds.,Sneezing--Fatigue,0.0,0.0,No formal instruction,Negative
+48,Adult,Male,67,168,Mokolo,Ex-smoker,,Informal worker,Paracetamol,Headache,0.0,0.0,Primary,Negative
+34,Adult,Female,88,149,Mokolo,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+47,Adult,Female,93,169,Mokolo,Non-smoker,No,Trader,Traditional meds.,Fever--Diarrhoea,7.0,3.0,Secondary,Negative
+23,Adult,Female,56,165,Mokolo,Non-smoker,No,Student,,No symptoms,,,University,Negative
+13,Child,Female,54,150,Mokolo,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+17,Child,Female,58,160,Mokolo,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+10,Child,Female,30,120,Mokolo,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+42,Adult,Female,99,168,Mokolo,Non-smoker,No,Informal worker,Paracetamol--Antibiotics,Cough--Headache--Stomach ache,2.0,1.0,No formal instruction,Positive
+10,Child,Female,46,137,Mokolo,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+12,Child,Female,48,158,Mokolo,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+15,Child,Female,57,162,Mokolo,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+58,Adult,Female,71,162,Mokolo,Ex-smoker,No,Trader,,No symptoms,,,University,Negative
+59,Adult,Male,82,165,Mokolo,Non-smoker,,Trader,Paracetamol,Muscle pain--Stomach ache,0.0,0.0,Primary,Positive
+32,Adult,Male,65,165,Mokolo,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+25,Adult,Female,80,175,Mokolo,Non-smoker,Yes,Home-maker,,No symptoms,,,Secondary,Negative
+7,Child,Female,23,125,Mokolo,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+5,Child,Female,18,124,Mokolo,Non-smoker,No response,Student,,No symptoms,,,Secondary,Negative
+23,Adult,Female,62,154,Mokolo,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+72,Senior,Female,70,165,Mokolo,Non-smoker,No,Retired,,No symptoms,,,No formal instruction,Positive
+45,Adult,Male,70,171,Mokolo,Non-smoker,,Informal worker,,No symptoms,,,No formal instruction,Negative
+46,Adult,Male,69,164,Mokolo,Non-smoker,,Trader,,Shortness of breath,0.0,0.0,Secondary,Negative
+59,Adult,Male,89,171,Mokolo,Ex-smoker,,Salaried worker,Traditional meds.,Fever--Cough--Rhinitis--Headache--Anosmia or ageusia,5.0,2.0,University,Positive
+46,Adult,Male,49,164,Mokolo,Non-smoker,,Trader,,No symptoms,,,Primary,Negative
+40,Adult,Male,72,177,Mokolo,Non-smoker,,Trader,,No symptoms,,,Secondary,Positive
+46,Adult,Male,78,167,Mokolo,Non-smoker,,Trader,,No symptoms,,,Secondary,Negative
+46,Adult,Female,84,180,Mokolo,Non-smoker,No,Salaried worker,Paracetamol--Traditional meds.,Cough--Sneezing--Headache,0.0,0.0,Primary,Negative
+21,Adult,Female,76,163,Mokolo,Non-smoker,No,Student,,No symptoms,,,University,Negative
+18,Adult,Female,97,160,Mokolo,Non-smoker,No,Student,Traditional meds.,Cough--Rhinitis,0.0,0.0,Secondary,Negative
+32,Adult,Female,162,78,Mokolo,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+10,Child,Male,24,127,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+6,Child,Male,22,114,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+23,Adult,Female,62,170,Mokolo,Non-smoker,No,Student,Paracetamol--Antibiotics--Traditional meds.,Fever--Headache,0.0,0.0,Secondary,Negative
+21,Adult,Female,67,163,Mokolo,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Negative
+18,Adult,Female,63,164,Mokolo,Smoker,No,Student,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Sore throat--Headache--Fatigue--Other,45.0,30.0,Secondary,Negative
+11,Child,Female,84,160,Mokolo,Non-smoker,No response,Student,,No symptoms,,,Secondary,Negative
+59,Adult,Male,88,152,Mokolo,Non-smoker,,Trader,,No symptoms,,,Primary,Positive
+68,Senior,Female,59,157,Mokolo,Non-smoker,No,Retired--Informal worker,Traditional meds.--Other,Sore throat,0.0,0.0,Secondary,Negative
+46,Adult,Male,122,173,Mokolo,Non-smoker,,Informal worker,Paracetamol,Cough--Sneezing,0.0,0.0,Secondary,Negative
+7,Child,Male,24,117,Mokolo,Non-smoker,,Student,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Rhinitis,0.0,0.0,Primary,Negative
+7,Child,Female,23,114,Mokolo,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+36,Adult,Male,55,167,Mokolo,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+31,Adult,Female,59,164,Mokolo,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+16,Child,Female,54,156,Mokolo,Non-smoker,No,Student,Paracetamol--Antibiotics--Hydrocortisone--Other anti-inflamm.,Fever--Cough,2.0,0.0,Secondary,Negative
+19,Adult,Female,74,164,Mokolo,Non-smoker,No,Student,Paracetamol,Fever--Sneezing--Muscle pain,0.0,0.0,Secondary,Positive
+10,Child,Male,31,118,Mokolo,Non-smoker,,Student,Paracetamol--Hydrocortisone--Traditional meds.--Other,Fever--Nausea or vomiting,2.0,1.0,Primary,Negative
+38,Adult,Female,100,166,Mokolo,Non-smoker,No,Salaried worker,,No symptoms,,,Secondary,Negative
+8,Child,Male,23,113,Mokolo,Non-smoker,,Student,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough,2.0,2.0,Secondary,Negative
+5,Child,Female,16,110,Mokolo,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+32,Adult,Female,75,160,Mokolo,Non-smoker,No,Unemployed,Paracetamol--Hydrocortisone--Other,Cough--Rhinitis--Headache,0.0,0.0,Primary,Positive
+32,Adult,Female,51,151,Mokolo,Non-smoker,No,Home-maker,Paracetamol--Traditional meds.,Fever--Cough--Headache,5.0,2.0,No formal instruction,Negative
+60,Adult,Male,74,173,Mokolo,Non-smoker,,Informal worker--Trader,,No symptoms,,,Primary,Positive
+29,Adult,Male,76,170,Mokolo,Non-smoker,,Trader,Paracetamol--Antibiotics,Fever--Cough--Sneezing--Headache,0.0,0.0,Secondary,Negative
+6,Child,Female,20,125,Mokolo,Non-smoker,No,Student,Paracetamol--Antibiotics--Other,Fever--Sore throat--Headache--Diarrhoea,8.0,5.0,Primary,Negative
+60,Adult,Male,96,180,Mokolo,Non-smoker,,Informal worker,,No symptoms,,,No formal instruction,Negative
+12,Child,Female,37,145,Mokolo,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+32,Adult,Female,87,171,Mokolo,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+11,Child,Female,36,149,Mokolo,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+8,Child,Male,25,131,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+6,Child,Male,20,119,Mokolo,Non-smoker,,Student,,No symptoms,,,Other,Negative
+5,Child,Male,17,113,Mokolo,Non-smoker,,Student,,No symptoms,,,Other,Negative
+50,Adult,Female,85,154,Mokolo,Non-smoker,No,Home-maker--Informal worker,,No symptoms,,,Secondary,Positive
+28,Adult,Female,96,154,Mokolo,Non-smoker,No,Informal worker,,No symptoms,,,Secondary,Positive
+29,Adult,Female,91,161,Mokolo,Ex-smoker,No,Informal worker,Traditional meds.,Anosmia or ageusia,0.0,0.0,Secondary,Negative
+23,Adult,Male,69,171,Mokolo,Non-smoker,,Informal worker,Traditional meds.,Cough--Headache,0.0,2.0,Secondary,Positive
+67,Senior,Female,47,159,Mokolo,Non-smoker,No response,No response,,No symptoms,,,Primary,Negative
+8,Child,Male,33,124,Mokolo,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+23,Adult,Male,79,178,Mokolo,Non-smoker,,Trader,Paracetamol--Antibiotics--Other,Fever--Fatigue--Nausea or vomiting--Diarrhoea,14.0,2.0,Secondary,Negative
+60,Adult,Male,77,170,Mokolo,Ex-smoker,,Trader,,No symptoms,,,University,Positive
+17,Child,Male,64,170,Mokolo,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+15,Child,Male,51,166,Mokolo,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+22,Adult,Male,60,166,Mokolo,Non-smoker,,Student,,Fever,0.0,0.0,University,Positive
+67,Senior,Male,88,173,Nkomkana,Ex-smoker,,Student--Trader,,No symptoms,,,Primary,Positive
+26,Adult,Female,65,167,Nkomkana,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+10,Child,Male,31,139,Nkomkana,Non-smoker,,Student,Paracetamol--Traditional meds.,Fever--Headache,0.0,0.0,Primary,Negative
+61,Adult,Female,65,158,Nkomkana,Non-smoker,No,Trader,,No symptoms,,,Primary,Positive
+5,Child,Female,26,105,Nkomkana,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+11,Child,Female,39,145,Nkomkana,Non-smoker,No,Student,Antibiotics,Cough,0.0,0.0,Primary,Negative
+14,Child,Female,66,159,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+12,Child,Female,40,151,Nkomkana,Non-smoker,No,Retired,Paracetamol--Other,Fever--Sore throat--Headache,10.0,7.0,Secondary,Positive
+13,Child,Female,49,156,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+20,Adult,Male,70,182,Nkomkana,Non-smoker,,Student,Other,Fever--Cough--Rhinitis--Fatigue,0.0,0.0,University,Negative
+48,Adult,Female,61,165,Nkomkana,Non-smoker,No,Salaried worker,,Fever--Headache--Fatigue,0.0,0.0,University,Negative
+41,Adult,Male,75,170,Nkomkana,Non-smoker,,Salaried worker,,Cough--Sneezing--Headache,0.0,0.0,University,Negative
+35,Adult,Female,65,169,Nkomkana,Non-smoker,No,Salaried worker,,No symptoms,,,University,Negative
+8,Child,Female,161,54,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+22,Adult,Female,54,169,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Doctorate,Negative
+15,Child,Female,54,163,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+20,Adult,Male,70,170,Nkomkana,Non-smoker,,Student,Paracetamol--Antibiotics--Other,Fever--Headache--Diarrhoea,15.0,8.0,University,Negative
+64,Adult,Female,120,162,Nkomkana,Non-smoker,No response,Unemployed,Paracetamol--Antibiotics,Cough--Muscle pain,0.0,0.0,Secondary,Negative
+26,Adult,Male,65,172,Nkomkana,Non-smoker,,Student,Paracetamol--Other,Fever--Cough--Rhinitis--Sneezing,7.0,2.0,Doctorate,Negative
+54,Adult,Male,91,173,Nkomkana,Ex-smoker,,Other,,No symptoms,,,Secondary,Positive
+16,Child,Female,79,178,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+13,Child,Male,60,170,Nkomkana,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+12,Child,Female,39,140,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+13,Child,Female,65,150,Nkomkana,Non-smoker,No,Student,Paracetamol,Fever,2.0,2.0,Secondary,Positive
+50,Adult,Male,80,178,Nkomkana,Ex-smoker,,Salaried worker,,Fever--Cough--Rhinitis--Sneezing--Headache,0.0,0.0,University,Negative
+73,Senior,Female,60,168,Nkomkana,Non-smoker,No,Retired,,No symptoms,,,Secondary,Negative
+56,Adult,Female,83,162,Nkomkana,Non-smoker,No,Retired--Informal worker,Paracetamol--Other anti-inflamm.--Traditional meds.,Fever--Cough--Stomach ache,0.0,0.0,Primary,Positive
+25,Adult,Male,81,180,Nkomkana,Non-smoker,,Student,Paracetamol--Antibiotics,Fever--Headache--Muscle pain,3.0,2.0,University,Negative
+63,Adult,Female,71,164,Nkomkana,Non-smoker,No,Trader--Farmer,Paracetamol--Antibiotics--Traditional meds.,Fever--Cough--Rhinitis--Headache,5.0,2.0,Primary,Positive
+46,Adult,Male,70,177,Nkomkana,Smoker,,Trader,Paracetamol--Antibiotics,Cough,0.0,0.0,Secondary,Negative
+68,Senior,Female,109,162,Nkomkana,Non-smoker,No,Retired,,No symptoms,,,Primary,Negative
+79,Senior,Female,81,167,Nkomkana,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Negative
+26,Adult,Male,60,167,Nkomkana,Non-smoker,,Informal worker,,No symptoms,,,Primary,Negative
+30,Adult,Female,66,164,Nkomkana,Non-smoker,No,Home-maker--Informal worker--Farmer,,No symptoms,,,No formal instruction,Negative
+28,Adult,Female,75,163,Nkomkana,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Negative
+33,Adult,Female,79,162,Nkomkana,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Positive
+12,Child,Female,41,150,Nkomkana,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+18,Adult,Female,80,171,Nkomkana,Non-smoker,No response,No response,,No symptoms,,,No response,Negative
+5,Child,Male,15,96,Nkomkana,Non-smoker,,Other,,No symptoms,,,Primary,Positive
+54,Adult,Male,90,180,Nkomkana,Smoker,,Informal worker,Other anti-inflamm.,Muscle pain,0.0,0.0,Secondary,Negative
+58,Adult,Female,60,153,Nkomkana,Ex-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+28,Adult,Female,91,152,Nkomkana,Smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+29,Adult,Male,74,165,Nkomkana,Smoker,,Informal worker,Other,Cough,0.0,0.0,Secondary,Positive
+29,Adult,Male,85,185,Nkomkana,Non-smoker,,Trader,,No symptoms,,,Secondary,Negative
+30,Adult,Male,64,166,Nkomkana,Smoker,,Informal worker,,No symptoms,,,Primary,Negative
+46,Adult,Female,98,165,Nkomkana,Non-smoker,No,Trader,,No symptoms,,,Secondary,Positive
+40,Adult,Male,74,191,Nkomkana,Smoker,,Trader,,No symptoms,,,University,Negative
+36,Adult,Female,75,160,Nkomkana,Non-smoker,No,Unemployed,,No symptoms,,,University,Negative
+21,Adult,Male,76,174,Nkomkana,Non-smoker,,Student,,No symptoms,,,University,Positive
+30,Adult,Male,79,176,Nkomkana,Non-smoker,,Informal worker,,No symptoms,,,University,Negative
+68,Senior,Female,76,150,Nkomkana,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Positive
+70,Senior,Female,69,143,Nkomkana,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Positive
+35,Adult,Male,70,165,Nkomkana,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+25,Adult,Female,68,165,Nkomkana,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+51,Adult,Male,60,189,Nkomkana,Smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+35,Adult,Male,74,180,Nkomkana,Smoker,,Unemployed,Paracetamol--Traditional meds.,Fever--Headache--Fatigue,1.0,1.0,University,Positive
+51,Adult,Male,105,185,Nkomkana,Non-smoker,,Informal worker,,No symptoms,,,Doctorate,Negative
+38,Adult,Female,96,173,Nkomkana,Non-smoker,No,Salaried worker,Paracetamol,Headache--Muscle pain--Fatigue,0.0,0.0,University,Negative
+12,Child,Male,63,173,Nkomkana,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+13,Child,Female,85,183,Nkomkana,Non-smoker,No response,Student,Paracetamol--Other,Fever--Headache,3.0,3.0,Secondary,Negative
+6,Child,Female,38,135,Nkomkana,Non-smoker,No response,Student,Hydrocortisone,Cough--Headache,0.0,0.0,Primary,Negative
+17,Child,Male,80,184,Nkomkana,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+25,Adult,Male,70,171,Nkomkana,Non-smoker,,Trader,Paracetamol--Other,Fever--Cough--Headache--Fatigue,3.0,3.0,Primary,Negative
+27,Adult,Male,65,180,Nkomkana,Non-smoker,,Student--Trader,Paracetamol--Antibiotics,Fever--Rhinitis--Sneezing,0.0,0.0,University,Negative
+24,Adult,Male,60,178,Nkomkana,Non-smoker,,Student--Informal worker--Other,Traditional meds.,Anosmia or ageusia,0.0,0.0,University,Negative
+26,Adult,Female,64,155,Nkomkana,Non-smoker,No,Student,Paracetamol--Antibiotics,Headache,2.0,2.0,Doctorate,Negative
+37,Adult,Female,72,152,Nkomkana,Non-smoker,Yes,Trader,,No symptoms,,,Secondary,Negative
+40,Adult,Female,59,150,Nkomkana,Non-smoker,No response,Salaried worker,,No symptoms,,,Secondary,Negative
+27,Adult,Male,77,165,Nkomkana,Non-smoker,,Unemployed,,No symptoms,,,Secondary,Negative
+42,Adult,Female,97,164,Nkomkana,Non-smoker,No,Trader,,No symptoms,,,No formal instruction,Negative
+5,Child,Male,15,100,Nkomkana,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+17,Child,Female,59,160,Nkomkana,Non-smoker,No,No response,,No symptoms,,,No formal instruction,Negative
+9,Child,Male,20,113,Nkomkana,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+17,Child,Female,44,149,Nkomkana,Non-smoker,No,Unemployed,,No symptoms,,,No formal instruction,Negative
+18,Adult,Female,47,160,Nkomkana,Non-smoker,No,Home-maker,,No symptoms,,,No formal instruction,Negative
+45,Adult,Female,65,165,Tsinga,Non-smoker,No,Trader--Farmer,,No symptoms,,,Secondary,Negative
+30,Adult,Female,73,166,Tsinga,Non-smoker,Yes,Farmer,,No symptoms,,,Secondary,Negative
+5,Child,Female,20,114,Tsinga,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+8,Child,Male,20,117,Tsinga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+24,Adult,Male,85,165,Tsinga,Ex-smoker,,Student--Informal worker,,No symptoms,,,Secondary,Positive
+15,Child,Male,57,160,Tsinga,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+40,Adult,Female,89,155,Tsinga,Non-smoker,No,Trader,,No symptoms,,,Primary,Negative
+17,Child,Male,59,172,Tsinga,Non-smoker,,Student,Paracetamol--Other,Fever--Nausea or vomiting,6.0,6.0,University,Positive
+13,Child,Female,60,161,Tsinga,Non-smoker,No,Student,Traditional meds.,Headache,0.0,0.0,Secondary,Negative
+12,Child,Male,50,161,Tsinga,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+5,Child,Female,20,113,Tsinga,Non-smoker,No response,Student,Paracetamol--Antibiotics,Fever--Nausea or vomiting,0.0,0.0,Primary,Negative
+66,Senior,Male,68,160,Tsinga,Non-smoker,,Retired,Traditional meds.,Fever,0.0,0.0,Doctorate,Positive
+22,Adult,Male,70,175,Tsinga,Ex-smoker,,Student,Antibiotics--Traditional meds.,Fever--Headache--Fatigue,1.0,1.0,University,Positive
+7,Child,Female,35,110,Tsinga,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+12,Child,Female,42,145,Tsinga,Non-smoker,No response,Student,,No symptoms,,,Secondary,Negative
+32,Adult,Male,82,176,Tsinga,Ex-smoker,,Student,,No symptoms,,,University,Negative
+30,Adult,Female,65,170,Tsinga,Non-smoker,No,Student,Traditional meds.,Fever--Headache--Fatigue,0.0,0.0,University,Negative
+28,Adult,Female,58,169,Tsinga,Non-smoker,No,Student,Paracetamol--Traditional meds.,Fever--Cough--Headache--Muscle pain,0.0,0.0,University,Negative
+6,Child,Male,30,100,Tsinga,Non-smoker,,Student,Paracetamol--Traditional meds.,Fever--Cough,2.0,2.0,Primary,Positive
+22,Adult,Female,60,170,Tsinga,Non-smoker,No,Student,,No symptoms,,,University,Negative
+57,Adult,Male,69,185,Tsinga,Smoker,,Informal worker,,Cough,0.0,0.0,University,Positive
+70,Senior,Male,62,170,Tsinga,Ex-smoker,,Retired,,No symptoms,,,Primary,Negative
+33,Adult,Female,67,150,Tsinga,Non-smoker,No,Trader,,No symptoms,,,Secondary,Positive
+28,Adult,Male,61,169,Tsinga,Non-smoker,,Student--Trader,Paracetamol--Hydrocortisone--Traditional meds.--Other,Rhinitis,0.0,0.0,University,Positive
+12,Child,Male,40,140,Tsinga,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+50,Adult,Male,58,165,Tsinga,Ex-smoker,,Trader,,No symptoms,,,Primary,Negative
+9,Child,Male,29,130,Tsinga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+5,Child,Male,18,107,Tsinga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+10,Child,Female,35,138,Tsinga,Non-smoker,No,Student,Paracetamol,Fever--Headache,0.0,0.0,Primary,Negative
+24,Adult,Male,64,170,Tsinga,Smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+38,Adult,Female,102,173,Tsinga,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Positive
+45,Adult,Male,78,177,Tsinga,Non-smoker,,Trader,,No symptoms,,,No formal instruction,Negative
+23,Adult,Male,58,166,Tsinga,Smoker,,Student--Informal worker,Traditional meds.,Rhinitis--Shortness of breath--Headache--Anosmia or ageusia,0.0,0.0,Secondary,Positive
+74,Senior,Female,75,154,Tsinga,Ex-smoker,No,Home-maker--Farmer,,No symptoms,,,Primary,Negative
+72,Senior,Female,72,156,Tsinga,Non-smoker,No,Home-maker--Farmer,,No symptoms,,,Primary,Negative
+30,Adult,Male,65,175,Tsinga,Non-smoker,,Informal worker,,No symptoms,,,University,Negative
+27,Adult,Male,68,174,Tsinga,Non-smoker,,Student,,No symptoms,,,University,Positive
+35,Adult,Male,70,180,Tsinga,Non-smoker,,Unemployed,,No symptoms,,,Secondary,Positive
+54,Adult,Female,60,175,Tsinga,Non-smoker,No,Home-maker--Trader,,No symptoms,,,Primary,Negative
+33,Adult,Female,62,165,Tsinga,Non-smoker,No,Informal worker,,No symptoms,,,Primary,Negative
+8,Child,Male,22,125,Tsinga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+18,Adult,Male,75,195,Tsinga,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+57,Adult,Female,105,164,Tsinga,Non-smoker,No,Trader,Traditional meds.,Cough--Sneezing--Headache,0.0,0.0,Primary,Negative
+38,Adult,Male,95,174,Tsinga,Non-smoker,,Informal worker,Paracetamol--Antibiotics--Other,Fever--Cough--Rhinitis--Sore throat--Headache,5.0,2.0,Secondary,Positive
+50,Adult,Female,103,162,Tsinga,Ex-smoker,No,Trader,,No symptoms,,,Secondary,Positive
+31,Adult,Female,81,174,Tsinga,Non-smoker,Yes,Salaried worker,Paracetamol,Fever--Rhinitis--Sore throat,0.0,0.0,University,Positive
+32,Adult,Female,65,151,Tsinga,Non-smoker,No,Trader,,Cough--Rhinitis,0.0,0.0,Secondary,Negative
+6,Child,Female,15,108,Tsinga,Non-smoker,No,Student,,No symptoms,,,Primary,Positive
+25,Adult,Female,55,151,Tsinga,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+76,Senior,Female,74,168,Tsinga,Non-smoker,No response,Unemployed,,No symptoms,,,Primary,Positive
+26,Adult,Female,50,160,Tsinga,Non-smoker,No,Unemployed,,Fever--Cough--Anosmia or ageusia,0.0,0.0,Secondary,Negative
+14,Child,Female,53,161,Tsinga,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+40,Adult,Female,90,179,Tsinga,Non-smoker,Yes,Informal worker,,No symptoms,,,University,Negative
+54,Adult,Male,78,171,Tsinga,Ex-smoker,,Salaried worker,Paracetamol--Antibiotics--Other,Fever--Cough--Headache,6.0,2.0,University,Negative
+31,Adult,Male,79,170,Tsinga,Ex-smoker,,Informal worker,Traditional meds.,Cough--Rhinitis--Sore throat,0.0,0.0,University,Negative
+24,Adult,Female,85,169,Tsinga,Non-smoker,No,Salaried worker,,Fever--Headache,0.0,0.0,Secondary,Positive
+8,Child,Female,28,145,Tsinga,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+12,Child,Male,62,167,Tsinga,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+15,Child,Female,50,161,Tsinga,Non-smoker,No,Student,,No symptoms,,,Secondary,Positive
+33,Adult,Female,61,162,Tsinga,Non-smoker,No,Salaried worker,Traditional meds.,Fever--Cough--Headache--Anosmia or ageusia,0.0,0.0,University,Negative
+19,Adult,Male,60,162,Tsinga,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+29,Adult,Female,100,159,Tsinga,Non-smoker,No,Home-maker,,No symptoms,,,Secondary,Negative
+33,Adult,Male,95,188,Tsinga,Non-smoker,,Farmer,,No symptoms,,,Secondary,Negative
+13,Child,Male,32,155,Tsinga,Non-smoker,,Student,Paracetamol--Traditional meds.,Cough--Headache,1.0,1.0,Primary,Positive
+16,Child,Female,61,161,Tsinga,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+21,Adult,Female,70,163,Tsinga,Non-smoker,No,Student,,Diarrhoea--Stomach ache,0.0,0.0,University,Negative
+60,Adult,Male,89,165,Tsinga,Non-smoker,,Informal worker--Trader--Farmer--Other,Traditional meds.,Cough--Rhinitis--Sneezing,0.0,0.0,Primary,Positive
+50,Adult,Male,61,167,Tsinga,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+27,Adult,Male,62,168,Tsinga,Non-smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+44,Adult,Female,66,164,Tsinga,Non-smoker,No,Unemployed,Paracetamol,Cough--Rhinitis--Sore throat--Headache--Fatigue,0.0,0.0,Secondary,Positive
+20,Adult,Male,84,173,Tsinga,Non-smoker,,Student,,No symptoms,,,University,Negative
+51,Adult,Male,87,184,Tsinga,Ex-smoker,,Salaried worker,Paracetamol--Other,Fever--Headache--Fatigue--Nausea or vomiting,5.0,5.0,Doctorate,Negative
+7,Child,Male,30,110,Tsinga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+51,Adult,Female,88,168,Tsinga,Non-smoker,No,Trader,Paracetamol--Other,Fever--Cough--Headache--Nausea or vomiting,0.0,0.0,Secondary,Negative
+23,Adult,Female,60,161,Tsinga,Non-smoker,No,Student,,No symptoms,,,University,Negative
+20,Adult,Female,55,165,Tsinga,Non-smoker,No,Student,,No symptoms,,,University,Positive
+29,Adult,Female,64,167,Tsinga,Ex-smoker,No,Informal worker,Paracetamol--Antibiotics--Other,Fever--Headache--Anosmia or ageusia,5.0,2.0,Doctorate,Positive
+39,Adult,Female,64,162,Tsinga,Non-smoker,No,Informal worker,Paracetamol,Fever--Rhinitis--Muscle pain--Fatigue,0.0,0.0,University,Negative
+38,Adult,Male,70,160,Tsinga,Non-smoker,,Salaried worker,,No symptoms,,,No formal instruction,Negative
+25,Adult,Female,41,161,Tsinga,Non-smoker,No,Unemployed,,No symptoms,,,No formal instruction,Negative
+28,Adult,Male,69,169,Tsinga,Ex-smoker,,Trader,Paracetamol,Sneezing--Headache,0.0,0.0,Secondary,Negative
+12,Child,Female,48,150,Tsinga Oliga,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+36,Adult,Male,90,165,Tsinga Oliga,Non-smoker,,Salaried worker,,No symptoms,,,University,Negative
+22,Adult,Male,65,175,Tsinga Oliga,Non-smoker,,Salaried worker,,No symptoms,,,University,Negative
+32,Adult,Female,84,165,Tsinga Oliga,Non-smoker,No,Unemployed,,No symptoms,,,University,Positive
+60,Adult,Male,81,173,Tsinga Oliga,Non-smoker,,Informal worker,,No symptoms,,,Primary,Positive
+27,Adult,Male,78,172,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,University,Negative
+50,Adult,Female,86,159,Tsinga Oliga,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+20,Adult,Male,76,169,Tsinga Oliga,Non-smoker,,Student,Other,Fever--Headache--Fatigue,0.0,0.0,University,Positive
+6,Child,Male,25,119,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+24,Adult,Female,74,165,Tsinga Oliga,Non-smoker,No,Student,Other,Fever--Muscle pain--Fatigue,2.0,2.0,Secondary,Negative
+15,Child,Male,50,154,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+37,Adult,Female,86,164,Tsinga Oliga,Non-smoker,No,Other,Paracetamol,Fever--Fatigue,0.0,0.0,Secondary,Negative
+16,Child,Female,50,157,Tsinga Oliga,Non-smoker,No,Student,,Cough,0.0,0.0,Secondary,Negative
+26,Adult,Female,69,160,Tsinga Oliga,Non-smoker,No,Trader,,No symptoms,,,Secondary,Negative
+37,Adult,Male,82,173,Tsinga Oliga,Non-smoker,,Unemployed,,No symptoms,,,Secondary,Negative
+6,Child,Male,99,99,Tsinga Oliga,Non-smoker,,No response,,No symptoms,,,No formal instruction,Negative
+7,Child,Female,20,116,Tsinga Oliga,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+6,Child,Female,21,115,Tsinga Oliga,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+5,Child,Male,17,107,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+9,Child,Female,22,123,Tsinga Oliga,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+21,Adult,Male,63,172,Tsinga Oliga,Non-smoker,,Student,Paracetamol--Other anti-inflamm.,Headache--Fatigue,0.0,0.0,Secondary,Negative
+9,Child,Male,24,135,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+24,Adult,Male,65,167,Tsinga Oliga,Ex-smoker,,Student,,No symptoms,,,University,Negative
+21,Adult,Male,62,172,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+45,Adult,Male,45,147,Tsinga Oliga,Non-smoker,,Trader,,No symptoms,,,Primary,Negative
+11,Child,Male,37,142,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Primary,Positive
+8,Child,Female,30,127,Tsinga Oliga,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+8,Child,Female,26,137,Tsinga Oliga,Non-smoker,No,Student,,No symptoms,,,Primary,Negative
+13,Child,Male,37,148,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+18,Adult,Male,57,172,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Secondary,Positive
+16,Child,Male,67,162,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+14,Child,Male,38,144,Tsinga Oliga,Ex-smoker,,Student,,No symptoms,,,Secondary,Negative
+55,Adult,Male,92,182,Tsinga Oliga,Non-smoker,,Informal worker,Paracetamol--Other,Fever--Cough--Rhinitis--Shortness of breath,0.0,0.0,Secondary,Positive
+43,Adult,Female,74,162,Tsinga Oliga,Non-smoker,No,Salaried worker,Traditional meds.,Rhinitis--Anosmia or ageusia,0.0,0.0,Secondary,Negative
+9,Child,Female,34,134,Tsinga Oliga,Non-smoker,No response,Student,,No symptoms,,,Primary,Negative
+5,Child,Male,26,117,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+12,Child,Male,87,173,Tsinga Oliga,Non-smoker,,Student,Paracetamol--Antibiotics,Cough--Rhinitis--Sneezing--Sore throat--Headache--Anosmia or ageusia,0.0,0.0,Secondary,Positive
+22,Adult,Female,100,173,Tsinga Oliga,Non-smoker,No,Student,,No symptoms,,,University,Positive
+32,Adult,Female,68,170,Tsinga Oliga,Non-smoker,No,Unemployed,,No symptoms,,,University,Negative
+28,Adult,Female,68,172,Tsinga Oliga,Non-smoker,Yes,Home-maker,,No symptoms,,,University,Negative
+37,Adult,Female,72,165,Tsinga Oliga,Non-smoker,No response,Salaried worker,Paracetamol--Antibiotics--Traditional meds.,Fever--Rhinitis--Sneezing,0.0,0.0,University,Positive
+52,Adult,Male,93,175,Tsinga Oliga,Ex-smoker,,Trader,,No symptoms,,,Secondary,Positive
+43,Adult,Female,93,171,Tsinga Oliga,Non-smoker,No,Home-maker,Paracetamol--Traditional meds.,Rhinitis--Headache--Diarrhoea,0.0,0.0,Secondary,Negative
+24,Adult,Male,83,177,Tsinga Oliga,,,Student--Trader,Traditional meds.,Fever--Sore throat--Headache,0.0,2.0,University,Positive
+21,Adult,Female,65,171,Tsinga Oliga,Non-smoker,No,Student,Traditional meds.,Rhinitis--Headache,0.0,0.0,University,Positive
+16,Child,Female,69,165,Tsinga Oliga,Non-smoker,No,Student,Paracetamol,Fever--Cough--Headache,0.0,0.0,Secondary,Negative
+46,Adult,Male,82,176,Tsinga Oliga,Ex-smoker,,Trader,,No symptoms,,,Primary,Positive
+18,Adult,Male,80,186,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,University,Negative
+41,Adult,Male,72,175,Tsinga Oliga,Ex-smoker,,Salaried worker,Paracetamol--Traditional meds.--Other,Fever--Cough--Sneezing--Sore throat--Headache,5.0,3.0,Doctorate,Positive
+31,Adult,Female,90,170,Tsinga Oliga,Ex-smoker,No,Salaried worker,Paracetamol--Antibiotics--Other,Fever--Cough--Sore throat--Headache,9.0,5.0,Doctorate,Positive
+6,Child,Male,24,115,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Primary,Negative
+19,Adult,Female,75,165,Tsinga Oliga,Non-smoker,No,Home-maker,Paracetamol--Traditional meds.,Sneezing--Headache,2.0,2.0,Secondary,Negative
+25,Adult,Female,63,165,Tsinga Oliga,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Positive
+12,Child,Male,52,155,Tsinga Oliga,Non-smoker,,Student,Traditional meds.,Rhinitis--Sneezing,0.0,0.0,Secondary,Positive
+40,Adult,Male,66,168,Tsinga Oliga,Non-smoker,,Informal worker,,No symptoms,,,Doctorate,Negative
+37,Adult,Male,64,165,Tsinga Oliga,Smoker,,Informal worker,,No symptoms,,,Secondary,Negative
+48,Adult,Female,46,159,Tsinga Oliga,Non-smoker,No,Trader--Farmer,,No symptoms,,,Primary,Negative
+15,Child,Male,44,165,Tsinga Oliga,Non-smoker,,Student,,No symptoms,,,Secondary,Negative
+15,Child,Male,44,165,Tsinga Oliga,Non-smoker,,Student,Traditional meds.,Fever--Cough--Rhinitis,0.0,0.0,Secondary,Positive
+26,Adult,Female,63,160,Tsinga Oliga,Non-smoker,No,Student,,No symptoms,,,Secondary,Negative
+28,Adult,Male,76,175,Tsinga Oliga,Non-smoker,,Student--Informal worker,,No symptoms,,,University,Negative
+22,Adult,Female,55,160,Tsinga Oliga,Non-smoker,No,Unemployed,,No symptoms,,,Primary,Negative
+32,Adult,Male,54,161,Tsinga Oliga,Smoker,,Informal worker,Antibiotics--Other anti-inflamm.,Rhinitis--Sneezing--Diarrhoea,0.0,0.0,Secondary,Negative
+23,Adult,Female,76,161,Tsinga Oliga,Non-smoker,Yes,Informal worker--Trader,Paracetamol,Headache,0.0,0.0,Secondary,Negative
+35,Adult,Male,77,168,Tsinga Oliga,Smoker,,Informal worker,Paracetamol,Headache,0.0,0.0,University,Positive
+31,Adult,Female,66,169,Tsinga Oliga,Non-smoker,No,Unemployed,,No symptoms,,,Secondary,Negative
+17,Child,Female,67,162,Tsinga Oliga,Non-smoker,No response,Unemployed,,No symptoms,,,Secondary,Negative

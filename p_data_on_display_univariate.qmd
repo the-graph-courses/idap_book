@@ -62,12 +62,10 @@ birdstrikes = data.birdstrikes()
 birdstrikes.head()
 # Your code here
 ```
-:::
-
-::: {.callout-tip title="Solution" collapse="true"}
-### Solution Q: Speed Distribution Histogram
 
 ```{python}
+#| include: false
+# Solution
 px.histogram(birdstrikes, x='Speed_IAS_in_knots')
 ```
 :::
@@ -115,12 +113,10 @@ Update your birdstrikes histogram to use a hex code color, add a title, and chan
 ```{python}
 # Your code here
 ```
-:::
-
-::: {.callout-tip title="Solution" collapse="true"}
-### Solution Q: Bird Strikes Histogram Custom
 
 ```{python}
+#| include: false
+# Solution
 px.histogram(
     birdstrikes,
     x="Speed_IAS_in_knots",
@@ -191,10 +187,9 @@ Create a bar chart showing the frequency of bird strikes by the phase of flight,
 ```
 :::
 
-::: {.callout-tip title="Solution" collapse="true"}
-### Solution Q: Bird Strikes by Phase of Flight
-
 ```{python}
+# | include: false
+# Solution
 fig = px.histogram(
     birdstrikes,
     x="When__Phase_of_flight",
@@ -202,7 +197,7 @@ fig = px.histogram(
     color="When__Phase_of_flight",
     labels={"When__Phase_of_flight": "Phase of Flight"},
     title="Bird Strikes by Phase of Flight",
-    color_discrete_sequence=px.colors.qualitative.Set3
+    color_discrete_sequence=px.colors.qualitative.Set3,
 )
 fig.update_layout(showlegend=False)
 ```
@@ -256,12 +251,10 @@ Create a sorted bar chart showing the distribution of bird strikes by origin sta
 ```{python}
 # Your code here
 ```
-:::
-
-::: {.callout-tip title="Solution" collapse="true"}
-### Solution Q: Sorted Origin State Bar Chart
 
 ```{python}
+#| include: false
+# Solution
 fig = px.histogram(birdstrikes, x="Origin_State")
 fig.update_xaxes(categoryorder="total descending")
 ```
@@ -285,12 +278,10 @@ Create a horizontal bar chart showing the distribution of bird strikes by origin
 ```{python}
 # Your code here
 ```
-:::
-
-::: {.callout-tip title="Solution" collapse="true"}
-### Solution Q: Horizontal Bar Chart of Origin State
 
 ```{python}
+#| include: false
+# Solution
 px.histogram(birdstrikes, y="Origin_State")
 ```
 :::
@@ -337,10 +328,9 @@ Create a pie chart showing the distribution of bird strikes by wildlife size. In
 ```
 :::
 
-::: {.callout-tip title="Solution" collapse="true"}
-### Solution Q: Wildlife Size Pie Chart
-
 ```{python}
+# | include: false
+# Solution
 fig = px.pie(birdstrikes, names="Wildlife__Size")
 fig.update_traces(textposition="inside", textinfo="percent+label")
 fig.update_layout(showlegend=False)

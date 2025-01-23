@@ -1,0 +1,71 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Introduction to Data Science with Python"
+  subtitle: "With Real-World Examples from Research, Business and Industry"
+  author: "The GRAPH Courses"
+  cover-image: cover.jpg
+  favicon: logo.png
+  repo-url: https://github.com/the-graph-courses/idap_book
+  repo-branch: main
+  repo-actions: [edit, issue]
+  page-footer:
+    left: |
+      Book created by <a href="https://thegraphcourses.org/">The GRAPH Courses</a>
+  chapters:
+    - index.qmd
+
+    
+    ## Use the below for HTML render. (Parts don't seem to work in HTML render)
+    - part: "Foundations"
+      chapters:
+        - p_foundations_google_colab.qmd
+        - p_foundations_coding_basics.qmd
+        - p_foundations_functions_methods.qmd
+        - p_foundations_data_structures.qmd
+        - p_foundations_for_loops.qmd
+        - p_foundations_writing_functions.qmd
+    - part: "Data Visualization"
+      chapters:
+        - p_data_on_display_data_viz_types.qmd
+        - p_data_on_display_univariate.qmd
+        - p_data_on_display_multivariate.qmd
+    - part: "Tools for Local Python"
+      chapters:
+        - p_tools_installing_python.qmd
+        - p_tools_using_vscode.qmd
+        - p_tools_venv.qmd
+        - p_tools_quarto.qmd
+    - part: "Data Manipulation"
+      chapters:
+        - p_untangled_subset_columns.qmd
+        - p_untangled_query_rows.qmd
+        - p_untangled_transform_variables.qmd
+        - p_untangled_conditional_transforms.qmd
+        - p_untangled_groupby_agg.qmd
+        - p_untangled_other_grouped_operations.qmd
+        - p_untangled_joining_1.qmd
+        - p_untangled_joining_2.qmd
+        - p_untangled_pivoting.qmd
+    - part: "Using LLMs in Python"
+      chapters:
+        - p_ai_LLM_functions.qmd
+
+resources:
+  - CNAME
+
+format:
+  # PrettyPDF-pdf:
+  #   keep-tex: true
+  #   toc: true
+  html:
+    theme: 
+      - cosmo
+      # - custom.scss
+    css: style.css
+
+editor: source
+
+

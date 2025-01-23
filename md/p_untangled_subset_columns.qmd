@@ -1,0 +1,298 @@
+---
+title: 'Subsetting columns'
+---
+
+```{python}
+# | echo: false
+# Setup
+import pandas as pd
+
+pd.options.display.max_rows = 5
+```
+
+## Introduction
+
+Today we will begin our exploration of pandas for data manipulation!
+
+Our first focus will be on selecting and renaming columns. Often your dataset comes with many columns that you do not need, and you would like to narrow it down to just a few. Pandas makes this easy. Let's see how.
+
+## Learning objectives
+
+-   You can keep or drop columns from a DataFrame using square brackets `[]`, `filter()`, and `drop()`.
+-   You can select columns based on regex patterns with `filter()`.
+-   You can use `rename()` to change column names.
+-   You can use regex to clean column names.
+
+## About pandas
+
+Pandas is a popular library for data manipulation and analysis. It is designed to make it easy to work with tabular data in Python.
+
+Install pandas with the following command in your terminal if it is not already installed:
+
+```{python}
+# | eval: false
+pip install pandas 
+```
+
+Then import pandas with the following command in your script:
+
+```{python}
+import pandas as pd
+```
+
+## The Yaounde COVID-19 dataset
+
+In this lesson, we analyse results from a COVID-19 survey conducted in Yaounde, Cameroon in late 2020. The survey estimated how many people had been infected with COVID-19 in the region, by testing for antibodies.
+
+You can find out more about this dataset here: [https://www.nature.com/articles/s41467-021-25946-0](https://www.nature.com/articles/s41467-021-25946-0)
+
+To download the dataset, visit this link: [https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_data.zip](https://raw.githubusercontent.com/the-graph-courses/idap_book/main/data/yaounde_data.zip)
+
+Then unzip the file and place the `yaounde_data.csv` file in the `data` folder in the same directory as your notebook.
+
+Let's load and examine the dataset:
+
+```{python}
+yao = pd.read_csv("data/yaounde_data.csv")
+yao
+```
+
+## Selecting columns with square brackets `[]`
+
+In pandas, the most common way to select a column is simply to use square brackets `[]` and the column name. For example, to select the `age` and `sex` columns, we type:
+
+```{python}
+yao[["age", "sex"]]
+```
+
+Note the double square brackets `[[]]`. Without it, you will get an error:
+
+```{python}
+# | eval: false
+yao["age", "sex"]
+```
+
+```
+KeyError: ('age', 'sex')
+```
+
+If you want to select a single column, you *may omit the double square brackets*, but your output will no longer be a DataFrame. Compare the following:
+
+```{python}
+yao["age"] # does not return a DataFrame
+```
+
+```{python}
+yao[["age"]]  # returns a DataFrame
+```
+
+
+::: {.callout-note title="Key Point"}
+
+## Storing data subsets
+
+Note that these selections are not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset with only three columns:
+
+```{python}
+yao_subset = yao[["age", "sex", "igg_result"]]
+yao_subset
+```
+
+And if we want to overwrite a DataFrame, we can assign the subset back to the original DataFrame. Let's overwrite the `yao_subset` DataFrame to have only the `age` column:
+
+```{python}
+yao_subset = yao_subset[["age"]]
+yao_subset
+```
+
+The `yao_subset` DataFrame has gone from having 3 columns to having 1 column.
+
+:::
+
+::: {.callout-tip title="Practice"}
+
+
+### Practice Q: Select Columns with `[]`
+
+-   Use the `[]` operator to select the "weight_kg" and "height_cm" variables in the `yao` DataFrame. Assign the result to a new DataFrame called `yao_weight_height`. Then print this new DataFrame.
+
+```{python}
+# Your code here
+```
+
+:::
+
+::: {.callout-note title="Pro tip"}
+
+There are many ways to select columns in pandas. In your free time, you may choose to explore the `.loc[]` and `.take()` methods, which provide additional functionality. 
+
+:::
+
+## Excluding columns with `drop()`
+
+Sometimes it is more useful to drop columns you do not need than to explicitly select the ones that you do need.
+
+To drop columns, we can use the `drop()` method with the `columns` argument. To drop the age column, we type:
+
+```{python}
+yao.drop(columns=["age"])
+```
+
+To drop several columns:
+
+```{python}
+yao.drop(columns=["age", "sex"])
+```
+
+Again, note that this is not modifying the DataFrame itself. If we want a modified version, we create a new DataFrame to store the subset. For example, below we create a subset age and sex dropped:
+
+```{python}
+yao_subset = yao.drop(columns=["age", "sex"])
+yao_subset
+```
+
+::: {.callout-tip title="Practice"}
+
+### Practice Q: Drop Columns with `drop()`
+
+-   From the `yao` DataFrame, **remove** the columns `highest_education` and `consultation`. Assign the result to a new DataFrame called `yao_no_education_consultation`. Print this new DataFrame.
+
+```{python}
+# Your code here
+```
+:::
+
+## Using `filter()` to select columns by regex
+
+The `filter()` method and its `regex` argument offer a powerful way to select columns based on patterns in their names. As an example, to select columns containing the string "ig", we can write:
+
+```{python}
+yao.filter(regex="ig")
+```
+
+The argument `regex` specifies the pattern to match. Regex stands for regular expression and refers to a sequence of characters that define a search pattern.
+
+To select columns **starting with** the string "ig", we write:
+
+```{python}
+yao.filter(regex="^ig")
+```
+
+The symbol `^` is a regex character that matches the beginning of the string.
+
+To select columns **ending with** the string "result", we can write:
+
+```{python}
+yao.filter(regex="result$")
+```
+
+The character `$` is regex that matches the end of the string.
+
+::: {.callout-note title="Pro Tip"}
+
+Regex is notoriously difficult to remember, but LLMs like ChatGPT are very good at generating the right patterns. Simply ask, for example, "What is the regex for strings starting with 'ig'"
+
+:::
+
+::: {.callout-tip title="Practice"}
+
+### Practice Q: Select Columns with Regex
+
+-   Select all columns in the `yao` DataFrame that start with "is_". Assign the result to a new DataFrame called `yao_is_columns`. Then print this new DataFrame.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Change column names with `rename()`
+
+We can use the `rename()` method to change column names:
+
+```{python}
+yao.rename(columns={"age": "patient_age", "sex": "patient_sex"})
+```
+
+::: {.callout-tip title="Practice"}
+
+### Practice Q: Rename Columns with `rename()`
+
+-   Rename the `age_category` column in the `yao` DataFrame to `age_cat`. Assign the result to a new DataFrame called `yao_age_cat`. Then print this new DataFrame.
+
+```{python}
+# Your code here
+```
+
+:::
+
+## Cleaning messy column names
+
+For cleaning column names, you can use regular expressions with the `str.replace()` method in pandas. 
+
+Here's how you can do it on a test DataFrame with messy column names. Messy column names are names with spaces, special characters, or other non-alphanumeric characters.
+
+```{python}
+test_df = pd.DataFrame(
+    {"good_name": range(3), "bad name": range(3), "bad*@name*2": range(3)}
+)
+test_df
+```
+
+Such column names are not ideal because, for example, we cannot select them with the dot operator the way we can for clean names:
+
+```{python}
+test_df.good_name  # this works
+```
+
+But this does not work:
+
+```{python}
+# | eval: false
+test_df.bad name
+```
+
+```
+      test_df.bad name
+                 ^
+SyntaxError: invalid syntax
+```
+
+We can automatically clean such names using the `str.replace()` method along with regular expressions.
+
+```{python}
+clean_names = test_df.columns.str.replace(r'[^a-zA-Z0-9]', '_', regex=True)
+```
+
+The regular expression `r'[^a-zA-Z0-9]'` matches any character that is not a letter (either uppercase or lowercase) or a digit. The `str.replace()` method replaces these characters with an underscore ('\_') to make the column names more legible and usable in dot notation. 
+
+Now we can replace the column names in the DataFrame with the cleaned names:
+
+```{python}
+test_df.columns = clean_names
+test_df
+```
+
+::: {.callout-tip title="Practice"}
+
+### Practice Q: Clean Column Names with Regex
+
+- Consider the data frame defined below with messy column names. Use the `str.replace()` method to clean the column names.
+
+```{python}
+cleaning_practice = pd.DataFrame(
+    {"Aloha": range(3), "Bell Chart": range(3), "Animals@the zoo": range(3)}
+)
+cleaning_practice
+```
+
+:::
+
+---
+
+
+## Wrap up
+
+Hopefully this lesson has shown you how intuitive and useful pandas is for data manipulation!
+
+This is the first of a series of basic data wrangling techniques: see you in the next lesson to learn more.

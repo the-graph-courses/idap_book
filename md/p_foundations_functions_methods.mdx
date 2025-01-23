@@ -1,0 +1,398 @@
+---
+title: 'Functions, Methods, and Libraries in Python'
+---
+
+
+
+
+[https://youtu.be/bGmceVFYI-g?si=qPmObA5dzdDzCh1E](https://youtu.be/bGmceVFYI-g?si=qPmObA5dzdDzCh1E)
+
+## Learning objectives
+
+1.  You understand what functions and methods are in Python.
+2.  You can identify and use arguments (parameters) in functions and
+    methods.
+3.  You know how to call built-in functions and methods on objects.
+4.  You understand what libraries are in Python and how to import them.
+5.  You know how to install a simple external library and use it in your
+    code.
+
+## Introduction
+
+In this lesson, you will learn about functions, methods, and libraries
+in Python, building on the basics we covered in the previous lesson.
+
+To get started, open your preferred Python environment (e.g., Jupyter
+Notebook, VS Code, or PyCharm), and create a new Python file or
+notebook.
+
+Next, **save the file** with a name like “functions_and_libraries.py” or
+“functions_and_libraries.ipynb” depending on your environment.
+
+You should now type all the code from this lesson into that file.
+
+## Functions
+
+A function is a block of code that performs a specific task. It can take
+inputs (arguments) and return outputs. Here’s an example of a built-in
+function with just one argument:
+
+```python
+# Using the len() function to get the length of a string
+len("Python")
+```
+
+The `round()` function takes two arguments: the number to round and the
+number of decimal places to round to.
+
+```python
+# Using the round() function to round a number
+round(3.1415, 2)
+```
+
+:::tip[Practice]
+
+### Q: Using built-in functions
+
+Use the `abs()` function to get the absolute value of -5.
+
+Write your code below and run it to check your answer:
+
+```python
+# Your code here
+```
+
+:::
+
+## Arguments (Parameters)
+
+Arguments (also called parameters) are the values that you pass to a
+function (or method) when you call it.
+
+There are different ways to pass arguments to a function.
+
+Consider again the `round()` function.
+
+If we look at the documentation for the `round()` function, with :
+
+```python
+round?
+```
+
+We see that it takes two arguments:
+
+-   `number`: The number to round.
+-   `ndigits`: The number of decimal places to round to.
+
+There are two main ways to pass arguments to this function.
+
+1.  Positional arguments: Passed in the order they are defined. Since
+    the default order of the arguments is `number` then `ndigits`, we
+    can pass the arguments in that order without specifying the argument
+    names, as we did above.
+
+```python
+round(3.1415, 2)
+```
+
+If we swap the order of the arguments, we get an error:
+
+```python
+round(2, 3.1415)
+```
+
+1.  Keyword arguments: Passed by specifying the argument name followed
+    by a `=` and the argument value.
+
+```python
+round(number=3.1415, ndigits=2)
+```
+
+With this method, we can pass the arguments in any order, as long as we
+use the argument names.
+
+```python
+round(ndigits=2, number=3.1415)
+```
+
+Specifying the keyword is usually recommended, except for simple
+functions with very few arguments, or when the order of the arguments is
+obvious from context.
+
+:::tip[Practice]
+
+### Q: Using Positional Arguments with `pow()`
+
+Use the `pow()` function to calculate 2 raised to the power of 7 by
+passing positional arguments. You may need to consult the documentation
+for the `pow()` function to see how it works.
+
+Write your code below and run it to check your answer:
+
+```python
+# Your code here
+```
+
+### Q: Using Keyword Arguments with `round()`
+
+Use the `round()` function to round the number `9.87652` to `3` decimal
+places by specifying keyword arguments.
+
+Write your code below and run it to check your answer:
+
+```python
+# Your code here
+```
+
+:::
+
+## Methods
+
+Methods are similar to functions, but they are associated with specific
+objects or data types. They are called using dot notation.
+
+For example, every string object comes with a range of built-in methods,
+like `upper()` to convert to uppercase, `lower()` to convert to
+lowercase, `replace()` to replace substrings, and many more.
+
+Let’s see how to use these:
+
+```python
+name = "python"
+print(name.upper())
+print(name.lower())
+print(name.replace("p", "🐍"))
+```
+
+We can also call the methods directly on the string object, without
+assigning it to a variable:
+
+```python
+# Using the upper() method on a string
+print("python".upper())
+print("PYTHON".lower())
+print("python".replace("p", "🐍"))
+```
+
+Similarly, numbers in Python come with some built-in methods. For
+example, the `as_integer_ratio()` (added in Python 3.8) method converts
+a decimalnumber to a ratio of two integers.
+
+```python
+# Using the as_integer_ratio() method on a float
+example_decimal = 1.5
+example_decimal.as_integer_ratio()
+```
+
+:::note[Practice]
+
+### Q: Definitions
+
+Come up with simple definitions for the following terms that are clear
+to YOU (even if not technically exactly accurate):
+
+-   Function
+-   Method
+-   Argument (Parameter)
+-   Dot Notation
+
+:::
+
+:::tip[Practice]
+
+### Q: Using methods
+
+1.  Call the `replace()` method on the string “Helo” to replace the
+    single l with double l.
+2.  Call the `split()` method on the string “Hello World” to split the
+    string into a list of words.
+
+```python
+# Your code here
+```
+
+:::
+
+## Libraries in Python
+
+Libraries are collections of pre-written code that you can use in your
+programs. They extend the functionality of Python by providing
+additional functions and tools.
+
+For example, the `math` library provides mathematical functions like
+`sqrt()` for square roots and `sin()` for sine.
+
+If we try to use the `sqrt()` function without importing the `math`
+library, we get an error:
+
+```python
+# This will cause a NameError
+sqrt(16)
+```
+
+We can import the `math` library and use the `sqrt()` function like
+this:
+
+```python
+# Import the library
+import math
+```
+
+Then we can use the `sqrt()` function like this:
+
+```python
+# Use the sqrt() function
+math.sqrt(16)
+```
+
+We can get help on a function in a similar way, calling both the
+function and the library it’s in:
+
+```python
+# Get help on the sqrt() function
+math.sqrt?
+```
+
+We can also import libraries with aliases. For example, we can import
+the `math` library with the alias `m`:
+
+```python
+# Import the entire library with an alias
+import math as m
+# Then we can use the alias to call the function
+m.sqrt(16)
+```
+
+Finally, if you want to skip the alias/library name, you can either
+import the functions individually:
+
+```python
+# Import specific functions from a library
+from math import sqrt, sin
+# Then we can use the function directly
+sqrt(16)
+sin(0)
+```
+
+Or import everything from the library:
+
+```python
+# Import everything from the library
+from math import *
+# Then we can all functions directly, such as sqrt() and sin()
+sqrt(16)
+cos(0)
+tan(0)
+sin(0)
+```
+
+Phew that’s a lot of ways to import libraries! You’ll mostly see the
+`import ... as ...` syntax, and sometimes the `from ... import ...`
+syntax.
+
+Note that we typically import all required libraries at the top of the
+file, in a single code chunk. This is a good practice to follow.
+
+:::tip[Practice]
+
+### Q: Definitions
+
+Come up with simple definitions for the following terms that are clear
+to YOU (even if not technically exactly accurate):
+
+-   Library (Module)
+-   Import
+-   Alias
+
+:::
+
+:::tip[Practice]
+
+### Q: Using functions from imported libraries
+
+-   Import the `random` library and use the `randint()` function to
+    generate a random integer between 1 and 10. You can use the `?`
+    operator to get help on the function after importing it.
+
+```python
+# Your code here
+```
+
+:::
+
+## Installing Libraries
+
+While Python comes with many built-in libraries, there are thousands of
+additional libraries available that you can install to extend Python’s
+functionality even further. Let’s look at how to install and use a
+simple external library, with the `cowsay` library as an example.
+
+If we try to import this library without first installing it, we get an
+error:
+
+```python
+import cowsay
+```
+
+To install the library, you can use the `!pip install` command in a code
+cell in Google Colab. For `cowsay`, you would run:
+
+```python
+!pip install cowsay
+```
+
+Pip installs packages from a remote repository called
+[PyPI](https://pypi.org/). Anyone can create and upload a package to
+PyPI. After a few checks, it’s then available for anyone to install.
+
+:::note[Side-note]
+
+For those working on local Python instances, you can install `cowsay`
+using pip in your terminal:
+
+``` text
+pip install cowsay
+```
+
+:::
+
+Once installed, we can now import and use the `cowsay` library:
+
+```python
+import cowsay
+
+# Make the cow say something
+cowsay.cow('Moo!')
+```
+
+This should display an ASCII art cow saying “Moo!”.
+
+:::tip[Practice]
+
+### Q: Using the emoji library
+
+1.  Install the `emoji` library.
+2.  Import the `emoji` library.
+3.  Consult the help for the `emojize()` function in the `emoji`
+    library.
+4.  Use the `emojize()` function to display an emoji for “thumbs up”.
+
+```python
+# Your code here
+```
+
+:::
+
+## Wrap-up
+
+In this lesson, we’ve covered:
+
+1.  Functions and methods in Python
+2.  Arguments (parameters) and how to use them
+3.  Importing and using libraries
+4.  Installing and using an external library
+
+These concepts are fundamental to Python programming and will be used
+extensively as you continue to develop your skills. Practice using
+different functions, methods, and libraries to become more comfortable
+with these concepts.

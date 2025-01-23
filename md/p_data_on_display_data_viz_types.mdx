@@ -1,0 +1,378 @@
+---
+title: Data Visualization Types
+---
+
+
+
+
+## Slides
+
+You can review the slides below, which was used to record the video. Or
+you can jump directly to the following sections, which contain more
+detail about each type of visualization.
+
+![Slide 1](slides/data_viz_types/Slide1.jpeg) ![Slide
+2](slides/data_viz_types/Slide2.jpeg) ![Slide
+3](slides/data_viz_types/Slide3.jpeg) ![Slide
+4](slides/data_viz_types/Slide4.jpeg) ![Slide
+5](slides/data_viz_types/Slide5.jpeg) ![Slide
+6](slides/data_viz_types/Slide6.jpeg) ![Slide
+7](slides/data_viz_types/Slide7.jpeg) ![Slide
+8](slides/data_viz_types/Slide8.jpeg) ![Slide
+9](slides/data_viz_types/Slide9.jpeg) ![Slide
+10](slides/data_viz_types/Slide10.jpeg) ![Slide
+11](slides/data_viz_types/Slide11.jpeg) ![Slide
+12](slides/data_viz_types/Slide12.jpeg) ![Slide
+13](slides/data_viz_types/Slide13.jpeg) ![Slide
+14](slides/data_viz_types/Slide14.jpeg)
+
+## Intro
+
+In data visualization, there are often three main steps:
+
+1.  **Wrangle and clean** your data.  
+2.  **Pick** the right type of visualization for your question.  
+3.  **Write the code** to implement that visualization.
+
+In this lesson, we focus on step #2: understanding which types of plots
+best suit particular kinds of questions. We’ll look at examples from the
+built-in `tips` dataset in Plotly, exploring:
+
+-   **Univariate (single variable) numeric** data  
+-   **Univariate (single variable) categorical** data  
+-   **Bivariate numeric vs numeric**  
+-   **Bivariate numeric vs categorical**  
+-   **Bivariate categorical vs categorical**  
+-   **Time series**
+
+We then practice with another dataset (`gapminder`) to reinforce how to
+choose an effective plot for your data and your question.
+
+## Setup
+
+Run the following code to set up the plotting environment and load the
+`tips` dataset from Plotly Express.
+
+```python
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import plotly.io as pio
+
+tips = px.data.tips()
+```
+
+------------------------------------------------------------------------
+
+# 1. Univariate Plots {#univariate-plots}
+
+When exploring **one column** (variable) in your data, your choice of
+visualization depends on whether that column is **numeric** (e.g. `tip`,
+`total_bill`) or **categorical** (e.g. `sex`, `day`).
+
+## 1.1 Univariate Numeric {#univariate-numeric}
+
+Questions of the form: \> *What is the distribution of a numeric
+variable?*  
+\> *What’s its range? Its median? Where do most values lie?*
+
+Possible visualizations include:
+
+-   **Histogram** – good for seeing the overall distribution of
+    values.  
+-   **Box Plot** – highlights the median, quartiles, and outliers.  
+-   **Violin Plot** – combines a box plot with a “smoothed” histogram
+    (density) shape.  
+-   **Strip/Jitter Plot** – shows each individual point, slightly
+    “jittered” so they’re not on top of each other.
+
+### Histogram
+
+```python
+fig_hist = px.histogram(tips, x='tip')
+fig_hist.show()
+```
+
+### Box Plot
+
+```python
+fig_box = px.box(tips, x='tip')
+fig_box.show()
+```
+
+### Violin Plot (with Box + Points) {#violin-plot-with-box-points}
+
+```python
+fig_violin = px.violin(tips, x='tip', box=True, points='all')
+fig_violin.show()
+```
+
+------------------------------------------------------------------------
+
+## 1.2 Univariate Categorical {#univariate-categorical}
+
+Questions of the form: \> *How many observations fall into each
+category?* \> In the case of the tips dataset, *how many observations
+are there for each sex?*
+
+Possible visualizations include:
+
+-   **Bar Chart** – typically counts how many rows fall into each
+    category.  
+-   **Pie Chart** – can be used if you have only a few categories and
+    want to highlight proportions.
+
+### Bar Chart
+
+```python
+fig_bar_cat = px.histogram(tips, x='sex', color='sex', color_discrete_sequence=['#deb221', '#2f828a'])
+fig_bar_cat.update_layout(showlegend=False)
+fig_bar_cat.show()
+```
+
+### Pie Chart
+
+```python
+fig_pie_cat = px.pie(tips, names='sex', color='sex', values='tip',
+                     color_discrete_sequence=['#deb221', '#2f828a'])
+fig_pie_cat.update_layout(showlegend=False)
+fig_pie_cat.update_traces(textposition='none')
+fig_pie_cat.show()
+```
+
+------------------------------------------------------------------------
+
+# 2. Bivariate Plots {#bivariate-plots}
+
+When comparing **two variables**, consider whether they’re numeric or
+categorical. We’ll look at:
+
+1.  Numeric vs Numeric  
+2.  Numeric vs Categorical  
+3.  Categorical vs Categorical
+
+## 2.1 Numeric vs Numeric {#numeric-vs-numeric}
+
+Typical question: \> *Do two numeric variables correlate?* \> In the
+case of the tips dataset, *does the total bill correlate with the tip?*
+
+A **scatter plot** is usually the first choice.
+
+```python
+fig_scatter = px.scatter(tips, x='total_bill', y='tip')
+fig_scatter.show()
+```
+
+------------------------------------------------------------------------
+
+## 2.2 Numeric vs Categorical {#numeric-vs-categorical}
+
+Typical questions: \> *Which group has higher values on average?*  
+\> In the case of the tips dataset, *do men or women tip more?*
+
+Visual options:
+
+-   **Grouped Histograms** – separate histograms for each category
+    (often overlaid).  
+-   **Grouped Box/Violin/Strip** – one distribution plot per category.  
+-   **Summary Bar Chart** – show mean (or median) for each category,
+    optionally with error bars.
+
+### Grouped Histogram
+
+```python
+fig_grouped_hist = px.histogram(tips, x='tip', color='sex', barmode='overlay',
+                                color_discrete_sequence=['#deb221', '#2f828a'])
+fig_grouped_hist.show()
+```
+
+### Grouped Violin/Box/Strip
+
+```python
+fig_grouped_violin = px.violin(tips, y='sex', x='tip', color='sex',
+                               box=True, points='all',
+                               color_discrete_sequence=['#deb221', '#2f828a'])
+fig_grouped_violin.update_layout(showlegend=False)
+fig_grouped_violin.show()
+```
+
+### Summary Bar (Mean + Std) {#summary-bar-mean-std}
+
+```python
+summary_df = tips.groupby('sex').agg({'tip': ['mean', 'std']}).reset_index()
+summary_df.columns = ['sex', 'mean_tip', 'std_tip']
+
+fig_mean_bar = px.bar(
+    summary_df,
+    y='sex',
+    x='mean_tip',
+    error_x='std_tip',
+    color='sex',
+    color_discrete_sequence=['#deb221', '#2f828a'],
+)
+fig_mean_bar.update_layout(showlegend=False)
+fig_mean_bar.show()
+```
+
+------------------------------------------------------------------------
+
+## 2.3 Categorical vs Categorical {#categorical-vs-categorical}
+
+Typical question: \> *How do two categorical variables overlap?*  
+\> In the case of the tips dataset, *how does the sex ratio differ by
+day of the week?*
+
+Visual options:
+
+-   **Stacked Bar Chart** – total counts, stacked by category.  
+-   **Grouped/Clustered Bar Chart** – side-by-side bars per category.  
+-   **Percent Stacked Bar Chart** – each bar scaled to 100% so you see
+    proportions.
+
+### Grouped Bar
+
+```python
+fig_grouped_bar = px.histogram(tips, x='day', color='sex', barmode='group',
+                               color_discrete_sequence=['#deb221', '#2f828a'])
+fig_grouped_bar.show()
+```
+
+### Stacked Bar
+
+```python
+fig_stacked_bar = px.histogram(tips, x='day', color='sex',
+                               color_discrete_sequence=['#deb221', '#2f828a'])
+fig_stacked_bar.show()
+```
+
+### Percent Stacked
+
+```python
+fig_percent_stacked = px.histogram(tips, x='day', color='sex',
+                                   barmode='stack', barnorm='percent',
+                                   color_discrete_sequence=['#deb221', '#2f828a'])
+fig_percent_stacked.show()
+```
+
+# 3. Time Series {#time-series}
+
+Although you can treat time as a numeric variable, time series are
+unique because they show how values change over continuous time. Common
+plots:
+
+-   **Line Charts** – ideal for continuous trends.  
+-   **Bar Charts** – can work, but typically suggest discrete steps
+    rather than a smooth progression.
+
+Example with Nigeria’s population from Plotly’s `gapminder` dataset:
+
+```python
+gap_dat = px.data.gapminder()
+nigeria_pop = gap_dat.query('country == "Nigeria"')
+
+# Bar Chart
+fig_nigeria_bar = px.bar(nigeria_pop, x='year', y='pop')
+fig_nigeria_bar.show()
+
+# Line Chart with Points
+fig_nigeria_line = px.line(nigeria_pop, x='year', y='pop', markers=True)
+fig_nigeria_line.show()
+```
+
+# 4. Practice with the Gapminder Dataset {#practice-with-the-gapminder-dataset}
+
+Below, we filter `gapminder` to the year 2007 and add a simple income
+group classification. Then we answer some common questions. Try
+thinking: “Is this numeric vs numeric, numeric vs categorical, or
+categorical vs categorical?” Then select your plot accordingly.
+
+```python
+gap_2007 = (
+    gap_dat
+    .query("year == 2007")
+    .drop(columns=["iso_alpha", "iso_num", "year"])
+    .assign(income_group=lambda df: np.where(df.gdpPercap > 15000, "High Income", "Low & Middle Income"))
+)
+gap_2007.head()
+```
+
+For each section below, try to answer the question on your own before
+looking at the solution.
+
+## 4.1 How does GDP per capita vary across continents? {#how-does-gdp-per-capita-vary-across-continents}
+
+-   GDP per capita = numeric  
+-   Continent = categorical
+
+A violin or box plot grouped by continent works well.
+
+```python
+fig_gdp_violin = px.violin(
+    gap_2007, 
+    x="gdpPercap", 
+    y="continent", 
+    color="continent", 
+    box=True, 
+    points="all",
+    color_discrete_sequence=px.colors.qualitative.G10
+)
+fig_gdp_violin.update_layout(showlegend=False)
+fig_gdp_violin.show()
+```
+
+## 4.2 Is there a relationship between a country’s GDP per capita and life expectancy? {#is-there-a-relationship-between-a-countrys-gdp-per-capita-and-life-expectancy}
+
+-   GDP per capita = numeric  
+-   Life expectancy = numeric
+
+A scatter plot is typically best.
+
+```python
+fig_scatter_gdp_life = px.scatter(gap_2007, x='gdpPercap', y='lifeExp')
+fig_scatter_gdp_life.show()
+```
+
+## 4.3 How does life expectancy vary between the income groups? {#how-does-life-expectancy-vary-between-the-income-groups}
+
+-   Life expectancy = numeric  
+-   Income group = categorical
+
+Use grouped box, violin, or strip plots.
+
+```python
+fig_life_violin = px.violin(gap_2007, x="income_group", y="lifeExp", box=True, points="all")
+fig_life_violin.show()
+```
+
+## 4.4 What is the relationship between continent and income group? {#what-is-the-relationship-between-continent-and-income-group}
+
+-   Continent = categorical  
+-   Income group = categorical
+
+A stacked or percent-stacked bar chart is a good choice.
+
+```python
+fig_continent_income = px.histogram(
+    gap_2007,
+    x='continent',
+    color='income_group',
+    barmode='stack',
+    color_discrete_sequence=['#deb221', '#2f828a']
+)
+fig_continent_income.show()
+```
+
+# Conclusion
+
+Picking the right type of visualization starts with asking:  
+1. *How many variables am I looking at?*  
+2. *Are they numeric or categorical?*  
+3. *What exact question am I trying to answer?*
+
+Most of the time, the plots shown above (histograms, box/violin plots,
+scatter plots, bar charts, etc.) will be enough to communicate your
+insights effectively. For time series or more specialized questions, you
+might pick line charts or other advanced visualizations.
+
+Keep practicing with different datasets and always ask yourself:
+**“Which plot would best answer the question at hand?”**

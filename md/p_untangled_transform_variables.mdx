@@ -1,0 +1,320 @@
+---
+title: Transforming Variables in pandas
+---
+
+
+
+
+## Introduction
+
+In data analysis, one of the most common tasks is transforming variables
+within your dataset. The pandas library provides straightforward and
+efficient ways to accomplish this.
+
+## Learning Objectives
+
+-   Understand how to create new variables in a DataFrame.
+-   Learn how to modify existing variables.
+-   Handle potential issues with modifying variables on views.
+
+## Imports
+
+First, let’s import the pandas package:
+
+```python
+import pandas as pd
+```
+
+Now we’ll set an important option that will help us avoid some warnings
+down the line. Later in the lesson, we’ll discuss this in more detail.
+
+```python
+pd.options.mode.copy_on_write = True
+```
+
+## Dataset
+
+In this lesson, we’ll use a dataset of United States counties with
+demographic and economic data. You can download the dataset from this
+link:[https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip](https://github.com/the-graph-courses/idap_book/raw/refs/heads/main/data/us_counties_data.zip).
+
+Once you’ve downloaded the file, unzip it and place the
+`us_counties_data.csv` file in the `data` folder for your project.
+
+```python
+counties = pd.read_csv("data/us_counties_data.csv")
+counties
+```
+
+The variables in the dataset are:
+
+-   `state`: US state
+-   `county`: US county
+-   `pop_20`: Population estimate for 2020
+-   `area_sq_miles`: Area in square miles
+-   `hh_inc_21`: Median household income for 2021
+-   `econ_type`: Economic type of the county
+-   `pop_change_2010_2020`: Population change between 2010 and 2020 (%)
+-   `unemp_20`: Unemployment rate for 2020 (%)
+-   `pct_emp_change_2010_2021`: Percentage change in employment between
+    2010 and 2021 (%)
+-   `foreign_born_num`: Number of foreign-born residents
+
+Let’s create a small subset of the dataset with just the area and
+population columns for illustration.
+
+```python
+# Small subset for illustration
+area_df = counties[["county", "area_sq_miles", "pop_20"]]
+area_df
+```
+
+## Creating New Variables
+
+Suppose we want to convert the area from square miles to square
+kilometers. Since 1 square mile is approximately 2.59 square kilometers,
+we can create a new variable `area_sq_km` by multiplying the
+`area_sq_miles` column by 2.59.
+
+```python
+area_df["area_sq_km"] = area_df["area_sq_miles"] * 2.59
+area_df
+```
+
+The syntax is very easy to understand, although a bit hard to type.
+
+With `area_df["area_sq_km"]`, we’re indicating that we want to create a
+new column called `area_sq_km`, then `area_df["area_sq_miles"] * 2.59`
+is the expression that computes the values for this new column.
+
+Let’s add another variable, this time in hectares. The conversion factor
+is 1 square mile = 259 hectares.
+
+```python
+# Convert area to hectares as well
+area_df["area_hectares"] = area_df["area_sq_miles"] * 259
+area_df
+```
+
+:::tip[Practice]
+
+### Practice Q: Area in Acres
+
+Using the `area_df` dataset, create a new column called `area_acres` by
+multiplying the `area_sq_miles` variable by 640. Store the result back
+into `area_df` and display the DataFrame.
+
+```python
+# Your code here
+```
+
+:::
+
+## Modifying Existing Variables
+
+Suppose we want to round the `area_sq_km` variable to one decimal place.
+We can call the `round` method on the `area_sq_km` column.
+
+```python
+area_df["area_sq_km"] = area_df["area_sq_km"].round(1)
+area_df
+```
+
+:::tip[Practice]
+
+### Practice Q: Rounding `area_acres`
+
+Using the `area_df` dataset, round the `area_acres` variable to one
+decimal place. Update the DataFrame `area_df` and display it.
+
+```python
+# Your code here
+```
+
+:::
+
+## Calculations with Multiple Variables
+
+We can create new variables based on multiple existing variables.
+
+For example, let’s calculate the population density per square
+kilometer.
+
+```python
+area_df["pop_per_sq_km"] = area_df["pop_20"] / area_df["area_sq_km"]
+area_df
+```
+
+We could tag on the round method to this output to round the result to
+one decimal place.
+
+```python
+area_df["pop_per_sq_km"] = (area_df["pop_20"] / area_df["area_sq_km"]).round(1)
+area_df
+```
+
+Or, if you prefer, you can do this in two steps:
+
+```python
+area_df["pop_per_sq_km"] = area_df["pop_20"] / area_df["area_sq_km"]
+area_df["pop_per_sq_km"] = area_df["pop_per_sq_km"].round(1)
+area_df
+```
+
+After calculating the population density, we might want to sort the
+DataFrame based on this new variable. Let’s sort in descending order.
+
+```python
+# Sort by population density in descending order
+area_df = area_df.sort_values("pop_per_sq_km", ascending=False)
+area_df
+```
+
+We see that New York County has the highest population density in the
+dataset.
+
+:::tip[Practice]
+
+### Practice Q: Calculate Foreign-Born Percentage
+
+Use the `counties` dataset to calculate the percentage of foreign-born
+residents in each county. The variable `foreign_born_num` shows the
+number of foreign-born residents and `pop_20` shows the total
+population. Sort the DataFrame in descending order of the percentage of
+foreign-born residents. Which two counties have the highest percentage
+of foreign-born residents?
+
+```python
+# Your code here
+```
+
+:::
+
+## Creating Boolean Variables
+
+It is sometimes useful to create Boolean variables to categorize or flag
+data based on conditions. Boolean variables are variables that take on
+only two values: `True` or `False`.
+
+Consider the `pop_change_2010_2020` variable in the `counties` dataset,
+which shows the percentage change in population between 2010 and 2020.
+
+```python
+changes_df = counties[["county", "pop_change_2010_2020", "pct_emp_change_2010_2021"]]
+changes_df
+```
+
+We might want to create a Boolean variable to flag whether the
+population increased. For this, let’s set the `pop_increase` variable to
+`True` if the population increased and `False` otherwise.
+
+Running the expression `changes_df["pop_change_2010_2020"] > 0` returns
+a Series of Boolean values:
+
+```python
+changes_df["pop_change_2010_2020"] > 0
+```
+
+We can assign this Series of Boolean values to the `pop_increase`
+variable.
+
+```python
+changes_df["pop_increase"] = changes_df["pop_change_2010_2020"] > 0
+changes_df
+```
+
+Similarly, we can create a Boolean variable `emp_increase` for
+employment change.
+
+```python
+changes_df["emp_increase"] = changes_df["pct_emp_change_2010_2021"] > 0
+changes_df
+```
+
+We can now filter the DataFrame to find counties where the population
+increased but employment decreased.
+
+```python
+# Counties where population increased but employment decreased
+pop_up_emp_down = changes_df.query("pop_increase == True & emp_increase == False")
+pop_up_emp_down
+```
+
+You could also write this in shorthand like so:
+
+```python
+# Counties where population increased but employment decreased
+pop_up_emp_down = changes_df.query("pop_increase & ~(emp_increase)")
+pop_up_emp_down
+```
+
+There are several such counties, which might be of interest for further
+analysis.
+
+:::tip[Practice]
+
+### Practice Q: Categorize Counties by Foreign-Born Population
+
+In a previous practice question, we calculated the percentage of
+foreign-born residents in each county. Now, create a Boolean variable
+`foreign_born_pct_gt_30` that is `True` if the percentage is greater
+than 30%.
+
+When you’re done, query the DataFrame to show only counties where
+`foreign_born_pct_gt_30` is `True`. You should get 24 rows.
+
+```python
+# Your code here
+```
+
+:::
+
+## The Copy-on-Write Warning
+
+Earlier in this lesson, we enabled “copy-on-write” mode. Let’s see what
+happens when this feature is disabled.
+
+```python
+pd.set_option("mode.copy_on_write", False)
+
+# Create a small subset of our data
+subset = counties.query("state == 'AL'")
+
+subset
+```
+
+When we attempt to modify the subset, we receive a warning:
+
+```python
+# Modify the subset
+subset['unemp_20'] = subset['unemp_20'].round(0)
+```
+
+While we won’t delve deeply into the technical details of this warning
+(as it involves complex pandas internals), it’s worth noting that the
+warning includes a link to the pandas documentation. This documentation
+contains the setting we used at the beginning of our lesson.
+
+If you ever need to reference this setting again, you can simply click
+the link in the warning message to access the documentation. The
+documentation page also provides more detailed information about this
+particular issue.
+
+Also note that from Pandas 3.0 (probably to be released in 2025) this
+warning will be removed, as the default behavior will be to copy on
+write.
+
+## Wrap-Up
+
+Transforming data is a fundamental step in any data analysis workflow.
+pandas makes it straightforward to create and modify variables within
+your DataFrames using simple and intuitive syntax.
+
+In this lesson, you’ve learned how to:
+
+-   Create new variables by assigning to new columns.
+-   Modify existing variables.
+-   Perform calculations involving multiple variables.
+-   Create Boolean variables based on conditions.
+
+Congratulations on completing this lesson!

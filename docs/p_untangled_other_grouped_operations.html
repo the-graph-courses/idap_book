@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Other Grouped Operations in Pandas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./p_untangled_other_grouped_operations.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Other Grouped Operations in Pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Group-Level Data Transformations in Pandas</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./p_untangled_subset_columns.html">Data Manipulation</a></li><li class="breadcrumb-item"><a href="./p_untangled_other_grouped_operations.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Other Grouped Operations in Pandas</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Other Grouped Operations in Pandas</span></h1>
 </div>
@@ -407,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="imports" class="level2" data-number="20.3">
 <h2 data-number="20.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">20.3</span> Imports</h2>
 <p>Run the following cell to import the necessary libraries:</p>
-<div id="8d325223" class="cell" data-execution_count="2">
+<div id="bbce6a64" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vega_datasets <span class="im">as</span> vd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -418,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="data"><span class="header-section-number">20.4</span> Data</h2>
 <p>We’ll use the <code>weather</code> dataset for our examples.</p>
-<div id="da54cc2b" class="cell" data-execution_count="3">
+<div id="89bc5f43" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>weather_raw <span class="op">=</span> vd.data.seattle_weather()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Select just 2012 data using query and add a month column</span></span>
@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_965/2556095375.py:5: SettingWithCopyWarning:
+<pre><code>/var/folders/vr/shb6ffvj2rl61kh7qqczhrgh0000gp/T/ipykernel_40785/2556095375.py:5: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -575,11 +575,11 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Now let’s set the display options for the rest of the lesson:</p>
-<div id="256590e4" class="cell" data-execution_count="4">
+<div id="78f9580e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pd.options.display.max_rows <span class="op">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And let’s ignore the warnings that come up when working with categorical data with the current version of pandas:</p>
-<div id="2f11adcc" class="cell" data-execution_count="5">
+<div id="ba9150f0" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ignore"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)  <span class="co">## There is a class of warnings that come up when working with categorical data with the current version of pandas that we can ignore</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -589,7 +589,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <h2 data-number="20.5" class="anchored" data-anchor-id="adding-summary-statistics-using-transform"><span class="header-section-number">20.5</span> Adding Summary Statistics Using <code>transform()</code></h2>
 <p>In the previous lesson, you learned how to calculate summary statistics like mean, median, or standard deviation using <code>agg()</code>.</p>
 <p>For example, to compute the mean precipitation (rain + snow) for each month, you could use:</p>
-<div id="53a135bd" class="cell" data-execution_count="6">
+<div id="b0107c2e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>weather.groupby(<span class="st">'month'</span>).agg(mean_precip <span class="op">=</span> (<span class="st">'precipitation'</span>, <span class="st">'mean'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -659,7 +659,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Sometimes, we want to add these group-level statistics as new columns to our original DataFrame. We can’t do this directly with the <code>agg()</code> output:</p>
-<div id="f541b69c" class="cell" data-execution_count="7">
+<div id="d967e4ea" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Does not work</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">'mean_precip'</span>] <span class="op">=</span> weather.groupby(<span class="st">'month'</span>).agg(mean_precip <span class="op">=</span> (<span class="st">'precipitation'</span>, <span class="st">'mean'</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -811,7 +811,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>But we can do this using <code>transform()</code>. <code>transform()</code> reshapes the output to match the original DataFrame’s shape, allowing us to add the group-level statistics as new columns.</p>
-<div id="4c980ebd" class="cell" data-execution_count="8">
+<div id="37921a0d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">'mean_precip_month'</span>] <span class="op">=</span> weather.groupby(<span class="st">'month'</span>)[<span class="st">'precipitation'</span>].transform(<span class="st">'mean'</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -974,7 +974,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>You can compute other statistics similarly. For example, to compute the median precipitation for each month, you could use:</p>
-<div id="845796dd" class="cell" data-execution_count="9">
+<div id="9b014909" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">'prep_median_month'</span>] <span class="op">=</span> weather.groupby(<span class="st">'month'</span>)[<span class="st">'precipitation'</span>].transform(<span class="st">'median'</span>)    </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -1149,7 +1149,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Or to get the sum of precipitation for each month:</p>
-<div id="f8821465" class="cell" data-execution_count="10">
+<div id="8f86989b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">'precip_sum_month'</span>] <span class="op">=</span> weather.groupby(<span class="st">'month'</span>)[<span class="st">'precipitation'</span>].transform(<span class="st">'sum'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -1336,7 +1336,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>With the sum in hand, we can easily calculate the proportion of that month’s precipitation that fell on each day:</p>
-<div id="ea092e44" class="cell" data-execution_count="11">
+<div id="11f45373" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">"precip_month_prop"</span>] <span class="op">=</span> weather[<span class="st">"precipitation"</span>] <span class="op">/</span> weather[<span class="st">"precip_sum_month"</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -1546,7 +1546,7 @@ Practice
 <section id="practice-q-daily-tip-proportions" class="level2 callout-body-container callout-body" data-number="20.6">
 <h2 data-number="20.6" class="anchored" data-anchor-id="practice-q-daily-tip-proportions"><span class="header-section-number">20.6</span> Practice Q: Daily Tip Proportions</h2>
 <p>Using the <code>tips</code> dataset, calculate: 1. A new column <code>daily_total_tips</code> containing the total tips for each day 2. A new column <code>tip_proportion</code> showing what proportion of that day’s total tips came from each customer</p>
-<div id="1be105bb" class="cell" data-execution_count="12">
+<div id="6a8ff7d2" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here:</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tips</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1694,7 +1694,7 @@ Practice
 </section>
 </div>
 <p>Let’s reinitialize the <code>weather</code> DataFrame to a smaller set of columns for the rest of the lesson:</p>
-<div id="ec20191e" class="cell" data-execution_count="14">
+<div id="531e6c67" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>weather <span class="op">=</span> weather[[<span class="st">'date'</span>, <span class="st">'month'</span>, <span class="st">'precipitation'</span>, <span class="st">'wind'</span>, <span class="st">'weather'</span>]]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -1813,7 +1813,7 @@ Practice
 <h2 data-number="20.7" class="anchored" data-anchor-id="counting-values-within-groups-using-value_counts"><span class="header-section-number">20.7</span> Counting Values Within Groups Using <code>value_counts()</code></h2>
 <p>Counting occurrences of categorical variables within groups can reveal interesting patterns, and you often need to do this after using <code>groupby()</code>.</p>
 <p>First, let’s recall how <code>value_counts()</code> works on the entire DataFrame.</p>
-<div id="4049b892" class="cell" data-execution_count="15">
+<div id="98729242" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count of weather types</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">"weather"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
@@ -1827,7 +1827,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>We can add <code>normalize=True</code> to get proportions:</p>
-<div id="2c1e5ae6" class="cell" data-execution_count="16">
+<div id="d47fee49" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">'weather'</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>weather
@@ -1840,7 +1840,7 @@ Name: proportion, dtype: float64</code></pre>
 </div>
 </div>
 <p>Now, to count weather types within each month, we first group by <code>month</code>, then subset the <code>weather</code> column and apply <code>value_counts()</code> to it.</p>
-<div id="4e11e820" class="cell" data-execution_count="17">
+<div id="2d11aa74" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Counts of weather types per month</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>weather.groupby(<span class="st">'month'</span>)[<span class="st">'weather'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -1860,7 +1860,7 @@ Name: count, Length: 60, dtype: int64</code></pre>
 </div>
 </div>
 <p>This returns a Series with a MultiIndex, which can be converted to a regular DataFrame with <code>reset_index()</code>:</p>
-<div id="6f4450b1" class="cell" data-execution_count="18">
+<div id="0e04d177" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>weather.groupby(<span class="st">'month'</span>)[<span class="st">'weather'</span>].value_counts().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
@@ -1961,7 +1961,7 @@ Practice
 <section id="practice-q-count-smokers-and-non-smokers-by-day" class="level2 callout-body-container callout-body" data-number="20.8">
 <h2 data-number="20.8" class="anchored" data-anchor-id="practice-q-count-smokers-and-non-smokers-by-day"><span class="header-section-number">20.8</span> Practice Q: Count Smokers and Non-Smokers by Day</h2>
 <p>Using the <code>tips</code> dataset, count the number of smokers and non-smokers for each day.</p>
-<div id="836fac00" class="cell" data-execution_count="19">
+<div id="28f4007e" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tips</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2113,7 +2113,7 @@ Sat No  45</code></pre>
 <h2 data-number="20.9" class="anchored" data-anchor-id="computing-cumulative-sums-within-groups"><span class="header-section-number">20.9</span> Computing Cumulative Sums Within Groups</h2>
 <p>Cumulative sums help track running totals within groups. This is an often-useful operation. Let’s see how we can do this to grouped data.</p>
 <p>As a recall, here’s how we can compute the cumulative sum of precipitation for the entire DataFrame:</p>
-<div id="3a7d38f6" class="cell" data-execution_count="21">
+<div id="7d54132b" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative sum of precipitation</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">"precip_cumul"</span>] <span class="op">=</span> weather[<span class="st">"precipitation"</span>].cumsum()</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2241,7 +2241,7 @@ Sat No  45</code></pre>
 </div>
 </div>
 <p>To compute cumulative precipitation within each month, we can use <code>groupby()</code> and <code>cumsum()</code>:</p>
-<div id="b2c4630d" class="cell" data-execution_count="22">
+<div id="d931a24a" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative precipitation per month</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>weather[<span class="st">"precip_cumul"</span>] <span class="op">=</span> weather.groupby(<span class="st">"month"</span>)[<span class="st">"precipitation"</span>].cumsum()</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2372,7 +2372,7 @@ Sat No  45</code></pre>
 <section id="practice-q-cumulative-tip-amount-by-day" class="level2 callout-practice" title="Practice Q1: Cumulative Tip Amount by Day" data-number="20.10">
 <h2 data-number="20.10" class="anchored" data-anchor-id="practice-q-cumulative-tip-amount-by-day"><span class="header-section-number">20.10</span> Practice Q: Cumulative Tip Amount by Day</h2>
 <p>Using the <code>tips</code> dataset, compute the cumulative sum of <code>total_bill</code> for each <code>day</code>, adding a new column <code>cumul_total_bill_day</code>. Then add another column <code>cumul_tip_day</code> that contains the cumulative sum of <code>tip</code> for each <code>day</code>.</p>
-<div id="4c39927b" class="cell" data-execution_count="23">
+<div id="10636922" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> px.data.tips()</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> tips.sort_values(<span class="st">'day'</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tips</span>

@@ -244,6 +244,7 @@ Your output should be a DataFrame that looks like this:
 # | eval: false
 # | echo: false
 
+# Solution
 (
     yao.groupby(["age_category_3", "sex"])
     .agg(min_height=("height_cm", "min"), max_height=("height_cm", "max"))

@@ -73,9 +73,9 @@ px.scatter?
 ```
 
 
-::: {.callout-tip title='Practice'}
-
 ### Practice Q: Life Expectancy vs. GDP Per Capita
+
+::: {.callout-tip title='Practice'}
 
 Using the Gapminder dataset (the 2007 subset, `g_2007`, defined below), create a scatter plot showing the relationship between `gdpPercap` (GDP per capita) and `lifeExp` (life expectancy).
 
@@ -88,12 +88,8 @@ g_2007.head()
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: Life Expectancy vs. GDP Per Capita
-
 ```{python}
+#| include: false
 px.scatter(
     g_2007,
     x="gdpPercap",
@@ -132,9 +128,9 @@ px.histogram(tips, x="tip", color="sex", barmode="overlay")
 
 This creates two semi-transparent histograms overlaid on top of each other, allowing for direct comparison of the distributions.
 
-::: {.callout-tip title='Practice'}
-
 ### Practice Q: Age Distribution by Gender
+
+::: {.callout-tip title='Practice'}
 
 Using the `la_riots` dataset from `vega_datasets`, create a grouped histogram of `age` by `gender`. Compare the age distributions between different genders.
 
@@ -146,12 +142,8 @@ la_riots.head()
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: Age Distribution by Gender
-
 ```{python}
+#| include: false
 px.histogram(la_riots, x="age", color="gender")
 ```
 
@@ -212,12 +204,9 @@ g_2007.head()
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: Life Expectancy by Continent
-
 ```{python}
+#| include: false
+# Solution
 px.violin(
     g_2007,
     y="lifeExp",
@@ -268,12 +257,9 @@ tips.head()  # View the tips dataset
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: Average Total Bill by Day
-
 ```{python}
+#| include: false
+# Solution
 # Calculate the mean and standard deviation
 summary_df = (
     tips.groupby("day")
@@ -292,7 +278,6 @@ px.bar(
 ```
 
 According to the plot, Sunday has the highest average bill.
-
 :::
 
 
@@ -379,12 +364,9 @@ g_2007_income.head()
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: High and Low Income Countries by Continent
-
 ```{python}
+#| include: false
+# Solution
 px.histogram(
     g_2007_income,
     x="continent",
@@ -426,24 +408,22 @@ According the plot, which continent has the highest proportion of high income co
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: Proportion of High and Low Income Countries by Continent
-
 ```{python}
+# | include: false
+# Solution
 px.histogram(
     g_2007_income,
     x="continent",
     color="income_group",
     barnorm="percent",
-    title="Proportion of High and Low Income Countries by Continent"
+    title="Proportion of High and Low Income Countries by Continent",
 )
+
+# According to the plot, North America has the highest proportion of high-income countries.
+# A limitation is that it hides the actual counts of countries in each continent. So Oceania looks like a very high income continent, but only two Oceanian countries are included in the data, which is too few to make such a conclusion.
 ```
 
-According to the plot, North America has the highest proportion of high-income countries. 
 
-A limitation is that it hides the actual counts of countries in each continent. So Oceania looks like a very high income continent, but only two Oceanian countries are included in the data, which is too few to make such a conclusion.
 :::
 
 ### Clustered Bar Charts 
@@ -519,14 +499,14 @@ Using the Gapminder dataset, create a time series visualization for the GDP per 
 # Your code here
 ```
 
+
 What happened to Iraq in the 1980s that might explain the graph shown?
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: GDP per Capita Time Series
 
 ```{python}
+#| include: false
+# Solution
+# Solution
 iraq_gdp = gapminder.query('country == "Iraq"')
 px.line(
     iraq_gdp,
@@ -535,9 +515,9 @@ px.line(
     markers=True,
     title="Iraq GDP per Capita Over Time"
 )
-```
 
-The Iran-Iraq War (1980-1988) likely explains the significant drop in GDP per capita during the 1980s.
+# The Iran-Iraq War (1980-1988) likely explains the significant drop in GDP per capita during the 1980s.
+```
 
 :::
 
@@ -582,12 +562,9 @@ tips.head()
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: Tips Bubble Chart
-
 ```{python}
+#| include: false
+# Solution
 px.scatter(
     tips,
     x="total_bill",
@@ -654,17 +631,15 @@ Faceting allows us to compare distributions across different days, providing mor
 Using the `tips` dataset, create a percent-stacked bar chart of the `time` column, colored by the `sex` column, and facetted by the `day` column.
 
 Which day-time has the highest proportion of male customers (e.g. Friday Lunch, Saturday Dinner, etc.)?
+
 ```{python}
 tips.head()
 # Your code here
 ```
 
-:::
-
-::: {.callout-note collapse="true"}
-### Solution Q: Tips Facet Plot
-
 ```{python}
+#| include: false
+# Solution
 px.histogram(
     tips,
     x="time",

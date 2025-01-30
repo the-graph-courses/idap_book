@@ -258,7 +258,7 @@ tips.head()  # View the tips dataset
 ```
 
 ```{python}
-#| include: false
+# | include: false
 # Solution
 # Calculate the mean and standard deviation
 summary_df = (
@@ -273,7 +273,7 @@ px.bar(
     x="day",
     y="mean_bill",
     error_y="std_bill",
-    title="Average Total Bill by Day"
+    title="Average Total Bill by Day",
 )
 ```
 
@@ -575,7 +575,6 @@ px.scatter(
 )
 ```
 
-According to the plot, the highest two tips were both on Saturday, from parties of 3 and 4 people.
 :::
 
 ### Facet Plots
@@ -651,7 +650,6 @@ px.histogram(
 )
 ```
 
-According to the plot, Saturday lunch has the highest proportion of male customers.
 :::
 
 ## Summary

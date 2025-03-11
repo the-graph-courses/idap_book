@@ -1,0 +1,105 @@
+---
+title: "End of Module A2 Quiz"
+---
+
+# Intro 
+
+Welcome to the end of module quiz for Module A2!
+
+# Q: Definition of 'Power'
+
+What is the definition of 'power'?
+
+## A
+
+The probability that the null hypothesis is true.
+
+## B
+
+The probability that the null hypothesis is false.
+
+## C
+
+The probability that a false null hypothesis will be rejected.
+
+## D
+
+The probability that a true null hypothesis will be rejected.
+
+## Answer
+
+C
+
+## Correct message
+
+Well done! Power is the probability that you will reject the null hypothesis correctly, meaning you find evidence of an association when one truly exists.
+
+## Incorrect message
+
+Power is the probability that you will reject the null hypothesis correctly, meaning you find evidence of an association when one truly exists.
+
+# Q: Sample Size Estimation Parameters
+
+What information/parameters do you need before you can estimate the **sample size** needed for a particular study? Choose all that apply.
+
+## A
+
+Alpha level (i.e. level of significance you will accept as proof against the null) hypothesis.
+
+## B
+
+Beta level (i.e. amount of power you want).
+
+## C
+
+Standard deviation of the population (if estimating difference in means).
+
+## D
+
+Expected true difference in means/proportion of the outcome variable.
+
+## E
+
+An expected sample size.
+
+## Answer
+
+A|B|C|D
+
+## Correct message
+
+Nice work! The essential parameters for estimating sample size include alpha level, beta level, standard deviation of the population, and the expected true difference in means or proportion of the outcome variable.
+
+## Incorrect message
+
+The essential parameters for estimating sample size include alpha level, beta level, standard deviation of the population, and the expected true difference in means or proportion of the outcome variable.
+
+
+# Q: Sample Size for Cholesterol Study
+
+Estimate the total sample size needed to compare the mean total cholesterol between two groups of men, with versus without coronary heart disease (CHD). Assume 90% power, and a 5% significance level.
+
+## A
+
+Approximately 86 participants are needed in total.
+
+## B
+
+Approximately 172 participants are needed in total.
+
+## C
+
+None of the above.
+
+## Answer
+
+B
+
+## Correct message
+
+Indeed! Approximately 172 participants in total are needed, with 86 participants per group.
+
+## Incorrect message
+
+You need 86 participants per group, making a total of 172 participants.
+

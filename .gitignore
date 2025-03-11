@@ -1,4 +1,6 @@
 .env
+.venv
+.quarto
 .Rproj.user
 .Rhistory
 .RData

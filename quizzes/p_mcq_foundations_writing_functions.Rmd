@@ -1,0 +1,179 @@
+---
+title: "Multiple Choice Quiz | Intro to Functions and Conditionals"
+---
+
+# Intro 
+
+Below is a quiz covering the basics of creating functions in Python, using conditional logic, and managing function arguments.
+
+# Q: Simple Function Definition
+
+How can we define a function named my_function that returns the string "Hello"?
+
+## A
+```python
+def my_function:
+    "Hello"
+```
+
+## B
+```python
+def my_function():
+    return "Hello"
+```
+
+## C
+```python
+my_function() = "Hello"
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly The def keyword is followed by parentheses and a colon. Then we return the string.
+
+## Incorrect message
+
+A valid function definition requires parentheses after the function name and a return statement within the function body.
+
+# Q: Multiple Arguments
+
+Which snippet correctly defines a function named add_numbers that adds two numbers together and returns the result?
+
+
+## A
+```python
+def add_numbers:
+    a + b
+```
+
+## B
+```python
+def add_numbers[a, b]:
+    return a + b + 0
+```
+
+## C
+```python
+def add_numbers(a, b):
+    return a + b
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Correct Defining add_numbers(a, b) with a return of a + b is the right approach.
+
+## Incorrect message
+
+Remember to include the parentheses with parameters and use return to send back the result.
+
+# Q: Default Argument
+
+Consider this function snippet
+```python
+def greet(name="Student"):
+    return "Hello " + name
+```
+What happens if we call greet() without any arguments
+
+## A
+
+It returns an error because no name is provided
+
+## B
+
+It returns Hello Student
+
+## C
+
+It returns Hello None
+
+## Answer
+
+B
+
+## Correct message
+
+Right If no argument is supplied, the default value Student is used.
+
+## Incorrect message
+
+When no argument is passed, the name parameter uses its default value of Student.
+
+# Q: Conditional Thresholds
+
+Examine this function
+```python
+def categorize_grade(g):
+    if g >= 85:
+        return "Excellent"
+    elif g >= 60:
+        return "Pass"
+    else:
+        return "Fail"
+```
+What will categorize_grade(70) return
+
+## A
+
+"Excellent"
+
+## B
+
+"Pass"
+
+## C
+
+"Fail"
+
+## Answer
+
+B
+
+## Correct message
+
+Correct Because 70 is between 60 and 85, it falls into the Pass category.
+
+## Incorrect message
+
+Check the elif condition which captures values between 60 and 84 inclusive.
+
+# Q: Default Values in Multiple Arguments
+
+Given the function
+```python
+def calc_total(carb=0, protein=0, fat=0):
+    return (carb*4) + (protein*4) + (fat*9)
+```
+What is the result of calc_total(protein=5)
+
+## A
+
+20
+
+## B
+
+45
+
+## C
+
+0
+
+## Answer
+
+A
+
+## Correct message
+
+Correct Since protein is 5 grams and carbs and fat are zero the total is 20 calories 5 * 4
+
+## Incorrect message
+
+The formula is carbohydrate * 4 plus protein * 4 plus fat * 9. With only protein of 5 grams that is 5*4 20.

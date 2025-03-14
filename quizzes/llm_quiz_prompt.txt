@@ -1,13 +1,19 @@
 BELOW ARE GIVEN AN EXAMPLE QUIZ FORMAT AND ALSO A LESSON THAT I WANT YOU TO GENERATE A SIMILAR QUIZ ON. 
 
-THE QUIZ SHOULD HAVE 4 TO 15 QUESTIONS, DEPENDING ON IF THERE IS ENOUGH STUFF TO ASK.
+THE QUIZ SHOULD HAVE 7 TO 20 QUESTIONS, DEPENDING ON IF THERE IS ENOUGH STUFF TO ASK.
 
-FAVOR QUESTIONS THAT INCLUDE CODE EXAMPLES IN THE QUESTION OR IN THE OPTIONS.
+THE TITLE SHOULD BE "Multiple Choice Quiz | Topic Name"
+
+AVOID PUNCTUATION OTHER THAN # Q: IN THE TITLES (EG NO HYPHENS OR QUESTION MARKS)
+
+FAVOR QUESTIONS WITH ~3 ANSWER OPTIONS. BE SURE TO VARY THE CORRECT OPTION BETWEEN A B AND C.
+
+FAVOR QUESTIONS THAT INCLUDE CODE EXAMPLES IN THE QUESTION OR IN THE OPTIONS. CODE CHUNKS SHOULD BE ENSCONCED IN ```python  ```
 
 HERE IS THE EXAMPLE QUIZ:
 
 ---
-title: "Test (Example) Quiz"
+title: "Multiple Choice Quiz | Example Topic"
 ---
 
 # Intro 
@@ -28,7 +34,7 @@ After the correct answer, you have a single correct message, indicated by "## Co
 
 After the correct message, you have a single incorrect message, indicated by "## Incorrect message". 
 
-# Q: Definition of 'Power'
+# Q: Definition of Power
 
 What is the definition of 'power'?
 

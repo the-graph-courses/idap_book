@@ -1,0 +1,133 @@
+---
+title: "Multiple Choice Quiz | Univariate Data Visualization with Plotly"
+---
+
+# Intro 
+
+Welcome to this quiz on univariate graphs using Plotly Express. Answer the following questions to test and reinforce your understanding!
+
+# Q: Definition of Univariate Graphs
+
+Which of the following best describes a univariate graph?
+
+## A
+
+A graph that shows relationships between two different variables.
+
+## B
+
+A graph that shows the distribution of a single variable.
+
+## C
+
+A graph that represents three or more variables simultaneously.
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly! Univariate graphs focus on displaying the distribution or frequency of a single variable.
+
+## Incorrect message
+
+Univariate graphs specifically display one variable's distribution or frequency.
+
+# Q: Sorting Categories
+
+How can you sort categories by their total frequency in a Plotly Express histogram?
+
+## A
+
+```python
+fig.update_xaxes(categoryorder="total descending")
+```
+
+## B
+
+```python
+px.histogram(data, x="variable", sort_x=True)
+```
+
+## C
+
+```python
+fig.update_layout(sort_categories="descending")
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Well done! update_xaxes with categoryorder="total descending" is the way to sort by total frequency.
+
+## Incorrect message
+
+To sort categories by frequency, you should use fig.update_xaxes(categoryorder="total descending").
+
+# Q: Creating a Pie Chart
+
+Which code snippet creates a pie chart of the 'day' column from the tips dataset and places the labels inside each slice?
+
+## A
+```python
+fig = px.pie(tips, names="day")
+fig.update_traces(textposition="inside", textinfo="percent+label")
+```
+
+## B
+```python
+fig = px.pie(tips, x="day", text_auto=True)
+```
+
+## C
+```python
+fig = px.pie(tips, names="day", hole=0.5)
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Correct! Using update_traces with textposition="inside" and textinfo="percent+label" labels slices in the pie chart.
+
+## Incorrect message
+
+When making a pie chart with labels inside, use update_traces(textposition="inside", textinfo="percent+label").
+
+# Q: Horizontal Bar Chart
+
+How can you create a horizontal bar chart for the 'day' variable in the tips dataset?
+
+
+## A
+```python
+px.bar(tips, x="day")
+```
+
+## B
+```python
+px.pie(tips, names="day")
+```
+
+## C
+```python
+px.histogram(tips, y="day")
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Yes! Using px.histogram(tips, y="day") will produce a horizontal bar chart.
+
+## Incorrect message
+
+px.histogram(tips, y="day") is used to make a horizontal bar chart of the 'day' variable.

@@ -1,0 +1,292 @@
+---
+title: "Multiple Choice Quiz | Grouped Summary Statistics with groupby and agg"
+---
+
+# Intro
+
+This quiz will test your understanding of grouped summary statistics with `groupby()` and `agg()`.
+
+# Q: Computing Mean Age
+
+Which of the following code snippets correctly computes the mean age from the `yao` DataFrame?
+
+## A
+```python
+yao.mean(["age"])
+```
+
+## B
+```python
+yao["age"].mean()
+```
+
+## C
+```python
+yao.groupby("age").mean()
+```
+
+## Answer
+B
+
+## Correct message
+Exactly! `.mean()` computes the mean age, and you can use it on the Series `yao["age"]`.
+
+## Incorrect message
+Not quite. `.mean()` computes the mean age, and you can use it on the Series `yao["age"]`.
+
+# Q: Multiple Summary Statistics
+
+How can you compute multiple summary statistics, such as mean and median, for age using `agg()`?
+
+## A
+```python
+yao.agg(mean_age=("age", "mean"), median_age=("age", "median"))
+```
+
+## B
+```python
+yao["age"].mean(), yao["age"].median()
+```
+
+## C
+```python
+yao.agg({"age": ["mean"]}, {"age": ["median"]})
+```
+
+## Answer
+A
+
+## Correct message
+Correct! Option A uses the proper syntax with `agg()`.
+
+## Incorrect message
+Not quite. Option A is correct syntax for multiple summary statistics.
+
+# Q: Grouping Data Syntax
+
+What is the result of running `yao.groupby("sex")` alone?
+
+## A
+Displays grouped summary statistics by sex.
+
+## B
+Returns a GroupBy object without computation.
+
+## C
+Returns a sorted DataFrame by `sex`.
+
+## Answer
+B
+
+## Correct message
+Correct! `groupby()` alone returns a GroupBy object.
+
+## Incorrect message
+No, it actually returns a GroupBy object without performing computations.
+
+# Q: Mean Age by Group
+
+Which code snippet correctly calculates the mean age by sex?
+
+## A
+```python
+yao.mean().groupby("sex")
+```
+
+## B
+```python
+yao.group("sex").mean("age")
+```
+
+## C
+```python
+yao.groupby("sex").agg(mean_age=("age", "mean"))
+```
+
+## Answer
+C
+
+## Correct message
+Yes, chaining `groupby()` with `agg()` gives grouped summaries.
+
+## Incorrect message
+Incorrect. The correct method is option C, using `groupby()` and `agg()`.
+
+# Q: Resetting Grouped Index
+
+How can you turn the grouped output index back into a regular DataFrame column after using `groupby()` and `agg()`?
+
+## A
+Use `.rename_index()`
+
+## B
+Use `.reset_index()`
+
+## C
+Use `.reindex()`
+
+## Answer
+B
+
+## Correct message
+Correct! `.reset_index()` converts the group labels back into regular columns.
+
+## Incorrect message
+Incorrect. `.reset_index()` should be used.
+
+# Q: Nested Grouping
+
+How do you group a DataFrame by multiple columns, e.g., `sex` and `neighborhood` and then compute the mean age?
+
+## A
+```python
+yao.groupby("sex").groupby("neighborhood")["age"].mean()
+```
+
+## B
+```python
+yao.group(["sex", "neighborhood"]).mean()
+```
+
+## C
+```python
+yao.groupby(["sex", "neighborhood"])["age"].mean()
+```
+
+## Answer
+C
+
+## Correct message
+Exactly! Use `.groupby(["sex", "neighborhood"])` to group by multiple variables. Then extract the `age` column and compute the mean.
+
+## Incorrect message
+Incorrect. Option C correctly uses a list to specify multiple columns in `groupby()`, then it extracts the `age` column and computes the mean.
+
+# Q: Custom Functions in agg()
+
+How would you calculate the range of the `weight_kg` column grouped by `neighborhood`?
+
+## A
+```python
+yao.groupby("neighborhood").agg(weight_range=("weight_kg", lambda x: max(x)-min(x)))
+```
+
+## B
+```python
+yao.agg(weight_range=("neighborhood", lambda x: max(x)-min(x)))
+```
+
+## C
+```python
+yao.groupby("weight_kg").agg(neighborhood_range=("neighborhood", lambda x: max(x)-min(x)))
+```
+
+## Answer
+A
+
+## Correct message
+Well done! Option A correctly applies the lambda function with grouping.
+
+## Incorrect message
+Not quite. Option A is correct, grouping by neighborhood first.
+
+# Q: Handling NaNs in Groupby
+
+To include groups with NaN values when summarizing data using `groupby()`, you should:
+
+## A
+Ignore NaNs
+
+## B
+Set `dropna=False`
+
+## C
+Set NaNs manually to a new group before grouping
+
+## Answer
+B
+
+## Correct message
+Correct! Using `dropna=False` keeps NaN groups in the summary.
+
+## Incorrect message
+Incorrect. Use `dropna=False` to include NaN groups.
+
+# Q: Size of Groups
+
+What does the `size` function do in an `agg()` call?
+
+## A
+Computes mean value
+
+## B
+Counts rows per group
+
+## C
+Finds largest group
+
+## Answer
+B
+
+## Correct message
+Exactly! `size()` counts the rows per group.
+
+## Incorrect message
+Incorrect. The `size` function counts the number of rows per group.
+
+# Q: Syntax for agg
+
+Which of the following correctly shows the general syntax for `agg()`?
+
+## A
+```python
+dataframe.agg(summary_name=("COLUMN", "FUNCTION"))
+```
+
+## B
+```python
+dataframe.agg("COLUMN", summary_name="FUNCTION")
+```
+
+## C
+```python
+dataframe("COLUMN").agg(summary_name, "FUNCTION")
+```
+
+## Answer
+A
+
+## Correct message
+Correct! The syntax provided in option A is accurate.
+
+## Incorrect message
+Not quite. Option A correctly shows the tuple-based syntax used with `agg()`.
+
+# Q: Custom function in agg
+
+How would you define and use a custom function to calculate interquartile range (IQR) in `agg()`?
+
+## A
+```python
+yao.agg(IQR=("age", lambda x: x.quantile(0.75) - x.quantile(0.25)))
+```
+
+## B
+```python
+yao.agg("age").IQR(lambda x: quantile(0.75)-quantile(0.25))
+```
+
+## C
+```python
+yao.agg({"age": lambda x: x.quantile(0.75) - x.quantile(0.25)})
+```
+
+## Answer
+A
+
+## Correct message
+Exactly! Option A correctly computes IQR using lambda in `agg()`.
+
+## Incorrect message
+Incorrect. Option A correctly uses a lambda function to compute IQR.
+

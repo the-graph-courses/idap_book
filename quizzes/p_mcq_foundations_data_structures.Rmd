@@ -1,0 +1,267 @@
+---
+title: "Multiple Choice Quiz | Data Structures in Python"
+---
+
+# Intro 
+
+In this quiz, you will test your knowledge of Python lists, dictionaries, Pandas Series, and DataFrames. Please read each question carefully and choose the best answer(s). Good luck!
+
+# Q: Python Lists Intro
+
+Which code snippet creates a Python list named shopping that contains the strings "apples" and "milk" in that order?
+
+## A
+```python
+shopping = ["milk", "apples"]
+```
+
+## B
+```python
+shopping = ["apples", "milk"]
+```
+
+## C
+```python
+shopping = ("apples", "milk")
+```
+
+## Answer
+B
+
+## Correct message
+Great job! A Python list with "apples" and "milk" would be created using square brackets in the order ["apples", "milk"].
+
+## Incorrect message
+Remember that Python lists are created with square brackets in the correct order.
+
+# Q: Zero Based Indexing
+
+Consider the list below:
+
+```python
+nums = [10, 20, 30, 40]
+```
+
+Which expression prints the element 30?
+
+## A
+```python
+print(nums[2])
+```
+
+## B
+```python
+print(nums[1])
+```
+
+## C
+```python
+print(nums[3])
+```
+
+## Answer
+A
+
+## Correct message
+Correct! The third element is at index 2 because Python uses zero-based indexing.
+
+## Incorrect message
+Integer indexing in Python starts at 0, so nums[2] is the third element.
+
+# Q: Dictionary Usage
+
+Which line of code correctly creates a dictionary called contacts with "Alice" mapped to "555-1234" and "Bob" mapped to "555-5678"?
+
+## A
+```python
+contacts = ["Alice": "555-1234", "Bob": "555-5678"]
+```
+
+## B
+```python
+contacts = {"Alice": "555-1234", "Bob": "555-5678"}
+```
+
+## C
+```python
+contacts = {"Alice" -> "555-1234", "Bob" -> "555-5678"}
+```
+
+## Answer
+B
+
+## Correct message
+Good work! Dictionaries are created with curly braces and key-value pairs separated by a colon.
+
+## Incorrect message
+Remember that Python dictionaries are defined with curly braces and colons for key-value pairs.
+
+# Q: Modifying a Dictionary
+
+Suppose you have this dictionary:
+
+```python
+grades = {"Alice": 90, "Bob": 85}
+```
+
+Which of the following will update Bob's grade to 95?
+
+## A
+```python
+grades("Bob") = 95
+```
+
+## B
+```python
+grades["Bob"] = 95
+```
+
+## C
+```python
+grades.update("Bob"=95)
+```
+
+## Answer
+B
+
+## Correct message
+Great! We use the key in square brackets to update a value in a Python dictionary.
+
+## Incorrect message
+Recall that to set a value in a dictionary, we use dictionary_name[key] = value.
+
+# Q: Creating a Pandas Series
+
+Which code snippet creates a Pandas Series with the values 2, 4, 6 and assigns it to a variable called my_series?
+
+## A
+```python
+my_series = np.PandasSeries([2, 4, 6])
+```
+
+## B
+```python
+my_series = pd.Series([2, 4, 6])
+```
+
+## C
+```python
+my_series = pd.Series{
+    'first': 2, 
+    'second': 4, 
+    'third': 6
+}
+```
+
+## Answer
+B
+
+## Correct message
+Exactly! A Pandas Series is created with pd.Series([...]) syntax.
+
+## Incorrect message
+Remember that pd.Series(...) creates a one-dimensional labeled array.
+
+# Q: Descriptive Statistics with Series
+
+After you create a Pandas Series like this:
+
+```python
+temps = pd.Series([10, 20, 30])
+```
+
+Which of the following lines of code will correctly return the mean of temps?
+
+## A
+```python
+temps.describe()["mean"]
+```
+
+## B
+```python
+temps.mean()
+```
+
+## C
+```python
+temps.stats["mean"]
+```
+
+## Answer
+B
+
+## Correct message
+Correct! The .mean() method returns the average value of the Series.
+
+## Incorrect message
+Recall that .mean() is the direct method to compute the average of a Series.
+
+# Q: DataFrame Creation
+
+Which option below shows valid ways to create a DataFrame named people_df with columns called "name" and "age"?
+
+## A
+```python
+people_df = pd.DataFrame(
+    {
+        "name": ["Alice", "Bob"],
+        "age": [25, 30]
+    }
+)
+```
+
+## B
+```python
+names = ["Alice", "Bob"]
+ages = [25, 30]
+people_df = pd.DataFrame({"name": names, "age": ages})
+```
+
+## C
+```python
+people_df = pd.DataFrame([ ["Alice", "Bob"], [25, 30] ])
+```
+
+## Answer
+A|B
+
+## Correct message
+Correct! A DataFrame can be created using a dictionary with column names as keys.
+
+## Incorrect message
+A DataFrame can be created using a dictionary with column names as keys.
+
+# Q: Selecting Multiple Columns
+
+Given the DataFrame people_df:
+
+```python
+people_df = pd.DataFrame(
+    {
+        "name": ["Alice", "Bob", "Charlie"],
+        "age": [25, 30, 28],
+        "city": ["Lagos", "London", "Lima"],
+    }
+)
+```
+
+Which code snippet selects only the name and city columns?
+
+## A
+```python
+people_df[["name", "city"]]
+```
+
+## B
+```python
+people_df["name", "city"]
+```
+
+## Answer
+A
+
+## Correct message
+Well done!
+
+## Incorrect message
+To select multiple columns, you can pass a list of column names in double brackets.

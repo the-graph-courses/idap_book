@@ -1,0 +1,143 @@
+---
+title: "Multiple Choice Quiz | Transforming Variables with Pandas"
+---
+
+# Intro
+
+Welcome to this quiz on transforming variables in pandas. Best of luck!
+
+# Q: Creating area_hectares
+
+What code snippet properly creates a new column called area_hectares using the area_sq_miles column in area_df?
+
+## A
+
+```python
+area_df["area_hectares"] = area_df["area_sq_miles"] * 259
+```
+
+## B
+
+```python
+area_df["area_hectares"] = area_df["area_sq_miles"] + 259
+```
+
+## C
+
+```python
+area_df["area_hectares"] = 259 * area_df["pop_20"]
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Yes, to convert square miles to hectares, multiply area_sq_miles by 259.
+
+## Incorrect message
+
+To convert square miles to hectares, you multiply area_sq_miles by 259.
+
+# Q: Sorting by population density
+
+What code snippet sorts area_df by the pop_per_sq_km column in descending order?
+
+## A
+
+```python
+area_df.sort_values("pop_per_sq_km", ascending=True)
+```
+
+## B
+
+```python
+area_df = area_df.sort_values("pop_per_sq_km", ascending=False)
+```
+
+## C
+
+```python
+area_df["pop_per_sq_km"] = area_df["pop_per_sq_km"].sort_values()
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Yes, you should assign the result of sort_values to area_df and set ascending=False to sort in descending order.
+
+## Incorrect message
+
+You should assign the result of sort_values to area_df and set ascending=False to sort the DataFrame in descending order.
+
+# Q: Boolean variable for population growth
+
+Which expression correctly creates a Boolean variable pop_increase to indicate if the population grew from 2010 to 2020?
+
+## A
+
+```python
+changes_df["pop_increase"] = changes_df["pop_change_2010_2020"] > 0
+```
+
+## B
+
+```python
+changes_df["pop_increase"] = changes_df["pop_change_2010_2020"].equals(0)
+```
+
+## C
+
+```python
+changes_df["pop_increase"] = changes_df["pop_change_2010_2020"].isin([0])
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Nice work. This ensures pop_increase is True only if the percentage is greater than 0.
+
+## Incorrect message
+
+pop_increase should be True only if the percentage is greater than 0.
+
+# Q: Round method usage
+
+We want to round the unemp_20 column in the counties DataFrame to zero decimals. Which code snippet achieves this with the round method?
+
+## A
+
+```python
+counties["unemp_20"] = counties["unemp_20"].round(0)
+```
+
+## B
+
+```python
+counties["unemp_20"].round(0)
+```
+
+## C
+
+```python
+counties["unemp_20"] = round(counties["unemp_20"], 1)
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Great. You must assign the rounded values back to counties["unemp_20"] to modify it in place.
+
+## Incorrect message
+
+You need to assign the rounded values back to the column to update it.

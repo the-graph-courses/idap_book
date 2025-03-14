@@ -1,0 +1,142 @@
+---
+title: "Multiple Choice Quiz | Google Colab"
+---
+
+# Intro
+
+Welcome to this quiz on Google Colab! Answer the following questions to test your understanding of what Colab is, how to create and manage notebooks, run code, and work with data.
+
+# Q: Concept of Google Colab
+
+Which statement best describes Google Colab?
+
+## A
+
+A paid Python development environment that must be installed on your desktop computer.
+
+## B
+
+A free, browser-based platform provided by Google for running Python (or R) notebooks without any local installation.
+
+## C
+
+A local command-line interface (CLI) that only supports Python 2.
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly! Google Colab is a free, browser-based environment where you can run notebooks without installing anything locally.
+
+## Incorrect message
+
+Google Colab is a free, browser-based platform for running Python (or R) notebooks and doesn't require local installation.
+
+# Q: Running Python Code in Cells
+
+Suppose you have the following code snippet in a Colab cell:
+
+```python
+1 + 1
+```
+
+Which of the following is a valid way to run this cell?
+
+## A
+
+Press Alt + F4 on Windows or ⌘ + W on Mac.
+
+## B
+
+Press Ctrl + Enter (Windows) or Command + Enter (Mac).
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly. You can run a cell by pressing Ctrl + Enter on Windows or Command + Enter on Mac.
+
+## Incorrect message
+
+To run a cell, click the "play" icon or use the keyboard shortcut: Ctrl + Enter (Windows) or Command + Enter (Mac).
+
+# Q: Displaying Multiple Outputs
+
+Look at the following code snippet that someone wrote in a Colab cell:
+
+```python
+1 + 1
+2 + 2
+3 + 3
+```
+
+They only see the result of the last operation in the output. Which code change below allows them to see each separate result?
+
+## A
+
+```python
+1 + 1
+print(2 + 2)
+3 + 3
+```
+
+## B
+
+```python
+print(1 + 1)
+print(2 + 2)
+print(3 + 3)
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Correct! Using print() for each line ensures each result is displayed. You can also mix print statements with bare expressions to see multiple outputs.
+
+## Incorrect message
+
+You should use print() for each line to see multiple outputs.
+
+# Q: Importing Data
+
+You want to read the “california_housing_test.csv” file located in "/content/sample_data". Which of these code snippets will correctly load this dataset into a pandas DataFrame called housing_data?
+
+## A
+
+```python
+import csv
+housing_data = csv.read("/content/sample_data/california_housing_test.csv")
+```
+
+## B
+
+```python
+import pandas
+housing_data = pandas.read_csv("/content/sample_data/california_housing_test.csv")
+```
+
+## C
+
+```python
+import numpy
+housing_data = numpy.readfile("/content/sample_data/california_housing_test.csv")
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly. Using pandas.read_csv is the correct way to load the CSV file into a pandas DataFrame.
+
+## Incorrect message
+
+You should use pandas.read_csv("/content/sample_data/california_housing_test.csv") to load this CSV file into a DataFrame.

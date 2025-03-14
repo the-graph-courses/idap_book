@@ -1,0 +1,183 @@
+---
+title: "Multiple Choice Quiz | Subsetting Columns with Pandas"
+---
+
+# Intro
+
+Welcome to this quiz on subsetting columns in pandas. You will see how to select, drop, rename, and clean columns using the methods discussed in the lesson.
+
+# Q: Selecting with Brackets
+
+Which code snippet correctly selects only the "sex" and "age" columns from a DataFrame called yao and returns a DataFrame?
+
+## A
+
+```python
+yao["sex", "age"]
+```
+
+## B
+
+```python
+yao.sex.age
+```
+
+## C
+
+```python
+yao[["sex", "age"]]
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Awesome job. Double square brackets are needed to select multiple columns as a DataFrame.
+
+## Incorrect message
+
+Double square brackets are needed to select multiple columns as a DataFrame.
+
+# Q: Dropping Columns
+
+You want to remove the columns "age" and "sex" from yao using the drop() method. Which command is correct?
+
+## A
+
+```python
+yao.drop(["age", "sex"])
+```
+
+## B
+
+```python
+yao.drop(columns=["age", "sex"])
+```
+
+## C
+
+```python
+yao.remove(columns=["age", "sex"])
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Yes. Specifying columns=["age", "sex"] is the proper way to drop those two columns.
+
+## Incorrect message
+
+Remember to use the columns parameter inside drop() when dropping multiple columns.
+
+# Q: Filter by Regex
+
+Which code snippet below selects all columns from yao that end with "result"?
+
+## A
+
+```python
+yao.filter("^result")
+```
+
+## B
+
+```python
+yao.filter(regex="result$")
+```
+
+## C
+
+```python
+yao.drop(columns="result$")
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Correct. The dollar sign matches the end of the string in regex.
+
+## Incorrect message
+
+The dollar sign in regex matches the end of a string, so "result$" selects columns ending with "result".
+
+# Q: Rename Columns
+
+To rename the "sex" column in yao to "patient_sex", which code snippet is correct?
+
+## A
+
+```python
+yao.rename(columns={"sex": "patient_sex"})
+```
+
+## B
+
+```python
+yao.rename("sex", "patient_sex")
+```
+
+## C
+
+```python
+yao["sex"] = yao["patient_sex"]
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Nice work. You must pass a dictionary in the columns parameter of the rename method.
+
+## Incorrect message
+
+Use a dictionary mapping old to new names in the rename method: columns={"sex": "patient_sex"}.
+
+# Q: Cleaning Messy Names with Regex
+
+Given the DataFrame below, which command successfully replaces all non-alphanumeric characters in its column names with underscores?
+
+```python
+messy_df = pd.DataFrame(
+    {"bad name": [1,2], "col!2": [3,4], "niceColumn": [5,6]}
+)
+```
+
+## A
+
+```python
+messy_df.columns = messy_df.columns.str.replace(r'[^a-zA-Z0-9]', '_', regex=True)
+```
+
+## B
+
+```python
+messy_df.columns.str.replace(r'[^a-zA-Z0-9]', '_', regex=True)
+```
+
+## C
+
+```python
+messy_df.columns.replace(r'[^a-zA-Z0-9]', '_')
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Good job. You need to assign the result back to messy_df.columns after calling str.replace with regex=True.
+
+## Incorrect message
+
+To clean the column names, use str.replace with the proper regex and then assign it back to messy_df.columns.

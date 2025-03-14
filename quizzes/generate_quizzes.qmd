@@ -1,0 +1,105 @@
+
+```{python}
+import os
+from openai import OpenAI
+import glob
+from pathlib import Path
+from local_settings import OPENAI_KEY
+
+
+# Initialize client
+client = OpenAI(api_key=OPENAI_KEY)
+
+
+def read_file(filepath):
+    """Read contents of a file"""
+    with open(filepath, "r", encoding="utf-8") as f:
+        return f.read()
+
+
+def save_file(filepath, content):
+    """Save content to a file"""
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def llm_chat(message):
+    """Make an API call to OpenAI"""
+    try:
+        response = client.chat.completions.create(
+            model="o1",  # Using GPT-4 for better quiz generation
+            messages=[{"role": "user", "content": message}],
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"Error in LLM call: {e}")
+        return None
+
+
+def generate_quiz(lesson_file, prompt_template):
+    """Generate a quiz for a lesson"""
+    # Read lesson content
+    lesson_content = read_file(lesson_file)
+
+    # Combine prompt template with lesson content
+    full_prompt = prompt_template + "\n\n" + lesson_content
+
+    # Get quiz from LLM
+    quiz_content = llm_chat(full_prompt)
+
+    if quiz_content:
+        # Convert lesson path to quiz path
+        lesson_path = Path(lesson_file)
+        quiz_filename = lesson_path.stem.replace(".qmd", "")  # Remove .qmd
+        quiz_path = f"{quiz_filename.replace('p_', 'p_mcq_')}.Rmd"
+
+        # Save quiz
+        save_file(quiz_path, quiz_content)
+        print(f"Generated quiz for {lesson_file} -> {quiz_path}")
+    else:
+        print(f"Failed to generate quiz for {lesson_file}")
+
+    # Define ordered list of lessons based on _quarto.yml structure
+
+
+lesson_files = [
+    "../p_foundations_google_colab.qmd",
+    "../p_foundations_coding_basics.qmd",
+    "../p_foundations_functions_methods.qmd",
+    "../p_foundations_data_structures.qmd",
+    "../p_foundations_for_loops.qmd",
+    "../p_foundations_writing_functions.qmd",
+    "../p_data_on_display_data_viz_types.qmd",
+    "../p_data_on_display_univariate.qmd",
+    "../p_data_on_display_multivariate.qmd",
+    "../p_tools_installing_python.qmd",
+    "../p_tools_using_vscode.qmd",
+    "../p_tools_venv.qmd",
+    "../p_tools_quarto.qmd",
+    "../p_untangled_assign.qmd",
+    "../p_untangled_conditional_transforms.qmd",
+    "../p_untangled_groupby_agg.qmd",
+    "../p_untangled_joining_1.qmd",
+    "../p_untangled_joining_2.qmd",
+    "../p_untangled_other_grouped_operations.qmd",
+    "../p_untangled_pivoting.qmd",
+    "../p_untangled_query_rows.qmd",
+    "../p_untangled_subset_columns.qmd",
+    "../p_untangled_transform_variables.qmd",
+    "../p_ai_LLM_functions.qmd",
+]
+
+# Read the quiz prompt template
+prompt_template = read_file("llm_quiz_prompt.txt")
+
+
+```
+
+```{python}
+# Process lessons one at a time with index
+for i in range(6, len(lesson_files)):
+    lesson_file = lesson_files[i]
+    print(f"{i}/{len(lesson_files)}: {lesson_file}")
+    generate_quiz(lesson_file, prompt_template)
+
+```

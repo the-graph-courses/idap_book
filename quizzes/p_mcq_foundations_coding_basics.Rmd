@@ -1,0 +1,190 @@
+---
+title: "Multiple Choice Quiz | Coding Basics"
+---
+
+# Intro
+
+Welcome to the Coding Basics Quiz! Test your knowledge on Python comments, basic arithmetic operations, variable usage, and more. Good luck!
+
+# Q: Multiline Comments
+
+Which code chunk(s) below will NOT produce an error when used as multi-line comments in Python?
+
+## A
+
+```
+"""
+This is a multi-line
+comment in Python
+"""
+2 + 2
+```
+
+## B
+
+```
+'''
+This is another multi-line
+comment in Python
+'''
+2 + 2
+```
+
+## C
+
+```
+'''
+This won't work
+2 + 2
+```
+
+## Answer
+A|B
+
+## Correct message
+Correct! Triple quotes (either """ or ''') can be used for multi-line comments/docstrings. Note that option C is missing its closing quotes.
+
+## Incorrect message
+
+Triple quotes (either """ or ''') can be used for multi-line comments/docstrings. Note that option C is missing its closing quotes.
+
+# Q: Square Root of 100
+Consider the following code snippets. Which snippet correctly uses the math module to calculate the square root of 100?
+
+## A
+```
+import math
+sqrt(100)
+```
+
+## B
+```
+import math
+math.sqrt(100)
+```
+
+## C
+```
+import math
+math.SQrt(100)
+```
+
+## Answer
+B
+
+## Correct message
+Well done! math.sqrt(100) is the correct usage for finding the square root.
+
+## Incorrect message
+Remember to call the function as math.sqrt(...), exactly matching lowercase function names.
+
+# Q: Using Input to Store a Name
+Which code snippet correctly prompts the user to input their name and then prints it?
+
+## A
+```
+name = input("Enter your name: ")
+print("Hello,", name)
+```
+
+## B
+```
+getinput("What is your name?")
+print("Hello,", name)
+```
+
+## C
+input("What is your name? ")
+print("Your name is," name)
+
+## Answer
+A
+
+## Correct message
+Exactly! input("Enter your name: ") captures user input, and print displays it.
+
+## Incorrect message
+Check that you're using the built-in input() function in Python and that your syntax for print statements is correct.
+
+# Q: Valid Variable Names
+Which of the following are valid variable names in Python? Choose all that apply.
+
+## A
+my_age = 30
+
+## B
+2cool4school = "Python"
+
+## C
+myFullName = "Alice Doe"
+
+## D
+_secret_code = 42
+
+## Answer
+A|C|D
+
+## Correct message
+Good job! Variables cannot start with a number, but can use letters, underscores, or a combination.
+
+## Incorrect message
+Remember: variable names can't start with a digit. Also avoid special characters other than underscores.
+
+# Q: Result of Subtraction
+Look at the following code:
+
+```
+eight = 9
+answer = eight - 8
+print(answer)
+```
+
+What value is printed?
+
+## A
+1
+
+## B
+8
+
+## C
+-1
+
+## Answer
+A
+
+## Correct message
+Precisely! nine minus eight is one. The variable eight is set to 9, so 9 - 8 = 1.
+
+## Incorrect message
+Check the arithmetic: 9 - 8 is 1. The variable eight is set to 9, so 9 - 8 = 1.
+
+# Q: Indentation Error
+Which snippet correctly fixes this indentation error?
+
+Original code (which fails):
+```python
+import math
+ math.sqrt(100)
+```
+
+## A
+```python
+import math
+math.sqrt(100)
+```
+
+## B
+```python
+import math
+    math.sqrt(100)
+```
+
+## Answer
+A
+
+## Correct message
+Exactly! Removing the extra space before math.sqrt fixes the indentation error.
+
+## Incorrect message
+Remember that Python uses indentation to mark code blocks, so leading spaces in unexpected places cause errors.

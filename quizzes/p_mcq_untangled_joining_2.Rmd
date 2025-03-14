@@ -1,0 +1,272 @@
+---
+title: "Multiple Choice Quiz | Advanced Pandas Joins: One to Many, Multi-Key Joins & Key Mismatches"
+---
+
+# Intro 
+
+Welcome to this quiz on one-to-many merges, multi-key joins, and handling key mismatches in Python. Answer the multiple choice questions below to test your understanding of these concepts.
+
+
+# Q: Multiple Keys
+
+Consider these two dataframes showing grade and attendance information for students. A single student can take multiple courses in different semesters:
+
+**df1:**
+
+| student_id | semester | grade |
+|------------|----------|-------|
+| 101        | Fall     | A     |
+| 101        | Spring   | B     |
+| 102        | Fall     | B+    |
+| 102        | Spring   | A-    |
+
+**df2:**
+
+| student_id | semester | attendance |
+|------------|----------|------------|
+| 101        | Fall     | 95%       |
+| 101        | Spring   | 88%       |
+| 102        | Fall     | 92%       |
+| 103        | Spring   | 85%       |
+
+Which code snippet correctly merges these dataframes to match grades with attendance for each student-semester combination?
+
+## A
+
+```python
+pd.merge(df1, df2, on=["student_id", "semester"])
+```
+
+## B
+
+```python
+pd.merge(df1, df2, on=["student_id"])
+```
+
+## C
+
+```python
+pd.merge(df1, df2, left_on="student_id", right_on="student_id")
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Well done! Using both student_id and semester as keys ensures we match the correct attendance with each student's grade for that specific semester. Using only student_id would incorrectly match across semesters.
+
+## Incorrect message
+
+We need both student_id and semester as keys because a student can have different grades and attendance in different semesters. Using just student_id would create incorrect matches.
+
+# Q: Using Country Codes
+
+What is the primary reason for converting country names to ISO3 codes before merging?
+
+## A
+
+It makes the code run faster
+
+## B
+
+It standardizes country identifiers across data sources even if the country names differ
+
+## C
+
+It reduces the memory usage of the dataframes, since ISO3 codes are shorter than country names
+
+## Answer
+
+B
+
+## Correct message
+
+Correct. Using ISO3 codes helps match countries even when their names vary.
+
+## Incorrect message
+
+Using country codes ensures consistency by providing standardized identifiers for countries.
+
+# Q: Data Duplication in One-to-Many
+
+Below are two DataFrames that we want to merge on the `store_id` column:
+
+**Stores** (3 rows):
+
+| store_id | store_name    |
+|----------|---------------|
+| 1        | MainBranch    |
+| 2        | HilltopBranch |
+| 3        | Riverside     |
+
+**Transactions** (6 rows):
+
+| store_id | transaction_id | amount |
+|----------|----------------|--------|
+| 1        | T1001          | 150    |
+| 1        | T1002          | 220    |
+| 2        | T2003          | 75     |
+| 3        | T3001          | 300    |
+| 3        | T3002          | 125    |
+| 3        | T3003          | 90     |
+
+Consider the following code:
+
+```python
+merged_df = pd.merge(Stores, Transactions, on="store_id", how="left")
+```
+
+What happens to the data in **Stores** during this merge?
+
+## A
+Rows in Stores remain unique and never duplicate
+
+## B
+Each row in Stores is repeated once for every matching row in Transactions
+
+## C
+All missing store rows are dropped
+
+## Answer
+B
+
+## Correct message
+Exactly. A one-to-many merge causes the "one" side rows to duplicate for each matching row in the "many" side.
+
+## Incorrect message
+In a one-to-many merge, the store rows are duplicated for each matching transaction row.
+
+# Q: Key Formatting Mismatch
+
+Below is a **Countries** DataFrame and a **Population** DataFrame. 
+
+**Countries**:
+
+| country_name       | iso_code |
+|--------------------|----------|
+| United States      | USA      |
+| Canada             | CAN      |
+| Mexico             | MEX      |
+
+**Population**:
+
+| country_name      | population |
+|-------------------|------------|
+| united states     | 331000000  |
+| Canada            | 37000000   |
+| Mexico            | 127000000  |
+
+If we do an inner merge on `country_name`, what will the output be?
+
+## A
+
+| country_name | iso_code | population |
+|--------------|----------|------------|
+| Canada       | CAN      | 37000000   |
+| Mexico       | MEX      | 127000000  |
+
+## B
+
+| country_name | iso_code | population |
+|--------------|----------|------------|
+| Canada       | CAN      | 37000000   |
+
+## C
+
+| country_name | iso_code | population |
+|--------------|----------|------------|
+| United States | USA     | 331000000  |
+| Canada       | CAN      | 37000000   |
+| Mexico       | MEX      | 127000000  |
+
+## Answer
+C
+
+## Correct message
+Correct. The mismatch in "United States" vs "united states" causes them not to match.
+
+## Incorrect message
+It's a case/spelling mismatch. "United States" and "united states" will not join unless we fix the formatting. The other two countries will match.
+
+
+# Q: Practical Example of Data Cleaning Before Merge
+
+We want to fix mismatched country names by capitalizing the first letter of each word and removing any trailing spaces before merging. Which code snippet is correct?
+
+## A
+```python
+df["country_name"] = df["country_name"].str.title().str.strip()
+```
+
+## B
+```python
+df["country_name"] = country_name.title().strip()
+```
+
+## C
+```python
+df["country_name"] = df["country_name"].title().strip()
+```
+
+## Answer
+A
+
+## Correct message
+Good job! Using `str.title()` and `str.strip()` ensures each entry is cleaned properly.
+
+## Incorrect message
+Remember to apply `.str.title()` and `.str.strip()` directly to the Series.
+
+---
+
+# Q: One to Many in Practice
+
+Consider **Orders** (left) and **OrderLines** (right):
+
+**Orders**:
+
+| order_id | customer_id | order_date |
+|----------|------------|------------|
+| 100      | C001       | 2023-01-15 |
+| 101      | C002       | 2023-01-16 |
+| 102      | C003       | 2023-01-17 |
+
+**OrderLines**:
+
+| order_id | item       | quantity |
+|----------|------------|----------|
+| 100      | Widget A   | 5        |
+| 100      | Widget B   | 2        |
+| 101      | Widget A   | 1        |
+| 101      | Widget D   | 2        |
+| 102      | Widget A   | 3        |
+| 102      | Widget B   | 1        |
+| 102      | Widget C   | 10       |
+
+If you do:
+
+```python
+merged_orders = pd.merge(Orders, OrderLines, on="order_id", how="inner")
+```
+
+How many rows result?
+
+## A
+3 total rows
+
+## B
+7 total rows
+
+## C
+10 total rows
+
+## Answer
+B
+
+## Correct message
+Correct! There are 3 orders, but each has multiple matching order lines for a total of 7 merged rows.
+
+## Incorrect message
+Each order row is duplicated to match its lines, resulting in 7 total rows.

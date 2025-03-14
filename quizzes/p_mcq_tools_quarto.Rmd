@@ -1,0 +1,175 @@
+---
+title: "Multiple Choice Quiz | Using Quarto"
+---
+
+# Intro 
+
+Welcome to this quiz on Quarto. Answer the following questions to test your knowledge of creating and rendering Quarto documents, managing code chunks, and generating different output formats.
+
+# Q: Purpose of Quarto
+
+What is the main purpose of Quarto?
+
+## A
+
+It is primarily used for data storage
+
+## B
+
+It enables the creation of dynamic documents that combine formatted text and code results
+
+## C
+
+It is exclusively used for building mobile applications
+
+## Answer
+
+B
+
+## Correct message
+
+Well done! Quarto allows you to combine narrative text and code results in one document for dynamic, reproducible reporting.
+
+## Incorrect message
+
+Quarto excels at creating dynamic documents that combine text and code results, rather than solely storing data or building mobile applications.
+
+# Q: Document Header for HTML
+
+Which YAML header best defines an HTML output format in Quarto?
+
+## A
+```yaml
+---
+format: python
+---
+```
+
+## B
+```yaml
+---
+output: html_document
+---
+```
+
+## C
+```yaml
+---
+title: "My First Quarto Document"
+format: html
+---
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Correct! Specifying "format: html" in the YAML header tells Quarto to render an HTML document.
+
+## Incorrect message
+
+To render an HTML document, you should set "format: html" in the YAML header.
+
+# Q: Hiding code chunk
+
+Which code chunk option hides the code while displaying the output in an HTML document?
+
+## A
+```{python, eval=FALSE}
+#| echo: true
+print("Hello")
+```
+
+## B
+```{python, eval=FALSE}
+#| echo: false
+print("Hello")
+```
+
+## C
+```{python, eval=FALSE}
+#| output: hide
+print("Hello")
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Nice job! "#| echo: false" hides the code but still shows the output in the rendered document.
+
+## Incorrect message
+
+Use "#| echo: false" to hide the code while displaying its output.
+
+# Q: Global code options in YAML
+
+Which YAML snippet correctly sets a global option to hide code echoes for all code chunks?
+
+## A
+```yaml
+---
+execute:
+  show-code: false
+---
+```
+
+## B
+```yaml
+---
+defaults:
+  echo: false
+---
+```
+
+## C
+```yaml
+---
+execute:
+  echo: false
+---
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Exactly! Placing "execute: echo: false" in the YAML section will hide code in all chunks by default.
+
+## Incorrect message
+
+You should set "execute: echo: false" under the execute key in the YAML to hide code in all chunks.
+
+# Q: Interactive tables
+
+Which Python library was covered as a way to display interactive tables in a Quarto HTML document?
+
+## A
+
+itables
+
+## B
+
+matplotlib
+
+## C
+
+dash
+
+## Answer
+
+A
+
+## Correct message
+
+Good job! "itables" lets you create interactive tables in an HTML output.
+
+## Incorrect message
+
+The "itables" package is used to create interactive data tables in Quarto HTML documents.

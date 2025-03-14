@@ -1,3 +1,0 @@
----
-title: "Multiple-choice Quiz | Intro to Loops in Python"
---- 

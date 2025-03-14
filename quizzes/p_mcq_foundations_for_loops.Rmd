@@ -1,0 +1,238 @@
+---
+title: "Multiple Choice Quiz | Intro to Loops in Python"
+---
+
+# Intro
+
+Welcome to this quiz on Python for loops. Answer the questions below to test your understanding of the material. Good luck!
+
+# Q: Basic For Loop Structure
+
+What is the correct basic structure for a for loop in Python that prints each value in a list called my_list?
+
+## A
+
+```python
+for x in my_list:
+    print(x)
+```
+
+## B
+
+```python
+for x in my_list
+    print(x)
+```
+
+## C
+
+```python
+for x in range(my_list):
+    print(x)
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Perfect. The correct syntax is for x in my_list: followed by an indented block of code.
+
+## Incorrect message
+
+Remember, a colon and correct indentation are required for a valid for loop in Python.
+
+# Q: Repeating Versus Multiplying
+
+Consider the following code snippet:
+
+```python
+ages = [7, 8, 9]
+print(ages * 3)
+```
+
+Which of the following will it output?
+
+## A
+
+[21, 24, 27]
+
+## B
+
+[7, 8, 9, 7, 8, 9, 7, 8, 9]
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly right. Multiplying a list by 12 repeats the list 12 times. To multiply each element by 12, you need to loop through the list. Or use a Series object instead of a list.
+
+## Incorrect message
+
+Multiplying a list by 12 repeats the list 12 times. To multiply each element by 12, you need to loop through the list. Or use a Series object instead of a list.
+
+# Q: Using For Loops Versus Vectorized Operations
+
+What is one reason why a for loop might still be useful in Python, even though libraries like pandas can perform vectorized operations?
+
+## A
+
+For loops are always faster than any vectorized approach.
+
+## B
+
+For loops allow fine-grained control and can handle non-vectorizable tasks.
+
+## C
+
+For loops are mandatory for all arithmetic in Python.
+
+## Answer
+
+B
+
+## Correct message
+
+Correct. For loops provide flexibility for tasks that cannot be easily vectorized.
+
+## Incorrect message
+
+For loops do not necessarily run faster than pandas, but they allow more control in certain scenarios.
+
+# Q: Printing with F Strings
+
+What is the output of the following code snippet?
+
+```python
+age = 7
+print(f"{age} years is {age * 12} months")
+```
+
+## A
+
+It prints "7 years is 84 months".
+
+## B
+
+It prints "{age} years is {age * 12} months".
+
+## C
+
+It throws an error because braces cannot be used in strings.
+
+## Answer
+
+A
+
+## Correct message
+
+Nice work. F-strings allow direct variable embedding.
+
+## Incorrect message
+
+F-strings use curly braces for variable interpolation, resulting in "7 years is 84 months".
+
+# Q: Writing a Loop with Enumerate
+
+Which of the following code snippets correctly prints both the index and the age using enumerate?
+
+## A
+
+```python
+for i, age in ages:
+    print(f"Index {i}: {age}")
+```
+
+## B
+
+```python
+for i, age in enumerate(ages):
+    print(f"Index {i}: {age}")
+```
+
+## C
+
+```python
+for i in ages:
+    print(i, enumerate(ages))
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Yes. We need for i, age in enumerate(ages) to unpack the index and value.
+
+## Incorrect message
+
+We must use enumerate(ages) in the loop to access both index and value.
+
+# Q: Basic Loop to Print Hours to Minutes
+
+What is the correct way to convert a list of hours to minutes using a for loop and print the result using f-strings? Suppose hours = [3, 4, 5].
+
+## A
+
+```python
+for hour in hours:
+    print(f"{hour} hours is {hour * 60} minutes")
+```
+
+## B
+
+```python
+for hour in hours:
+    print(f"{hour} hours is 60")
+```
+
+## C
+
+```python
+for hours in range(hours):
+    print(hours * 60)
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Good job. Multiplying each hour by 60 and printing is correct.
+
+## Incorrect message
+
+We need to loop through each hour in hours, then multiply hour by 60.
+
+# Q: Loop Indentation
+
+What is the significance of indentation in a Python for loop?
+
+## A
+
+Indentation is optional as long as braces {} are used.
+
+## B
+
+Indentation is only needed if there are multiple statements in the loop.
+
+## C
+
+Indentation is required to define the block of code to execute within the loop.
+
+## Answer
+
+C
+
+## Correct message
+
+That is correct. Python relies on indentation to mark code blocks.
+
+## Incorrect message
+
+Unlike some other languages, Python does not use braces but instead uses indentation to define blocks.

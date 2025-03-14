@@ -1,0 +1,187 @@
+---
+title: "Multiple Choice Quiz | Multivariate Data Visualization with Plotly"
+---
+
+# Intro 
+
+Welcome to this quiz on creating bivariate and multivariate graphs with Plotly Express. Answer each question by selecting the best choice(s). Good luck!
+
+# Q: Basic Scatter Plot
+
+Which code snippet correctly creates a basic scatter plot of 'total_bill' vs. 'tip' using the 'tips' dataset?
+
+## A
+```python
+px.bar(tips, x="total_bill", y="tip")
+```
+
+## B
+```python
+px.scatter(tips, x="total_bill", y="tip")
+```
+
+## C
+```python
+px.scatterplot(tips, x="total_bill", y="tip")
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Correct! px.scatter is used to create scatter plots for numeric vs. numeric data.
+
+## Incorrect message
+
+Remember that px.scatter is the function for scatter plots in Plotly Express.
+
+
+# Q: Overlay Histograms
+
+You want to overlay histograms by sex in the 'tips' dataset so that both categories are transparent and placed on top of each other. Which parameter setting accomplishes this?
+
+## A
+barmode='group'
+
+## B
+barmode='overlay'
+
+## C
+barnorm='percent'
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly! barmode='overlay' creates overlaid histograms.
+
+## Incorrect message
+
+barmode='overlay' is what positions both histograms on top of each other with transparency.
+
+
+# Q: Bar Charts vs Histogram
+
+Given the following code, which statement is true about why two different functions are used?
+
+```python
+px.histogram(tips, x="sex")
+
+px.bar(sex_counts, x="sex", y="count")
+```
+
+## A
+px.bar automatically groups categorical data, whereas px.histogram requires pre-aggregated data.
+
+## B
+px.histogram automatically groups and counts the data, while px.bar typically expects you to provide the grouped or aggregated values.
+
+## C
+Both functions do exactly the same thing with no difference in usage.
+
+## Answer
+
+B
+
+## Correct message
+
+Yes! px.histogram does the grouping for you, while px.bar needs aggregated data as input.
+
+## Incorrect message
+
+Remember that px.histogram counts occurrences within each category, whereas px.bar usually visualizes pre-aggregated data.
+
+
+# Q: Stacked Bar Charts Parameter
+
+Which parameter transforms a stacked bar chart into a percent-stacked bar chart in Plotly Express?
+
+## A
+barnorm='percent'
+
+## B
+barmode='overlay'
+
+## Answer
+
+A
+
+## Correct message
+
+Correct! Setting barnorm='percent' creates a percent-stacked bar chart.
+
+## Incorrect message
+
+Use barnorm='percent' to show proportions instead of raw counts in the stacked bars.
+
+
+# Q: Time Series Visualization
+
+Which function in Plotly Express is most suitable for visualizing continuous data over time?
+
+## A
+```python
+px.line(df, x="year", y="pop")
+```
+
+## B
+```python
+px.scatter(df, x="year", y="pop")
+```
+
+## C
+```python
+px.histogram(df, x="year")
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Correct! px.line is ideal for displaying trends over continuous time.
+
+## Incorrect message
+
+px.line is specifically designed for continuous variables like time.
+
+# Q: Facet Scatter
+
+You want to facet the scatter plot of the 2007 Gapminder data by continent, producing multiple subplots in columns. Which parameter is used to split the data by columns?
+
+```python
+px.scatter(
+    g_2007,
+    x="gdpPercap",
+    y="lifeExp",
+    color="continent",
+    __________="continent"
+)
+```
+
+## A
+group_col
+
+## B
+facet_col
+
+## C
+row="continent"
+
+## Answer
+
+B
+
+## Correct message
+
+You've got it! facet_col splits the data into multiple columns by the specified variable.
+
+## Incorrect message
+
+To facet by columns, remember to specify facet_col with the desired variable.
+

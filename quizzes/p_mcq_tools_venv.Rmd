@@ -1,0 +1,206 @@
+---
+title: "Multiple Choice Quiz | Virtual Environments with Venv & VS Code"
+---
+
+# Intro
+
+Test your knowledge of creating folders, using virtual environments, and installing packages in VS Code. Good luck!
+
+# Q: Concept of a virtual environment
+
+What best describes a virtual environment in Python?
+
+## A
+
+A separate folder containing a specific Python version and installed packages
+
+## B
+
+An advanced text editor for managing Python scripts
+
+## C
+
+A folder in the cloud that can be used to store Python projects to avoid data loss
+
+## Answer
+
+A
+
+## Correct message
+
+Correct. Virtual environments keep dependencies and Python versions isolated for each project
+
+## Incorrect message
+
+A virtual environment is simply a folder that holds a self-contained Python installation along with installed packages
+
+# Q: Installing a package in a virtual environment
+
+Suppose you want to install the package cowsay inside your virtual environment,you open a terminal where the virtual environment is activated, then run which command?
+
+## A
+
+```python
+pip install cowsay
+```
+
+## B
+
+```python
+apt-get install cowsay
+```
+
+## C
+
+```python
+python -m http.server install cowsay
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Exactly Use pip install to install packages in your active virtual environment
+
+## Incorrect message
+
+You should use pip install cowsay inside the active virtual environment
+
+# Q: The acronym FEIL
+
+Which steps are represented by the acronym FEIL, that helps to remember the steps for setting up a new project in VS Code?
+
+## A
+
+Find Evaluate Install Link
+
+## B
+
+Folder Environment Interpreter Libraries
+
+## C
+
+Fetch Edit Interpret Launder
+
+## Answer
+
+B
+
+## Correct message
+
+Nice memory FEIL stands for Folder Environment Interpreter Libraries.
+
+First, you create or open a folder. Then, you create a virtual environment. Next, you select the interpreter. Finally, you install the libraries.
+
+Note that you only need this once per project.
+
+## Incorrect message
+
+FEIL stands for Folder Environment Interpreter Libraries.
+
+First, you create or open a folder. Then, you create a virtual environment. Next, you select the interpreter. Finally, you install the libraries.
+
+Note that you only need this once per project.
+
+# Q: Code example to import a package
+
+Which snippet correctly imports cowsay and uses it to greet the world?
+
+## A
+
+```python
+import cowsay
+cowsay.cow("Hello, World!")
+```
+
+## B
+
+```python
+from cowsay import world
+world.hello("Hello, World!")
+```
+
+## C
+
+```python
+import cowsay
+cowsay("Hello, World!")
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Well done That is the correct way to import cowsay and call the cow function
+
+## Incorrect message
+
+The code snippet import cowsay cowsay.cow("Hello, World!") is the correct usage
+
+
+# Q: Multiple dependencies for a project
+
+Which code snippet installs multiple Python packages at once in your active virtual environment?
+
+## A
+
+```python
+pip install [cowsay, numpy, matplotlib]
+```
+
+## B
+
+```python
+pip get cowsay numpy matplotlib
+```
+
+## C
+
+```python
+pip install cowsay numpy matplotlib
+```
+
+
+## Answer
+
+C
+
+## Correct message
+
+Correct pip install is the right command for installing multiple packages. And you supply the names of the packages without any brackets.
+
+## Incorrect message
+
+Use pip install followed by the package names to install multiple dependencies at once. And you supply the names of the packages without any brackets.
+
+# Q: Location of the venv folder
+
+When you create a virtual environment named venv or .venv in VS Code where is it located by default?
+
+## A
+
+Inside the project folder you selected as your workspace
+
+## B
+
+In your global Python installation directory
+
+## C
+
+In the hidden system32 directory
+
+## Answer
+
+A
+
+## Correct message
+
+Correct The .venv folder is created inside your current project folder
+
+## Incorrect message
+
+The .venv folder is created in your chosen project folder by default

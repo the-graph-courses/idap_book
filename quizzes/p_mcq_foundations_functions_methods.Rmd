@@ -1,0 +1,171 @@
+---
+title: "Multiple Choice Quiz | Functions, Methods, and Libraries in Python"
+---
+
+# Intro 
+
+Welcome to this quiz on functions, methods, and libraries in Python. Answer each question below by choosing the best option(s).
+
+# Q: Purpose of Functions
+
+Which statement best describes a function in Python?
+
+## A
+
+A block of code that performs a specific task and can be called multiple times.
+
+## B
+
+A special type of variable that holds a numeric value only.
+
+## C
+
+A built-in integer method provided by the Python language.
+
+## Answer
+
+A
+
+## Correct message
+
+Correct! Functions are blocks of code that can accept arguments (parameters), perform actions, and return results.
+
+## Incorrect message
+
+A function is a block of code that can perform a certain task and can be reused by calling it multiple times.
+
+# Q: Using Round
+
+Which of the following code snippets correctly rounds 3.1415 to 2 decimal places via keyword arguments?
+
+## A
+
+``` 
+round(2, number=3.1415)
+```
+
+## B
+
+```
+round(number=3.1415, ndigits=2)
+```
+
+## C
+
+```
+round(3.1415, 2, keyword=True)
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Great job! Specifying the argument names (e.g., number=3.1415, ndigits=2) is the correct way to use keyword arguments.
+
+## Incorrect message
+
+Using keyword arguments for round() looks like: round(number=3.1415, ndigits=2).
+
+# Q: Calling Methods
+
+Which of these code snippets calls a string method to replace "p" with "🐍" in "python"?
+
+## A
+
+```
+"python".replace("p", "🐍")
+```
+
+## B
+
+```
+replace("python", "p", "🐍")
+```
+
+## C
+
+```
+("python").method("p", "🐍")
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Yes! "python".replace("p", "🐍") applies the replace() method to the string object.
+
+## Incorrect message
+
+"python".replace("p", "🐍") is the correct syntax for calling the replace() method on a string.
+
+# Q: Importing Math
+
+What is the correct way to import and use the sqrt() function from the math module?
+
+## A
+
+```
+import math
+math.sqrt(16)
+```
+
+## B
+
+```
+from math import sqrt
+sqrt(16)
+```
+
+## C
+
+Both of the above
+
+## Answer
+
+C
+
+## Correct message
+
+Exactly! You can import math and call math.sqrt, or import just sqrt and call sqrt directly.
+
+## Incorrect message
+
+You can either import the entire math module or import specific functions like sqrt.
+
+# Q: Installing a Library
+
+In a Google Colab environment, which command installs the cowsay library so that you can import it afterwards?
+
+## A
+
+```
+!pip install cowsay
+```
+
+## B
+
+```
+import cowsay
+```
+
+## C
+
+```
+pip install cowsay
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Right! In Colab, the exclamation mark (!) is used before pip install commands.
+
+## Incorrect message
+
+In Colab, you need !pip install cowsay to install the library before importing it.

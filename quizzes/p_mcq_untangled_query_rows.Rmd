@@ -1,0 +1,249 @@
+---
+title: "Multiple Choice Quiz | Querying rows"
+---
+
+# Intro 
+
+Welcome to this quiz on querying rows in pandas DataFrames. 
+
+# Q: Single Condition Filter
+
+What is the correct syntax to select rows where the 'occupation' column equals "Student" in a DataFrame called df using .query()?
+
+## A
+
+```python
+df.query("occupation = 'Student'")
+```
+
+## B
+
+```python
+df.query('occupation == "Student"')
+```
+
+## C
+
+```python
+df.query('occupation.isin(["Student"])')
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Excellent! The double equals (==) operator is the correct way to test for equality in a query.
+
+## Incorrect message
+
+Remember to use '==' for equality when filtering rows with query().
+
+# Q: Multiple Conditions
+
+You want to select rows where age is below 18 OR above 65. Which is the correct way using .query()?
+
+## A
+
+```python
+df.query("age < 18 & age > 65")
+```
+
+## B
+
+```python
+df.query("age < 18 ~ age > 65")
+```
+
+## C
+
+```python
+df.query("age < 18 | age > 65")
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Well done! Use the pipe symbol | for an OR condition in query().
+
+## Incorrect message
+
+Review how to combine conditions with the ampersand (&) for AND and the pipe (|) for OR when using query().
+
+# Q: Missing Values
+
+Which of the following will return rows where is_pregnant is missing (NaN)?
+
+## A
+
+```python
+df.query("is_pregnant == None")
+```
+
+## B
+
+```python
+df.query("is_pregnant.isna()")
+```
+
+## C
+
+```python
+df.query("is_pregnant == 'NaN'")
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Nice work! You use .isna() in a query to select rows with missing values.
+
+## Incorrect message
+
+Use .isna() or .notna() to handle missing values in a query.
+
+# Q: String Pattern Matching
+
+You want to keep only rows whose symptoms column contains "Cough". Which is the best query?
+
+## A
+
+```python
+df.query("symptoms.str.contains('Cough')")
+```
+
+## B
+
+```python
+df.query("symptoms.isin('Cough')")
+```
+
+## C
+
+```python
+df.query('symptoms == "Cough"')
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Great job! str.contains('Cough') will match any row containing that substring.
+
+## Incorrect message
+
+Remember to use .str.contains() for substrings in query().
+
+# Q: Using External Variables
+
+Consider the variable:
+
+```python
+min_age = 25
+```
+
+Which query correctly uses min_age to filter rows where age is at least min_age?
+
+## A
+
+```python
+df.query("age >= @min_age")
+```
+
+## B
+
+```python
+df.query("age >= min_age")
+```
+
+## C
+
+```python
+df.query("age >= #min_age")
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Spot on! Use the @ symbol to reference external Python variables within a query string.
+
+## Incorrect message
+
+Use the @ symbol to incorporate external variables inside query() expressions.
+
+# Q: Multiple Correct Answers
+
+Which of the following operators or methods can be used inside a query() string to filter rows? Choose all that apply.
+
+## A
+
+== (double equals)
+
+## B
+
+isin()
+
+## C
+
+<= (less than or equal)
+
+## Answer
+
+A|B|C
+
+## Correct message
+
+Exactly! Double equals for equality, <= for comparison, and isin() for membership are all valid.
+
+## Incorrect message
+
+All of these are valid and commonly used within a query() expression.
+
+# Q: Combining And Or
+
+Which code snippet correctly returns rows that are pregnant AND ex-smokers?
+
+## A
+
+```python
+yao.query("is_pregnant == 'Yes' | is_smoker == 'Ex-smoker'")
+```
+
+## B
+
+```python
+yao.query("is_pregnant == 'Yes' & is_smoker == 'Ex-smoker'")
+```
+
+## C
+
+```python
+yao.query("is_pregnant == Yes & is_smoker == Ex-smoker")
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Well done! The ampersand & means both conditions must be true.
+
+## Incorrect message
+
+Recall that & connects two conditions with a logical AND in pandas query syntax. 
+
+This option is wrong `yao.query("is_pregnant == 'Yes' | is_smoker == 'Ex-smoker'")`, because it uses the wrong logical. 
+
+This option is wrong `yao.query("is_pregnant == Yes & is_smoker == Ex-smoker")`, because it is missing quotes around the string "Yes" and "Ex-smoker".

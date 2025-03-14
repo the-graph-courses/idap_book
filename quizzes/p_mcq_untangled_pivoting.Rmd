@@ -1,0 +1,237 @@
+---
+title: "Multiple Choice Quiz | Reshaping Data with melt() and pivot()"
+---
+
+# Intro
+
+Below is a practical quiz on reshaping data with pandas. 
+
+# Q: Reshaping Country Stats
+
+Suppose you have the following **wide** format DataFrame named `country_stats`:
+
+| country  | population_2020 | population_2021 | population_2022 |
+|----------|-----------------|-----------------|-----------------|
+| Sweden   | 10.3            | 10.4            | 10.5            |
+| Denmark  | 5.8             | 5.82            | 5.85            |
+| Finland  | 5.5             | 5.52            | 5.54            |
+
+What is the appropriate **long** format equivalent representation for Sweden alone (ignoring all other countries)?
+
+## A
+
+| country | population_2020 | population_2021 | population_2022 |
+|---------|-----------------|-----------------|-----------------|
+| Sweden  | 10.3            | 10.4            | 10.5            |
+
+## B
+
+| country | year   | population |
+|---------|--------|------------|
+| Sweden  | 2020   | 10.3       |
+| Sweden  | 2021   | 10.4       |
+| Sweden  | 2022   | 10.5       |
+
+## C
+
+| year   | population |
+|--------|------------|
+| 2020   | 10.3       |
+| 2021   | 10.4       |
+| 2022   | 10.5       |
+
+## Answer
+B
+
+## Correct message
+Nice! In a long version, each row has the country, year, and population.
+
+## Incorrect message
+In a long format, each measurement (year's population) appears as its own row with the variable labels (country, year, population).
+
+# Q: Converting Wide to Long with melt
+
+Given the `sales_by_region` DataFrame below: 
+
+
+| region | Jan | Feb | Mar |
+|--------|-----|-----|-----|
+| North | 100 | 150 | 120 |
+| South | 200 | 180 | 210 |
+
+
+how would you correctly use `melt()` to get a long DataFrame with three columns: `region`, `month`, `sales`?
+
+## A
+```python
+sales_by_region.melt(
+    id_vars="region",
+    var_name="month",
+    value_name="sales"
+)
+```
+
+## B
+```python
+sales_by_region.melt(
+    id_vars=["region", "sales"],
+    var_name="month",
+    value_name="sales"
+)
+```
+
+## Answer
+A
+
+## Correct message
+Nice job! Using `id_vars="region"`, then renaming the other columns as `month` and `sales`, is correct.
+
+## Incorrect message
+To reshape to a long format, we need `id_vars="region"` and meaningful `var_name` and `value_name`.
+
+# Q: Converting Long to Wide with pivot
+
+Assume you have a long DataFrame named `long_sales` that looks like the below: 
+
+| region | month | sales |
+|--------|-------|-------|
+| North  | Jan   | 100   |
+| South  | Jan   | 150   |
+| East   | Jan   | 200   |
+| West   | Jan   | 130   |
+| North  | Feb   | 120   |
+| South  | Feb   | 180   |
+| East   | Feb   | 210   |
+| West   | Feb   | 140   |
+
+
+Which code properly reshapes it so that each row is a single `region`, and columns represent each `month`, as shown below?
+
+| region | Jan   | Feb   |
+|--------|-------|-------|
+| North  | 100   | 120   |
+| South  | 150   | 180   |
+| East   | 200   | 210   |
+| West   | 130   | 140   |
+
+## A
+```python
+long_sales.pivot(
+    index="region",
+    columns="month",
+    values="sales"
+)
+```
+
+## B
+```python
+long_sales.pivot(
+    index="month",
+    columns="region",
+    values="sales"
+)
+```
+
+## C
+```python
+long_sales.melt(
+    id_vars="region",
+    var_name="month",
+    value_name="sales"
+)
+```
+
+## Answer
+A
+
+## Correct message
+Well done! `index="region"`, `columns="month"`, and `values="sales"` produce wide format by region.
+
+## Incorrect message
+For pivot, we specify the unique index, columns, and the data values. `index="region"` and `columns="month"` is correct.
+
+# Q: Inspecting a Melted Table
+
+Suppose you melted this data:
+
+| id | income_2020 | income_2021 |
+|----|------------:|------------:|
+|  1 |        4000 |        4500 |
+|  2 |        3800 |        3900 |
+
+Using:
+
+```python
+df.melt(
+    id_vars="id",
+    var_name="year",
+    value_name="income"
+)
+```
+
+What would the **first two rows** of the resulting long table look like?
+
+## A
+
+| id | year         | income |
+|----|--------------|--------|
+|  1 | income_2020  | 4000   |
+|  1 | income_2021  | 4500   |
+
+## B
+
+
+| id | year  | income |
+|----|-------|--------|
+|  1 | 2020  | 4000   |
+|  1 | 2021  | 4500   |
+
+
+## C
+
+| year         | id |
+|--------------|----|
+| income_2020  | 1  |
+| income_2021  | 1  |
+
+## Answer
+A
+
+## Correct message
+
+Correct! The melted table will have `year` as [income_2020, income_2021] etc. The option with years as [2020, 2021] is wrong because it assumes that the function automatically removes the `income_` prefix from our column names.
+
+## Incorrect message
+
+The option with years as [2020, 2021] is wrong because it assumes that the function automatically removes the `income_` prefix from our column names.
+
+The option with only two columns is missing the `income` column.
+
+# Q: Which Format Suits Grouped Analysis
+
+You have a dataset of monthly product sales (columns for each month) as shown below: 
+
+| product | Jan | Feb | Mar |
+|---------|-----|-----|-----|
+| Cheese  | 100 | 150 | 120 |
+| Bread   | 200 | 180 | 210 |
+| Butter  | 300 | 250 | 220 |
+
+and you want to create a summary table with the mean, median and standard deviation of sales across products for each month. 
+
+Which approach is generally simpler?
+
+## A
+Keep the data wide and try to compute the mean, median and standard deviation of each monthly column by product using manual indexing.
+
+## B
+Convert the data to long format with `melt()`, then use `groupby()` on the month column.
+
+## Answer
+B
+
+## Correct message
+Nice! Long format excels at grouping by a measurement column (here, month) to compute aggregates.
+
+## Incorrect message
+Long format is usually simpler for grouping and summarizing measurements across multiple columns.

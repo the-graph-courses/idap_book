@@ -1,0 +1,206 @@
+---
+title: "Multiple Choice Quiz | Joining Datasets with pd.merge"
+---
+
+# Intro
+
+Welcome to our quiz on joining datasets in pandas. Below are a series of questions based on the lesson you have studied. Good luck!
+
+# Q: Basic Merge
+
+Which function in pandas is typically used to join two dataframes on a matching column?
+
+## A
+
+pd.concat()
+
+## B
+
+pd.merge()
+
+## C
+
+pd.combine()
+
+## Answer
+
+B
+
+## Correct message
+
+Correct! pd.merge() is the primary pandas function used for joining two dataframes on a specified key.
+
+## Incorrect message
+
+Remember, pd.merge() is the core function for joining two dataframes on a matching column.
+
+# Q: Default Join Type
+
+By default, which type of join does pd.merge() perform if the argument how is not specified?
+
+## A
+
+left
+
+## B
+
+inner
+
+## C
+
+outer
+
+## Answer
+
+B
+
+## Correct message
+
+Yes! pd.merge() uses an inner join by default. This type of join keeps only the rows where the key values match in both dataframes.
+
+## Incorrect message
+
+pd.merge() defaults to an inner join when how is not specified. This type of join keeps only the rows where the key values match in both dataframes.
+
+# Q: Join with Key Columns
+
+You have two dataframes: one has a column named "name" while the other arranges the same column under "first_name", as shown in the below markdown table:
+
+**df1:**
+| name | age |
+|------|-----|
+| John | 25  |
+| Mary | 30  |
+| Bob  | 35  |
+
+**df2:**
+| first_name | city    |
+|------------|---------|
+| John       | Chicago |
+| Mary       | Boston  |
+| Alice      | Denver  |
+
+You want to match rows from both. Which pd.merge call is correct?
+
+## A
+
+```python
+pd.merge(df1, df2, on=c("name", "first_name"))
+```
+
+## B
+
+```python
+pd.merge(df1, df2, left_on="name", right_on="first_name")
+```
+
+## C
+
+```python
+pd.merge(df1, df2, how="outer")
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Good job! When the key columns have different names, use left_on and right_on to specify the matching columns.
+
+## Incorrect message
+
+Remember to use left_on and right_on when your key columns are named differently.
+
+# Q: Left Join Explanation
+
+When performing a left join in pandas, which statement best describes how rows are kept?
+
+## A
+
+All rows from the right dataframe are preserved, even if they do not match.
+
+## B
+
+All rows from the left dataframe are preserved, even if they do not match.
+
+## C
+
+Only rows that match in both dataframes are preserved.
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly! A left join keeps every row from the left dataframe, matching rows from the right where possible.
+
+## Incorrect message
+
+A left join retains all rows from the left dataframe, whether or not they have matches in the right dataframe.
+
+# Q: Code Example Left Join
+
+Consider the following code:
+
+```python
+city_employment
+state_lookup
+
+pd.merge(city_employment, state_lookup, on="city", how="left")
+```
+
+What is a valid reason to use city_employment as the left dataframe in this left merge scenario?
+
+## A
+
+We want to keep all cities from the employment dataset, even if their state information is missing.
+
+## B
+
+We want to exclude any cities not found in state_lookup.
+
+## C
+
+We want to include only cities where data are present in both dataframes.
+
+## Answer
+
+A
+
+## Correct message
+
+Correct! Using city_employment as the left dataframe ensures we keep employment data for all cities, even if we can't find their corresponding state.
+
+## Incorrect message
+
+We want to keep all rows from the employment dataset, so any cities without matching state data will still appear in our results.
+
+# Q: Outer Join Preservation
+
+With an outer join, which best describes the rows that appear in the final merged dataframe?
+
+## A
+
+Only rows matching in both dataframes
+
+## B
+
+Rows from the left dataframe only
+
+## C
+
+All rows from both dataframes, with missing matches filled by NaN
+
+## Answer
+
+C
+
+## Correct message
+
+Correct! An outer join includes all rows from both dataframes, filling where matches are missing.
+
+## Incorrect message
+
+An outer join retains all rows from both dataframes, even if there's no match.

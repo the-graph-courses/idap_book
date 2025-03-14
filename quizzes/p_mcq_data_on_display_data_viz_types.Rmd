@@ -1,0 +1,179 @@
+---
+title: "Multiple Choice Quiz | Data Visualization Taxonomy"
+---
+
+# Intro 
+
+Test your knowledge of different data visualization techniques. Remember to think about whether your data is numeric or categorical, how many variables you’re working with, and what exact question you’re trying to answer. Good luck!
+
+# Q: Univariate Numeric Distribution
+
+Which type of plot is best for seeing a numeric variable’s median, quartiles, and outliers in a single view?
+
+## A
+
+Histogram
+
+## B
+
+Box Plot
+
+## C
+
+Bar Chart
+
+## Answer
+
+B
+
+## Correct message
+
+That’s correct! A box plot reveals the median, quartiles, and outliers at a glance.
+
+## Incorrect message
+
+A box plot is great for summarizing median, quartiles, and outliers for numeric data.
+
+# Q: Categorical Overlaps
+
+To compare how two categorical variables, for example 'sex' and 'day' in the tips dataset, overlap in their counts, which approach is most suitable?
+
+## A
+
+A stacked or grouped bar chart
+
+## B
+
+A scatter plot
+
+## C
+
+A violin plot
+
+## Answer
+
+A
+
+## Correct message
+
+Exactly. Stacked or grouped bar charts are useful for comparing two categorical variables.
+
+## Incorrect message
+
+Stacked or grouped bar charts are best to see overlaps between two categorical variables.
+
+# Q: Numeric vs Categorical Comparison
+
+Suppose you want to see if men or women tip more on average. Which plot would be a straightforward choice to compare average values across these two groups?
+
+## A
+
+A summary bar chart with error bars
+
+## B
+
+Scatter plot
+
+## C
+
+Strip plot
+
+## Answer
+
+A
+
+## Correct message
+
+Correct! A bar chart with mean values and error bars can summarize average tips by sex.
+
+## Incorrect message
+
+A bar chart with error bars is a clear way to compare and visualize average values by group.
+
+# Q: Time Series Representation
+
+When visualizing a continuous time trend, which plot is typically more appropriate?
+
+## A
+
+Line chart
+
+## B
+
+Stacked bar chart
+
+## C
+
+Histogram
+
+## Answer
+
+A
+
+## Correct message
+
+Exactly right. Line charts emphasize trends over continuous time.
+
+## Incorrect message
+
+A line chart is best to show how a value changes over a continuous time axis.
+
+# Q: Gapminder Numeric vs Numeric
+
+If you want to check the relationship between GDP per capita and life expectancy in the gapminder dataset, which plot should you start with?
+
+## A
+
+Box plot
+
+## B
+
+Stacked bar chart
+
+## C
+
+Scatter plot
+
+## Answer
+
+C
+
+## Correct message
+
+Correct! A scatter plot is perfect for checking possible correlations between two numeric variables.
+
+## Incorrect message
+
+A scatter plot is the go-to option for comparing two numeric variables.
+
+# Q: Comparing Number of Individuals in a Categorical Variable
+
+Suppose you want to compare the number of individuals in each category of a categorical variable (e.g. the number of people in each sex, race, etc.). Which plot(s) are most suitable? Select all that apply.
+
+## A
+
+Bar chart
+
+## B
+
+Pie chart
+
+## C
+
+Scatter plot
+
+## D
+
+Line chart
+
+## Answer
+
+A|B
+
+## Correct message
+
+Correct! A bar chart and pie chart are both suitable for comparing the number of individuals in each category of a categorical variable.
+
+## Incorrect message
+
+A bar chart and pie chart are both suitable for comparing the number of individuals in each category of a categorical variable.

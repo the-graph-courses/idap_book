@@ -1,0 +1,175 @@
+---
+title: "Multiple Choice Quiz | Conditional Transformations with Pandas"
+---
+
+# Intro 
+
+This quiz will test your understanding of conditional transformations of variables in pandas, using methods like `replace()` and custom functions.
+
+# Q: Replace Method Dictionary
+
+Which code correctly replaces short day names with full day names in pandas?
+
+## A
+
+```python
+tips['day_full'] = tips['day'].replace(["Sun", "Sunday", "Sat", "Saturday"])
+```
+
+## B
+
+```python
+tips['day_full'] = tips['day'].replace({"Sun": "Sunday", "Sat": "Saturday"})
+```
+
+## C
+
+```python
+tips['day_full'] = tips['day'].replace({"Sunday": "Sun", "Saturday": "Sat"})
+```
+
+## Answer
+
+B
+
+## Correct message
+
+That's correct! Dictionaries are used with `replace()` to map original values to new values.
+
+## Incorrect message
+
+Remember, dictionaries are used to map existing values to new ones using `replace()`.
+
+# Q: Replace NaN with Zero
+
+Which is the correct way to replace NaN values in the column `sales` with 0?
+
+## A
+
+```python
+df['sales'].replace(None, 0)
+```
+
+## B
+
+```python
+df['sales'] = df['sales'].replace(np.nan, 0)
+```
+
+## C
+
+```python
+df['sales'].replace("NaN", 0)
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly! To replace numeric NaN values, use `np.nan` as the key in the dictionary.
+
+## Incorrect message
+
+Use `np.nan` for replacing numeric NaN values in pandas.
+
+# Q: Handling None Values
+
+Given a column with None values, how can you replace all None with "Missing"?
+
+## A
+
+```python
+df['col'] = df['col'].replace({None: "Missing"})
+```
+
+## B
+
+```python
+df['col'] = df.col.replace(None, "Missing")
+```
+
+## C
+
+```python
+df['col'].replace({"None": "Missing"})
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Correct! Using `{None: "Missing"}` properly replaces `None` values.
+
+## Incorrect message
+
+You should use `{None: "Missing"}` for replacing `None` values.
+
+# Q: Recoding with Custom Function
+
+What will be the category returned by `categ_gross(25000000)` based on the following function?
+
+```python
+def categ_gross(x):
+    if x < 10_000_000:
+        return "Low"
+    elif 10_000_000 <= x <= 50_000_000:
+        return "Medium"
+    else:
+        return "High"
+```
+
+## A
+
+Low
+
+## B
+
+Medium
+
+## C
+
+High
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly! A value of 25 million falls in the medium category.
+
+## Incorrect message
+
+The range 10–50 million is classified as "Medium".
+
+# Q: Vectorizing Functions
+
+What does `np.vectorize()` do when applied to a Python function?
+
+## A
+
+Improves execution speed significantly
+
+## B
+
+Enables the function to be applied element-wise over arrays or Series
+
+## C
+
+Converts the function to return only numeric data
+
+## Answer
+
+B
+
+## Correct message
+
+Exactly! It allows your function to work efficiently on pandas or numpy arrays.
+
+## Incorrect message
+
+Vectorizing helps a function apply easily over arrays or series.

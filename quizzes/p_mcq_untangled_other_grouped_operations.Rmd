@@ -1,0 +1,184 @@
+---
+title: "Multiple Choice Quiz | Other Grouped Operations: transform, value_counts and cumsum"
+---
+
+# Intro 
+
+This quiz covers additional grouped operations in pandas, such as using transform to add group-level statistics, counting values with value_counts, and computing cumulative sums within groups. Good luck!
+
+# Q: Summation with transform
+
+You want to add a new column "precip_sum_month" in the weather DataFrame, which stores the sum of precipitation for each month in the original DataFrame shape. Which code accomplishes this task?
+
+## A
+```python
+weather["precip_sum_month"] = weather.groupby("month")["precipitation"].agg("sum")
+```
+
+## B
+```python
+weather["precip_sum_month"] = weather.groupby("month")["precipitation"].transform("sum")
+```
+
+## C
+```python
+weather["precip_sum_month"] = weather["precipitation"].cumsum()
+```
+
+## Answer
+
+B
+
+## Correct message
+
+Nice job! transform matches each row to the group-level sum, allowing you to preserve the original DataFrame shape.
+
+## Incorrect message
+
+Remember that transform is needed to ensure the result returns to the original DataFrame shape rather than collapsing it.
+
+# Q: transform vs agg
+
+What is the main difference between using "agg" and "transform" on a grouped DataFrame?
+
+## A
+
+agg returns a single row per group, while transform returns something of the same shape as the original data.
+
+## B
+
+agg returns multiple rows matching the original data, while transform only shows a single row per group.
+
+## C
+
+They both produce the same output.
+
+## Answer
+
+A
+
+## Correct message
+
+Correct. agg collapses groups, whereas transform preserves the original shape.
+
+## Incorrect message
+
+agg collapses groups by returning a single result (per group), while transform returns a result for every row in the original data.
+
+# Q: Weather type counts
+
+Consider the dataset below: 
+
+| month | weather  | temperature | precipitation |
+|-------|----------|-------------|---------------|
+| 1     | Sunny    | 12         | 0.0           |
+| 1     | Cloudy   | 10         | 0.2           |
+| 1     | Sunny    | 11         | 0.0           |
+| 2     | Rainy    | 8          | 1.5           |
+| 2     | Rainy    | 7          | 2.0           |
+| 2     | Cloudy   | 9          | 0.5           |
+| 3     | Sunny    | 15         | 0.0           |
+| 3     | Sunny    | 16         | 0.0           |
+| 3     | Rainy    | 12         | 1.0           |
+
+You need to count how many instances of each weather type occur in each month, to return something like this:
+
+```
+month  weather
+1      Sunny     2
+       Cloudy    1
+2      Rainy     2
+       Cloudy    1
+3      Sunny     2
+       Rainy     1
+```
+Which of the following code snippets does this?
+
+## A
+```python
+weather["weather"].value_counts(normalize=True)
+```
+
+## B
+```python
+weather.groupby("month")["weather"].count()
+```
+
+## C
+```python
+weather.groupby("month")["weather"].value_counts()
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Exactly. groupby("month")["weather"].value_counts() will return counts per weather type, within each month.
+
+## Incorrect message
+
+Check how value_counts is being applied. You need to group by "month" first, then apply value_counts on the "weather" data.
+
+# Q: Normalized value counts
+
+How do you get proportions (like percentages) of each weather type by month instead of just counts?
+
+## A
+```python
+weather.groupby("month")["weather"].value_counts(normalize=True)
+```
+
+## B
+```python
+weather["weather"].value_counts(percentage=True)
+```
+
+## C
+```python
+weather["weather"].value_counts().reset_index()
+```
+
+## Answer
+
+A
+
+## Correct message
+
+Right. The normalize=True argument gives you proportions, and grouping by month ensures the calculation is within each month.
+
+## Incorrect message
+
+Remember to specify normalize=True on the value_counts, and to apply it after grouping.
+
+# Q: Cumulative sum usage
+
+Which of the following code snippets correctly calculates cumulative precipitation for each month (resetting the sum at the start of a new month)?
+
+## A
+```python
+weather["precip_cumul"] = weather["precipitation"].cumsum()
+```
+
+## B
+```python
+weather["precip_cumul"] = weather.groupby("precipitation")["month"].cumsum()
+```
+
+## C
+```python
+weather["precip_cumul"] = weather.groupby("month")["precipitation"].cumsum()
+```
+
+## Answer
+
+C
+
+## Correct message
+
+Yes! Grouping by month before cumsum ensures each month's cumulative sum starts fresh.
+
+## Incorrect message
+
+Use groupby("month") on precipitation, then apply cumsum to get monthly cumulative totals.
